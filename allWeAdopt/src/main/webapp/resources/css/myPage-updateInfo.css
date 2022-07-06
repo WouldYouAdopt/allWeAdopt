@@ -1,0 +1,73 @@
+/* 회원 정보 수정 - 비밀번호 확인 페이지 css */
+
+.pw-area{
+    display: flex;
+    align-items: center;
+}
+
+.pw-area input{
+    width: 87%;
+    margin-right: 10px;
+}
+
+.pw-area button{
+    width: 60px;
+}
+
+.notice-message{
+    text-align: center;
+    color: rgb(251, 131, 107);
+}
+
+.notice-message p{
+    margin-bottom: 8px;
+}
+
+.confirm-area > .spaceArea{
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#confirmBtn{
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+
+    background-color:rgb(251, 131, 107); 
+    color: white;
+}
+
+/* 회원 정보 수정 - 나의 정보 관리, 비밀번호 변경 페이지 */
+
+/* 나의 정보 관리, 비밀번호 변경 타이틀 부분 */
+.updateTitle {
+    border-bottom: 1px solid black;
+}
+
+.updateTitle > p {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+
+/* 나의정보 관리 폼 하단에 padding 주기. . .*/
+#updateInfo{
+    padding-bottom: 60px;
+}
+
+
+/*제출 버튼 스타일*/
+#submitButton1{
+    background-color:rgb(251, 131, 107); 
+    border: none;
+    opacity: 1;
+}
+
+#submitButton2{
+    background-color:rgb(251, 131, 107); 
+    border: none;
+    opacity: 1;
+}

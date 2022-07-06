@@ -64,7 +64,7 @@
                     <li class="nav-item"><a class="nav-link" href="member/login">로그인</a></li>
 
                     <!-- 로그인 했을 때 -->
-                     <li class="nav-item dropdown">
+                     <%-- <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">프로필</a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
                             <li><a class="dropdown-item" href="portfolio-overview.html">회원 정보 수정</a></li>
@@ -75,14 +75,14 @@
                             <li><a class="dropdown-item" href="portfolio-item.html">문의하기</a></li>
                             <li><a class="dropdown-item" href="portfolio-item.html">공지사항</a></li>
                         </ul>
-                    </li>
+                    </li> --%>
                 </ul>
             </div>
         </div>
     </nav>
 
     <!-- Navigation mypage-->
-     <nav class="navbar navbar-expand-lg navbar-dark bg-pink " >
+     <%-- <nav class="navbar navbar-expand-lg navbar-dark bg-pink " >
         <div class="container px-2">
             <ul class="navbar-nav ms-left mb-2 mb-lg-0">
                 <li class="nav-item"><a class="nav-link" href="index.html">회원정보 수정</a></li>
@@ -97,5 +97,5 @@
                 <li class="nav-item"><a class="nav-link " href="faq.html">탈퇴하기</a></li>
             </ul>    
         </div>
-    </nav> 
+    </nav>  --%>
 </header>
