@@ -12,10 +12,10 @@
         <title>회원가입</title>
 
         <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/assets/올위어답터.ico" />
+        <link rel="icon" type="image/x-icon" href="${contextPath}/resources/assets/올위어답터.ico" />
 
         <!-- main css -->
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main-style.css">
+        <link rel="stylesheet" href="${contextPath}/resources/css/main-style.css">
 
         <!-- 폰트어썸 (폰트)-->
         <script src="https://kit.fontawesome.com/e4f51ae88c.js" crossorigin="anonymous"></script>
@@ -27,10 +27,10 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="${pageContext.request.contextPath}/resources/css/styles.css" rel="stylesheet" />
+        <link href="${contextPath}/resources/css/styles.css" rel="stylesheet" />
 
         <!-- signUp css -->
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/signUp-style.css">
+        <link rel="stylesheet" href="${contextPath}/resources/css/signUp-style.css">
 
     </head>
     <body class="d-flex flex-column">
@@ -46,7 +46,7 @@
                     <!-- Contact form-->
                     <div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5" id="bg-light">
                         <div class="text-center mb-5">
-                            <div class=" bg-gradient text-white rounded-3 mb-3"><img src="${pageContext.request.contextPath}/resources/images/logo.png" id="signUpLogo"></div>
+                            <div class=" bg-gradient text-white rounded-3 mb-3"><img src="${contextPath}/resources/images/logo.png" id="signUpLogo"></div>
                             <h1 class="fw-bolder">회원가입</h1>
                             <p class="lead fw-normal text-muted mb-0" id="welcome">All We Adopt에 오신것을 환영합니다!</p>
                         </div>
@@ -118,7 +118,7 @@
                                     <!-- 프로필 사진 추가-->
                                     <div class="form-floating mb-3 confirm-area">
                                         <div class="profile-image-area">
-                                            <img src="${pageContext.request.contextPath}/resources/images/user.png" id="profileImg">
+                                            <img src="${contextPath}/resources/images/user.png" id="profileImg">
 
                                             <div class="imageBtnArea">
                                                 <input id="input-image" type="file" name="uploadImage" accept="image/*">
@@ -167,8 +167,8 @@
         <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
         
         <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
-        <script src="resources/js/signUp.js"></script>
+        <script src="${contextPath}/resources/js/scripts.js"></script>
+        <script src="${contextPath}/resources/js/signUp.js"></script>
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     </body>
 </html>
