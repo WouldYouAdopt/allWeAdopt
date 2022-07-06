@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Modern Business - Start Bootstrap Template</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="../../../css/style.css" rel="stylesheet" />
+        <style>
+            .fundingTitleBox{
+                margin: 0 auto;
+                width: 1224px;
+                position: relative;
+                height: 330px;
+                overflow: hidden;
+            }
+            .fundingTitleImage{
+                background: url(../1.png) 50% 0 no-repeat ;
+                height: 330px;
+                filter: blur(0px);
+                transform: scale(1.2);
+            }
+            .fundingTitleText{
+                font-size: 40px;
+                color: rgba(255, 255, 255, 0.9);
+                letter-spacing: -2px;
+                font-weight: 600;
+                text-align: right;
+                text-shadow: 2px 2px 8px #373737;
+                position: absolute;
+                right: 40px;
+                top: 28px;
+            }
+            .bottom-box{
+                width: 100%;
+                height: 40px;
+                background-color: rgba(255, 255, 255, 0.5);
+                position: absolute;
+                left: 0px;
+                bottom: 0px;
+                /*box-shadow: 0px -5px 5px 0px rgba(0, 0, 0, 0.3);*/
+
+
+            }
+            .rate-bar{
+                width: 96%;
+                height: 9px;
+                position: absolute;
+                background-color: #fff;
+                left: 2%;
+                bottom: 15px;
+                border-radius: 5px;
+                box-shadow: 0px 1px 3px 2px rgba(0, 0, 0, 0.2);
+            }
+            .rate-bar-pink{
+                /* 96%가 full임 */
+                width: calc(0.96 * 75%);
+                height: 7px;
+                position: absolute;
+                background-color: #FB836B;
+                left: 2.1%;
+                bottom: 16px;
+                border-radius: 5px;
+
+                animation-name: long; /* @keyframes에 지정한 이름을 여기다 쓴다 */
+                animation-duration: 2s; /* 애니메이션 동작 시간 */
+            }
+
+            @keyframes long { /* @keyframes 뒤에 애니메이션을 대표하는 임의의 이름부여 */
+                from { /* 애니메이션 시작 시점 */
+                    width: 0;
+                }
+                to { /* 애니메이션 종료 시점 */
+                    width: calc(0.96 * 75%);
+                }
+            }
+
+            .rate-text-box{
+                /* 96%가 full임 */
+                width: 60px;
+                height: 40px;
+                position: absolute;
+                background-color: #fff;
+                left: calc(0.96 * 75%);
+                bottom: 45px;
+                border-radius: 4px;
+                font-size: 20px;
+                font-weight: 600;
+                text-align: center;
+                line-height: 37px;
+                color: #FB836B;
+                box-shadow: 2px 1px 8px 2px rgba(0, 0, 0, 0.4);
+
+                animation-name: long2; /* @keyframes에 지정한 이름을 여기다 쓴다 */
+                animation-duration: 2s; /* 애니메이션 동작 시간 */
+            }
+
+            .rate-text-box::after{
+                content: '';
+                width: 0px;
+                height: 0px;
+                position: absolute;
+                border-top: #fff 15px solid;
+                border-right: transparent 10px solid;
+                border-bottom: transparent 15px solid;
+                border-left: transparent 10px solid;
+                position: absolute;
+                left: 32%;
+                bottom: -28px;
+            }
+
+            @keyframes long2 { /* @keyframes 뒤에 애니메이션을 대표하는 임의의 이름부여 */
+                from { /* 애니메이션 시작 시점 */
+                    left: 2px;
+                }
+                to { /* 애니메이션 종료 시점 */
+                    left: calc(0.96 * 75%);
+                }
+            }
+
+            /* 버튼영역 */
+            .middle-btns{
+                /*border: 1px solid #000;*/
+                max-width: 550px ;
+                margin: 0 auto;
+                display: flex;
+                justify-content: space-between;
+                padding: 30px 0px;
+            }
+            .middle-btns > button{
+                border-radius: 4px;
+                border: 0;
+                padding: 10px 18px;
+                letter-spacing:-1px;
+                background-color:  #fff;
+                font-weight: bold;
+                color: #FB836B;
+                border: #FB836B 1px solid;
+            }
+            .middle-btns > button:hover{
+                background-color: #FB836B;
+                color: #fff;
+                font-weight: bold;
+                border: #fff 1px solid;
+            }
+
+            /*현재 선택된 페이지에 버튼 표시*/
+            .nowSelect{
+                background-color: #FB836B !important;
+                color: #fff !important;
+                font-weight: bold;
+                border: #fff 1px solid !important;
+            }
+
+            /* 오른쪽영역 높이 고정 */
+            .sticky{
+                height: 1100px;
+                position: sticky;
+                top: 10px;
+            }
+            .fundingRight > div{
+                margin-bottom: 20px;
+            }
+            .pointText{
+                font-size: 26px;
+                font-weight: 600;
+            }
+
+            .fundingBtn{
+                border-radius: 4px;
+                border: 0;
+                padding: 10px 45px;
+                background-color:  #FB836B;
+                font-weight: bold;
+                color: #fff;
+                border: #FB836B 1px solid;
+                font-size: 26px;
+            }
+            .qnaBtn{
+                border-radius: 4px;
+                border: 0;
+                padding: 10px 18px;
+                letter-spacing:-1px;
+                background-color:  #999;
+                font-weight: bold;
+                color: #fff;
+                border: #999 1px solid;
+                font-size: 26px;
+            }
+
+            /* 리워드 */
+            .reward{
+                border: #FB836B 1px solid;
+                border-radius: 30px;
+                padding: 20px;
+                margin-bottom: 10px;
+            }
+        </style>
+    </head>
+    <body class="d-flex flex-column">
+        <main class="flex-shrink-0">
+            <!-- Navigation-->
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container px-5">
+                    <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                            <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
+                            <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Blog</a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                                    <li><a class="dropdown-item" href="blog-home.html">Blog Home</a></li>
+                                    <li><a class="dropdown-item" href="blog-post.html">Blog Post</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Portfolio</a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
+                                    <li><a class="dropdown-item" href="portfolio-overview.html">Portfolio Overview</a></li>
+                                    <li><a class="dropdown-item" href="portfolio-item.html">Portfolio Item</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- Page Content  my-5 : y축 마진 필요할때 넣기-->
+            <section class="py-5">
+                <div class="container px-5">
+                    <div class="row gx-5">
+
+                        <!-- 펀딩 이미지, 타이틀, 달성률 들어있는 박스 -->
+                        <div class="fundingTitleBox">
+                            <div class="fundingTitleImage"></div>
+                            <div class="fundingTitleText">
+                                애견 쿨매트<br>우리아이 여름을 쿨하게                            
+                            </div>
+                            <div class="bottom-box">
+                                <div class="rate-bar"></div>
+                                <div class="rate-bar-pink"></div>
+                                <div class="rate-text-box"><span class="rate-text"></span><span class="per">%</span></div>
+                            </div>
+                        </div>
+                            
+                        <!-- 버튼들 -->
+                        <div class="middle-btns">
+                            <button class="nowSelect">펀딩 스토리</button>
+                            <button>반환 / 정책</button>
+                            <button>참여 서포터</button>
+                            <button>종료된 펀딩</button>
+                        </div>
+
+                        
+                        
+                        
+
+                        <div class="col-lg-9">
+                            <!-- Post content-->
+                            <article style="border: 1px solid #000;">
+                                여기에 이것저것<br>
+                                아래로 이미지 길게
+
+                            </article>
+
+                            <!-- Comments section-->
+                            <section style="border: 1px solid #000; height: 100px;">
+                                
+                            </section>
+                        </div>
+
+                        <!-- 오른쪽 영역 -->
+                        <div class="col-lg-3 sticky" style="border: 1px solid #000; padding-left: 0;">
+                            <!-- d-flex : flex 들어있는 class-->
+                            <div class="align-items-center mb-4 fundingRight" style="border: 1px solid #000;">
+                                <div class="period">
+                                    <span class="pointText">12</span>일 남음
+                                </div>
+                                <div class="donation">
+                                    달성금액 <br>
+                                    <span class="pointText">320,000 /  880,000</span> 원
+                                </div>
+                                <div class="supporters">
+                                    <span class="pointText">3</span>명의 서포터
+                                </div>
+                            </div>
+                            <div class="align-items-center mb-4" >
+                                <button class="fundingBtn">펀딩하기</button>
+                                <button class="qnaBtn">문의</button>
+                            </div>
+                            <div class="reward-box">
+                                <div class="reward">
+                                    <div>
+                                        리워드1
+                                    </div>
+                                    <div>
+                                        108,000원 펀딩
+                                    </div>
+                                    <div>
+                                        슈퍼얼리도그 쿨매트 러그형 S(100x200x1.5cm) 그레이
+                                    </div>
+                                    <div>
+                                        거실에선 러그처럼 침실에선 토퍼처럼 사용할 수 있는 몽뚜뚜 프리미엄 러그형 쿨매트! 3D매쉬 소재로 통풍이 잘되고 세탁이 편리한 신개념 애견매트로 S(100x200x1.5cm) 사이즈는 싱글 침대에 함께 사용할 수 있습니다.<br>★ 쿨매트 : 겉면 메쉬 / 그레이 색상
+                                    </div>
+                                    <div>
+                                        배송비 없음
+                                    </div>
+                                    <div>
+                                        리워드 발송일 : 2022년 08월 01일 부터 순차발송
+                                    </div>
+                                </div>
+
+                                <div class="reward">
+                                    <div>
+                                        리워드2
+                                    </div>
+                                    <div>
+                                        108,000원 펀딩
+                                    </div>
+                                    <div>
+                                        슈퍼얼리도그 쿨매트 러그형 S(100x200x1.5cm) 그레이
+                                    </div>
+                                    <div>
+                                        거실에선 러그처럼 침실에선 토퍼처럼 사용할 수 있는 몽뚜뚜 프리미엄 러그형 쿨매트! 3D매쉬 소재로 통풍이 잘되고 세탁이 편리한 신개념 애견매트로 S(100x200x1.5cm) 사이즈는 싱글 침대에 함께 사용할 수 있습니다.<br>★ 쿨매트 : 겉면 메쉬 / 그레이 색상
+                                    </div>
+                                    <div>
+                                        배송비 없음
+                                    </div>
+                                    <div>
+                                        리워드 발송일 : 2022년 08월 01일 부터 순차발송
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div> <!--오른쪽 영역-->
+
+                    </div>
+                </div>
+            </section>
+        </main>
+        <!-- Footer-->
+        <footer class="bg-dark py-4 mt-auto">
+            <div class="container px-5">
+                <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                    <div class="col-auto"><div class="small m-0 text-white">Copyright &copy; Your Website 2022</div></div>
+                    <div class="col-auto">
+                        <a class="link-light small" href="#!">Privacy</a>
+                        <span class="text-white mx-1">&middot;</span>
+                        <a class="link-light small" href="#!">Terms</a>
+                        <span class="text-white mx-1">&middot;</span>
+                        <a class="link-light small" href="#!">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <script>
+            
+            $(function() {
+                var cnt0 = 0;
+                counterFn();
+
+                function counterFn() {
+
+                    id0 = setInterval(count0Fn, 20);
+
+                    function count0Fn() {
+                        cnt0++;
+                        if (cnt0 > 75) {
+                            clearInterval(id0);
+                        } else {
+                            $(".rate-text").text(cnt0);
+                        }
+                    }
+                }
+		    });
+
+
+        </script>
+    </body>
+</html>
