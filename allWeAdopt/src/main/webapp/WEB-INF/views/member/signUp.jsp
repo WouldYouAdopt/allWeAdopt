@@ -53,48 +53,50 @@
                         <div class="row gx-5 justify-content-center">
                             <div class="col-lg-8 col-xl-6">
 
-                                <form id="signUpForm" data-sb-form-api-token="API_TOKEN">
+                                <form action="signUp" id="signUpForm" method="POST" enctype="multipart/form-data" data-sb-form-api-token="API_TOKEN">
 
                                     <!-- 이메일 주소 -->
-                                    <div class="form-floating mb-3 confirm-area">
-                                        <input class="form-control" id="email" type="email" placeholder="name@example.com"  />
-                                        <label for="email"><span>* </span>이메일</label>
+                                    <div class="form-floating mb-2 confirm-area">
+                                        <input class="form-control" name="memberEmail" id="memberEmail" type="email" placeholder="name@example.com"  />
+                                        <label for="memberEmail"><span>* </span>이메일</label>
                                     </div>
+                                    <div id="emailMsg" class="form-floating validate-area"></div>
 
                                     <!-- 비밀번호 -->
                                     <div class="form-floating mb-3 confirm-area">
-                                        <input class="form-control" id="pw" type="password" placeholder="Enter your name..."  />
-                                        <label for="pw"><span>* </span>비밀번호</label>
-                                        <div class="invalid-feedback" data-sb-feedback="pw:required">Password is required.</div>
+                                        <input class="form-control" name="memberPw" id="memberPw" type="password" placeholder="Enter your name..."  />
+                                        <label for="memberPw"><span>* </span>비밀번호</label>
                                     </div>
 
                                     <!-- 비밀번호 확인-->
-                                    <div class="form-floating mb-3 confirm-area">
-                                        <input class="form-control" id="pwConfirm" type="password" placeholder="Enter your name..."  />
-                                        <label for="pwConfirm"><span>* </span>비밀번호 확인</label>
+                                    <div class="form-floating mb-2 confirm-area">
+                                        <input class="form-control" id="memberPwConfirm" type="password" placeholder="Enter your name..."  />
+                                        <label for="memberPwConfirm"><span>* </span>비밀번호 확인</label>
                                     </div>
+                                    <div id="pwMsg" class="form-floating validate-area"></div>
 
                                     <!-- 이름 -->
-                                    <div class="form-floating mb-3 confirm-area">
-                                        <input class="form-control" id="name" type="text" placeholder="Enter your name..."  />
-                                        <label for="name"><span>* </span>이름 </label>
+                                    <div class="form-floating mb-2 confirm-area">
+                                        <input class="form-control" name="memberName" id="memberName" type="text" placeholder="Enter your name..."  />
+                                        <label for="memberName"><span>* </span>이름 </label>
                                     </div>
+                                    <div id="nameMsg" class="form-floating validate-area"></div>
 
                                     <!-- 전화번호 -->
                                     <div class="form-floating mb-3 confirm-area">
-                                        <input class="form-control" id="phone" type="tel" placeholder="(010) 456-7890"  />
-                                        <label for="phone"><span>* </span>전화번호(-제외) </label>
+                                        <input class="form-control" name="memberTel" id="memberTel" type="tel" placeholder="(010) 456-7890"  />
+                                        <label for="memberTel"><span>* </span>휴대폰 번호(-제외) </label>
                                         <div class="spaceArea confirmBtnArea">
                                             <button id="confirmBtn">인증</button>
                                         </div>
                                     </div>
 
                                     <!-- 인증번호-->
-                                    <div class="form-floating mb-3 confirm-area">
+                                    <div class="form-floating mb-2 confirm-area">
                                         <input class="form-control" id="number" type="tel" placeholder="(010) 456-7890"  />
                                         <label for="number"><span>* </span>인증번호</label>
                                     </div>
-
+                                    <div id="telMsg" class="form-floating validate-area"></div>
 
                                     <!-- 주소 (다음 api) -->
                                     <div class="form-floating mb-3 confirm-area">
@@ -118,13 +120,14 @@
                                     <!-- 프로필 사진 추가-->
                                     <div class="form-floating mb-3 confirm-area">
                                         <div class="profile-image-area">
+
                                             <img src="${contextPath}/resources/images/user.png" id="profileImg">
 
                                             <div class="imageBtnArea">
-                                                <input id="input-image" type="file" name="uploadImage" accept="image/*">
-                                                <label for="input-image">등록 </label>
-                                                <input type="hidden" id="delete-image" name="profileDelete">
-                                                <label for="delete-image">삭제</label>
+                                                <input id="profileImage" type="file" name="profileImage" accept="image/*">
+                                                <label for="profileImage">등록 </label>
+                                                <input type="hidden" id="deleteImage" name="deleteImage">
+                                                <label for="deleteImage">삭제</label>
                                             </div>
 
                                         </div>
@@ -148,7 +151,7 @@
                                     <!-- an error submitting the form-->
                                     <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
                                     <!-- Submit Button-->
-                                    <div class="d-grid"><button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">회원가입</button></div>
+                                    <div class="d-grid"><button class="btn btn-primary btn-lg disabled" id="signUpBtn" type="submit">회원가입</button></div>
                                 </form>
                             </div>
                         </div>
