@@ -76,7 +76,7 @@
 
         </main>
 
-
+        <!-- 푸터 -->
         <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
         <!-- Bootstrap core JS-->
