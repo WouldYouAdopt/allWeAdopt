@@ -1,0 +1,31 @@
+/* 폰트 적용 */
+*{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* 로고(svg) */
+#레이어_1{
+    height:40px;
+}
+
+.nav-text-color{
+    /* color: rgb(251, 131, 107); */
+    color: black;
+}
+
+/* 마이페이지 nav 탈퇴하기 버튼 */
+.secession-button{
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+}
+
+/*마이페이지 nav hover시*/
+.nav-text-color:hover {
+    color: rgb(251, 131, 107);
+}
+
+/* 부트스트랩 opacity 설정 덮어쓰기 */
+.bg-pink {
+    —bs-bg-opacity: 1;
+    background-color: rgb(251, 131, 107);
+}
