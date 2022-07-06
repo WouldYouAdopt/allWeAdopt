@@ -19,6 +19,7 @@
 	<typeAliases>
 	
 		<!-- <typeAlias type="edu.kh.allWeAdopt.member.model.vo.Member" alias="member"/> -->
+		
 
 	</typeAliases>
 
