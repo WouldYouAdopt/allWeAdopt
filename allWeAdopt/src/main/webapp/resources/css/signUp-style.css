@@ -1,0 +1,129 @@
+/*회원가입 위 로고*/
+#signUpLogo{
+    width: 300px;
+}
+
+.signUp-container{
+    border-top: 1px solid black;
+    padding-top: 48px;
+}
+
+.confirm-area{
+    display: flex;
+}
+
+.confirm-area span{
+    color: red;
+}
+
+#phone, #sample4_postcode{
+    width: 87%;
+    margin-right: 10px;
+}
+
+.test-area{
+    display: flex;
+    flex-direction: column;
+}
+
+/*체크, 버튼 등 영역*/
+.confirm-area > .spaceArea{
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*버튼 영역*/
+.confirmBtnArea{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* 인증 버튼*/
+/* #confirmBtn{
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+
+    background-color:rgb(251, 131, 107); 
+    color: white;
+} */
+
+/*체크 버튼*/
+.fa-circle-check{
+    color: lightgreen;
+    
+}
+
+.fa-circle-exclamation{
+    color: rgb(251, 131, 107);
+}
+
+
+
+#submitButton{
+    background-color:rgb(251, 131, 107); 
+    border: none;
+    opacity: 1;
+}
+
+
+/*프로필 이미지 영역*/
+.profile-image-area{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 16px 0;
+}
+
+/* 기존 input버튼 지우기 */
+#input-image{
+    display: none;
+}
+
+/*프로필 이미지 사이즈*/
+#profileImg{
+    width: 50%;
+}
+
+/*프로필 이미지용 버튼 area*/
+.imageBtnArea{
+    display: flex;
+    align-items: center;
+}
+
+.imageBtnArea > label{
+    width: 60px;
+    background-color: rgb(251, 131, 107);
+    color: white; 
+    border-radius: 5px;
+    padding: 10px;
+    margin: 0 5px;
+    text-align: center;
+    cursor: pointer;
+}
+
+#bg-light{
+    --bs-bg-opacity: 0;
+}
+
+
+
+/*주소*/
+.confirmBtnArea > button{
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+
+    background-color:rgb(251, 131, 107); 
+    color: white;
+}
+
+#signUpForm{
+    padding: 48px;
+    border-top: 1px solid black;
+}
