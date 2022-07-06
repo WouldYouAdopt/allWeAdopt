@@ -12,10 +12,10 @@
         <meta name="author" content="" />
         <title>ALL WE ADOPT</title>
         <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="resources/assets/올위어답터.ico" />
+        <link rel="icon" type="image/x-icon" href="${contextPath}/resources/assets/올위어답터.ico" />
 
         <!-- main css -->
-        <link rel="stylesheet" href="resources/css/main-style.css">
+        <link rel="stylesheet" href="${contextPath}/resources/css/main-style.css">
 
         <!-- 폰트어썸 (폰트)-->
         <script src="https://kit.fontawesome.com/e4f51ae88c.js" crossorigin="anonymous"></script>
@@ -27,8 +27,8 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="resources/css/main-style.css" rel="stylesheet" />
-        <link href="resources/css/styles.css" rel="stylesheet" />
+        <link href="${contextPath}/resources/css/main-style.css" rel="stylesheet" />
+        <link href="${contextPath}/resources/css/styles.css" rel="stylesheet" />
 
         <style>
             .nav-text-color{
@@ -82,7 +82,7 @@
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="resources/js/scripts.js"></script>
+        <script src="${contextPath}/resources/js/scripts.js"></script>
     </body>
     
 </html>
