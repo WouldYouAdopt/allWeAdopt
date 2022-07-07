@@ -29,5 +29,12 @@
   	</select>
  
 
+	<!-- 이메일 중복검사 -->
+	<select id="emailDupCheck" resultType="_int">
+	SELECT COUNT(*) FROM MEMBER
+	WHERE MEMBER_EMAIL = #{memberEmail}
+	AND SECESSION_FL = 'N'
+	</select>
 
+ 
 </mapper>

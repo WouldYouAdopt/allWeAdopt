@@ -14,14 +14,13 @@ public class MemberServiceImpl implements MemberService{
 	
 	@Autowired
 	private MemberDAO dao;
-/*
-	// 암호화를 위한 bcrypt 객체
+	
 	@Autowired
 	private BCryptPasswordEncoder bcrypt;
 	
 
 	private Logger logger = LoggerFactory.getLogger(MemberServiceImpl.class);
-*/
+	
 	
 	
 	/*
@@ -44,4 +43,13 @@ public class MemberServiceImpl implements MemberService{
 	
 	
 	
+	// 이메일 중복검사 구현
+	@Override
+	public int emailDupCheck( String memberEmail ) {
+		
+		return dao.emailDupCheck( memberEmail );
+	}
+	
+	
+
 }

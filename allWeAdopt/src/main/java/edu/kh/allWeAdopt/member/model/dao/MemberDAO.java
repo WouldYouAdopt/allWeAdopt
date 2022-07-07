@@ -10,12 +10,11 @@ import edu.kh.allWeAdopt.member.model.vo.Member;
 
 @Repository
 public class MemberDAO {
-/*
+	
 	@Autowired  
 	private SqlSessionTemplate sqlSession;
 	
 	private Logger logger = LoggerFactory.getLogger(MemberDAO.class);
-*/	
 	
 	
 	/** 로그인 DAO 
@@ -31,6 +30,14 @@ public class MemberDAO {
 
 	
 	
-	// db생기면 rootContext 작성 후 SqlSessionTemplate 선언하기
+
+	/** 이메일 중복검사 DAO
+	 * @param memberEmail
+	 * @return result
+	 */
+	public int emailDupCheck(String memberEmail) {
+		
+		return sqlSession.selectOne("memberMapper.emailDupCheck", memberEmail);
+	}
 
 }

@@ -36,10 +36,9 @@ public class MemberController {
 	// 이메일 중복 검사
 	@GetMapping("/emailDupCheck")
 	@ResponseBody
-	public String emailDupCheck( String memberEmail ) {
+	public int emailDupCheck( String memberEmail ) {
 		
-		// return service.emailDupCheck();
-		return null;
+		return service.emailDupCheck(memberEmail);
 	}
 
 	
