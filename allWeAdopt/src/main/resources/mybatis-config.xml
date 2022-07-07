@@ -15,13 +15,17 @@
 		
 	</settings>
 
+
+
 	<!-- 별칭 작성 부분 -->
 	<typeAliases>
 	
-		<!-- <typeAlias type="edu.kh.allWeAdopt.member.model.vo.Member" alias="member"/> -->
+		<typeAlias type="edu.kh.allWeAdopt.member.model.vo.Member" alias="member"/> 
 		
 
 	</typeAliases>
+	
+	
 
 	<!-- Sql이 작성되는 mapper파일 위치 등록 -->
 	<mappers>
