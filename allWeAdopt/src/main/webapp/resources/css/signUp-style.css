@@ -164,3 +164,15 @@
 .error{
     color: rgb(251, 131, 107); ;
 }
+
+
+/* 버튼핑크~ */
+.button-pink{
+    background-color: rgb(251, 131, 107);
+    border: none;
+}
+.button-pink:hover{
+    background-color: rgb(251, 131, 107);
+    border: none;
+}
+

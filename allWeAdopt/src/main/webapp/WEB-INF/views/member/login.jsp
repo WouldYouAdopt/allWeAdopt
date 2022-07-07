@@ -1,3 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -5,25 +10,29 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content />
         <meta name="author" content />
-        <title>Modern Business - Start Bootstrap Template</title>
+        <title>로그인</title>
+
         <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="${contextPath}/resources/assets/올위어답터.ico" />
+
+        <!-- main css -->
+        <link rel="stylesheet" href="${contextPath}/resources/css/main-style.css">
+
+        <!-- 폰트어썸 (폰트)-->
+        <script src="https://kit.fontawesome.com/e4f51ae88c.js" crossorigin="anonymous"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Dongle&family=Gowun+Batang&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
+        <link href="${contextPath}/resources/css/styles.css" rel="stylesheet" />
 
-        <style>
-             .button-pink{
-                background-color: rgb(251, 131, 107);
-                border: none;
-            }
-            .button-pink:hover{
-                background-color: rgb(251, 131, 107);
-                border: none;
-            }
+        <!-- signUp & login css -->
+        <link rel="stylesheet" href="${contextPath}/resources/css/signUp-style.css">
 
-        </style>
 
     </head>
     <body class="d-flex flex-column">
@@ -31,7 +40,6 @@
 
             <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
-            <form action="member/login" method="POST" name="login-form" onsubmit="return loginValidate()">
             <!-- Page content-->
             <section class="py-5">
                 <div class="container px-5">
@@ -43,14 +51,14 @@
                         </div>
                         <div class="row gx-5 justify-content-center">
                             <div class="col-lg-8 col-xl-6">
-                                <form class="form-floating">
+                                <form class="form-floating" action="login" method="post" name="login-form" onsubmit="return loginValidate()">
 
                                     <div class=" form-floating mb-3">
-                                        <input type="email" class="form-control" id="floatingInputValue" placeholder="name@example.com" >
+                                        <input name="memberEmail" type="email" class="form-control" id="floatingInputValue" placeholder="name@example.com" >
                                         <label for="floatingInputValue">이메일 입력</label>
                                     </div>
                                     <div class=" form-floating mb-3">
-                                        <input type="password" class="form-control" id="floatingInputValue" placeholder="비밀번호를 입력하세요." >
+                                        <input name="memberPw" type="password" class="form-control" id="floatingInputValue" placeholder="비밀번호를 입력하세요." >
                                         <label for="floatingInputValue">비밀번호 입력</label>
                                     </div>
                                     <button class="btn button-pink col-xl-12" style="height: 50px; color: white;"> 로그인 </button>
@@ -60,8 +68,8 @@
                                 <div class="mt-4" style="border-bottom: 1px solid black;"></div>
 
                                 <div class="d-flex  justify-content-between mt-3">
-                                    <div><a href="#" class="text-decoration-none" style=" color : rgb(251, 131, 107);">비밀번호 재설정</a> </div>
-                                    <div><a href="#"class="text-decoration-none" style=" color : rgb(251, 131, 107);">회원가입</a> </div>
+                                    <div><a href="changePw" class="text-decoration-none" style=" color : rgb(251, 131, 107);">비밀번호 재설정</a> </div>
+                                    <div><a href="signUp"class="text-decoration-none" style=" color : rgb(251, 131, 107);">회원가입</a> </div>
                                 </div>
                             </div>
                         </div>
