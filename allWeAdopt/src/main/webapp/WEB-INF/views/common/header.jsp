@@ -4,7 +4,7 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-white" style="border-bottom: 1px solid;">
         <div class="container px-3">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand pt-1" href="index.html">
                 <svg version="1.1" id="레이어_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
                     y="0px" viewBox="0 0 347.4 82.3" style="enable-background:new 0 0 347.4 82.3;" xml:space="preserve">
                 <style type="text/css">
@@ -56,26 +56,48 @@
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav ms-auto  my-2 mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link" href="board/shelter">보호소</a></li>
                     <li class="nav-item"><a class="nav-link" href="board/user">사용자</a></li>
                     <li class="nav-item"><a class="nav-link" href="funding">펀딩</a></li>
                     <li class="nav-item"><a class="nav-link" href="findHospital">병원찾기</a></li>
-                    <li class="nav-item"><a class="nav-link" href="member/login">로그인</a></li>
 
-                    <!-- 로그인 했을 때 -->
-                     <%-- <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">프로필</a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
-                            <li><a class="dropdown-item" href="portfolio-overview.html">회원 정보 수정</a></li>
-                            <li><a class="dropdown-item" href="portfolio-item.html">관심 목록</a></li>
-                            <li><a class="dropdown-item" href="portfolio-item.html">작성글 목록</a></li>
-                            <li><a class="dropdown-item" href="portfolio-item.html">펀딩 참여 내역</a></li>
-                            <li><a class="dropdown-item" href="portfolio-item.html">채팅 목록</a></li>
-                            <li><a class="dropdown-item" href="portfolio-item.html">문의하기</a></li>
-                            <li><a class="dropdown-item" href="portfolio-item.html">공지사항</a></li>
-                        </ul>
-                    </li> --%>
+                    <c:choose>
+                        <c:when test="${ empty sessionScope.loginMember }"> 
+                            <%-- 로그인 X --%>
+                            <li class="nav-item"><a class="nav-link" href="member/login">로그인</a></li>
+                        </c:when>
+
+                        <c:otherwise>
+
+                                   
+                                <!-- 로그인 했을 때 -->
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle py-1" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <%-- 기본 프로필이미지(= 프로필이미지 설정 안했을때) --%>
+                                        <c:if test="${empty loginMember.profileImage}">
+                                             <img src="${contextPath}/resources/images/user.png" id="member-profile" style="width : 35px; height : 35px;">	
+                                        </c:if>     
+
+                                        <%-- 사용자 설정 프로필이미지 --%>
+                                        <c:if test="${!empty loginMember.profileImage}">
+                                             <img src="${contextPath}/resources/images/user.png" id="member-profile" style="width : 35px; height : 35px;">
+                                        </c:if>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
+                                        <li><a class="dropdown-item" href="portfolio-overview.html">회원 정보 수정</a></li>
+                                        <li><a class="dropdown-item" href="portfolio-item.html">관심 목록</a></li>
+                                        <li><a class="dropdown-item" href="portfolio-item.html">작성글 목록</a></li>
+                                        <li><a class="dropdown-item" href="portfolio-item.html">펀딩 참여 내역</a></li>
+                                        <li><a class="dropdown-item" href="portfolio-item.html">채팅 목록</a></li>
+                                        <li><a class="dropdown-item" href="portfolio-item.html">문의하기</a></li>
+                                        <li><a class="dropdown-item" href="portfolio-item.html">공지사항</a></li>
+                                    </ul>
+                                </li>
+
+
+                         </c:otherwise>
+                     </c:choose>
                 </ul>
             </div>
         </div>

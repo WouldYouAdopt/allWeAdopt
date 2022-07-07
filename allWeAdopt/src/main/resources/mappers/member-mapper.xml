@@ -8,7 +8,7 @@
 		
 		<result property="memberEmail" 		column="MEMBER_EMAIL"/>
 		<result property="memberPw" 		column="MEMBER_PW"/>
-		<result property="memberNickname" 	column="MEMBER_NICK"/>
+		<result property="memberName" 	column="MEMBER_NM"/>
 		<result property="memberTel" 		column="MEMBER_TEL"/>
 		<result property="memberAddress" 	column="MEMBER_ADDR"/>
 		<result property="profileImage" 	column="PROFILE_IMG"/>
@@ -20,10 +20,10 @@
  
  	<!-- 로그인 -->
   	<select id="login"  parameterType="member"  resultMap="member_rm"  >
- 		SELECT MEMBER_NO, MEMBER_EMAIL, MEMBER_NICK ,MEMBER_TEL,
+ 		SELECT MEMBER_NO, MEMBER_EMAIL, MEMBER_NM ,MEMBER_TEL,
        		MEMBER_ADDR, PROFILE_IMG, 
     		TO_CHAR( ENROLL_DT, 'YYYY-MM-DD HH24:MI:SS') AS ENROLL_DT, MEMBER_PW, MEMBER_TYPE
-		FROM MEMBER_S
+		FROM MEMBER
 		WHERE MEMBER_EMAIL = #{memberEmail}
 		AND SECESSION_FL = 'N' 
   	</select>
