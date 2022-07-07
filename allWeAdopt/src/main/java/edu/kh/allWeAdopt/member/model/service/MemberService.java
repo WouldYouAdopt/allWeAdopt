@@ -1,5 +1,10 @@
 package edu.kh.allWeAdopt.member.model.service;
 
+import java.io.IOException;
+import java.util.Map;
+
+import org.springframework.web.multipart.MultipartFile;
+
 import edu.kh.allWeAdopt.member.model.vo.Member;
 
 public interface MemberService {
@@ -19,5 +24,15 @@ public interface MemberService {
 	 * @return result
 	 */
 	int emailDupCheck( String memberEmail );
+
+
+
+
+	/** 회원가입 Service
+	 * @param map
+	 * @return result
+	 * @throws IOException
+	 */
+	public int signUp(Map<String, Object> map, MultipartFile uploadImage) throws IOException;
 
 }

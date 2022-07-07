@@ -69,6 +69,7 @@
     background-color:rgb(251, 131, 107); 
     border: none;
     opacity: 1;
+    z-index: 10;
 }
 
 
