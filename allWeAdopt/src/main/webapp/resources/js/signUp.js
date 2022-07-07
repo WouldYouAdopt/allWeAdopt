@@ -32,29 +32,30 @@ memberEmail.addEventListener("input", function(){
 
     if( regExp.test(memberEmail.value) ){ // 유효한 경우
 
-        emailMsg.innerText = "사용 가능한 이메일입니다.";
-        emailMsg.classList.remove("error");
-        emailMsg.classList.add("confirm");
+        $.ajax({
+            url : "emailDupCheck",   
+            data : { "memberEmail" : memberEmail.value },
+            type : "GET", // 데이터 전달 방식 type
+            success : function(result){
+                if(result == 1){ // 중복 O
+                    emailMsg.innerText = "이미 사용중인 이메일입니다. 다른 이메일을 입력해주세요.";
+                    emailMsg.classList.remove("confirm");
+                    emailMsg.classList.add("error");
 
-        // $.ajax({
-        //     url : "emailDupCheck",   
-        //     data : { "memberEmail" : memberEmail.value },
-        //     type : "GET", // 데이터 전달 방식 type
-        //     success : function(result){
-        //         if(result == 1){ // 중복 O
-        //             alert("사용중인 이메일입니다. 다른 이메일을 입력해주세요.");
-        //             memberEmail.focus();
-        //             checkObj.memberEmail = false; // 유효 X 기록
-        //         } else { // 중복 X
-        //             alert("사용 가능한 이메일입니다. ");
-        //             checkObj.memberEmail = true; // 유효 O 기록
-        //         }
-        //     },
-        //     error : function(){
-        //         // 비동기 통신(ajax) 중 오류가 발생한 경우
-        //         console.log("에러 발생");
-        //     }
-        // });
+                    checkObj.memberEmail = false; // 유효 X 기록
+                } else { // 중복 X
+                    emailMsg.innerText = "사용 가능한 이메일입니다.";
+                    emailMsg.classList.remove("error");
+                    emailMsg.classList.add("confirm");
+
+                    checkObj.memberEmail = true; // 유효 O 기록
+                }
+            },
+            error : function(){
+                // 비동기 통신(ajax) 중 오류가 발생한 경우
+                console.log("에러 발생");
+            }
+        });
 
     }else{
         emailMsg.innerText = "이메일 형식이 유효하지 않습니다.";
@@ -214,20 +215,6 @@ memberTel.addEventListener("input", function(){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // 다음 주소 api
 //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
 function sample4_execDaumPostcode() {
@@ -245,4 +232,49 @@ function sample4_execDaumPostcode() {
 
         }
     }).open();
+}
+
+
+// 회원 프로필 이미지 (미리보기)
+const profileImage = document.getElementById("profileImage");
+
+if(profileImage != null){ // inputImage 요소가 화면에 존재 할 때
+ 
+    // input type="file" 요소는 파일이 선택 될 때 change 이벤트가 발생한다.
+    profileImage.addEventListener("change", function(){
+
+        if(this.files[0] != undefined){ // 파일이 선택되었을 때
+
+            const reader = new FileReader();
+            reader.readAsDataURL(this.files[0]);
+
+            reader.onload = function(e){
+
+                const profileImg = document.getElementById("profileImg");
+                profileImg.setAttribute("src", e.target.result);
+                document.getElementById("deleteImage").value = 0;
+
+            }
+
+        }
+    });
+}
+
+// 프로필 이미지 옆 삭제버튼 클릭 시
+if(document.getElementById("del")!=null){
+
+    const deleteImage = document.getElementById("deleteImage");
+	
+	del.addEventListener("click", function(){
+	    // 0 : 삭제버튼 안눌림 / 1 : 삭제버튼 눌림	
+	    if(deleteImage.value == 0){
+	
+	        profileImg.setAttribute("src", contextPath + "/resources/images/user.png");
+	        profileImage.value = "";
+	        deleteImage.value = 1;
+
+	    }
+	
+	});
+	
 }

@@ -11,4 +11,13 @@ public class MemberServiceImpl implements MemberService{
 	@Autowired
 	private MemberDAO dao;
 
+	// 이메일 중복검사 구현
+	@Override
+	public int emailDupCheck( String memberEmail ) {
+		
+		return dao.emailDupCheck( memberEmail );
+	}
+	
+	
+
 }
