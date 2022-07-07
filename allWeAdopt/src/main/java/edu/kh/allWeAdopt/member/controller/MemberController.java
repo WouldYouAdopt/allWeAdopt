@@ -1,5 +1,8 @@
 package edu.kh.allWeAdopt.member.controller;
 
+import java.io.IOException;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.kh.allWeAdopt.member.model.service.MemberService;
@@ -43,6 +47,41 @@ public class MemberController {
 	public int emailDupCheck( String memberEmail ) {
 		
 		return service.emailDupCheck(memberEmail);
+	}
+	
+	// 회원가입
+	@PostMapping("/signUp")
+	public String signUp( Member member, // 입력정보 전체
+						  String[] memberAddress, // 회원 주소
+						  @RequestParam("uploadImage") MultipartFile uploadImage, // 프로필 사진
+						  @RequestParam Map<String, Object> map, // 프로필 사진 삭제여부
+						  HttpServletRequest req, // 파일 저장 경로 탐색시 사용
+						  RedirectAttributes ra) throws IOException{
+		
+		// 주소에 구분자 ",," 추가
+		member.setMemberAddress( String.join(",,", memberAddress));
+		
+		// 주소 입력이 안 된 경우 (",,,,") null 세팅
+		if(member.getMemberAddress().equals(",,,,")) member.setMemberAddress(null);
+		
+		// 프로필 이미지를 위한 웹 접근경로, 서버 저장경로 선언
+		String webPath = "/resources/images/memberProfile/";
+		String folderPath = req.getSession().getServletContext().getRealPath(webPath);
+		
+		// 전부 map에 담기
+		map.put("member", member);
+		map.put("webPath", webPath );
+		map.put("folderPath", folderPath );
+		
+		logger.info(map.toString());
+		
+		// 회원가입 서비스 호출
+		int result = service.signUp( map, uploadImage );
+		
+		if(result>0) ra.addFlashAttribute("message", "회원가입 완료");
+		else         ra.addFlashAttribute("message", "회원가입 실패");
+		
+		return "redirect:/";
 	}
 
 	

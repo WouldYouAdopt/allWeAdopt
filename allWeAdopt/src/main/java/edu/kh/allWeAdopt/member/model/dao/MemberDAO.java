@@ -1,5 +1,7 @@
 package edu.kh.allWeAdopt.member.model.dao;
 
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,6 +40,18 @@ public class MemberDAO {
 	public int emailDupCheck(String memberEmail) {
 		
 		return sqlSession.selectOne("memberMapper.emailDupCheck", memberEmail);
+	}
+
+
+
+
+	/** 회원가입 DAO
+	 * @param map
+	 * @return
+	 */
+	public int signUp(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("memberMapper.signUp", map);
 	}
 
 }

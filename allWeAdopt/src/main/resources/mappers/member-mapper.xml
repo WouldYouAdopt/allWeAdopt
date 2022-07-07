@@ -35,6 +35,13 @@
 	WHERE MEMBER_EMAIL = #{memberEmail}
 	AND SECESSION_FL = 'N'
 	</select>
+	
+	<!-- 회원가입 -->
+	<insert id="signUp">
+	INSERT INTO MEMBER 
+	VALUES(SEQ_MEMBER_NO.NEXTVAL,#{memberEmail},#{memberPw},#{memberName},#{memberTel},
+		  #{member.memberAddress},#{profileImage},DEFAULT,DEFAULT,DEFAULT)
+	</insert>
 
  
 </mapper>

@@ -5,7 +5,7 @@ const checkObj = {
     "memberEmail"     : false,
     "memberPw"        : false,
     "memberPwConfirm" : false,
-    "memberNickname"  : false,
+    "memberName"  : false,
     "memberTel"       : false
     //"sendEmail"       : false   // 인증번호 발송 체크
 };
@@ -237,6 +237,7 @@ function sample4_execDaumPostcode() {
 
 // 회원 프로필 이미지 (미리보기)
 const profileImage = document.getElementById("profileImage");
+const deleteImage = document.getElementById("deleteImage"); // 삭제여부 버튼
 
 if(profileImage != null){ // inputImage 요소가 화면에 존재 할 때
  
@@ -252,7 +253,7 @@ if(profileImage != null){ // inputImage 요소가 화면에 존재 할 때
 
                 const profileImg = document.getElementById("profileImg");
                 profileImg.setAttribute("src", e.target.result);
-                document.getElementById("deleteImage").value = 0;
+                deleteImage.value = 0;
 
             }
 
@@ -262,8 +263,6 @@ if(profileImage != null){ // inputImage 요소가 화면에 존재 할 때
 
 // 프로필 이미지 옆 삭제버튼 클릭 시
 if(document.getElementById("del")!=null){
-
-    const deleteImage = document.getElementById("deleteImage");
 	
 	del.addEventListener("click", function(){
 	    // 0 : 삭제버튼 안눌림 / 1 : 삭제버튼 눌림	
@@ -277,4 +276,42 @@ if(document.getElementById("del")!=null){
 	
 	});
 	
+}
+
+document.getElementById("signUpBtn").addEventListener("click",function(){
+
+    console.log("클릭됨;;");
+    
+});
+
+// 회원가입 버튼 클릭시 유효성 검사여부 확인
+function signUpValidate(){
+
+    console.log("클릭됨");
+
+    let str;
+
+    for( let key  in checkObj ){ // 객체용 향상된 for문
+
+        // 현재 접근 중인 key의 value가 false인 경우
+        if( !checkObj[key] ){ 
+
+            switch(key){
+            case "memberEmail":     str="이메일이"; break;
+            case "memberPw":        str="비밀번호가"; break;    
+            case "memberPwConfirm": str="비밀번호 확인이"; break;
+            case "memberName":  str="닉네임이"; break;
+            case "memberTel":       str="전화번호가"; break;
+            }
+
+            str += " 유효하지 않습니다.";
+
+            alert(str);
+            document.getElementById(key).focus();
+            return false; // form태그 기본 이벤트 제거
+        }
+    }
+
+    return true; // form태그 기본 이벤트 수행
+
 }
