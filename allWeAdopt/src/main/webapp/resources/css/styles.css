@@ -7854,6 +7854,11 @@ textarea.form-control-lg {
   --bs-bg-opacity: 1;
   background-color: rgba(var(--bs-white-rgb), var(--bs-bg-opacity)) !important;
 }
+/* 올위어답터 배경 컬러 all we adopt background color  */
+.bg-pink {
+  --bs-bg-opacity: 1;
+  background-color: rgb(251, 131, 107);
+}
 
 .bg-body {
   --bs-bg-opacity: 1;
