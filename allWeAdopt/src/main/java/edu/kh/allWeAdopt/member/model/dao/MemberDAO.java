@@ -21,12 +21,12 @@ public class MemberDAO {
 	 * @param inputMember
 	 * @return loginMember
 	 */
-//	public Member login(Member inputMember) {
-//		
-//		Member loginMember = sqlSession.selectOne("memberMapper.login", inputMember);
-//		
-//		return loginMember;
-//	}
+	public Member login(Member inputMember) {
+		
+		Member loginMember = sqlSession.selectOne("memberMapper.login", inputMember);
+		
+		return loginMember;
+	}
 
 	
 	

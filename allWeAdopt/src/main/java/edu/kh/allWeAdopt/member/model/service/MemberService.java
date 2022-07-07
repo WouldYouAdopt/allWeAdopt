@@ -10,7 +10,7 @@ public interface MemberService {
 	 * @param inputMember
 	 * @return loginMember
 	 */
-//	public abstract Member login(Member inputMember);
+	public abstract Member login(Member inputMember);
 
 	
 
