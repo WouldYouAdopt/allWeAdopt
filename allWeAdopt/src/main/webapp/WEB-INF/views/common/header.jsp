@@ -4,7 +4,7 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-white" style="border-bottom: 1px solid;">
         <div class="container px-3">
-            <a class="navbar-brand pt-1" href="index.html">
+            <a class="navbar-brand pt-1" href="${contextPath}">
                 <svg version="1.1" id="레이어_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
                     y="0px" viewBox="0 0 347.4 82.3" style="enable-background:new 0 0 347.4 82.3;" xml:space="preserve">
                 <style type="text/css">
@@ -57,15 +57,15 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto  my-2 mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="board/shelter">보호소</a></li>
-                    <li class="nav-item"><a class="nav-link" href="board/user">사용자</a></li>
-                    <li class="nav-item"><a class="nav-link" href="funding">펀딩</a></li>
-                    <li class="nav-item"><a class="nav-link" href="findHospital">병원찾기</a></li>
+                    <li class="nav-item"><a class="nav-link" href="${contextPath}/board/shelter">보호소</a></li>
+                    <li class="nav-item"><a class="nav-link" href="${contextPath}/board/user">사용자</a></li>
+                    <li class="nav-item"><a class="nav-link" href="${contextPath}/funding/detail">펀딩</a></li>
+                    <li class="nav-item"><a class="nav-link" href="${contextPath}/findHospital">병원찾기</a></li>
 
                     <c:choose>
                         <c:when test="${ empty sessionScope.loginMember }"> 
                             <%-- 로그인 X --%>
-                            <li class="nav-item"><a class="nav-link" href="member/login">로그인</a></li>
+                            <li class="nav-item"><a class="nav-link" href="${contextPath}/member/login">로그인</a></li>
                         </c:when>
 
                         <c:otherwise>

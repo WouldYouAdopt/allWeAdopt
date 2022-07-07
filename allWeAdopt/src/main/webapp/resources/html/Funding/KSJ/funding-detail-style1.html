@@ -18,95 +18,90 @@
         <style>
             .fundingTitleBox{
                 margin: 0 auto;
-                width: 100%;
+                width: 1224px;
                 position: relative;
-                height: 170px;
+                height: 330px;
                 overflow: hidden;
             }
             .fundingTitleImage{
-                background: url(../../../images/funding_sample/funding_title_img.png) 50% 0 ;
+                background: url(../../../images/funding_sample/funding_title_img.png) 50% 0 no-repeat ;
                 height: 330px;
-                filter: blur(4px);
-                transform: scale(1.8);
+                filter: blur(0px);
+                transform: scale(1.2);
             }
             .fundingTitleText{
                 font-size: 40px;
                 color: rgba(255, 255, 255, 0.9);
                 letter-spacing: -2px;
                 font-weight: 600;
-                text-align: center;
-                text-shadow: 2px 2px 8px rgb(55, 55, 55, 0.7);
+                text-align: right;
+                text-shadow: 2px 2px 8px #373737;
                 position: absolute;
-                width: 100%;
-                left: 0px;
-                top: 50px;
-            }
-            .fundingTitleText p{
-                margin-top: 30px;
-                font-size: 16px;
-                color: #fff;
+                right: 40px;
+                top: 28px;
             }
             .bottom-box{
-                width: 1224px;
-                height: 30px;
-                background-color: rgba(255, 255, 255, 0);
+                width: 100%;
+                height: 40px;
+                background-color: rgba(255, 255, 255, 0.5);
                 position: absolute;
-                left: 50%;
+                left: 0px;
                 bottom: 0px;
-                transform: translate(-50%,0);
                 /*box-shadow: 0px -5px 5px 0px rgba(0, 0, 0, 0.3);*/
+
+
             }
             .rate-bar{
-                width: 100%;
+                width: 96%;
                 height: 9px;
                 position: absolute;
-                background-color: rgba(255, 255, 255, 0.2);
-                left: -1px;
-                bottom: 10px;
+                background-color: #fff;
+                left: 2%;
+                bottom: 15px;
                 border-radius: 5px;
                 box-shadow: 0px 1px 3px 2px rgba(0, 0, 0, 0.2);
             }
             .rate-bar-pink{
-                width: 82%;
+                /* 96%가 full임 */
+                width: calc(0.96 * 75%);
                 height: 7px;
                 position: absolute;
-                background-color: rgb(255, 255, 255, 0.9);
-                left: 0px;
-                bottom: 11px;
+                background-color: #FB836B;
+                left: 2.1%;
+                bottom: 16px;
                 border-radius: 5px;
+
                 animation-name: long; /* @keyframes에 지정한 이름을 여기다 쓴다 */
-                animation-duration: 3s; /* 애니메이션 동작 시간 */
+                animation-duration: 2s; /* 애니메이션 동작 시간 */
             }
 
             @keyframes long { /* @keyframes 뒤에 애니메이션을 대표하는 임의의 이름부여 */
                 from { /* 애니메이션 시작 시점 */
                     width: 0;
-                    background-color: rgb(251, 131, 107, 1);
                 }
                 to { /* 애니메이션 종료 시점 */
-                    width: 82%;
-                    background-color: rgb(251, 131, 107, 0.9);
+                    width: calc(0.96 * 75%);
                 }
             }
 
             .rate-text-box{
-                width: 54px;
-                height: 30px;
+                /* 96%가 full임 */
+                width: 60px;
+                height: 40px;
                 position: absolute;
-                left: 82%;
-                transform: translate(-50%,0);
-                bottom: 36px;
-                background-color: rgb(255, 255, 255, 0.2);
+                background-color: #fff;
+                left: calc(0.96 * 75%);
+                bottom: 45px;
                 border-radius: 4px;
-                font-size: 18px;
+                font-size: 20px;
                 font-weight: 600;
                 text-align: center;
-                line-height: 28px;
-                color: #fff;
-                box-shadow: 2px 1px 8px 2px rgba(0, 0, 0, 0.2);
+                line-height: 37px;
+                color: #FB836B;
+                box-shadow: 2px 1px 8px 2px rgba(0, 0, 0, 0.4);
 
                 animation-name: long2; /* @keyframes에 지정한 이름을 여기다 쓴다 */
-                animation-duration: 3s; /* 애니메이션 동작 시간 */
+                animation-duration: 2s; /* 애니메이션 동작 시간 */
             }
 
             .rate-text-box::after{
@@ -114,25 +109,21 @@
                 width: 0px;
                 height: 0px;
                 position: absolute;
-                border-top: rgb(255, 255, 255,0.2) 12px solid;
+                border-top: #fff 15px solid;
                 border-right: transparent 10px solid;
                 border-bottom: transparent 15px solid;
                 border-left: transparent 10px solid;
                 left: 32%;
-                bottom: -27px;
+                bottom: -28px;
             }
 
             @keyframes long2 { /* @keyframes 뒤에 애니메이션을 대표하는 임의의 이름부여 */
                 from { /* 애니메이션 시작 시점 */
                     left: 2px;
-                    color: #FB836B;
                 }
                 to { /* 애니메이션 종료 시점 */
-                    left: 82%;
-                    color: #FB836B;
-
+                    left: calc(0.96 * 75%);
                 }
-                
             }
 
 
@@ -146,7 +137,7 @@
                 margin: 0 auto;
                 display: flex;
                 justify-content: space-between;
-                padding: 10px 0 32px 0;
+                padding: 30px 0px;
             }
             .middle-btns > button{
                 border-radius: 4px;
@@ -175,29 +166,14 @@
 
 
 
-            .line{
-                border-bottom: #ccc 1px solid;
-                width: 1224px;
-                margin: 0 auto 40px auto;
-            }
 
 
-            /* 스토리 영역 */
-            .content-box > div{
-                width: 100%;
-                height: 320px;
-                overflow: hidden;
-                position: relative;
-            }
-            .content-box > div > img{
-                position: absolute;
-                top: 0px;
-                left: 50%;
-                transform: translate(-50%,0);
-                /* transform: scale(1.5); */
+
+            .content-box{
             }
             .content-box > img{
                 width: 100%;
+                
             }
 
 
@@ -206,11 +182,11 @@
 
 
             /* 오른쪽영역 높이 고정 */
-            /* .sticky{
+            .sticky{
                 height: 1500px;
                 position: sticky;
                 top: 10px;
-            } */
+            }
             .month{
                 font-weight: 600;
             }
@@ -382,33 +358,22 @@
                 </div>
             </nav>
             <!-- Page Content  my-5 : y축 마진 필요할때 넣기-->
-
-                <!-- 펀딩 이미지, 타이틀, 달성률 들어있는 박스 -->
-                <div class="fundingTitleBox">
-                    <div class="fundingTitleImage"></div>
-                    <div class="fundingTitleText">
-                        우리아이 시원하게 여름 쿨매트
-                    </div>
-                    <div class="bottom-box">
-                        <div class="rate-bar"></div>
-                        <div class="rate-bar-pink"></div>
-                        <div class="rate-text-box"><span class="rate-text"></span><span class="per">%</span></div>
-                    </div>
-                </div>
-
-            <section class="py-4">
-
-
-
+            <section class="py-5">
                 <div class="container px-5">
-
-
-
-
                     <div class="row gx-5">
 
-
-
+                        <!-- 펀딩 이미지, 타이틀, 달성률 들어있는 박스 -->
+                        <div class="fundingTitleBox">
+                            <div class="fundingTitleImage"></div>
+                            <div class="fundingTitleText">
+                                이달의 펀딩<br>우리아이 여름 쿨매트                            
+                            </div>
+                            <div class="bottom-box">
+                                <div class="rate-bar"></div>
+                                <div class="rate-bar-pink"></div>
+                                <div class="rate-text-box"><span class="rate-text"></span><span class="per">%</span></div>
+                            </div>
+                        </div>
                             
                         <!-- 버튼들 -->
                         <div class="middle-btns">
@@ -420,14 +385,11 @@
 
                         
                         
-                        <div class="line"></div>
+                        
 
                         <div class="col-lg-9">
                             <!-- Post content-->
                             <article class="content-box">
-                                <div>
-                                    <img src="../../../images/funding_sample/funding_title_img.png">
-                                </div>
                                 <img src="../../../images/funding_sample/funding_content_img1.jpg">
                                 <img src="../../../images/funding_sample/funding_content_img2.jpg">
                                 <img src="../../../images/funding_sample/funding_content_img3.jpg">
@@ -444,7 +406,7 @@
                         <div class="col-lg-3 sticky">
                             <!-- d-flex : flex 들어있는 class-->
                             <div class="align-items-center mb-4 fundingRight">
-                                <div><span class="month">7월</span> 이달의 펀딩<br>우리아이 시원하게 여름 쿨매트</div>
+                                <div><span class="month">7월</span> 이달의 펀딩<br>우리아이 여름 쿨매트</div>
         
                                 <div class="period">
                                     <span class="pointText">12</span>일 남음
@@ -556,11 +518,11 @@
 
                 function counterFn() {
 
-                    id0 = setInterval(count0Fn, 30);
+                    id0 = setInterval(count0Fn, 20);
 
                     function count0Fn() {
                         cnt0++;
-                        if (cnt0 > 82) {
+                        if (cnt0 > 75) {
                             clearInterval(id0);
                         } else {
                             $(".rate-text").text(cnt0);
