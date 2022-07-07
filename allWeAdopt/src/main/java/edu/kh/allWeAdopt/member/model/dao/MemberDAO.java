@@ -1,10 +1,22 @@
 package edu.kh.allWeAdopt.member.model.dao;
 
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class MemberDAO {
 	
-	// db생기면 rootContext 작성 후 SqlSessionTemplate 선언하기
+	@Autowired
+	private SqlSessionTemplate sqlSession;
+
+	/** 이메일 중복검사 DAO
+	 * @param memberEmail
+	 * @return result
+	 */
+	public int emailDupCheck(String memberEmail) {
+		
+		return sqlSession.selectOne("memberMapper.emailDupCheck", memberEmail);
+	}
 
 }

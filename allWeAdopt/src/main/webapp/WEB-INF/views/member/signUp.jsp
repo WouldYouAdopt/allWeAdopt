@@ -118,18 +118,16 @@
                                     </div>
 
                                     <!-- 프로필 사진 추가-->
-                                    <div class="form-floating mb-3 confirm-area">
-                                        <div class="profile-image-area">
-
+                                    <div class="form-floating mb-3 confirm-area profile-image-area">
+                                        <div id="img-area">
                                             <img src="${contextPath}/resources/images/user.png" id="profileImg">
+                                        </div>
 
-                                            <div class="imageBtnArea">
-                                                <input id="profileImage" type="file" name="profileImage" accept="image/*">
-                                                <label for="profileImage">등록 </label>
-                                                <input type="hidden" id="deleteImage" name="deleteImage">
-                                                <label for="deleteImage">삭제</label>
-                                            </div>
-
+                                        <div class="imageBtnArea">
+                                            <input id="profileImage" type="file" name="profileImage" accept="image/*">
+                                            <label for="profileImage">등록 </label>
+                                            <input type="hidden" id="deleteImage" name="deleteImage">
+                                            <label for="deleteImage" id="del" >삭제</label>
                                         </div>
                                     </div>   
 
@@ -163,12 +161,19 @@
         <!-- 푸터 -->
         <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
+        <script>
+            const contextPath = "${contextPath}";
+        </script>
+
+        <!-- jQuery 라이브러리 추가(CDN) -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         
         <!-- 다음 주소 api-->
         <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-        
+
         <!-- Core theme JS-->
         <script src="${contextPath}/resources/js/scripts.js"></script>
         <script src="${contextPath}/resources/js/signUp.js"></script>
