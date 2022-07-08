@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 
+<%-- 문자열 관련 함수(메서드) 제공 JSTL (EL형식으로 작성) --%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -37,6 +40,12 @@
     <body class="d-flex flex-column">
         <main class="flex-shrink-0">
 
+            <!-- 헤더 -->
+            <jsp:include page="/WEB-INF/views/common/header.jsp" />
+
+            <!-- 마이페이지 nav -->
+            <jsp:include page="/WEB-INF/views/common/mypage-header.jsp" />
+
 
             <!-- 회원가입 페이지 -->
             <section class="py-5">
@@ -51,7 +60,8 @@
 
                             <div class="col-lg-8 col-xl-6">
                                 <!-- 나의 정보 관리 폼 -->
-                                <form id="updateInfo" data-sb-form-api-token="API_TOKEN">
+
+                                <form action="${contextPath}/member/myPage/updateInfo/1" method="POST" id="updateInfo" enctype="multipart/form-data" onsubmit="return updateInfoValidate()">
 
                                     <div class="form-floating mb-3 confirm-area updateTitle">
                                         <p>나의 정보 관리</p>
@@ -59,21 +69,21 @@
 
                                     <!-- 이메일 주소 -->
                                     <div class="form-floating mb-2 confirm-area">
-                                        <input class="form-control" name="memberEmail" id="memberEmail" type="email" placeholder="name@example.com"  />
+                                        <input class="form-control" name="memberEmail" id="memberEmail" type="email" value="${loginMember.memberEmail}" readonly/>
                                         <label for="memberEmail"><span>* </span>이메일</label>
                                     </div>
                                     <div id="emailMsg" class="form-floating validate-area"></div>
 
                                     <!-- 이름 -->
                                     <div class="form-floating mb-2 confirm-area">
-                                        <input class="form-control" name="memberName" id="memberName" type="text" placeholder="Enter your name..."  />
+                                        <input class="form-control" name="memberName" id="memberName" type="text"  value="${loginMember.memberName}" />
                                         <label for="memberName"><span>* </span>이름 </label>
                                     </div>
                                     <div id="nameMsg" class="form-floating validate-area"></div>
 
                                     <!-- 전화번호 -->
                                     <div class="form-floating mb-3 confirm-area">
-                                        <input class="form-control" name="memberTel" id="memberTel" type="tel" placeholder="(010) 456-7890"  />
+                                        <input class="form-control" name="memberTel" id="memberTel" type="tel"  value="${loginMember.memberTel}" />
                                         <label for="memberTel"><span>* </span>휴대폰 번호(-제외) </label>
                                         <div class="spaceArea confirmBtnArea">
                                             <button id="confirmBtn">인증</button>
@@ -82,14 +92,17 @@
 
                                     <!-- 인증번호-->
                                     <div class="form-floating mb-2 confirm-area">
-                                        <input class="form-control" id="number" type="tel" placeholder="(010) 456-7890"  />
+                                        <input class="form-control" id="number" type="tel"  />
                                         <label for="number"><span>* </span>인증번호</label>
                                     </div>
                                     <div id="telMsg" class="form-floating validate-area"></div>
 
+                                    <!-- 주소 -->			<!--  fn:split(문자열, '구분자')  -->
+					                <c:set var="addr"  value="${fn:split(loginMember.memberAddress, ',,')}"  />    
+
                                     <!-- 주소 (다음 api) -->
                                     <div class="form-floating mb-3 confirm-area">
-                                        <input class="form-control" type="text" id="sample4_postcode" name="memberAddress" maxlength="6">
+                                        <input class="form-control" type="text" id="sample4_postcode" name="memberAddress" maxlength="6" value="${addr[0]}" >
                                         <label for="memberAddress">우편번호</label>
                                         <div class="spaceArea confirmBtnArea">
                                             <button type="button" onclick="sample4_execDaumPostcode()">검색</button>
@@ -97,51 +110,42 @@
                                     </div>
 
                                     <div class="form-floating mb-3 confirm-area">
-                                        <input class="form-control" type="text" name="memberAddress" id="sample4_roadAddress">
+                                        <input class="form-control" type="text" name="memberAddress" id="sample4_roadAddress" value="${addr[1]}" >
                                         <label for="memberAddress">도로명주소</label>
                                     </div>
 
                                     <div class="form-floating mb-3 confirm-area">
-                                        <input class="form-control" type="text" name="memberAddress" id="sample4_detailAddress">
+                                        <input class="form-control" type="text" name="memberAddress" id="sample4_detailAddress" value="${addr[2]}" >
                                         <label for="memberAddress">상세주소</label>
                                     </div>
 
-                                    <!-- 프로필 사진 추가-->
+                                    <!-- 프로필 사진-->
                                     <div class="form-floating mb-3 confirm-area profile-image-area">
                                         <div id="img-area">
-                                            <img src="${contextPath}/resources/images/user.png" id="profileImg">
+                                            <c:if test="${empty loginMember.profileImage}">
+                                                <img src="${contextPath}/resources/images/user.png" id="profileImg">
+                                            </c:if>
+
+                                            <c:if test="${!empty loginMember.profileImage}">
+                                                <img src="${contextPath}/${loginMember.profileImage}" id="profileImg">
+                                            </c:if>
                                         </div>
                                         <div class="imageBtnArea">
-                                            <input id="profileImage" type="file" name="profileImage" accept="image/*">
+                                            <input id="profileImage" type="file" name="uploadImage" accept="image/*">
                                             <label for="profileImage">수정</label>
-                                            <input type="hidden" id="deleteImage" name="deleteImage">
-                                            <label for="deleteImage">삭제</label>
+                                            <input type="hidden" id="deleteImage" name="deleteImage" value="0">
+                                            <label for="deleteImage" id="del">삭제</label>
                                         </div>
                                     </div>
 
-                                    <!-- Submit success message-->
-                                    <!---->
-                                    <!-- This is what your users will see when the form-->
-                                    <!-- has successfully submitted-->
-                                    <div class="d-none" id="submitSuccessMessage">
-                                        <div class="text-center mb-3">
-                                            <div class="fw-bolder">나의 정보 수정 완료!</div>
-                                            To activate this form, sign up at
-                                            <br />
-                                            <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                                        </div>
-                                    </div>
-                                    <!-- Submit error message-->
-                                    <!---->
-                                    <!-- This is what your users will see when there is-->
-                                    <!-- an error submitting the form-->
-                                    <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">나의 정보 수정 실패!</div></div>
                                     <!-- Submit Button-->
-                                    <div class="d-grid"><button class="btn btn-primary btn-lg disabled" id="submitButton1" type="submit">수정하기</button></div>
+                                    <div class="d-grid">
+                                        <button class="btn btn-primary btn-lg" id="submitButton1" type="submit">수정하기</button>
+                                    </div>
                                 </form>
 
                                 <!-- 비밀번호 변경 폼 -->
-                                <form id="updatePw" data-sb-form-api-token="API_TOKEN">
+                                <form action="${contextPath}/member/myPage/updateInfo/2" method="POST" id="updatePw" onsubmit="return updateInfoValidate2()">
 
                                     <div class="form-floating mb-3 confirm-area updateTitle">
                                         <p>비밀 번호 변경</p>
@@ -149,42 +153,27 @@
 
                                     <!-- 현재 비밀번호 -->
                                     <div class="form-floating mb-3 confirm-area">
-                                        <input class="form-control" name="memberCurrPw" id="memberCurrPw" type="password" placeholder="Enter your name..."  />
-                                        <label for="memberCurrPw"><span>* </span>비밀번호</label>
+                                        <input class="form-control" name="inputPw" id="inputPw" type="password"   />
+                                        <label for="inputPw"><span>* </span>비밀번호</label>
                                     </div>
 
                                     <!-- 새 비밀번호 -->
                                     <div class="form-floating mb-3 confirm-area">
-                                        <input class="form-control" name="memberPw" id="memberPw" type="password" placeholder="Enter your name..."  />
-                                        <label for="memberPw"><span>* </span>비밀번호</label>
+                                        <input class="form-control" name="newPw" id="newPw" type="password"   />
+                                        <label for="newPw"><span>* </span>새 비밀번호</label>
                                     </div>
 
                                     <!-- 비밀번호 확인-->
                                     <div class="form-floating mb-2 confirm-area">
-                                        <input class="form-control" id="memberPwConfirm" type="password" placeholder="Enter your name..."  />
-                                        <label for="memberPwConfirm"><span>* </span>비밀번호 확인</label>
+                                        <input class="form-control" id="newPwConfirm" type="password"  />
+                                        <label for="newPwConfirm"><span>* </span>새 비밀번호 확인</label>
                                     </div>
                                     <div id="pwMsg" class="form-floating validate-area"></div>
 
-                                    <!-- Submit success message-->
-                                    <!---->
-                                    <!-- This is what your users will see when the form-->
-                                    <!-- has successfully submitted-->
-                                    <div class="d-none" id="submitSuccessMessage">
-                                        <div class="text-center mb-3">
-                                            <div class="fw-bolder">Form submission successful!</div>
-                                            To activate this form, sign up at
-                                            <br />
-                                            <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                                        </div>
-                                    </div>
-                                    <!-- Submit error message-->
-                                    <!---->
-                                    <!-- This is what your users will see when there is-->
-                                    <!-- an error submitting the form-->
-                                    <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
                                     <!-- Submit Button-->
-                                    <div class="d-grid"><button class="btn btn-primary btn-lg disabled" id="submitButton2" type="submit">변경하기</button></div>
+                                    <div class="d-grid">
+                                        <button class="btn btn-primary btn-lg" id="submitButton2" type="submit">변경하기</button>
+                                    </div>
                                 </form>
                             </div>
                             
@@ -196,6 +185,18 @@
 
         <!-- 푸터 -->
         <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+
+        <script>
+            const contextPath = "${contextPath}";
+
+            <c:if test="${empty loginMember.profileImage}">
+                const memberProfile = "${contextPath}/resources/images/user.png";
+            </c:if>
+            <c:if test="${!empty loginMember.profileImage}">
+                const memberProfile = "${contextPath}/${loginMember.profileImage}";
+            </c:if>
+            
+        </script>
 
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

@@ -52,7 +52,7 @@
 
                                         <%-- 사용자 설정 프로필이미지 --%>
                                         <c:if test="${!empty loginMember.profileImage}">
-                                             <img src="${contextPath}/resources/images/user.png" id="member-profile" style="width : 35px; height : 35px;">
+                                             <img src="${contextPath}/${loginMember.profileImage}" id="member-profile" style="width : 35px; height : 35px;">
                                         </c:if>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">

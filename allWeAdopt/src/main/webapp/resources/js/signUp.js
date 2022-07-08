@@ -7,7 +7,7 @@ const checkObj = {
     "memberPwConfirm" : false,
     "memberName"  : false,
     "memberTel"       : false
-    //"sendEmail"       : false   // 인증번호 발송 체크
+    //"인증번호"       : false   // 인증번호 발송 체크
 };
 
 // 이메일 유효성 검사
@@ -278,12 +278,6 @@ if(document.getElementById("del")!=null){
 	
 }
 
-document.getElementById("signUpBtn").addEventListener("click",function(){
-
-    console.log("클릭됨;;");
-    
-});
-
 // 회원가입 버튼 클릭시 유효성 검사여부 확인
 function signUpValidate(){
 
@@ -297,14 +291,14 @@ function signUpValidate(){
         if( !checkObj[key] ){ 
 
             switch(key){
-            case "memberEmail":     str="이메일이"; break;
-            case "memberPw":        str="비밀번호가"; break;    
-            case "memberPwConfirm": str="비밀번호 확인이"; break;
-            case "memberName":  str="닉네임이"; break;
-            case "memberTel":       str="전화번호가"; break;
+            case "memberEmail":     str="이메일 입력란을"; break;
+            case "memberPw":        str="비밀번호 입력란을"; break;    
+            case "memberPwConfirm": str="비밀번호 확인 입력란을"; break;
+            case "memberName":  str="닉네임 입력란을"; break;
+            case "memberTel":       str="전화번호 입력란을"; break;
             }
 
-            str += " 유효하지 않습니다.";
+            str += " 다시 확인해주세요.";
 
             alert(str);
             document.getElementById(key).focus();
