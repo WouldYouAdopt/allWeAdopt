@@ -13,22 +13,22 @@
 	    
 	    <table class="supporter-table">
 	    	<tr>
-	    	<th rowspan="2" style="vertical-align:center;"><img src="${contextPath}/resources/images/funding_sample/profile-sample.png"></th>
+	    	<th rowspan="2" style="vertical-align:center;"><img class="rounded-circle" src="${contextPath}/resources/images/funding_sample/profile-sample.png"></th>
 	    	<td style="vertical-align:bottom;">내일뭐하지님이 108,000원 펀딩으로 참여 하셨습니다.</td>
 	    	<tr class="end-oneSupporter" style="vertical-align:top;"><td>5시간 전</td></tr>
 	    	
 	    	<tr style="background-color:#eee;">
-	    	<th rowspan="2" style="vertical-align:center;"><img src="${contextPath}/resources/images/funding_sample/profile-sample.png"></th>
+	    	<th rowspan="2" style="vertical-align:center;"><img class="rounded-circle" src="${contextPath}/resources/images/funding_sample/profile-sample.png"></th>
 	    	<td style="vertical-align:bottom;">내일뭐하지님이 108,000원 펀딩으로 참여 하셨습니다.</td>
 	    	<tr class="end-oneSupporter" style="vertical-align:top; background-color:#eee;"><td>5시간 전</td></tr>
 	    	
 	    	<tr>
-	    	<th rowspan="2" style="vertical-align:center;"><img src="${contextPath}/resources/images/funding_sample/profile-sample.png"></th>
+	    	<th rowspan="2" style="vertical-align:center;"><img class="rounded-circle" src="${contextPath}/resources/images/funding_sample/profile-sample.png"></th>
 	    	<td style="vertical-align:bottom;">내일뭐하지님이 108,000원 펀딩으로 참여 하셨습니다.</td>
 	    	<tr class="end-oneSupporter" style="vertical-align:top;"><td>5시간 전</td></tr>
 	    	
 	    	<tr style="background-color:#eee;">
-	    	<th rowspan="2" style="vertical-align:center;"><img src="${contextPath}/resources/images/funding_sample/profile-sample.png"></th>
+	    	<th rowspan="2" style="vertical-align:center;"><img class="rounded-circle" src="${contextPath}/resources/images/funding_sample/profile-sample.png"></th>
 	    	<td style="vertical-align:bottom;">내일뭐하지님이 108,000원 펀딩으로 참여 하셨습니다.</td>
 	    	<tr class="end-oneSupporter" style="vertical-align:top; background-color:#eee;"><td>5시간 전</td></tr>
 	    </table>

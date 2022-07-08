@@ -12,4 +12,9 @@ public class FundingController {
 	public String detail() {
 		return "funding/funding-detail";
 	}
+	
+	@GetMapping("/list")
+	public String list() {
+		return "funding/funding-list";
+	}
 }
