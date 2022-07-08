@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -80,6 +81,15 @@ public class MemberController {
 		
 		if(result>0) ra.addFlashAttribute("message", "회원가입 완료");
 		else         ra.addFlashAttribute("message", "회원가입 실패");
+		
+		return "redirect:/";
+	}
+	
+	// 로그아웃
+	@GetMapping("/logout")
+	public String logout(SessionStatus status) {
+		
+		status.setComplete();
 		
 		return "redirect:/";
 	}
