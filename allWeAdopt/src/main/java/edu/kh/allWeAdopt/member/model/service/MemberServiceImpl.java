@@ -90,7 +90,7 @@ public class MemberServiceImpl implements MemberService{
 		
 		int result = dao.signUp( map );
 		
-		// 회원가입 성공 및 rename이 null이 아닌경우 파일을 서버에 저장하기!
+		// 회원가입 성공 및 profileImage가 null이 아닌경우 파일을 서버에 저장하기!
 		if(result > 0 && map.get("profileImage")!=null ) {
 					
 			uploadImage.transferTo( new File ( map.get("folderPath")+rename) );

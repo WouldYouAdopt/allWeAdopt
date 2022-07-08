@@ -30,7 +30,7 @@
                 <ul class="navbar-nav ms-auto  my-2 mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link" href="${contextPath}/board/shelter">보호소</a></li>
                     <li class="nav-item"><a class="nav-link" href="${contextPath}/board/user">사용자</a></li>
-                    <li class="nav-item"><a class="nav-link" href="${contextPath}/funding/detail">펀딩</a></li>
+                    <li class="nav-item"><a class="nav-link" href="${contextPath}/funding/detail?page=1">펀딩</a></li>
                     <li class="nav-item"><a class="nav-link" href="${contextPath}/findHospital">병원찾기</a></li>
 
                     <c:choose>
@@ -52,7 +52,7 @@
 
                                         <%-- 사용자 설정 프로필이미지 --%>
                                         <c:if test="${!empty loginMember.profileImage}">
-                                             <img src="${contextPath}/resources/images/user.png" id="member-profile" style="width : 35px; height : 35px;">
+                                             <img src="${contextPath}/${loginMember.profileImage}" id="member-profile" style="width : 35px; height : 35px;">
                                         </c:if>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
