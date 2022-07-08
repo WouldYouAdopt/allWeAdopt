@@ -386,3 +386,61 @@
 	.fixbox.visable{
 	    display:block;
 	}
+	
+	
+	
+	
+	
+	
+	/* 반환/정책 관련 css */
+            .policy-main-title{
+                font-size: 22px;
+                font-weight: 600;
+                color: #373737;
+                letter-spacing: -1px;
+            }
+
+            .sectionTitle {
+                font-size: 18px;
+                font-weight: 600;
+                color: #373737;
+                letter-spacing: -1px;
+                
+            }
+            .policy-content{
+                font-size: 12px;
+                color: #777;
+                letter-spacing: -1px;
+                line-height: 24px;
+            }
+            .info-table{
+                width: 100%;
+            }
+            .info-table tr{
+                font-size: 14px;
+                height: 40px;
+                border-bottom: #eee 1px solid;
+            }
+            .info-table th {
+                width: 23%;
+            }
+            
+            
+            /*서포터*/
+            .supporter-table{
+            	width:100%;
+            }
+            .supporter-table th{
+            	width:120px;
+            	height:100px;
+            	padding-left:30px;
+            }
+            .supporter-table img{
+            	width:70px;
+            }
+            .end-oneSupporter{
+            	border-bottom:1px solid #ccc;
+            }
+            .pink{
+            	color:#FB836B;
+            }

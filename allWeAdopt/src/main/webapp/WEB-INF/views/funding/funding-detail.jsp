@@ -91,44 +91,27 @@
                             
                         <!-- 버튼들 -->
                         <div class="middle-btns">
-                            <button class="nowSelect">펀딩 스토리</button>
-                            <button>반환 / 정책</button>
-                            <button>참여 서포터</button>
-                            <button>종료된 펀딩</button>
+                            <button class="nowSelect" onclick="window.location.href='${contextPath}/funding/detail?page=1'">펀딩 스토리</button>
+                            <button onclick="window.location.href='${contextPath}/funding/detail?page=2'">반환 / 정책</button>
+                            <button onclick="window.location.href='${contextPath}/funding/detail?page=3'">참여 서포터</button>
+                            <button onclick="window.location.href='${contextPath}/funding/list'">종료된 펀딩</button>
                         </div>
 
                         
                         
                         <div class="line"></div>
 
-                        <div class="col-lg-9">
-                            <!-- Post content-->
-                            <article class="content-box">
-                            	<!-- 타이틀 이미지 넣기~ -->
-                                <div class="funding-img">
-                                    <img src="${contextPath}/resources/images/funding_sample/funding_title_img.png">
-                                </div>
-
-								<!-- 요약박스 -->
-                                <div class="funding-summary">
-	                                목표 금액 880,000원<br>
-									펀딩 기간 2022.07.01-2022.07.30<br>
-									리워드 배송비 0원<br>
-									<p>목표 금액의 80% 이상 모이면 펀딩이 성공되며, 펀딩 마감일까지 목표 금액이 80% 모이지 않으면 결제한 수단으로 환불이 진행됩니다.</p>
-	                            </div>
-
-
-                                <img src="${contextPath}/resources/images/funding_sample/funding_content_img1.jpg">
-                                <img src="${contextPath}/resources/images/funding_sample/funding_content_img2.jpg">
-                                <img src="${contextPath}/resources/images/funding_sample/funding_content_img3.jpg">
-
-                            </article>
-
-                            <!-- 영역 분할 필요할때 -->
-                            <section>
-                                
-                            </section>
-                        </div>
+						<c:if test="">
+						
+						</c:if>
+						<!-- ?page=1 story -->
+                        <jsp:include page="/WEB-INF/views/funding/funding-detail1-story.jsp" />
+                        <!-- ?page=2 policy -->
+                        <jsp:include page="/WEB-INF/views/funding/funding-detail2-policy.jsp" />
+                        <!-- ?page=3 supporters-->
+                        <jsp:include page="/WEB-INF/views/funding/funding-detail3-supporters.jsp" />
+                        
+                        
 
                         <!-- 오른쪽 영역 -->
                         <div class="col-lg-3 sticky">
