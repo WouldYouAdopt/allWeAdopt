@@ -237,11 +237,9 @@ function sample4_execDaumPostcode() {
 
 // 회원 프로필 이미지 (미리보기)
 const profileImage = document.getElementById("profileImage");
-const deleteImage = document.getElementById("deleteImage"); // 삭제여부 버튼
 
 if(profileImage != null){ // inputImage 요소가 화면에 존재 할 때
  
-    // input type="file" 요소는 파일이 선택 될 때 change 이벤트가 발생한다.
     profileImage.addEventListener("change", function(){
 
         if(this.files[0] != undefined){ // 파일이 선택되었을 때
@@ -250,13 +248,13 @@ if(profileImage != null){ // inputImage 요소가 화면에 존재 할 때
             reader.readAsDataURL(this.files[0]);
 
             reader.onload = function(e){
-
                 const profileImg = document.getElementById("profileImg");
                 profileImg.setAttribute("src", e.target.result);
-                deleteImage.value = 0;
-
             }
 
+        }else{ 
+            // 파일이 선택되지 않은 경우 (업로드 중 취소버튼 클릭시) 기본 프로필로!
+            profileImg.setAttribute("src", memberProfile);
         }
     });
 }
@@ -265,14 +263,9 @@ if(profileImage != null){ // inputImage 요소가 화면에 존재 할 때
 if(document.getElementById("del")!=null){
 	
 	del.addEventListener("click", function(){
-	    // 0 : 삭제버튼 안눌림 / 1 : 삭제버튼 눌림	
-	    if(deleteImage.value == 0){
-	
-	        profileImg.setAttribute("src", contextPath + "/resources/images/user.png");
-	        profileImage.value = "";
-	        deleteImage.value = 1;
 
-	    }
+        // 삭제버튼 클릭시 기존 프로필 사진으로!
+        profileImg.setAttribute("src", memberProfile );
 	
 	});
 	
