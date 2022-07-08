@@ -104,9 +104,20 @@
                         <div class="col-lg-9">
                             <!-- Post content-->
                             <article class="content-box">
-                                <div>
+                            	<!-- 타이틀 이미지 넣기~ -->
+                                <div class="funding-img">
                                     <img src="${contextPath}/resources/images/funding_sample/funding_title_img.png">
                                 </div>
+
+								<!-- 요약박스 -->
+                                <div class="funding-summary">
+	                                목표 금액 880,000원<br>
+									펀딩 기간 2022.07.01-2022.07.30<br>
+									리워드 배송비 0원<br>
+									<p>목표 금액의 80% 이상 모이면 펀딩이 성공되며, 펀딩 마감일까지 목표 금액이 80% 모이지 않으면 결제한 수단으로 환불이 진행됩니다.</p>
+	                            </div>
+
+
                                 <img src="${contextPath}/resources/images/funding_sample/funding_content_img1.jpg">
                                 <img src="${contextPath}/resources/images/funding_sample/funding_content_img2.jpg">
                                 <img src="${contextPath}/resources/images/funding_sample/funding_content_img3.jpg">
@@ -123,7 +134,7 @@
                         <div class="col-lg-3 sticky">
                             <!-- d-flex : flex 들어있는 class-->
                             <div class="align-items-center mb-4 fundingRight">
-                                <div><span class="month">7월</span> 이달의 펀딩<br>우리아이 시원하게 여름 쿨매트</div>
+                                <div class="this-month"><span class="month">7월</span> 이달의 펀딩<br>우리아이 시원하게 여름 쿨매트</div>
         
                                 <div class="period">
                                     <span class="pointText">12</span>일 남음
@@ -140,6 +151,7 @@
                                 <button class="fundingBtn">펀딩하기</button>
                                 <button class="qnaBtn">문의</button>
                             </div>
+                            
                             <div class="reward-box">
 
                                 <div class="reward">
@@ -156,8 +168,8 @@
                                         몽뚜뚜 프리미엄 러그형 쿨매트! 3D매쉬 소재로 통풍이 잘되는 애견매트로 S(100x200x1.5cm) 사이즈는 싱글 침대에 함께 사용할 수 있습니다.<br>★ 쿨매트 : 그레이 색상
                                     </div>
                                     <div class="delivery-box">
-                                        <span class="deli-title">배송비</span>
-                                        <span class="deli-content">0원</span>
+                                        <!-- <span class="deli-title">배송비</span>
+                                        <span class="deli-content">0원</span> -->
                                         <span class="deli-title">리워드 발송 시작일</span>
                                         <span class="deli-content">08월 01일 부터 순차발송</span>
                                     </div>
@@ -166,7 +178,7 @@
                                         <span class="order-count">총 3개 펀딩 완료</span>
                                     </div>
 
-                                    <div class="rewardOver">이 리워드 펀딩하기</div>
+                                    <div class="rewardOver"><div class="vertical-center">이 리워드 펀딩하기</div></div>
                                 </div>
 
 
@@ -185,8 +197,8 @@
                                         몽뚜뚜 프리미엄 러그형 쿨매트! 3D매쉬 소재로 통풍이 잘되는 애견매트로 M(150x250x1.5cm) 사이즈는 싱글 침대에 함께 사용할 수 있습니다.<br>★ 쿨매트 : 그레이 색상
                                     </div>
                                     <div class="delivery-box">
-                                        <span class="deli-title">배송비</span>
-                                        <span class="deli-content">0원</span>
+                                        <!-- <span class="deli-title">배송비</span>
+                                        <span class="deli-content">0원</span> -->
                                         <span class="deli-title">리워드 발송 시작일</span>
                                         <span class="deli-content">08월 01일 부터 순차발송</span>
                                     </div>
@@ -195,13 +207,20 @@
                                         <span class="order-count">총 3개 펀딩 완료</span>
                                     </div>
 
-                                    <div class="rewardOver">이 리워드 펀딩하기</div>
+                                    <div class="rewardOver"><div class="vertical-center">이 리워드 펀딩하기</div></div>
                                 </div>
                                 
 
 
-                            </div>
+                            </div> <!-- 리워드 전체 박스  -->
+                            
+                            <div class="fixbox">
+	                            <button class="fundingBtn wid-100">이 프로젝트 펀딩하기</button>
+                        	</div>
+                            
                         </div> 
+                        
+                        
 
                     </div>
                 </div>
@@ -256,7 +275,29 @@
                     this.lastElementChild.classList.remove('visable');
                 })
             }
+			
+            // 스크롤 reward 끝에 닿으면 버튼 보이게?
+            // 스크롤Y 값이 header (헤더)
+            //				+.fundingTitleBox(펀딩타이틀)
+            //				+.middle-btns(중간버튼)
+            //				+... 더할값이 많네 .... 담에 계산 해야지..
+            		
+            var fixBox = document.querySelector('.fixbox');
+            
+           	// window.scrollY 가 div 합보다 크거나 같을때 반환
+            document.addEventListener('scroll', function() {
+            	
+    		    if(window.scrollY > 1600){
+    		    	fixBox.classList.add('visable');
+    		    }else{
+    		    	fixBox.classList.remove('visable');
+    		    }
+            });
 
+					    
+				
+
+			    
 
         </script>
     </body>
