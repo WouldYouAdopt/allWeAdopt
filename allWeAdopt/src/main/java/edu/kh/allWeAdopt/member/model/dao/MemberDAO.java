@@ -1,5 +1,6 @@
 package edu.kh.allWeAdopt.member.model.dao;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -53,5 +54,39 @@ public class MemberDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.insert("memberMapper.signUp", map);
 	}
+
+
+
+
+	/** 카카오로그인 회원정보 조회
+	 * @param userInfo
+	 * @return
+	 */
+	public int kakaoLogin(Map<String, Object> userInfo) {
+		
+		int result = sqlSession.selectOne("memberMapper.kakaoLogin", userInfo);
+		
+		
+		return result;
+	}
+
+
+
+
+	/** 카카오 로그인 회원 회원넘버 주기
+	 * @param userInfo
+	 * @return
+	 */
+	public int insertMember(HashMap<String, Object> userInfo) {
+		
+		return sqlSession.insert("memberMapper.insertMember", userInfo);
+	}
+	
+	
+	
+	
+	
+	
+	
 
 }

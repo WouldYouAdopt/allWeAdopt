@@ -2,6 +2,7 @@ package edu.kh.allWeAdopt.member.model.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 import edu.kh.allWeAdopt.common.Util;
 
@@ -98,6 +99,39 @@ public class MemberServiceImpl implements MemberService{
 		return result;
 		
 	}
+
+
+
+
+	// 카카오로그인 회원정보 조회
+	@Override
+	public int kakaoLogin(HashMap<String, Object> userInfo) {
+		
+		//userInfo 의 값을 꺼내서 매개변수로 들고가나??
+		
+		int result = dao.kakaoLogin(userInfo);
+		
+		// result == 0 == 일치하는 회원 정보가 없다.
+		if ( result == 0 ) {
+			
+			// insert 작업 진행 
+			result = dao.insertMember( userInfo );
+			
+		}
+		
+		return result;
+		
+	}
+	
+
+
+
+
+
+
+	
+
+	
 	
 	
 

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -82,7 +84,7 @@ public class MemberController {
 		if(result>0) ra.addFlashAttribute("message", "회원가입 완료");
 		else         ra.addFlashAttribute("message", "회원가입 실패");
 		
-		return "redirect:/";
+		return  "common/main";
 	}
 	
 	// 로그아웃
@@ -102,6 +104,17 @@ public class MemberController {
 		return "member/login";
 	}
 	
+	
+
+	
+	// 비밀번호 재설정 화면 전환
+	// 마이페이지 컨트롤러에있어야하나?	
+	@GetMapping("/changePw") 
+	public String changePw() {
+		return "member/changePw";
+	}	
+		
+		
 	
 	// 로그인 하기
 	@PostMapping("/login")
@@ -133,14 +146,16 @@ public class MemberController {
 		return "redirect:/"; 
 	}
 	
-	// 비밀번호 재설정 화면 전환
-	// 마이페이지 컨트롤러에있어야하나?	
-	@GetMapping("/changePw") 
-	public String changePw() {
-		return "member/changePw";
-	}	
-		
-		
+	
+//-----------카카오로그인-----------------------
+
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

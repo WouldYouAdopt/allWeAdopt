@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 
 <!DOCTYPE html>
@@ -33,8 +33,13 @@
         <!-- signUp & login css -->
         <link rel="stylesheet" href="${contextPath}/resources/css/signUp-style.css">
 
+        <%-- 카카오 로그인 --%>
         <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+
 
     </head>
     <body class="d-flex flex-column">
@@ -65,7 +70,7 @@
                                     </div>
                                     <button class="btn button-pink col-xl-12" style="height: 50px; color: white;"> 로그인 </button>
 
-                                     
+                                     <!-- <li onclick="kakaoLogin();">  -->
                                     <!-- 카카오 로그인 버튼 -->
                                     <a id="custom-login-btn" href="javascript:loginWithKakao()">
                                         <img
@@ -74,6 +79,10 @@
                                         alt="카카오 로그인 버튼"
                                         />
                                     </a>
+                                            <a id="kakao-login-btn" href="javascript:void(0)" onclick="kakaoLogin();">
+                                                <span>카카오 로그인</span>
+                                            </a>
+
 
                                     
                                 </form>
@@ -108,7 +117,7 @@
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 
 
-          <!-- 카카오 로그인 -->
+          <%-- <!-- 카카오 로그인 -->
         <script type="text/javascript">
 
             // 웹어플리케이션 연동 키
@@ -131,6 +140,28 @@
                 },
                 })
             }
+        </script> --%>
+
+        <%-- 카카오 로그인2 --%>
+        <script>
+            //카카오로그인
+            function kakaoLogin() {
+
+                $.ajax({
+                    // url: '/login/getKakaoAuthUrl',
+                    url: 'kakaoLogin',
+                    type: 'get',
+                    async: false,
+                    dataType: 'text',
+                    success: function (res) {
+                        location.href = res;
+                        console.log(res);
+                    }
+                });
+
+            }
+
+       
         </script>
 
 

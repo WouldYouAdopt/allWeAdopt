@@ -54,6 +54,11 @@
             .st2{fill:none;stroke:#373737;stroke-width:7.3;stroke-miterlimit:10;}
 
         </style>
+
+        <%-- 카카오 로그인 --%>
+        <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
     </head>
     <body class="d-flex flex-column">
         <main class="flex-shrink-0">
@@ -64,7 +69,13 @@
             <section class="py-0">
                 <div class="container px-5">
                     <h1 style> ALL WE ADOPT 메인입니당.</h1>
-
+                    <p>${nickname} 1</p>
+                    <p>${sessionScope.nickname} 1</p>
+                    <p>${userInfo.nickname} 1</p>
+                    <p>${userInfo} 1</p>
+                    <p>${userInfo1} 1</p>
+                    <p>${nickname} 1</p>
+                    <p>${kakaoInfo.nickname} 1</p>
                     
                 </div>
             </section>
@@ -83,6 +94,28 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="${contextPath}/resources/js/scripts.js"></script>
+
+        <script>
+             $(document).ready(function() {
+            // $("#kakao-login-btn").on("click", function(){
+
+                var kakaoInfo = '${kakaoInfo}';
+
+                if(kakaoInfo != ""){
+                    var data = JSON.parse(kakaoInfo);
+
+                    alert("카카오로그인 성공 \n accessToken : " + data['accessToken']);
+                    alert(
+                    "user : \n" + "email : "
+                    + data['email']  
+                    + "\n nickname : " 
+                    + data['nickname']);
+                }
+            });  
+        </script>
+
+
+
     </body>
     
 </html>
