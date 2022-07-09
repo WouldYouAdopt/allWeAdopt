@@ -21,6 +21,7 @@ let schedule = 0; //일정이 선택 되었는지 확인.
         }
        } 
 
+       //위에서 return 수행 안되면 수행
             btn.classList.toggle('btn-outline-success');
             btn.classList.toggle('btn-secondary');
             btn.classList.add('choiced');
@@ -32,3 +33,25 @@ let schedule = 0; //일정이 선택 되었는지 확인.
 })();
 
 /* 만약 작성 버튼이 수행 시 결정된 일정 버튼에  'unable' Value가 추가되어야 한다!! */
+
+/* 리워드칸수 추가 */
+function addReward(){
+    const rewardsRows= document.getElementsByClassName('rewardsRows')[0]
+    
+    const tr = document.createElement('tr');
+
+    const td1 = document.createElement('td');
+    td1.innerText= document.querySelectorAll('.rewardsRows>tr>td:nth-child(1)').length+1;
+    tr.append(td1);
+    
+    for(let i=0; i<5; i++){
+        const td = document.createElement('td');
+        const input = document.createElement('input');
+        td.append(input);
+        tr.append(td);
+    }
+    rewardsRows.append(tr);
+
+}
+
+

@@ -1,0 +1,140 @@
+.justify-content-center>div{
+    margin: 10px 0;
+    border: 2px solid #f1bbb0;
+}
+
+/* 버튼영역 색 지정  */
+
+/* .fundingScheduleArea button{  } */
+
+.btn-secondary{
+    background-color: lightgray;
+    color: rgb(120, 120, 120);
+    cursor: none;
+    border: none;
+}
+.btn-secondary:hover{
+    background-color: lightgray;
+    color: rgb(120, 120, 120);
+  }
+.btn-outline-success{
+    border-color: #FB836b !important;
+    color: #FB836b;
+}
+.btn-outline-success:hover{
+    background-color: #FB836b;
+    color: white;
+}
+.fundingScheduleArea{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+}
+.choiced{
+    background-color: #FB836b;
+    color: white;
+}
+.choiced:hover{
+    background-color: #FB836b;
+    color: white;
+}
+
+
+/* 카테고리 + 제목 영역 */
+.intro{
+    color: rgba(37, 37, 37, 0.5);
+}
+
+#titleCategory{
+    display: flex;
+    height: 45px;
+}
+#fundingCategory{
+    width: 15%;
+    height: 100%;
+}
+#fundingCategory>select{
+    height: 100%;
+}
+#titleCategory>input{
+    margin-left: 5px;
+    padding-left: 10px;
+    width: 80%;
+    outline-color: #FB836b;
+    /* border: none;
+    border-bottom: 3px solid #ddd; */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+#subheadInput{
+    width: 100%;
+    height: 100px;
+
+    border: 1px solid #ddd;
+    resize: none;
+    outline-color: #FB836b;
+
+}
+
+/* 리워드 영역 */
+#rewardsArea>div:nth-child(2){
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 15px;
+}
+#addRewardBtn{
+    width: 40px;
+    height: 40px;
+
+    border: 2px solid #FB836b;
+    border-radius: 3px;
+    background-color: white;
+
+}
+#addRewardBtn:hover{
+    border: 2px solid #ddd;
+    border-radius: 3px;
+    background-color: #FB836b;
+}
+
+.table-bordered th,td{
+    height: 40px !important;
+    text-align: center;
+}
+.table-bordered th{
+    color: #f5bfb5;
+}
+.rewardsRows>tr>td:nth-child(1){
+    width: 50px;
+}
+.rewardsRows input{
+    width: 100%;
+    height: 100%;
+    padding-left: 15px;
+    border: none;
+}
+.rewardsRows input:focus{
+    border-bottom: 2px solid #f1bbb0;
+    outline: none;
+}
+
+/* 섬머노트 추가할 영역 */
+#summernoteArea > textarea{
+    width: 100%;
+    height: 400px;
+}
+
+
+#writeBtn{
+    margin-top: 40px;
+    height: 60px;
+    background-color: #FB836b;
+    border: none;
+}
+
+#writeBtn:hover{
+    background-color: white;
+    color: #FB836b;
+    border: 1px solid #FB836b;
+}
