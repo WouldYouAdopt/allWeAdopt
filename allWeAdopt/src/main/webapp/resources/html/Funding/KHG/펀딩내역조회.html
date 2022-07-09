@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>주문관리상세페이지</title>
+        <title>펀딩내역 조회</title>
         
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
@@ -88,113 +88,123 @@
 
                 <!-- 상단 메뉴 영역. -->
                 <div class="text-center mb-5" id="TOT">
-                    <h1 class="fw-bolder">주문관리 상세</h1>
-                    <p class="lead fw-normal text-muted mb-0">펀딩 상세 내역을 조회하는 페이지입니다.</p>
+                    <h1 class="fw-bolder">펀딩 내역</h1>
+                    <p class="lead fw-normal text-muted mb-0">참여하신 펀딩 내역을 조회하실 수 있습니다.</p>
                 </div>
 
                 <!-- 상단 이미지 영역 -->
-                <div class="fundingTitleBox">
-                    <div class="fundingTitleImage"></div>
-                    <div class="fundingTitleText">우리아이 시원하게 여름 쿨매트</div>
-                </div>
-
+               
+                
                 <div class="container px-5">
                     <div class=" rounded-3 py-5 px-4 px-md-5 mb-5">
 
-                        <!-- 내부의 태이블 3개 -->
+
+                        <!-- 내부의  -->
                         <div class="row gx-5 justify-content-center">
 
-                        <!-- 펀딩정보 테이블 -->
-                        <article id="funding-info" class="detail-info">
-                            <h3 class="fw-bolder">펀딩 정보</h3>    
-                            <table class="table">
-                                    <tbody>
-                                        <tr>
-                                            <th colspan="1" class="row-name">주문번호</th>
-                                            <td colspan="5">h12313</td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <th colspan="1">펀딩 제목</th>
-                                            <td colspan="5">강아지 용품 관련 펀딩입니다.</td>
-                                        </tr>
-                                        <tr>
-                                            <th >신청 리워드</th>
-                                            <td> 1번 리워드 </td>
-                                            <th>수량</th>
-                                            <td>2</td>
-                                            <th>금액</th>
-                                            <td>80,000</td>
-                                        </tr>
-                                        <tr>
-                                            <th>신청 리워드</th>
-                                            <td>2번 리워드</td>
-                                            <th>수량</th>
-                                            <td>1</td>
-                                            <th>금액</th>
-                                            <td>40,000</td>
-                                        </tr>
-                                    </tbody>
-                            </table>
-                        </article>   
+                            <table class="table  fundingList">
+                                <thead>
+                                  <tr>
+                                    <th scope="col" class="dt1"></th>
+                                    <th scope="col" class="dt2">주문번호</th>
+                                    <th scope="col" class="dt3">카테고리</th>
+                                    <th scope="col" class="dt4">펀딩제목</th>
+                                    <th scope="col" class="dt5">주문상태</th>
+                                    <th scope="col">펀딩 결제일</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <th scope="row">1</th>
+                                    <td>h12132</td>
+                                    <td>간식</td>
+                                    <td class="fundingTitle"><a href="">간식 관련 펀딩 제목입니다.</a></td>
+                                    <td>결제 완료</td>
+                                    <td>2022//09/21</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">2</th>
+                                    <td>h12172</td>
+                                    <td>건강</td>
+                                    <td class="fundingTitle"><a href="">건강 관련 펀딩 제목입니다.</a></td>
+                                    <td>결제 완료</td>
+                                    <td>2022//09/21</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">3</th>
+                                    <td>h12132</td>
+                                    <td>장난감</td>
+                                    <td class="fundingTitle"><a href="">장난감 관련 펀딩 제목입니다.</a></td>
+                                    <td>결제 완료</td>
+                                    <td>2022//09/21</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">4</th>
+                                    <td>h12132</td>
+                                    <td>보호</td>
+                                    <td class="fundingTitle"><a href="">보호 관련 펀딩 제목입니다.</a></td>
+                                    <td>결제 완료</td>
+                                    <td>2022//09/21</td>
+                                  </tr>
+                                  <tr>
+                                        <th scope="row">5</th>
+                                        <td>h12132</td>
+                                        <td>의류</td>
+                                        <td class="fundingTitle"><a href="">의류 관련 펀딩 제목입니다.</a></td>
+                                        <td>결제 완료</td>
+                                        <td>2022//09/21</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">6</th>
+                                    <td>h12132</td>
+                                    <td>간식</td>
+                                    <td class="fundingTitle"><a href="">간식 관련 펀딩 제목입니다.</a></td>
+                                    <td>결제 완료</td>
+                                    <td>2022//09/21</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">7</th>
+                                    <td>h12132</td>
+                                    <td>간식</td>
+                                    <td class="fundingTitle"><a href="">간식 관련 펀딩 제목입니다.</a></td>
+                                    <td>결제 완료</td>
+                                    <td>2022//09/21</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">8</th>
+                                    <td>h12132</td>
+                                    <td>간식</td>
+                                    <td class="fundingTitle"><a href="">간식 관련 펀딩 제목입니다.</a></td>
+                                    <td>결제 완료</td>
+                                    <td>2022//09/21</td>
+                                  </tr>
+                     
+                                </tbody>
+                              </table>
 
-                        <!-- 결제정보 테이블 -->
-                        <article id="order-info" class="detail-info">
+
+                              <!-- 페이지 네이션 영역 시작 -->
+                            <div class="pagination-area">
+                              <nav aria-label="Page navigation example">
+                                <ul class="pagination">
+                                  <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Previous">
+                                      <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                  </li>
+                                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                  <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Next">
+                                      <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                  </li>
+                                </ul>
+                              </nav>
+                            </div><!-- 페이지 네이션 영역 끝 -->
+
                             
-                            <h3 class="fw-bolder">결제 정보</h3>
-
-                            <table class="table">
-                                    <tbody>
-                                        <tr>
-                                            <th>결제 일시</th>
-                                            <td>2022.07.09</td>
-                                        </tr>
-                                        <tr>
-                                            <th>결제 수단</th>
-                                            <td>무통장입금</td>
-                                        </tr>
-                                        <tr>
-                                            <th>총결제 금액</th>
-                                            <td>200,000</td>
-                                        </tr>
-                                        <tr>
-                                            <th>주문 상태</th>
-                                            <td>배송중</td>
-                                        </tr>
-                                    </tbody>
-                            </table>
-                            <div id="btn-area">
-                                <button type="button" class="btn btn-secondary">반품 신청</button>
-                                <button type="button" class="btn btn-success">배송 조회</button>
-                                <p>배송 상태에 의해 버튼이 바뀜</p>
-                            </div>
-                        </article>   
-                        <!-- 배송 정보 테이블 -->
-                        <article id="order-info" class="detail-info">
-                            <h3 class="fw-bolder">배송 정보</h3>
-                            <table class="table">
-                                    <tbody>
-                                        <tr>
-                                            <th>수령인</th>
-                                            <td>김현기</td>
-                                        </tr>
-                                        <tr>
-                                            <th>전화번호-1</th>
-                                            <td>010-1234-1234</td>
-                                        </tr>
-                                        <tr>
-                                            <th>전화번호-2</th>
-                                            <td>-</td>
-                                        </tr>
-                                        <tr>
-                                            <th>주소</th>
-                                            <td>(03163)서울특별시 종로구 인사동길 20-9 (인사동) 1002호</td>
-                                        </tr>
-                                    </tbody>
-                            </table>
-                        </article>   
-
-
                         </div>
                     </div>
                 </div>
