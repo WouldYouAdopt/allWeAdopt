@@ -12,28 +12,24 @@ import lombok.ToString;
 public class Shelter {
 	
 	String reqNo;
-	String filename;
-	String happenDt;
-	String happenPlace;
-	String kindCd;
-	String colorCd;
+	String filename; // 썸네일
+	String happenDt; // 접수일
+	String happenPlace; // 발견장소
+	String kindCd; // 품종
+	String colorCd; 
 	String age;
 	String weight;
-	String popfile;
-	
-
-//	String resultCode; // 결과코드
-//	String resultMsg; // 결과메세지
+	String popfile; // 이미지
+	String noticeSdt; // 공고시작일
+	String noticeEdt; // 공고 종료일
+	String processState; // 상태
+	String sexCd;
+	String specialMark; // 특징
 	String careNm; // 동물호보센터명
-	String orgNm; // 관리기관명
-//	String divisionNm; // 동물보호센터유형
 	String careAddr; // 소재지 주소(도로명)
-	String lat; // 위도
-	String lng; // 경도
 	String careTel; // 전화번호
-//	String dataStdDt; // 데이터기준일자
 	String numOfRows; // 한 페이지 결과 수
-//	String pageNo; // 페이지 번호
-//	String totalCount; // 전체 결과 수
+	String pageNo; // 페이지 번호
+	String totalCount; // 전체 결과 수
 	
 }

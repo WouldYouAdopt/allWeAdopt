@@ -71,7 +71,7 @@
                         <div class="card-body p-0">
                             <div class="row gx-0">
                                 <!-- 분양소 메인 로고 (클릭 시 최상위 주소) -->
-                                <a href="#"><div class="col-lg-6 col-xl-7"><div class="bg-featured-blog" style="background-image: url('https://dummyimage.com/700x350/343a40/6c757d')"><img src="${contextPath}/resources/images/adopt-mainLogo.png" alt="main"></div></div></a>
+                                <a href="${contextPath}"><div class="col-lg-6 col-xl-7"><div class="bg-featured-blog" style="background-image: url('https://dummyimage.com/700x350/343a40/6c757d')"><img src="${contextPath}/resources/images/adopt-mainLogo.png" alt="main"></div></div></a>
                             </div>
                         </div>
                     </div>
@@ -81,19 +81,24 @@
             <!-- 분앙소 불러오기 -->
             <section class="py-5">
                 <div class="container px-5">
-                    <h2 class="fw-bolder fs-5 mb-4">보호소 불러오기${shelter}</h2>
+                    <h2 class="fw-bolder fs-5 mb-4">보호소</h2>
                     <div class="row gx-5">
+                        <c:forEach var="shelter" items="${list}">
+                        <%-- 1번째 --%>
                         <div class="col-lg-4 mb-5">
                             <div class="card h-100 shadow border-0">
                                 <img class="card-img-top" src="${shelter.popfile}" alt="..." />
                                 <div class="card-body p-4">
                                     <div class="badge bg-primary bg-gradient rounded-pill mb-2">New</div>
-                                    <a class="text-decoration-none link-dark stretched-link" href="#!"><li class="h5 card-title mb-3">종류 : ${shelter.kindCd}</li></a>
-                                    <a class="text-decoration-none link-dark stretched-link" href="#!"><li class="h5 card-title mb-3">색깔 : ${shelter.colorCd}</li></a>
-                                    <a class="text-decoration-none link-dark stretched-link" href="#!"><li class="h5 card-title mb-3">나이 : ${shelter.age}</li></a>
-                                    <a class="text-decoration-none link-dark stretched-link" href="#!"><li class="h5 card-title mb-3">무게 : ${shelter.weight}</li></a>
-                                    <a class="text-decoration-none link-dark stretched-link" href="#!"><li class="h5 card-title mb-3">발견 날짜 : ${shelter.happenDt}</li></a>
-                                    <a class="text-decoration-none link-dark stretched-link" href="#!"><li class="h5 card-title mb-3">발견 날짜 : ${shelter.happenDt}</li></a>
+                                    <a class="text-decoration-none link-dark stretched-link" href="../detail/she">
+                                        <li class="h5 card-title mb-3">종류 : ${shelter.kindCd}</li>
+                                        <li class="h5 card-title mb-3">색깔 : ${shelter.colorCd}</li>
+                                        <li class="h5 card-title mb-3">나이 : ${shelter.age}</li>
+                                        <li class="h5 card-title mb-3">무게 : ${shelter.weight}</li>
+                                        <li class="h5 card-title mb-3">발견 날짜 : ${shelter.happenDt}</li>
+                                        <li class="h5 card-title mb-3">발견 장소 : ${shelter.happenPlace}</li>
+                                        <li class="h5 card-title mb-3">특징 : ${shelter.specialMark}</li>
+                                    </a>
                                 </div>
                                 <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
                                     <div class="d-flex align-items-end justify-content-between">
@@ -101,64 +106,16 @@
                                             <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d" alt="..." />
                                             <div class="small">
                                                 <div class="fw-bold">보호소 : ${shelter.careNm}</div>
-                                                <div class="text-muted">보호소 이름 : ${shelter.orgNm}</div>
                                                 <div class="text-muted">보호소 주소 : ${shelter.careAddr}</div>
+                                                <div class="text-muted">보호소 전화번호 : ${shelter.careTel}</div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-lg-4 mb-5">
-                            <div class="card h-100 shadow border-0">
-                                <img class="card-img-top" src="${shelter.popfile}" alt="..." />
-                                <div class="card-body p-4">
-                                    <div class="badge bg-primary bg-gradient rounded-pill mb-2">News</div>
-                                    <a class="text-decoration-none link-dark stretched-link" href="#!"><li class="h5 card-title mb-3">종류 : ${shelter.kindCd}</li></a>
-                                    <a class="text-decoration-none link-dark stretched-link" href="#!"><li class="h5 card-title mb-3">색깔 : ${shelter.colorCd}</li></a>
-                                    <a class="text-decoration-none link-dark stretched-link" href="#!"><li class="h5 card-title mb-3">나이 : ${shelter.age}</li></a>
-                                    <a class="text-decoration-none link-dark stretched-link" href="#!"><li class="h5 card-title mb-3">발견 장소 : ${shelter.happenPlace}</li></a>
-                                    <a class="text-decoration-none link-dark stretched-link" href="#!"><li class="h5 card-title mb-3">발견 날짜 : ${shelter.happenDt}</li></a>
-                                    <li class="card-text mb-0"></li>
-                                </div>
-                                <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
-                                    <div class="d-flex align-items-end justify-content-between">
-                                        <div class="d-flex align-items-center">
-                                            <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d" alt="..." />
-                                            <div class="small">
-                                                <div class="fw-bold">Kelly Rowan</div>
-                                                <div class="text-muted">March 12, 2022 &middot; 6 min read</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                        <div class="col-lg-4 mb-5">
-                            <div class="card h-100 shadow border-0">
-                                <img class="card-img-top" src="https://dummyimage.com/600x350/6c757d/343a40" alt="..." />
-                                <div class="card-body p-4">
-                                    <div class="badge bg-primary bg-gradient rounded-pill mb-2">News</div>
-                                    <a class="text-decoration-none link-dark stretched-link" href="#!"><div class="h5 card-title mb-3">The last blog post title is a little bit longer than the others</div></a>
-                                    <p class="card-text mb-0">Some more quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                </div>
-                                <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
-                                    <div class="d-flex align-items-end justify-content-between">
-                                        <div class="d-flex align-items-center">
-                                            <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d" alt="..." />
-                                            <div class="small">
-                                                <div class="fw-bold">Evelyn Martinez</div>
-                                                <div class="text-muted">April 2, 2022 &middot; 10 min read</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        
+                        </c:forEach>
                     </div>
                     <div class="text-end mb-5 mb-xl-0">
                         <a class="text-decoration-none" href="#!">
@@ -172,6 +129,7 @@
         <!-- Footer-->
         <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
+
         <!-- jQuery 라이브러리 추가 -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
@@ -179,6 +137,8 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
+
+      
     </body>
     
 </html>

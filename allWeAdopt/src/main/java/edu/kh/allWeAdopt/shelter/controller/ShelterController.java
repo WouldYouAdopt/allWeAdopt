@@ -29,7 +29,7 @@ import edu.kh.allWeAdopt.shelter.model.vo.Shelter;
 
 @Controller
 @RequestMapping("/shelter")
-@SessionAttributes({"shelter"})
+@SessionAttributes({"list"})
 public class ShelterController {
 	
 	@Autowired
@@ -46,7 +46,7 @@ public class ShelterController {
 	    StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1543061/abandonmentPublicSrvc/abandonmentPublic"); /*URL*/
 	    urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=ORROf4zK3CwwkwCJ%2Fdt4FRDISXLZQ5w7%2B13CMxRIzMqZz504Vtr86DcBmJqTMgWJgCVfGnafTLBY6kHXgi9CIw%3D%3D"); /*Service Key*/
 	    urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("5", "UTF-8")); /*페이지 번호*/
-	    urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("10", "UTF-8")); /*한 페이지 결과 수(1,000 이하)*/
+	    urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("9", "UTF-8")); /*한 페이지 결과 수(1,000 이하)*/
 //	    urlBuilder.append("&" + URLEncoder.encode("_type","UTF-8") + "=" + URLEncoder.encode(" ", "UTF-8")); /*xml(기본값) 또는 json*/
 	       
 	    URL url = new URL(urlBuilder.toString());
@@ -72,63 +72,72 @@ public class ShelterController {
 	    List<Element> itemList = items.getChildren("item");
 	    
 	    List<Shelter> list = new ArrayList<Shelter>();
+    	
+    		
+		for(Element item : itemList) {
+			
+			String reqNo = item.getChildText("reqNo");
+			String filename = item.getChildText("filename");
+			String happenDt = item.getChildText("happenDt");
+			String happenPlace = item.getChildText("happenPlace");
+			String kindCd = item.getChildText("kindCd");
+			String colorCd = item.getChildText("colorCd");
+			String age = item.getChildText("age");
+			String weight = item.getChildText("weight");
+			String popfile = item.getChildText("popfile");
+			String noticeSdt = item.getChildText("noticeSdt");
+			String noticeEdt = item.getChildText("noticeEdt");
+			String processState = item.getChildText("processState");
+			String sexCd = item.getChildText("sexCd");
+			String specialMark = item.getChildText("specialMark");	        
+			String careNm = item.getChildText("careNm");
+			String careAddr = item.getChildText("careAddr");
+			String careTel = item.getChildText("careTel");
+			
+			String numOfRows = item.getChildText("numOfRows");
+			String pageNo = item.getChildText("pageNo");
+			String totalCount = item.getChildText("totalCount");
+			
+			Shelter shelter = new Shelter();
+			
+			shelter.setReqNo(reqNo);
+			shelter.setFilename(filename);
+			shelter.setHappenDt(happenDt);
+			shelter.setHappenPlace(happenPlace);
+			shelter.setKindCd(kindCd);
+			shelter.setColorCd(colorCd);
+			shelter.setAge(age);
+			shelter.setWeight(weight);
+			shelter.setPopfile(popfile);
+			shelter.setNoticeSdt(noticeSdt);
+			shelter.setNoticeEdt(noticeEdt);
+			shelter.setProcessState(processState);
+			shelter.setSexCd(sexCd);
+			shelter.setSpecialMark(specialMark);
+			shelter.setCareNm(careNm);
+			shelter.setCareAddr(careAddr);
+			shelter.setCareTel(careTel);
+			shelter.setNumOfRows(numOfRows);
+			shelter.setPageNo(pageNo);
+			shelter.setTotalCount(totalCount);
+			
+			
+			list.add(shelter);
+    			
+    		
+    		
+    	}
 	    
-    	Shelter shelter = new Shelter();
 	    
-	    for(Element item : itemList) {
-	    	
-//	    	String resultCode = item.getChildText("reqNo");
-//	    	String resultMsg = item.getChildText("resultMsg");
-	    	String careNm = item.getChildText("careNm");
-	    	String orgNm = item.getChildText("orgNm");
-//	    	String divisionNm = item.getChildText("divisionNm");
-	    	String careAddr = item.getChildText("careAddr");
-	    	String lat = item.getChildText("lat");
-	    	String lng = item.getChildText("lng");
-	    	String careTel = item.getChildText("careTel");
-//	    	String dataStdDt = item.getChildText("dataStdDt");
-	    	String numOfRows = item.getChildText("numOfRows");
-//	    	String pageNo = item.getChildText("pageNo");
-//	    	String totalCount = item.getChildText("totalCount");
-	    	
-
-	         String reqNo = item.getChildText("reqNo");
-	         String filename = item.getChildText("filename");
-	         String happenDt = item.getChildText("happenDt");
-	         String happenPlace = item.getChildText("happenPlace");
-	         String kindCd = item.getChildText("kindCd");
-	         String colorCd = item.getChildText("colorCd");
-	         String age = item.getChildText("age");
-	         String weight = item.getChildText("weight");
-	         String popfile = item.getChildText("popfile");
-
-	    	
-	    	
-	         shelter.setReqNo(reqNo);
-	         shelter.setFilename(filename);
-	         shelter.setHappenDt(happenDt);
-	         shelter.setHappenPlace(happenPlace);
-	         shelter.setKindCd(kindCd);
-	         shelter.setColorCd(colorCd);
-	         shelter.setAge(age);
-	         shelter.setWeight(weight);
-	         shelter.setPopfile(popfile);
-	         shelter.setCareNm(careNm);
-	         shelter.setOrgNm(orgNm);
-	         shelter.setCareAddr(careAddr);
-	         shelter.setLat(lat);
-	         shelter.setLng(lng);
-	         shelter.setCareTel(careTel);
-	         shelter.setNumOfRows(numOfRows);
-
-	    	
-	    	list.add(shelter);
-	    	
-	    }
+//	    System.out.println(shelter.getNumOfRows());
+//	    System.out.println(shelter.getPageNo());
 	    
-	    model.addAttribute("shelter", shelter);	    
+	    model.addAttribute("list", list);	    
 
 		return "shelter/mainShelter";
 	}
+	
+	
+	
 	
 }
