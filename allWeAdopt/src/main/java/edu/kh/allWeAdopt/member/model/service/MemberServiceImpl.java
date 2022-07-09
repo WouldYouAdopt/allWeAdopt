@@ -74,13 +74,10 @@ public class MemberServiceImpl implements MemberService{
 		
 		map.put("member", member);
 		
-		
-		// 이미지 업로드 여부 확인 1 == 이미지 X / 0 == 이미지 O
-		String deleteImage = (String)map.get("deleteImage");
-		
+			
 		String rename = null;
-		// 이미지 업로드 된 경우 Util클래스를 이용해 파일명 rename하기
-		if(deleteImage.equals("0")) {
+		// 이미지가 업로드 된 경우 Util클래스를 이용해 파일명 rename하기
+		if( !uploadImage.isEmpty() ) {
 			rename = Util.fileRename( uploadImage.getOriginalFilename() );
 			map.put("profileImage", map.get("webPath") + rename);
 		}else {

@@ -133,7 +133,7 @@ if(document.getElementById("del")!=null){
 	    // 0 : 삭제버튼 안눌림 / 1 : 삭제버튼 눌림	
 	    if(deleteImage.value == 0 || deleteImage.value == 1){
 	
-	        profileImg.setAttribute("src", contextPath + "/resources/images/user.png");
+	        profileImg.setAttribute("src", memberProfile);
 	        profileImage.value = "";
 	        deleteImage.value = 1;
 

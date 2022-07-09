@@ -53,7 +53,7 @@
                         <div class="row gx-5 justify-content-center">
                             <div class="col-lg-8 col-xl-6">
 
-                                <form action="${contextPath}/member/myPage/signUp" id="signUpForm" method="POST" enctype="multipart/form-data" onsubmit="return signUpValidate()">
+                                <form action="${contextPath}/member/signUp" id="signUpForm" method="POST" enctype="multipart/form-data" onsubmit="return signUpValidate()">
 
                                     <!-- 이메일 주소 -->
                                     <div class="form-floating mb-2 confirm-area">
@@ -126,7 +126,7 @@
                                         <div class="imageBtnArea">
                                             <input id="profileImage" type="file" name="uploadImage" accept="image/*">
                                             <label for="profileImage">등록 </label>
-                                            <input type="hidden" id="deleteImage" name="deleteImage" value="1">
+                                            <input type="hidden" id="deleteImage" name="deleteImage"> <!-- 가입시에는 필요가 없다. -->
                                             <label for="deleteImage" id="del" >삭제</label>
                                         </div>
                                     </div>   
@@ -146,6 +146,7 @@
 
         <script>
             const contextPath = "${contextPath}";
+            const memberProfile = "${contextPath}/resources/images/user.png";
         </script>
 
         <!-- jQuery 라이브러리 추가(CDN) -->
