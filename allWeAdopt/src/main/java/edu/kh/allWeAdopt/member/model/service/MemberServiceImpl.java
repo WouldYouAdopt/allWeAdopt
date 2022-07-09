@@ -104,24 +104,24 @@ public class MemberServiceImpl implements MemberService{
 
 
 	// 카카오로그인 회원정보 조회
-	@Override
-	public int kakaoLogin(HashMap<String, Object> userInfo) {
-		
-		//userInfo 의 값을 꺼내서 매개변수로 들고가나??
-		
-		int result = dao.kakaoLogin(userInfo);
-		
-		// result == 0 == 일치하는 회원 정보가 없다.
-		if ( result == 0 ) {
-			
-			// insert 작업 진행 
-			result = dao.insertMember( userInfo );
-			
-		}
-		
-		return result;
-		
-	}
+//	@Override
+//	public int kakaoLogin(HashMap<String, Object> userInfo) {
+//		
+//		//userInfo 의 값을 꺼내서 매개변수로 들고가나??
+//		
+//		int result = dao.kakaoLogin(userInfo);
+//		
+//		// result == 0 == 일치하는 회원 정보가 없다.
+//		if ( result == 0 ) {
+//			
+//			// insert 작업 진행 
+//			result = dao.insertMember( userInfo );
+//			
+//		}
+//		
+//		return result;
+//		
+//	}
 	
 
 

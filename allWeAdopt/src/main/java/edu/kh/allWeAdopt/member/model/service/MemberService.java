@@ -44,7 +44,7 @@ public interface MemberService {
 	 * @param userInfo
 	 * @return
 	 */
-	public int kakaoLogin(HashMap<String, Object> userInfo);
+//	public int kakaoLogin(HashMap<String, Object> userInfo);
 	
 	
 	
