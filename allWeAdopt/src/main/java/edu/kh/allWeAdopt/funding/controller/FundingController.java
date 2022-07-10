@@ -17,4 +17,9 @@ public class FundingController {
 	public String list() {
 		return "funding/funding-list";
 	}
+	
+	@GetMapping("/reward")
+	public String rewardSelect() {
+		return "funding/reward-select";
+	}
 }
