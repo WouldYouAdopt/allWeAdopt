@@ -21,6 +21,8 @@
 	<typeAliases>
 	
 		<typeAlias type="edu.kh.allWeAdopt.member.model.vo.Member" alias="member"/> 
+		<typeAlias type="edu.kh.allWeAdopt.shelter.model.vo.Shelter" alias="shelter"/> 
+		<!-- <typeAlias type="edu.kh.allWeAdopt.shelter.model.vo.ShelterReply" alias="shelterReply"/> --> 
 		
 
 	</typeAliases>
