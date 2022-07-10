@@ -1,0 +1,19 @@
+.fundingManagementArea>div{
+    border: 1px solid #FB836b !important;
+    margin-bottom: 20px;
+}
+
+#currentFunding *{ 
+    cursor: pointer;
+}
+#currentFundingTitle{
+    width: 100%;
+    opacity: 50%;
+}
+
+.btnArea{
+    margin: 10px;
+    padding: 5px;
+    display: flex;
+    flex-direction: row-reverse;
+}
