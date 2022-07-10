@@ -1,0 +1,165 @@
+/* 공통 항목 영역 */
+.menu{
+    background-color: #FB836B;
+    color: #FFF;
+    margin-bottom: 5px;
+}
+
+.select{
+    margin-right: 30px;
+    padding-top: 5px;
+}
+
+hr{
+    margin: 0;
+    margin-bottom: 5px;
+    border: 1px solid grey;
+}
+
+.etc{
+    color: rgb(160, 160, 160);
+    margin-top: 0;
+    font-size: 13px;
+    margin-left: 65px;
+}
+
+/* 드롭다운 버튼 */
+
+.btn-secondary{
+    background-color: white;
+    color: black;
+}
+
+.btn-secondary:hover{
+    background-color: #FB836B;
+}
+
+.btn-secondary:focus{
+    background-color: #FFF;
+    color: black;
+}
+
+.show>.btn-secondary.dropdown-toggle{
+    background-color: #FB836B;
+}
+
+.dropdown-item{
+    background-color: #FFF;
+}
+
+.dropdown-item .active{
+    background-color: #FFF;
+}
+
+.dropdown-menu-dark{
+    background-color: #FFF;
+    border-color: #373737;
+}
+
+.dropdown-menu-dark .dropdown-item{
+    color: #373737;
+    cursor: pointer;
+}
+
+.dropdown-menu-dark .dropdown-item:hover{
+    color: #373737;
+}
+
+.dropdown-menu-dark .dropdown-item:active{
+    background-color: #FB836B;
+    color: #FFF;
+}
+
+/* 카테고리 */
+.category-area{
+    margin: 15px 0;
+}
+
+/* 제목 */
+.titleArea{
+    margin-bottom: 65px;
+}
+
+#boardTitle{
+    width: 500px;
+    height: 40px;
+    outline-color: #FB836B;
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 5px;
+}
+
+/* 날짜 */
+.dateArea > .select{
+    margin-right: 30px;
+    padding: 0;
+}
+
+/* 지역 */
+.area{
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.area > .dropdown{
+    margin-right: 40px;
+}
+
+/* 연락처 */
+.tel-area{
+    display: flex;
+}
+
+.tel-area > .select{
+    margin-right: 6px;
+}
+
+.tel{
+    width: 120px;
+    height: 30px;
+    outline-color: #FB836B;
+    margin: 0 10px;
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 5px;
+}
+
+/* 종류, 품종 */
+.type-area{
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.type-area > .dropdown{
+    margin-right: 40px;
+}
+
+/* 성별 */
+.gender-area{
+    display: flex;
+    margin-bottom: 30px;
+}
+
+/* 중성화 */
+.neutering-area{
+    display: flex;
+    margin-bottom: 66px;
+}
+
+.neutering-area > .select{
+    margin-right: 14px
+}
+
+/* 등록 */
+.btn-area{
+    display: flex;
+    justify-content: center;
+}
+
+.btnRegist{
+    width: 110px;
+    height: 50px;
+    background-color: #FB836B;
+    color: #FFF;
+    border: none;
+    border-radius: 5px;
+}
+
