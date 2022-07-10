@@ -1,4 +1,4 @@
-package edu.kh.allWeAdopt.funding.vo;
+package edu.kh.allWeAdopt.funding.model.vo;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
