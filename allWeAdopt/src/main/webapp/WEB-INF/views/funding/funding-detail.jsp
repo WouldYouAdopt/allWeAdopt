@@ -200,6 +200,12 @@
                                     <div class="rewardOver"><div class="vertical-center">이 리워드 펀딩하기</div></div>
                                 </div>
                                 
+                                
+                                
+                                
+                                
+                                
+                                
 
 
                             </div> <!-- 리워드 전체 박스  -->
@@ -277,7 +283,7 @@
            	// window.scrollY 가 div 합보다 크거나 같을때 반환
             document.addEventListener('scroll', function() {
             	
-    		    if(window.scrollY > 1600){
+    		    if(window.scrollY > 1630){
     		    	fixBox.classList.add('visable');
     		    }else{
     		    	fixBox.classList.remove('visable');
