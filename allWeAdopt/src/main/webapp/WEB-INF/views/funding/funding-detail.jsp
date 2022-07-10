@@ -91,9 +91,9 @@
                             
                         <!-- 버튼들 -->
                         <div class="middle-btns">
-                            <button class="nowSelect" onclick="window.location.href='${contextPath}/funding/detail?page=1'">펀딩 스토리</button>
-                            <button onclick="window.location.href='${contextPath}/funding/detail?page=2'">반환 / 정책</button>
-                            <button onclick="window.location.href='${contextPath}/funding/detail?page=3'">참여 서포터</button>
+                            <button id="story" onclick="window.location.href='${contextPath}/funding/detail?page=1'">펀딩 스토리</button>
+                            <button id="policy" onclick="window.location.href='${contextPath}/funding/detail?page=2'">반환 / 정책</button>
+                            <button id="supporters" onclick="window.location.href='${contextPath}/funding/detail?page=3'">참여 서포터</button>
                             <button onclick="window.location.href='${contextPath}/funding/list'">종료된 펀딩</button>
                         </div>
 
@@ -101,15 +101,22 @@
                         
                         <div class="line"></div>
 
-						<c:if test="">
-						
-						</c:if>
+
+
 						<!-- ?page=1 story -->
-                        <jsp:include page="/WEB-INF/views/funding/funding-detail1-story.jsp" />
+						<c:if test="${param.page==1}">
+                        	<jsp:include page="/WEB-INF/views/funding/funding-detail1-story.jsp" />						
+						</c:if>
+
                         <!-- ?page=2 policy -->
-                        <jsp:include page="/WEB-INF/views/funding/funding-detail2-policy.jsp" />
+						<c:if test="${param.page==2}">
+	                        <jsp:include page="/WEB-INF/views/funding/funding-detail2-policy.jsp" />
+						</c:if>
+
                         <!-- ?page=3 supporters-->
-                        <jsp:include page="/WEB-INF/views/funding/funding-detail3-supporters.jsp" />
+						<c:if test="${param.page==3}">
+	                        <jsp:include page="/WEB-INF/views/funding/funding-detail3-supporters.jsp" />
+						</c:if>
                         
                         
 
@@ -131,7 +138,7 @@
                                 </div>
                             </div>
                             <div class="align-items-center mb-4" >
-                                <button class="fundingBtn">펀딩하기</button>
+                                <button class="fundingBtn" onclick="window.location.href='${contextPath}/funding/reward'">펀딩하기</button>
                                 <button class="qnaBtn">문의</button>
                             </div>
                             
@@ -198,7 +205,7 @@
                             </div> <!-- 리워드 전체 박스  -->
                             
                             <div class="fixbox">
-	                            <button class="fundingBtn wid-100">이 프로젝트 펀딩하기</button>
+	                            <button class="fundingBtn wid-100" onclick="window.location.href='${contextPath}/funding/reward'">이 프로젝트 펀딩하기</button>
                         	</div>
                             
                         </div> 
@@ -281,7 +288,29 @@
 				
 
 			    
-
+		// param.page에 따라 nowSelect표시하기
+		const page = ${param.page}
+		const story = document.getElementById("story");
+		const policy = document.getElementById("policy");
+		const supporters = document.getElementById("supporters");
+		
+		if(page==1){
+			story.classList.add('nowSelect')	
+		}else{
+			story.classList.remove('nowSelect')
+		}
+		
+		if(page==2){
+			policy.classList.add('nowSelect')	
+		}else{
+			policy.classList.remove('nowSelect')
+		}
+		
+		if(page==3){
+			supporters.classList.add('nowSelect')	
+		}else{
+			supporters.classList.remove('nowSelect')
+		}
         </script>
     </body>
     
