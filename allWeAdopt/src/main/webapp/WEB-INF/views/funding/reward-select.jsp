@@ -68,11 +68,41 @@
 			        우리아이 시원하게 여름 쿨매트
 			    </div>
 			</div>
+			
+			
+			
+			
+		
 
 
             <section class="py-4">
                 <div class="container px-5">
 
+
+
+						<!-- Modal -->
+					<div class="modal fade modal-dialog modal-dialog-centered" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					  <div class="modal-dialog">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+					        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					      </div>
+					      <div class="modal-body">
+					        ...
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					        <button type="button" class="btn btn-primary">Save changes</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+					
+					
+					
+					
+					
 					<div class="text-center py-5">
 						<h1 class="fw-bolder">리워드 선택</h1>
 						<p class="lead fw-normal text-muted mb-0">펀딩해주시는 금액에 따라 감사의 의미로 리워드를 제공해 드립니다.</p>
@@ -231,7 +261,7 @@
 						
 						
 						<div class="text-center mt-5 fs-5">우리아이 시원하게 여름 쿨매트에 0원을 펀딩합니다.</div>
-						<button class="selected d-grid col-6 mx-auto my-3 py-2" style="border-radius:4px; font-size:20px;">결제 페이지로</button>
+						<button data-bs-toggle="modal" data-bs-target="#exampleModal" class="selected d-grid col-6 mx-auto my-3 py-2" style="border-radius:4px; font-size:20px;" >결제 페이지로</button>
 						
                     
                     </div>    
@@ -241,11 +271,15 @@
                         
 				</div>
 
-                      
-                    
+
+
+
+
                     
                         
             </section>
+            
+            
 
         </main>
         
