@@ -1,6 +1,7 @@
 package edu.kh.allWeAdopt.member.model.service;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -34,5 +35,42 @@ public interface MemberService {
 	 * @throws IOException
 	 */
 	public int signUp(Map<String, Object> map, MultipartFile uploadImage) throws IOException;
+
+
+
+
+	/** 카카오 아이디(이메일) 일치하는 회원 정보를 조회하는 Service 호출 후 결과 반환 받기 
+	 * @param kakaoEmail
+	 * @return
+	 */
+	public abstract Member kakaoEmailCheck(String kakaoEmail);
+
+
+
+
+	/** 카카오 회원 넘버 '삽입' 
+	 * @param kakaoEmail
+	 * @param nickname
+	 * @return result
+	 */
+	public abstract int insertNo(Member mem);
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
 
 }

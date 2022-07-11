@@ -1,10 +1,11 @@
 package edu.kh.allWeAdopt.member.controller;
 
-import java.io.IOException;
+import java.io.IOException; 
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -82,14 +84,15 @@ public class MemberController {
 		if(result>0) ra.addFlashAttribute("message", "회원가입 완료");
 		else         ra.addFlashAttribute("message", "회원가입 실패");
 		
-		return "redirect:/";
+		return  "common/main";
 	}
 	
 	// 로그아웃
 	@GetMapping("/logout")
-	public String logout(SessionStatus status) {
+	public String logout(SessionStatus status, HttpSession session) {
 		
 		status.setComplete();
+		
 		
 		return "redirect:/";
 	}
@@ -103,9 +106,20 @@ public class MemberController {
 	}
 	
 	
+
+	
+	// 비밀번호 재설정 화면 전환
+	// 마이페이지 컨트롤러에있어야하나?	
+	@GetMapping("/changePw") 
+	public String changePw() {
+		return "member/changePw";
+	}	
+		
+		
+	
 	// 로그인 하기
 	@PostMapping("/login")
-	public String login( Member inputMember
+	public String login(  @ModelAttribute Member inputMember
 					     , RedirectAttributes ra
 					     , Model model) {
 		
@@ -125,6 +139,8 @@ public class MemberController {
 			
 			ra.addFlashAttribute("message", "아이디 또는 비밀번호가 일치하지 않습니다.");
 			
+			return "redirect:/member/login"; 
+			
 		}
 		
 		
@@ -133,14 +149,15 @@ public class MemberController {
 		return "redirect:/"; 
 	}
 	
-	// 비밀번호 재설정 화면 전환
-	// 마이페이지 컨트롤러에있어야하나?	
-	@GetMapping("/changePw") 
-	public String changePw() {
-		return "member/changePw";
-	}	
-		
-		
+	
+
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
