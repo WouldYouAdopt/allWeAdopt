@@ -57,6 +57,7 @@ function addReward(){
 /* 썸네일 이미지 미리보기 */
 // 회원 프로필 이미지 변경(미리보기)
 const inputImage = document.getElementById("input-image");
+const previewImage = document.getElementById('previewImage')
 
 if(inputImage != null){ 
     inputImage.addEventListener("change", function(){
@@ -64,20 +65,17 @@ if(inputImage != null){
             const reader = new FileReader();
             reader.readAsDataURL(this.files[0]);
             reader.onload = function(e){ 
-                const image = document.createElement('img');
-                const deleteBtn = document.createElement('button');
-                image.setAttribute("src", e.target.result);
-                image.classList.add('thumbnailArea');
-                deleteBtn.classList.add('deleteBtn');
-                deleteBtn.classList.add('fa-circle-minus');
-                document.getElementsByClassName('thumbnailArea')[0].innerHTML='';
-                document.getElementsByClassName('thumbnailArea')[0].append(deleteBtn);
-                document.getElementsByClassName('thumbnailArea')[0].append(image);
-
+                previewImage.setAttribute("src", e.target.result);
              }
         }
     });
 }
+
+const deleteBtn = document.getElementById('deleteBtn');
+deleteBtn.addEventListener('click',function(){
+    previewImage.setAttribute('src','');
+    inputImage.value='';
+})
 
 
 

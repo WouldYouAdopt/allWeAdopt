@@ -116,10 +116,17 @@
                           <!-- 썸네일 영역 -->
                           <div class="thumbnailArea"> 
                             <div>썹네일을 입력해주세요</div>
+
+                            <div class="previewArea">
+                              <img src="" class="img-fluid" id="previewImage">
+                            </div>
+
                             <div class="profile-area">
                               <label for="input-image">이미지 선택</label>
                               <input type="file" name="uploadImage" id="input-image" accept="image/*">
+                              <button id="deleteBtn">이미지 삭제</button>
                             </div>
+
                           </div>
                           
 
@@ -193,8 +200,8 @@
 
                             </table>
 
-                            <div>
-                              배송비 넣을 공간
+                            <div id="deliveryFee">
+                              <span>배송비 : </span><input type="text" placeholder="배송비를 입력해주세요">
                             </div>
                           </div>
 
