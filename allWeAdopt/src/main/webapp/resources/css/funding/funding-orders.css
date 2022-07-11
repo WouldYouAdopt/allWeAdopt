@@ -77,11 +77,34 @@
 
 /* ----------------------------------------------- */
 #controllerArea{
-
     display: flex;
     justify-content: center;
     align-items: center;
+    border-bottom: 3px solid #ddd;
+    padding: 5px;
+    flex-wrap: nowrap;
+}
 
-};
-
-
+.navController{
+    margin: 5px;
+    color:#FB836b;
+    text-decoration: none;
+    font-size: 1.1em;
+}
+.navController:hover{
+    border-bottom: 3px solid #FB836b;
+    color:#FB836b;
+    font-weight: bold;
+    padding: 5px;
+}
+.controllerBtnArea{
+    margin-left: 60px;
+}
+.controllerBtnArea>button{
+    background-color: #FB836b;
+}
+.controllerBtnArea>button:hover{
+    border: 1px solid #FB836b;
+    background-color: white;
+    color: #FB836b;
+}

@@ -24,10 +24,19 @@ function execDaumPostcode() {
       }
 
       // 우편번호와 주소 정보를 해당 필드에 넣는다.
-      document.getElementById('postcode').value = data.zonecode;
-      document.getElementById("roadAddress").value = roadAddr;
-      document.getElementById("jibunAddress").value = data.jibunAddress;
+    let addr;
+      addr ="("+ data.zonecode+")";
+      addr += roadAddr;
       
+      const p = document.createElement('p');
+      p.classList.add('badge');
+      p.classList.add('bg-primary');
+      p.classList.add('text-wrap');
+      p.setAttribute('id','addressInfo');
+      p.innerText=addr;
+      console.log(addr);
+      document.getElementById('findPostcode').after(p);
+      document.getElementById('address').setAttribute('value',addr)
       }
 }).open();
 }
