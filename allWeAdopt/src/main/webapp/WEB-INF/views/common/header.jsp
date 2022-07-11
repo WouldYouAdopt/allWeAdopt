@@ -34,7 +34,7 @@
                     <li class="nav-item"><a class="nav-link" href="${contextPath}/findHospital">병원찾기</a></li>
 
                     <c:choose>
-                        <c:when test="${ empty sessionScope.loginMember && empty kakaoInfo}"> 
+                        <c:when test="${ empty sessionScope.loginMember }"> 
                             <%-- 로그인 X --%>
                             <li class="nav-item"><a class="nav-link" href="${contextPath}/member/login">로그인</a></li>
                         </c:when>
@@ -44,19 +44,19 @@
                                 <li class="nav-item dropdown" >
                                     <a class="nav-link dropdown-toggle py-1" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="border-radius: 50%;">
                                         <%-- 기본 프로필이미지(= 프로필이미지 설정 안했을때) --%>
-                                        <c:if test="${empty loginMember.profileImage && empty kakaoInfo.email}">
+                                        <c:if test="${empty loginMember.profileImage }">
                                              <img src="${contextPath}/resources/images/user.png" id="member-profile" style="width : 35px; height : 35px;">	
                                         </c:if>     
 
+                                        <c:if test="${!empty loginMember.profileImage && loginMember.memberType == 'K'}">
+                                             <img src="${loginMember.profileImage}" id="member-profile" style="width : 35px; height : 35px;">
+                                        </c:if>
+
                                         <%-- 사용자 설정 프로필이미지 --%>
-                                        <c:if test="${!empty loginMember.profileImage && empty kakaoInfo.email}">
+                                        <c:if test="${!empty loginMember.profileImage && loginMember.memberType == 'M'}">
                                              <img src="${contextPath}/${loginMember.profileImage}" id="member-profile" style="width : 35px; height : 35px;">
                                         </c:if>
 
-                                        <%-- 카카오 로그인 시 프로필이미지 --%>
-                                        <c:if test="${ !empty kakaoInfo.email}">
-                                                 <img src="${kakaoInfo.profileImage}" id="member-profile" style="width : 35px; height: 35px ; border-radius: 50%; border: solid 0.2px #ccc; ">
-                                        </c:if>
 
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio"  >
@@ -67,11 +67,11 @@
                                         <li><a class="dropdown-item" href="portfolio-item.html">채팅 목록</a></li>
                                         <li><a class="dropdown-item" href="portfolio-item.html">문의하기</a></li>
                                         <li><a class="dropdown-item" href="${contextPath}/member/myPage/notice">공지사항</a></li>
-                                        <c:if test="${ empty kakaoInfo.email }">
+                                        <c:if test="${  loginMember.memberType == 'M' }">
                                             <li><a class="dropdown-item" href="${contextPath}/member/logout">로그아웃1</a></li>
                                         </c:if>
 
-                                        <c:if test="${ !empty kakaoInfo.email }">
+                                        <c:if test="${ loginMember.memberType == 'K' }">
                                             <li><a class="dropdown-item" href="${contextPath}/logout">로그아웃2</a></li>
                                         </c:if>
 
