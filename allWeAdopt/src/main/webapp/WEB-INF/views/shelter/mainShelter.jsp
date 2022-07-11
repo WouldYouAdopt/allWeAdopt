@@ -79,10 +79,24 @@
             </section>
 
             <!-- 분앙소 불러오기 -->
+
             <section class="py-5">
                 <div class="container px-5">
                     <h2 class="fw-bolder fs-5 mb-4">보호소</h2>
                     <div class="row gx-5">
+
+                    
+
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <strong>품종</strong>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="#" role="option" aria-selected="true" data-value="전체">전체</a></li>
+                            <li><a class="dropdown-item" href="#" role="option" aria-selected="true" data-value="전체">개</a></li>
+                            <li><a class="dropdown-item" href="#" role="option" aria-selected="true" data-value="전체">고양이</a></li>
+                        </ul>
+                    </div>
 
                         <c:forEach var="shelter" items="${list}">
                         <div class="col-lg-4 mb-5">
@@ -92,12 +106,12 @@
                                     <div class="badge bg-primary bg-gradient rounded-pill mb-2">New</div>
                                         <a class="text-decoration-none link-dark stretched-link" href="../shelter/shelterDetail/${shelter.desertionNo}" >
                                             <li class="h5 card-title mb-3">종류 : ${shelter.kindCd}</li>
-                                            <li class="h5 card-title mb-3">색깔 : ${shelter.colorCd}</li>
+                                            <%-- <li class="h5 card-title mb-3">색깔 : ${shelter.colorCd}</li>
                                             <li class="h5 card-title mb-3">나이 : ${shelter.age}</li>
-                                            <li class="h5 card-title mb-3">무게 : ${shelter.weight}</li>
+                                            <li class="h5 card-title mb-3">무게 : ${shelter.weight}</li> --%>
                                             <li class="h5 card-title mb-3">발견 날짜 : ${shelter.happenDt}</li>
                                             <li class="h5 card-title mb-3">발견 장소 : ${shelter.happenPlace}</li>
-                                            <li class="h5 card-title mb-3">특징 : ${shelter.specialMark}</li>
+                                            <%-- <li class="h5 card-title mb-3">특징 : ${shelter.specialMark}</li> --%>
                                         </a>
                                     </div>
                                 <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
@@ -106,8 +120,8 @@
                                             <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d" alt="..." />
                                             <div class="small">
                                                 <div class="fw-bold">보호소 : ${shelter.careNm}</div>
-                                                <div class="text-muted">보호소 주소 : ${shelter.careAddr}</div>
-                                                <div class="text-muted">보호소 전화번호 : ${shelter.careTel}</div>
+                                                <%-- <div class="text-muted">보호소 주소 : ${shelter.careAddr}</div>
+                                                <div class="text-muted">보호소 전화번호 : ${shelter.careTel}</div> --%>
                                             </div>
                                         </div>
                                     </div>
@@ -117,12 +131,34 @@
 
                         </c:forEach>
                     </div>
-                    <div class="text-end mb-5 mb-xl-0">
+                    <%-- <div class="text-end mb-5 mb-xl-0">
                         <a class="text-decoration-none" href="#!">
                             More stories
                             <i class="bi bi-arrow-right"></i>
                         </a>
-                    </div>
+                    </div> --%>
+
+                    <%-- 페이지네이션 --%>
+
+                    <c:set var="url" value="?pageNo="/>
+
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination pagination-lg justify-content-center">
+                            <li class="page-item">
+                                <a class="page-link" href="${url}1" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <c:forEach var="i" begin="1" end="10" step="1">
+                                <li class="page-item"><a class="page-link" href="${url}${i}">${i}</a></li>
+                            </c:forEach>
+                            <li class="page-item">
+                                <a class="page-link" href="${url}10" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
             </section>
         </main>

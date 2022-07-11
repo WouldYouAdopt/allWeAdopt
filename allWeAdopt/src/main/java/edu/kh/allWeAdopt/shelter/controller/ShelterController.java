@@ -43,11 +43,11 @@ public class ShelterController {
 	
 	// 보호소 불러오기
 	@GetMapping("/mainShelter")
-	public String openShelter(Model model) throws Exception {
+	public String openShelter(Model model, @RequestParam(value="pageNo", required=false, defaultValue = "1") String pageNo) throws Exception {
 		
 	    StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1543061/abandonmentPublicSrvc/abandonmentPublic"); /*URL*/
 	    urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=ORROf4zK3CwwkwCJ%2Fdt4FRDISXLZQ5w7%2B13CMxRIzMqZz504Vtr86DcBmJqTMgWJgCVfGnafTLBY6kHXgi9CIw%3D%3D"); /*Service Key*/
-	    urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지 번호*/
+	    urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode(pageNo, "UTF-8")); /*페이지 번호*/
 	    urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("9", "UTF-8")); /*한 페이지 결과 수(1,000 이하)*/
 //	    urlBuilder.append("&" + URLEncoder.encode("_type","UTF-8") + "=" + URLEncoder.encode(" ", "UTF-8")); /*xml(기본값) 또는 json*/
 	       
@@ -97,7 +97,7 @@ public class ShelterController {
 			String careTel = item.getChildText("careTel");
 			
 			String numOfRows = item.getChildText("numOfRows");
-			String pageNo = item.getChildText("pageNo");
+//			pageNo = item.getChildText("pageNo");
 			String totalCount = item.getChildText("totalCount");
 			
 			Shelter shelter = new Shelter();
@@ -120,25 +120,26 @@ public class ShelterController {
 			shelter.setCareAddr(careAddr);
 			shelter.setCareTel(careTel);
 			shelter.setNumOfRows(numOfRows);
-			shelter.setPageNo(pageNo);
+			shelter.setPageNo("10");
 			shelter.setTotalCount(totalCount);
 			
 			
 			list.add(shelter);
-    			
-    		
-    		
+
     	}
 	    
 	    
 //	    System.out.println(shelter.getNumOfRows());
 //	    System.out.println(list.get(1));
+		System.out.println(pageNo);
 	    
 	    model.addAttribute("list", list);	    
+	    model.addAttribute("pageNo", pageNo);	    
 
 		return "shelter/mainShelter";
 	}
 	
+	// 보호소 상세 조회
 	@GetMapping("shelterDetail/{desertionNo}")
 	public String shelterDetail(@PathVariable("desertionNo") String desertionNo) {
 		
