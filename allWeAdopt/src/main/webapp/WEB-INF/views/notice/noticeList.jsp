@@ -2,6 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 
+<!-- map에 저장된 값을 각각 변수에 저장 -->
+
+<c:set var="pagination" value="${map.pagination}" />
+<c:set var="nList" value="${map.nList}" />
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -55,56 +60,19 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <th scope="row" class="col-sm-1 text-center" >11</th>
-                                <td><a href="${contextPath}/admin/notice/detail">입양관련 문의사항 입니다.</a></td>
-                                <td>yyyy.mm.dd</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="col-sm-1 text-center" >2</th>
-                                <td><a href="${contextPath}/admin/notice/detail">입양관련 문의사항 입니다.</a></td>
-                                <td>yyyy.mm.dd</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="col-sm-1 text-center" >2</th>
-                                <td><a href="${contextPath}/admin/notice/detail">입양관련 문의사항 입니다.</a></td>
-                                <td>yyyy.mm.dd</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="col-sm-1 text-center" >2</th>
-                                <td><a href="${contextPath}/admin/notice/detail">입양관련 문의사항 입니다.</a></td>
-                                <td>yyyy.mm.dd</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="col-sm-1 text-center" >2</th>
-                                <td><a href="${contextPath}/admin/notice/detail">입양관련 문의사항 입니다.</a></td>
-                                <td>yyyy.mm.dd</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="col-sm-1 text-center" >2</th>
-                                <td><a href="${contextPath}/admin/notice/detail">입양관련 문의사항 입니다.</a></td>
-                                <td>yyyy.mm.dd</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="col-sm-1 text-center" >2</th>
-                                <td><a href="${contextPath}/admin/notice/detail">입양관련 문의사항 입니다.</a></td>
-                                <td>yyyy.mm.dd</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="col-sm-1 text-center" >2</th>
-                                <td><a href="${contextPath}/admin/notice/detail">입양관련 문의사항 입니다.</a></td>
-                                <td>yyyy.mm.dd</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="col-sm-1 text-center" >2</th>
-                                <td><a href="${contextPath}/admin/notice/detail">입양관련 문의사항 입니다.</a></td>
-                                <td>yyyy.mm.dd</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="col-sm-1 text-center" >2</th>
-                                <td><a href="${contextPath}/admin/notice/detail">입양관련 문의사항 입니다.</a></td>
-                                <td>yyyy.mm.dd</td>
-                            </tr>
+                                <c:if test="${empty nList}">
+                                
+                                </c:if>
+
+                                <c:if test="${!empty nList}">
+                                    <c:forEach var="n" items="${nList}">
+                                        <tr>
+                                            <th scope="row" class="col-sm-1 text-center" >${n.boardNo}</th>
+                                            <td><a href="${contextPath}/admin/notice/detail">${n.boardTitle}</a></td>
+                                            <td>${n.createDate}</td>
+                                        </tr>
+                                    </c:forEach>
+                                </c:if>
 
                             </tbody>
                         </table>
@@ -120,18 +88,27 @@
 
                         <nav aria-label="Page navigation example">
                             <ul class="pagination">
-                                <li class="page-item"><a class="page-link nav-text-color" href="#">Previous</a></li>
-                                <li class="page-item"><a class="page-link nav-text-color" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link nav-text-color" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link nav-text-color" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link nav-text-color" href="#">4</a></li>
-                                <li class="page-item"><a class="page-link nav-text-color" href="#">5</a></li>
-                                <li class="page-item"><a class="page-link nav-text-color" href="#">6</a></li>
-                                <li class="page-item"><a class="page-link nav-text-color" href="#">7</a></li>
-                                <li class="page-item"><a class="page-link nav-text-color" href="#">8</a></li>
-                                <li class="page-item"><a class="page-link nav-text-color" href="#">9</a></li>
-                                <li class="page-item"><a class="page-link nav-text-color" href="#">10</a></li>
-                                <li class="page-item"><a class="page-link nav-text-color" href="#">Next</a></li>
+
+                                <c:set var="url" value="${contextPath}/admin/notice/list?cp="/>
+
+                                <li class="page-item"><a class="page-link nav-text-color" href="${url}${pagination.prevPage}">Previous</a></li>
+
+                                <!-- 범위가 정해진 일반 for문 사용 -->
+                                <c:forEach var="i" begin="${pagination.startPage}" end="${pagination.endPage}" step="1">
+
+                                    <c:choose>
+                                        <c:when test="${i == pagination.currentPage}">
+                                            <li class="page-item current"><a class="page-link nav-text-color">${i}</a></li>
+                                        </c:when>
+
+                                        <c:otherwise>
+                                            <li class="page-item"><a class="page-link nav-text-color" href="${url}${i}">${i}</a></li>     
+                                        </c:otherwise>
+                                    </c:choose>
+
+                                </c:forEach>
+
+                                <li class="page-item"><a class="page-link nav-text-color" href="${url}${pagination.nextPage}">Next</a></li>
 
                                 <li><a class="btn btn-primary mx-3 button-pink" href="#">글작성</a></li>
 

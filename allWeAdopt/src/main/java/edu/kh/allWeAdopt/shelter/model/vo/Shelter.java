@@ -11,7 +11,7 @@ import lombok.ToString;
 @ToString
 public class Shelter {
 	
-	String reqNo;
+	String desertionNo; // 유기번호
 	String filename; // 썸네일
 	String happenDt; // 접수일
 	String happenPlace; // 발견장소

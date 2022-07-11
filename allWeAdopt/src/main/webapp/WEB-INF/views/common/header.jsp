@@ -34,28 +34,32 @@
                     <li class="nav-item"><a class="nav-link" href="${contextPath}/findHospital">병원찾기</a></li>
 
                     <c:choose>
-                        <c:when test="${ empty sessionScope.loginMember }"> 
+                        <c:when test="${ empty sessionScope.loginMember && empty kakaoInfo}"> 
                             <%-- 로그인 X --%>
                             <li class="nav-item"><a class="nav-link" href="${contextPath}/member/login">로그인</a></li>
                         </c:when>
 
                         <c:otherwise>
-
-                                   
-                                <!-- 로그인 했을 때 -->
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle py-1" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <!-- 사이트로 로그인 했을 때 -->
+                                <li class="nav-item dropdown" >
+                                    <a class="nav-link dropdown-toggle py-1" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="border-radius: 50%;">
                                         <%-- 기본 프로필이미지(= 프로필이미지 설정 안했을때) --%>
-                                        <c:if test="${empty loginMember.profileImage}">
+                                        <c:if test="${empty loginMember.profileImage && empty kakaoInfo.email}">
                                              <img src="${contextPath}/resources/images/user.png" id="member-profile" style="width : 35px; height : 35px;">	
                                         </c:if>     
 
                                         <%-- 사용자 설정 프로필이미지 --%>
-                                        <c:if test="${!empty loginMember.profileImage}">
+                                        <c:if test="${!empty loginMember.profileImage && empty kakaoInfo.email}">
                                              <img src="${contextPath}/${loginMember.profileImage}" id="member-profile" style="width : 35px; height : 35px;">
                                         </c:if>
+
+                                        <%-- 카카오 로그인 시 프로필이미지 --%>
+                                        <c:if test="${ !empty kakaoInfo.email}">
+                                                 <img src="${kakaoInfo.profileImage}" id="member-profile" style="width : 35px; height: 35px ; border-radius: 50%; border: solid 0.2px #ccc; ">
+                                        </c:if>
+
                                     </a>
-                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
+                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio"  >
                                         <li><a class="dropdown-item" href="${contextPath}/member/myPage/pwConfirm">회원 정보 수정</a></li>
                                         <li><a class="dropdown-item" href="portfolio-item.html">관심 목록</a></li>
                                         <li><a class="dropdown-item" href="portfolio-item.html">작성글 목록</a></li>
@@ -63,12 +67,18 @@
                                         <li><a class="dropdown-item" href="portfolio-item.html">채팅 목록</a></li>
                                         <li><a class="dropdown-item" href="portfolio-item.html">문의하기</a></li>
                                         <li><a class="dropdown-item" href="${contextPath}/member/myPage/notice">공지사항</a></li>
-                                        <li><a class="dropdown-item" href="${contextPath}/member/logout">로그아웃</a></li>
+                                        <c:if test="${ empty kakaoInfo.email }">
+                                            <li><a class="dropdown-item" href="${contextPath}/member/logout">로그아웃1</a></li>
+                                        </c:if>
+
+                                        <c:if test="${ !empty kakaoInfo.email }">
+                                            <li><a class="dropdown-item" href="${contextPath}/logout">로그아웃2</a></li>
+                                        </c:if>
+
                                     </ul>
                                 </li>
-
-
                          </c:otherwise>
+                         
                      </c:choose>
                 </ul>
             </div>

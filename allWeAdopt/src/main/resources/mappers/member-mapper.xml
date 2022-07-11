@@ -39,9 +39,26 @@
 	<!-- 회원가입 -->
 	<insert id="signUp">
 	INSERT INTO MEMBER 
-	VALUES(SEQ_MEMBER_NO.NEXTVAL,#{memberEmail},#{memberPw},#{memberName},#{memberTel},
+	VALUES(SEQ_MEMBER_NO.NEXTVAL,#{memberEmail},#{member.memberPw},#{memberName},#{memberTel},
 		  #{member.memberAddress},#{profileImage},DEFAULT,DEFAULT,DEFAULT)
 	</insert>
 
+
+
+	<!-- 카카오 아이디(이메일) 일치하는 회원 정보를 조회하는 Service 호출 후 결과 반환 받기  -->
+	<select id="kakaoEmailCheck"  parameterType="member"  resultMap="member_rm"  >
+ 		SELECT * FROM MEMBER
+		WHERE MEMBER_EMAIL = #{kakaoEmail}
+  	</select>
+
+	
+ 	<!-- 회원가입 -->
+	<insert id="insertNo"  parameterType="member">
+	INSERT INTO MEMBER 
+	VALUES(SEQ_MEMBER_NO.NEXTVAL, #{memberEmail}, NULL, #{memberName}, NULL,
+			DEFAULT,DEFAULT,DEFAULT,'K',DEFAULT)
+	</insert>
+ 	
+ 
  
 </mapper>
