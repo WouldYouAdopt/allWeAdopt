@@ -22,6 +22,7 @@
 	
 		<typeAlias type="edu.kh.allWeAdopt.member.model.vo.Member" alias="member"/> 
 		<typeAlias type="edu.kh.allWeAdopt.shelter.model.vo.Shelter" alias="shelter"/> 
+		<typeAlias type="edu.kh.allWeAdopt.board.model.vo.Board" alias="board"/> 
 		<!-- <typeAlias type="edu.kh.allWeAdopt.shelter.model.vo.ShelterReply" alias="shelterReply"/> --> 
 		
 
@@ -36,6 +37,7 @@
 			
 		 <mapper resource="/mappers/member-mapper.xml"/>
 		 <mapper resource="/mappers/myPage-mapper.xml"/>
+		 <mapper resource="/mappers/notice-mapper.xml"/>
 
 	</mappers>
 
