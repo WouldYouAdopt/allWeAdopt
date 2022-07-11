@@ -65,12 +65,16 @@ if(inputImage != null){
             reader.readAsDataURL(this.files[0]);
             reader.onload = function(e){ 
                 const image = document.createElement('img');
+                const deleteBtn = document.createElement('button');
                 image.setAttribute("src", e.target.result);
-                image.classList.add('thumbnailArea')
+                image.classList.add('thumbnailArea');
+                deleteBtn.classList.add('deleteBtn');
+                deleteBtn.classList.add('fa-circle-minus');
                 document.getElementsByClassName('thumbnailArea')[0].innerHTML='';
+                document.getElementsByClassName('thumbnailArea')[0].append(deleteBtn);
                 document.getElementsByClassName('thumbnailArea')[0].append(image);
-             }
 
+             }
         }
     });
 }
