@@ -34,7 +34,7 @@ public class NoticeDAO {
 		
 		RowBounds rowBounds = new RowBounds(offset, pagination.getLimit());
 		
-		return sqlSession.selectList("boardMapper.selectBoardList", rowBounds);
+		return sqlSession.selectList("noticeMapper.selectNoticeList", null, rowBounds);
 		
 	}
 

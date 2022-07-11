@@ -35,6 +35,12 @@ public class NoticeServiceImpl implements NoticeService{
 		List<Board> nList = dao.selectNoticeList(pagination);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
+		
+		for(Board n : nList) {
+			System.out.println(n.getBoardNo());
+			System.out.println(n.getBoardTitle());
+		}
+		
 		map.put("nList", nList);
 		map.put("pagination", pagination);
 		
