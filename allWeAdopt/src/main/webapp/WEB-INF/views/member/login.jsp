@@ -65,8 +65,8 @@
                                         <label for="floatingInputValue">이메일 입력</label>
                                     </div>
                                     <div class=" form-floating mb-3">
-                                        <input name="memberPw" type="password" class="form-control" id="floatingInputValue" placeholder="비밀번호를 입력하세요." >
-                                        <label for="floatingInputValue">비밀번호 입력</label>
+                                        <input name="memberPw" type="password" class="form-control" id="floatingInputValue2" placeholder="비밀번호를 입력하세요." >
+                                        <label for="floatingInputValue2">비밀번호 입력</label>
                                     </div>
                                     <button class="btn button-pink col-xl-12" style="height: 50px; color: white;"> 로그인 </button>
 
