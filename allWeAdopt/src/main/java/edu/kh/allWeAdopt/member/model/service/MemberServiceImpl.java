@@ -92,6 +92,8 @@ public class MemberServiceImpl implements MemberService{
 		
 		map.put("member", member);
 		
+		System.out.println((Member)map.get("member"));
+		
 			
 		String rename = null;
 		// 이미지가 업로드 된 경우 Util클래스를 이용해 파일명 rename하기

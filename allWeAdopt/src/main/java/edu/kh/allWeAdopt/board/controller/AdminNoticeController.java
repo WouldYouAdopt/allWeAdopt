@@ -35,7 +35,7 @@ public class AdminNoticeController {
 		Map<String, Object> map = service.selectNoticeList(cp);
 		
 		// request범위에 nList 세팅
-		model.addAttribute(map);
+		model.addAttribute("map", map);
 		
 		return "notice/noticeList";
 	}
