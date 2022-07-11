@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -45,7 +46,7 @@ public class ShelterController {
 		
 	    StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1543061/abandonmentPublicSrvc/abandonmentPublic"); /*URL*/
 	    urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=ORROf4zK3CwwkwCJ%2Fdt4FRDISXLZQ5w7%2B13CMxRIzMqZz504Vtr86DcBmJqTMgWJgCVfGnafTLBY6kHXgi9CIw%3D%3D"); /*Service Key*/
-	    urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("5", "UTF-8")); /*페이지 번호*/
+	    urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지 번호*/
 	    urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("9", "UTF-8")); /*한 페이지 결과 수(1,000 이하)*/
 //	    urlBuilder.append("&" + URLEncoder.encode("_type","UTF-8") + "=" + URLEncoder.encode(" ", "UTF-8")); /*xml(기본값) 또는 json*/
 	       
@@ -76,7 +77,7 @@ public class ShelterController {
     		
 		for(Element item : itemList) {
 			
-			String reqNo = item.getChildText("reqNo");
+			String desertionNo = item.getChildText("desertionNo");
 			String filename = item.getChildText("filename");
 			String happenDt = item.getChildText("happenDt");
 			String happenPlace = item.getChildText("happenPlace");
@@ -100,7 +101,7 @@ public class ShelterController {
 			
 			Shelter shelter = new Shelter();
 			
-			shelter.setReqNo(reqNo);
+			shelter.setDesertionNo(desertionNo);
 			shelter.setFilename(filename);
 			shelter.setHappenDt(happenDt);
 			shelter.setHappenPlace(happenPlace);
@@ -130,11 +131,18 @@ public class ShelterController {
 	    
 	    
 //	    System.out.println(shelter.getNumOfRows());
-//	    System.out.println(shelter.getPageNo());
+	    System.out.println(list.get(1));
 	    
 	    model.addAttribute("list", list);	    
 
 		return "shelter/mainShelter";
+	}
+	
+	@GetMapping("shelterDetail")
+	public String shelterDetail(@PathVariable("desertionNo") int desertionNo) {
+		
+		System.out.println(desertionNo);
+		return "shelter/shelterDetail";
 	}
 	
 	
