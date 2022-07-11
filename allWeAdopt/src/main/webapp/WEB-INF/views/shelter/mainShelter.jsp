@@ -85,16 +85,16 @@
                     <h2 class="fw-bolder fs-5 mb-4">보호소</h2>
                     <div class="row gx-5">
 
-                    
+                    <c:set var="upkind" value="?upkind="/>
 
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                             <strong>품종</strong>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="#" role="option" aria-selected="true" data-value="전체">전체</a></li>
-                            <li><a class="dropdown-item" href="#" role="option" aria-selected="true" data-value="전체">개</a></li>
-                            <li><a class="dropdown-item" href="#" role="option" aria-selected="true" data-value="전체">고양이</a></li>
+                            <li><a class="dropdown-item" href="${upkind}" role="option" aria-selected="true">전체</a></li>
+                            <li><a class="dropdown-item" href="${upkind}417000" role="option" aria-selected="true">개</a></li>
+                            <li><a class="dropdown-item" href="${upkind}422400" role="option" aria-selected="true">고양이</a></li>
                         </ul>
                     </div>
 
@@ -103,7 +103,7 @@
                             <div class="card h-100 shadow border-0">
                                 <img class="card-img-top" src="${shelter.popfile}" alt="썸네일" />
                                 <div class="card-body p-4">
-                                    <div class="badge bg-primary bg-gradient rounded-pill mb-2">New</div>
+                                    <h3><div class="badge bg-primary bg-gradient rounded-pill mb-2">New</div></h3>
                                         <a class="text-decoration-none link-dark stretched-link" href="../shelter/shelterDetail/${shelter.desertionNo}" >
                                             <li class="h5 card-title mb-3">종류 : ${shelter.kindCd}</li>
                                             <%-- <li class="h5 card-title mb-3">색깔 : ${shelter.colorCd}</li>
@@ -140,7 +140,7 @@
 
                     <%-- 페이지네이션 --%>
 
-                    <c:set var="url" value="?pageNo="/>
+                    <c:set var="url" value="${upkind}&pageNo="/>
 
                     <nav aria-label="Page navigation example">
                         <ul class="pagination pagination-lg justify-content-center">
