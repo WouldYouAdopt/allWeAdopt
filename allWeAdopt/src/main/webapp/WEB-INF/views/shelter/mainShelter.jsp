@@ -90,14 +90,14 @@
                                 <img class="card-img-top" src="${shelter.popfile}" alt="썸네일" />
                                 <div class="card-body p-4">
                                     <div class="badge bg-primary bg-gradient rounded-pill mb-2">New</div>
-                                        <a class="text-decoration-none link-dark stretched-link" href="../shelter/shelterDetail?detailNo=${shelter.desertionNo}" >
-                                        <li class="h5 card-title mb-3">종류 : ${shelter.kindCd}</li>
-                                        <li class="h5 card-title mb-3">색깔 : ${shelter.colorCd}</li>
-                                        <li class="h5 card-title mb-3">나이 : ${shelter.age}</li>
-                                        <li class="h5 card-title mb-3">무게 : ${shelter.weight}</li>
-                                        <li class="h5 card-title mb-3">발견 날짜 : ${shelter.happenDt}</li>
-                                        <li class="h5 card-title mb-3">발견 장소 : ${shelter.happenPlace}</li>
-                                        <li class="h5 card-title mb-3">특징 : ${shelter.specialMark}</li>
+                                        <a class="text-decoration-none link-dark stretched-link" href="../shelter/shelterDetail/${shelter.desertionNo}" >
+                                            <li class="h5 card-title mb-3">종류 : ${shelter.kindCd}</li>
+                                            <li class="h5 card-title mb-3">색깔 : ${shelter.colorCd}</li>
+                                            <li class="h5 card-title mb-3">나이 : ${shelter.age}</li>
+                                            <li class="h5 card-title mb-3">무게 : ${shelter.weight}</li>
+                                            <li class="h5 card-title mb-3">발견 날짜 : ${shelter.happenDt}</li>
+                                            <li class="h5 card-title mb-3">발견 장소 : ${shelter.happenPlace}</li>
+                                            <li class="h5 card-title mb-3">특징 : ${shelter.specialMark}</li>
                                         </a>
                                     </div>
                                 <div class="card-footer p-4 pt-0 bg-transparent border-top-0">

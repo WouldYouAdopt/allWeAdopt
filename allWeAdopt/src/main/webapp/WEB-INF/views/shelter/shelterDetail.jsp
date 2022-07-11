@@ -1,6 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<c:forEach var="shelter" items="${list}">
+    <c:if test="${desertionNo == shelter.desertionNo}">
+        <c:set var="careNm" value="${shelter.careNm}"/>
+        <c:set var="careTel" value="${shelter.careTel}"/>
+        <c:set var="noticeSdt" value="${shelter.noticeSdt}"/>
+        <c:set var="noticeEdt" value="${shelter.noticeEdt}"/>
+        <c:set var="popfile" value="${shelter.popfile}"/>
+        <c:set var="happenDt" value="${shelter.happenDt}"/>
+        <c:set var="happenPlace" value="${shelter.happenPlace}"/>
+        <c:set var="colorCd" value="${shelter.colorCd}"/>
+        <c:set var="age" value="${shelter.age}"/>
+        <c:set var="weight" value="${shelter.weight}"/>
+        <c:set var="processState" value="${shelter.processState}"/>
+        <c:set var="specialMark" value="${shelter.specialMark}"/>
+        <c:set var="careAddr" value="${shelter.careAddr}"/>
+    </c:if>    
+</c:forEach>
+
 <!DOCTYPE html>
 <html>
 
@@ -82,8 +100,8 @@
                             <div class="d-flex align-items-center mt-lg-5 mb-4">
                                 <img class="img-fluid rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." />
                                 <div class="ms-3">
-                                    <div class="fw-bold">${list.get(1).careNm}</div>
-                                    <div class="text-muted">${list.get(1).careTel}</div>
+                                    <div class="fw-bold">${careNm}</div>
+                                    <div class="text-muted">${careTel}</div>
                                 </div>
                             </div>
                         </div>
@@ -93,28 +111,28 @@
                                 <!-- Post header-->
                                 <header class="mb-4">
                                     <!-- Post title-->
-                                    <h1 class="fw-bolder mb-1">${list.get(1).careNm}</h1>
+                                    <h1 class="fw-bolder mb-1">${careNm}</h1>
                                     <!-- Post meta content-->
-                                    <div class="text-muted fst-italic mb-2">공고 시작일: ${list.get(1).noticeSdt}</div>
-                                    <div class="text-muted fst-italic mb-2">공고 종료일: ${list.get(1).noticeEdt}</div>
+                                    <div class="text-muted fst-italic mb-2">공고 시작일: ${noticeSdt}</div>
+                                    <div class="text-muted fst-italic mb-2">공고 종료일: ${noticeEdt}</div>
                                     <!-- Post categories-->
                                     <a class="badge bg-secondary text-decoration-none link-light" href="#!">관심동물</a>
                                 </header>
                                 <!-- 유기동물 사진 -->
-                                <figure class="mb-4"><img class="img-fluid rounded" src="${list.get(1).popfile}" alt="..." /></figure>
+                                <figure class="mb-4"><img class="img-fluid rounded" src="${popfile}" alt="..." /></figure>
                                 <!-- Post content-->
                                 <!-- 나중에 폰트 적용 해보기! -->
                                 <section class="mb-5">
-                                    <li class="fs-5 mb-4" style="list-style-type:none">접수일 : ${list.get(1).happenDt}</li>
-                                    <li class="fs-5 mb-4" style="list-style-type:none">발견 장소 : ${list.get(1).happenPlace}</li>
-                                    <li class="fs-5 mb-4" style="list-style-type:none">종류 : ${list.get(1).kindCd}</li>
-                                    <li class="fs-5 mb-4" style="list-style-type:none">성별 : ${list.get(1).sexCd}</li>
-                                    <li class="fs-5 mb-4" style="list-style-type:none">색깔 : ${list.get(1).colorCd}</li>
-                                    <li class="fs-5 mb-4" style="list-style-type:none">나이 : ${list.get(1).age}</li>
-                                    <li class="fs-5 mb-4" style="list-style-type:none">무게 : ${list.get(1).weight}</li>
-                                    <li class="fs-5 mb-4" style="list-style-type:none">상태 : ${list.get(1).processState}</li>
-                                    <li class="fs-5 mb-4" style="list-style-type:none">특징 : ${list.get(1).specialMark}</li>
-                                    <li class="fs-5 mb-4" style="list-style-type:none">보호소 주소 : ${list.get(1).careAddr}</li>
+                                    <li class="fs-5 mb-4" style="list-style-type:none">접수일 : ${happenDt}</li>
+                                    <li class="fs-5 mb-4" style="list-style-type:none">발견 장소 : ${happenPlace}</li>
+                                    <li class="fs-5 mb-4" style="list-style-type:none">종류 : ${kindCd}</li>
+                                    <li class="fs-5 mb-4" style="list-style-type:none">성별 : ${sexCd}</li>
+                                    <li class="fs-5 mb-4" style="list-style-type:none">색깔 : ${colorCd}</li>
+                                    <li class="fs-5 mb-4" style="list-style-type:none">나이 : ${age}</li>
+                                    <li class="fs-5 mb-4" style="list-style-type:none">무게 : ${weight}</li>
+                                    <li class="fs-5 mb-4" style="list-style-type:none">상태 : ${processState}</li>
+                                    <li class="fs-5 mb-4" style="list-style-type:none">특징 : ${specialMark}</li>
+                                    <li class="fs-5 mb-4" style="list-style-type:none">보호소 주소 : ${careAddr}</li>
 
                                     <%-- 보호소 지도 첨부 --%>
                                     
