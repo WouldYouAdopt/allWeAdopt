@@ -44,14 +44,38 @@ function addReward(){
     td1.innerText= document.querySelectorAll('.rewardsRows>tr>td:nth-child(1)').length+1;
     tr.append(td1);
     
-    for(let i=0; i<5; i++){
+    for(let i=0; i<4; i++){
         const td = document.createElement('td');
         const input = document.createElement('input');
         td.append(input);
         tr.append(td);
     }
     rewardsRows.append(tr);
-
 }
+
+
+/* 썸네일 이미지 미리보기 */
+// 회원 프로필 이미지 변경(미리보기)
+const inputImage = document.getElementById("input-image");
+const previewImage = document.getElementById('previewImage')
+
+if(inputImage != null){ 
+    inputImage.addEventListener("change", function(){
+        if(this.files[0] != undefined){
+            const reader = new FileReader();
+            reader.readAsDataURL(this.files[0]);
+            reader.onload = function(e){ 
+                previewImage.setAttribute("src", e.target.result);
+             }
+        }
+    });
+}
+
+const deleteBtn = document.getElementById('deleteBtn');
+deleteBtn.addEventListener('click',function(){
+    previewImage.setAttribute('src','');
+    inputImage.value='';
+})
+
 
 

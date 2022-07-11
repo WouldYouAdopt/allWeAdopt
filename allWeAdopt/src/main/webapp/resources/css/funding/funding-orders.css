@@ -1,0 +1,110 @@
+#TOT{
+    margin-top: 30px;
+}
+
+.detail-info{
+    margin-top: 25px;
+}
+
+#btn-area{
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 5px;
+    margin: 2px;
+}    
+
+/* 펀딩 상단 이미지. */
+.fundingTitleBox{
+    width: 100%;
+    height: 150px;
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+}
+.fundingTitleImage{
+    background: url(/allWeAdopt/src/main/webapp/resources/images/funding_sample/funding_title_img.png) 20% 10% ;
+    height: 200px;
+    filter: blur(2px);
+    transform: scale(1.8);
+}
+.fundingTitleText{
+    font-size: 40px;
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: -2px;
+    font-weight: 600;
+    text-align: center;
+    text-shadow: 2px 2px 8px rgb(55, 55, 55, 0.7);
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    top: 40px;
+}
+.fundingTitleText p{
+    margin-top: 30px;
+    font-size: 16px;
+    color: #fff;
+}
+
+/* -------------------------------------------------------------------------------------------------------- */
+.fundingList th,td{
+    text-align: center;
+    /* border: 1px solid #ddd; */
+}
+.fundingList .fundingTitle{
+    text-align: left;
+}
+
+.dt1{
+    width: 7%;
+}
+.dt2{
+    width: 10%;
+}
+.dt3{
+    width: 10%;
+}
+
+.pagination-area{
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.fundingList a{
+    text-decoration: none;
+    color: rgb(37, 37, 37);
+}
+
+/* ----------------------------------------------- */
+#controllerArea{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 3px solid #ddd;
+    padding: 5px;
+    flex-wrap: nowrap;
+}
+
+.navController{
+    margin: 5px;
+    color:#FB836b;
+    text-decoration: none;
+    font-size: 1.1em;
+}
+.navController:hover{
+    border-bottom: 3px solid #FB836b;
+    color:#FB836b;
+    font-weight: bold;
+    padding: 5px;
+}
+.controllerBtnArea{
+    margin-left: 60px;
+}
+.controllerBtnArea>button{
+    background-color: #FB836b;
+}
+.controllerBtnArea>button:hover{
+    border: 1px solid #FB836b;
+    background-color: white;
+    color: #FB836b;
+}

@@ -1,6 +1,6 @@
 .justify-content-center>div{
-    margin: 10px 0;
-    border: 2px solid #f1bbb0;
+    margin: 20px 0;
+    border-top: 3px solid #f1bbb0;
 }
 
 /* 버튼영역 색 지정  */
@@ -74,9 +74,24 @@
     border: 1px solid #ddd;
     resize: none;
     outline-color: #FB836b;
-
 }
 
+#deliveryFee{
+    height: 80px;
+    display: flex;
+    align-items: center;
+}
+#deliveryFee>span{
+    margin-right: 4px;
+    font-size: 20px;
+    font-weight: bold;
+}
+#deliveryFee>input{
+     border: 1px solid #FB836b;
+     outline: none;   
+     height: 30px;
+     width: 220px;
+}
 /* 리워드 영역 */
 #rewardsArea>div:nth-child(2){
     display: flex;
@@ -137,4 +152,55 @@
     background-color: white;
     color: #FB836b;
     border: 1px solid #FB836b;
+}
+
+
+
+/* ------------------------------------썸네일 이미지 추가 _-------------------- */
+
+.thumbnailArea{
+    width: 100%;
+    height: 225px;
+}
+.thumbnailArea>div:nth-child(1){
+    height: 25px;
+}
+.previewArea{
+    width: 100%;
+    height: 150px;
+    background-color: #ddd;
+}
+/* 프리뷰 이미지 지정 영역 */
+#previewImage{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+
+.profile-area{
+    height: 40px;
+    float: left;
+    display: flex;
+}
+
+.profile-area label{
+    height: 100%;
+    width: 110px;
+    background-color: #FB836b;
+    color: white;
+    padding: 5px;
+    border: 1px solid white;
+    text-align: center;
+    cursor: pointer;
+}
+#deleteBtn{ 
+    height: 100%;
+    width: 110px;
+    background-color: #FB836b;
+    color: white;
+    border: 1px solid white;
+
+}
+#input-image{
+    display: none;
 }
