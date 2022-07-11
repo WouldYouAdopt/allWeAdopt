@@ -23,9 +23,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Dongle&family=Gowun+Batang&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
 
     <!-- 썸머노트 -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 
     <!-- main css -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -45,10 +50,10 @@
                   카테고리를 선택해주세요
                 </button>
                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-                  <li class="dropdown-item">실종</li>
-                  <li class="dropdown-item">보호</li>
-                  <li class="dropdown-item">목격</li>
-                  <li class="dropdown-item">완료</li>
+                  <li class="dropdown-item selectMenu">실종</li>
+                  <li class="dropdown-item selectMenu">보호</li>
+                  <li class="dropdown-item selectMenu">목격</li>
+                  <li class="dropdown-item selectMenu">완료</li>
                 </ul>
             </div>
             
@@ -63,7 +68,7 @@
             <div class="contentArea">
                 <p class="menu">내용</p>
                 <hr>
-                <div id="summernote"></div>
+                <div id="summernote" name="boardContent"></div>
             </div>
 
             <!-- 추가선택 사항 -->
@@ -88,9 +93,9 @@
                           지역 선택
                         </button>
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-                          <li class="dropdown-item">서울</li>
-                          <li class="dropdown-item">부산</li>
-                          <li class="dropdown-item">제주도</li>
+                          <li class="dropdown-item selectMenu">서울</li>
+                          <li class="dropdown-item selectMenu">부산</li>
+                          <li class="dropdown-item selectMenu">제주도</li>
                         </ul>
                     </div>
                     <div class="dropdown">
@@ -98,9 +103,9 @@
                           상세 지역 선택
                         </button>
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-                          <li class="dropdown-item">은평구</li>
-                          <li class="dropdown-item">동대문구</li>
-                          <li class="dropdown-item">종로구</li>
+                          <li class="dropdown-item selectMenu">은평구</li>
+                          <li class="dropdown-item selectMenu">동대문구</li>
+                          <li class="dropdown-item selectMenu">종로구</li>
                         </ul>
                     </div>
                 </div>
@@ -120,9 +125,9 @@
                           축종
                         </button>
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-                          <li class="dropdown-item">개</li>
-                          <li class="dropdown-item">고양이</li>
-                          <li class="dropdown-item">기타</li>
+                          <li class="dropdown-item selectMenu">개</li>
+                          <li class="dropdown-item selectMenu">고양이</li>
+                          <li class="dropdown-item selectMenu">기타</li>
                         </ul>
                     </div>
                     <div class="dropdown">
@@ -130,9 +135,9 @@
                           품종
                         </button>
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-                          <li class="dropdown-item">요크셔테리어</li>
-                          <li class="dropdown-item">러시안블루</li>
-                          <li class="dropdown-item">기타</li>
+                          <li class="dropdown-item selectMenu">요크셔테리어</li>
+                          <li class="dropdown-item selectMenu">러시안블루</li>
+                          <li class="dropdown-item selectMenu">기타</li>
                         </ul>
                     </div>
                 </div>
@@ -142,11 +147,11 @@
                     <span class="select">성별</span>
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
-                          남 / 여
+                          수컷 / 암컷
                         </button>
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-                          <li class="dropdown-item">남</li>
-                          <li class="dropdown-item">여</li>
+                          <li class="dropdown-item selectMenu">수컷</li>
+                          <li class="dropdown-item selectMenu">암컷</li>
                         </ul>
                     </div>
                 </div>
@@ -158,8 +163,8 @@
                           완료 / 미완료
                         </button>
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-                          <li class="dropdown-item">완료</li>
-                          <li class="dropdown-item">미완료</li>
+                          <li class="dropdown-item selectMenu">완료</li>
+                          <li class="dropdown-item selectMenu">미완료</li>
                         </ul>
                     </div>
                 </div>
@@ -174,19 +179,75 @@
       <!-- 푸터 -->
       <jsp:include page="/WEB-INF/views/common/footer.jsp" />
     </main>
-    
-    <script>
-      $('#summernote').summernote({
-        placeholder: '내용을 입력해주세요',
-        tabsize: 2,
-        height: 500,
-        lang : 'ko-KR'
-      });
-    </script>
-
      <!-- Core theme JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="${contextPath}/resources/js/scripts.js"></script>
+    <script src="${contextPath}/resources/js/board/userBoardRegist.js"></script>
+    <script>
+  //    $(document).ready(function() {
+
+	// var toolbar = [
+	// 	    // 글꼴 설정
+	// 	    ['fontname', ['fontname']],
+	// 	    // 글자 크기 설정
+	// 	    ['fontsize', ['fontsize']],
+	// 	    // 굵기, 기울임꼴, 밑줄,취소 선, 서식지우기
+	// 	    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+	// 	    // 글자색
+	// 	    ['color', ['forecolor','color']],
+	// 	    // 표만들기
+	// 	    ['table', ['table']],
+	// 	    // 글머리 기호, 번호매기기, 문단정렬
+	// 	    ['para', ['ul', 'ol', 'paragraph']],
+	// 	    // 줄간격
+	// 	    ['height', ['height']],
+	// 	    // 그림첨부, 링크만들기, 동영상첨부
+	// 	    ['insert',['picture','link','video']],
+	// 	    // 코드보기, 확대해서보기, 도움말
+	// 	    ['view', ['codeview','fullscreen', 'help']]
+	// 	  ];
+
+	// var setting = {
+  //           height : 300,
+  //           minHeight : null,
+  //           maxHeight : null,
+  //           focus : true,
+  //           lang : 'ko-KR',
+  //           toolbar : toolbar,
+  //           //콜백 함수
+  //           callbacks : { 
+  //           	onImageUpload : function(files, editor, welEditable) {
+  //           // 파일 업로드(다중업로드를 위해 반복문 사용)
+  //           for (var i = files.length - 1; i >= 0; i--) {
+  //           uploadSummernoteImageFile(files[i],
+  //           this);
+  //           		}
+  //           	}
+  //           }
+  //        };
+  //       $('#summernote').summernote(setting);
+  //       });
+        
+  //       function uploadSummernoteImageFile(file, el) {
+	// 		data = new FormData();
+	// 		data.append("file", file);
+	// 		$.ajax({
+	// 			data : data,
+	// 			type : "POST",
+	// 			url : "uploadSummernoteImageFile",
+	// 			contentType : false,
+	// 			enctype : 'multipart/form-data',
+	// 			processData : false,
+	// 			success : function(data) {
+  //          var contextPath = location.pathname.substring(0, window.location.pathname.indexOf("/",2));
+	// 				$(el).summernote("editor.insertImage", contextPath + data.url);
+	// 			},
+  //       error:function(request,status,error){
+  //         alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+  //         }
+	// 		});
+	// 	}
+    </script>
 
 </body>
 
