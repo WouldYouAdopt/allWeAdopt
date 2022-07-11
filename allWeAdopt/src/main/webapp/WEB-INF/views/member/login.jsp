@@ -8,8 +8,8 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
+        <meta name="description" content />
+        <meta name="author" content />
         <title>로그인</title>
 
         <!-- Favicon-->
@@ -61,7 +61,7 @@
                                 <form class="form-floating" action="login" method="post" name="login-form" onsubmit="return loginValidate()">
 
                                     <div class=" form-floating mb-3">
-                                        <input name="memberEmail" type="email" class="form-control" id="floatingInputValue" placeholder="name@example.com" >
+                                         <input name="memberEmail" type="email" class="form-control" id="floatingInputValue" placeholder="name@example.com" >
                                         <label for="floatingInputValue">이메일 입력</label>
                                     </div>
                                     <div class=" form-floating mb-3">
@@ -70,18 +70,15 @@
                                     </div>
                                     <button class="btn button-pink col-xl-12" style="height: 50px; color: white;"> 로그인 </button>
 
-                                     <!-- <li onclick="kakaoLogin();">  -->
-                                    <!-- 카카오 로그인 버튼 -->
-                                    <a id="custom-login-btn" href="javascript:loginWithKakao()">
-                                        <img
-                                        src="//k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg"
-                                        width="200"
-                                        alt="카카오 로그인 버튼"
-                                        />
-                                    </a>
-                                            <a id="kakao-login-btn" href="javascript:void(0)" onclick="kakaoLogin();">
-                                                <span>카카오 로그인</span>
-                                            </a>
+                            
+                                    <div class="mt-3"></div>
+
+                                    <div class=" btn col-xl-12" style="height: 50px; background-color: #fae100; "  onclick="kakaoLogin();">
+                                        <a id="kakao-login-btn " href="javascript:void(0)" style=" color:black; line-height: 2; text-decoration: none;" >
+                                            카카오 로그인
+                                        </a>
+                                    </div>
+                            
 
 
                                     
@@ -110,34 +107,14 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
-
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 
 
-          <%-- <!-- 카카오 로그인 -->
-        <script type="text/javascript">
-
-            // 웹어플리케이션 연동 키
-            // 514d8253e4697e0a7cbd52c2de06d230
-            window.Kakao.init('514d8253e4697e0a7cbd52c2de06d230');
-
-            function loginWithKakao() {
-                Kakao.Auth.login({
-                success: function(authObj) {
-                    alert(JSON.stringify(authObj))
-
-                    var email = res.kakao_account.account_email;
-                    var profile = res.kakao_account.profile_image;
-                    var nickname = res.kakao_account.profile_nickname;
-
-                    console.log(email, profile, nickname);
-                },
-                fail: function(err) {
-                    alert('카카오 로그인에 실패하였습니다.'+ JSON.stringify(err))
-                },
-                })
-            }
-        </script> --%>
+        
 
         <%-- 카카오 로그인2 --%>
         <script>
@@ -155,25 +132,22 @@
                         console.log(res);
                     }
                 });
-
             }
-
-       
         </script>
 
 
          <!-- 카카오 로그아웃 : 로그아웃 기능은 실제 로그아웃을 하는 기능이 아닌, 토큰을 만료시켜서, 카카오의 다른 기능을 사용하지 못하도록 하는 것. -->
-        <script type="text/javascript">
+        <%-- <script type="text/javascript">
             function kakaoLogout() {
               if (!Kakao.Auth.getAccessToken()) {
                 alert('Not logged in.')
-                return
+                return;
               }
               Kakao.Auth.logout(function() {
                 alert('logout ok\naccess token -> ' + Kakao.Auth.getAccessToken())
               })
             }
-          </script>
+          </script> --%>
           <!-- 로그아웃 버튼 누르면 : (웹페이지 자체의 서버세션 종료 : 기존로그아웃처럼 그게 피요할거다!) -->
 
     </body>

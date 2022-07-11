@@ -69,14 +69,22 @@
             <section class="py-0">
                 <div class="container px-5">
                     <h1 style> ALL WE ADOPT 메인입니당.</h1>
-                    <p>${nickname} 1</p>
+                    <%-- <p>${nickname} 1</p>
                     <p>${sessionScope.nickname} 1</p>
                     <p>${userInfo.nickname} 1</p>
                     <p>${userInfo} 1</p>
                     <p>${userInfo1} 1</p>
                     <p>${nickname} 1</p>
+
                     <p>${kakaoInfo.nickname} 1</p>
-                    
+                    <p>${kakaoInfo.email} 1</p>
+                    <p>${kakaoInfo.profileImage} </p>
+                    <img src="${kakaoInfo.profileImage}">
+
+                    <p>${loginMember.nickname} 2</p>
+                    <p>${loginMember.email} 2</p>
+                    <p>${loginMember.profileImage} "2"</p>
+                    <img src="${loginMember.profileImage}"> --%>
                 </div>
             </section>
 

@@ -39,14 +39,28 @@ public interface MemberService {
 
 
 
-
-	/** 카카오 로그인 시 회원정보 조회 서비스
-	 * @param userInfo
+	/** 카카오 아이디(이메일) 일치하는 회원 정보를 조회하는 Service 호출 후 결과 반환 받기 
+	 * @param kakaoEmail
 	 * @return
 	 */
-//	public int kakaoLogin(HashMap<String, Object> userInfo);
-	
-	
+	public abstract Member kakaoEmailCheck(String kakaoEmail);
+
+
+
+
+	/** 카카오 회원 넘버 '삽입' 
+	 * @param kakaoEmail
+	 * @param nickname
+	 * @return result
+	 */
+	public abstract int insertNo(Member mem);
+
+
+
+
+
+
+
 	
 	
 	

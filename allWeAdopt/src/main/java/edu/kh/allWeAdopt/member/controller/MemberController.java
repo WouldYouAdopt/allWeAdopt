@@ -1,6 +1,6 @@
 package edu.kh.allWeAdopt.member.controller;
 
-import java.io.IOException;
+import java.io.IOException; 
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -89,9 +89,10 @@ public class MemberController {
 	
 	// 로그아웃
 	@GetMapping("/logout")
-	public String logout(SessionStatus status) {
+	public String logout(SessionStatus status, HttpSession session) {
 		
 		status.setComplete();
+		
 		
 		return "redirect:/";
 	}
@@ -118,7 +119,7 @@ public class MemberController {
 	
 	// 로그인 하기
 	@PostMapping("/login")
-	public String login( Member inputMember
+	public String login(  @ModelAttribute Member inputMember
 					     , RedirectAttributes ra
 					     , Model model) {
 		
@@ -138,6 +139,8 @@ public class MemberController {
 			
 			ra.addFlashAttribute("message", "아이디 또는 비밀번호가 일치하지 않습니다.");
 			
+			return "redirect:/member/login"; 
+			
 		}
 		
 		
@@ -147,7 +150,6 @@ public class MemberController {
 	}
 	
 	
-//-----------카카오로그인-----------------------
 
 	
 	

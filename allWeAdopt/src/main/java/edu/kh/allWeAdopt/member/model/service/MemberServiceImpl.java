@@ -37,9 +37,26 @@ public class MemberServiceImpl implements MemberService{
 		
 		// *** 암호화 확인용!!! ****
 		// 원래 비밀번호(평문)      /       암호화된 비밀번호
-		logger.debug( inputMember.getMemberPw() + " / " +  bcrypt.encode(inputMember.getMemberPw()) );
+  	    logger.debug( inputMember.getMemberPw() + " / " +  bcrypt.encode(inputMember.getMemberPw()) ); 
 		
 		Member loginMember = dao.login(inputMember);
+		
+		
+		if(loginMember != null) { // 일치하는 이메일을 가진 회원 정보가 있을 경우
+					
+//			// 입력된 비밀번호(평문) , 조회된 비밀번호(암호화) 비교 (같으면 true)
+//							 		//평문                  ,   암호화
+			if( bcrypt.matches(  inputMember.getMemberPw()   ,  loginMember.getMemberPw() ) ) {
+//				// 비밀번호가 일치할 경우
+//				
+				loginMember.setMemberPw(null); // 비교 끝났으면 비밀번호 지우기
+//				
+			} else { // 비밀번호가 일치하지 않은 경우
+			
+				loginMember = null; // 로그인을 실패한 형태로 바꿔줌
+			}
+			
+		}
 		
 		
 		
@@ -100,25 +117,30 @@ public class MemberServiceImpl implements MemberService{
 
 
 
-	// 카카오로그인 회원정보 조회
-//	@Override
-//	public int kakaoLogin(HashMap<String, Object> userInfo) {
-//		
-//		//userInfo 의 값을 꺼내서 매개변수로 들고가나??
-//		
-//		int result = dao.kakaoLogin(userInfo);
-//		
-//		// result == 0 == 일치하는 회원 정보가 없다.
-//		if ( result == 0 ) {
-//			
-//			// insert 작업 진행 
-//			result = dao.insertMember( userInfo );
-//			
-//		}
-//		
-//		return result;
-//		
-//	}
+	// 카카오 아이디(이메일) 일치하는 회원 정보를 조회하는 Service 호출 후 결과 반환 받기 
+	@Override
+	public Member kakaoEmailCheck(String kakaoEmail) {
+		
+		Member kakaoEmailCheck = dao.kakaoEmailCheck(kakaoEmail);
+		
+		return kakaoEmailCheck;
+	}
+
+
+
+
+	// 카카오 회원 넘버 '삽입' 
+	@Override
+	public int insertNo(Member mem) {
+		// DAO 호출
+		int result = dao.insertNo(mem);
+		
+		return result;
+	}
+
+
+
+	
 	
 
 

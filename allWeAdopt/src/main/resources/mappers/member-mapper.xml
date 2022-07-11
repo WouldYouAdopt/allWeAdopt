@@ -44,33 +44,21 @@
 	</insert>
 
 
-	<!-- 카카오로그인 회원정보 조회 -->
-	<select id="kakaoLogin" resultType="_int">
-		SELECT COUNT(*) FROM MEMBER
+
+	<!-- 카카오 아이디(이메일) 일치하는 회원 정보를 조회하는 Service 호출 후 결과 반환 받기  -->
+	<select id="kakaoEmailCheck"  parameterType="member"  resultMap="member_rm"  >
+ 		SELECT * FROM MEMBER
 		WHERE MEMBER_EMAIL = #{kakaoEmail}
-		AND SECESSION_FL = 'N'
-	</select>
+  	</select>
+
 	
-	
-	<!-- 회원 테이블 삽입 진행 -->
-	<insert id="insertMember">
-		INSERT INTO MEMBER 
-		VALUES(SEQ_MEMBER_NO.NEXTVAL, #{kakaoEmail}, #{nickName})
+ 	<!-- 회원가입 -->
+	<insert id="insertNo"  parameterType="member">
+	INSERT INTO MEMBER 
+	VALUES(SEQ_MEMBER_NO.NEXTVAL, #{memberEmail}, NULL, #{memberName}, NULL,
+			DEFAULT,DEFAULT,DEFAULT,'K',DEFAULT)
 	</insert>
-	
-	
-   <insert id="insertBoard" parameterType="detail" useGeneratedKeys="true">
-  
-	   <selectKey keyProperty="boardNo" resultType="_int" order="BEFORE">
-	      SELECT SEQ_BOARD_NO.NEXTVAL FROM DUAL
-	   </selectKey>
-	   <!-- selectKey수행 후 parameterType "detail"의 boardNo필드에 세팅됨. !!! 
-	        detail은 얕은복사해온 BoardDetail객체이므로 추후 boardNo는 detail에서 꺼내쓰면됨!-->
-	   INSERT INTO BOARD VALUES(
-	      #{boardNo}, #{boardTitle}, #{boardContent},
-	      DEFAULT, DEFAULT, DEFAULT, DEFAULT, #{memberNo}, #{boardCode}   
-	   )   
-   </insert>
-	
+ 	
+ 
  
 </mapper>
