@@ -1,8 +1,7 @@
 package edu.kh.allWeAdopt.board.model.service;
 
-import java.util.List;
+import java.util.Map;
 
-import edu.kh.allWeAdopt.board.model.vo.Board;
 
 public interface NoticeService {
 	
@@ -10,6 +9,6 @@ public interface NoticeService {
 	 * @param cp
 	 * @return nList
 	 */
-	List<Board> selectNoticeList(int cp);
+	Map<String, Object> selectNoticeList(int cp);
 
 }
