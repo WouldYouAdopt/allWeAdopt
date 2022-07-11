@@ -138,3 +138,51 @@
     color: #FB836b;
     border: 1px solid #FB836b;
 }
+
+
+
+/* ------------------------------------썸네일 이미지 추가 _-------------------- */
+
+.thumbnailArea{
+    background-color: #ddd;
+    width: 100%;
+    height: 150px;
+}
+
+/* 프로필 이미지 */
+#profile-image{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+/* 프로필 버튼 영역 */
+.profile-area{
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 프로필 버튼 영역의 모든 자식 요소 */
+.profile-area > *{
+    width: 110px;
+    height: 33px;
+    padding: 5px 10px;
+    border: 1px solid white;
+    border-radius: 5px;
+    background-color: #FB836b;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+}
+
+/* 파일 선택 버튼 */
+#input-image{
+    display: none;
+}
+.thumbnailArea>img{
+    width: 100%;
+    height: ;
+}

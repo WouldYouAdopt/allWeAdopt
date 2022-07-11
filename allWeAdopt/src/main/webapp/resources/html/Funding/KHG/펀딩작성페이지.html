@@ -109,9 +109,22 @@
                               <button type="button" class="btn  fundingBtn btn-outline-success" value=''>2022/07</button>
                               <button type="button" class="btn  fundingBtn btn-outline-success" value=''>2022/08</button>
                               <button type="button" class="btn  fundingBtn btn-outline-success" value=''>2022/09</button>
-                              <button type="button" class="btn btn-sm fundingBtn btn-outline-success"  value=''>2022/10</button>
+                              <button type="button" class="btn fundingBtn btn-outline-success"  value=''>2022/10</button>
                             </div>
                           </div>
+
+                          <!-- 썸네일 영역 -->
+                          <div class="thumbnailArea"> 
+                            <div>썹네일을 입력해주세요</div>
+                            <img src="" alt="">
+                            <div class="profile-area">
+                              <label for="input-image">이미지 선택</label>
+                              <input type="file" name="uploadImage" id="input-image" accept="image/*">
+                            </div>
+                            
+                          </div>
+                          
+
                           <!-- 펀딩 카테고리 + 제목 입력 영역 -->
                           <div class="fundingTitle">
 
@@ -123,9 +136,11 @@
                               <div id="fundingCategory">
                                 <select class="form-select" aria-label="Default select example">
                                   <option selected>카테고리</option>
-                                  <option value="1">장난감</option>
-                                  <option value="2">식품</option>
-                                  <option value="3">건강용품</option>
+                                  <option value="1">건강</option>
+                                  <option value="2">장난감</option>
+                                  <option value="3">간식</option>
+                                  <option value="4">사료</option>
+                                  <option value="5">의류</option>
                                 </select>
                               </div>
                               <input type="text" name="" id="" placeholder="제목을 입력해주세요">
@@ -159,13 +174,11 @@
                                 <th>리워드 내용</th>
                                 <th>리워드 금액</th>
                                 <th>리워드 수량</th>
-                                <th>배송비</th>
                               </thead>
 
                               <tbody class="rewardsRows">
                                 <tr>
                                   <td>1</td>
-                                  <td><input type="text"></td>
                                   <td><input type="text"></td>
                                   <td><input type="text"></td>
                                   <td><input type="text"></td>
@@ -177,11 +190,14 @@
                                   <td><input type="text"></td>
                                   <td><input type="text"></td>
                                   <td><input type="text"></td>
-                                  <td><input type="text"></td>
                                 </tr>
                               </tbody>
 
                             </table>
+
+                            <div>
+                              배송비 넣을 공간
+                            </div>
                           </div>
 
                           <!-- 섬머노트 작성칸 -->

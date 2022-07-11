@@ -15,8 +15,6 @@
     margin-top: 20px;
 }
 
-
-
 .paymentWrapper{
     width: 800px;
 }
@@ -107,4 +105,19 @@
     width: 100%;
     background-color: #ddd !important;
     color: black;
+}
+
+.paymentMeans span{
+    display: block;
+    margin: 20px 0;
+}
+
+.agreeWrapper a{
+    text-decoration: none;
+    color: #373737;
+}
+
+
+#goToPayment{
+    margin: auto;
 }
