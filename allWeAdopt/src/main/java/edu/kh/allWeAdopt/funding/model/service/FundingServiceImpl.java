@@ -11,6 +11,7 @@ import edu.kh.allWeAdopt.board.model.vo.Pagination;
 import edu.kh.allWeAdopt.funding.model.dao.FundingDAO;
 import edu.kh.allWeAdopt.funding.model.vo.Funding;
 import edu.kh.allWeAdopt.funding.model.vo.FundingDetail;
+import edu.kh.allWeAdopt.funding.model.vo.OrderDetail;
 
 @Service
 public class FundingServiceImpl implements FundingService {
@@ -59,6 +60,12 @@ public class FundingServiceImpl implements FundingService {
 	@Override
 	public int selectNowFundingNo() {
 		return dao.selectNowFundingNo();
+	}
+
+	//주문정보 상세히 조회하기 위한 Service
+	@Override
+	public OrderDetail selectOrderDetail(int paymentNo) {
+		return dao.selectOrderDetail(paymentNo);
 	}
 	
 	
