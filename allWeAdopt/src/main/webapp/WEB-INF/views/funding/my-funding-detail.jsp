@@ -48,7 +48,6 @@
 
 		<jsp:include page="/WEB-INF/views/common/header.jsp" />
   
-
 		<section class="py-4">
 	   <!-- 상단 메뉴 영역. -->
         <div class="text-center mb-5" id="TOT">
