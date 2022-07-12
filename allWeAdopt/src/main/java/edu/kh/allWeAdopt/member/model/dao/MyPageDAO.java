@@ -55,6 +55,22 @@ public class MyPageDAO {
 		return sqlSession.update("myPageMapper.updatePw", map);
 	}
 
+	/** 현재 로그인한 회원의 암호화된 비밀번호 조회 DAO
+	 * @param memberNo
+	 * @return encPw
+	 */
+	public String selectEncPw(int memberNo) {
+		return sqlSession.selectOne("myPageMapper.selectEncPw", memberNo);	
+	}
+
+	/** 회원 탈퇴 DAO
+	 * @param memberNo
+	 * @return result
+	 */
+	public int secession(int memberNo) {
+		return sqlSession.update("myPageMapper.secession", memberNo);
+	}
+
 
 	
 	

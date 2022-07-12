@@ -69,6 +69,7 @@
             <section class="py-0">
                 <div class="container px-5">
                     <h1 style> ALL WE ADOPT 메인입니당.</h1>
+                      <p>  ${loginMember.memberNo } </p>
                     <%-- <p>${nickname} 1</p>
                     <p>${sessionScope.nickname} 1</p>
                     <p>${userInfo.nickname} 1</p>
@@ -103,24 +104,6 @@
         <!-- Core theme JS-->
         <script src="${contextPath}/resources/js/scripts.js"></script>
 
-        <script>
-             $(document).ready(function() {
-            // $("#kakao-login-btn").on("click", function(){
-
-                var kakaoInfo = '${kakaoInfo}';
-
-                if(kakaoInfo != ""){
-                    var data = JSON.parse(kakaoInfo);
-
-                    alert("카카오로그인 성공 \n accessToken : " + data['accessToken']);
-                    alert(
-                    "user : \n" + "email : "
-                    + data['email']  
-                    + "\n nickname : " 
-                    + data['nickname']);
-                }
-            });  
-        </script>
 
 
 

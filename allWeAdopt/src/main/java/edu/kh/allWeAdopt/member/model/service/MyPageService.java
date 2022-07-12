@@ -29,4 +29,11 @@ public interface MyPageService {
 	 */
 	int updatePw(Map<String, Object> map);
 
+	
+	/** 회원탈퇴 Service
+	 * @param loginMember
+	 * @return
+	 */
+	int secession(Member loginMember);
+
 }

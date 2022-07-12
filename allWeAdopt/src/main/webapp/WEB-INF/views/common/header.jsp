@@ -45,16 +45,16 @@
                                     <a class="nav-link dropdown-toggle py-1" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="border-radius: 50%;">
                                         <%-- 기본 프로필이미지(= 프로필이미지 설정 안했을때) --%>
                                         <c:if test="${empty loginMember.profileImage }">
-                                             <img src="${contextPath}/resources/images/user.png" id="member-profile" style="width : 35px; height : 35px;">	
+                                             <img src="${contextPath}/resources/images/user.png" id="member-profile" style="width : 35px; height : 35px; ">	
                                         </c:if>     
 
                                         <c:if test="${!empty loginMember.profileImage && loginMember.memberType == 'K'}">
-                                             <img src="${loginMember.profileImage}" id="member-profile" style="width : 35px; height : 35px;">
+                                             <img src="${loginMember.profileImage}" id="member-profile" style="width : 35px; height : 35px; border:0.5px solid #ccc; border-radius:50%;">
                                         </c:if>
 
                                         <%-- 사용자 설정 프로필이미지 --%>
                                         <c:if test="${!empty loginMember.profileImage && loginMember.memberType == 'M'}">
-                                             <img src="${contextPath}/${loginMember.profileImage}" id="member-profile" style="width : 35px; height : 35px;">
+                                             <img src="${contextPath}/${loginMember.profileImage}" id="member-profile" style="width : 35px; height : 35px; ">
                                         </c:if>
 
 

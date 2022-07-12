@@ -71,6 +71,7 @@
                                         <label for="memberPw">비밀번호</label>
                                         <div class="spaceArea confirmBtnArea">
                                             <button id="confirmBtn" >확인</button>
+
                                         </div>
                                     </div>
                                     
