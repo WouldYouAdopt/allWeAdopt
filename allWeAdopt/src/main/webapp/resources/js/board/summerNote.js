@@ -1,28 +1,5 @@
 console.log("summerNote.js 정상 연결됨");
  
-//  $(function(){
-	
-// 	// summernote 출력 및 부가 기능 메소드
-// 	$('#summernote').summernote({
-// 		width : 1000,		// 에디터 넓이
-// 		height: 600,        // 에디터 높이
-// 		focus: true,        // 에디터 로딩후 포커스를 맞출지 여부
-// 		lang: 'ko-KR',		// 언어 : 한국어 설정
-		
-		
-// 		// 이미지 업로드 이벤트가 발생했을 때 
-// 		callbacks:{
-// 			onImageUpload: function(files, editor) {
-// 				// 업로드된 이미지를 ajax를 이용하여 서버에 저장
-//         	   sendFile(files[0], this);
-// 			}
-// 		}
-// 	});
-	
-	
-// });
- 
- 
  // 업로드된 이미지를 ajax를 이용하여 서버로 전송하여 저장하는 함수
  function sendFile(file, editor){
     
@@ -37,7 +14,7 @@ console.log("summerNote.js 정상 연결됨");
     form_data.append("uploadFile", file);
     // FormData 객체에 새로운 K, V 를 추가
     $.ajax({
-       url : contextPath+"/admin/insertImage",
+       url : contextPath+"/summerNote/uploadImage",
        type : "post",
        data : form_data,
        dataType: "json",
