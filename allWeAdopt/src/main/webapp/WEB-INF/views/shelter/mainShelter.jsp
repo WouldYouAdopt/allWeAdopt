@@ -61,6 +61,10 @@
 
             <!-- header -->
             <jsp:include page="/WEB-INF/views/common/header.jsp" />
+
+            <%-- 검색을 진행한 경우 key, query를 쿼리스트링 형태로 저장한 변수 생성 --%>
+
+
             <!-- nav -->
 
             <!-- Page Content-->
@@ -79,15 +83,39 @@
             </section>
 
             <!-- 분앙소 불러오기 -->
+            <c:set var="upkind" value="?pageNo=&upkind="/>
+            <c:set var="upr_cd" value="?pageNo=&upr_cd="/>
+
 
             <section class="py-5">
                 <div class="container px-5">
                     <h2 class="fw-bolder fs-5 mb-4">보호소</h2>
                     <div class="row gx-5">
 
-                    <c:set var="upkind" value="?upkind="/>
-
                     <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <strong>시도</strong>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="${upr_cd}" role="option" aria-selected="true">전체</a></li>
+                            <li><a class="dropdown-item" href="${upr_cd}6110000" role="option" aria-selected="true">서울특별시</a></li>
+                            <li><a class="dropdown-item" href="${upr_cd}6260000" role="option" aria-selected="true">부산광역시</a></li>
+                            <li><a class="dropdown-item" href="${upr_cd}6270000" role="option" aria-selected="true">대구광역시</a></li>
+                            <li><a class="dropdown-item" href="${upr_cd}6280000" role="option" aria-selected="true">인천광역시</a></li>
+                            <li><a class="dropdown-item" href="${upr_cd}6290000" role="option" aria-selected="true">광주광역시</a></li>
+                            <li><a class="dropdown-item" href="${upr_cd}5690000" role="option" aria-selected="true">세종특별자치시</a></li>
+                            <li><a class="dropdown-item" href="${upr_cd}6300000" role="option" aria-selected="true">대전광역시</a></li>
+                            <li><a class="dropdown-item" href="${upr_cd}6310000" role="option" aria-selected="true">울산광역시</a></li>
+                            <li><a class="dropdown-item" href="${upr_cd}6410000" role="option" aria-selected="true">경기도</a></li>
+                            <li><a class="dropdown-item" href="${upr_cd}6420000" role="option" aria-selected="true">강원도</a></li>
+                            <li><a class="dropdown-item" href="${upr_cd}6430000" role="option" aria-selected="true">충청북도</a></li>
+                            <li><a class="dropdown-item" href="${upr_cd}6440000" role="option" aria-selected="true">충청남도</a></li>
+                            <li><a class="dropdown-item" href="${upr_cd}6450000" role="option" aria-selected="true">전라북도</a></li>
+                            <li><a class="dropdown-item" href="${upr_cd}6470000" role="option" aria-selected="true">경상북도</a></li>
+                            <li><a class="dropdown-item" href="${upr_cd}6480000" role="option" aria-selected="true">경상남도</a></li>
+                            <li><a class="dropdown-item" href="${upr_cd}6500000" role="option" aria-selected="true">제주특별자치도</a></li>
+                        </ul>
+
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                             <strong>품종</strong>
                         </button>
@@ -96,6 +124,8 @@
                             <li><a class="dropdown-item" href="${upkind}417000" role="option" aria-selected="true">개</a></li>
                             <li><a class="dropdown-item" href="${upkind}422400" role="option" aria-selected="true">고양이</a></li>
                         </ul>
+
+
                     </div>
 
                         <c:forEach var="shelter" items="${list}">
@@ -125,22 +155,57 @@
                         </div>
 
                         </c:forEach>
-                    </div>
-                    <%-- <div class="text-end mb-5 mb-xl-0">
-                        <a class="text-decoration-none" href="#!">
-                            More stories
-                            <i class="bi bi-arrow-right"></i>
-                        </a>
-                    </div> --%>
+                    </div>                         
+
+
 
                     <%-- 페이지네이션 --%>
+            <%-- <c:choose>
+                <c:when test="${!empty upr_cd}">
+                    <c:set var="url" value="?upr_cd=&pageNo="/>
+                </c:when>
 
-                    <c:set var="url" value="${upkind}&pageNo="/>
+                <c:when test='${!empty upkind}'>
+                    <c:set var="url" value="?upkind=&pageNo="/>
+                </c:when>
+
+                <c:otherwise>
+                    <c:set var="url" value="?upr_cd=&upkind=&pageNo="/>
+                </c:otherwise>
+            </c:choose> --%>
+
+                    
+                    <%-- <c:set var="url" value="?upr_cd=&pageNo="/> --%>
+                    <%-- <c:set var="upkind" value="&upkind="/> --%>
+                    <%-- <c:set var="url" value="?upr_cd=&upkind=&pageNo="/> --%>
+
+
+
+
+                    <%-- <c:choose>
+                    
+                        <c:when test="${empty upr_cd}">
+                            <c:set var="url" value="?upkind=&pageNo="/>
+                        </c:when>
+
+                        <c:when test="${empty upkind}">
+                            <c:set var="url" value="?upr_cd=&pageNo="/>
+                        </c:when>
+
+                        <c:when test="${empty upr_cd} && ${empty upkind}">
+                            <c:set var="url" value="?pageNo="/>
+                        </c:when>
+                    
+                    </c:choose> --%>
+
+                    <%-- <c:set var="url" value="?pageNo="/> --%>
+
+                    <c:set var="url" value="?pageNo="/>
 
                     <nav aria-label="Page navigation example">
                         <ul class="pagination pagination-lg justify-content-center">
                             <li class="page-item">
-                                <a class="page-link" href="${url}1" aria-label="Previous">
+                                <a class="page-link" href="${url}1${sURL}" aria-label="Previous">
                                     <span aria-hidden="true">&laquo;</span>
                                 </a>
                             </li>
@@ -148,7 +213,7 @@
                                 <li class="page-item"><a class="page-link" href="${url}${i}">${i}</a></li>
                             </c:forEach>
                             <li class="page-item">
-                                <a class="page-link" href="${url}10" aria-label="Next">
+                                <a class="page-link" href="${url}10${sURL}" aria-label="Next">
                                     <span aria-hidden="true">&raquo;</span>
                                 </a>
                             </li>
