@@ -87,7 +87,6 @@ public class AdminNoticeController {
 									RedirectAttributes ra) {
 		
 		logger.info("글 등록 수행됨");
-		System.out.println(detail);
 		
 		int result = service.insertBoard(detail);
 		
@@ -103,38 +102,5 @@ public class AdminNoticeController {
 		
 	}
 	
-	// 관리자 - summerNote 이미지 업로드
-	@PostMapping("/insertImage")
-	@ResponseBody
-	public String insertImage( @RequestParam(value="uploadFile", required=false) MultipartFile image,
-							   HttpServletRequest req ) throws IOException{
-		
-		// 폴더 경로
-		String filePath = "/resources/images/board/";
-		
-		// 실제 경로
-		String folderPath = req.getSession().getServletContext().getRealPath(filePath);
-		
-		String rename = null;
-		Map<String,Object> map = new HashMap<String, Object>();
-		
-		// 업로드한 이미지 파일이 있으면
-		if( !image.isEmpty() ) {
-			
-			// Util 을 이용해 rename하기
-			rename = Util.fileRename( image.getOriginalFilename() );
-			
-			map.put("filePath",filePath);
-			map.put("fileName", rename);
-			
-			// 이미지 서버에 저장
-			image.transferTo( new File ( folderPath+rename ) );
-			
-		}else {
-			System.out.println("업로드 이미지 없음 ;;");
-		}
-		
-		return new Gson().toJson(map);
-	}
-		
+
 }
