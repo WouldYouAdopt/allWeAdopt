@@ -90,10 +90,11 @@
 
                             
                         <!-- 버튼들 -->
+                        <!-- fundingNo값이 없으면 nowFundingNo -->
                         <div class="middle-btns">
-                            <button id="story" onclick="window.location.href='${contextPath}/funding/detail/${detail.fundingNo}?page=1'">펀딩 스토리</button>
-                            <button id="policy" onclick="window.location.href='${contextPath}/funding/detail/${detail.fundingNo}?page=2'">반환 / 정책</button>
-                            <button id="supporters" onclick="window.location.href='${contextPath}/funding/detail/${detail.fundingNo}?page=3'">참여 서포터</button>
+                            <button id="story" onclick="window.location.href='${contextPath}/funding/detail/${nowFundingNo}?page=1'">펀딩 스토리</button>
+                            <button id="policy" onclick="window.location.href='${contextPath}/funding/detail/${nowFundingNo}?page=2'">반환 / 정책</button>
+                            <button id="supporters" onclick="window.location.href='${contextPath}/funding/detail/${nowFundingNo}?page=3'">참여 서포터</button>
                             <button onclick="window.location.href='${contextPath}/funding/list'">종료된 펀딩</button>
                         </div>
 
@@ -124,12 +125,15 @@
                         <div class="col-lg-3 sticky">
                             <!-- d-flex : flex 들어있는 class-->
                             <div class="align-items-center mb-4 fundingRight">
-                            펀딩넘버 확인 nowFundingNo : ${nowFundingNo}
-                                <div class="this-month"><span class="month">${detail.fundingSeason}</span> (월 값으로만 가공)이달의 펀딩<br>${detail.fundingTitle}</div>
-        
+                            펀딩넘버 확인<br> 현재진행중인 펀딩번호 : ${nowFundingNo} <br> 클릭한 펀딩번호 : ${detail.fundingNo}
+                                <div class="this-month"><span class="month">${detail.month}</span>이달의 펀딩<br>${detail.fundingTitle}</div>
+                                종료된 펀딩에 남은일수 안보임
+        						<c:if test="${detail.fundingState=='Y'}">
                                 <div class="period">
-                                    <span class="pointText">12${detail.fundingSeason}의 남은 일수 구해오기</span>일 남음
+                                    <span class="pointText">${detail.leftDate}</span>일 남음
                                 </div>
+                                </c:if>
+                                
                                 <div class="donation">
                                     달성금액 <br>
                                     <span class="pointText">320,000 fundingNo의 리워드 구매금액 다 더하기 /  ${detail.targetDonation}</span> 원
@@ -138,11 +142,15 @@
                                     <span class="pointText">3fundingNo 결제이력있는 member수</span>명의 서포터
                                 </div>
                             </div>
+                            ${detail.fundingState} 종료된 펀딩에는 펀딩하기 버튼 안보이게
+                            <c:if test="${detail.fundingState=='Y'}">
                             <div class="align-items-center mb-4" >
                                 <button class="fundingBtn" onclick="window.location.href='${contextPath}/funding/reward'">펀딩하기</button>
                                 <button class="qnaBtn">문의</button>
                             </div>
+                            </c:if>
                             
+                            종료된 펀딩에는 리워드 마우스오버 X, 클릭이벤트 제거, 스크롤이벤트 제거
                             <div class="reward-box">
 
                                 <div class="reward">

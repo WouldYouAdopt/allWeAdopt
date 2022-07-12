@@ -15,12 +15,17 @@ public class FundingDetail {
 	private String fundingTitle;
 	private String fundingMiniTitle;
 	private String fundingContent;
-	private int targetDonation;
+	private String targetDonation;
 	private String fundingSeason;
 	private int SuccessDonation;
 	private String fundingState;
 	private String fundingThumbnail;
 	private int deliveryFee;
+	
+	private String month;
+	private String startDate;
+	private String endDate;
+	private int leftDate;
 	
 	private String CategoryName;
 	
