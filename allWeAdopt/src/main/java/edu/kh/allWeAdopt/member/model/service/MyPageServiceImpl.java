@@ -41,7 +41,7 @@ public class MyPageServiceImpl implements MyPageService{
 	}
 
 	// 내정보 수정 기능 구현
-	@Override
+	@Override 
 	public int updateInfo(Map<String, Object> map, MultipartFile uploadImage) throws IOException{
 		
 		String deleteImage = (String)map.get("deleteImage");

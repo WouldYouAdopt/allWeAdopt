@@ -69,6 +69,7 @@
             <section class="py-0">
                 <div class="container px-5">
                     <h1 style> ALL WE ADOPT 메인입니당.</h1>
+                      <p>  ${loginMember.memberNo } </p>
                     <%-- <p>${nickname} 1</p>
                     <p>${sessionScope.nickname} 1</p>
                     <p>${userInfo.nickname} 1</p>

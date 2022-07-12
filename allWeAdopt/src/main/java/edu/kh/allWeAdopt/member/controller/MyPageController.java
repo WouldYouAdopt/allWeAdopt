@@ -168,6 +168,7 @@ public class MyPageController {
 		
 		System.out.println(loginMember.getMemberNo() );
 		System.out.println(loginMember.getMemberPw() );
+		System.out.println(loginMember.getMemberType() );
 		
 //		 회원 탈퇴 서비스 호출
 		int result = service.secession(loginMember);
