@@ -22,6 +22,11 @@
 		<result property="startDate" column="STARTDATE" />
 		<result property="endDate" column="ENDDATE" />
 		<result property="leftDate" column="LEFTDATE" />
+		
+		<collection property="rewardList" column="FUNDING_NO" 
+      	javaType="java.util.ArrayList" ofType="reward" select="selectRewardList"/>
+      	
+      	
 	</resultMap>
 
 	<!-- 게시글 목록 조회용 Result Map -->
@@ -85,6 +90,10 @@
 		<result property="maxRewardNo" column="MAX_REWARD_NO" />
 		<result property="fundingNo" column="FUNDING_NO" />
 		<result property="amount" column="AMOUNT" />
+		
+		<result property="rewardOrderAmount" column="REWARD_ORDER_AMOUNT" />
+		<result property="rewardOrderPrice" column="REWARD_ORDER_PRICE" />
+		
 	</resultMap>
 
 
@@ -196,5 +205,24 @@
 		USING(PAYMENT_NO)
 		WHERE PAYMENT_NO=#{paymentNo}
 	</select>
+	
+	<!-- 펀딩번호로 리워드 전체 조회 (리워드 별 판매 현황 추가)-->
+	<select id="selectRewardList" resultMap="reward_re">
+		SELECT
+	        REWARD_NO,
+	        REWARD_TITLE,
+	        REWARD_CONTENT,
+	        REWARD_PRICE,
+	        MAX_REWARD_NO,
+	        SUM(AMOUNT) AS REWARD_ORDER_AMOUNT,
+	        SUM((REWARD_PRICE*AMOUNT)) AS REWARD_ORDER_PRICE
+        FROM 
+        (SELECT * FROM REWARD WHERE FUNDING_NO=#{fundingNo})
+        JOIN REWARD_ORDER USING(REWARD_NO)
+        GROUP BY REWARD_NO, REWARD_TITLE,REWARD_CONTENT,REWARD_PRICE,MAX_REWARD_NO
+        ORDER BY 1
+	</select>
+	
+
 
 </mapper>
