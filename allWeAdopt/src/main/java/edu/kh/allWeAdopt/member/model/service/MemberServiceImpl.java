@@ -142,6 +142,18 @@ public class MemberServiceImpl implements MemberService{
 
 
 
+
+	// 이미 로그인 해봤던 카카오계정로그인....
+	@Override
+	public Member kakaoEmailLogin(Member mem) {
+		
+		Member kakaoEmailLogin = dao.kakaoEmailLogin(mem);
+		
+		return kakaoEmailLogin;
+	}
+
+
+
 	
 	
 

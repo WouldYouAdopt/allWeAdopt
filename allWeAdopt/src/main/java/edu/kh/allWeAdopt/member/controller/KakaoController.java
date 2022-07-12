@@ -36,7 +36,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 
 // 세션 어트리뷰트
-@SessionAttributes({"kakaoInfo"})
+@SessionAttributes({"loginMember"})
 @Controller
 public class KakaoController {
 	
@@ -61,23 +61,24 @@ public class KakaoController {
 	// 카카오 연동정보 조회 -> 카카오 이메일/프로필사진/이름 조회
 	@RequestMapping(value = "/member/kakaoLogin2")
 	public String oauthKakao( @RequestParam(value = "code", required = false) String code
-			                , Model model
-			                /*, RedirectAttributes ra*/) throws Exception {
+							, Model model
+							/*, RedirectAttributes ra*/) throws Exception {
+		
+		String message = null;
 
 		// 카카오에서 제공하는 토큰가지고 조회를 하는거
 		System.out.println("#########" + code);
-        String access_Token = getAccessToken(code);
-        System.out.println("###access_Token#### : " + access_Token);
-        
-        
-        HashMap<String, Object> userInfo = getUserInfo(access_Token);
-        System.out.println("###access_Token#### : " + access_Token);
-        System.out.println("###userInfo#### : " + userInfo.get("email"));
-        System.out.println("###nickname#### : " + userInfo.get("nickname"));
-        System.out.println("###profileImage#### : " + userInfo.get("profileImage"));
-       
-     
-        
+		String access_Token = getAccessToken(code);
+		System.out.println("###access_Token#### : " + access_Token);
+
+
+		HashMap<String, Object> userInfo = getUserInfo(access_Token);
+		System.out.println("###access_Token#### : " + access_Token);
+		System.out.println("###userInfo#### : " + userInfo.get("email"));
+		System.out.println("###nickname#### : " + userInfo.get("nickname"));
+		System.out.println("###profileImage#### : " + userInfo.get("profileImage"));
+
+
 
         
         // 1. 해당 이메일에 비밀번호가 있는가?
@@ -94,6 +95,7 @@ public class KakaoController {
         	
         	String kakaoEmail = (String) userInfo.get("email");
         	String nickname = (String)userInfo.get("nickname");
+        	String profileImage = (String)userInfo.get("profileImage");
 
         	System.out.println(kakaoEmail);
         	System.out.println(nickname);
@@ -101,41 +103,65 @@ public class KakaoController {
         	// 카카오 아이디(이메일) 일치하는 회원 정보를 조회하는 Service 호출 후 결과 반환 받기 
         	Member kakaoEmailCheck = service.kakaoEmailCheck(kakaoEmail);
         	
-        	
-        	// 카카오 이메일, 이름, 프로필이미지(왜 null이지?) 회원테이블에 삽입 == 회원번호 삽입
-        	if( kakaoEmailCheck == null ) { // 처음 로그인한 sns 계정이다.
+        	if(kakaoEmailCheck!=null) {
+	        	
+        		if( kakaoEmailCheck.getMemberPw() != null ) { 
         		
+        			// 너는 사이트로 횐갑했으니까 사이트로그인에서 해라.
+        			message = "올 위 어답터로 회원가입한 회원입니다.";
+        			return "redirect:/member/login"; // 회원 로그인 페이지
+        			
+	        	}else {
+	        		
+	        		kakaoEmailCheck.setProfileImage(profileImage);
+	        		kakaoEmailCheck.setMemberName(nickname);
+	        		
+	        		// 카카오 로그인 했었던 사람 
+	        		 model.addAttribute("loginMember", kakaoEmailCheck);
+	        	      
+	        	     return "redirect:/"; //본인 원하는 경로 설정
+	        		
+	        	}
+        	
+        		
+        		
+        	}else {
+        		
+        		// 카카오 이메일, 이름, 프로필이미지(왜 null이지?) 회원테이블에 삽입 == 회원번호 삽입
         		Member mem = new Member();
         		mem.setMemberEmail(kakaoEmail);
         		mem.setMemberName(nickname);
+        		mem.setProfileImage(profileImage);
         		
         		// 카카오 회원넘버 '삽입' 서비스 호출.
         		int result = service.insertNo(mem);
         		
-        		String message = null;
-        		String path = null;
         		
-        		if(result < 0) { //  성공
-        			message = "카카오 첫 로그인 성공!!";
-        			path = "redirect:/"; // 메인페이지
+        		
+        		if(result > 0) { //  성공
+        			model.addAttribute("loginMember", mem);
+        			message = "카카오 로그인 성공!!";
+        			return  "redirect:/"; // 메인페이지
         			
         		}else { // 실패
         			message = "로그인 실패ㅠㅠ";
-        			path = "redirect:/member/login"; // 회원 로그인 페이지
+        			return "redirect:/member/login"; // 회원 로그인 페이지
+        		
         		}
         		
         	}
         	
-        	
         }
-        
-        
-//        JSONObject kakaoInfo =  new JSONObject(userInfo);
-        model.addAttribute("kakaoInfo", userInfo);
-        
+//      JSONObject kakaoInfo =  new JSONObject(userInfo);
+//        model.addAttribute("kakaoInfo", userInfo);
+      
         return "redirect:/"; //본인 원하는 경로 설정
+      
 	}
-	
+		
+		
+		
+		
     //토큰발급
 	public String getAccessToken (String authorize_code) {
         String access_Token = "";
