@@ -38,7 +38,12 @@ public class AdminFundingController {
 	}
 
 	@GetMapping("/register")
-	public String findingRegister() {
+	public String fundingRegister() {
 		return "funding/admin/funding-register";
+	}
+	
+	@GetMapping("/deliveryController")
+	public String deliveryController() {
+		return "funding/admin/delivery-controller";
 	}
 }
