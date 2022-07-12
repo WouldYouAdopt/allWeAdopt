@@ -38,7 +38,7 @@ public class MemberDAO {
 	 * @param memberEmail
 	 * @return result
 	 */
-	public int emailDupCheck(String memberEmail) {
+	public Member emailDupCheck(String memberEmail) {
 		
 		return sqlSession.selectOne("memberMapper.emailDupCheck", memberEmail);
 	}

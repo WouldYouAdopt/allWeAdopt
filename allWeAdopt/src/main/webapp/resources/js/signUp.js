@@ -37,19 +37,29 @@ memberEmail.addEventListener("input", function(){
             data : { "memberEmail" : memberEmail.value },
             type : "GET", // 데이터 전달 방식 type
             success : function(result){
-                if(result == 1){ // 중복 O
-                    emailMsg.innerText = "이미 사용중인 이메일입니다. 다른 이메일을 입력해주세요.";
+
+                if(result == 0){
+                    emailMsg.innerText = "사용 가능한 이메일입니다.";
+                    emailMsg.classList.remove("error");
+                    emailMsg.classList.add("confirm");
+                    checkObj.memberEmail = true; // 유효 O 기록
+                }
+
+                if(result == 1){ // 사이트 가입 회원 이메일
+                    emailMsg.innerText = "이미 사용중인 이메일입니다.";
                     emailMsg.classList.remove("confirm");
                     emailMsg.classList.add("error");
 
                     checkObj.memberEmail = false; // 유효 X 기록
-                } else { // 중복 X
-                    emailMsg.innerText = "사용 가능한 이메일입니다.";
-                    emailMsg.classList.remove("error");
-                    emailMsg.classList.add("confirm");
+                } 
 
-                    checkObj.memberEmail = true; // 유효 O 기록
-                }
+                if(result==2){ // 카카오 가입 회원 이메일
+                    emailMsg.innerText = "사용중인 이메일입니다. 카카오 로그인 시도 혹은 다른 이메일을 입력해주세요.";
+                    emailMsg.classList.remove("confirm");
+                    emailMsg.classList.add("error");
+
+                    checkObj.memberEmail = false; // 유효 X 기록
+                }             
             },
             error : function(){
                 // 비동기 통신(ajax) 중 오류가 발생한 경우
@@ -273,8 +283,6 @@ if(document.getElementById("del")!=null){
 
 // 회원가입 버튼 클릭시 유효성 검사여부 확인
 function signUpValidate(){
-
-    console.log("클릭됨");
 
     let str;
 
