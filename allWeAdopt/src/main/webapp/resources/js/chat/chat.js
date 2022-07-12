@@ -1,10 +1,12 @@
 //채팅 서버 열기
 function popUpOpne(){
     window.open('', "chattingWindow", "width=800, height=500" );
-
     chatForm.target = "chattingWindow";
     chatForm.submit();
 }
+
+
+//채팅 1대1
 function requestChat(){
     const targetMember = JSON.parse(document.getElementById('targetMember').value);
     const member = JSON.parse(document.getElementById('member').value);
