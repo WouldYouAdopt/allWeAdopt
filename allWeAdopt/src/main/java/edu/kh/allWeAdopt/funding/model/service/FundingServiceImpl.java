@@ -53,6 +53,13 @@ public class FundingServiceImpl implements FundingService {
 		
 		return map;
 	}
+
+
+	// 현재 진행중인 펀딩 번호
+	@Override
+	public int selectNowFundingNo() {
+		return dao.selectNowFundingNo();
+	}
 	
 	
 	

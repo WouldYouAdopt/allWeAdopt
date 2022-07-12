@@ -51,31 +51,36 @@
             <section class="py-0">
                 <div class="container px-5 my-1">
                     <div class="row gx-5 align-items-center">
-                        <table class="table boardList">
-                            <thead >
-                            <tr>
-                                <th scope="col" style="width: 9%" class="col-sm-1 text-center" >번호</th>
-                                <th scope="col" style="width: 81%" class="col-sm-6">제목</th>
-                                <th scope="col"style="width: 19%" >작성일</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                                <c:if test="${empty nList}">
-                                
-                                </c:if>
+                        <c:if test="${empty nList}">
 
-                                <c:if test="${!empty nList}">
+                            <div>게시글이 없습니당. </div>
+
+                        </c:if>
+
+                        <c:if test="${!empty nList}">
+
+                            <table class="table boardList">
+                                <thead >
+                                <tr>
+                                    <th scope="col" style="width: 9%" class="col-sm-1 text-center" >번호</th>
+                                    <th scope="col" style="width: 81%" class="col-sm-6">제목</th>
+                                    <th scope="col"style="width: 19%" >작성일</th>
+                                </tr>
+                                </thead>
+                                <tbody>     
+
                                     <c:forEach var="n" items="${nList}">
                                         <tr>
                                             <th scope="row" class="col-sm-1 text-center" >${n.boardNo}</th>
-                                            <td><a href="${contextPath}/admin/notice/detail">${n.boardTitle}</a></td>
+                                            <td><a href="${contextPath}/admin/notice/detail/${n.boardNo}?cp=${pagination.currentPage}">${n.boardTitle}</a></td>
                                             <td>${n.createDate}</td>
                                         </tr>
                                     </c:forEach>
-                                </c:if>
 
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+
+                        </c:if>
                     </div>
                 </div>
             </section>
@@ -110,7 +115,7 @@
 
                                 <li class="page-item"><a class="page-link nav-text-color" href="${url}${pagination.nextPage}">Next</a></li>
 
-                                <li><a class="btn btn-primary mx-3 button-pink" href="#">글작성</a></li>
+                                <li><a class="btn btn-primary mx-3 button-pink" href="${contextPath}/admin/notice/write?cp=${pagination.currentPage}">글작성</a></li>
 
                             </ul>
                             

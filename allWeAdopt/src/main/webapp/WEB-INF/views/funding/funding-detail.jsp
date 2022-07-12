@@ -124,17 +124,18 @@
                         <div class="col-lg-3 sticky">
                             <!-- d-flex : flex 들어있는 class-->
                             <div class="align-items-center mb-4 fundingRight">
-                                <div class="this-month"><span class="month">7월</span> 이달의 펀딩<br>${detail.fundingTitle}</div>
+                            펀딩넘버 확인 nowFundingNo : ${nowFundingNo}
+                                <div class="this-month"><span class="month">${detail.fundingSeason}</span> (월 값으로만 가공)이달의 펀딩<br>${detail.fundingTitle}</div>
         
                                 <div class="period">
-                                    <span class="pointText">12</span>일 남음
+                                    <span class="pointText">12${detail.fundingSeason}의 남은 일수 구해오기</span>일 남음
                                 </div>
                                 <div class="donation">
                                     달성금액 <br>
-                                    <span class="pointText">320,000 /  ${detail.targetDonation}</span> 원
+                                    <span class="pointText">320,000 fundingNo의 리워드 구매금액 다 더하기 /  ${detail.targetDonation}</span> 원
                                 </div>
                                 <div class="supporters">
-                                    <span class="pointText">3</span>명의 서포터
+                                    <span class="pointText">3fundingNo 결제이력있는 member수</span>명의 서포터
                                 </div>
                             </div>
                             <div class="align-items-center mb-4" >

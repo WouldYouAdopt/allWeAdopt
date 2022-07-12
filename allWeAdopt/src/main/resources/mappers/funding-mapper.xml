@@ -86,7 +86,11 @@
 		WHERE MEMBER_NO=#{memberNo}
 	</select>
  	
- 	
+ 	<select id="selectNowFundingNo" resultType="_int">
+ 		SELECT FUNDING_NO
+ 		FROM FUNDING
+ 		WHERE FUNDING_ST='Y'
+ 	</select>
  	
  
  

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import edu.kh.allWeAdopt.board.model.dao.NoticeDAO;
 import edu.kh.allWeAdopt.board.model.vo.Board;
+import edu.kh.allWeAdopt.board.model.vo.BoardDetail;
 import edu.kh.allWeAdopt.board.model.vo.Pagination;
 
 @Service
@@ -45,7 +46,22 @@ public class NoticeServiceImpl implements NoticeService{
 		map.put("pagination", pagination);
 		
 		return map;
+	}
+
+	// 공지사항 상세 조회 구현
+	@Override
+	public BoardDetail selectNoticeDetail(int boardNo) {
+		
+		return dao.selectNoticeDetail(boardNo);
+	}
+
+	// 게시글 작성
+	@Override
+	public int insertBoard(BoardDetail detail) {
+		
+		return dao.insertBoard(detail);
 	}	
 
+	
 
 }

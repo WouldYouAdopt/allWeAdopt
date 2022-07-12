@@ -46,4 +46,12 @@ public class FundingDAO {
 		return sqlSession.selectList("fundingMapper.selectMyFundingList", memberNo, rowBounds);
 	}
 
+
+	/** 현재 진행중인 펀딩 번호
+	 * @return
+	 */
+	public int selectNowFundingNo() {
+		return sqlSession.selectOne("fundingMapper.selectNowFundingNo");
+	}
+
 }
