@@ -18,6 +18,7 @@
 		<result property="createDate" column="CREATE_DT"/>
 		<result property="updateDate" column="UPDATE_DT"/>
 		<result property="boardSt" column="BOARD_ST"/>
+		<result property="category" column="CATEGORY"/>
 	</resultMap>
 	
 	<!-- 게시글 수 조회 -->
@@ -33,6 +34,7 @@
                  THEN TO_CHAR(CREATE_DT, 'HH:MI')
                  ELSE TO_CHAR(CREATE_DT, 'YYYY-MM-DD')
             END CREATE_DT,
+            TO_CHAR(CREATE_DT, 'YYYY-MM-DD') CATEGORY,
             BOARD_ST          
     FROM BOARD
     WHERE BOARD_CD = 6
@@ -61,5 +63,24 @@
 		   DEFAULT, DEFAULT, NULL, DEFAULT, NULL, NULL, 6, 1, NULL)  
 		    
 	</insert>
+	
+	<!-- 게시글 수정 -->
+	<update id="updateBoard">
+	UPDATE BOARD SET 
+	BOARD_TITLE = #{boardTitle},
+	BOARD_CONTENT = #{boardContent},
+	UPDATE_DT = SYSDATE
+	WHERE BOARD_NO = #{boardNo}
+	AND BOARD_CD = 6
+	AND BOARD_ST = 'N'
+	</update>
+	
+	<!-- 게시글 삭제 -->
+	<update id="deleteBoard">
+	UPDATE BOARD SET
+	BOARD_ST = 'Y'
+	WHERE BOARD_NO = #{boardNo}
+	AND BOARD_CD = 6
+	</update>
   
 </mapper>

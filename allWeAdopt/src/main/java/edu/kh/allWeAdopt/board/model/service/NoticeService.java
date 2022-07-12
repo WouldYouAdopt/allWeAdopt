@@ -19,10 +19,22 @@ public interface NoticeService {
 	 */
 	BoardDetail selectNoticeDetail(int boardNo);
 
-	/** 게시글 작성 (썸머노트 이용)
+	/** 게시글 작성 (썸머노트 이용) Service
 	 * @param detail
 	 * @return result
 	 */
 	int insertBoard(BoardDetail detail);
+
+	/** 게시글 수정 Service
+	 * @param detail
+	 * @return result
+	 */
+	int updateBoard(BoardDetail detail);
+
+	/** 게시글 삭제 Service
+	 * @param boardNo
+	 * @return result
+	 */
+	int deleteBoard(int boardNo);
 
 }

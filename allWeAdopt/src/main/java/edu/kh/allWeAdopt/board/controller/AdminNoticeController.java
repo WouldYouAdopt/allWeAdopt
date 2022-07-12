@@ -20,6 +20,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -75,31 +76,93 @@ public class AdminNoticeController {
 	
 	// 관리자 - 공지사항 작성화면
 	@GetMapping("/notice/write")
-	public String adminNoticeWrite() {
+	public String adminNoticeWrite( String mode,
+									@RequestParam(value="no", required=false, defaultValue="0") int boardNo, 
+									Model model) {
+		
+		if(mode.equals("update")) {
+			
+			BoardDetail detail = service.selectNoticeDetail(boardNo); 
+			
+			model.addAttribute("detail",detail);
+		}
 		
 		return "notice/noticeWrite";
 	}
 	
-	// 관리자 - 공지사항 작성
+	// 관리자 - 공지사항 작성 / 수정
 	@PostMapping("/notice/write")
 	public String adminNoticeWrite( BoardDetail detail,
+									String mode,
+									int cp,
 									Model model,
 									RedirectAttributes ra) {
 		
-		logger.info("글 등록 수행됨");
+		int result = 0;
+		String message = null;
+		String path = null;
 		
-		int result = service.insertBoard(detail);
-		
-		if(result>0) {
-			ra.addFlashAttribute( "message", "게시글 등록 성공" );
-			model.addAttribute("detail",detail);
-			return "redirect:detail/"+detail.getBoardNo();
+		// 게시글 등록
+		if(mode.equals("insert")) {
 			
-		}else {
-			ra.addFlashAttribute( "message", "게시글 등록 실패" );
-			return "redirect:write";
+			logger.info("게시글 등록 수행됨");
+			
+			result = service.insertBoard(detail);
+			
+			if(result>0) {
+				message = "게시글 등록 성공"; 
+				path = "redirect:detail/"+detail.getBoardNo();
+			}else {
+				message = "게시글 등록 실패"; 
+				path = "redirect:write";
+			}
+			
 		}
 		
+		// 게시글 수정
+		if(mode.equals("update")) {
+			
+			logger.info("게시글 수정 수행됨");
+			
+			result = service.updateBoard(detail);
+			
+			if(result>0) {
+				message = "게시글 수정 성공"; 
+				path = "redirect:detail/"+detail.getBoardNo()+"?cp="+cp;
+			}else {
+				message = "게시글 수정 실패"; 
+				path = "redirect:write";
+			}
+			
+		}
+		
+		ra.addFlashAttribute( "message", message );
+		model.addAttribute("detail",detail);
+		
+		return path;
+
+	}
+	
+	@GetMapping("/notice/delete/{boardNo}")
+	public String deleteBoard( @PathVariable("boardNo") int boardNo,
+			      RedirectAttributes ra,
+			      @RequestHeader("referer") String referer) {
+		
+		int result = service.deleteBoard( boardNo );
+		
+		String message = null;
+		String path = null;
+		
+		if(result>0) {
+			message = "게시글 삭제 완료";
+			path = "redirect:../list/";
+		}else {
+			message = "게시글 삭제 실패";
+			path = referer;
+		}
+		
+		ra.addFlashAttribute("message", message);
+		return path;
 	}
 	
 
