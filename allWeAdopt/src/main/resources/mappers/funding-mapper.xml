@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="fundingMapper">
+
+		<!-- 게시글 상세조회용 resultMap -->   
+	<resultMap type="fundingDetail" id="detail_rm">
+	
+		<id property="fundingNo" column="FUNDING_NO"/>
+		<result property="fundingTitle" column="FUNDING_TITLE"/>
+		<result property="fundingMiniTitle" column="FUNDING_MINI_TITLE"/>
+		<result property="fundingContent" column="FUNDING_CONTENT"/>
+		<result property="targetDonation" column="TARGET_DONATION"/>
+		<result property="fundingSeason" column="FUNDING_SEASON"/>
+		<result property="SuccessDonation" column="SUCCESS_DONATION"/>
+		<result property="fundingState" column="FUNDING_ST"/>
+		<result property="fundingThumbnail" column="FUNDING_THUMBNAIL"/>
+		<result property="deliveryFee" column="DELIVERY_FEE"/>
+		
+		<result property="CategoryName" column="CATEGORY_NM"/>
+		
+
+
+	</resultMap>
+
+
+	<select id="selectFundingDetail" resultMap="detail_rm">
+		SELECT FUNDING_TITLE,
+				FUNDING_MINI_TITLE,
+				FUNDING_CONTENT,
+				TARGET_DONATION,
+				FUNDING_SEASON,
+				SUCCESS_DONATION,
+				FUNDING_ST,
+				FUNDING_THUMBNAIL,
+				DELIVERY_FEE,
+				CATEGORY_NM
+		FROM FUNDING
+		JOIN CATEGORY USING(FUNDING_CATEGORY)
+		WHERE FUNDING_NO = #{fundingNo}
+	</select>
+ 
+ 	
+ 	
+ 
+ 
+</mapper>

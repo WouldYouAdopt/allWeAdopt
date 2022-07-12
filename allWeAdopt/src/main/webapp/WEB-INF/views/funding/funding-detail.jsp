@@ -66,7 +66,7 @@
                 <div class="fundingTitleBox">
                     <div class="fundingTitleImage" style="background: url(${contextPath}/resources/images/funding_sample/funding_title_img.png) 50% 0 ;"></div>
                     <div class="fundingTitleText">
-                        우리아이 시원하게 여름 쿨매트
+                        ${detail.fundingTitle}
                     </div>
                     <div class="bottom-box">
                         <div class="rate-bar"></div>
@@ -91,9 +91,9 @@
                             
                         <!-- 버튼들 -->
                         <div class="middle-btns">
-                            <button id="story" onclick="window.location.href='${contextPath}/funding/detail?page=1'">펀딩 스토리</button>
-                            <button id="policy" onclick="window.location.href='${contextPath}/funding/detail?page=2'">반환 / 정책</button>
-                            <button id="supporters" onclick="window.location.href='${contextPath}/funding/detail?page=3'">참여 서포터</button>
+                            <button id="story" onclick="window.location.href='${contextPath}/funding/detail/${detail.fundingNo}?page=1'">펀딩 스토리</button>
+                            <button id="policy" onclick="window.location.href='${contextPath}/funding/detail/${detail.fundingNo}?page=2'">반환 / 정책</button>
+                            <button id="supporters" onclick="window.location.href='${contextPath}/funding/detail/${detail.fundingNo}?page=3'">참여 서포터</button>
                             <button onclick="window.location.href='${contextPath}/funding/list'">종료된 펀딩</button>
                         </div>
 
@@ -124,14 +124,14 @@
                         <div class="col-lg-3 sticky">
                             <!-- d-flex : flex 들어있는 class-->
                             <div class="align-items-center mb-4 fundingRight">
-                                <div class="this-month"><span class="month">7월</span> 이달의 펀딩<br>우리아이 시원하게 여름 쿨매트</div>
+                                <div class="this-month"><span class="month">7월</span> 이달의 펀딩<br>${detail.fundingTitle}</div>
         
                                 <div class="period">
                                     <span class="pointText">12</span>일 남음
                                 </div>
                                 <div class="donation">
                                     달성금액 <br>
-                                    <span class="pointText">320,000 /  880,000</span> 원
+                                    <span class="pointText">320,000 /  ${detail.targetDonation}</span> 원
                                 </div>
                                 <div class="supporters">
                                     <span class="pointText">3</span>명의 서포터
