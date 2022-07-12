@@ -62,10 +62,25 @@ $(document).ready(function() {
 			});
 		}
 
+// 버튼 값 변경
 const selectMenu = document.getElementsByClassName("selectMenu");
 
 for (let i = 0; i < selectMenu.length; i++) {
     selectMenu[i].addEventListener("click",function () {
         selectMenu[i].parentElement.previousElementSibling.innerText = selectMenu[i].innerText;
+
+		document.getElementsByName("category")[0].value = document.getElementsByName("categoryValue")[0].innerText;
+
+		document.getElementsByName("area")[0].value = document.getElementsByName("areaValue")[0].innerText;
+
+		document.getElementsByName("areaDetail")[0].value = document.getElementsByName("areaDetailValue")[0].innerText;
+
+		document.getElementsByName("animalType")[0].value = document.getElementsByName("animalTypeValue")[0].innerText;
+
+		document.getElementsByName("animalDetail")[0].value = document.getElementsByName("animalDetailValue")[0].innerText;
+
+		document.getElementsByName("genders")[0].value = document.getElementsByName("genderValue")[0].innerText;
+
+		document.getElementsByName("neuterings")[0].value = document.getElementsByName("neuteringValue")[0].innerText;
     })
 };
