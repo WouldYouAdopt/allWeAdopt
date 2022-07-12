@@ -35,8 +35,8 @@
                 <div class="container px-3">
                         <div class="col-lg-8 col-xxl-6">
                             <div class="text-left my-5">
-                                <h2 class="fw-bolder mb-3">입양관련 공지입니다.</h2>
-                                <div class="text-muted  mb-2">2022.07.04</div>
+                                <h2 class="fw-bolder mb-3">${detail.boardTitle}</h2>
+                                <div class="text-muted  mb-2">${detail.createDate}</div>
                                 
                                 <!-- <div class="col-md-5 col-sm-6 mt-3">
                                     <label for="exampleFormControlInput1" class="form-label">작성자</label>
@@ -65,13 +65,7 @@
                             <div class="card bg-white">
                                 <div class="card-body">
                                     <div class="fs-6  ">
-                                        내용입니다.<br>
-                                        내용입니다.<br>
-                                        내용입니다.<br>
-                                        내용입니다.<br>
-                                        내용입니다.<br>
-                                        내용입니다.<br>
-                                        내용입니다.<br>
+                                        ${detail.boardContent}
                                     </div> 
                                 </div>
                             </div>

@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Board {
+public class BoardDetail {
 	
 	private int boardNo;
 	private String boardTitle;
@@ -21,5 +21,8 @@ public class Board {
 	private String updateDate;
 	private String boardPeriodS;
 	private String boardPeriodE;
-	
+	private String memberName;
+	private String profileImage;
+	private String boardName;
+
 }
