@@ -17,6 +17,11 @@
 		<result property="deliveryFee" column="DELIVERY_FEE"/>
 		
 		<result property="CategoryName" column="CATEGORY_NM"/>
+		
+		<result property="month" column="MONTH"/>
+		<result property="startDate" column="STARTDATE"/>
+		<result property="endDate" column="ENDDATE"/>
+		<result property="leftDate" column="LEFTDATE"/>
 	</resultMap>
 	
 	<!-- 게시글 목록 조회용 Result Map -->
@@ -43,11 +48,16 @@
 
 	<!-- 펀딩 상세 내용 조회용 SQL -->
 	<select id="selectFundingDetail" resultMap="detail_rm">
-		SELECT FUNDING_TITLE,
+		SELECT FUNDING_NO,
+				FUNDING_TITLE,
 				FUNDING_MINI_TITLE,
 				FUNDING_CONTENT,
-				TARGET_DONATION,
+				TO_CHAR(TARGET_DONATION,'999,999,999') AS TARGET_DONATION,
 				FUNDING_SEASON,
+				SUBSTR(FUNDING_SEASON,-2) AS MONTH,
+                TO_CHAR(TO_DATE(REPLACE(FUNDING_SEASON,'/',''),'YYYYMM'),'YYYY"년"MM"월"DD"일"') AS STARTDATE,
+                TO_CHAR(LAST_DAY(TO_DATE(REPLACE(FUNDING_SEASON,'/',''),'YYYYMM')),'YYYY"년"MM"월"DD"일"') AS ENDDATE,
+                TRUNC(LAST_DAY(TO_DATE(REPLACE(FUNDING_SEASON,'/',''),'YYYYMM'))-SYSDATE) AS LEFTDATE,
 				SUCCESS_DONATION,
 				FUNDING_ST,
 				FUNDING_THUMBNAIL,
@@ -82,6 +92,7 @@
 		WHERE MEMBER_NO=#{memberNo}
 	</select>
  	
+ 	<!-- 현재 진행중인 펀딩 번호(interceptor) -->
  	<select id="selectNowFundingNo" resultType="_int">
  		SELECT FUNDING_NO
  		FROM FUNDING
