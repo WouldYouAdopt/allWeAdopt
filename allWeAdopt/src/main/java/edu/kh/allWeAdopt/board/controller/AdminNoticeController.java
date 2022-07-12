@@ -32,7 +32,6 @@ import com.google.gson.JsonObject;
 
 import edu.kh.allWeAdopt.board.model.service.NoticeService;
 import edu.kh.allWeAdopt.board.model.vo.BoardDetail;
-import edu.kh.allWeAdopt.board.model.vo.Image;
 import edu.kh.allWeAdopt.common.Util;
 
 @Controller
