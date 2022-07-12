@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,13 +15,30 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.kh.allWeAdopt.member.model.service.MyPageService;
 import edu.kh.allWeAdopt.member.model.vo.Member;
+
+
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.InputStreamReader;
+import java.io.StringReader;
+import java.net.URL;
+
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
+import javax.net.ssl.HttpsURLConnection;
+
+
 
 @Controller
 @RequestMapping("/member/myPage")
@@ -131,5 +149,80 @@ public class MyPageController {
 		
 		return "redirect:/member/myPage/updateInfo";
 	}
+	
+	
+	// 회원 탈퇴
+	@GetMapping("/secession")
+	public String secession() {
+		
+		return "member/myPage-secession";
+	}
+	
+	
+	// 회원 탈퇴
+	@PostMapping("/secession")		
+	public String secession(@ModelAttribute("loginMember") Member loginMember
+						   , SessionStatus status
+						   , HttpServletResponse resp
+						   , RedirectAttributes ra) {
+		
+		System.out.println(loginMember.getMemberNo() );
+		System.out.println(loginMember.getMemberPw() );
+		
+//		 회원 탈퇴 서비스 호출
+		int result = service.secession(loginMember);
+		
+		String message = null;
+		String path = null;
+		
+		if(result > 0) {
+			message = "탈퇴 되었습니다.";
+			path = "/";
+			
+			// 세션 없애기
+			status.setComplete();
+			
+		}else {
+			message = "현재 비밀번호가 일치하지 않습니다.";
+			path = "secession";
+		}
+		
+		ra.addFlashAttribute("message", message);
+		
+		return "redirect:" + path;
+	}
+		
+	
+	
+
+	// 리캡챠 
+	@ResponseBody
+	@PostMapping("/VerifyRecaptcha")
+	public int VerifyRecaptcha(HttpServletRequest request) {
+	    VerifyRecaptcha.setSecretKey("6LfbI-MgAAAAAEbo8STpY1P5G4yWj3vw5Sr93Q54");
+	    String gRecaptchaResponse = request.getParameter("recaptcha");
+	    
+	    
+	    try {
+	       if(VerifyRecaptcha.verify(gRecaptchaResponse)) {
+	    	   
+	    	   
+	    	   return 0; // 성공
+	    	   
+	       } else {
+	    	   
+	    	   return 1; // 실패
+	       }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return -1; //에러
+	    }
+	}
+	
+	
+	
+	
+	
+	
 
 }

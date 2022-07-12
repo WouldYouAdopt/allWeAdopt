@@ -152,6 +152,7 @@ public class KakaoController {
         	}
         	
         }
+        
 //      JSONObject kakaoInfo =  new JSONObject(userInfo);
 //        model.addAttribute("kakaoInfo", userInfo);
       

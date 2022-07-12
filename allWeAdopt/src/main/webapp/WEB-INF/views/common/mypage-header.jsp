@@ -16,7 +16,7 @@
                 <li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
             </ul>
             <ul class="navbar-nav ms-right mb-2 mb-lg-0 secession-button ">
-                <li class="nav-item"><a class="nav-link " href="#">탈퇴하기</a></li>
+                <li class="nav-item"><a class="nav-link " href="${contextPath}/member/myPage/secession">탈퇴하기</a></li>
             </ul>    
         </div>
     </nav> 

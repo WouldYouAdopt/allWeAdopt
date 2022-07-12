@@ -103,24 +103,6 @@
         <!-- Core theme JS-->
         <script src="${contextPath}/resources/js/scripts.js"></script>
 
-        <script>
-             $(document).ready(function() {
-            // $("#kakao-login-btn").on("click", function(){
-
-                var kakaoInfo = '${kakaoInfo}';
-
-                if(kakaoInfo != ""){
-                    var data = JSON.parse(kakaoInfo);
-
-                    alert("카카오로그인 성공 \n accessToken : " + data['accessToken']);
-                    alert(
-                    "user : \n" + "email : "
-                    + data['email']  
-                    + "\n nickname : " 
-                    + data['nickname']);
-                }
-            });  
-        </script>
 
 
 

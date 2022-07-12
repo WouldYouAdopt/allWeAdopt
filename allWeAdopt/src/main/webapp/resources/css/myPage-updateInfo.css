@@ -71,3 +71,13 @@
     border: none;
     opacity: 1;
 }
+
+
+.button-pink{
+   background-color: rgb(251, 131, 107)!important; 
+   border: none;
+}
+.button-pink:hover{
+   background-color: rgb(251, 131, 107);
+   border: none;
+}
