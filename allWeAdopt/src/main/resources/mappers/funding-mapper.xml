@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="fundingMapper">
+
+	<!-- 게시글 상세조회용 resultMap -->   
+	<resultMap type="fundingDetail" id="detail_rm">
+	
+		<id property="fundingNo" column="FUNDING_NO"/>
+		<result property="fundingTitle" column="FUNDING_TITLE"/>
+		<result property="fundingMiniTitle" column="FUNDING_MINI_TITLE"/>
+		<result property="fundingContent" column="FUNDING_CONTENT"/>
+		<result property="targetDonation" column="TARGET_DONATION"/>
+		<result property="fundingSeason" column="FUNDING_SEASON"/>
+		<result property="SuccessDonation" column="SUCCESS_DONATION"/>
+		<result property="fundingState" column="FUNDING_ST"/>
+		<result property="fundingThumbnail" column="FUNDING_THUMBNAIL"/>
+		<result property="deliveryFee" column="DELIVERY_FEE"/>
+		
+		<result property="CategoryName" column="CATEGORY_NM"/>
+		
+		<result property="month" column="MONTH"/>
+		<result property="startDate" column="STARTDATE"/>
+		<result property="endDate" column="ENDDATE"/>
+		<result property="leftDate" column="LEFTDATE"/>
+	</resultMap>
+	
+	<!-- 게시글 목록 조회용 Result Map -->
+	<resultMap type="funding" id="funding_rm">
+	
+		<id property="fundingNo" column="FUNDING_NO"/>
+		<result property="fundingTitle" column="FUNDING_TITLE"/>
+		
+		<result property="fundingMiniTitle" column="FUNDING_MINI_TITLE"/>
+		
+		<result property="targetDonation" column="TARGET_DONATION"/>
+		<result property="fundingSeason" column="FUNDING_SEASON"/>
+		<result property="SuccessDonation" column="SUCCESS_DONATION"/>
+		<result property="fundingState" column="FUNDING_ST"/>
+		<result property="fundingThumbnail" column="FUNDING_THUMBNAIL"/>
+		<result property="deliveryFee" column="DELIVERY_FEE"/>
+		
+		<result property="fundingCategory" column="CATEGORY_NM"/>
+		<result property="payDate" column="PAY_DT"/>
+	</resultMap>
+	
+	
+	
+
+	<!-- 펀딩 상세 내용 조회용 SQL -->
+	<select id="selectFundingDetail" resultMap="detail_rm">
+		SELECT FUNDING_NO,
+				FUNDING_TITLE,
+				FUNDING_MINI_TITLE,
+				FUNDING_CONTENT,
+				TO_CHAR(TARGET_DONATION,'999,999,999') AS TARGET_DONATION,
+				FUNDING_SEASON,
+				SUBSTR(FUNDING_SEASON,-2) AS MONTH,
+                TO_CHAR(TO_DATE(REPLACE(FUNDING_SEASON,'/',''),'YYYYMM'),'YYYY"년"MM"월"DD"일"') AS STARTDATE,
+                TO_CHAR(LAST_DAY(TO_DATE(REPLACE(FUNDING_SEASON,'/',''),'YYYYMM')),'YYYY"년"MM"월"DD"일"') AS ENDDATE,
+                TRUNC(LAST_DAY(TO_DATE(REPLACE(FUNDING_SEASON,'/',''),'YYYYMM'))-SYSDATE) AS LEFTDATE,
+				SUCCESS_DONATION,
+				FUNDING_ST,
+				FUNDING_THUMBNAIL,
+				DELIVERY_FEE,
+				CATEGORY_NM
+		FROM FUNDING
+		JOIN CATEGORY USING(FUNDING_CATEGORY)
+		WHERE FUNDING_NO = #{fundingNo}
+	</select>
+
+
+	<!-- 해당 회원의 참여한 펀딩 개수를 조회하는 SQL -->
+	<select id="getFundingCount" resultType="_int">
+		SELECT DISTINCT  count(*)
+		FROM PAYMENT
+		JOIN FUNDING USING(FUNDING_NO)
+		WHERE MEMBER_NO=${memberNo}
+	</select>
+		
+
+	<!-- [MY] 회원이 참여한 펀딩목록을 조회하는 SQL -->
+	<select id="selectMyFundingList" resultMap="funding_rm">
+		SELECT DISTINCT
+		FUNDING_NO
+		,FUNDING_TITLE
+		,CATEGORY_NM
+		,FUNDING_ST
+		,TO_CHAR(PAY_DT, 'YYYY-MM-DD')AS PAY_DT
+		FROM PAYMENT
+		JOIN FUNDING USING(FUNDING_NO)
+		JOIN CATEGORY USING(FUNDING_CATEGORY)
+		WHERE MEMBER_NO=#{memberNo}
+	</select>
+ 	
+ 	<!-- 현재 진행중인 펀딩 번호(interceptor) -->
+ 	<select id="selectNowFundingNo" resultType="_int">
+ 		SELECT FUNDING_NO
+ 		FROM FUNDING
+ 		WHERE FUNDING_ST='Y'
+ 	</select>
+ 	
+ 
+ 
+</mapper>

@@ -2,6 +2,7 @@ package edu.kh.allWeAdopt.member.model.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,17 @@ public class MyPageServiceImpl implements MyPageService{
 	@Override
 	public int pwConfirm(Member loginMember) {
 		
-		return dao.pwConfirm( loginMember );
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("memberNo", loginMember.getMemberNo());
+		
+		// db에서 현재 비밀번호 조회
+		String memberPw = dao.selectMemberPw( map );
+		
+		String inputPw = loginMember.getMemberPw();
+		
+		if(bCrypt.matches(inputPw,memberPw)) return 1;
+		else                                 return 0;
+		
 	}
 
 	// 내정보 수정 기능 구현

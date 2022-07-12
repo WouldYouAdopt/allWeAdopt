@@ -16,6 +16,17 @@
             </div>
         </div>
     </div>
+    
+<%-- 채팅 서버로 연결하는 함수 --%>
+    <form action="http://3.35.8.153:8080/weChat/list" method="POST" name="chatForm">
+        <input type="hidden"  name="member" value='${loginMember.memberJson}'>
+    </form>
+
+    <form action="http://3.35.8.153:8080/weChat/add" method="POST" name="addChatForm" id="addChatForm">
+        <input type="hidden" id="member"  name="member" value='${loginMember.memberJson}'>
+        <input type="hidden" id="targetMember"  name="targetMember" value=''>
+    </form>
+
 </footer>
 
 <%-- request에 message 속성이 존재하는 경우 alert창으로 해당 내용을 출력 --%>
@@ -26,5 +37,6 @@
         // page -> request -> session -> application 순서로 검색하여
         // 일치하는 속성이 있으면 출력
     </script>
-    
 </c:if> 
+
+ <script src="${contextPath}/resources/js/chat/chat.js"></script>

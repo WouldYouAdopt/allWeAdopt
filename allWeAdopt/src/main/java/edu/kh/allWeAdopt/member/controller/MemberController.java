@@ -24,6 +24,8 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.google.gson.Gson;
+
 import edu.kh.allWeAdopt.member.model.service.MemberService;
 import edu.kh.allWeAdopt.member.model.vo.Member;
 
@@ -130,6 +132,10 @@ public class MemberController {
 		
 		
 		if( loginMember != null) {
+			
+			
+			//회원 정보 JSON 형태로 저장
+			loginMember.setMemberJson(new Gson().toJson(loginMember));
 			
 			model.addAttribute("loginMember", loginMember);
 			

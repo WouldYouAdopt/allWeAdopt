@@ -15,15 +15,6 @@
 		<result property="secessionFlag" 	column="SECESSION_FL"/>
 	</resultMap>
 	
-	<!-- 내정보 수정 전 - 비밀번호 확인 -->
-	<select id="pwConfirm" resultType="_int">
-	SELECT COUNT(*) FROM MEMBER
-	WHERE MEMBER_NO = #{memberNo}
-	AND MEMBER_PW = #{memberPw}
-	AND SECESSION_FL = 'N'
-	</select>
-	
-	
 	<!-- 나의 정보 수정 -->
 	<update id="updateInfo">
 	UPDATE MEMBER SET 

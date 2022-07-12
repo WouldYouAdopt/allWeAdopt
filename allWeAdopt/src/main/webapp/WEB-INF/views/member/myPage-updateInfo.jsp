@@ -81,21 +81,26 @@
                                     </div>
                                     <div id="nameMsg" class="form-floating validate-area"></div>
 
-                                    <!-- 전화번호 -->
-                                    <div class="form-floating mb-3 confirm-area">
-                                        <input class="form-control" name="memberTel" id="memberTel" type="tel"  value="${loginMember.memberTel}" />
-                                        <label for="memberTel"><span>* </span>휴대폰 번호(-제외) </label>
-                                        <div class="spaceArea confirmBtnArea">
-                                            <button id="confirmBtn">인증</button>
-                                        </div>
-                                    </div>
 
-                                    <!-- 인증번호-->
-                                    <div class="form-floating mb-2 confirm-area">
-                                        <input class="form-control" id="number" type="tel"  />
-                                        <label for="number"><span>* </span>인증번호</label>
-                                    </div>
-                                    <div id="telMsg" class="form-floating validate-area"></div>
+                                    <c:if test="${loginMember.memberType=='M'}">
+
+                                        <!-- 전화번호 -->
+                                        <div class="form-floating mb-3 confirm-area">
+                                            <input class="form-control" name="memberTel" id="memberTel" type="tel"  value="${loginMember.memberTel}" />
+                                            <label for="memberTel"><span>* </span>휴대폰 번호(-제외) </label>
+                                            <div class="spaceArea confirmBtnArea">
+                                                <button id="confirmBtn">인증</button>
+                                            </div>
+                                        </div>
+
+                                        <!-- 인증번호-->
+                                        <div class="form-floating mb-2 confirm-area">
+                                            <input class="form-control" id="number" type="tel"  />
+                                            <label for="number"><span>* </span>인증번호</label>
+                                        </div>
+                                        <div id="telMsg" class="form-floating validate-area"></div>
+                                    
+                                    </c:if>
 
                                     <!-- 주소 -->			<!--  fn:split(문자열, '구분자')  -->
 					                <c:set var="addr"  value="${fn:split(loginMember.memberAddress, ',,')}"  />    
@@ -144,37 +149,40 @@
                                     </div>
                                 </form>
 
-                                <!-- 비밀번호 변경 폼 -->
-                                <form action="${contextPath}/member/myPage/updateInfo/2" method="POST" id="updatePw" onsubmit="return updateInfoValidate2()">
+                                <c:if test="${loginMember.memberType=='M'}">
+                                    <!-- 비밀번호 변경 폼 -->
+                                    <form action="${contextPath}/member/myPage/updateInfo/2" method="POST" id="updatePw" onsubmit="return updateInfoValidate2()">
 
-                                    <div class="form-floating mb-3 confirm-area updateTitle">
-                                        <p>비밀 번호 변경</p>
-                                    </div>
+                                        <div class="form-floating mb-3 confirm-area updateTitle">
+                                            <p>비밀 번호 변경</p>
+                                        </div>
 
-                                    <!-- 현재 비밀번호 -->
-                                    <div class="form-floating mb-3 confirm-area">
-                                        <input class="form-control" name="inputPw" id="inputPw" type="password"   />
-                                        <label for="inputPw"><span>* </span>비밀번호</label>
-                                    </div>
+                                        <!-- 현재 비밀번호 -->
+                                        <div class="form-floating mb-3 confirm-area">
+                                            <input class="form-control" name="inputPw" id="inputPw" type="password"   />
+                                            <label for="inputPw"><span>* </span>비밀번호</label>
+                                        </div>
 
-                                    <!-- 새 비밀번호 -->
-                                    <div class="form-floating mb-3 confirm-area">
-                                        <input class="form-control" name="newPw" id="newPw" type="password"   />
-                                        <label for="newPw"><span>* </span>새 비밀번호</label>
-                                    </div>
+                                        <!-- 새 비밀번호 -->
+                                        <div class="form-floating mb-3 confirm-area">
+                                            <input class="form-control" name="newPw" id="newPw" type="password"   />
+                                            <label for="newPw"><span>* </span>새 비밀번호</label>
+                                        </div>
 
-                                    <!-- 비밀번호 확인-->
-                                    <div class="form-floating mb-2 confirm-area">
-                                        <input class="form-control" id="newPwConfirm" type="password"  />
-                                        <label for="newPwConfirm"><span>* </span>새 비밀번호 확인</label>
-                                    </div>
-                                    <div id="pwMsg" class="form-floating validate-area"></div>
+                                        <!-- 비밀번호 확인-->
+                                        <div class="form-floating mb-2 confirm-area">
+                                            <input class="form-control" id="newPwConfirm" type="password"  />
+                                            <label for="newPwConfirm"><span>* </span>새 비밀번호 확인</label>
+                                        </div>
+                                        <div id="pwMsg" class="form-floating validate-area"></div>
 
-                                    <!-- Submit Button-->
-                                    <div class="d-grid">
-                                        <button class="btn btn-primary btn-lg" id="submitButton2" type="submit">변경하기</button>
-                                    </div>
-                                </form>
+                                        <!-- Submit Button-->
+                                        <div class="d-grid">
+                                            <button class="btn btn-primary btn-lg" id="submitButton2" type="submit">변경하기</button>
+                                        </div>
+                                    </form>
+
+                                </c:if>
                             </div>
                             
                         </div>

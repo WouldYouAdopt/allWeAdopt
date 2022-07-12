@@ -8,6 +8,7 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +16,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,10 +31,15 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.google.gson.JsonObject;
 
+import edu.kh.allWeAdopt.board.model.vo.Board;
+import edu.kh.allWeAdopt.member.model.vo.Member;
 import edu.kh.allWeAdopt.userBoard.model.service.UserBoardService;
+import edu.kh.allWeAdopt.userBoard.model.vo.Animal;
+import edu.kh.allWeAdopt.userBoard.model.vo.Area;
 
 @Controller
 @RequestMapping("/board")
+@SessionAttributes({"loginMember"})
 public class UserBoardController {
 
 	@Autowired
@@ -82,5 +90,34 @@ public class UserBoardController {
 		}
 		String a = jsonObject.toString();
 		return a;
+	}
+	
+	@PostMapping("/user/boardRegist")
+	public String userBoardRegist(Board board, Animal animal, Area area,
+			HttpSession session, @RequestParam("neuterings") String neuterings,
+			@RequestParam("genders") String genders,
+			@ModelAttribute("loginMember") Member loginMember) {
+		int boardNo = 0;
+		board.setMemberNo(loginMember.getMemberNo());
+		int result = service.userBoardRegist(board);
+		
+		if(result > 0) {
+			boardNo = service.getBoardNo();
+			area.setBoardNo(boardNo);
+			result = service.userBoardArea(area);
+		}
+		
+		if(result> 0) {
+			animal.setBoardNo(boardNo);
+			
+			if(genders.equals("수컷")) animal.setGender('M');
+			else if(genders.equals("암컷"))animal.setGender('W');
+			
+			if(neuterings.equals("완료")) animal.setNeutering('Y');
+			else if(neuterings.equals("미완료")) animal.setNeutering('N');
+			
+			result = service.userBoardAnimal(animal);
+		}
+		return "redirect:/board/user";
 	}
 }

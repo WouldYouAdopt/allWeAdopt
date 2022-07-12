@@ -30,7 +30,7 @@
                 <ul class="navbar-nav ms-auto  my-2 mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link" href="${contextPath}/board/shelter">보호소</a></li>
                     <li class="nav-item"><a class="nav-link" href="${contextPath}/board/user">사용자</a></li>
-                    <li class="nav-item"><a class="nav-link" href="${contextPath}/funding/detail?page=1">펀딩</a></li>
+                    <li class="nav-item"><a class="nav-link" href="${contextPath}/funding/detail/${nowFundingNo}?page=1">펀딩</a></li>
                     <li class="nav-item"><a class="nav-link" href="${contextPath}/findHospital">병원찾기</a></li>
 
                     <c:choose>
@@ -63,8 +63,8 @@
                                         <li><a class="dropdown-item" href="${contextPath}/member/myPage/pwConfirm">회원 정보 수정</a></li>
                                         <li><a class="dropdown-item" href="portfolio-item.html">관심 목록</a></li>
                                         <li><a class="dropdown-item" href="portfolio-item.html">작성글 목록</a></li>
-                                        <li><a class="dropdown-item" href="portfolio-item.html">펀딩 참여 내역</a></li>
-                                        <li><a class="dropdown-item" href="portfolio-item.html">채팅 목록</a></li>
+                                        <li><a class="dropdown-item" href="${contextPath}/funding/my/list">펀딩 참여 내역</a></li>
+                                        <li><a class="dropdown-item" href="javascript:void(0)" onclick="popUpOpne()">채팅 목록</a></li>
                                         <li><a class="dropdown-item" href="portfolio-item.html">문의하기</a></li>
                                         <li><a class="dropdown-item" href="${contextPath}/member/myPage/notice">공지사항</a></li>
                                         <c:if test="${  loginMember.memberType == 'M' }">
