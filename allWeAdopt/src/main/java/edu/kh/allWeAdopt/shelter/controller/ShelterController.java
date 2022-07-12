@@ -45,15 +45,15 @@ public class ShelterController {
 	@GetMapping("/mainShelter")
 	public String openShelter(Model model, @RequestParam(value="pageNo", required=false, defaultValue = "1") String pageNo,
 								@RequestParam(value="upkind", required=false, defaultValue = "")String upkind, 
-								@RequestParam(value="upr_cd", required=false, defaultValue = " ") String upr_cd,
-								@RequestParam(value="org_cd", required=false, defaultValue = " ") String org_cd) throws Exception {
+								@RequestParam(value="upr_cd", required=false, defaultValue = "") String upr_cd
+								/* @RequestParam(value="org_cd", required=false, defaultValue = " ") String org_cd */) throws Exception {
 		
 	    StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1543061/abandonmentPublicSrvc/abandonmentPublic"); /*URL*/
 	    urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=ORROf4zK3CwwkwCJ%2Fdt4FRDISXLZQ5w7%2B13CMxRIzMqZz504Vtr86DcBmJqTMgWJgCVfGnafTLBY6kHXgi9CIw%3D%3D"); /*Service Key*/
 	    urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode(pageNo, "UTF-8")); /*페이지 번호*/
 	    urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("9", "UTF-8")); /*한 페이지 결과 수(1,000 이하)*/
 	    urlBuilder.append("&" + URLEncoder.encode("upkind","UTF-8") + "=" + URLEncoder.encode(upkind, "UTF-8")); /*축종코드*/
-//	    urlBuilder.append("&" + URLEncoder.encode("upr_cd","UTF-8") + "=" + URLEncoder.encode(upr_cd, "UTF-8")); /*시도코드*/
+	    urlBuilder.append("&" + URLEncoder.encode("upr_cd","UTF-8") + "=" + URLEncoder.encode(upr_cd, "UTF-8")); /*시도코드*/
 //	    urlBuilder.append("&" + URLEncoder.encode("org_cd","UTF-8") + "=" + URLEncoder.encode(org_cd, "UTF-8")); /*시군구코드*/
 	    
 //	    urlBuilder.append("&" + URLEncoder.encode("_type","UTF-8") + "=" + URLEncoder.encode(" ", "UTF-8")); /*xml(기본값) 또는 json*/
@@ -143,7 +143,7 @@ public class ShelterController {
 	    model.addAttribute("list", list);	    
 	    model.addAttribute("pageNo", pageNo);	    
 	    model.addAttribute("upkind", upkind);	    
-//	    model.addAttribute("upr_cd", upr_cd);	    
+	    model.addAttribute("upr_cd", upr_cd);	    
 //	    model.addAttribute("org_cd", org_cd);	    
 
 		return "shelter/mainShelter";
