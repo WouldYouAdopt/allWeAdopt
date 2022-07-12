@@ -5,6 +5,7 @@ import java.util.Map;
 
 import edu.kh.allWeAdopt.funding.model.vo.Funding;
 import edu.kh.allWeAdopt.funding.model.vo.FundingDetail;
+import edu.kh.allWeAdopt.funding.model.vo.OrderDetail;
 
 public interface FundingService {
 
@@ -25,6 +26,12 @@ public interface FundingService {
 	 * @return nowFundingNo
 	 */
 	int selectNowFundingNo();
+
+	/**자신이 참여한 펀딩을 상세히 조회하기 위한 Service
+	 * @param paymentNo
+	 * @return
+	 */
+	OrderDetail selectOrderDetail(int paymentNo);
 
 
 }
