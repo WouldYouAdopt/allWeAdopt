@@ -40,8 +40,16 @@ public class MyFundingController {
 		Map<String, Object> map = null;
 		map = service.selectMyFundingList(memberNo,cp);
 		
-		model.addAttribute("map", map);
+		model.addAttribute("pagination", map.get("pagination"));
+		model.addAttribute("fundingList", map.get("fundingList"));
 		
 		return "funding/my-funding-list";
+	}
+	
+	
+	@GetMapping("/detail/${paymentNo}")
+	public String selectFundingDetail() {
+		
+		return "funding/my-funding-detail";
 	}
 }

@@ -19,7 +19,10 @@ public class Funding {
 	private String fundingThumbnail;  // 펀딩 섬네일 이미지
 	private int deliveryFee; //배송비
 	private String fundingCategory; //펀딩 종류
-	private String payDate; //펀딩 종류
+	private String payDate; //결제일
+
+	private int paymentNo; //결제번호
 	
+	private String orderState; //결제 상태
 
 }

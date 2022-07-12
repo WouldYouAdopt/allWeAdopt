@@ -24,6 +24,7 @@
 	
 		<id property="fundingNo" column="FUNDING_NO"/>
 		<result property="fundingTitle" column="FUNDING_TITLE"/>
+		<result property="paymentNo" column="PAYMENT_NO"/>
 		
 		<result property="fundingMiniTitle" column="FUNDING_MINI_TITLE"/>
 		
@@ -36,6 +37,7 @@
 		
 		<result property="fundingCategory" column="CATEGORY_NM"/>
 		<result property="payDate" column="PAY_DT"/>
+		<result property="orderState" column="ORDER_ST"/>
 	</resultMap>
 	
 	
@@ -72,13 +74,15 @@
 	<select id="selectMyFundingList" resultMap="funding_rm">
 		SELECT DISTINCT
 		FUNDING_NO
+    	,PAYMENT_NO
 		,FUNDING_TITLE
 		,CATEGORY_NM
-		,FUNDING_ST
+    	,ORDER_ST
 		,TO_CHAR(PAY_DT, 'YYYY-MM-DD')AS PAY_DT
 		FROM PAYMENT
 		JOIN FUNDING USING(FUNDING_NO)
 		JOIN CATEGORY USING(FUNDING_CATEGORY)
+		JOIN ORDER_ST USING(ORDER_ST_CD)
 		WHERE MEMBER_NO=#{memberNo}
 	</select>
  	

@@ -2,9 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 
+
 <!DOCTYPE html>
 <html>
-
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -39,7 +39,7 @@
 
 	        <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
-            
+        
             <section class="py-4">
                 <!-- 상단 메뉴 영역. -->
                 <div class="text-center mb-5" id="TOT">
@@ -61,48 +61,56 @@
                                 <thead>
                                   <tr>
                                     <th scope="col" class="dt1">펀딩번호</th>
-                                    <th scope="col" class="dt2">주문번호</th>
+                                    <th scope="col" class="dt2">결제번호</th> <%-- 주문번호칸이 따로 필요 없는것 같기도..? --%>
                                     <th scope="col" class="dt3">카테고리</th>
                                     <th scope="col" class="dt4">펀딩제목</th>
                                     <th scope="col" class="dt5">주문상태</th>
                                     <th scope="col">펀딩 결제일</th>
                                   </tr>
                                 </thead>
+
                                 <tbody>
-                                  <tr>
-                                    <th scope="row">1</th>
-                                    <td>h12132</td>
-                                    <td>간식</td>
-                                    <td class="fundingTitle"><a href="">간식 관련 펀딩 제목입니다.</a></td>
-                                    <td>결제 완료</td>
-                                    <td>2022//09/21</td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">2</th>
-                                    <td>h12172</td>
-                                    <td>건강</td>
-                                    <td class="fundingTitle"><a href="">건강 관련 펀딩 제목입니다.</a></td>
-                                    <td>결제 완료</td>
-                                    <td>2022//09/21</td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">3</th>
-                                    <td>h12132</td>
-                                    <td>장난감</td>
-                                    <td class="fundingTitle"><a href="">장난감 관련 펀딩 제목입니다.</a></td>
-                                    <td>결제 완료</td>
-                                    <td>2022//09/21</td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">4</th>
-                                    <td>h12132</td>
-                                    <td>보호</td>
-                                    <td class="fundingTitle"><a href="">보호 관련 펀딩 제목입니다.</a></td>
-                                    <td>결제 완료</td>
-                                    <td>2022//09/21</td>
-                                  </tr>
+
+                                  <c:choose>
+                                    <c:when test='${empty fundingList}'>  
+
+                                      <tr>
+                                        <td colspan="6" style="font-size:24px; font-weight:bold;">참여하신 펀딩이 없습니다.</td>
+                                      </tr>
+
+                                   </c:when>      
+
+                                   <c:otherwise>   
+
+                                    
+
+                                    <!-- 향상된 for문처럼 사용 -->
+                                      <c:forEach var="funding" items="${fundingList}">
+                                          <tr>
+                                              <td>${funding.fundingNo}</td>
+                                              <td>${funding.paymentNo}</td>
+                                              <td>${funding.fundingCategory}</td>
+                                              <td> 
+                                                  <a href="detail/${funding.paymentNo}">${funding.fundingTitle}</a>    
+                                              </td>
+
+                                              <td>${funding.orderState}</td>
+
+                                              <td>${funding.payDate}</td>
+                                          </tr>
+                                      </c:forEach>
+
+                                    <%-- ${fundingList}--%>
+
+                                   </c:otherwise>
+                                  </c:choose>
+                                    
                                 </tbody>
                               </table>
+
+
+
+
 
 
                               <!-- 페이지 네이션 영역 시작 -->
