@@ -79,6 +79,7 @@
                 <div class="container px-2 my-1 d-flex justify-content-end">
                     <a class="btn btn-primary mt-3 mx-3 button-pink" href="${contextPath}/admin/notice/write">수정</a>
                     <a class="btn btn-primary mt-3 button-pink" href="${contextPath}/admin/notice/delete">삭제</a>
+                    <button class="btn btn-primary mt-3 button-pink" type="button" id="goToListBtn">목록으로</button>
                 </div>
             </section>
 
@@ -89,8 +90,14 @@
 
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+        <script>
+            const contextPath = "${contextPath}";
+        </script>
         
         <!-- Core theme JS-->
         <script src="${contextPath}/resources/js/scripts.js"></script>
+
+        <script src="${contextPath}/resources/js/board/notice.js"></script>
     </body>
 </html>

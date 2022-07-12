@@ -84,6 +84,7 @@
                                     <label for="exampleFormControlTextarea1" class="form-label">문의내용 작성</label>
                                     <textarea id="summernote" name="boardContent"></textarea>    
                                     <button class="btn btn-primary mt-3 button-pink">등록</button>
+                                    <button class="btn btn-primary mt-3 button-pink" type="button" id="goToListBtn">목록으로</button>
                                 
                             </div>
                         </form>
@@ -107,17 +108,16 @@
         <!-- 썸머노트 -->
         <script>
             $(document).ready(function() {
-                //여기 아래 부분
                 $('#summernote').summernote({
                     placeholder: '내용.',
                     tabsize: 2,
                     height: 350,
                     toolbar: [
                         // [groupName, [list of button]]
-                        // ['fontname', ['fontname']],
-                        // ['fontsize', ['fontsize']],
-                        // ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
-                        // ['color', ['forecolor','color']],
+                        ['fontname', ['fontname']],
+                        ['fontsize', ['fontsize']],
+                        ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+                        ['color', ['forecolor','color']],
                         // ['table', ['table']],
                         // ['para', ['ul', 'ol', 'paragraph']],
                         // ['height', ['height']],
@@ -136,9 +136,9 @@
             });
         </script>
 
-        <%-- <script src="${contextPath}/resources/summernote/summernote-lite.min.js.map"></script> --%>
-
         <script src="${contextPath}/resources/js/board/summerNote.js"></script>
+
+        <script src="${contextPath}/resources/js/board/notice.js"></script>
 
     </body>
 </html>
