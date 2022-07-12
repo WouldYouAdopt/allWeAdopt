@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="fundingMapper">
 
-		<!-- 게시글 상세조회용 resultMap -->   
+	<!-- 게시글 상세조회용 resultMap -->   
 	<resultMap type="fundingDetail" id="detail_rm">
 	
 		<id property="fundingNo" column="FUNDING_NO"/>
@@ -17,12 +17,31 @@
 		<result property="deliveryFee" column="DELIVERY_FEE"/>
 		
 		<result property="CategoryName" column="CATEGORY_NM"/>
-		
-
-
 	</resultMap>
+	
+	<!-- 게시글 목록 조회용 Result Map -->
+	<resultMap type="funding" id="funding_rm">
+	
+		<id property="fundingNo" column="FUNDING_NO"/>
+		<result property="fundingTitle" column="FUNDING_TITLE"/>
+		
+		<result property="fundingMiniTitle" column="FUNDING_MINI_TITLE"/>
+		
+		<result property="targetDonation" column="TARGET_DONATION"/>
+		<result property="fundingSeason" column="FUNDING_SEASON"/>
+		<result property="SuccessDonation" column="SUCCESS_DONATION"/>
+		<result property="fundingState" column="FUNDING_ST"/>
+		<result property="fundingThumbnail" column="FUNDING_THUMBNAIL"/>
+		<result property="deliveryFee" column="DELIVERY_FEE"/>
+		
+		<result property="fundingCategory" column="CATEGORY_NM"/>
+		<result property="payDate" column="PAY_DT"/>
+	</resultMap>
+	
+	
+	
 
-
+	<!-- 펀딩 상세 내용 조회용 SQL -->
 	<select id="selectFundingDetail" resultMap="detail_rm">
 		SELECT FUNDING_TITLE,
 				FUNDING_MINI_TITLE,
@@ -38,7 +57,31 @@
 		JOIN CATEGORY USING(FUNDING_CATEGORY)
 		WHERE FUNDING_NO = #{fundingNo}
 	</select>
- 
+
+
+	<!-- 해당 회원의 참여한 펀딩 개수를 조회하는 SQL -->
+	<select id="getFundingCount" resultType="_int">
+		SELECT DISTINCT  count(*)
+		FROM PAYMENT
+		JOIN FUNDING USING(FUNDING_NO)
+		WHERE MEMBER_NO=${memberNo}
+	</select>
+		
+
+	<!-- [MY] 회원이 참여한 펀딩목록을 조회하는 SQL -->
+	<select id="selectMyFundingList" resultMap="funding_rm">
+		SELECT DISTINCT
+		FUNDING_NO
+		,FUNDING_TITLE
+		,CATEGORY_NM
+		,FUNDING_ST
+		,TO_CHAR(PAY_DT, 'YYYY-MM-DD')AS PAY_DT
+		FROM PAYMENT
+		JOIN FUNDING USING(FUNDING_NO)
+		JOIN CATEGORY USING(FUNDING_CATEGORY)
+		WHERE MEMBER_NO=#{memberNo}
+	</select>
+ 	
  	
  	
  

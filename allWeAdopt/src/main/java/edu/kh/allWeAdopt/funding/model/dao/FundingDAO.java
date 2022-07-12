@@ -1,9 +1,14 @@
 package edu.kh.allWeAdopt.funding.model.dao;
 
+import java.util.List;
+
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import edu.kh.allWeAdopt.board.model.vo.Pagination;
+import edu.kh.allWeAdopt.funding.model.vo.Funding;
 import edu.kh.allWeAdopt.funding.model.vo.FundingDetail;
 
 @Repository
@@ -18,6 +23,27 @@ public class FundingDAO {
 	 */
 	public FundingDetail selectFundingDetail(int fundingNo) {
 		return sqlSession.selectOne("fundingMapper.selectFundingDetail",fundingNo);
+	}
+
+	
+	/**페이지 네이션을 만들기 위한 내가 참여한 펀딩의 개수를 조회하는 DAO
+	 * @param memberNo
+	 * @return
+	 */
+	public int getFundingCount(int memberNo) {
+		return sqlSession.selectOne("fundingMapper.getFundingCount",memberNo);
+	}
+
+
+	/**해당 회원의 펀딩 목록을 조회하는 DAO
+	 * @param pagination
+	 * @param memberNo
+	 * @return
+	 */
+	public List<Funding> selectBoardList(Pagination pagination, int memberNo) {
+		int offset = (pagination.getCurrentPage() - 1) * pagination.getLimit();
+		RowBounds rowBounds = new RowBounds(offset, pagination.getLimit());
+		return sqlSession.selectList("fundingMapper.selectMyFundingList", memberNo, rowBounds);
 	}
 
 }

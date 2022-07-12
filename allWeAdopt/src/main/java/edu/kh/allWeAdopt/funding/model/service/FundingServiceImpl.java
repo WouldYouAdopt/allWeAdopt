@@ -1,9 +1,15 @@
 package edu.kh.allWeAdopt.funding.model.service;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import edu.kh.allWeAdopt.board.model.vo.Pagination;
 import edu.kh.allWeAdopt.funding.model.dao.FundingDAO;
+import edu.kh.allWeAdopt.funding.model.vo.Funding;
 import edu.kh.allWeAdopt.funding.model.vo.FundingDetail;
 
 @Service
@@ -27,6 +33,28 @@ public class FundingServiceImpl implements FundingService {
 		
 		return dao.selectFundingDetail(fundingNo);
 	}
+
+	
+	
+	//자신의 펀딩 목록 조회
+	@Override
+	public Map<String, Object> selectMyFundingList(int memberNo,int cp) {
+
+		//자신이 참여한 모든 펀딩 개수를 조회
+		int listCount = dao.getFundingCount(memberNo);
+		Pagination pagination = new Pagination(cp, listCount);
+		
+		List<Funding> fundingList = dao.selectBoardList(pagination, memberNo);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("pagination", pagination);
+		map.put("fundingList", fundingList);
+		
+		return map;
+	}
+	
+	
 	
 	
 	
