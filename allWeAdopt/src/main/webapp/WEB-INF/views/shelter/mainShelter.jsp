@@ -106,12 +106,9 @@
                                     <h3><div class="badge bg-primary bg-gradient rounded-pill mb-2">New</div></h3>
                                         <a class="text-decoration-none link-dark stretched-link" href="../shelter/shelterDetail/${shelter.desertionNo}" >
                                             <li class="h5 card-title mb-3">종류 : ${shelter.kindCd}</li>
-                                            <%-- <li class="h5 card-title mb-3">색깔 : ${shelter.colorCd}</li>
-                                            <li class="h5 card-title mb-3">나이 : ${shelter.age}</li>
-                                            <li class="h5 card-title mb-3">무게 : ${shelter.weight}</li> --%>
                                             <li class="h5 card-title mb-3">발견 날짜 : ${shelter.happenDt}</li>
                                             <li class="h5 card-title mb-3">발견 장소 : ${shelter.happenPlace}</li>
-                                            <%-- <li class="h5 card-title mb-3">특징 : ${shelter.specialMark}</li> --%>
+
                                         </a>
                                     </div>
                                 <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
@@ -120,8 +117,6 @@
                                             <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d" alt="..." />
                                             <div class="small">
                                                 <div class="fw-bold">보호소 : ${shelter.careNm}</div>
-                                                <%-- <div class="text-muted">보호소 주소 : ${shelter.careAddr}</div>
-                                                <div class="text-muted">보호소 전화번호 : ${shelter.careTel}</div> --%>
                                             </div>
                                         </div>
                                     </div>
