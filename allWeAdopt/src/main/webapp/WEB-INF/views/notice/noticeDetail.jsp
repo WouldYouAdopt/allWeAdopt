@@ -77,9 +77,25 @@
 
                 <!-- 버튼 영역 -->
                 <div class="container px-2 my-1 d-flex justify-content-end">
-                    <a class="btn btn-primary mt-3 mx-3 button-pink" href="${contextPath}/admin/notice/write">수정</a>
-                    <a class="btn btn-primary mt-3 button-pink" href="${contextPath}/admin/notice/delete">삭제</a>
-                    <button class="btn btn-primary mt-3 button-pink" type="button" id="goToListBtn">목록으로</button>
+                    <c:if test="${loginMember.memberNo == detail.memberNo || loginMember.memberType == 'A'}">
+
+                        <%-- cp가 없을 경우에 대한 처리 --%>
+                        <c:if test="${empty param.cp}">
+                            <!-- 파라미터에 cp가 없을 경우 1 -->
+                            <c:set var="cp" value="1" />
+                        </c:if>
+
+                        <c:if test="${!empty param.cp}">
+                            <!-- 파라미터에 cp가 있을 경우 param.cp -->
+                            <c:set var="cp" value="${param.cp}" />
+                        </c:if>
+                                                        <%-- 현재위치 : /board/detail/1/1523 --%>
+                                                        <%-- 목표위치 : /board/write/1/ --%>
+                        <a class="btn btn-primary mt-3 mx-1 button-pink" onclick="location.href='../write/?mode=update&cp=${cp}&no=${detail.boardNo}'"">수정</a>
+                        <a class="btn btn-primary mt-3 mx-1 button-pink" id="deleteBtn">삭제</a>
+
+                    </c:if>
+                    <button class="btn btn-primary mt-3 mx-1 button-pink" type="button" id="goToListBtn">목록으로</button>
                 </div>
             </section>
 
@@ -93,6 +109,16 @@
 
         <script>
             const contextPath = "${contextPath}";
+            
+            const boardNo = "${detail.boardNo}";
+
+            // 로그인한 회원 번호
+            const loginMemberNo = "${loginMember.memberNo}";
+            // -> 로그인 O  : "10";
+            // -> 로그인 X  : "";  (빈문자열)
+
+            const memberType = "${loginMember.memberType}";
+
         </script>
         
         <!-- Core theme JS-->

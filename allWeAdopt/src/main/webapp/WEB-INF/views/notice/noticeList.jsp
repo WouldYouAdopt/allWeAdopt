@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page import = "java.util.Calendar" %>
+<%
+  String Date = new java.text.SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date());
+  String Today = new java.text.SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date());
+%>
 
 <!-- map에 저장된 값을 각각 변수에 저장 -->
 
@@ -27,6 +33,21 @@
 
         <!-- main css -->
         <link rel="stylesheet" href="${contextPath}/resources/css/main-style.css">
+
+        <style>
+        .new{
+            background-color: rgb(251, 131, 107);
+            color : white;
+            font-size : 8px;
+            border-radius : 5px;
+            padding : 0px 2px;
+            margin: auto 4px;
+        }
+
+        .newa{
+            display: flex;
+        }
+        </style>
         
     </head>
     <body class="d-flex flex-column">
@@ -51,6 +72,7 @@
             <section class="py-0">
                 <div class="container px-5 my-1">
                     <div class="row gx-5 align-items-center">
+
                         <c:if test="${empty nList}">
 
                             <div>게시글이 없습니당. </div>
@@ -58,6 +80,8 @@
                         </c:if>
 
                         <c:if test="${!empty nList}">
+
+                            
 
                             <table class="table boardList">
                                 <thead >
@@ -68,13 +92,41 @@
                                 </tr>
                                 </thead>
                                 <tbody>     
-
+                                    <c:set value="<%=Date%>" var="today" />
                                     <c:forEach var="n" items="${nList}">
-                                        <tr>
-                                            <th scope="row" class="col-sm-1 text-center" >${n.boardNo}</th>
-                                            <td><a href="${contextPath}/admin/notice/detail/${n.boardNo}?cp=${pagination.currentPage}">${n.boardTitle}</a></td>
-                                            <td>${n.createDate}</td>
-                                        </tr>
+                                        
+                                        <%-- BOARD_ST ='N'--%>
+                                        <c:if test="${n.boardSt=='N'}">
+
+                                            <c:choose>
+                                                <c:when test="${ n.category == today }"> 
+                                                    <tr>
+                                                        <th scope="row" class="col-sm-1 text-center" >${n.boardNo}</th>
+                                                        <td><a href="${contextPath}/admin/notice/detail/${n.boardNo}?cp=${pagination.currentPage}" class="newa">${n.boardTitle} <div class="new">new</div></a></td>
+                                                        <td>${n.createDate}</td>
+                                                    </tr>
+                                                </c:when>
+
+                                                <c:otherwise>
+                                                    <tr>
+                                                        <th scope="row" class="col-sm-1 text-center" >${n.boardNo}</th>
+                                                        <td><a href="${contextPath}/admin/notice/detail/${n.boardNo}?cp=${pagination.currentPage}">${n.boardTitle}</a></td>
+                                                        <td>${n.createDate}</td>
+                                                    </tr>
+                                                </c:otherwise>
+                                            </c:choose>
+
+                                        </c:if>
+
+                                        <%-- BOARD_ST ='Y'--%>
+                                        <c:if test="${n.boardSt=='Y'}">
+                                            <tr>
+                                                <th scope="row" class="col-sm-1 text-center" >${n.boardNo}</th>
+                                                <td><a href="${contextPath}/admin/notice/detail/${n.boardNo}?cp=${pagination.currentPage}">${n.boardTitle}<span> [삭제된 게시글] </span></a></td>
+                                                <td>${n.createDate}</td>
+                                            </tr>
+                                        </c:if>
+
                                     </c:forEach>
 
                                 </tbody>
@@ -115,7 +167,7 @@
 
                                 <li class="page-item"><a class="page-link nav-text-color" href="${url}${pagination.nextPage}">Next</a></li>
 
-                                <li><a class="btn btn-primary mx-3 button-pink" href="${contextPath}/admin/notice/write?cp=${pagination.currentPage}">글작성</a></li>
+                                <li><a class="btn btn-primary mx-3 button-pink" href="${contextPath}/admin/notice/write?mode=insert&cp=${pagination.currentPage}">글작성</a></li>
 
                             </ul>
                             

@@ -66,8 +66,8 @@
                             <div class="md-10"></div>
 
                             <div class="col-md-5 col-sm-6 mt-3">
-                                <label for="exampleFormControlInput3" class="form-label">게시글 제목</label>
-                                <input type="text" name="boardTitle" class="form-control" id="exampleFormControlInput3" placeholder="게시글의 제목을 입력하세요..."  >
+                                <label for="exampleFormControlInput3" class="form-label"></label>
+                                <input type="text" name="boardTitle" class="form-control" id="exampleFormControlInput3" placeholder="게시글의 제목을 입력하세요..." value="${detail.boardTitle}" >
                             </div>
 
                             <div class="md-10"></div>
@@ -81,10 +81,26 @@
 
                             <div class="mb-3 mt-3">
                                 
-                                    <label for="exampleFormControlTextarea1" class="form-label">문의내용 작성</label>
-                                    <textarea id="summernote" name="boardContent"></textarea>    
-                                    <button class="btn btn-primary mt-3 button-pink">등록</button>
-                                    <button class="btn btn-primary mt-3 button-pink" type="button" id="goToListBtn">목록으로</button>
+                                    <label for="exampleFormControlTextarea1" class="form-label"></label>
+                                    <textarea id="summernote" name="boardContent">${detail.boardContent}</textarea>    
+
+
+                                    <!-- 숨겨진 값(hidden) : mode, boardNo, cp-->
+                                    <input type="hidden" name="mode" value="${param.mode}">
+                                    <input type="hidden" name="boardNo" value="${empty param.no ? 0 : param.no}">
+                                    <input type="hidden" name="cp" value="${param.cp}">
+
+                                    <button class="btn btn-primary mt-3 mx-1 button-pink">등록</button>
+
+                                    <!-- insert 모드 -->
+                                    <c:if test="${param.mode == 'insert'}">
+                                        <button class="btn btn-primary mt-3 mx-1 button-pink" type="button" id="goToListBtn">목록으로</button>
+                                    </c:if>
+                                    
+                                    <!-- update 모드 -->
+                                    <c:if test="${param.mode == 'update'}">
+                                        <button class="btn btn-primary mt-3 mx-1 button-pink" type="button" onclick="location.href='${header.referer}'">이전으로</button>                           
+                                    </c:if>
                                 
                             </div>
                         </form>

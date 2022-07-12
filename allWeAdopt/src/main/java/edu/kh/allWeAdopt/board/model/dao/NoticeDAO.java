@@ -57,6 +57,24 @@ public class NoticeDAO {
 		return sqlSession.insert("noticeMapper.insertBoard", detail);
 	}
 
+	/** 게시글 수정 DAO
+	 * @param detail
+	 * @return result
+	 */
+	public int updateBoard(BoardDetail detail) {
+		
+		return sqlSession.update("noticeMapper.updateBoard", detail);
+	}
+
+	/** 게시글 삭제 DAO
+	 * @param boardNo
+	 * @return result
+	 */
+	public int deleteBoard(int boardNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("noticeMapper.deleteBoard", boardNo);
+	}
+
 
 
 }

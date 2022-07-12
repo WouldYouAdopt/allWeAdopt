@@ -82,25 +82,22 @@
                                     <div id="nameMsg" class="form-floating validate-area"></div>
 
 
-                                    <c:if test="${loginMember.memberType=='M'}">
-
-                                        <!-- 전화번호 -->
-                                        <div class="form-floating mb-3 confirm-area">
-                                            <input class="form-control" name="memberTel" id="memberTel" type="tel"  value="${loginMember.memberTel}" />
-                                            <label for="memberTel"><span>* </span>휴대폰 번호(-제외) </label>
-                                            <div class="spaceArea confirmBtnArea">
-                                                <button id="confirmBtn">인증</button>
-                                            </div>
+                                    <!-- 전화번호 -->
+                                    <div class="form-floating mb-3 confirm-area">
+                                        <input class="form-control" name="memberTel" id="memberTel" type="tel"  value="${loginMember.memberTel}" />
+                                        <label for="memberTel"><span>* </span>휴대폰 번호(-제외) </label>
+                                        <div class="spaceArea confirmBtnArea">
+                                            <button id="confirmBtn">인증</button>
                                         </div>
+                                    </div>
 
-                                        <!-- 인증번호-->
-                                        <div class="form-floating mb-2 confirm-area">
-                                            <input class="form-control" id="number" type="tel"  />
-                                            <label for="number"><span>* </span>인증번호</label>
-                                        </div>
-                                        <div id="telMsg" class="form-floating validate-area"></div>
+                                    <!-- 인증번호-->
+                                    <div class="form-floating mb-2 confirm-area">
+                                        <input class="form-control" id="number" type="tel"  />
+                                        <label for="number"><span>* </span>인증번호</label>
+                                    </div>
+                                    <div id="telMsg" class="form-floating validate-area"></div>
                                     
-                                    </c:if>
 
                                     <!-- 주소 -->			<!--  fn:split(문자열, '구분자')  -->
 					                <c:set var="addr"  value="${fn:split(loginMember.memberAddress, ',,')}"  />    
@@ -131,9 +128,14 @@
                                                 <img src="${contextPath}/resources/images/user.png" id="profileImg">
                                             </c:if>
 
-                                            <c:if test="${!empty loginMember.profileImage}">
+                                            <c:if test="${!empty loginMember.profileImage && loginMember.memberType == 'M'}">
                                                 <img src="${contextPath}/${loginMember.profileImage}" id="profileImg">
                                             </c:if>
+
+                                            <c:if test="${!empty loginMember.profileImage && loginMember.memberType == 'K'}">
+                                                <img src="${loginMember.profileImage}" id="profileImg">
+                                            </c:if>
+
                                         </div>
                                         <div class="imageBtnArea">
                                             <input id="profileImage" type="file" name="uploadImage" accept="image/*">

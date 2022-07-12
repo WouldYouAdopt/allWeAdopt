@@ -14,6 +14,10 @@ import edu.kh.allWeAdopt.board.model.vo.Board;
 import edu.kh.allWeAdopt.board.model.vo.BoardDetail;
 import edu.kh.allWeAdopt.board.model.vo.Pagination;
 
+/**
+ * @author Computer
+ *
+ */
 @Service
 public class NoticeServiceImpl implements NoticeService{
 	
@@ -55,12 +59,29 @@ public class NoticeServiceImpl implements NoticeService{
 		return dao.selectNoticeDetail(boardNo);
 	}
 
-	// 게시글 작성
+	// 게시글 작성 기능 구현
 	@Override
 	public int insertBoard(BoardDetail detail) {
 		
 		return dao.insertBoard(detail);
+	}
+
+	// 게시글 수정 기능 구현
+	@Override
+	public int updateBoard(BoardDetail detail) {
+		
+		return dao.updateBoard(detail);
+	}
+
+	// 게시글 삭제 기능 구현
+	@Override
+	public int deleteBoard(int boardNo) {
+		// TODO Auto-generated method stub
+		return dao.deleteBoard(boardNo);
 	}	
+	
+	
+	
 
 	
 

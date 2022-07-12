@@ -71,7 +71,28 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public int emailDupCheck( String memberEmail ) {
 		
-		return dao.emailDupCheck( memberEmail );
+		Member mem = dao.emailDupCheck( memberEmail );
+		
+		int result = 0;
+		// mem이 null이 아닐 때 => 가입된 이력 있음
+		if(mem != null) {
+			
+			
+			if(mem.getMemberType().equals("M") || mem.getMemberType().equals("A")) {
+				result = 1; // 사이트 가입 회원
+			}
+			
+			if(mem.getMemberType().equals("K")) {
+				result =  2; // 카카오 가입 회원
+			}
+			
+		}else {
+			// mem이 null일 때
+			result = 0; // 중복 없음
+		}
+		System.out.println(result);
+		return result;
+		
 	}
 
 

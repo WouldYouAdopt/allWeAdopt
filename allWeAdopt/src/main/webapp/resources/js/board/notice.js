@@ -32,3 +32,23 @@
     }
 
 })();
+
+
+
+// 즉시 실행 함수
+(function(){
+    const deleteBtn = document.getElementById("deleteBtn"); // 존재하지 않으면 null
+
+    if(deleteBtn != null){ // 버튼이 화면에 존재할 때
+        deleteBtn.addEventListener("click", function(){
+
+            let url = contextPath + "/admin/notice/delete/"+ boardNo ; // 상대경로 형식으로 작성
+
+            if( confirm("정말로 삭제 하시겠습니까?") ){
+                location.href = url; // get방식으로 url에 요청
+            }
+
+        });
+    }
+
+})();
