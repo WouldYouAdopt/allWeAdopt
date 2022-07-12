@@ -1,84 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>결제 진행</title>
-        
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <!-- Bootstrap icons-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="/allWeAdopt/src/main/webapp/resources/css/styles.css" rel="stylesheet" />
-        <link href="/allWeAdopt/src/main/webapp/resources/css/funding/funding-payment.css" rel="stylesheet" />
- 
-        <!-- 폰트어썸 연결 -->
-        <script src="https://kit.fontawesome.com/ea629e8085.js" crossorigin="anonymous"></script>
-       </head>
-    <body class="d-flex flex-column">
-        <main class="flex-shrink-0">
-            <!-- Navigation-->
-            
-<header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-white" style="border-bottom: 1px solid;">
-        <div class="container px-5">
-            <a class="navbar-brand pt-1" href="${contextPath}">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 291.1 41.24" id="logo">
-					<defs><style>.cls-1{fill:#fb836b;}.cls-2{fill:#373737;}#logo{width:240px}</style></defs>
-					<path class="cls-2" d="M143.1,30.74c.1,1.4,.6,2.5,1.4,3.4,.8,.8,1.9,1.3,3.3,1.3,.8,0,1.5-.1,2.3-.4,.7-.3,1.2-.7,1.6-1.3h8.5c-.9,2.5-2.4,4.4-4.7,5.6s-4.8,1.9-7.6,1.9c-1.9,0-3.7-.3-5.3-.8-1.6-.6-3.1-1.4-4.3-2.4-1.2-1.1-2.1-2.4-2.8-3.9s-1-3.3-1-5.3c0-1.7,.3-3.3,.9-4.9,.6-1.5,1.5-2.9,2.6-4,1.1-1.2,2.5-2.1,4-2.7,1.6-.6,3.3-1,5.1-1,4.6,0,8,1.2,10.3,3.7,2.2,2.5,3.3,6.1,3.3,10.9h-17.6v-.1Zm8.7-4.7c0-1.1-.4-2.1-1.1-2.9-.8-.8-1.7-1.2-2.9-1.2-2.7,0-4.3,1.3-4.7,4h8.7v.1Z"/>
-					<path class="cls-1" d="M110.6,3.84c-.3-5.1-6.5-4.6-8.9-1.5-2.4-3.1-8.6-3.5-8.9,1.5-.2,4.8,5.2,8.4,8.8,10.3v.1h.2v-.1c3.6-2,9.1-5.6,8.8-10.3Z"/>
-					<g>
-						<path class="cls-2" d="M176.1,16.44h7.3l8.8,24.2h-7.7l-1-3.5h-7.7l-1.1,3.5h-7.5l8.9-24.2Zm5.8,15.6l-2.2-7.5h-.1l-2.3,7.5h4.6Z"/>
-						<path class="cls-2" d="M193.8,16.44h12.3c1.9,0,3.6,.3,5,1s2.5,1.6,3.4,2.7c.9,1.1,1.5,2.4,1.9,3.9,.4,1.4,.6,2.9,.6,4.5,0,3.8-1,6.8-3.1,8.9s-5.2,3.2-9.3,3.2h-10.8V16.44h0Zm7.5,18h2.9c1.1,0,2-.2,2.7-.6,.7-.4,1.3-.9,1.6-1.5,.4-.6,.6-1.3,.8-1.9,.1-.7,.2-1.4,.2-2,0-.5-.1-1.1-.2-1.7-.1-.6-.4-1.2-.8-1.9-.4-.6-1-1.1-1.8-1.6-.8-.4-1.8-.6-3.1-.6h-2.4v11.8h.1Z"/>
-						<path class="cls-2" d="M220.4,23.44c.6-1.6,1.4-2.9,2.5-4s2.4-2,3.9-2.6c1.5-.6,3.2-.9,5-.9s3.5,.3,5,.9c1.5,.6,2.8,1.5,3.9,2.6s1.9,2.5,2.5,4c.6,1.6,.9,3.3,.9,5.1s-.3,3.5-.9,5.1-1.4,2.9-2.5,4-2.4,2-3.9,2.6-3.2,.9-5,.9-3.5-.3-5-.9c-1.5-.6-2.8-1.5-3.9-2.6-1.1-1.1-1.9-2.5-2.5-4-.6-1.6-.9-3.3-.9-5.1,0-1.8,.3-3.5,.9-5.1Zm7.1,8.4c.3,.9,.7,1.6,1.2,2.1s1,.8,1.5,1.1,1.1,.3,1.6,.3,1.1-.1,1.6-.3,1.1-.6,1.5-1.1c.5-.5,.9-1.2,1.2-2.1s.5-2,.5-3.2-.2-2.3-.5-3.2-.7-1.6-1.2-2.1-1-.8-1.5-1.1c-.5-.2-1.1-.3-1.6-.3s-1.1,.1-1.6,.3-1.1,.6-1.5,1.1c-.5,.5-.9,1.2-1.2,2.1-.3,.9-.5,2-.5,3.2s.2,2.3,.5,3.2Z"/>
-						<path class="cls-2" d="M247.3,16.44h12.5c1.6,0,2.9,.3,4.1,.8s2.1,1.2,2.8,2c.7,.8,1.2,1.7,1.5,2.7s.5,1.9,.5,2.8c0,2.8-.9,5-2.6,6.4-1.7,1.5-4,2.2-6.9,2.2h-4.4v7.3h-7.5V16.44Zm7.4,11.2h2.9c.6,0,1.1,0,1.5-.1,.4,0,.8-.2,1.2-.3,.4-.2,.7-.4,.9-.8,.2-.4,.3-.8,.3-1.4,0-.5-.1-.9-.3-1.3-.2-.3-.4-.6-.8-.7-.3-.1-.7-.2-1.1-.3-.4,0-.9-.1-1.4-.1h-3.3v5h.1Z"/>
-						<path class="cls-2" d="M276.9,22.64h-6.8v-6.2h21v6.2h-6.8v18h-7.5V22.64h.1Z"/>
-					</g>
-					<g>
-						<path class="cls-2" d="M8.9,16.44h7.3l8.8,24.2h-7.7l-1-3.5h-7.7l-1.1,3.5H0L8.9,16.44Zm5.9,15.6l-2.2-7.5h-.1l-2.3,7.5h4.6Z"/>
-						<path class="cls-2" d="M26.7,16.44h7.5v18h10.7v6.2H26.7V16.44Z"/>
-						<path class="cls-2" d="M48.1,16.44h7.5v18h10.7v6.2h-18.2V16.44Z"/>
-					</g>
-					<path class="cls-2" d="M124.25,17.04v6.1c0,5.54-4.24,10.05-9.45,10.05s-9.45-4.51-9.45-10.05v-5.8h-7.3v5.8c0,5.54-4.24,10.05-9.45,10.05s-9.45-4.51-9.45-10.05v-5.7h-7.3v5.7c0,9.57,7.51,17.35,16.75,17.35,5.3,0,10.03-2.57,13.1-6.57,3.07,4,7.8,6.57,13.1,6.57,9.24,0,16.75-7.78,16.75-17.35v-6.1h-7.3Z"/>
-				</svg>
-            </a>
-            
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto  my-2 mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="${contextPath}/board/shelter">보호소</a></li>
-                    <li class="nav-item"><a class="nav-link" href="${contextPath}/board/user">사용자</a></li>
-                    <li class="nav-item"><a class="nav-link" href="${contextPath}/funding/detail?page=1">펀딩</a></li>
-                    <li class="nav-item"><a class="nav-link" href="${contextPath}/findHospital">병원찾기</a></li>
 
-             
-                                   
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle py-1" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                  <img src="/allWeAdopt/src/main/webapp/resources/images/user.png" id="member-profile" style="width : 35px; height : 35px;">	
-                                  <img src="/allWeAdopt/src/main/webapp/resources/images/user.png" id="member-profile" style="width : 35px; height : 35px;">
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
-                            <li><a class="dropdown-item" href="${contextPath}/member/myPage/pwConfirm">회원 정보 수정</a></li>
-                            <li><a class="dropdown-item" href="portfolio-item.html">관심 목록</a></li>
-                            <li><a class="dropdown-item" href="portfolio-item.html">작성글 목록</a></li>
-                            <li><a class="dropdown-item" href="portfolio-item.html">펀딩 참여 내역</a></li>
-                            <li><a class="dropdown-item" href="portfolio-item.html">채팅 목록</a></li>
-                            <li><a class="dropdown-item" href="portfolio-item.html">문의하기</a></li>
-                            <li><a class="dropdown-item" href="${contextPath}/member/myPage/notice">공지사항</a></li>
-                            <li><a class="dropdown-item" href="${contextPath}/member/logout">로그아웃</a></li>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>결제 진행</title>
+
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="/allWeAdopt/src/main/webapp/resources/css/styles.css" rel="stylesheet" />
+    <link href="/allWeAdopt/src/main/webapp/resources/css/funding/funding-payment.css" rel="stylesheet" />
+
+    <!-- 폰트어썸 연결 -->
+    <script src="https://kit.fontawesome.com/ea629e8085.js" crossorigin="anonymous"></script>
+</head>
+
+<body class="d-flex flex-column">
+    <main class="flex-shrink-0">
+        <!-- Navigation-->
+
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-light bg-white" style="border-bottom: 1px solid;">
+                <div class="container px-5">
+                    <a class="navbar-brand pt-1" href="${contextPath}">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 291.1 41.24" id="logo">
+                            <defs>
+                                <style>
+                                    .cls-1 {
+                                        fill: #fb836b;
+                                    }
+
+                                    .cls-2 {
+                                        fill: #373737;
+                                    }
+
+                                    #logo {
+                                        width: 240px
+                                    }
+                                </style>
+                            </defs>
+                            <path class="cls-2"
+                                d="M143.1,30.74c.1,1.4,.6,2.5,1.4,3.4,.8,.8,1.9,1.3,3.3,1.3,.8,0,1.5-.1,2.3-.4,.7-.3,1.2-.7,1.6-1.3h8.5c-.9,2.5-2.4,4.4-4.7,5.6s-4.8,1.9-7.6,1.9c-1.9,0-3.7-.3-5.3-.8-1.6-.6-3.1-1.4-4.3-2.4-1.2-1.1-2.1-2.4-2.8-3.9s-1-3.3-1-5.3c0-1.7,.3-3.3,.9-4.9,.6-1.5,1.5-2.9,2.6-4,1.1-1.2,2.5-2.1,4-2.7,1.6-.6,3.3-1,5.1-1,4.6,0,8,1.2,10.3,3.7,2.2,2.5,3.3,6.1,3.3,10.9h-17.6v-.1Zm8.7-4.7c0-1.1-.4-2.1-1.1-2.9-.8-.8-1.7-1.2-2.9-1.2-2.7,0-4.3,1.3-4.7,4h8.7v.1Z" />
+                            <path class="cls-1"
+                                d="M110.6,3.84c-.3-5.1-6.5-4.6-8.9-1.5-2.4-3.1-8.6-3.5-8.9,1.5-.2,4.8,5.2,8.4,8.8,10.3v.1h.2v-.1c3.6-2,9.1-5.6,8.8-10.3Z" />
+                            <g>
+                                <path class="cls-2"
+                                    d="M176.1,16.44h7.3l8.8,24.2h-7.7l-1-3.5h-7.7l-1.1,3.5h-7.5l8.9-24.2Zm5.8,15.6l-2.2-7.5h-.1l-2.3,7.5h4.6Z" />
+                                <path class="cls-2"
+                                    d="M193.8,16.44h12.3c1.9,0,3.6,.3,5,1s2.5,1.6,3.4,2.7c.9,1.1,1.5,2.4,1.9,3.9,.4,1.4,.6,2.9,.6,4.5,0,3.8-1,6.8-3.1,8.9s-5.2,3.2-9.3,3.2h-10.8V16.44h0Zm7.5,18h2.9c1.1,0,2-.2,2.7-.6,.7-.4,1.3-.9,1.6-1.5,.4-.6,.6-1.3,.8-1.9,.1-.7,.2-1.4,.2-2,0-.5-.1-1.1-.2-1.7-.1-.6-.4-1.2-.8-1.9-.4-.6-1-1.1-1.8-1.6-.8-.4-1.8-.6-3.1-.6h-2.4v11.8h.1Z" />
+                                <path class="cls-2"
+                                    d="M220.4,23.44c.6-1.6,1.4-2.9,2.5-4s2.4-2,3.9-2.6c1.5-.6,3.2-.9,5-.9s3.5,.3,5,.9c1.5,.6,2.8,1.5,3.9,2.6s1.9,2.5,2.5,4c.6,1.6,.9,3.3,.9,5.1s-.3,3.5-.9,5.1-1.4,2.9-2.5,4-2.4,2-3.9,2.6-3.2,.9-5,.9-3.5-.3-5-.9c-1.5-.6-2.8-1.5-3.9-2.6-1.1-1.1-1.9-2.5-2.5-4-.6-1.6-.9-3.3-.9-5.1,0-1.8,.3-3.5,.9-5.1Zm7.1,8.4c.3,.9,.7,1.6,1.2,2.1s1,.8,1.5,1.1,1.1,.3,1.6,.3,1.1-.1,1.6-.3,1.1-.6,1.5-1.1c.5-.5,.9-1.2,1.2-2.1s.5-2,.5-3.2-.2-2.3-.5-3.2-.7-1.6-1.2-2.1-1-.8-1.5-1.1c-.5-.2-1.1-.3-1.6-.3s-1.1,.1-1.6,.3-1.1,.6-1.5,1.1c-.5,.5-.9,1.2-1.2,2.1-.3,.9-.5,2-.5,3.2s.2,2.3,.5,3.2Z" />
+                                <path class="cls-2"
+                                    d="M247.3,16.44h12.5c1.6,0,2.9,.3,4.1,.8s2.1,1.2,2.8,2c.7,.8,1.2,1.7,1.5,2.7s.5,1.9,.5,2.8c0,2.8-.9,5-2.6,6.4-1.7,1.5-4,2.2-6.9,2.2h-4.4v7.3h-7.5V16.44Zm7.4,11.2h2.9c.6,0,1.1,0,1.5-.1,.4,0,.8-.2,1.2-.3,.4-.2,.7-.4,.9-.8,.2-.4,.3-.8,.3-1.4,0-.5-.1-.9-.3-1.3-.2-.3-.4-.6-.8-.7-.3-.1-.7-.2-1.1-.3-.4,0-.9-.1-1.4-.1h-3.3v5h.1Z" />
+                                <path class="cls-2" d="M276.9,22.64h-6.8v-6.2h21v6.2h-6.8v18h-7.5V22.64h.1Z" />
+                            </g>
+                            <g>
+                                <path class="cls-2"
+                                    d="M8.9,16.44h7.3l8.8,24.2h-7.7l-1-3.5h-7.7l-1.1,3.5H0L8.9,16.44Zm5.9,15.6l-2.2-7.5h-.1l-2.3,7.5h4.6Z" />
+                                <path class="cls-2" d="M26.7,16.44h7.5v18h10.7v6.2H26.7V16.44Z" />
+                                <path class="cls-2" d="M48.1,16.44h7.5v18h10.7v6.2h-18.2V16.44Z" />
+                            </g>
+                            <path class="cls-2"
+                                d="M124.25,17.04v6.1c0,5.54-4.24,10.05-9.45,10.05s-9.45-4.51-9.45-10.05v-5.8h-7.3v5.8c0,5.54-4.24,10.05-9.45,10.05s-9.45-4.51-9.45-10.05v-5.7h-7.3v5.7c0,9.57,7.51,17.35,16.75,17.35,5.3,0,10.03-2.57,13.1-6.57,3.07,4,7.8,6.57,13.1,6.57,9.24,0,16.75-7.78,16.75-17.35v-6.1h-7.3Z" />
+                        </svg>
+                    </a>
+
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation"><span
+                            class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto  my-2 mb-2 mb-lg-0">
+                            <li class="nav-item"><a class="nav-link" href="${contextPath}/board/shelter">보호소</a></li>
+                            <li class="nav-item"><a class="nav-link" href="${contextPath}/board/user">사용자</a></li>
+                            <li class="nav-item"><a class="nav-link" href="${contextPath}/funding/detail?page=1">펀딩</a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="${contextPath}/findHospital">병원찾기</a></li>
+
+
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle py-1" id="navbarDropdownPortfolio" href="#"
+                                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="/allWeAdopt/src/main/webapp/resources/images/user.png" id="member-profile"
+                                        style="width : 35px; height : 35px;">
+                                    <img src="/allWeAdopt/src/main/webapp/resources/images/user.png" id="member-profile"
+                                        style="width : 35px; height : 35px;">
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
+                                    <li><a class="dropdown-item" href="${contextPath}/member/myPage/pwConfirm">회원 정보
+                                            수정</a></li>
+                                    <li><a class="dropdown-item" href="portfolio-item.html">관심 목록</a></li>
+                                    <li><a class="dropdown-item" href="portfolio-item.html">작성글 목록</a></li>
+                                    <li><a class="dropdown-item" href="portfolio-item.html">펀딩 참여 내역</a></li>
+                                    <li><a class="dropdown-item" href="portfolio-item.html">채팅 목록</a></li>
+                                    <li><a class="dropdown-item" href="portfolio-item.html">문의하기</a></li>
+                                    <li><a class="dropdown-item" href="${contextPath}/member/myPage/notice">공지사항</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="${contextPath}/member/logout">로그아웃</a></li>
+                                </ul>
+                            </li>
                         </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+                    </div>
+                </div>
+            </nav>
 
-    <!-- --------------------------------------------헤더 영역 끝-------------------------------------------- -->
+            <!-- --------------------------------------------헤더 영역 끝-------------------------------------------- -->
             <section class="py-4">
+
+                <div id="imgArea">
+                    펀딩 대표 이미지?
+                </div>
 
 
                 <!-- 상단 메뉴 영역. -->
@@ -87,141 +124,170 @@
                     <p class="lead fw-normal text-muted mb-0 lead">결제를 진행 할 수 있습니다</p>
                 </div>
 
-                <!-- 상단 이미지 영역 -->
-               
-                
+
                 <div class="container px-5">
                     <div class=" rounded-3 py-5 px-4 px-md-5 mb-5">
                         <div class="row gx-5 justify-content-center fundingPaymentArea">
-                      
-                      <div class="paymentWrapper">
-                      <!-- 선택한 리워드들 보여주는 부분 + 배송비 추가한 금액 보여주는 영역-->
-                        <div class="rewardInfo">
 
-                            <div class="rewardRow"><!-- 하나의 리워드 -->
-                              <h5 class="h5 fw-bolder rewardTitle" >리워트 타이틀이 나오는 영역</h5>
-                              <span>해당 리워드의 소개가 나오는 영역</span>
-                              
-                              <div class="resultInfo">
-                                <span class="resultPay">200,000</span>
-                                <span >수량: 2</span>
-                              </div>
-                              <hr>
-                              <div class="deliveryFee">
-                                <span>4000 원</span>
-                                <span>배송비</span>
-                              </div>
-                            </div> <!-- 리워드 한 행 끝 -->
+                            <div class="paymentWrapper">
+                                <!-- 선택한 리워드들 보여주는 부분 + 배송비 추가한 금액 보여주는 영역-->
+                                <div class="rewardInfo">
 
-                            <hr>
-                            <div class="finalPay">
-                              <h5 class="fw-bolder">최종 결제 금액</h5>
-                              <h5 class="fw-bolder">100,500 원</h5>
-                            </div>
+                                    <div class="rewardRow">
+                                        <!-- 하나의 리워드 -->
+                                        <h5 class="h5 fw-bolder rewardTitle">리워트 타이틀이 나오는 영역</h5>
+                                        <span>해당 리워드의 소개가 나오는 영역</span>
 
-                        </div>
-                      <!-- 서포터 정보 조회 영역-->
-                        <div class="supporterWrapper">
-                            <h4 class="fw-bolder">펀딩 서포터</h4>
-                            <ul class="supporterInfo">
-                            <li class="fw-bolder">이름</li>
-                            <li>김현기</li>
+                                        <div class="resultInfo">
+                                            <span class="resultPay">200,000</span>
+                                            <span>수량: 2</span>
+                                        </div>
+                                        <hr>
+                                        <div class="deliveryFee">
+                                            <span>4000 원</span>
+                                            <span>배송비</span>
+                                        </div>
+                                    </div> <!-- 리워드 한 행 끝 -->
 
-                            <li class="fw-bolder">이메일</li>
-                            <li>user01@gmail.com</li>
-                            
-                            <li class="fw-bolder">휴대폰 번호</li>
-                            <li>010 - 1234 -1234</li>
-                            </ul>
-                        </div>  
+                                    <hr>
+                                    <div class="finalPay">
+                                        <h5 class="fw-bolder">최종 결제 금액</h5>
+                                        <h5 class="fw-bolder">100,500 원</h5>
+                                    </div>
 
-                      
-                      <!-- 리워드 정보 입력 영역-->
-                    <div class="parcelInfo">
-                        <h4 class="fw-bolder">리워드 배송지</h4>
+                                </div>
+                                <!-- 서포터 정보 조회 영역-->
 
-                        <span>이전 배송지 <input type="radio" name="destination"></span>
-                        <span>신규 배송지 <input type="radio" name="destination"></span>
+                                <div id="information">
+                                    <div class="supporterWrapper">
+                                        <h4 class="fw-bolder">펀딩 서포터</h4>
+                                        <ul class="supporterInfo">
+                                            <li class="fw-bolder">이름</li>
+                                            <li>김현기</li>
 
-                        <div class="inputArea">
-                            <div class="inputName">
-                                <span>이름</span><br>
-                                <input type="text" name="inputName" placeholder="이름을 입력해주세요">
-                            </div>
+                                            <li class="fw-bolder">이메일</li>
+                                            <li>user01@gmail.com</li>
 
-                            <div class="inputTel">
-                                <span>휴대전화</span><br>
-                                <input type="text" name="inputTel" placeholder="휴대폰번호를 입력해주세요">
-                            </div>
+                                            <li class="fw-bolder">휴대폰 번호</li>
+                                            <li>010 - 1234 -1234</li>
+                                        </ul>
+                                    </div>
 
-                            <div class="inputTel">
-                                <span>전화번호</span><br>
-                                <input type="text" name="inputTel" placeholder="전화번호를 입력해주세요">
-                            </div>
 
-                            <div class="inputAddr">
-                                <span>주소</span><br>
-                                <button onclick="execDaumPostcode()" id="findPostcode">우편번호 찾기</button>
-                                <input type="text" name="inputAdd" id="sample4_postcode">
-                                <input type="text">
-                                <input type="text">
-                            </div>
-                        </div>
-                    
-                    </div>
+                                    <!-- 리워드 정보 입력 영역-->
+                                    <div class="parcelInfo">
+                                        <h4 class="fw-bolder">리워드 배송지</h4>
 
-                      
+                                        <span>이전 배송지 <input type="radio" name="destination"></span>
+                                        <span>신규 배송지 <input type="radio" name="destination"></span>
 
-                      <!-- 결제 정보 입력 영역-->
+                                        <div class="inputArea">
+                                            <div class="inputName">
+                                                <span>이름</span><br>
+                                                <input type="text" name="inputName" placeholder="이름을 입력해주세요">
+                                            </div>
 
-                      <div class="paymentWrapper">
+                                            <div class="inputTel">
+                                                <span>휴대전화</span><br>
+                                                <input type="text" name="inputTel" placeholder="휴대폰번호를 입력해주세요">
+                                            </div>
 
-                      </div>
+                                            <div class="inputTel">
+                                                <span>전화번호</span><br>
+                                                <input type="text" name="inputTel" placeholder="전화번호를 입력해주세요">
+                                            </div>
 
-                    </div><!-- wrapper 끝 --> 
+                                            <div class="inputAddr">
+                                                <span>주소</span><br>
+                                                <button onclick="execDaumPostcode()" id="findPostcode">우편번호 찾기</button>
+                                             <!--    <p id="addressInfo" class="badge bg-primary text-wrap">(13536)경기 성남시 분당구 판교역로 4</p> -->
+                                                <!-- p태그 형태로 보여지는 주소 값을 가져 가기 위한 hidden 태그 -->
+                                                <input type="hidden" name="address" id="address" value="">
+
+                                                <input type="text" name="detailAddress" placeholder="상세주소를 입력해주세요">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <!-- 결제 정보 입력 영역-->
+
+                                <div class="paymentWrapper">
+                                    <h4 class="fw-bolder">결제 방식 선택</h4>
+                                    <div class="paymentMeans">
+                                        <input class="form-check-input" type="radio" name="payment" value="" id=""> 
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                          무통장 입금
+                                        </label>
+                                        <input class="form-check-input" type="radio" name="payment" value="" id="simplePay">
+                                        <label class="form-check-label" for="simplePay">
+                                          간편 결제
+                                        </label>
+                                        <input class="form-check-input" type="radio" name="payment" value="phonePay">
+                                        <label class="form-check-label" for="phonePay">
+                                          핸드폰 결제
+                                        </label>
+                                    </div>
+                                </div>
+
+
+                                <!-- 약관 입력 영역-->
+
+                                <div class="agreeWrapper">
+                                    <div><input class="form-check-input" type="checkbox" role="switch"> <a href="">전체 동의하기</a> </div>
+                                    <div><input class="form-check-input" type="checkbox" role="switch"> <a href="">개인정보 제3자 제공 동의</a> </div>
+                                    <div><input class="form-check-input" type="checkbox" role="switch"> <a href="">책임 규정에 대한 동의</a> </div>
+                                </div>
+
+                            </div><!-- wrapper 끝 -->
                         </div><!-- 내부 영역! 끝 -->
                     </div>
                 </div>
             </section>
-        </main>
+    </main>
 
 
 
 
 
 
-        <!-- --------------------------------------------실제 컨텐츠 영역 끝-------------------------------------------- -->
-        <!-- Footer-->
-        <footer class="bg-dark py-4 mt-auto">
-            <div class="container px-5">
-                <div class="row align-items-center justify-content-between flex-column flex-sm-row">
-                    <div class="col-auto"><div class="small m-0 text-white">Copyright &copy; Your Website 2022</div></div>
-                    <div class="col-auto">
-                        <a class="link-light small" href="#!">Privacy</a>
-                        <span class="text-white mx-1">&middot;</span>
-                        <a class="link-light small" href="#!">Terms</a>
-                        <span class="text-white mx-1">&middot;</span>
-                        <a class="link-light small" href="#!">Contact</a>
-                    </div>
+    <!-- --------------------------------------------실제 컨텐츠 영역 끝-------------------------------------------- -->
+    <!-- Footer-->
+    <footer class="bg-dark py-4 mt-auto">
+        <div class="container px-5">
+            <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                <div class="col-auto">
+                    <div class="small m-0 text-white">Copyright &copy; Your Website 2022</div>
+                </div>
+                <div class="col-auto">
+                    <a class="link-light small" href="#!">Privacy</a>
+                    <span class="text-white mx-1">&middot;</span>
+                    <a class="link-light small" href="#!">Terms</a>
+                    <span class="text-white mx-1">&middot;</span>
+                    <a class="link-light small" href="#!">Contact</a>
                 </div>
             </div>
-        </footer>
+        </div>
+    </footer>
 
 
 
-        <!-- 다음 우편번호 API -->
-      
-        </script>
+    <!-- 다음 우편번호 API -->
 
-        <!-- 다음 우편번호 API -->
-        <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-        
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-       
-        <!-- 펀딩 작성 관련 JS -->
-        <script src="/allWeAdopt/src/main/webapp/resources/js/funding/funding-payment.js"></script>
-    </body>
+    </script>
+
+    <!-- 다음 우편번호 API -->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+    <!-- 펀딩 작성 관련 JS -->
+    <script src="/allWeAdopt/src/main/webapp/resources/js/funding/funding-payment.js"></script>
+</body>
+
 </html>
