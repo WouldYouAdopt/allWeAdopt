@@ -43,10 +43,10 @@
             <jsp:include page="/WEB-INF/views/common/header.jsp" />
         <div class="container">
             <h4>게시글 작성</h4>
-            
+            <form action="boardRegist" method="post">
             <!-- 카테고리 선택 메뉴 -->
             <div class="dropdown category-area">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false" name="categoryValue">
                   카테고리를 선택해주세요
                 </button>
                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
@@ -55,6 +55,7 @@
                   <li class="dropdown-item selectMenu">목격</li>
                   <li class="dropdown-item selectMenu">완료</li>
                 </ul>
+                <input type="hidden" class="value" name="category">
             </div>
             
             <!-- 제목 -->
@@ -68,7 +69,7 @@
             <div class="contentArea">
                 <p class="menu">내용</p>
                 <hr>
-                <div id="summernote" name="boardContent"></div>
+                <textarea id="summernote" name="boardContent"></textarea>
             </div>
 
             <!-- 추가선택 사항 -->
@@ -79,9 +80,9 @@
                 <!-- 날짜 -->
                 <div class="dateArea">
                     <span class="select">날짜</span>
-                    <input type="date" class="dateBtn" name="startDate">
+                    <input type="date" class="dateBtn" name="boardPeriod">
                      ~
-                    <input type="date" class="dateBtn" name="endDate">
+                    <input type="date" class="dateBtn" name="boardPeriod2">
                     <p class="etc">(선택하지 않을 시 동물보호법에 의거하여 게시글 작성일로부터 7일 후까지의 기간이 등록됩니다)</p>
                 </div>
 
@@ -89,7 +90,7 @@
                 <div class="area">
                     <span class="select">지역</span>
                     <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false" name="areaValue">
                           지역 선택
                         </button>
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
@@ -97,9 +98,10 @@
                           <li class="dropdown-item selectMenu">부산</li>
                           <li class="dropdown-item selectMenu">제주도</li>
                         </ul>
+                        <input type="hidden" class="value" name="area">
                     </div>
                     <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false" name="areaDetailValue">
                           상세 지역 선택
                         </button>
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
@@ -107,13 +109,14 @@
                           <li class="dropdown-item selectMenu">동대문구</li>
                           <li class="dropdown-item selectMenu">종로구</li>
                         </ul>
+                        <input type="hidden" class="value" name="areaDetail">
                     </div>
                 </div>
                
                 <!-- 연락처 -->
                 <div class="tel-area">
                     <span class="select">연락처</span>
-                    <input type="tel" class="tel">
+                    <input type="tel" class="tel" name="phone">
                 </div>
                 <p class="etc">(-을 제외한 전화번호를 입력해주세요)</p>
 
@@ -121,7 +124,7 @@
                 <div class="type-area">
                     <span class="select">품종</span>
                     <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false" name="animalTypeValue">
                           축종
                         </button>
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
@@ -129,9 +132,10 @@
                           <li class="dropdown-item selectMenu">고양이</li>
                           <li class="dropdown-item selectMenu">기타</li>
                         </ul>
+                        <input type="hidden" name="animalType">
                     </div>
                     <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false" name="animalDetailValue">
                           품종
                         </button>
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
@@ -139,6 +143,7 @@
                           <li class="dropdown-item selectMenu">러시안블루</li>
                           <li class="dropdown-item selectMenu">기타</li>
                         </ul>
+                        <input type="hidden" name="animalDetail">
                     </div>
                 </div>
 
@@ -146,26 +151,28 @@
                 <div class="gender-area">
                     <span class="select">성별</span>
                     <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false" name="genderValue">
                           수컷 / 암컷
                         </button>
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
                           <li class="dropdown-item selectMenu">수컷</li>
                           <li class="dropdown-item selectMenu">암컷</li>
                         </ul>
+                        <input type="hidden" name="genders">
                     </div>
                 </div>
                 <!-- 중성화 -->
                 <div class="neutering-area">
                     <span class="select">중성화</span>
                     <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false"  name="neuteringValue">
                           완료 / 미완료
                         </button>
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
                           <li class="dropdown-item selectMenu">완료</li>
                           <li class="dropdown-item selectMenu">미완료</li>
                         </ul>
+                        <input type="hidden" name="neuterings">
                     </div>
                 </div>
             </div>
@@ -175,6 +182,7 @@
             <div class="btn-area">
                 <button class="btnRegist">등록</button>
             </div>
+        </form>
         </div>
       <!-- 푸터 -->
       <jsp:include page="/WEB-INF/views/common/footer.jsp" />

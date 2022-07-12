@@ -23,13 +23,13 @@
 		<typeAlias type="edu.kh.allWeAdopt.member.model.vo.Member" alias="member"/> 
 		<typeAlias type="edu.kh.allWeAdopt.shelter.model.vo.Shelter" alias="shelter"/> 
 		<typeAlias type="edu.kh.allWeAdopt.board.model.vo.Board" alias="board"/> 
-		<typeAlias type="edu.kh.allWeAdopt.board.model.vo.BoardDetail" alias="detail"/> 
+		<typeAlias type="edu.kh.allWeAdopt.board.model.vo.BoardDetail" alias="detail"/>
+		<typeAlias type="edu.kh.allWeAdopt.userBoard.model.vo.Animal" alias="animal"/> 
+		<typeAlias type="edu.kh.allWeAdopt.userBoard.model.vo.Area" alias="area"/> 
 		<!-- <typeAlias type="edu.kh.allWeAdopt.shelter.model.vo.ShelterReply" alias="shelterReply"/> --> 
 		
 		<typeAlias type="edu.kh.allWeAdopt.funding.model.vo.FundingDetail" alias="fundingDetail"/> 
-		<typeAlias type="edu.kh.allWeAdopt.funding.model.vo.Funding" alias="funding"/> 
-		<typeAlias type="edu.kh.allWeAdopt.funding.model.vo.OrderDetail" alias="orderDetail"/> 
-		<typeAlias type="edu.kh.allWeAdopt.funding.model.vo.Reward" alias="reward"/> 
+		<typeAlias type="edu.kh.allWeAdopt.funding.model.vo.Funding" alias="funding"/>
 
 	</typeAliases>
 	
@@ -39,10 +39,12 @@
 	<mappers>
 		<!-- <mapper resource="mapper 파일 경로"/>
 			경로를 작성하는 기준(시작지점)은 src/main/resource 폴더 -->
+			
 		 <mapper resource="/mappers/member-mapper.xml"/>
 		 <mapper resource="/mappers/myPage-mapper.xml"/>
 		 <mapper resource="/mappers/notice-mapper.xml"/>
 		 <mapper resource="/mappers/funding-mapper.xml"/>
+		 <mapper resource="/mappers/board-mapper.xml"/>
 
 	</mappers>
 

@@ -19,7 +19,7 @@ public class Board {
 	private int memberNo;
 	private String createDate;
 	private String updateDate;
-	private String boardPeriodS;
-	private String boardPeriodE;
+	private String boardPeriod;
+	private String boardPeriod2;
 	
 }
