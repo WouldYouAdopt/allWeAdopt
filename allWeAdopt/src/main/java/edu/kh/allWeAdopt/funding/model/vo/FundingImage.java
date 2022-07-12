@@ -7,8 +7,11 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class FundingDetail {
-
-	//작성 테스트를 위해 생성한 펀딩 상세정보 VO
+public class FundingImage {
 	
+	private int key;
+	private String imageRename;
+	private String imageOriginal;
+	private int fundingNo;
+
 }
