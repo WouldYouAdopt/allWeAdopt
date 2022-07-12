@@ -11,6 +11,7 @@ import edu.kh.allWeAdopt.board.model.vo.Pagination;
 import edu.kh.allWeAdopt.funding.model.vo.Funding;
 import edu.kh.allWeAdopt.funding.model.vo.FundingDetail;
 import edu.kh.allWeAdopt.funding.model.vo.OrderDetail;
+import edu.kh.allWeAdopt.funding.model.vo.Reward;
 
 @Repository
 public class FundingDAO {
@@ -63,5 +64,8 @@ public class FundingDAO {
 	public OrderDetail selectOrderDetail(int paymentNo) {
 		return sqlSession.selectOne("fundingMapper.selectOrderDetail",paymentNo);
 	}
+
+
+
 
 }
