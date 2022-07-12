@@ -62,9 +62,9 @@ public class MemberDAO {
 	 * @param kakaoEmail
 	 * @return kakaoEmailCheck
 	 */
-	public Member kakaoEmailCheck(String kakaoEmail) {
+	public Member kakaoEmailCheck(String memberEmail) {
 		
-		Member kakaoEmailCheck = sqlSession.selectOne("memberMapper.kakaoEmailCheck", kakaoEmail ); 
+		Member kakaoEmailCheck = sqlSession.selectOne("memberMapper.kakaoEmailCheck", memberEmail ); 
 		
 		return kakaoEmailCheck;
 	}
@@ -79,6 +79,20 @@ public class MemberDAO {
 	 */
 	public int insertNo(Member mem) {
 		return sqlSession.insert("memberMapper.insertNo", mem);
+	}
+
+
+
+
+	/** 이미 로그인 해봤던 카카오계정로그인....
+	 * @param mem
+	 * @return
+	 */
+	public Member kakaoEmailLogin(Member mem) {
+		
+		Member kakaoEmailLogin = sqlSession.selectOne("memberMapper.kakaoEmailLogin", mem ); 
+		
+		return kakaoEmailLogin;
 	}
 
 	

@@ -28,7 +28,7 @@ public interface MemberService {
 
 
 
-
+  
 	/** 회원가입 Service
 	 * @param map
 	 * @return result
@@ -54,6 +54,15 @@ public interface MemberService {
 	 * @return result
 	 */
 	public abstract int insertNo(Member mem);
+
+
+
+
+	/** 이미 로그인 해봤던 카카오계정로그인....
+	 * @param mem
+	 * @return
+	 */
+	public abstract Member kakaoEmailLogin(Member mem);
 
 
 
