@@ -21,5 +21,10 @@ public interface FundingService {
 	 */
 	Map<String, Object> selectMyFundingList(int memberNo,int cp);
 
+	/** 현재 진행중인 펀딩 번호
+	 * @return nowFundingNo
+	 */
+	int selectNowFundingNo();
+
 
 }
