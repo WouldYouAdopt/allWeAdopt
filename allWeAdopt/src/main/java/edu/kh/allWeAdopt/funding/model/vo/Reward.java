@@ -13,6 +13,8 @@ public class Reward {
 	private String rewardTitle;
 	private String rewardContent;
 	private int rewardPrice;
+	private int fullPrice;
 	private int maxRewardNo;
 	private int fundingNo;
+	private int amount;
 }

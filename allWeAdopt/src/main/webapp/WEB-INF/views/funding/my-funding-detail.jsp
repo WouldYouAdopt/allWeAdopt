@@ -47,7 +47,7 @@
 	<main class="flex-shrink-0">
 
 		<jsp:include page="/WEB-INF/views/common/header.jsp" />
-
+  
 
 		<section class="py-4">
 	   <!-- 상단 메뉴 영역. -->
@@ -81,22 +81,33 @@
 								<table class="table">
 									<tbody>
 										<tr>
-											<th colspan="1" class="row-name">주문번호</th>
-											<td colspan="5">h12313</td>
+											<th colspan="1" class="row-name">펀딩 제목</th>
+											<td colspan="5">${detail.fundingTitle}</td>
+										
 
 										</tr>
 										<tr>
-											<th colspan="1">펀딩 제목</th>
-											<td colspan="5">강아지 용품 관련 펀딩입니다.</td>
+											<th >카테고리</th>
+											<td >${detail.fundingCategory}</td>
+
+											<th  class="row-name">주문번호</th>
+											<td >${detail.paymentNo}</td>
 										</tr>
-										<tr>
+						
+									
+								  <c:forEach var="reward" items="${detail.rewardList}">
+										<tr>	
 											<th>신청 리워드</th>
-											<td>1번 리워드</td>
+											<td>${reward.rewardTitle}</td>
 											<th>수량</th>
-											<td>2</td>
+											<td>${reward.amount}</td>
 											<th>금액</th>
-											<td>80,000</td>
+											<td>reward.fullPrice</td>
 										</tr>
+                                      </c:forEach>
+						
+
+								<!-- 
 										<tr>
 											<th>신청 리워드</th>
 											<td>2번 리워드</td>
@@ -104,7 +115,9 @@
 											<td>1</td>
 											<th>금액</th>
 											<td>40,000</td>
-										</tr>
+										</tr> -->
+
+
 									</tbody>
 								</table>
 							</article>
@@ -118,26 +131,52 @@
 									<tbody>
 										<tr>
 											<th>결제 일시</th>
-											<td>2022.07.09</td>
+											<td>${detail.payDate}</td>
 										</tr>
 										<tr>
 											<th>결제 수단</th>
-											<td>무통장입금</td>
+											<td>${detail.payMethod}</td>
 										</tr>
 										<tr>
 											<th>총결제 금액</th>
-											<td>200,000</td>
+											<td>${detail.fullPrice}</td>
 										</tr>
 										<tr>
 											<th>주문 상태</th>
-											<td>배송중</td>
+											<td>${detail.orderState}</td>
 										</tr>
 									</tbody>
 								</table>
 								<div id="btn-area">
+								
+								<c:choose>
+									
+									<c:when test='${detail.orderState!="결제 완료"}'>
+										<button type="button" class="btn btn-secondary">결제 취소</button>
+									</c:when>
+									
+									
+									<c:when test='${detail.orderState=="배송 중"}'>
 									<button type="button" class="btn btn-secondary">반품 신청</button>
 									<button type="button" class="btn btn-success">배송 조회</button>
-									<p>배송 상태에 의해 버튼이 바뀜</p>
+									</c:when>
+
+									<c:when test='${detail.orderState=="배송 중"}'>
+									<button type="button" class="btn btn-secondary">반품 신청</button>
+									<button type="button" class="btn btn-success">배송 조회</button>
+									</c:when>
+
+									<c:when test='${detail.orderState=="배송 완료"}'>
+									<button type="button" class="btn btn-secondary">반품 신청</button>
+									<button type="button" class="btn btn-secondary">환불 신청</button>
+									</c:when>
+
+									<c:otherwise>
+									<button type="button" class="btn btn-secondary">반품 신청</button>
+									</c:otherwise>
+									
+								</c:choose>
+									
 								</div>
 							</article>
 							<!-- 배송 정보 테이블 -->
@@ -147,19 +186,19 @@
 									<tbody>
 										<tr>
 											<th>수령인</th>
-											<td>김현기</td>
+											<td>${detail.recipient}</td>
 										</tr>
 										<tr>
 											<th>전화번호-1</th>
-											<td>010-1234-1234</td>
+											<td>${detail.orderPhoneMain}</td>
 										</tr>
 										<tr>
 											<th>전화번호-2</th>
-											<td>-</td>
+											<td>${detail.orderPhoneSub}</td>
 										</tr>
 										<tr>
 											<th>주소</th>
-											<td>(03163)서울특별시 종로구 인사동길 20-9 (인사동) 1002호</td>
+											<td>${detail.orderAddress}</td>
 										</tr>
 									</tbody>
 								</table>

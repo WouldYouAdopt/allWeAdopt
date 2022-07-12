@@ -14,9 +14,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.kh.allWeAdopt.funding.model.service.FundingService;
 import edu.kh.allWeAdopt.funding.model.vo.Funding;
+import edu.kh.allWeAdopt.funding.model.vo.OrderDetail;
 import edu.kh.allWeAdopt.member.model.vo.Member;
 
 @Controller
@@ -50,10 +53,20 @@ public class MyFundingController {
 	//funding/my/detail/6
 	//funding/my
 	@GetMapping("/detail/{paymentNo}")
-	public String selectFundingDetail(@PathVariable int paymentNo) {
+	public String selectOrderDetail(@PathVariable int paymentNo,Model model,RedirectAttributes ra) {
 		
-			System.out.println(paymentNo);
+		
+		OrderDetail detail = service.selectOrderDetail(paymentNo);
 			
+		if(detail != null) {
+			model.addAttribute("detail", detail);
+		}else{
+			ra.addFlashAttribute("message", "조회중 오류가 발생했습니다.");
+			return "redirect:/";
+		}
+			
+		
+		
 		return "funding/my-funding-detail";
 	}
 }
