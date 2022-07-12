@@ -1,0 +1,83 @@
+.fundingPaymentArea>div>div{
+    /* border: 1px solid #FB836b; */
+    border-top:2px solid #FB836b ;
+    margin-top: 20px;
+}
+
+.paymentWrapper{
+    width: 800px;
+}
+
+.rewardInfo{
+    /* border: 1px solid #FB836b ; */
+}
+.resultInfo{
+    display: flex;
+    flex-direction: row-reverse;
+}
+.rewardRow{
+    /* border-top:2px solid #FB836b ; */
+}
+.rewardTitle{
+    color: #FB836b;
+}
+.resultInfo>span{
+    margin-left:10px;
+    font-weight: bold;
+}
+.deliveryFee{
+    display: flex;
+    flex-direction: row-reverse;
+}
+.deliveryFee>span{
+    margin-left:10px;
+    font-weight: bold;
+}
+.finalPay{
+    display: flex;
+    justify-content: space-between;
+}
+.supporterInfo{
+    margin-top: 40px;
+    padding: 20px;
+    list-style: none;
+    background-color: #ddd;
+    border-radius: 5px ;
+}
+
+.supporterInfo .fw-bolder{    font-size: 1.1em;}
+.supporterInfo li:nth-child(3){
+    margin-top: 20px;
+}
+.supporterInfo li:nth-child(4){
+    margin-bottom: 20px;
+}
+
+.parcelInfo>h4{
+    margin-top: 50px;
+}
+
+.parcelInfo>.inputArea{
+    margin-top: 20px;
+}
+
+.inputArea input{
+    display: block;
+    width: 40%;
+    margin-top: 10px;
+    border: 1px solid #FB836b;
+}
+#findPostcode{
+    width: 18%;
+    display:inline-block;
+    border: 1px solid #FB836b;
+    background-color: white;
+}
+#findPostcode:hover{
+    background-color: #FB836b;
+    color: white;
+}
+#sample4_postcode{
+    width: 20%;
+    display:inline-block;
+}
