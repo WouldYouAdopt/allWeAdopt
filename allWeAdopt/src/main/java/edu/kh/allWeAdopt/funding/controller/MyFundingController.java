@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -46,10 +47,13 @@ public class MyFundingController {
 		return "funding/my-funding-list";
 	}
 	
-	
-	@GetMapping("/detail/${paymentNo}")
-	public String selectFundingDetail() {
+	//funding/my/detail/6
+	//funding/my
+	@GetMapping("/detail/{paymentNo}")
+	public String selectFundingDetail(@PathVariable int paymentNo) {
 		
+			System.out.println(paymentNo);
+			
 		return "funding/my-funding-detail";
 	}
 }

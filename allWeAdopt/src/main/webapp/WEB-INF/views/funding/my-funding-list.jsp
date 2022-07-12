@@ -73,18 +73,12 @@
 
                                   <c:choose>
                                     <c:when test='${empty fundingList}'>  
-
                                       <tr>
                                         <td colspan="6" style="font-size:24px; font-weight:bold;">참여하신 펀딩이 없습니다.</td>
                                       </tr>
-
                                    </c:when>      
 
                                    <c:otherwise>   
-
-                                    
-
-                                    <!-- 향상된 for문처럼 사용 -->
                                       <c:forEach var="funding" items="${fundingList}">
                                           <tr>
                                               <td>${funding.fundingNo}</td>
@@ -93,15 +87,10 @@
                                               <td> 
                                                   <a href="detail/${funding.paymentNo}">${funding.fundingTitle}</a>    
                                               </td>
-
                                               <td>${funding.orderState}</td>
-
                                               <td>${funding.payDate}</td>
                                           </tr>
                                       </c:forEach>
-
-                                    <%-- ${fundingList}--%>
-
                                    </c:otherwise>
                                   </c:choose>
                                     
@@ -115,23 +104,42 @@
 
                               <!-- 페이지 네이션 영역 시작 -->
                             <div class="pagination-area">
-                              <nav aria-label="Page navigation example">
+
+                                <c:set var="url" value="${boardCode}?cp="/>
+
                                 <ul class="pagination">
-                                  <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous">
+
+                                <!-- 뒤로 가기 버튼 -->
+                                <li>
+                                    <a class="page-link" href="${url}${pagination.prevPage}" aria-label="Previous">
                                       <span aria-hidden="true">&laquo;</span>
                                     </a>
-                                  </li>
-                                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                  <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
+                                </li>
+
+                                  <!-- 범위가 정해진 일반 for문 사용 -->
+                                  <c:forEach var="i" begin="${pagination.startPage}" end="${pagination.endPage}" step="1">
+
+                                    <c:choose>
+                                      <c:when test="${i == pagination.currentPage}">
+                                      <li class="page-item"><a class="page-link" href="${url}${i}">${i}</a></li>
+                                      </c:when>
+
+                                      <c:otherwise>
+                                      <li><a href="${url}${i}">${i}</a></li>        
+                                      </c:otherwise>
+                                      
+                                    </c:choose>
+
+                                  </c:forEach>
+
+                                <!-- 다음으로 버튼 -->
+                                <li class="page-item">
+                                    <a class="page-link" href="${url}${pagination.nextPage}" aria-label="Next">
                                       <span aria-hidden="true">&raquo;</span>
                                     </a>
-                                  </li>
+                                </li>
                                 </ul>
-                              </nav>
+
                             </div><!-- 페이지 네이션 영역 끝 -->
 
                             
