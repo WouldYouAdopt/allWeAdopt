@@ -23,55 +23,22 @@ import edu.kh.allWeAdopt.funding.model.vo.OrderDetail;
 import edu.kh.allWeAdopt.member.model.vo.Member;
 
 @Controller
-@RequestMapping("/funding/my")
+@RequestMapping("/admin/funding")
 @SessionAttributes({"loginMember"}) 
-public class MyFundingController {
+public class AdminFundingController {
 	
 	@Autowired
 	private FundingService service;
 
+		
 	
-	
-	
-	@GetMapping("/list")
-	public String selectMyFundingList(
-			@ModelAttribute("loginMember") Member member,
-			Model model,
-			@RequestParam(value = "cp", required = false, defaultValue = "1") int cp){
-		
-		int memberNo = member.getMemberNo();
-		
-		Map<String, Object> map = null;
-		map = service.selectMyFundingList(memberNo,cp);
-		
-		model.addAttribute("pagination", map.get("pagination"));
-		model.addAttribute("fundingList", map.get("fundingList"));
-		
-		return "funding/my-funding-list";
-	}
-	
-	//funding/my/detail/6
-	//funding/my
-	@GetMapping("/detail/{paymentNo}")
-	public String selectOrderDetail(@PathVariable int paymentNo,Model model,RedirectAttributes ra) {
-		
-		
-		OrderDetail detail = service.selectOrderDetail(paymentNo);
-			
-		if(detail != null) {
-			model.addAttribute("detail", detail);
-		}else{
-			ra.addFlashAttribute("message", "조회중 오류가 발생했습니다.");
-			return "redirect:/";
-		}
-			
-		
-		
-		return "funding/my-funding-detail";
+	@GetMapping("/management")
+	public String selectManagementPage() {
+		return "funding/admin/funding-management";
 	}
 
-	@GetMapping("/pay")
-	public String Payment(){
-		return "funding/funding-payment";
+	@GetMapping("/register")
+	public String findingRegister() {
+		return "funding/admin/funding-register";
 	}
 }

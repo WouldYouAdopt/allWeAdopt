@@ -25,7 +25,7 @@
 
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
                             <li><a class="dropdown-item" href="${contextPath}/member/myPage/pwConfirm">게시판 관리</a></li>
-                            <li><a class="dropdown-item" href="portfolio-item.html">펀딩 관리</a></li>
+                            <li><a class="dropdown-item" href="${contextPath}/admin/funding/management">펀딩 관리</a></li>
                             <li><a class="dropdown-item" href="portfolio-item.html">문의 관리</a></li>
                             <li><a class="dropdown-item" href="portfolio-item.html">공지 관리</a></li>
                             <li><a class="dropdown-item" href="${contextPath}/member/logout">로그아웃</a></li>
