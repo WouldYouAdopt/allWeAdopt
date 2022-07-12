@@ -11,7 +11,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>펀딩목록 : ALL WE ADOPT</title>
+<title>펀딩상세 조회 : ALL WE ADOPT</title>
 <!-- Favicon-->
 <link rel="icon" type="image/x-icon"
 	href="${contextPath}/resources/assets/올위어답터.ico" />
@@ -35,11 +35,9 @@
 	rel="stylesheet" />
 
 <!-- Core theme CSS (includes Bootstrap)-->
-<link href="${contextPath}/resources/css/main-style.css"
-	rel="stylesheet" />
+<link href="${contextPath}/resources/css/main-style.css"	rel="stylesheet" />
 <link href="${contextPath}/resources/css/styles.css" rel="stylesheet" />
-<link
-	href="${contextPath}/resources/css/funding/funding-order-detail.css"
+<link	href="${contextPath}/resources/css/funding/funding-order-detail.css"
 	rel="stylesheet" />
 
 
@@ -52,15 +50,19 @@
 
 
 		<section class="py-4">
-			<!-- 상단 메뉴 영역. -->
-			<div class="text-center mb-5" id="TOT">
-				<h1 class="fw-bolder">펀딩 내역</h1>
-				<p class="lead fw-normal text-muted mb-0">참여하신 펀딩 내역을 조회하실 수
-					있습니다.</p>
-			</div>
+	   <!-- 상단 메뉴 영역. -->
+        <div class="text-center mb-5" id="TOT">
+            <h1 class="fw-bolder">주문관리 상세</h1>
+            <p class="lead fw-normal text-muted mb-0">펀딩 상세 내역을 조회하는 페이지입니다.</p>
+        </div>
+
 
 			<!-- 상단 이미지 영역 -->
-
+      <!-- 상단 이미지 영역 -->
+      <div class="fundingTitleBox">
+          <div class="fundingTitleImage"></div>
+          <div class="fundingTitleText">우리아이 시원하게 여름 쿨매트</div>
+      </div>
 
 			<div class="container px-5">
 				<div class=" rounded-3 py-5 px-4 px-md-5 mb-5">
