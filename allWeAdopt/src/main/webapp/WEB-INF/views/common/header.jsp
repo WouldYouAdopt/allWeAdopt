@@ -63,7 +63,7 @@
                                         <li><a class="dropdown-item" href="${contextPath}/member/myPage/pwConfirm">회원 정보 수정</a></li>
                                         <li><a class="dropdown-item" href="portfolio-item.html">관심 목록</a></li>
                                         <li><a class="dropdown-item" href="portfolio-item.html">작성글 목록</a></li>
-                                        <li><a class="dropdown-item" href="portfolio-item.html">펀딩 참여 내역</a></li>
+                                        <li><a class="dropdown-item" href="${contextPath}/funding/my/list">펀딩 참여 내역</a></li>
                                         <li><a class="dropdown-item" href="javascript:void(0)" onclick="popUpOpne()">채팅 목록</a></li>
                                         <li><a class="dropdown-item" href="portfolio-item.html">문의하기</a></li>
                                         <li><a class="dropdown-item" href="${contextPath}/member/myPage/notice">공지사항</a></li>
