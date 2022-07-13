@@ -16,6 +16,9 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="${contextPath}/resources/css/styles.css" rel="stylesheet" />
 
+        <%-- 쿼리 연결 --%>
+	    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
         <!-- 폰트어썸 (폰트)-->
         <script src="https://kit.fontawesome.com/e4f51ae88c.js" crossorigin="anonymous"></script>
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,6 +43,7 @@
                                 <img class="img-fluid rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." />
                                 <div class="ms-3">
                                     <div class="fw-bold">${board.memberName}</div>
+                                    <button onclick="selectThisUser(${board.memberNo})">채팅</button>
                                 </div>
                             </div>
                         </div>

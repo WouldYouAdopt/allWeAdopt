@@ -175,13 +175,25 @@ public class MemberServiceImpl implements MemberService{
 
 
 
+
+
+	
+	
+	//채팅대상 정보조회를 위한  Service
+	@Override
+	public Member selectThisMember(int memberNo) {
+		return dao.selectThisMember(memberNo);
+	}
+
+
+
 	
 	
 
 
 
 
-
+	
 
 	
 

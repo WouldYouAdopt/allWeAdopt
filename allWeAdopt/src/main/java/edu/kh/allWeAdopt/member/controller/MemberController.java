@@ -163,7 +163,14 @@ public class MemberController {
 	
 	
 	
-	
+	//채팅을 위한 회원 정보 조회용
+	@PostMapping("/select/thisUser")
+	@ResponseBody
+	public String thisUser(int memberNo) {
+		Member thisMember = service.selectThisMember(memberNo);
+		thisMember.setMemberJson(new Gson().toJson(thisMember));
+		return new Gson().toJson(thisMember);
+	}
 	
 	
 	

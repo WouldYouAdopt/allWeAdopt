@@ -95,6 +95,17 @@ public class MemberDAO {
 		return kakaoEmailLogin;
 	}
 
+
+
+
+	/**채팅 대상 정보 조회를 위한 DAO
+	 * @param memberNo
+	 * @return
+	 */
+	public Member selectThisMember(int memberNo) {
+		return sqlSession.selectOne("memberMapper.selectThisMember",memberNo);
+	}
+
 	
 	
 	
