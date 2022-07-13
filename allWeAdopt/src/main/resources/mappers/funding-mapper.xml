@@ -243,5 +243,10 @@
 		WHERE MEMBER_NO=#{memberNo}
 		AND ROWNUM =1
 	</select>
+	
+	<select id="selectfunding" resultMap="funding_rm">
+	SELECT * FROM FUNDING
+	WHERE FUNDING_NO = #{fundingNo}
+	</select>
 
 </mapper>

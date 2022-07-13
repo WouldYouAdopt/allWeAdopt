@@ -120,14 +120,20 @@ public class FundingServiceImpl implements FundingService {
 		}
 		
 		OrderDetail prevOrder = null;
-		//null이 아닌 경우 이전 수령지 정보 조회
+		Funding funding = null;
+		//null이 아닌 경우 이전 수령지 정보 조회 
+		//수령지 정보랑 펀딩 정보를 다 조회해 온다.
 		if(!selectedList.isEmpty()){
 			prevOrder = dao.selectPrevOrder(memberNo);
+			funding = dao.selectFunding(fundingNo);
 		}
 		
 		Map<String, Object>map = new HashMap<String, Object>();
+		
+		
 		map.put("rewardList", selectedList);
 		map.put("prevOrder", prevOrder);
+		map.put("funding", funding);
 		
 		
 		return map;
