@@ -116,9 +116,10 @@
                                         <input class="form-control" type="text" name="memberAddress" id="sample4_detailAddress">
                                         <label for="memberAddress">상세주소</label>
                                     </div>
+                                    <div class="form-floating validate-area"></div>
 
                                     <!-- 프로필 사진 추가-->
-                                    <div class="form-floating mb-3 confirm-area profile-image-area">
+                                    <div class="form-floating confirm-area profile-image-area">
                                         <div id="img-area">
                                             <img src="${contextPath}/resources/images/user.png" id="profileImg">
                                         </div>
@@ -130,6 +131,7 @@
                                             <label for="deleteImage" id="del" >삭제</label>
                                         </div>
                                     </div>   
+                                    <div class="form-floating validate-area"></div>
 
                                     <!-- Submit Button-->
                                     <div class="d-grid"><button class="btn btn-primary btn-lg" id="signUpBtn" type="submit">회원가입</button></div>

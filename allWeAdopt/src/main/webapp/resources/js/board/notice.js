@@ -6,9 +6,6 @@
 
         goToListBtn.addEventListener("click", function(){
 
-            url = contextPath + "/admin/notice/list?"; 
-
-
             // URL 내장 객체 : 주소 관련 정보를 나타내는 객체
             // location.href : 현재 페이지 주소 + 쿼리스트링
             // URL.searchParams : 쿼리 스트링만 별도 객체로 반환
@@ -24,16 +21,14 @@
                 cp = "cp=1";
             }
 
-            url += cp;
+            const listUrl = url + cp;
 
-            location.href = url; 
+            location.href = listUrl; 
 
         });
     }
 
 })();
-
-
 
 // 즉시 실행 함수
 (function(){
@@ -52,3 +47,27 @@
     }
 
 })();
+
+// 게시글 작성 유효성검사
+function writeValidate(){
+
+    const boardTitle = document.getElementById("exampleFormControlInput3");
+    const textarea = document.getElementById("summernote");
+    const note = document.getElementsByClassName("note-editable")[0];
+
+    if(boardTitle.value.trim().length == 0 ){
+        alert(" 제목을 입력해주세요!");
+        boardTitle.value = "";
+        boardTitle.focus();
+        return false;
+    }
+
+    if(note.innerText.trim() == ""){
+        alert("내용을 입력해주세요");
+        note.innerText = "";
+        note.focus();
+        return false;
+    }
+
+    return true;
+};
