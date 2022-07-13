@@ -27,17 +27,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.JsonObject;
 
 import edu.kh.allWeAdopt.board.model.vo.Board;
+import edu.kh.allWeAdopt.board.model.vo.BoardDetail;
+import edu.kh.allWeAdopt.member.model.vo.Member;
 import edu.kh.allWeAdopt.shelter.model.service.ShelterReplyService;
 import edu.kh.allWeAdopt.shelter.model.service.ShelterService;
 import edu.kh.allWeAdopt.shelter.model.vo.Shelter;
@@ -74,6 +79,8 @@ public class ShelterController {
 	    
 //	    urlBuilder.append("&" + URLEncoder.encode("_type","UTF-8") + "=" + URLEncoder.encode(" ", "UTF-8")); /*xml(기본값) 또는 json*/
 	       
+		logger.info("유기견 목록 조회 수행");
+	    
 	    URL url = new URL(urlBuilder.toString());
 	       
 	    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -171,99 +178,10 @@ public class ShelterController {
 		
 //		System.out.println(desertionNo);
 		
+		logger.info("보호소 상세 조회 수행");
+		
 		return "shelter/shelter-Detail";
 	}
-	
-	
-	
-	// 전단지 목록 조회 
-	@GetMapping("/pamphletList")
-	public String pamphletList(@RequestParam(value = "cp", required = false, defaultValue = "1") int cp, Model model, 
-			@RequestParam Map<String, Object> paramMap) {
-		
-		
-		Map<String , Object> map = null;
-		
-		if(paramMap.get("query") == null) { // 검색이 아닌 경우
-			map = service.selectPamphletList(cp);
-			
-		}else { // 검색인 경우
-			
-			// 검색에 필요한 데이터를 paramMap에 모두 담아서 서비스 호출
-			// -> key, query, cp, boardCode
-			
-			paramMap.put("cp", cp); // 있으면 같은 값으로 덮어쓰기, 없으면 추가		
-			
-//			 map = service.searchPamphletList(paramMap);
-			
-		}
-		
-		model.addAttribute("map", map);
-		
-		
-		return "shelter/shelter-pamphlet";
-	}
-	
-	
-	// 전단지 작성 화면
-	@GetMapping("/pamphletWrite")
-	public String pamphletWriteForm(String mode, @RequestParam(value="no", required=false, defaultValue="0") int boardNo, Model modell) {
-		
-//		if(mode.equals("update")) {
-//			// 게시글 상세조회 서비스 호출
-//			BoardDetail detail = service.selectBoardDetail(boardNo);
-//			// -> 개행문자가 <br>로 되어있는 상태 -> textarea 출력 예정이기 때문에 \n으로 변경
-//			
-//			detail.setBoardContent(Util.newLineClear(detail.getBoardContent()));
-//			
-//			model.addAttribute("detail", detail);
-//		}
-		
-		return "shelter/shelter-pamphletWrite";
-		
-	}
-	
-	
-//	// 전단지 작성(삽입/수정)
-//	public String pamphletWrite(Board board, )
-	
-	
-	// 파일 업로드
-	@RequestMapping(value="/user/uploadSummernoteImageFile", produces = "application/json; charset=utf8")
-	@ResponseBody
-	public String uploadSummernoteImageFil(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest req ) {
-		
-		JsonObject jsonObject = new JsonObject();
-		
-		String webPath = "/resources/images/board/";
-		
-		// 컴퓨터 상에서 webPath까지의 실제 경로를 불러옴
-		String fileRoot = req.getSession().getServletContext().getRealPath(webPath);
-		
-		String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명
-		String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
-		String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
-		
-		File targetFile = new File(fileRoot + savedFileName);	
-		try {
-			InputStream fileStream = multipartFile.getInputStream();
-			FileUtils.copyInputStreamToFile(fileStream, targetFile);	//파일 저장
-			jsonObject.addProperty("url", "/resources/images/board/"+savedFileName); // contextroot + resources + 저장할 내부 폴더명
-			jsonObject.addProperty("responseCode", "success");
-				
-		} catch (IOException e) {
-			FileUtils.deleteQuietly(targetFile);	//저장된 파일 삭제
-			jsonObject.addProperty("responseCode", "error");
-			e.printStackTrace();
-		}
-		
-		String image = jsonObject.toString();
-		
-		return image;
-		
-	}
-	
-	
 	
 	
 }

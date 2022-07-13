@@ -27,14 +27,7 @@
         <script type="text/javascript" src="//code.jquery.com/jquery-3.6.0.min.js"></script>      
         
         <!-- summer note -->
-        <%-- <script src="${contextPath}/resources/summernote/summernote-lite.min.js"></script>
-        <script src="${contextPath}/resources/summernote/lang/summernote-ko-KR.min.js"></script>
-        <link rel="stylesheet" href="${contextPath}/resources/summernote/summernote-lite.min.css">
-
-        <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script> --%>
-
-        <%-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script> --%>
+ 
         <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 
