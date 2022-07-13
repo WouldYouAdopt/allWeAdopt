@@ -35,8 +35,8 @@
                 <div class="container px-3">
                         <div class="col-lg-8 col-xxl-6">
                             <div class="text-left my-5">
-                                <h2 class="fw-bolder mb-3">입양관련 공지입니다.</h2>
-                                <div class="text-muted  mb-2">2022.07.04</div>
+                                <h2 class="fw-bolder mb-3">${detail.boardTitle}</h2>
+                                <div class="text-muted  mb-2">${detail.createDate}</div>
                                 
                                 <!-- <div class="col-md-5 col-sm-6 mt-3">
                                     <label for="exampleFormControlInput1" class="form-label">작성자</label>
@@ -65,13 +65,7 @@
                             <div class="card bg-white">
                                 <div class="card-body">
                                     <div class="fs-6  ">
-                                        내용입니다.<br>
-                                        내용입니다.<br>
-                                        내용입니다.<br>
-                                        내용입니다.<br>
-                                        내용입니다.<br>
-                                        내용입니다.<br>
-                                        내용입니다.<br>
+                                        ${detail.boardContent}
                                     </div> 
                                 </div>
                             </div>
@@ -83,8 +77,25 @@
 
                 <!-- 버튼 영역 -->
                 <div class="container px-2 my-1 d-flex justify-content-end">
-                    <a class="btn btn-primary mt-3 mx-3 button-pink" href="${contextPath}/admin/notice/write">수정</a>
-                    <a class="btn btn-primary mt-3 button-pink" href="${contextPath}/admin/notice/delete">삭제</a>
+                    <c:if test="${loginMember.memberNo == detail.memberNo || loginMember.memberType == 'A'}">
+
+                        <%-- cp가 없을 경우에 대한 처리 --%>
+                        <c:if test="${empty param.cp}">
+                            <!-- 파라미터에 cp가 없을 경우 1 -->
+                            <c:set var="cp" value="1" />
+                        </c:if>
+
+                        <c:if test="${!empty param.cp}">
+                            <!-- 파라미터에 cp가 있을 경우 param.cp -->
+                            <c:set var="cp" value="${param.cp}" />
+                        </c:if>
+                                                        <%-- 현재위치 : /board/detail/1/1523 --%>
+                                                        <%-- 목표위치 : /board/write/1/ --%>
+                        <a class="btn btn-primary mt-3 mx-1 button-pink" onclick="location.href='../write/?mode=update&cp=${cp}&no=${detail.boardNo}'"">수정</a>
+                        <a class="btn btn-primary mt-3 mx-1 button-pink" id="deleteBtn">삭제</a>
+
+                    </c:if>
+                    <button class="btn btn-primary mt-3 mx-1 button-pink" type="button" id="goToListBtn">목록으로</button>
                 </div>
             </section>
 
@@ -95,8 +106,24 @@
 
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+        <script>
+            const contextPath = "${contextPath}";
+            
+            const boardNo = "${detail.boardNo}";
+
+            // 로그인한 회원 번호
+            const loginMemberNo = "${loginMember.memberNo}";
+            // -> 로그인 O  : "10";
+            // -> 로그인 X  : "";  (빈문자열)
+
+            const memberType = "${loginMember.memberType}";
+
+        </script>
         
         <!-- Core theme JS-->
         <script src="${contextPath}/resources/js/scripts.js"></script>
+
+        <script src="${contextPath}/resources/js/board/notice.js"></script>
     </body>
 </html>

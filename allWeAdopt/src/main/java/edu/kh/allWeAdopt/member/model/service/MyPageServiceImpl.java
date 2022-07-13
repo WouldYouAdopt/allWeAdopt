@@ -2,6 +2,7 @@ package edu.kh.allWeAdopt.member.model.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,11 +27,21 @@ public class MyPageServiceImpl implements MyPageService{
 	@Override
 	public int pwConfirm(Member loginMember) {
 		
-		return dao.pwConfirm( loginMember );
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("memberNo", loginMember.getMemberNo());
+		
+		// db에서 현재 비밀번호 조회
+		String memberPw = dao.selectMemberPw( map );
+		
+		String inputPw = loginMember.getMemberPw();
+		
+		if(bCrypt.matches(inputPw,memberPw)) return 1;
+		else                                 return 0;
+		
 	}
 
 	// 내정보 수정 기능 구현
-	@Override
+	@Override 
 	public int updateInfo(Map<String, Object> map, MultipartFile uploadImage) throws IOException{
 		
 		String deleteImage = (String)map.get("deleteImage");
@@ -92,6 +103,28 @@ public class MyPageServiceImpl implements MyPageService{
 		
 		return 0;
 	}
+
+	
+	// 회원탈퇴 기능 구현
+	@Override
+	public int secession(Member loginMember) {
+		
+		// 1) DB에서 암호화된 비밀번호를 조회하여 입력 받은 비밀번호와 비교
+		String encPw = dao.selectEncPw( loginMember.getMemberNo() );
+		
+		if( bCrypt.matches( loginMember.getMemberPw(), encPw)) {
+			
+			// 2) 비밀번호가 일치하면 회원 번호를 이용해서 탈퇴 진행
+			return dao.secession(loginMember.getMemberNo());
+		}
+		
+		// 3) 비밀번호가 일치하지 않으면 0 반환
+		return 0;
+	}
+	
+	
+	
+	
 	
 	
 

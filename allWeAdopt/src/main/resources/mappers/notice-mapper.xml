@@ -10,6 +10,17 @@
 		<result property="boardSt" column="BOARD_ST"/>
 	</resultMap>
 	
+	<!-- 게시글 상세조회용 resultMap -->   
+	<resultMap type="detail" id="detail_rm">
+		<id property="boardNo" column="BOARD_NO"/>
+		<result property="boardTitle" column="BOARD_TITLE"/>
+		<result property="boardContent" column="BOARD_CONTENT"/>
+		<result property="createDate" column="CREATE_DT"/>
+		<result property="updateDate" column="UPDATE_DT"/>
+		<result property="boardSt" column="BOARD_ST"/>
+		<result property="category" column="CATEGORY"/>
+	</resultMap>
+	
 	<!-- 게시글 수 조회 -->
 	<select id="getListCount" resultType="_int">
 	SELECT COUNT(*) FROM BOARD
@@ -23,10 +34,53 @@
                  THEN TO_CHAR(CREATE_DT, 'HH:MI')
                  ELSE TO_CHAR(CREATE_DT, 'YYYY-MM-DD')
             END CREATE_DT,
+            TO_CHAR(CREATE_DT, 'YYYY-MM-DD') CATEGORY,
             BOARD_ST          
     FROM BOARD
     WHERE BOARD_CD = 6
     ORDER BY BOARD_NO DESC
 	</select>
+	
+	<!-- 게시글 상세 조회 -->
+	<select id="selectNoticeDetail" resultMap="detail_rm">
+	SELECT BOARD_NO, BOARD_TITLE, BOARD_CONTENT,
+		   TO_CHAR(CREATE_DT, 'YYYY"년" MM"월" DD"일" HH24:MI:SS') CREATE_DT,
+		   TO_CHAR(UPDATE_DT, 'YYYY"년" MM"월" DD"일" HH24:MI:SS') UPDATE_DT,
+		   BOARD_ST
+	FROM BOARD
+	WHERE BOARD_NO = ${boardNo}
+	</select>
+	
+	<!-- 게시글 작성 -->
+	<insert id="insertBoard"  parameterType="detail" useGeneratedKeys="true">
+	  
+		<selectKey keyProperty="boardNo" resultType="_int" order="BEFORE">
+		   SELECT SEQ_BOARD_NO.NEXTVAL FROM DUAL
+		</selectKey>
+		
+		INSERT INTO BOARD VALUES(
+		   #{boardNo}, #{boardTitle}, #{boardContent}, 
+		   DEFAULT, DEFAULT, NULL, DEFAULT, NULL, NULL, 6, 1, NULL)  
+		    
+	</insert>
+	
+	<!-- 게시글 수정 -->
+	<update id="updateBoard">
+	UPDATE BOARD SET 
+	BOARD_TITLE = #{boardTitle},
+	BOARD_CONTENT = #{boardContent},
+	UPDATE_DT = SYSDATE
+	WHERE BOARD_NO = #{boardNo}
+	AND BOARD_CD = 6
+	AND BOARD_ST = 'N'
+	</update>
+	
+	<!-- 게시글 삭제 -->
+	<update id="deleteBoard">
+	UPDATE BOARD SET
+	BOARD_ST = 'Y'
+	WHERE BOARD_NO = #{boardNo}
+	AND BOARD_CD = 6
+	</update>
   
 </mapper>

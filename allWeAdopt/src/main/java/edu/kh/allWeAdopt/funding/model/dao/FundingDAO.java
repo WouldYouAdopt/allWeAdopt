@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 import edu.kh.allWeAdopt.board.model.vo.Pagination;
 import edu.kh.allWeAdopt.funding.model.vo.Funding;
 import edu.kh.allWeAdopt.funding.model.vo.FundingDetail;
+import edu.kh.allWeAdopt.funding.model.vo.OrderDetail;
+import edu.kh.allWeAdopt.funding.model.vo.Reward;
 
 @Repository
 public class FundingDAO {
@@ -45,5 +47,25 @@ public class FundingDAO {
 		RowBounds rowBounds = new RowBounds(offset, pagination.getLimit());
 		return sqlSession.selectList("fundingMapper.selectMyFundingList", memberNo, rowBounds);
 	}
+
+
+	/** 현재 진행중인 펀딩 번호
+	 * @return
+	 */
+	public int selectNowFundingNo() {
+		return sqlSession.selectOne("fundingMapper.selectNowFundingNo");
+	}
+
+	
+	/**주문정보 상세히 조회하기 위한 Service
+	 * @param paymentNo
+	 * @return
+	 */
+	public OrderDetail selectOrderDetail(int paymentNo) {
+		return sqlSession.selectOne("fundingMapper.selectOrderDetail",paymentNo);
+	}
+
+
+
 
 }

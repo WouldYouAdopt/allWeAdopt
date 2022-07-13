@@ -24,13 +24,20 @@
         <link rel="stylesheet" href="${contextPath}/resources/css/main-style.css">
 
         <!-- include libraries(jQuery, bootstrap) -->
-        <script type="text/javascript" src="//code.jquery.com/jquery-3.6.0.min.js"></script>
-<%--    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" />        
-        <script type="text/javascript" src="cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script> --%>
-    
-        <!-- include summernote css/js-->
-        <link href="${contextPath}/resources/summernote/summernote-lite.min.css" rel="stylesheet">
-        <script src="${contextPath}/resources/summernote/summernote-lite.min.js"></script>
+        <script type="text/javascript" src="//code.jquery.com/jquery-3.6.0.min.js"></script>      
+        
+        <!-- summer note -->
+        <%-- <script src="${contextPath}/resources/summernote/summernote-lite.min.js"></script>
+        <script src="${contextPath}/resources/summernote/lang/summernote-ko-KR.min.js"></script>
+        <link rel="stylesheet" href="${contextPath}/resources/summernote/summernote-lite.min.css">
+
+        <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script> --%>
+
+        <%-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script> --%>
+        <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
         
     </head>
     <body class="d-flex flex-column">
@@ -55,29 +62,48 @@
             <section class="py-0">
                 <div class="container px-3 my-1">
                     <div class="row gx-5 align-items-center">
+                        <form action="${contextPath}/admin/notice/write" method="post">
+                            <div class="md-10"></div>
 
-                        <div class="md-10"></div>
+                            <div class="col-md-5 col-sm-6 mt-3">
+                                <label for="exampleFormControlInput3" class="form-label"></label>
+                                <input type="text" name="boardTitle" class="form-control" id="exampleFormControlInput3" placeholder="게시글의 제목을 입력하세요..." value="${detail.boardTitle}" >
+                            </div>
 
-                        <div class="col-md-5 col-sm-6 mt-3">
-                            <label for="exampleFormControlInput3" class="form-label">게시글 제목</label>
-                            <input type="email" class="form-control" id="exampleFormControlInput3" placeholder="게시글의 제목을 입력하세요..."  >
-                        </div>
+                            <div class="md-10"></div>
 
-                        <div class="md-10"></div>
+                            <div class="col-md-5 col-sm-6 mt-3">
+                                <label for="exampleFormControlInput1" class="form-label">작성자</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="관리자" readonly >
+                            </div>
 
-                        <div class="col-md-5 col-sm-6 mt-3">
-                            <label for="exampleFormControlInput1" class="form-label">작성자</label>
-                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="관리자" readonly >
-                        </div>
+                            <div class="md-10"></div>
 
-                        <div class="md-10"></div>
+                            <div class="mb-3 mt-3">
+                                
+                                    <label for="exampleFormControlTextarea1" class="form-label"></label>
+                                    <textarea id="summernote" name="boardContent">${detail.boardContent}</textarea>    
 
-                        <div class="mb-3 mt-3">
-                            <label for="exampleFormControlTextarea1" class="form-label">문의내용 작성</label>
-                            <textarea id="summernote" name="editordata"></textarea>    
-                            <button class="btn btn-primary mt-3 button-pink" type="submit">등록</button>
-                        </div>
 
+                                    <!-- 숨겨진 값(hidden) : mode, boardNo, cp-->
+                                    <input type="hidden" name="mode" value="${param.mode}">
+                                    <input type="hidden" name="boardNo" value="${empty param.no ? 0 : param.no}">
+                                    <input type="hidden" name="cp" value="${param.cp}">
+
+                                    <button class="btn btn-primary mt-3 mx-1 button-pink">등록</button>
+
+                                    <!-- insert 모드 -->
+                                    <c:if test="${param.mode == 'insert'}">
+                                        <button class="btn btn-primary mt-3 mx-1 button-pink" type="button" id="goToListBtn">목록으로</button>
+                                    </c:if>
+                                    
+                                    <!-- update 모드 -->
+                                    <c:if test="${param.mode == 'update'}">
+                                        <button class="btn btn-primary mt-3 mx-1 button-pink" type="button" onclick="location.href='${header.referer}'">이전으로</button>                           
+                                    </c:if>
+                                
+                            </div>
+                        </form>
                     </div>
                 </div>
             </section>
@@ -92,30 +118,43 @@
        
 		<!-- Core theme JS-->
         <script src="${contextPath}/resources/js/scripts.js"></script>
-        
+        <script>
+            const contextPath = "${contextPath}";
+        </script>
         <!-- 썸머노트 -->
         <script>
-            $('#summernote').summernote({
-              placeholder: '문의내용을 입력해주세요.',
-              tabsize: 2,
-              height: 350,
-              toolbar: [
-                    // [groupName, [list of button]]
-                    // ['fontname', ['fontname']],
-                    // ['fontsize', ['fontsize']],
-                    // ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
-                    // ['color', ['forecolor','color']],
-                    // ['table', ['table']],
-                    // ['para', ['ul', 'ol', 'paragraph']],
-                    // ['height', ['height']],
-                    ['insert',['picture','link','video']],
-                    // ['view', ['fullscreen', 'help']]
-                ],
-                // fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋움체','바탕체'],
-                // fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72']
+            $(document).ready(function() {
+                $('#summernote').summernote({
+                    placeholder: '내용.',
+                    tabsize: 2,
+                    height: 350,
+                    toolbar: [
+                        // [groupName, [list of button]]
+                        ['fontname', ['fontname']],
+                        ['fontsize', ['fontsize']],
+                        ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+                        ['color', ['forecolor','color']],
+                        // ['table', ['table']],
+                        // ['para', ['ul', 'ol', 'paragraph']],
+                        // ['height', ['height']],
+                        ['insert',['picture','link']],
+                        // ['view', ['fullscreen', 'help']]
+                    ],
+                    callbacks:{
+                        onImageUpload: function(files, editor) {
+                            // 업로드된 이미지를 ajax를 이용하여 서버에 저장
+                            console.log("이미지 업로드됨");
+                            console.log(files);
+                            sendFile(files[0], this);
+                        }
+                    }
+                });
             });
+        </script>
 
-          </script>
+        <script src="${contextPath}/resources/js/board/summerNote.js"></script>
+
+        <script src="${contextPath}/resources/js/board/notice.js"></script>
 
     </body>
 </html>

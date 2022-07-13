@@ -63,33 +63,24 @@
 
             
             <!-- 펀딩 이미지, 타이틀, 달성률 들어있는 박스 -->
-                <div class="fundingTitleBox">
-                    <div class="fundingTitleImage" style="background: url(${contextPath}/resources/images/funding_sample/funding_title_img.png) 50% 0 ;"></div>
-                    <div class="fundingTitleText">
-                        ${detail.fundingTitle}
-                    </div>
-                    <div class="bottom-box">
-                        <div class="rate-bar"></div>
-                        <div class="rate-bar-pink"></div>
-                        <div class="rate-text-box"><span class="rate-text"></span><span class="per">%</span></div>
-                    </div>
+            <div class="fundingTitleBox">
+                <div class="fundingTitleImage" style="background: url(${contextPath}${detail.fundingThumbnail}) 50% 0 ;"></div>
+                <div class="fundingTitleText">
+                    ${detail.fundingTitle}
                 </div>
+                <div class="bottom-box">
+                    <div class="rate-bar"></div>
+                    <div class="rate-bar-pink"></div>
+                    <div class="rate-text-box"><span class="rate-text"></span><span class="per">%</span></div>
+                </div>
+            </div>
 
             <section class="py-4">
-
-
-
                 <div class="container px-5">
-
-
-
-
                     <div class="row gx-5">
 
-
-
-                            
                         <!-- 버튼들 -->
+                        <!-- fundingNo값이 없으면 nowFundingNo -->
                         <div class="middle-btns">
                             <button id="story" onclick="window.location.href='${contextPath}/funding/detail/${detail.fundingNo}?page=1'">펀딩 스토리</button>
                             <button id="policy" onclick="window.location.href='${contextPath}/funding/detail/${detail.fundingNo}?page=2'">반환 / 정책</button>
@@ -97,11 +88,7 @@
                             <button onclick="window.location.href='${contextPath}/funding/list'">종료된 펀딩</button>
                         </div>
 
-                        
-                        
                         <div class="line"></div>
-
-
 
 						<!-- ?page=1 story -->
 						<c:if test="${param.page==1}">
@@ -117,88 +104,71 @@
 						<c:if test="${param.page==3}">
 	                        <jsp:include page="/WEB-INF/views/funding/funding-detail3-supporters.jsp" />
 						</c:if>
-                        
-                        
 
                         <!-- 오른쪽 영역 -->
                         <div class="col-lg-3 sticky">
                             <!-- d-flex : flex 들어있는 class-->
                             <div class="align-items-center mb-4 fundingRight">
-                                <div class="this-month"><span class="month">7월</span> 이달의 펀딩<br>${detail.fundingTitle}</div>
-        
+                                <div class="this-month"><span class="month">${detail.month}</span>이달의 펀딩<br>${detail.fundingTitle}</div>
+        						<c:if test="${detail.fundingState=='Y'}">
                                 <div class="period">
-                                    <span class="pointText">12</span>일 남음
+                                    <span class="pointText">${detail.leftDate}</span>일 남음
                                 </div>
+                                </c:if>
+                                
                                 <div class="donation">
                                     달성금액 <br>
-                                    <span class="pointText">320,000 /  ${detail.targetDonation}</span> 원
+                                    <span class="pointText">
+                                    ${detail.rewardList[0].rewardOrderPrice+
+                                    detail.rewardList[1].rewardOrderPrice+
+                                    detail.rewardList[2].rewardOrderPrice}
+									 /  ${detail.targetDonation}</span> 원
                                 </div>
                                 <div class="supporters">
-                                    <span class="pointText">3</span>명의 서포터
+                                    <span class="pointText">member수</span>명의 서포터
                                 </div>
                             </div>
+
+                            <c:if test="${detail.fundingState=='Y'}">
                             <div class="align-items-center mb-4" >
                                 <button class="fundingBtn" onclick="window.location.href='${contextPath}/funding/reward'">펀딩하기</button>
                                 <button class="qnaBtn">문의</button>
                             </div>
+                            </c:if>
                             
+                            <c:forEach var="i" begin="0" end="2">
                             <div class="reward-box">
 
                                 <div class="reward">
                                     <div class="rew-number">
-                                        리워드1
+                                        리워드${i+1}
                                     </div>
                                     <div class="rew-price">
-                                        108,000<span>원 펀딩</span>
+                                        ${detail.rewardList[i].rewardPrice}<span>원 펀딩</span>
                                     </div>
                                     <div class="rew-title">
-                                        슈퍼얼리도그 쿨매트 러그형 S(100x200x1.5cm) 그레이
+                                        ${detail.rewardList[i].rewardTitle}
                                     </div>
                                     <div class="rew-content">
-                                        몽뚜뚜 프리미엄 러그형 쿨매트! 3D매쉬 소재로 통풍이 잘되는 애견매트로 S(100x200x1.5cm) 사이즈는 싱글 침대에 함께 사용할 수 있습니다.<br>★ 쿨매트 : 그레이 색상
+                                        ${detail.rewardList[i].rewardContent}
                                     </div>
                                     <div class="delivery-box">
                                         <!-- <span class="deli-title">배송비</span>
                                         <span class="deli-content">0원</span> -->
                                         <span class="deli-title">리워드 발송 시작일</span>
-                                        <span class="deli-content">08월 01일 부터 순차발송</span>
+                                        <span class="deli-content">${detail.endDate}+1일... 부터 순차발송</span>
                                     </div>
                                     <div class="stock-box">
-                                        <span class="stock">현재 47개 남음 / 제한수량 50개</span>
-                                        <span class="order-count">총 3개 펀딩 완료</span>
+                                        <span class="stock">현재 ${detail.rewardList[i].maxRewardNo-detail.rewardList[i].rewardOrderAmount}개 남음 / 제한수량 ${detail.rewardList[i].maxRewardNo}개</span>
+                                        <span class="order-count">총 ${detail.rewardList[i].rewardOrderAmount}개 펀딩 완료</span>
                                     </div>
 
                                     <div class="rewardOver"><div class="vertical-center">이 리워드 펀딩하기</div></div>
                                 </div>
-
+								</c:forEach>
 
                                 
-                                <div class="reward">
-                                    <div class="rew-number">
-                                        리워드2
-                                    </div>
-                                    <div class="rew-price">
-                                        108,000<span>원 펀딩</span>
-                                    </div>
-                                    <div class="rew-title">
-                                        슈퍼얼리도그 쿨매트 러그형 M(150x250x1.5cm) 그레이
-                                    </div>
-                                    <div class="rew-content">
-                                        몽뚜뚜 프리미엄 러그형 쿨매트! 3D매쉬 소재로 통풍이 잘되는 애견매트로 M(150x250x1.5cm) 사이즈는 싱글 침대에 함께 사용할 수 있습니다.<br>★ 쿨매트 : 그레이 색상
-                                    </div>
-                                    <div class="delivery-box">
-                                        <!-- <span class="deli-title">배송비</span>
-                                        <span class="deli-content">0원</span> -->
-                                        <span class="deli-title">리워드 발송 시작일</span>
-                                        <span class="deli-content">08월 01일 부터 순차발송</span>
-                                    </div>
-                                    <div class="stock-box">
-                                        <span class="stock">현재 47개 남음 / 제한수량 50개</span>
-                                        <span class="order-count">총 3개 펀딩 완료</span>
-                                    </div>
-
-                                    <div class="rewardOver"><div class="vertical-center">이 리워드 펀딩하기</div></div>
-                                </div>
+                                
                                 
                                 
                                 

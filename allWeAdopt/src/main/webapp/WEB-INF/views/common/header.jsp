@@ -30,7 +30,7 @@
                 <ul class="navbar-nav ms-auto  my-2 mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link" href="${contextPath}/shelter/shelterList">보호소</a></li>
                     <li class="nav-item"><a class="nav-link" href="${contextPath}/board/user">사용자</a></li>
-                    <li class="nav-item"><a class="nav-link" href="${contextPath}/funding/detail/1?page=1">펀딩</a></li>
+                    <li class="nav-item"><a class="nav-link" href="${contextPath}/funding/detail/${nowFundingNo}?page=1">펀딩</a></li>
                     <li class="nav-item"><a class="nav-link" href="${contextPath}/findHospital">병원찾기</a></li>
 
                     <c:choose>
@@ -45,28 +45,33 @@
                                     <a class="nav-link dropdown-toggle py-1" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="border-radius: 50%;">
                                         <%-- 기본 프로필이미지(= 프로필이미지 설정 안했을때) --%>
                                         <c:if test="${empty loginMember.profileImage }">
-                                             <img src="${contextPath}/resources/images/user.png" id="member-profile" style="width : 35px; height : 35px;">	
+                                             <img src="${contextPath}/resources/images/user.png" id="member-profile" style="width : 35px; height : 35px; ">	
                                         </c:if>     
 
                                         <c:if test="${!empty loginMember.profileImage && loginMember.memberType == 'K'}">
-                                             <img src="${loginMember.profileImage}" id="member-profile" style="width : 35px; height : 35px;">
+                                             <img src="${loginMember.profileImage}" id="member-profile" style="width : 35px; height : 35px; border:0.5px solid #ccc; border-radius:50%;">
                                         </c:if>
 
                                         <%-- 사용자 설정 프로필이미지 --%>
                                         <c:if test="${!empty loginMember.profileImage && loginMember.memberType == 'M'}">
-                                             <img src="${contextPath}/${loginMember.profileImage}" id="member-profile" style="width : 35px; height : 35px;">
+                                             <img src="${contextPath}/${loginMember.profileImage}" id="member-profile" style="width : 35px; height : 35px; ">
                                         </c:if>
 
 
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio"  >
-                                        <li><a class="dropdown-item" href="${contextPath}/member/myPage/pwConfirm">회원 정보 수정</a></li>
+                                        <c:if test="${loginMember.memberType == 'M'}">
+                                            <li><a class="dropdown-item" href="${contextPath}/member/myPage/pwConfirm">회원 정보 수정</a></li>
+                                        </c:if>
+                                        <c:if test="${loginMember.memberType == 'K'}">
+                                            <li><a class="dropdown-item" href="${contextPath}/member/myPage/updateInfo">회원 정보 수정</a></li>
+                                        </c:if>
                                         <li><a class="dropdown-item" href="portfolio-item.html">관심 목록</a></li>
                                         <li><a class="dropdown-item" href="portfolio-item.html">작성글 목록</a></li>
                                         <li><a class="dropdown-item" href="${contextPath}/funding/my/list">펀딩 참여 내역</a></li>
                                         <li><a class="dropdown-item" href="javascript:void(0)" onclick="popUpOpne()">채팅 목록</a></li>
                                         <li><a class="dropdown-item" href="portfolio-item.html">문의하기</a></li>
-                                        <li><a class="dropdown-item" href="${contextPath}/member/myPage/notice">공지사항</a></li>
+                                        <li><a class="dropdown-item" href="${contextPath}/member/myPage/notice/list">공지사항</a></li>
                                         <c:if test="${  loginMember.memberType == 'M' }">
                                             <li><a class="dropdown-item" href="${contextPath}/member/logout">로그아웃1</a></li>
                                         </c:if>

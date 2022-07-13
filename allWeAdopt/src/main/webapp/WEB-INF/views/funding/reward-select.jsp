@@ -268,8 +268,22 @@
 						
 						<div class="text-center mt-5 fs-5">우리아이 시원하게 여름 쿨매트에 0원을 펀딩합니다.</div>
 						<button data-bs-toggle="modal" data-bs-target="#exampleModal" class="selected d-grid col-6 mx-auto my-3 py-2" style="border-radius:4px; font-size:20px;" >결제 페이지로</button>
+
+
+
+
+						<form action="my/payment" method="POST">
+						<!-- 리워드정보 name:리워드넘버 / value:수량-->
+						<input name="4" value="1">
+						<input name="5" value="2">
+						<!-- 공개여부 / 체크 한것이 비공개임 -->
+						<input type="checkbox" name="nameCheck" value="notOpen">
+						<input type="checkbox" name="priceCheck" value="notOpen">
+                        <button type="submit">결제 임시버튼</button>
+						</form>
 						
-                    
+						
+						
                     </div>    
                      
 

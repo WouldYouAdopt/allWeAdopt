@@ -1,5 +1,6 @@
 package edu.kh.allWeAdopt.funding.model.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +12,8 @@ import edu.kh.allWeAdopt.board.model.vo.Pagination;
 import edu.kh.allWeAdopt.funding.model.dao.FundingDAO;
 import edu.kh.allWeAdopt.funding.model.vo.Funding;
 import edu.kh.allWeAdopt.funding.model.vo.FundingDetail;
+import edu.kh.allWeAdopt.funding.model.vo.OrderDetail;
+import edu.kh.allWeAdopt.funding.model.vo.Reward;
 
 @Service
 public class FundingServiceImpl implements FundingService {
@@ -23,15 +26,16 @@ public class FundingServiceImpl implements FundingService {
 	public FundingDetail selectFundingDetail(int fundingNo) {
 		
 		// 펀딩 상세조회
+		FundingDetail detail = dao.selectFundingDetail(fundingNo);
 		
-		// 펀딩 현재달성 금액 : reward, reward_order 에서 값 가져와서 계산해야하지? 
-		
-		// 펀딩 이미지리스트 가져오고
-		
-		// 리워드를 같이? 따로 가져올까?
+		// 리워드 + 리워드별 판매수량, 리워드별 판매금액
 		
 		
-		return dao.selectFundingDetail(fundingNo);
+		// 펀딩 이미지리스트
+		// 서포터즈 프로필, 이름, 금액, 이름공개여부, 금액공개여부
+		
+		
+		return detail;
 	}
 
 	
@@ -52,6 +56,19 @@ public class FundingServiceImpl implements FundingService {
 		map.put("fundingList", fundingList);
 		
 		return map;
+	}
+
+
+	// 현재 진행중인 펀딩 번호
+	@Override
+	public int selectNowFundingNo() {
+		return dao.selectNowFundingNo();
+	}
+
+	//주문정보 상세히 조회하기 위한 Service
+	@Override
+	public OrderDetail selectOrderDetail(int paymentNo) {
+		return dao.selectOrderDetail(paymentNo);
 	}
 	
 	

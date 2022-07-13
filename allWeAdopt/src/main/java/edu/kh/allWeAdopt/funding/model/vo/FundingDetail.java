@@ -11,20 +11,25 @@ import lombok.Setter;
 @NoArgsConstructor
 public class FundingDetail {
 	
-	private int fundingNo;
-	private String fundingTitle;
-	private String fundingMiniTitle;
-	private String fundingContent;
-	private int targetDonation;
+	private int fundingNo; //펀딩 번호
+	private String fundingTitle; //펀딩 제목
+	private String fundingMiniTitle; //펀딩 소제목
+	private String fundingContent; //펀딩 내용
+	private String targetDonation;  // 
 	private String fundingSeason;
 	private int SuccessDonation;
 	private String fundingState;
 	private String fundingThumbnail;
 	private int deliveryFee;
 	
+	private String month;
+	private String startDate;
+	private String endDate;
+	private int leftDate;
+	
 	private String CategoryName;
 	
-	private List<FundingImage> imageList;
+	private List<FundingImage> imageList;  //해당 유저가 구매한 리워드 수량
 
 	private List<Reward> rewardList;
 	

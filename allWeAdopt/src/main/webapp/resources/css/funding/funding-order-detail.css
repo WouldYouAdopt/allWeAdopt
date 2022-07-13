@@ -22,7 +22,7 @@
     overflow: hidden;
 }
 .fundingTitleImage{
-    background: url(/allWeAdopt/src/main/webapp/resources/images/funding_sample/funding_title_img.png) 20% 10% ;
+    background: url(http://localhost:8081/allWeAdopt/resources/images/funding_sample/funding_title_img.png) 20% 10% ;
     height: 200px;
     filter: blur(2px);
     transform: scale(1.8);
