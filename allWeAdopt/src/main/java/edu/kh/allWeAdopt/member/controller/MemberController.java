@@ -168,7 +168,6 @@ public class MemberController {
 	@ResponseBody
 	public String thisUser(int memberNo) {
 		Member thisMember = service.selectThisMember(memberNo);
-		thisMember.setMemberJson(new Gson().toJson(thisMember));
 		return new Gson().toJson(thisMember);
 	}
 	

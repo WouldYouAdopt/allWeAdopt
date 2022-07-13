@@ -31,7 +31,12 @@ function selectThisUser(thisUser){
          dataType:'json',
          type: "POST",
          success: function (member) {
-                console.log(member.memberJson);
+                console.log(member);
+
+                const targetMember = document.getElementById('targetMember');
+                targetMember.value = JSON.stringify(member);
+                
+                requestChat();
          },
          error: function () {
             console.log("에러발생"); // 404, 500
