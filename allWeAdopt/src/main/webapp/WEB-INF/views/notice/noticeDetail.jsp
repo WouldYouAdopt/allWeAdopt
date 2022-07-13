@@ -42,7 +42,7 @@
                     <div class="col-lg-8 col-xxl-6">
                         <div class="text-left mt-5">
                             <h2 class="fw-bolder mb-3">${detail.boardTitle}</h2>
-                            <div class="text-muted  mb-2"> 작성일 : ${detail.createDate} <c:if test="${detail.updateDate != '' }">| 수정일 : ${detail.updateDate}</c:if></div>                               
+                            <div class="text-muted  mb-2"> 작성일 : ${detail.createDate} <c:if test='${ !empty detail.updateDate }'>| 수정일 : ${detail.updateDate}</c:if></div>                               
                         </div>
                     </div>
                 </div>

@@ -125,7 +125,7 @@
                                                 <tr>
                                                     <th scope="row" class="col-sm-1 text-center" >${n.boardNo}</th>
                                                     <td><a href="${url}">${n.boardTitle}</a></td>
-                                                    <td>${n.createDate}</td>
+                                                    <td>${n.category}</td>
                                                 </tr>
                                             </c:otherwise>
                                         </c:choose>

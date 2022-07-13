@@ -87,7 +87,7 @@
                                         <input class="form-control" name="memberTel" id="memberTel" type="tel" placeholder="(010) 456-7890"  />
                                         <label for="memberTel"><span>* </span>휴대폰 번호(-제외) </label>
                                         <div class="spaceArea confirmBtnArea">
-                                            <button id="confirmBtn">인증</button>
+                                            <button id="confirmBtn" type="button">인증</button>
                                         </div>
                                     </div>
 
