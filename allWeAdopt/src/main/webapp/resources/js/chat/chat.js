@@ -20,3 +20,22 @@ function requestChat(){
     addChatForm.target = "chattingWindow";
     addChatForm.submit()
 }
+
+function selectThisUser(thisUser){
+    
+    /* new Gson().toJson(thisMember) */
+
+     $.ajax({
+         url:'/allWeAdopt/member/select/thisUser',
+         data:{'memberNo':thisUser},
+         dataType:'json',
+         type: "POST",
+         success: function (member) {
+                console.log(member.memberJson);
+         },
+         error: function () {
+            console.log("에러발생"); // 404, 500
+        }
+ 
+     })
+}

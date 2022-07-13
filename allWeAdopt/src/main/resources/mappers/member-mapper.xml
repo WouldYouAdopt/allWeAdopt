@@ -66,6 +66,13 @@
 				DEFAULT,DEFAULT,DEFAULT,'K',DEFAULT)
 	</insert>
  	
+ 	<!-- 채팅대상 회원 정보 조회를 위한 sql -->
+ 	<select id="selectThisMember" resultMap="member_rm">
+	SELECT DISTINCT MEMBER_NO,MEMBER_EMAIL,MEMBER_NM
+	FROM BOARD
+	JOIN MEMBER USING(MEMBER_NO)
+	WHERE MEMBER_NO=#{memberNo}
+ 	</select>
  
  
 </mapper>
