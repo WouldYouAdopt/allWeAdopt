@@ -1,5 +1,6 @@
 package edu.kh.allWeAdopt.funding.model.service;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,13 +26,22 @@ public class FundingServiceImpl implements FundingService {
 	@Override
 	public FundingDetail selectFundingDetail(int fundingNo) {
 		
-		// 펀딩 상세조회
+		// 펀딩 detail 상세조회
+		// 리워드 리스트 : 리워드 + 리워드별 판매수량, 리워드별 판매금액
+		// 펀딩 이미지리스트
 		FundingDetail detail = dao.selectFundingDetail(fundingNo);
 		
-		// 리워드 + 리워드별 판매수량, 리워드별 판매금액
+        // 달성금액 구하기
+		int sumPrice = 0;
+		for(int i=0; i<detail.getRewardList().size(); i++) {
+			sumPrice += detail.getRewardList().get(i).getRewardOrderPrice();			
+		}
 		
+		DecimalFormat fm = new DecimalFormat("###,###");
+		String fullPrice = fm.format(sumPrice);
 		
-		// 펀딩 이미지리스트
+		detail.setFullPrice(fullPrice);
+		
 		// 서포터즈 프로필, 이름, 금액, 이름공개여부, 금액공개여부
 		
 		
@@ -40,6 +50,13 @@ public class FundingServiceImpl implements FundingService {
 
 	
 	
+	private int Integer(String targetDonation) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+
 	//자신의 펀딩 목록 조회
 	@Override
 	public Map<String, Object> selectMyFundingList(int memberNo,int cp) {

@@ -70,8 +70,8 @@
                 </div>
                 <div class="bottom-box">
                     <div class="rate-bar"></div>
-                    <div class="rate-bar-pink"></div>
-                    <div class="rate-text-box"><span class="rate-text"></span><span class="per">%</span></div>
+                    <div class="rate-bar-pink" style="width:${detail.salesRate}%;"></div>
+                    <div class="rate-text-box" style="left:${detail.salesRate}%;"><span class="rate-text"></span><span class="per">%</span></div>
                 </div>
             </div>
 
@@ -109,6 +109,7 @@
                         <div class="col-lg-3 sticky">
                             <!-- d-flex : flex 들어있는 class-->
                             <div class="align-items-center mb-4 fundingRight">
+                            달성률 테스트 ${detail.salesRate}
                                 <div class="this-month"><span class="month">${detail.month}</span>이달의 펀딩<br>${detail.fundingTitle}</div>
         						<c:if test="${detail.fundingState=='Y'}">
                                 <div class="period">
@@ -119,10 +120,7 @@
                                 <div class="donation">
                                     달성금액 <br>
                                     <span class="pointText">
-                                    ${detail.rewardList[0].rewardOrderPrice+
-                                    detail.rewardList[1].rewardOrderPrice+
-                                    detail.rewardList[2].rewardOrderPrice}
-									 /  ${detail.targetDonation}</span> 원
+                                    ${detail.fullPrice} / ${detail.targetDonation}</span> 원
                                 </div>
                                 <div class="supporters">
                                     <span class="pointText">member수</span>명의 서포터
@@ -208,8 +206,51 @@
         <script src="${contextPath}/resources/js/scripts.js"></script>
         <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
         <script>
-            // 달성률 카운트
-            $(function() {
+        
+        	// 달성률 
+        	const salesRate = ${detail.salesRate};
+        
+        	// 키프레임 js에서 제어하기
+        	const pinkWidth = document.getElementsByClassName("rate-bar-pink")[0];
+        	const keyFrames = document.createElement("style");
+        	
+        	keyFrames.innerHTML = `
+        		@keyframes long1 {
+        		   from { 
+        		       width: 0;
+        		       background-color: rgb(251, 131, 107, 1);
+        		   }
+        		   to { 
+        		        width: ${detail.salesRate}%;
+        		        background-color: rgb(251, 131, 107, 0.9);
+        		    }
+        		}
+        		`;
+			pinkWidth.appendChild(keyFrames);
+        	
+			
+			const textBoxleft = document.getElementsByClassName("rate-text-box")[0];
+        	const keyFrames2 = document.createElement("style");
+        	
+        	keyFrames2.innerHTML = `
+        		@keyframes long2 {
+        		   from { 
+        			   left: 2px;
+   						color: #FB836B;
+   						background-color: rgb(255, 255, 255, 0.9);
+        		   }
+        		   to { 
+        			   left: ${detail.salesRate}%;
+  				 		color: #FB836B;
+  				 		background-color: rgb(255, 255, 255, 0.9);
+        		    }
+        		}
+        		`;
+			textBoxleft.appendChild(keyFrames2);
+        	
+        	
+            // 달성률 숫자 카운트
+        	$(function() {
                 var cnt0 = 0;
                 counterFn();
 
@@ -219,7 +260,7 @@
 
                     function count0Fn() {
                         cnt0++;
-                        if (cnt0 > 82) {
+                        if (cnt0 > salesRate) {
                             clearInterval(id0);
                         } else {
                             $(".rate-text").text(cnt0);
@@ -287,6 +328,7 @@
 		}else{
 			supporters.classList.remove('nowSelect')
 		}
+		
         </script>
     </body>
     
