@@ -120,9 +120,10 @@
                                         <input class="form-control" type="text" name="memberAddress" id="sample4_detailAddress" value="${addr[2]}" >
                                         <label for="memberAddress">상세주소</label>
                                     </div>
+                                    <div class="form-floating validate-area"></div>
 
                                     <!-- 프로필 사진-->
-                                    <div class="form-floating mb-3 confirm-area profile-image-area">
+                                    <div class="form-floating confirm-area profile-image-area">
                                         <div id="img-area">
                                             <c:if test="${empty loginMember.profileImage}">
                                                 <img src="${contextPath}/resources/images/user.png" id="profileImg">
@@ -138,12 +139,24 @@
 
                                         </div>
                                         <div class="imageBtnArea">
-                                            <input id="profileImage" type="file" name="uploadImage" accept="image/*">
-                                            <label for="profileImage">수정</label>
-                                            <input type="hidden" id="deleteImage" name="deleteImage" value="0">
-                                            <label for="deleteImage" id="del">삭제</label>
+
+                                            <c:if test="${!empty loginMember.profileImage && loginMember.memberType == 'M'}">
+                                                <input id="profileImage" type="file" name="uploadImage" accept="image/*">
+                                                <label for="profileImage">수정</label>
+                                                <input type="hidden" id="deleteImage" name="deleteImage" value="0">
+                                                <label for="deleteImage" id="del">삭제</label>
+                                            </c:if>
+
+                                            <c:if test="${!empty loginMember.profileImage && loginMember.memberType == 'K'}">
+                                                <input id="profileImage" type="text" name="uploadImage" accept="image/*">
+                                                <label for="profileImage" id="gray">수정</label>
+                                                <input type="hidden" id="deleteImage" name="deleteImage" value="0">
+                                                <label for="deleteImage" id="gray">삭제</label>
+                                            </c:if>
+
                                         </div>
                                     </div>
+                                    <div class="form-floating validate-area"></div>
 
                                     <!-- Submit Button-->
                                     <div class="d-grid">
