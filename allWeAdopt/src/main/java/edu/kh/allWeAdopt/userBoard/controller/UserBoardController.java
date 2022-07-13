@@ -144,11 +144,20 @@ public class UserBoardController {
 		return "redirect:/board/user";
 	}
 	
-// 상세 지역 호출
+	// 상세 지역 호출
 	@RequestMapping("/user/loadAreaList")
 	@ResponseBody
 	public List<Area> loadAreaList(@RequestParam("area") String area) {
 		List<Area> list = service.loadAreaList(area);
+		
+		return list;
+	}
+	
+	// 품종 호출
+	@RequestMapping("/user/loadAnimalList")
+	@ResponseBody
+	public List<Animal> loadAnimalList(@RequestParam("animalType") String animalType) {
+		List<Animal> list = service.loadAnimalList(animalType);
 		
 		return list;
 	}

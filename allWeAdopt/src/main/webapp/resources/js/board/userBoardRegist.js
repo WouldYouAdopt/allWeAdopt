@@ -63,63 +63,126 @@ $(document).ready(function() {
 			});
 		}
 
+		
 // 버튼 값 변경
 const selectMenu = document.getElementsByClassName("selectMenu");
 
 for (let i = 0; i < selectMenu.length; i++) {
-    selectMenu[i].addEventListener("click",function () {
-        selectMenu[i].parentElement.previousElementSibling.innerText = selectMenu[i].innerText;
+	selectMenu[i].addEventListener("click",function () {
+		selectMenu[i].parentElement.previousElementSibling.innerText = selectMenu[i].innerText;
 
 		document.getElementsByName("category")[0].value = document.getElementsByName("categoryValue")[0].innerText;
 
 		document.getElementsByName("area")[0].value = document.getElementsByName("areaValue")[0].innerText;
 
-		document.getElementsByName("areaDetail")[0].value = document.getElementsByName("areaDetailValue")[0].innerText;
-
 		document.getElementsByName("animalType")[0].value = document.getElementsByName("animalTypeValue")[0].innerText;
-
-		document.getElementsByName("animalDetail")[0].value = document.getElementsByName("animalDetailValue")[0].innerText;
 
 		document.getElementsByName("genders")[0].value = document.getElementsByName("genderValue")[0].innerText;
 
 		document.getElementsByName("neuterings")[0].value = document.getElementsByName("neuteringValue")[0].innerText;
-    })
+	})
 };
 
 // 지역이 바뀔 때마다 상세 지역 값 초기화
 const areaList = document.getElementsByClassName("areaList");
 
-for (let i = 0; i < areaList.length; i++) {
-	areaList[i].addEventListener("click",function () {
-		document.getElementsByName("areaDetailValue")[0].innerText = "상세 지역 선택";
-		const area = document.getElementsByName("area")[0].value;
-		$.ajax({
-			url: "loadAreaList",
-			contentType: "application/json",
-			dataType: "json",
-			type: "GET",
-			data: {
-				"area" : area
-			},
-			success: function(data){
-				// const ul = document
-				const li = document.createElement("li");
-				for(let i in data){
-					
+const ul = document.getElementsByName("areaDetailValue")[0].nextElementSibling;
+	
+	for (let i = 0; i < areaList.length; i++) {
+		areaList[i].addEventListener("click",function () {
+			document.getElementsByName("areaDetailValue")[0].innerText = "상세 지역 선택";
+	const area = document.getElementsByName("area")[0].value;
 
-				}
-				
-			},
-			error: function (request, status, error){
-				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	// 지역 선택에 따른 상세 지역 조회
+	$.ajax({
+		url: "loadAreaList",
+		contentType: "application/json",
+		dataType: "json",
+		type: "GET",
+		data: {
+			"area" : area
+		},
+		success: function(data){
+			while (ul.hasChildNodes()) {
+				ul.removeChild(ul.firstChild);
+			}
+			
+			for(let i in data){
+				const li = document.createElement("li");
+				li.classList.add("dropdown-item","areaDetail");
+				ul.appendChild(li);
+				let text = document.createTextNode(data[i].areaDetail);
+				li.appendChild(text);
+			}
+			
+		},
+		error: function (request, status, error){
+			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 		}
 	});
-		
-	});
+	
+});
 };
 
-// function removeAllchild(div) {
-//     while (div.hasChildNodes()) {
-//         div.removeChild(div.firstChild);
-//     }
-// }
+// 상세 지역 값 적용
+function areaDetailFunc(){
+	const Adetail = document.getElementsByClassName("areaDetail");
+	for (let i = 0; i < Adetail.length; i++) {
+			Adetail[i].addEventListener("click",function () {
+			Adetail[i].parentElement.previousElementSibling.innerText = Adetail[i].innerText;
+			document.getElementsByName("areaDetail")[0].value = document.getElementsByName("areaDetailValue")[0].innerText;
+		});
+	}
+};
+
+// 축종이 바뀔 때마다 품종 값 초기화
+const animalList = document.getElementsByClassName("animalList");
+
+const ul2 = document.getElementsByName("animalDetailValue")[0].nextElementSibling;
+	
+	for (let i = 0; i < areaList.length; i++) {
+		animalList[i].addEventListener("click",function () {
+		document.getElementsByName("animalDetailValue")[0].innerText = "품종";
+		const animalType = document.getElementsByName("animalType")[0].value;
+
+	// 지역 선택에 따른 상세 지역 조회
+	$.ajax({
+		url: "loadAnimalList",
+		contentType: "application/json",
+		dataType: "json",
+		type: "GET",
+		data: {
+			"animalType" : animalType
+		},
+		success: function(data){
+			while (ul2.hasChildNodes()) {
+				ul2.removeChild(ul2.firstChild);
+			}
+			
+			for(let i in data){
+				const li = document.createElement("li");
+				li.classList.add("dropdown-item","animalDetail");
+				ul2.appendChild(li);
+				let text = document.createTextNode(data[i].animalDetail);
+				li.appendChild(text);
+			}
+			
+		},
+		error: function (request, status, error){
+			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		}
+	});
+	
+});
+};
+
+// 품종 값 적용
+function animalDetailFunc(){
+	const Adetail = document.getElementsByClassName("animalDetail");
+	for (let i = 0; i < Adetail.length; i++) {
+			Adetail[i].addEventListener("click",function () {
+			Adetail[i].parentElement.previousElementSibling.innerText = Adetail[i].innerText;
+			document.getElementsByName("animalDetail")[0].value = document.getElementsByName("animalDetailValue")[0].innerText;
+		});
+	}
+};

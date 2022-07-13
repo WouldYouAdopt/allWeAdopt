@@ -79,4 +79,10 @@
 		JOIN MEMBER USING(MEMBER_NO)
 		WHERE BOARD_NO = ${boardNo}
 	</select>
+	
+	<!-- 품종 리스트 출력 -->
+	<select id="loadAnimalList" resultMap="animal_rm">
+		SELECT ANIMAL_DETAIL FROM ANIMAL_DB
+		WHERE ANIMAL_TYPE = #{animalType}
+	</select>
 </mapper>

@@ -24,4 +24,6 @@ public interface UserBoardService {
 
 	Board boardDetail(int boardNo);
 
+	List<Animal> loadAnimalList(String animalType);
+
 }

@@ -66,5 +66,12 @@ public class UserBoardImpl implements UserBoardService {
 		Board board = dao.boardDetail(boardNo);
 		return board;
 	}
+
+	// 품종 출력
+	@Override
+	public List<Animal> loadAnimalList(String animalType) {
+		List<Animal> list = dao.loadAnimalList(animalType);
+		return list;
+	}
 	
 }
