@@ -248,6 +248,19 @@
 		ORDER BY 1
 	</select>
 
+	
+	<!-- 펀딩번호로 리워드 전체 조회 **리워드들만** -->
+	<select id="selectOnlyRewardList" resultMap="reward_re">
+		SELECT
+		REWARD_NO,
+		REWARD_TITLE,
+		REWARD_CONTENT,
+		REWARD_PRICE,
+		MAX_REWARD_NO
+		FROM REWARD
+		WHERE FUNDING_NO=#{fundingNo}
+	</select>
+	
 	<!-- 가장 최근 주문정보 조회 -->
 	<select id="selectPrevOrder" resultMap="orderDetail_re">
 		SELECT *

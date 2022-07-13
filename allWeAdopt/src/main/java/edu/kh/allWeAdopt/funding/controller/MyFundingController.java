@@ -80,7 +80,8 @@ public class MyFundingController {
 	public String Payment(@RequestParam Map<String, Object>paramMap
 						 ,@ModelAttribute("loginMember") Member loginMember
 						 ,Model model
-						 ,RedirectAttributes ra){
+						 ,RedirectAttributes ra
+						 ){
 		
 		if(loginMember == null) {
 			ra.addFlashAttribute("message", "로그인 후 이용 바랍니다");
@@ -91,8 +92,8 @@ public class MyFundingController {
 		int memberNo = loginMember.getMemberNo();
 		Map<String, Object> map = service.selectRewardList(paramMap,memberNo);
 		
-		if(paramMap.get("nameAnonymous") != null) {			model.addAttribute("nameAnonymous", "true");		}
-		if(paramMap.get("priceAnonymous") != null) {			model.addAttribute("priceAnonymous", "true");		}
+		if(paramMap.get("nameAnonymous") != null) {		model.addAttribute("nameAnonymous", "true");	}
+		if(paramMap.get("priceAnonymous") != null) {	model.addAttribute("priceAnonymous", "true");	}
 		
 		
 		model.addAttribute("rewardList", map.get("rewardList"));
