@@ -19,7 +19,7 @@
 	<!-- 별칭 작성 부분 -->
 	<typeAliases>
 	
-			<typeAlias type="edu.kh.allWeAdopt.member.model.vo.Member" alias="member"/> 
+		<typeAlias type="edu.kh.allWeAdopt.member.model.vo.Member" alias="member"/> 
 		<typeAlias type="edu.kh.allWeAdopt.shelter.model.vo.Shelter" alias="shelter"/> 
 		<typeAlias type="edu.kh.allWeAdopt.board.model.vo.Board" alias="board"/> 
 		<typeAlias type="edu.kh.allWeAdopt.board.model.vo.BoardDetail" alias="detail"/> 
@@ -47,6 +47,8 @@
 		 <mapper resource="/mappers/notice-mapper.xml"/>
 		 <mapper resource="/mappers/board-mapper.xml"/>
 		 <mapper resource="/mappers/funding-mapper.xml"/>
+		 <mapper resource="/mappers/pamphlet-mapper.xml"/>
+
 	</mappers>
 
 
