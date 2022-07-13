@@ -37,16 +37,22 @@ public class FundingServiceImpl implements FundingService {
 			// 펀딩 이미지리스트
 			FundingDetail detail = dao.selectFundingDetail(fundingNo);
 			
+			//--------------------------------------------------------------------
+			// 리워드별 구매이력 조회 (수량, 금액)
+			List<Reward> rewardListCount = dao.selectRewardList(fundingNo);
+			//--------------------------------------------------------------------여기가 잘못됨
+			
 			// 달성금액 구하기
 			int sumPrice = 0;
-			for(int i=0; i<detail.getRewardList().size(); i++) {
-				sumPrice += detail.getRewardList().get(i).getRewardOrderPrice();			
+			for(int i=0; i<rewardListCount.size(); i++) {
+				sumPrice += rewardListCount.get(i).getRewardOrderPrice();			
 			}
 			
 			DecimalFormat fm = new DecimalFormat("###,###");
 			String fullPrice = fm.format(sumPrice);
 			
 			detail.setFullPrice(fullPrice);
+			detail.setRewardListCount(rewardListCount);
 			
 			// 서포터즈 프로필, 이름, 금액, 이름공개여부, 금액공개여부
 			int supportersNo = detail.getSupportersList().size(); // 서포터 몇명이냐
@@ -57,6 +63,7 @@ public class FundingServiceImpl implements FundingService {
 		}else { // 구매이력 없을때
 		
 			FundingDetail detail = dao.selectFundingSaleZero(fundingNo);
+			
 			return detail;
 			
 		}
@@ -150,6 +157,38 @@ public class FundingServiceImpl implements FundingService {
 		map.put("rewardList", selectedList);
 		map.put("prevOrder", prevOrder);
 		map.put("funding", funding);
+		
+		
+		return map;
+	}
+
+
+
+	// 리워드 리스트와 리워드별 구매수,금액 : 수진
+	@Override
+	public Map<String, Object> selectReward(int fundingNo) {
+		
+		// 리워드 정보
+		List<Reward> rewardList = dao.selectOnlyRewardList(fundingNo);
+		
+		// 펀딩 번호로 구매이력 count 조회 (구매이력 있는지 없는지 먼저 조회)
+		int result = dao.selectCountPay(fundingNo);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		if(result>0) { //구매이력 있으면
+			
+			// 리워드별 구매 개수
+			List<Reward> rewardListCount = dao.selectRewardOrderCount(fundingNo);
+			
+			map.put("rewardList", rewardList);
+			map.put("rewardListCount", rewardListCount);
+
+		}else {
+			
+			map.put("rewardList", rewardList);
+			
+		}
 		
 		
 		return map;

@@ -40,5 +40,11 @@ public interface FundingService {
 	 */
 	Map<String, Object> selectRewardList(Map<String, Object> paramMap,int memberNo);
 
+	/** 리워드 리스트와 리워드별 구매수,금액 : 수진
+	 * @param fundingNo
+	 * @return
+	 */
+	Map<String, Object> selectReward(int fundingNo);
+
 
 }
