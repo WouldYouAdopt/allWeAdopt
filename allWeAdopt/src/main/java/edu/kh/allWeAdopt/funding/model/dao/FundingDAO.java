@@ -91,6 +91,26 @@ public class FundingDAO {
 	public Funding selectFunding(int fundingNo) {
 		return sqlSession.selectOne("fundingMapper.selectfunding",fundingNo);
 	}
+
+
+
+
+	
+	/** 구매이력 수 조회 (구매이력 있는 펀딩인지 아닌지 구분)
+	 * @param fundingNo 
+	 * @return result
+	 */
+	public int selectCountPay(int fundingNo) {
+		return sqlSession.selectOne("fundingMapper.selectCountPay",fundingNo);
+	}
+
+	/** 구매이력 없는 펀딩 detail조회
+	 * @param fundingNo
+	 * @return
+	 */
+	public FundingDetail selectFundingSaleZero(int fundingNo) {
+		return sqlSession.selectOne("fundingMapper.selectFundingSaleZero",fundingNo);
+	}
 	
 
 

@@ -56,7 +56,7 @@ public class FundingController {
 	
 	
 	// 펀딩 리워드 선택 
-	@GetMapping("/reward")
+	@GetMapping("/reward/{fundingNo}")
 	public String rewardSelect() {
 		
 		// 리워드 넘버 있으면 리워드에 선택됨 표시 어떻게함?

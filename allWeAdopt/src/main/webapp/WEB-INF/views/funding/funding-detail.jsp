@@ -109,8 +109,7 @@
                         <div class="col-lg-3 sticky">
                             <!-- d-flex : flex 들어있는 class-->
                             <div class="align-items-center mb-4 fundingRight">
-                            달성률 테스트 ${detail.salesRate}
-                            서포터즈 테스트 ${detail.supportersList[0].payDate}
+
                                 <div class="this-month"><span class="month">${detail.month}</span>이달의 펀딩<br>${detail.fundingTitle}</div>
         						<c:if test="${detail.fundingState=='Y'}">
                                 <div class="period">
@@ -121,16 +120,23 @@
                                 <div class="donation">
                                     달성금액 <br>
                                     <span class="pointText">
-                                    ${detail.fullPrice} / ${detail.targetDonation}</span> 원
+                                    
+                                    <c:if test="${detail.supportersNo==0}">
+								    0
+								    </c:if>
+								    <c:if test="${detail.supportersNo!=0}">
+								    ${detail.fullPrice}
+								    </c:if>
+                                     / ${detail.targetDonation}</span> 원
                                 </div>
                                 <div class="supporters">
-                                    <span class="pointText">member수</span>명의 서포터
+                                    <span class="pointText">${detail.supportersNo}</span>명의 서포터
                                 </div>
                             </div>
 
                             <c:if test="${detail.fundingState=='Y'}">
                             <div class="align-items-center mb-4" >
-                                <button class="fundingBtn" onclick="window.location.href='${contextPath}/funding/reward'">펀딩하기</button>
+                                <button class="fundingBtn" onclick="window.location.href='${contextPath}/funding/reward/0'">펀딩하기</button>
                                 <button class="qnaBtn">문의</button>
                             </div>
                             </c:if>
@@ -152,8 +158,7 @@
                                         ${detail.rewardList[i].rewardContent}
                                     </div>
                                     <div class="delivery-box">
-                                        <!-- <span class="deli-title">배송비</span>
-                                        <span class="deli-content">0원</span> -->
+
                                         <span class="deli-title">리워드 발송 시작일</span>
                                         <span class="deli-content">${detail.endDate}+1일... 부터 순차발송</span>
                                     </div>
@@ -163,24 +168,18 @@
                                     </div>
 
                                     <div class="rewardOver"><div class="vertical-center">이 리워드 펀딩하기</div></div>
+
                                 </div>
+                                
+								<form action="../reward/${detail.fundingNo}" method="get" class="goReward">
+									<input type="hidden" name="${detail.rewardList[i].rewardNo}" value="1">
+								</form>
 								</c:forEach>
-
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-
 
                             </div> <!-- 리워드 전체 박스  -->
                             
                             <div class="fixbox">
-	                            <button class="fundingBtn wid-100" onclick="window.location.href='${contextPath}/funding/reward'">이 프로젝트 펀딩하기</button>
+	                            <button class="fundingBtn wid-100" onclick="window.location.href='${contextPath}/funding/reward/0'">이 프로젝트 펀딩하기</button>
                         	</div>
                             
                         </div> 
@@ -273,6 +272,7 @@
             // 리워드 마우스 오버
             const rewards = document.getElementsByClassName("reward");
             const rewardOvers = document.getElementsByClassName("rewardOver");
+            const goReward = document.getElementsByClassName("goReward");
 
             for(var i=0; i<rewards.length; i++){
                 rewards[i].addEventListener("mouseover",function(){
@@ -281,6 +281,13 @@
 
                 rewards[i].addEventListener("mouseout",function(){
                     this.lastElementChild.classList.remove('visable');
+                })
+                
+                
+                // 리워드 클릭 시
+                rewardOvers[i].addEventListener("click", function(){
+                	this.parentElement.nextElementSibling.submit();
+                	return;
                 })
             }
 			
@@ -302,6 +309,8 @@
     		    }
             });
 
+           	
+           	
 					    
 				
 
