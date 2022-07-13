@@ -77,7 +77,7 @@
 .profile-image-area{
     display: flex;
     justify-content: space-evenly;
-    padding: 20px;
+    padding: 0px 20px;
 }
 
 /*이미지 영역*/
@@ -121,6 +121,11 @@
     margin: 0 auto;
     text-align: center;
     cursor: pointer;
+}
+
+#gray{
+    background-color: #999;
+    cursor: default;
 }
 
 #bg-light{
@@ -177,4 +182,3 @@
     background-color: rgb(251, 131, 107);
     border: none;
 }
-

@@ -23,6 +23,11 @@ hr{
     margin-left: 65px;
 }
 
+.selectArea{
+    height: 120px;
+    overflow: auto;
+}
+
 /* 드롭다운 버튼 */
 
 .btn-secondary{

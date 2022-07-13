@@ -17,6 +17,7 @@
 		<result property="deliveryFee" column="DELIVERY_FEE" />
 
 		<result property="CategoryName" column="CATEGORY_NM" />
+		<result property="salesRate" column="SALES_RATE" />
 
 		<result property="month" column="MONTH" />
 		<result property="startDate" column="STARTDATE" />
@@ -119,13 +120,18 @@
 		FUNDING_ST,
 		FUNDING_THUMBNAIL,
 		DELIVERY_FEE,
-		CATEGORY_NM
+		CATEGORY_NM,
+        
+        ROUND(FULLPRICE/TARGET_DONATION*100) AS SALES_RATE
 
 		FROM FUNDING
-		JOIN CATEGORY
-		USING(FUNDING_CATEGORY)
-		WHERE FUNDING_NO =
-		#{fundingNo}
+		JOIN CATEGORY USING(FUNDING_CATEGORY)
+        JOIN 
+        ( SELECT  FUNDING_NO, SUM((REWARD_PRICE*AMOUNT)) AS FULLPRICE
+        FROM REWARD_ORDER
+        JOIN REWARD USING (REWARD_NO)
+        GROUP BY FUNDING_NO) USING (FUNDING_NO)
+		WHERE FUNDING_NO = #{fundingNo}
 	</select>
 
 

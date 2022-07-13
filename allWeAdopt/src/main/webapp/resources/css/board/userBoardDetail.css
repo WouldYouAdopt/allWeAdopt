@@ -1,0 +1,72 @@
+/* 제목(Post title) */
+.title-area{
+    display: flex;
+    justify-content: space-between;
+}
+
+.title-area > div{
+    display: flex;
+}
+
+.modify{
+    width: 80px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    background-color: #FB836B;
+    color: #FFF;
+    border-radius: 10px;
+    margin: 5px;
+}
+
+.delete{
+    width: 80px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    background-color: #FFF;
+    color: crimson;
+    border: 1px solid crimson;
+    border-radius: 10px;
+    margin: 5px; 
+}
+
+a{
+    text-decoration: none;
+}
+
+/* 태그(Post category) */
+.tag-area{
+    display: flex;
+    justify-content: space-between;
+}
+
+.like-area{
+    font-size: 16px;
+}
+
+.like{
+    color: crimson;
+}
+/* 공유 */
+.share-area{
+    margin-bottom: 25px;
+}
+
+.share-area a{
+    margin: 5px;
+}
+
+/* 등록 */
+.btn-area{
+    display: flex;
+}
+
+.btnRegist{
+    width: 130px;
+    height: 35px;
+    background-color: #FB836B;
+    color: #FFF;
+    border: none;
+    border-radius: 5px;
+}

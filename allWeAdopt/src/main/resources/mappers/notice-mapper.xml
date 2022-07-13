@@ -29,15 +29,16 @@
 	
 	<!-- 게시글 목록 조회 -->
 	<select id="selectNoticeList" resultMap="board_rm">
-	SELECT BOARD_NO, BOARD_TITLE,
+ 	SELECT BOARD_NO, BOARD_TITLE,
             CASE WHEN SYSDATE - CREATE_DT &lt; 1
-                 THEN TO_CHAR(CREATE_DT, 'HH:MI')
+                 THEN TO_CHAR(CREATE_DT, 'HH24:MI')
                  ELSE TO_CHAR(CREATE_DT, 'YYYY-MM-DD')
             END CREATE_DT,
             TO_CHAR(CREATE_DT, 'YYYY-MM-DD') CATEGORY,
             BOARD_ST          
     FROM BOARD
     WHERE BOARD_CD = 6
+    AND BOARD_ST = 'N'
     ORDER BY BOARD_NO DESC
 	</select>
 	
