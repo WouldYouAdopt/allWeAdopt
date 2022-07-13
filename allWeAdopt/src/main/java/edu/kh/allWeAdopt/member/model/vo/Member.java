@@ -26,7 +26,6 @@ public class Member {
 	//채팅 서버 전송을 위한 JSON 형태 객체
 	private String memberJson;
 	
-	private String cNumber;
 	
-	
+		
 }
