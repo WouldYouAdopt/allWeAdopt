@@ -101,13 +101,11 @@
                         <input type="hidden" class="value" name="area">
                     </div>
                     <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false" name="areaDetailValue">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false" name="areaDetailValue" onclick="areaDetailFunc()">
                           상세 지역 선택
                         </button>
                         <ul class="dropdown-menu dropdown-menu-dark selectArea" aria-labelledby="dropdownMenuButton2">
-                          <li class="dropdown-item selectMenu">은평구</li>
-                          <li class="dropdown-item selectMenu">동대문구</li>
-                          <li class="dropdown-item selectMenu">종로구</li>
+                          
                         </ul>
                         <input type="hidden" class="value" name="areaDetail">
                     </div>
@@ -128,20 +126,18 @@
                           축종
                         </button>
                         <ul class="dropdown-menu dropdown-menu-dark selectArea" aria-labelledby="dropdownMenuButton2">
-                          <li class="dropdown-item selectMenu">개</li>
-                          <li class="dropdown-item selectMenu">고양이</li>
-                          <li class="dropdown-item selectMenu">기타</li>
+                          <li class="dropdown-item selectMenu animalList">개</li>
+                          <li class="dropdown-item selectMenu animalList">고양이</li>
+                          <li class="dropdown-item selectMenu animalList">기타</li>
                         </ul>
                         <input type="hidden" name="animalType">
                     </div>
                     <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false" name="animalDetailValue">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false" name="animalDetailValue" onclick="animalDetailFunc()">
                           품종
                         </button>
                         <ul class="dropdown-menu dropdown-menu-dark selectArea" aria-labelledby="dropdownMenuButton2">
-                          <li class="dropdown-item selectMenu">요크셔테리어</li>
-                          <li class="dropdown-item selectMenu">러시안블루</li>
-                          <li class="dropdown-item selectMenu">기타</li>
+                          
                         </ul>
                         <input type="hidden" name="animalDetail">
                     </div>

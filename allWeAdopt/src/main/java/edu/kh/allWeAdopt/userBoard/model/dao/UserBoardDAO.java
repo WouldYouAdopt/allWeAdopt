@@ -56,6 +56,12 @@ public class UserBoardDAO {
 		return board;
 	}
 
+	// 품종 리스트 호출
+	public List<Animal> loadAnimalList(String animalType) {
+		List<Animal> list = sqlSession.selectList("boardMapper.loadAnimalList",animalType);
+		return list;
+	}
+
 
 
 
