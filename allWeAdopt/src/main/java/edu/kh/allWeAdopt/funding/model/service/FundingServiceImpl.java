@@ -46,45 +46,12 @@ public class FundingServiceImpl implements FundingService {
 		// 서포터즈 프로필, 이름, 금액, 이름공개여부, 금액공개여부
 		int supportersNo = detail.getSupportersList().size(); // 서포터 몇명이냐
 		detail.setSupportersNo(supportersNo);
+
 		
-		// 서포터즈 각각 time계산하기
-		List<Supporters> supportersList = new ArrayList<Supporters>();
-		for(int i=0; i<supportersNo; i++) {
-			Supporters supporters = new Supporters();
-			supporters.setTimeForString(calcul(detail.getSupportersList().get(i).getTime()));
-			
-			detail.getSupportersList().add(supporters);
-		}
-		
-		
-		System.out.println("값을보여다오"+detail.getSupportersList().get(0).getTimeForString());
 		return detail;
 	}
 
-	// fundingDetail의 supporters에서 time 계산하기 위한 메서드
-	private String calcul(int time) {
-		String supportersTime = null;
-		if (time < 60) {
-			supportersTime=("방금 전");
-		} else if ((time / 60) < 60) {
-			time = time/60;
-			supportersTime=(time + "분 전");
-		} else if ((time / 3600) < 24) {
-			time = time/3600;
-			supportersTime=((time) + "시간 전");
-		} else if ((time / (3600*24)) < 30) {
-			time = time/(3600*24);
-			supportersTime=((time) + "일 전");
-		} else if ((time / (3600*24*30)) < 12) {
-			time = time/(3600*24*30);
-			supportersTime=((time) + "달 전");
-		} else {
-			time = time/(3600*24*30*12);
-			supportersTime=((time) + "년 전");
-		}
-		
-		return supportersTime;
-	}
+
 	
 	
 	// 이건뭐지 
