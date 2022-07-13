@@ -40,3 +40,58 @@ function execDaumPostcode() {
       }
 }).open();
 }
+
+
+//배송지 라디오 버튼들에 이벤트를 추가
+(function(){
+  /* 이전 배송지를 대입시켜주는 함수 */
+  prevDestination = document.getElementById('prevDestination');
+  newDestination = document.getElementById('newDestination');
+  supportDestination = document.getElementById('supportDestination');
+
+  //배송지 정보를 대입시켜줄 input box들
+  const inputName = document.getElementById("inputName");
+  const inputTelMain = document.getElementById("inputTelMain");
+  const inputTelSub = document.getElementById("inputTelSub");
+  const address = document.getElementById("address");
+  const detailAddress = document.getElementById("detailAddress");
+
+  const backUp = document.getElementsByClassName("inputArea")[0].innerHTML;
+
+  //이전 배송지
+  prevDestination.addEventListener("change",function(){
+    console.log('이전 주소 체크됨');
+    
+    inputName.value = prevOrder.recipient;
+    inputTelMain.value = prevOrder.orderPhoneMain;
+      if(prevOrder.orderPhoneSub != null){
+        inputTelSub.value = prevOrder.orderPhoneSub;
+      }
+    address.value = prevOrder.orderAddress;
+    detailAddress.value = prevOrder.orderAddress;
+  })
+
+  //신규 배송지
+  newDestination.addEventListener("change",function(){
+    console.log('신규배송지 체크됨');
+    inputName.value = "";
+    inputTelMain.value = "";
+    inputTelSub.value = "";
+    address.value = "";
+    detailAddress.value = "";
+  })
+
+  //서포터 정보와 동일
+  supportDestination.addEventListener("change",function(){
+    console.log('서포터 주소 체크됨');
+    inputName.value = supportName;
+    inputTelMain.value = supportTel;
+    inputTelSub.value = "";
+    address.value = supportAddress;
+    detailAddress.value = supportAddress;
+  })
+
+})()
+
+
+
