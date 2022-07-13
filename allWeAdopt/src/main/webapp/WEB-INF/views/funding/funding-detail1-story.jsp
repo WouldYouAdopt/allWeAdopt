@@ -9,11 +9,12 @@
                             <article class="content-box">
                             	<!-- 타이틀 이미지 넣기~ -->
                                 <div class="funding-img">
-                                    <img src="${contextPath}/resources/images/funding_sample/funding_title_img.png">
+                                    <img src="${contextPath}${detail.fundingThumbnail}">
                                 </div>
 
 								<!-- 요약박스 -->
                                 <div class="funding-summary">
+                                	${detail.fundingMiniTitle}<br>
 	                                목표 금액 ${detail.targetDonation}<br>
 									펀딩 기간 ${detail.startDate} ~ ${detail.endDate}<br>
 									리워드 배송비 ${detail.deliveryFee}원<br>

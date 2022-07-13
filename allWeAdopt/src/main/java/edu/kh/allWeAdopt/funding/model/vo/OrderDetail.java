@@ -22,7 +22,7 @@ public class OrderDetail {
 	private String orderPhoneMain; //전화번호1
 	private String orderPhoneSub; //전화번호2
 	private String orderAddress; //수령인 주소
-	private int paymentNo; //결제 번호
+	private int paymentNo; //결제 번호f
 	
 	//해당 결제 번호로 구매한 리워드 목록
 	private List<Reward> rewardList;

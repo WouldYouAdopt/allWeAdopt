@@ -8,10 +8,10 @@
         <div class="container px-2">
             <ul class="navbar-nav ms-left mb-2 mb-lg-0">
                 <c:if test="${loginMember.memberType == 'M'}">
-                    <li><a class="dropdown-item" href="${contextPath}/member/myPage/pwConfirm">회원 정보 수정</a></li>
+                    <li class="nav-item" ><a class="nav-link" href="${contextPath}/member/myPage/pwConfirm">회원 정보 수정</a></li>
                 </c:if>
                 <c:if test="${loginMember.memberType == 'K'}">
-                    <li><a class="dropdown-item" href="${contextPath}/member/myPage/updateInfo">회원 정보 수정</a></li>
+                    <li class="nav-item" ><a class="nav-link" href="${contextPath}/member/myPage/updateInfo">회원 정보 수정</a></li>
                 </c:if>
                 <li class="nav-item"><a class="nav-link" href="#">관심목록</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">작성글 목록</a></li>

@@ -21,5 +21,6 @@ public class Board {
 	private String updateDate;
 	private String boardPeriod;
 	private String boardPeriod2;
-	
+	private String memberName;
+	private String msg;
 }

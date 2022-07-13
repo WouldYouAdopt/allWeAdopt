@@ -29,7 +29,7 @@ public class NowFundingNoInterceptor implements HandlerInterceptor {
 		int nowFundingNo = service.selectNowFundingNo();
 		application.setAttribute("nowFundingNo", nowFundingNo);
 		
-		logger.info("전처리 테스트 nowFundingNo : " + nowFundingNo);
+		/* logger.info("전처리 테스트 nowFundingNo : " + nowFundingNo); */
 		return HandlerInterceptor.super.preHandle(request, response, handler);
 	}
 

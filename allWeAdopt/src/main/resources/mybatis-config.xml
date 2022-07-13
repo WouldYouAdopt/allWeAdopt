@@ -33,6 +33,7 @@
 		<typeAlias type="edu.kh.allWeAdopt.funding.model.vo.Funding" alias="funding"/> 
 		<typeAlias type="edu.kh.allWeAdopt.funding.model.vo.OrderDetail" alias="orderDetail"/> 
 		<typeAlias type="edu.kh.allWeAdopt.funding.model.vo.Reward" alias="reward"/> 
+		<typeAlias type="edu.kh.allWeAdopt.funding.model.vo.Supporters" alias="supporters"/> 
 	
 	
 	</typeAliases>
@@ -48,6 +49,8 @@
 		 <mapper resource="/mappers/notice-mapper.xml"/>
 		 <mapper resource="/mappers/board-mapper.xml"/>
 		 <mapper resource="/mappers/funding-mapper.xml"/>
+		 <mapper resource="/mappers/pamphlet-mapper.xml"/>
+
 	</mappers>
 
 

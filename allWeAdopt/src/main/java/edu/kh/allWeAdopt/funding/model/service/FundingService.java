@@ -6,6 +6,7 @@ import java.util.Map;
 import edu.kh.allWeAdopt.funding.model.vo.Funding;
 import edu.kh.allWeAdopt.funding.model.vo.FundingDetail;
 import edu.kh.allWeAdopt.funding.model.vo.OrderDetail;
+import edu.kh.allWeAdopt.funding.model.vo.Reward;
 
 public interface FundingService {
 
@@ -32,6 +33,12 @@ public interface FundingService {
 	 * @return
 	 */
 	OrderDetail selectOrderDetail(int paymentNo);
+
+	/**리워드 목록을 조회하는 함수.
+	 * @param paramMap
+	 * @return
+	 */
+	Map<String, Object> selectRewardList(Map<String, Object> paramMap,int memberNo);
 
 
 }

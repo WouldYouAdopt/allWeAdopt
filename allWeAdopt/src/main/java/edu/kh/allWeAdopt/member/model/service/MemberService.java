@@ -66,6 +66,15 @@ public interface MemberService {
 
 
 
+	
+	/**채팅 대상 정보 얻어오는 Service 생성자:김현기
+	 * @param memberNo
+	 * @return
+	 */
+	public abstract Member selectThisMember(int memberNo);
+
+
+
 
 
 

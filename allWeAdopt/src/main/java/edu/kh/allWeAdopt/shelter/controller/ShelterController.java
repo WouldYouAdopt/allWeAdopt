@@ -2,6 +2,9 @@ package edu.kh.allWeAdopt.shelter.controller;
 
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -9,7 +12,12 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.io.FileUtils;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
@@ -19,13 +27,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.google.gson.JsonObject;
 
+import edu.kh.allWeAdopt.board.model.vo.Board;
+import edu.kh.allWeAdopt.board.model.vo.BoardDetail;
+import edu.kh.allWeAdopt.member.model.vo.Member;
+import edu.kh.allWeAdopt.shelter.model.service.ShelterReplyService;
 import edu.kh.allWeAdopt.shelter.model.service.ShelterService;
 import edu.kh.allWeAdopt.shelter.model.vo.Shelter;
 
@@ -37,12 +55,15 @@ public class ShelterController {
 	@Autowired
 	private ShelterService service;
 	
+	@Autowired
+	private ShelterReplyService replyService;
+	
 	private Logger logger = LoggerFactory.getLogger(ShelterController.class);
 
 	
 	
 	// 보호소 불러오기
-	@GetMapping("/mainShelter")
+	@GetMapping("/shelterList")
 	public String openShelter(Model model, @RequestParam(value="pageNo", required=false, defaultValue = "1") String pageNo,
 								@RequestParam(value="upkind", required=false, defaultValue = "")String upkind, 
 								@RequestParam(value="upr_cd", required=false, defaultValue = "") String upr_cd
@@ -58,6 +79,8 @@ public class ShelterController {
 	    
 //	    urlBuilder.append("&" + URLEncoder.encode("_type","UTF-8") + "=" + URLEncoder.encode(" ", "UTF-8")); /*xml(기본값) 또는 json*/
 	       
+		logger.info("유기견 목록 조회 수행");
+	    
 	    URL url = new URL(urlBuilder.toString());
 	       
 	    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -146,7 +169,7 @@ public class ShelterController {
 	    model.addAttribute("upr_cd", upr_cd);	    
 //	    model.addAttribute("org_cd", org_cd);	    
 
-		return "shelter/mainShelter";
+		return "shelter/shelter-main";
 	}
 	
 	// 보호소 상세 조회
@@ -155,10 +178,10 @@ public class ShelterController {
 		
 //		System.out.println(desertionNo);
 		
-		return "shelter/shelterDetail";
+		logger.info("보호소 상세 조회 수행");
+		
+		return "shelter/shelter-Detail";
 	}
-	
-	
 	
 	
 }

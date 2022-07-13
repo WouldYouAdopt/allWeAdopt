@@ -83,10 +83,13 @@ public class MemberController {
 		// 회원가입 서비스 호출
 		int result = service.signUp( map, uploadImage );
 		
-		if(result>0) ra.addFlashAttribute("message", "회원가입 완료");
-		else         ra.addFlashAttribute("message", "회원가입 실패");
+		if(result>0) {
+			ra.addFlashAttribute("message", "회원가입 완료");
+		}else {
+			ra.addFlashAttribute("message", "회원가입 실패");
+		}
 		
-		return  "common/main";
+		return "redirect:/";
 	}
 	
 	// 로그아웃
@@ -160,7 +163,13 @@ public class MemberController {
 	
 	
 	
-	
+	//채팅을 위한 회원 정보 조회용
+	@PostMapping("/select/thisUser")
+	@ResponseBody
+	public String thisUser(int memberNo) {
+		Member thisMember = service.selectThisMember(memberNo);
+		return new Gson().toJson(thisMember);
+	}
 	
 	
 	

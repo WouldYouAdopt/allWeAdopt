@@ -6,8 +6,8 @@ const checkObj = {
     "memberPw"        : false,
     "memberPwConfirm" : false,
     "memberName"  : false,
-    "memberTel"       : false
-    //"인증번호"       : false   // 인증번호 발송 체크
+    "memberTel"       : false,
+    //"sms"       : false   // 인증번호 발송 체크
 };
 
 // 이메일 유효성 검사
@@ -292,11 +292,12 @@ function signUpValidate(){
         if( !checkObj[key] ){ 
 
             switch(key){
-            case "memberEmail":     str="이메일 입력란을"; break;
-            case "memberPw":        str="비밀번호 입력란을"; break;    
+            case "memberEmail"    : str="이메일 입력란을"; break;
+            case "memberPw"       : str="비밀번호 입력란을"; break;    
             case "memberPwConfirm": str="비밀번호 확인 입력란을"; break;
-            case "memberName":  str="닉네임 입력란을"; break;
-            case "memberTel":       str="전화번호 입력란을"; break;
+            case "memberName"     : str="닉네임 입력란을"; break;
+            case "memberTel"      : str="전화번호 입력란을"; break;
+            case "sms"            : str="휴대폰 인증을"; break;
             }
 
             str += " 다시 확인해주세요.";
@@ -310,3 +311,79 @@ function signUpValidate(){
     return true; // form태그 기본 이벤트 수행
 
 }
+
+// 문자 인증
+const confirmBtn = document.getElementById("confirmBtn");
+
+confirmBtn.addEventListener("click", function(){
+
+    if(!checkObj.memberTel){
+        alert("휴대폰 번호를 확인해주세요.");
+    }else{
+
+        alert("인증번호 전송 완료! 30초~ 1분정도 소요됩니다 :^)");
+
+        $.ajax({
+            url : contextPath + "/member/sms",
+            data : { "memberTel" : memberTel.value },
+            type : "GET", // 데이터 전달 방식 type
+            success : function( randomNumber ){
+
+                console.log(randomNumber);
+                
+                // 성공시 인증번호 반환, 실패시 0 반환
+                if(randomNumber==0){
+                    console.log("문자 발송 실패");
+                    telMsg.innerText = "휴대폰번호 재확인 후 다시 인증버튼을 눌러주세요. ";
+                    memberTel.focus();
+                    checkObj.sms = false; // 유효하지 않은 상태임을 기록
+                }else{
+                    
+                    console.log("문자 발송 성공 : " + randomNumber);
+
+                    const number = document.getElementById("number");
+                    number.addEventListener("input",function(){
+
+                        if(number.value.trim().length == 0){
+
+                            telMsg.innerText = "인증번호를 입력해주세요.";
+                            telMsg.classList.add("error");
+                            telMsg.classList.remove("confirm");
+                            checkObj.sms = false; // 유효하지 않은 상태임을 기록
+
+                        }
+
+                        if(number.value.trim().length != 0){
+
+                            if(number.value == randomNumber){
+                                telMsg.innerText = "휴대폰 인증 완료";
+                                telMsg.classList.remove("error");
+                                telMsg.classList.add("confirm");
+                                checkObj.sms = true; // 유효 O 기록
+                            }else{
+                                telMsg.innerText = "인증번호 불일치";
+                                telMsg.classList.add("error");
+                                telMsg.classList.remove("confirm");
+                                checkObj.sms = false; // 유효하지 않은 상태임을 기록
+                            }
+
+                        }
+
+                    })
+                }
+
+            },
+            error : function(){
+                // 비동기 통신(ajax) 중 오류가 발생한 경우
+                console.log("에러 발생");
+            }
+
+
+
+
+        });
+
+    }
+
+
+});

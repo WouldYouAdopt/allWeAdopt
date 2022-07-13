@@ -268,8 +268,28 @@
 						
 						<div class="text-center mt-5 fs-5">우리아이 시원하게 여름 쿨매트에 0원을 펀딩합니다.</div>
 						<button data-bs-toggle="modal" data-bs-target="#exampleModal" class="selected d-grid col-6 mx-auto my-3 py-2" style="border-radius:4px; font-size:20px;" >결제 페이지로</button>
+
+
+
+
+						<form action="my/pay" method="POST" style="border:1px solid #FB836b; padding:20px; width:300px;">
+						<!-- 리워드정보 name:리워드넘버 / value:수량-->
+                            <%-- 펀딩 번호--%> 
+                            <input type="hidden" name="fundingNo" value="1">
+
+                        <%--  <input type="hidden" value="4"> --%>
+                            리워드 1 : <input name="4" value="1"><br>
+                            <%-- <input type="hidden" value="5"> --%>
+                            리워드 2 : <input name="5" value="2"><br>
+                            리워드 3 : <input name="6" value="0"><br>
+                            
+                            <!-- 공개여부 / 체크 한것이 비공개임 -->
+                            이름 공개 여부 : <input type="checkbox" name="nameAnonymous" value="true"><br>
+                            후원금액 공개여부 : <input type="checkbox" name="priceAnonymous" value="true">
+                            <button type="submit">결제 임시버튼</button>
+						</form>
 						
-                    
+
                     </div>    
                      
 

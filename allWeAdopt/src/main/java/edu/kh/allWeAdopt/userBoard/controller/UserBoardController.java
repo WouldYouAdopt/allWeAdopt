@@ -3,6 +3,7 @@ package edu.kh.allWeAdopt.userBoard.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
@@ -15,8 +16,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -45,19 +48,38 @@ public class UserBoardController {
 	@Autowired
 	private UserBoardService service;
 	
+	// 사용자 게시판 리스트 출력
 	@GetMapping("/user")
-	public String boardList() {
+	public String boardList(Model model) {
 		
-		
+		List<Board> list = service.boardList();
+		model.addAttribute("boardList",list);
 		return "board/userBoardList";
 	}
 	
+	// 상세 게시판 출력
+	@GetMapping("/detail/2/{boardNo}")
+	public String boardDetail(@PathVariable("boardNo") int boardNo, Model model) {
+		
+		Board board = service.boardDetail(boardNo);
+		
+		model.addAttribute("board",board);
+		
+		return "board/userBoardDetail";
+	}
+	
+//	사용자 게시판 등록
 	@GetMapping("/user/boardRegist")
-	public String boardRegist() {
+	public String boardRegist(Model model) {
+		List<Area> areaList = service.areaList();
+		
+		// 지역 리스트 출력
+		model.addAttribute("areaList",areaList);
 		
 		return "board/userBoardRegist";
 	}
 	
+//	썸머노트 이미지 미리보기
 	@RequestMapping(value="/user/uploadSummernoteImageFile", produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request )  {
@@ -92,6 +114,7 @@ public class UserBoardController {
 		return a;
 	}
 	
+//	사용자 게시글 등록
 	@PostMapping("/user/boardRegist")
 	public String userBoardRegist(Board board, Animal animal, Area area,
 			HttpSession session, @RequestParam("neuterings") String neuterings,
@@ -119,5 +142,23 @@ public class UserBoardController {
 			result = service.userBoardAnimal(animal);
 		}
 		return "redirect:/board/user";
+	}
+	
+	// 상세 지역 호출
+	@RequestMapping("/user/loadAreaList")
+	@ResponseBody
+	public List<Area> loadAreaList(@RequestParam("area") String area) {
+		List<Area> list = service.loadAreaList(area);
+		
+		return list;
+	}
+	
+	// 품종 호출
+	@RequestMapping("/user/loadAnimalList")
+	@ResponseBody
+	public List<Animal> loadAnimalList(@RequestParam("animalType") String animalType) {
+		List<Animal> list = service.loadAnimalList(animalType);
+		
+		return list;
 	}
 }

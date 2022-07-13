@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>관리자 - 공지 상세</title>
+        <title>공지사항</title>
         
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="${contextPath}/resources/assets/올위어답터.ico" />
@@ -28,40 +28,38 @@
         <main class="flex-shrink-0">
 
             <!-- 헤더 -->
-            <jsp:include page="/WEB-INF/views/common/admin-header.jsp" />
+            <c:if test="${loginMember.memberType =='M' || loginMember.memberType == 'K'}">
+                <jsp:include page="/WEB-INF/views/common/header.jsp" />
+                <jsp:include page="/WEB-INF/views/common/mypage-header.jsp" />
+            </c:if>
+            <c:if test="${loginMember.memberType =='A'}">
+                <jsp:include page="/WEB-INF/views/common/admin-header.jsp" />
+            </c:if>
 
             <!-- Header-->
             <header class="py-3">
                 <div class="container px-3">
-                        <div class="col-lg-8 col-xxl-6">
-                            <div class="text-left my-5">
-                                <h2 class="fw-bolder mb-3">${detail.boardTitle}</h2>
-                                <div class="text-muted  mb-2">${detail.createDate}</div>
-                                
-                                <!-- <div class="col-md-5 col-sm-6 mt-3">
-                                    <label for="exampleFormControlInput1" class="form-label">작성자</label>
-                                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="관리자" readonly >
-                                </div>
-                                
-                                <div class="md-10"></div> -->
-                               
-                            </div>
+                    <div class="col-lg-8 col-xxl-6">
+                        <div class="text-left mt-5">
+                            <h2 class="fw-bolder mb-3">${detail.boardTitle}</h2>
+                            <div class="text-muted  mb-2"> 작성일 : ${detail.createDate} <c:if test='${ !empty detail.updateDate }'>| 수정일 : ${detail.updateDate}</c:if></div>                               
                         </div>
+                    </div>
                 </div>
             </header>
             
 
             <!-- About section two-->
-            <section class="py-0 mb-5" >
+            <section class="py-0 mb-5 pb-3" >
                 <div class="container px-3 my-1">
                     <div class="row gx-5 align-items-center mb-3">
 
-                        <div class="col-md-5 col-sm-6 mt-3">
+<%--                         <div class="col-md-5 col-sm-6 mt-3">
                             <label for="exampleFormControlInput1" class="form-label">작성자</label>
                             <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="관리자" readonly >
-                        </div>
+                        </div> --%>
 
-                        <div class="mb-3 mt-3">
+                        <div class="mt-3">
                             <div class="card bg-white">
                                 <div class="card-body">
                                     <div class="fs-6  ">
@@ -76,8 +74,8 @@
                 </div>
 
                 <!-- 버튼 영역 -->
-                <div class="container px-2 my-1 d-flex justify-content-end">
-                    <c:if test="${loginMember.memberNo == detail.memberNo || loginMember.memberType == 'A'}">
+                <div class="container px-2 d-flex justify-content-end">
+                    <c:if test="${loginMember.memberType == 'A'}">
 
                         <%-- cp가 없을 경우에 대한 처리 --%>
                         <c:if test="${empty param.cp}">
@@ -91,11 +89,11 @@
                         </c:if>
                                                         <%-- 현재위치 : /board/detail/1/1523 --%>
                                                         <%-- 목표위치 : /board/write/1/ --%>
-                        <a class="btn btn-primary mt-3 mx-1 button-pink" onclick="location.href='../write/?mode=update&cp=${cp}&no=${detail.boardNo}'"">수정</a>
-                        <a class="btn btn-primary mt-3 mx-1 button-pink" id="deleteBtn">삭제</a>
+                        <a class="btn btn-primary mx-1 button-pink" onclick="location.href='../write/?mode=update&cp=${cp}&no=${detail.boardNo}'"">수정</a>
+                        <a class="btn btn-primary mx-1 button-pink" id="deleteBtn">삭제</a>
 
                     </c:if>
-                    <button class="btn btn-primary mt-3 mx-1 button-pink" type="button" id="goToListBtn">목록으로</button>
+                    <button class="btn btn-primary mx-1 button-pink" type="button" id="goToListBtn">목록으로</button>
                 </div>
             </section>
 
@@ -110,14 +108,14 @@
         <script>
             const contextPath = "${contextPath}";
             
+            <c:if test="${loginMember.memberType == 'A'}">
+                const url = "${contextPath}/admin/notice/list?";
+            </c:if>
+            <c:if test="${loginMember.memberType =='M' || loginMember.memberType == 'K'}">
+                const url = "${contextPath}/member/myPage/notice/list?";
+            </c:if>
+
             const boardNo = "${detail.boardNo}";
-
-            // 로그인한 회원 번호
-            const loginMemberNo = "${loginMember.memberNo}";
-            // -> 로그인 O  : "10";
-            // -> 로그인 X  : "";  (빈문자열)
-
-            const memberType = "${loginMember.memberType}";
 
         </script>
         

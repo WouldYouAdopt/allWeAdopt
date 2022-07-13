@@ -11,6 +11,7 @@ import edu.kh.allWeAdopt.board.model.vo.Pagination;
 import edu.kh.allWeAdopt.funding.model.vo.Funding;
 import edu.kh.allWeAdopt.funding.model.vo.FundingDetail;
 import edu.kh.allWeAdopt.funding.model.vo.OrderDetail;
+import edu.kh.allWeAdopt.funding.model.vo.Reward;
 
 @Repository
 public class FundingDAO {
@@ -48,7 +49,7 @@ public class FundingDAO {
 	}
 
 
-	/** 현재 진행중인 펀딩 번호
+	/** 현재 진행중인 펀딩 번호를 조회하는 DAO
 	 * @return
 	 */
 	public int selectNowFundingNo() {
@@ -56,12 +57,43 @@ public class FundingDAO {
 	}
 
 	
-	/**주문정보 상세히 조회하기 위한 Service
+	/**주문정보 상세히 조회하기 위한 DAO
 	 * @param paymentNo
 	 * @return
 	 */
 	public OrderDetail selectOrderDetail(int paymentNo) {
 		return sqlSession.selectOne("fundingMapper.selectOrderDetail",paymentNo);
 	}
+
+
+	/**펀딩의 리워드목록들을 조회하는 DAO 
+	 * @param INT FUNDINGnO
+	 * @return
+	 */
+	public List<Reward> selectRewardList(int fundingNo) {
+		return sqlSession.selectList("fundingMapper.selectRewardList",fundingNo);
+	}
+
+
+	/**주문자의 이전 수령지 정보를 조회하는 DAO
+	 * @param memberNo
+	 * @return
+	 */
+	public OrderDetail selectPrevOrder(int memberNo) {
+		return sqlSession.selectOne("fundingMapper.selectPrevOrder",memberNo);
+	}
+
+
+	/**그냥 펀딩 조회용 Service (  ***Detail 조회가 아님*** )
+	 * @param fundingNo
+	 * @return
+	 */
+	public Funding selectFunding(int fundingNo) {
+		return sqlSession.selectOne("fundingMapper.selectfunding",fundingNo);
+	}
+	
+
+
+
 
 }

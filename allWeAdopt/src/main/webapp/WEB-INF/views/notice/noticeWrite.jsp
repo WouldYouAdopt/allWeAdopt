@@ -27,14 +27,7 @@
         <script type="text/javascript" src="//code.jquery.com/jquery-3.6.0.min.js"></script>      
         
         <!-- summer note -->
-        <%-- <script src="${contextPath}/resources/summernote/summernote-lite.min.js"></script>
-        <script src="${contextPath}/resources/summernote/lang/summernote-ko-KR.min.js"></script>
-        <link rel="stylesheet" href="${contextPath}/resources/summernote/summernote-lite.min.css">
-
-        <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script> --%>
-
-        <%-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script> --%>
+ 
         <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 
@@ -50,7 +43,7 @@
             <header class="py-3">
                 <div class="container px-3">
                         <div class="col-lg-8 col-xxl-6">
-                            <div class="text-left my-5">
+                            <div class="text-left mt-5">
                                 <h2 class="fw-bolder mb-3">공지사항 글작성</h2>
                                 <p class="lead fw-normal text-muted mb-2" style="font-size: 14px;">공지사항을 작성해주세요. </p>
                             </div>
@@ -62,24 +55,16 @@
             <section class="py-0">
                 <div class="container px-3 my-1">
                     <div class="row gx-5 align-items-center">
-                        <form action="${contextPath}/admin/notice/write" method="post">
-                            <div class="md-10"></div>
+                        <form action="${contextPath}/admin/notice/write" method="post" onsubmit="return writeValidate()">
 
-                            <div class="col-md-5 col-sm-6 mt-3">
+                            <div class="col-md-5 col-sm-6">
                                 <label for="exampleFormControlInput3" class="form-label"></label>
-                                <input type="text" name="boardTitle" class="form-control" id="exampleFormControlInput3" placeholder="게시글의 제목을 입력하세요..." value="${detail.boardTitle}" >
+                                <input type="text" name="boardTitle" class="form-control" id="exampleFormControlInput3" placeholder="제목을 입력하세요" value="${detail.boardTitle}" >
                             </div>
 
                             <div class="md-10"></div>
 
-                            <div class="col-md-5 col-sm-6 mt-3">
-                                <label for="exampleFormControlInput1" class="form-label">작성자</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="관리자" readonly >
-                            </div>
-
-                            <div class="md-10"></div>
-
-                            <div class="mb-3 mt-3">
+                            <div class="mb-5 pb-3">
                                 
                                     <label for="exampleFormControlTextarea1" class="form-label"></label>
                                     <textarea id="summernote" name="boardContent">${detail.boardContent}</textarea>    
@@ -119,24 +104,34 @@
 		<!-- Core theme JS-->
         <script src="${contextPath}/resources/js/scripts.js"></script>
         <script>
+
             const contextPath = "${contextPath}";
+
+            <c:if test="${loginMember.memberType == 'A'}">
+                const url = "${contextPath}/admin/notice/list?";
+            </c:if>
+            <c:if test="${loginMember.memberType =='M' || loginMember.memberType == 'K'}">
+                const url = "${contextPath}/member/myPage/notice/list?";
+            </c:if>
+            
+
         </script>
         <!-- 썸머노트 -->
         <script>
             $(document).ready(function() {
                 $('#summernote').summernote({
-                    placeholder: '내용.',
+                    placeholder: '내용을 입력하세요',
                     tabsize: 2,
-                    height: 350,
+                    height: 500,
                     toolbar: [
                         // [groupName, [list of button]]
                         ['fontname', ['fontname']],
                         ['fontsize', ['fontsize']],
                         ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
                         ['color', ['forecolor','color']],
-                        // ['table', ['table']],
-                        // ['para', ['ul', 'ol', 'paragraph']],
-                        // ['height', ['height']],
+                        ['table', ['table']],
+                        ['para', ['ul', 'ol', 'paragraph']],
+                        ['height', ['height']],
                         ['insert',['picture','link']],
                         // ['view', ['fullscreen', 'help']]
                     ],
