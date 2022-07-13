@@ -110,6 +110,7 @@
                             <!-- d-flex : flex 들어있는 class-->
                             <div class="align-items-center mb-4 fundingRight">
                             달성률 테스트 ${detail.salesRate}
+                            서포터즈 테스트 ${detail.supportersList[0].payDate}
                                 <div class="this-month"><span class="month">${detail.month}</span>이달의 펀딩<br>${detail.fundingTitle}</div>
         						<c:if test="${detail.fundingState=='Y'}">
                                 <div class="period">
