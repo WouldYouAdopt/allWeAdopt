@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import edu.kh.allWeAdopt.board.model.vo.Board;
+import edu.kh.allWeAdopt.board.model.vo.BoardDetail;
 import edu.kh.allWeAdopt.board.model.vo.Pagination;
 
 @Repository
@@ -39,6 +40,38 @@ public class ShelterDAO {
 		RowBounds rowBounds = new RowBounds(offset, pagination.getLimit());
 		
 		return sqlSession.selectList("pamphletMapper.selectPamphletList", null, rowBounds);
+	}
+
+
+	/** 전단지 상세 조회
+	 * @param boardNo
+	 * @return result
+	 */
+	public BoardDetail pamphletDetail(int boardNo) {
+		return sqlSession.selectOne("pamphletMapper.pamphletDetail", boardNo);
+	}
+
+
+	/** 게시글 작성 
+	 * @param detail
+	 * @return
+	 */
+	public int insertPamphlet(BoardDetail detail) {
+		
+		int result = sqlSession.insert("pamphletMapper.insertPamphlet", detail);
+		
+		if(result>0) result = detail.getBoardNo();
+		
+		return result;
+	}
+
+
+	/** 전단지 수정
+	 * @param detail
+	 * @return
+	 */
+	public int updatePamphlet(BoardDetail detail) {
+		return sqlSession.update("pamphletMapper.updatePamphlet", detail);
 	}
 	
 }

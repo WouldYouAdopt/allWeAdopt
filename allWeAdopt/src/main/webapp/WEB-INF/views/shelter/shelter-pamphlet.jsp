@@ -3,7 +3,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"  %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<c:set var="pamphletList" value="${map.pamphletList}" />
+<c:set var="pamphletList" value="${map.pamphletList}"/>
+<c:set var="pagination" value="${map.pagination}" />
 
 <!DOCTYPE html>
 <html lang="en">
@@ -94,10 +95,10 @@
                                     <img class="card-img-top" src="" alt="썸네일" />
                                     <div class="card-body p-4">
                                         <h3><div class="badge bg-primary bg-gradient rounded-pill mb-2">New</div></h3>
-                                            <a class="text-decoration-none link-dark stretched-link" href="../shelter/shelterDetail/${shelter.desertionNo}" >
-                                                <li class="h5 card-title mb-3">종류 : ${shelter.kindCd}</li>
-                                                <li class="h5 card-title mb-3">발견 날짜 : ${shelter.happenDt}</li>
-                                                <li class="h5 card-title mb-3">발견 장소 : ${shelter.happenPlace}</li>
+                                            <a class="text-decoration-none link-dark stretched-link" href="../pamphlet/detail/${pamphlet.boardNo}" >
+                                                <li class="h5 card-title mb-3">종류 : ${pamphlet.boardContent}</li>
+                                                <%-- <li class="h5 card-title mb-3">발견 날짜 : ${pamphlet.}</li>
+                                                <li class="h5 card-title mb-3">발견 장소 : ${pamphlet.happenPlace}</li> --%>
 
                                             </a>
                                         </div>
@@ -106,7 +107,7 @@
                                             <div class="d-flex align-items-center">
                                                 <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d" alt="..." />
                                                 <div class="small">
-                                                    <div class="fw-bold">보호소 : ${shelter.careNm}</div>
+                                                    <%-- <div class="fw-bold">보호소 : ${shelter.careNm}</div> --%>
                                                 </div>
                                             </div>
                                         </div>
@@ -117,9 +118,9 @@
                         </c:forEach>
                     </div>                         
 
-                    <button id="insertBtn" onclick="location.href='../shelter/pamphletWrite'">글쓰기</button>
+                    <button id="insertBtn" onclick="location.href='../pamphlet/write?mode=insert&cp=${pagination.currentPage}'">글쓰기</button>
 
-                    <c:set var="url" value="?pageNo="/>
+                    <c:set var="url" value="?cp="/>
 
                     <nav aria-label="Page navigation example">
                         <ul class="pagination pagination-lg justify-content-center">
