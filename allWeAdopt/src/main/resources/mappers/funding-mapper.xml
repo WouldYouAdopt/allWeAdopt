@@ -27,8 +27,23 @@
 		<collection property="rewardList" column="FUNDING_NO"
 			javaType="java.util.ArrayList" ofType="reward"
 			select="selectRewardList" />
+		
+		<collection property="supportersList" column="FUNDING_NO"
+			javaType="java.util.ArrayList" ofType="supporters"
+			select="selectFundingPayMember" />
 
 
+	</resultMap>
+	
+	<!-- 서포터즈 map (MEMBER+PAYMENT 섞여있음) -->
+	<resultMap type="supporters" id="supporters_rm">
+		<id property="memberNo" column="MEMBER_NO" />
+		<result property="memberName" column="MEMBER_NM" />
+		<result property="profileImage" column="PROFILE_IMG" />
+		<result property="time" column="TIME" />
+		<result property="nameOpen" column="NAME_OPEN" />
+		<result property="priceOpen" column="PRICE_OPEN" />
+		<result property="payFullPrice" column="PAY_FULLPRICE" />
 	</resultMap>
 
 	<!-- 게시글 목록 조회용 Result Map -->
@@ -242,6 +257,44 @@
 		ORDER BY PAY_DT DESC)
 		WHERE MEMBER_NO=#{memberNo}
 		AND ROWNUM =1
+	</select>
+	
+	
+	<!-- 어떻게 줄일수 있는지 모르겠어... 원하는 값은 일단 나옴 -->
+	<!-- 펀딩 번호로 서포터즈 정보 조회(프로필, 닉네임, 구매총금액, 공개여부) -->
+	<select id="selectFundingPayMember" resultMap="supporters_rm">
+		SELECT MEMBER_NO,
+                MEMBER_NM, 
+				PROFILE_IMG, 
+				TRUNC((SYSDATE-PAY_DT)*24*60*60) TIME, 
+				NAME_OPEN, 
+				PRICE_OPEN, 
+				SUM(REWARD_ORDER_PRICE) PAY_FULLPRICE
+        
+        FROM(
+        
+        SELECT
+		FUNDING_NO
+        ,PAYMENT_NO
+		,FUNDING_TITLE
+		,ORDER_ST_CD
+		,PAY_DT
+        ,MEMBER_NM
+        ,PROFILE_IMG
+        ,REWARD_PRICE*AMOUNT REWARD_ORDER_PRICE
+        ,PRICE_OPEN
+        ,NAME_OPEN 
+        ,MEMBER_NO
+        
+		FROM PAYMENT P
+            JOIN FUNDING F ON (P.FUNDING_NO = F.FUNDING_NO)
+            JOIN MEMBER USING (MEMBER_NO)
+            JOIN REWARD_ORDER USING(PAYMENT_NO)
+            JOIN REWARD USING(REWARD_NO)
+		WHERE P.FUNDING_NO= #{fundingNo}
+        AND ORDER_ST_CD IN (1,2,3,4)
+        )
+        GROUP BY MEMBER_NO,MEMBER_NM, PROFILE_IMG, PAY_DT, NAME_OPEN, PRICE_OPEN
 	</select>
 
 </mapper>

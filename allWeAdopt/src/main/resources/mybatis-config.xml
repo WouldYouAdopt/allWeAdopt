@@ -32,6 +32,7 @@
 		<typeAlias type="edu.kh.allWeAdopt.funding.model.vo.Funding" alias="funding"/> 
 		<typeAlias type="edu.kh.allWeAdopt.funding.model.vo.OrderDetail" alias="orderDetail"/> 
 		<typeAlias type="edu.kh.allWeAdopt.funding.model.vo.Reward" alias="reward"/> 
+		<typeAlias type="edu.kh.allWeAdopt.funding.model.vo.Supporters" alias="supporters"/> 
 	
 	
 	</typeAliases>
