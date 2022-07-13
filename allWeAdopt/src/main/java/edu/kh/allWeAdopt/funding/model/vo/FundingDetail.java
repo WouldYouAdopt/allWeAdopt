@@ -32,8 +32,12 @@ public class FundingDetail {
 	private String fullPrice; // 총 달성한(판매한) 금액
 	private int salesRate;
 	
+	private int supportersNo; // 구매한 서포터즈 인원 수 
+	
 	private List<FundingImage> imageList;  //해당 유저가 구매한 리워드 수량
 
 	private List<Reward> rewardList;
+
+	private List<Supporters> supportersList;
 	
 }
