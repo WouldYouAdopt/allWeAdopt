@@ -22,6 +22,7 @@
 .resultInfo{
     display: flex;
     flex-direction: row-reverse;
+    border-bottom: 1px solid #f7a797;
 }
 .rewardTitle{
     color: #FB836b;
@@ -89,7 +90,9 @@
 } */
 
 
-
+.resultPay{
+    width:110px;
+}
 /* -------------------------------------------------- */
 .parcelInfo>.inputArea{
     margin-top: 20px;

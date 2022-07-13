@@ -15,7 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.google.gson.Gson;
+
 import edu.kh.allWeAdopt.funding.model.service.FundingService;
+import edu.kh.allWeAdopt.funding.model.vo.Funding;
 import edu.kh.allWeAdopt.funding.model.vo.OrderDetail;
 import edu.kh.allWeAdopt.funding.model.vo.Reward;
 import edu.kh.allWeAdopt.member.model.vo.Member;
@@ -76,12 +79,25 @@ public class MyFundingController {
 	@PostMapping("/pay")
 	public String Payment(@RequestParam Map<String, Object>paramMap
 						 ,@ModelAttribute("loginMember") Member loginMember
-						 ,Model model){
+						 ,Model model
+						 ,RedirectAttributes ra){
 		
+		if(loginMember == null) {
+			ra.addFlashAttribute("message", "로그인 후 이용 바랍니다");
+			return "/";
+		}
+		
+	
 		int memberNo = loginMember.getMemberNo();
 		Map<String, Object> map = service.selectRewardList(paramMap,memberNo);
+		
+		if(paramMap.get("nameAnonymous") != null) {			model.addAttribute("nameAnonymous", "true");		}
+		if(paramMap.get("priceAnonymous") != null) {			model.addAttribute("priceAnonymous", "true");		}
+		
+		
 		model.addAttribute("rewardList", map.get("rewardList"));
-		model.addAttribute("prevOrder", map.get("prevOrder"));
+		model.addAttribute("prevOrder", new Gson().toJson(map.get("prevOrder")) );
+		model.addAttribute("funding", map.get("funding"));
 		
 		//익명 공개여부 추가 해야 함.
 		

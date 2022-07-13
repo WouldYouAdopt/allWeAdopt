@@ -259,6 +259,7 @@
 		AND ROWNUM =1
 	</select>
 	
+
 	
 	<!-- 어떻게 줄일수 있는지 모르겠어... 원하는 값은 일단 나옴 -->
 	<!-- 펀딩 번호로 서포터즈 정보 조회(프로필, 닉네임, 구매총금액, 공개여부) -->
@@ -295,6 +296,13 @@
         AND ORDER_ST_CD IN (1,2,3,4)
         )
         GROUP BY MEMBER_NO,MEMBER_NM, PROFILE_IMG, PAY_DT, NAME_OPEN, PRICE_OPEN
+    </select>
+
+
+  // 충돌정리하면서 주석이 날라갔어요
+  <select id="selectfunding" resultMap="funding_rm">
+    SELECT * FROM FUNDING
+    WHERE FUNDING_NO = #{fundingNo}
 	</select>
 
 </mapper>

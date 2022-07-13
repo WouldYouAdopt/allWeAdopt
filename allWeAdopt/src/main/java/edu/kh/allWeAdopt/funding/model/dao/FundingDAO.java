@@ -82,6 +82,15 @@ public class FundingDAO {
 	public OrderDetail selectPrevOrder(int memberNo) {
 		return sqlSession.selectOne("fundingMapper.selectPrevOrder",memberNo);
 	}
+
+
+	/**그냥 펀딩 조회용 Service (  ***Detail 조회가 아님*** )
+	 * @param fundingNo
+	 * @return
+	 */
+	public Funding selectFunding(int fundingNo) {
+		return sqlSession.selectOne("fundingMapper.selectfunding",fundingNo);
+	}
 	
 
 
