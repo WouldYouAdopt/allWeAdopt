@@ -48,15 +48,16 @@ public class FundingServiceImpl implements FundingService {
 		detail.setSupportersNo(supportersNo);
 		
 		// 서포터즈 각각 time계산하기
-		Supporters supporters = new Supporters();
+		List<Supporters> supportersList = new ArrayList<Supporters>();
 		for(int i=0; i<supportersNo; i++) {
+			Supporters supporters = new Supporters();
 			supporters.setTimeForString(calcul(detail.getSupportersList().get(i).getTime()));
 			
-			//아니 이럼 안들어가지 ..
 			detail.getSupportersList().add(supporters);
 		}
-
-		System.out.println();
+		
+		
+		System.out.println("값을보여다오"+detail.getSupportersList().get(0).getTimeForString());
 		return detail;
 	}
 

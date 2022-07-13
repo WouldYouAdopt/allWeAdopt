@@ -299,7 +299,7 @@
     </select>
 
 
-  // 충돌정리하면서 주석이 날라갔어요
+
   <select id="selectfunding" resultMap="funding_rm">
     SELECT * FROM FUNDING
     WHERE FUNDING_NO = #{fundingNo}
