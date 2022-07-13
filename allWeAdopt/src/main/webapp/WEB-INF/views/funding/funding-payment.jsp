@@ -66,7 +66,7 @@
 				<p class="lead fw-normal text-muted mb-0 lead">결제를 진행 할 수 있습니다</p>
 			</div>
 
-
+				${rewardList}
 			<div class="container px-5">
 				<div class=" rounded-3 py-5 px-4 px-md-5 mb-5">
 					<div class="row gx-5 justify-content-center fundingPaymentArea">
@@ -201,7 +201,7 @@
 							<br>
 							<div>
 								<input class="form-check-input" type="checkbox" id="allAgree"> 
-								<a href="">전체 동의하기</a>
+								<label for="allAgree">전체 동의하기</label>
 							</div>
 							<div>	<%-- Personal Information Agree --%>
 								<input class="form-check-input" type="checkbox" id="PIA">

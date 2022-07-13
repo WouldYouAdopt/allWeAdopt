@@ -66,12 +66,12 @@ public class FundingDAO {
 	}
 
 
-	/**펀딩의 리워드목록들을 조회하는 DAO 
+	/**펀딩의 리워드목록들을 조회하는 DAO [김현기]
 	 * @param INT FUNDINGnO
 	 * @return
 	 */
 	public List<Reward> selectRewardList(int fundingNo) {
-		return sqlSession.selectList("fundingMapper.selectRewardList",fundingNo);
+		return sqlSession.selectList("fundingMapper.selectOnlyRewardList",fundingNo);
 	}
 
 

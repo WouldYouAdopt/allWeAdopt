@@ -275,17 +275,17 @@
 						<form action="my/pay" method="POST" style="border:1px solid #FB836b; padding:20px; width:300px;">
 						<!-- 리워드정보 name:리워드넘버 / value:수량-->
                             <%-- 펀딩 번호--%> 
-                            <input type="hidden" name="fundingNo" value="1">
+                            <input type="hidden" name="fundingNo" value="2">
 
                         <%--  <input type="hidden" value="4"> --%>
-                            리워드 1 : <input name="4" value="1"><br>
+                            리워드 1 : <input name="7" value="7"><br>
                             <%-- <input type="hidden" value="5"> --%>
-                            리워드 2 : <input name="5" value="2"><br>
-                            리워드 3 : <input name="6" value="0"><br>
+                            리워드 2 : <input name="8" value="8"><br>
+                            리워드 3 : <input name="9" value="9"><br>
                             
                             <!-- 공개여부 / 체크 한것이 비공개임 -->
-                            이름 공개 여부 : <input type="checkbox" name="nameAnonymous" value="true"><br>
-                            후원금액 공개여부 : <input type="checkbox" name="priceAnonymous" value="true">
+                            이름 비공개 여부 : <input type="checkbox" name="nameAnonymous" value="N"><br>
+                            후원금액 비공개여부 : <input type="checkbox" name="priceAnonymous" value="N">
                             <button type="submit">결제 임시버튼</button>
 						</form>
 						
