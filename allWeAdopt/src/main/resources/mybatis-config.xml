@@ -41,6 +41,7 @@
 		 <mapper resource="/mappers/myPage-mapper.xml"/>
 		 <mapper resource="/mappers/notice-mapper.xml"/>
 		 <mapper resource="/mappers/funding-mapper.xml"/>
+		 <mapper resource="/mappers/pamphlet-mapper.xml"/>
 
 	</mappers>
 
