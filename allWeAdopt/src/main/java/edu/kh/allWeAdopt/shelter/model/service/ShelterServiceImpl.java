@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.kh.allWeAdopt.board.model.vo.Board;
+import edu.kh.allWeAdopt.board.model.vo.BoardDetail;
 import edu.kh.allWeAdopt.board.model.vo.Pagination;
 import edu.kh.allWeAdopt.shelter.model.dao.ShelterDAO;
 
@@ -40,6 +41,34 @@ public class ShelterServiceImpl implements ShelterService {
 		
 		return map;
 	}
+
+	
+	// 전단지 상세 조회
+	@Override
+	public BoardDetail pamphletDetail(int boardNo) {
+		return dao.pamphletDetail(boardNo);
+	}
+
+
+	// 전단지 작성
+	@Override
+	public int insertPamphlet(BoardDetail detail) {
+		return dao.insertPamphlet(detail);
+	}
+
+
+	// 전단지 수정
+	@Override
+	public int updatePamphlet(BoardDetail detail) {
+		return dao.updatePamphlet(detail);
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
