@@ -12,8 +12,7 @@ public class Supporters {
 	private int memberNo;
 	private String memberName;
 	private String profileImage;
-	private int time; // (SYSDATE-PAY_DT)*24*60*60 '50분전 결제' 구현 하기 위함
-	private String timeForString;
+	private String payDate; // (SYSDATE-PAY_DT)*24*60*60 '50분전 결제' 구현 하기 위함
 	private String nameOpen;
 	private String priceOpen;
 	private int payFullPrice;
