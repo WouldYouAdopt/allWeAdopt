@@ -27,28 +27,39 @@ public class FundingServiceImpl implements FundingService {
 	@Override
 	public FundingDetail selectFundingDetail(int fundingNo) {
 		
-		// 펀딩 detail 상세조회
-		// 리워드 리스트 : 리워드 + 리워드별 판매수량, 리워드별 판매금액
-		// 펀딩 이미지리스트
-		FundingDetail detail = dao.selectFundingDetail(fundingNo);
+		// 펀딩 번호로 구매이력 count 조회 (구매이력 있는지 없는지 먼저 조회)
+		int result = dao.selectCountPay(fundingNo);
 		
-        // 달성금액 구하기
-		int sumPrice = 0;
-		for(int i=0; i<detail.getRewardList().size(); i++) {
-			sumPrice += detail.getRewardList().get(i).getRewardOrderPrice();			
-		}
-		
-		DecimalFormat fm = new DecimalFormat("###,###");
-		String fullPrice = fm.format(sumPrice);
-		
-		detail.setFullPrice(fullPrice);
-		
-		// 서포터즈 프로필, 이름, 금액, 이름공개여부, 금액공개여부
-		int supportersNo = detail.getSupportersList().size(); // 서포터 몇명이냐
-		detail.setSupportersNo(supportersNo);
+		if(result>0) { // 구매 이력 있을때
+			
+			// 펀딩 detail 상세조회
+			// 리워드 리스트 : 리워드 + 리워드별 판매수량, 리워드별 판매금액
+			// 펀딩 이미지리스트
+			FundingDetail detail = dao.selectFundingDetail(fundingNo);
+			
+			// 달성금액 구하기
+			int sumPrice = 0;
+			for(int i=0; i<detail.getRewardList().size(); i++) {
+				sumPrice += detail.getRewardList().get(i).getRewardOrderPrice();			
+			}
+			
+			DecimalFormat fm = new DecimalFormat("###,###");
+			String fullPrice = fm.format(sumPrice);
+			
+			detail.setFullPrice(fullPrice);
+			
+			// 서포터즈 프로필, 이름, 금액, 이름공개여부, 금액공개여부
+			int supportersNo = detail.getSupportersList().size(); // 서포터 몇명이냐
+			detail.setSupportersNo(supportersNo);
+					
+			return detail;
 
+		}else { // 구매이력 없을때
 		
-		return detail;
+			FundingDetail detail = dao.selectFundingSaleZero(fundingNo);
+			return detail;
+			
+		}
 	}
 
 

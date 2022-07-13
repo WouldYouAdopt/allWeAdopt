@@ -308,10 +308,42 @@
     </select>
 
 
-
-  <select id="selectfunding" resultMap="funding_rm">
+	<!-- ?? -->
+	<select id="selectfunding" resultMap="funding_rm">
     SELECT * FROM FUNDING
     WHERE FUNDING_NO = #{fundingNo}
+	</select>
+	
+	<!-- 구매이력 수 조회 (구매이력 있는 펀딩인지 아닌지 구분) : 수진 -->
+	<select id="selectCountPay" resultType="_int">
+		SELECT COUNT(*)
+        FROM PAYMENT
+        WHERE FUNDING_NO= #{fundingNo}
+	</select>
+	
+	<!-- 구매 이력 없는 펀딩 조회 : 수진-->
+	<select id="selectFundingSaleZero" resultMap="detail_rm">
+		SELECT FUNDING_NO,
+		FUNDING_TITLE,
+		FUNDING_MINI_TITLE,
+		FUNDING_CONTENT,
+		TO_CHAR(TARGET_DONATION,'999,999,999') AS TARGET_DONATION,
+		FUNDING_SEASON,
+		SUBSTR(FUNDING_SEASON,-2) AS MONTH,
+		TO_CHAR(TO_DATE(REPLACE(FUNDING_SEASON,'/',''),'YYYYMM'),'YYYY"년"MM"월"DD"일"')
+		AS STARTDATE,
+		TO_CHAR(LAST_DAY(TO_DATE(REPLACE(FUNDING_SEASON,'/',''),'YYYYMM')),'YYYY"년"MM"월"DD"일"')
+		AS ENDDATE,
+		TRUNC(LAST_DAY(TO_DATE(REPLACE(FUNDING_SEASON,'/',''),'YYYYMM'))-SYSDATE)
+		AS LEFTDATE,
+		SUCCESS_DONATION,
+		FUNDING_ST,
+		FUNDING_THUMBNAIL,
+		DELIVERY_FEE,
+		CATEGORY_NM        
+		FROM FUNDING
+        JOIN CATEGORY USING(FUNDING_CATEGORY)
+        WHERE FUNDING_NO = #{fundingNo}
 	</select>
 
 </mapper>
