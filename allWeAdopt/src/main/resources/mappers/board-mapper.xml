@@ -8,8 +8,12 @@
 		<result property="boardContent" column="BOARD_CONTENT"/>
 		<result property="category" column="CATEGORY"/>
 		<result property="boardPeriod" column="BOARD_PERIOD"/>
+		<result property="boardPeriod2" column="BOARD_PERIOD2"/>
 		<result property="phone" column="PHONE"/>
 		<result property="memberNo" column="MEMBER_NO"/>
+		<result property="createDate" column="CREATE_DT"/>
+		<result property="updateDate" column="UPDATE_DT"/>
+		<result property="memberName" column="MEMBER_NM"/>
 	</resultMap>
 	
 	<resultMap type="animal" id="animal_rm">
@@ -48,4 +52,31 @@
 	<insert id="userBoardAnimal">
 		INSERT INTO BOARD_ANIMAL VALUES(#{boardNo},#{animalType},#{animalDetail},#{gender},#{neutering})
 	</insert>
+	
+	<select id="areaList" resultMap="area_rm">
+		SELECT DISTINCT AREA FROM AREA_DB
+		ORDER BY AREA
+	</select>
+	
+	<select id="loadAreaList" parameterType="string" resultMap="area_rm">
+		SELECT AREA_DETAIL FROM AREA_DB
+		WHERE AREA = #{area}
+		ORDER BY AREA_DETAIL
+	</select>
+	
+	<!-- 게시글 리스트 출력 -->
+	<select id="boardList" resultMap="board_rm">
+		SELECT BOARD_NO, BOARD_TITLE, MEMBER_NM, TO_CHAR(CREATE_DT,'YYYY-MM-DD') CREATE_DT, UPDATE_DT FROM BOARD
+		JOIN MEMBER USING(MEMBER_NO)
+		WHERE BOARD_CD = 2
+		AND BOARD_ST = 'N'
+	</select>
+	
+	<!-- 상세 게시글 출력 -->
+	<select id="boardDetail" resultMap="board_rm">
+		SELECT BOARD_NO,BOARD_TITLE, BOARD_CONTENT , TO_CHAR(CREATE_DT,'YYYY-MM-DD') CREATE_DT, UPDATE_DT,
+		MEMBER_NM FROM BOARD
+		JOIN MEMBER USING(MEMBER_NO)
+		WHERE BOARD_NO = ${boardNo}
+	</select>
 </mapper>

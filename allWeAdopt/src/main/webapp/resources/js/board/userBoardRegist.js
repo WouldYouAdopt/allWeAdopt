@@ -1,3 +1,4 @@
+// 썸머노트 이미지 미리보기
 $(document).ready(function() {
 
 	var toolbar = [
@@ -84,3 +85,41 @@ for (let i = 0; i < selectMenu.length; i++) {
 		document.getElementsByName("neuterings")[0].value = document.getElementsByName("neuteringValue")[0].innerText;
     })
 };
+
+// 지역이 바뀔 때마다 상세 지역 값 초기화
+const areaList = document.getElementsByClassName("areaList");
+
+for (let i = 0; i < areaList.length; i++) {
+	areaList[i].addEventListener("click",function () {
+		document.getElementsByName("areaDetailValue")[0].innerText = "상세 지역 선택";
+		const area = document.getElementsByName("area")[0].value;
+		$.ajax({
+			url: "loadAreaList",
+			contentType: "application/json",
+			dataType: "json",
+			type: "GET",
+			data: {
+				"area" : area
+			},
+			success: function(data){
+				// const ul = document
+				const li = document.createElement("li");
+				for(let i in data){
+					
+
+				}
+				
+			},
+			error: function (request, status, error){
+				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		}
+	});
+		
+	});
+};
+
+// function removeAllchild(div) {
+//     while (div.hasChildNodes()) {
+//         div.removeChild(div.firstChild);
+//     }
+// }
