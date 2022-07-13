@@ -70,6 +70,51 @@ public class FundingServiceImpl implements FundingService {
 	public OrderDetail selectOrderDetail(int paymentNo) {
 		return dao.selectOrderDetail(paymentNo);
 	}
+
+
+
+
+	
+	/**리워드 선택후 결제 페이지로 넘어가기 위한 Service
+	 *
+	 */
+	@Override
+	public Map<String, Object> selectRewardList(Map<String, Object> paramMap,int memberNo) {
+		
+		//1) DB에서 리워드목록을 조회해 해오기
+		int fundingNo = Integer.parseInt((String) paramMap.get("fundingNo"));
+			//DB에 있는 리워드들을 가져오는 리스트
+		List<Reward> rewardList = dao.selectRewardList(fundingNo);
+			//실제 선택된 리워드들을 저장하는 리스트
+		List<Reward> selectedList = new ArrayList<Reward>();
+		
+		//2) 조회해온 리워드 번호와 동일한 key가 있을 경우 vo에 담아서 List에 추가
+		
+			//해당 펀딩을 조회후 모든 리스트들을 반복하면서 
+		for(Reward r : rewardList) {
+			int rNo = r.getRewardNo();
+			System.out.println(paramMap.get(rNo+""));
+			if(paramMap.get(rNo+"")!=null&&Integer.parseInt((String) paramMap.get(rNo+""))!=0){
+				int amount = Integer.parseInt((String) paramMap.get(rNo+""));
+				r.setAmount(amount);
+				r.setFullPrice(amount*r.getRewardPrice());
+				selectedList.add(r);
+			}
+		}
+		
+		OrderDetail prevOrder = null;
+		//null이 아닌 경우 이전 수령지 정보 조회
+		if(!selectedList.isEmpty()){
+			prevOrder = dao.selectPrevOrder(memberNo);
+		}
+		
+		Map<String, Object>map = new HashMap<String, Object>();
+		map.put("rewardList", selectedList);
+		map.put("prevOrder", prevOrder);
+		
+		
+		return map;
+	}
 	
 	
 	

@@ -49,7 +49,7 @@ public class FundingDAO {
 	}
 
 
-	/** 현재 진행중인 펀딩 번호
+	/** 현재 진행중인 펀딩 번호를 조회하는 DAO
 	 * @return
 	 */
 	public int selectNowFundingNo() {
@@ -57,13 +57,32 @@ public class FundingDAO {
 	}
 
 	
-	/**주문정보 상세히 조회하기 위한 Service
+	/**주문정보 상세히 조회하기 위한 DAO
 	 * @param paymentNo
 	 * @return
 	 */
 	public OrderDetail selectOrderDetail(int paymentNo) {
 		return sqlSession.selectOne("fundingMapper.selectOrderDetail",paymentNo);
 	}
+
+
+	/**펀딩의 리워드목록들을 조회하는 DAO 
+	 * @param INT FUNDINGnO
+	 * @return
+	 */
+	public List<Reward> selectRewardList(int fundingNo) {
+		return sqlSession.selectList("fundingMapper.selectRewardList",fundingNo);
+	}
+
+
+	/**주문자의 이전 수령지 정보를 조회하는 DAO
+	 * @param memberNo
+	 * @return
+	 */
+	public OrderDetail selectPrevOrder(int memberNo) {
+		return sqlSession.selectOne("fundingMapper.selectPrevOrder",memberNo);
+	}
+	
 
 
 

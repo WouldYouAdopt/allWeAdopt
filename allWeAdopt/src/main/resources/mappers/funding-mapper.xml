@@ -22,11 +22,12 @@
 		<result property="startDate" column="STARTDATE" />
 		<result property="endDate" column="ENDDATE" />
 		<result property="leftDate" column="LEFTDATE" />
-		
-		<collection property="rewardList" column="FUNDING_NO" 
-      	javaType="java.util.ArrayList" ofType="reward" select="selectRewardList"/>
-      	
-      	
+
+		<collection property="rewardList" column="FUNDING_NO"
+			javaType="java.util.ArrayList" ofType="reward"
+			select="selectRewardList" />
+
+
 	</resultMap>
 
 	<!-- 게시글 목록 조회용 Result Map -->
@@ -51,9 +52,9 @@
 	</resultMap>
 
 
-	<!-- 결제정보 상세 조회를 위한 ResultMap +  -->
+	<!-- 결제정보 상세 조회를 위한 ResultMap + -->
 	<resultMap type="orderDetail" id="orderDetail_re">
-	
+
 		<id property="fundingNo" column="FUNDING_NO" />
 		<result property="fundingCategory" column="CATEGORY_NM" />
 		<result property="fundingTitle" column="FUNDING_TITLE" />
@@ -67,10 +68,9 @@
 		<result property="orderAddress" column="ORDER_ADD" />
 		<result property="paymentNo" column="PAYMENT_NO" />
 
-		<collection property="rewardList" column="PAYMENT_NO" 
-		javaType="java.util.ArrayList" ofType="reward"	
-		select="selectRewards" />
-			
+		<collection property="rewardList" column="PAYMENT_NO"
+			javaType="java.util.ArrayList" ofType="reward" select="selectRewards" />
+
 	</resultMap>
 
 	<!-- selectImageList의 조회 결과를 BoardDetail VO의 ImageList 필드에 담겟다 -> imageList에 
@@ -79,7 +79,7 @@
 		컬럼에 저장된 값을 매개변수로 전달하겟다라는 의미 한줄 요약 : 게시글 상세 조회 후 detail_rm , resultMap이 호출되었을 
 		때 상세조회 결과중 BOARD_NO(게시글번호)를 이용해 SelectImageList를 수행하고 결과를 ImageList 필드에 세팅한다 -->
 
-	
+
 	<!-- 리워드 정보들을 조회하기 위한 resultMap -->
 	<resultMap type="reward" id="reward_re">
 		<id property="rewardNo" column="REWARD_NO" />
@@ -90,15 +90,16 @@
 		<result property="maxRewardNo" column="MAX_REWARD_NO" />
 		<result property="fundingNo" column="FUNDING_NO" />
 		<result property="amount" column="AMOUNT" />
-		
-		<result property="rewardOrderAmount" column="REWARD_ORDER_AMOUNT" />
+
+		<result property="rewardOrderAmount"
+			column="REWARD_ORDER_AMOUNT" />
 		<result property="rewardOrderPrice" column="REWARD_ORDER_PRICE" />
-		
+
 	</resultMap>
 
 
 
-<!-- ==================================================================================== -->
+	<!-- ==================================================================================== -->
 	<!-- 펀딩 상세 내용 조회용 SQL -->
 	<select id="selectFundingDetail" resultMap="detail_rm">
 		SELECT FUNDING_NO,
@@ -166,63 +167,75 @@
 	<!-- 결제번호를 가지고 하는 결제 정보 상세조회 -->
 	<select id="selectOrderDetail" resultMap="orderDetail_re">
 		SELECT
-			FUNDING_NO
-			,CATEGORY_NM
-			,FUNDING_TITLE
-			,TO_CHAR(PAY_DT,'YYYY.MM.DD') AS PAY_DT
-			,PAY_METHOD
-			,( SELECT SUM((REWARD_PRICE*AMOUNT))AS FULL_PRICE
-			FROM
-			REWARD_ORDER
-			JOIN REWARD USING(REWARD_NO)
-			JOIN PAYMENT USING(PAYMENT_NO)
-			WHERE PAYMENT_NO=#{paymentNo}
-			) AS FULL_PRICE
-			,ORDER_ST
-			,RECIPIENT
-			,ORDER_PHONE1
-			,ORDER_PHONE2
-			,ORDER_ADD
-    		,PAYMENT_NO
+		FUNDING_NO
+		,CATEGORY_NM
+		,FUNDING_TITLE
+		,TO_CHAR(PAY_DT,'YYYY.MM.DD') AS PAY_DT
+		,PAY_METHOD
+		,( SELECT SUM((REWARD_PRICE*AMOUNT))AS FULL_PRICE
+		FROM
+		REWARD_ORDER
+		JOIN REWARD USING(REWARD_NO)
+		JOIN PAYMENT USING(PAYMENT_NO)
+		WHERE PAYMENT_NO=#{paymentNo}
+		) AS FULL_PRICE
+		,ORDER_ST
+		,RECIPIENT
+		,ORDER_PHONE1
+		,ORDER_PHONE2
+		,ORDER_ADD
+		,PAYMENT_NO
 		FROM PAYMENT
 		JOIN FUNDING
 		USING(FUNDING_NO)
-		JOIN ORDER_ST USING(ORDER_ST_CD)
+		JOIN ORDER_ST
+		USING(ORDER_ST_CD)
 		JOIN CATEGORY
 		USING(FUNDING_CATEGORY)
-		WHERE PAYMENT_NO=#{paymentNo}
+		WHERE
+		PAYMENT_NO=#{paymentNo}
 	</select>
 
 	<!-- 결제번호를 가지고 구매한 리워드를 조회하는 SQL -->
 	<select id="selectRewards" resultMap="reward_re">
 		SELECT
-			REWARD_TITLE,
-			AMOUNT,(REWARD_PRICE*AMOUNT)AS FULL_PRICE,
-			REWARD_PRICE
+		REWARD_TITLE,
+		AMOUNT,(REWARD_PRICE*AMOUNT)AS FULL_PRICE,
+		REWARD_PRICE
 		FROM REWARD_ORDER
 		JOIN REWARD USING(REWARD_NO)
 		JOIN PAYMENT
 		USING(PAYMENT_NO)
 		WHERE PAYMENT_NO=#{paymentNo}
 	</select>
-	
-	<!-- 펀딩번호로 리워드 전체 조회 (리워드 별 판매 현황 추가)-->
+
+	<!-- 펀딩번호로 리워드 전체 조회 (리워드 별 판매 현황 추가) -->
 	<select id="selectRewardList" resultMap="reward_re">
 		SELECT
-	        REWARD_NO,
-	        REWARD_TITLE,
-	        REWARD_CONTENT,
-	        REWARD_PRICE,
-	        MAX_REWARD_NO,
-	        SUM(AMOUNT) AS REWARD_ORDER_AMOUNT,
-	        SUM((REWARD_PRICE*AMOUNT)) AS REWARD_ORDER_PRICE
-        FROM 
-        (SELECT * FROM REWARD WHERE FUNDING_NO=#{fundingNo})
-        JOIN REWARD_ORDER USING(REWARD_NO)
-        GROUP BY REWARD_NO, REWARD_TITLE,REWARD_CONTENT,REWARD_PRICE,MAX_REWARD_NO
-        ORDER BY 1
+		REWARD_NO,
+		REWARD_TITLE,
+		REWARD_CONTENT,
+		REWARD_PRICE,
+		MAX_REWARD_NO,
+		SUM(AMOUNT) AS REWARD_ORDER_AMOUNT,
+		SUM((REWARD_PRICE*AMOUNT)) AS REWARD_ORDER_PRICE
+		FROM
+		(SELECT * FROM REWARD WHERE FUNDING_NO=#{fundingNo})
+		JOIN REWARD_ORDER USING(REWARD_NO)
+		GROUP BY REWARD_NO, REWARD_TITLE,REWARD_CONTENT,REWARD_PRICE,MAX_REWARD_NO
+		ORDER BY 1
 	</select>
-	
 
+	<!-- 가장 최근 주문정보 조회 -->
+	<select id="selectPrevOrder" resultMap="orderDetail_re">
+		SELECT *
+		FROM (
+		SELECT *
+		FROM PAYMENT
+		WHERE MEMBER_NO =5
+		ORDER BY PAY_DT DESC)
+		WHERE MEMBER_NO=#{memberNo}
+		AND ROWNUM =1
+	</select>
 
 </mapper>

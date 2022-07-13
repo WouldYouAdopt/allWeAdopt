@@ -46,8 +46,7 @@
 
 
 .supporterInfo{
-    margin-top: 40px;
-    padding: 20px;
+    padding: 10px;
     list-style: none;
     background-color: #ddd;
     border-radius: 5px ;
@@ -71,7 +70,6 @@
 .supporterInfo .fw-bolder{    font-size: 1.1em;}
 
 .supporterInfo h3{
-    margin-top: 20px;
     color: #f7a797;
 }
 .supporterInfo li{

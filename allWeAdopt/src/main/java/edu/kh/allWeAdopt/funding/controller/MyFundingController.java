@@ -1,5 +1,6 @@
 package edu.kh.allWeAdopt.funding.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.kh.allWeAdopt.funding.model.service.FundingService;
 import edu.kh.allWeAdopt.funding.model.vo.OrderDetail;
+import edu.kh.allWeAdopt.funding.model.vo.Reward;
 import edu.kh.allWeAdopt.member.model.vo.Member;
 
 @Controller
@@ -72,7 +74,16 @@ public class MyFundingController {
 	}
 	
 	@PostMapping("/pay")
-	public String Payment(@RequestParam Map<String, Object>paramMap){
+	public String Payment(@RequestParam Map<String, Object>paramMap
+						 ,@ModelAttribute("loginMember") Member loginMember
+						 ,Model model){
+		
+		int memberNo = loginMember.getMemberNo();
+		Map<String, Object> map = service.selectRewardList(paramMap,memberNo);
+		model.addAttribute("rewardList", map.get("rewardList"));
+		model.addAttribute("prevOrder", map.get("prevOrder"));
+		
+		//익명 공개여부 추가 해야 함.
 		
 		return "funding/funding-payment";
 	}

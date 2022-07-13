@@ -16,7 +16,7 @@ public class Reward {
 	private int fullPrice;
 	private int maxRewardNo;
 	private int fundingNo;
-	private int amount;
+	private int amount; 
 	
 	private int rewardOrderAmount; // 리워드별 판매된 수량
 	private int rewardOrderPrice; // 리워드별 판매된 금액
