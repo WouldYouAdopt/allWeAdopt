@@ -30,9 +30,14 @@
         <link href="${contextPath}/resources/css/main-style.css" rel="stylesheet" />
         <link href="${contextPath}/resources/css/styles.css" rel="stylesheet" />
         <link href="${contextPath}/resources/css/funding/funding-write.css" rel="stylesheet" />
-       
 
-    
+        <!-- include libraries(jQuery, bootstrap) -->
+        <script type="text/javascript" src="//code.jquery.com/jquery-3.6.0.min.js"></script>   
+
+        <!-- summer note -->
+        <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+        
     </head>
     <body class="d-flex flex-column">
         <main class="flex-shrink-0">
@@ -165,7 +170,7 @@
                           <div id="summernoteArea">
                             
                             <div><h5>펀딩 내용</h5></div>
-                            <textarea name="" id="">섬머노트 추가 예정</textarea>
+                            <textarea id="summernote" name="boardContent"></textarea>  
 
                           </div>
 
@@ -190,10 +195,44 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="${contextPath}/resources/js/scripts.js"></script>
-        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
   
         <!-- 펀딩 작성 관련 JS -->
         <script src="${contextPath}/resources/js/funding/funding-write.js"></script>
+
+        <script>
+            const contextPath = "${contextPath}";
+        </script>
+
+        <!-- 썸머노트 -->
+        <script>
+            $(document).ready(function() {
+                $('#summernote').summernote({
+                    placeholder: '내용을 입력하세요',
+                    tabsize: 2,
+                    height: 500,
+                    toolbar: [
+                        // [groupName, [list of button]]
+                        ['fontname', ['fontname']],
+                        ['fontsize', ['fontsize']],
+                        ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+                        ['color', ['forecolor','color']],
+                        ['table', ['table']],
+                        ['para', ['ul', 'ol', 'paragraph']],
+                        ['height', ['height']],
+                        ['insert',['picture','link']],
+                        // ['view', ['fullscreen', 'help']]
+                    ],
+                    callbacks:{
+                        onImageUpload: function(files, editor) {
+                            console.log(files);
+                            sendFile(files[0], this);
+                        }
+                    }
+                });
+            });
+        </script>
+
+        <script src="${contextPath}/resources/js/board/summerNote.js"></script>
     </body>
     
 </html>

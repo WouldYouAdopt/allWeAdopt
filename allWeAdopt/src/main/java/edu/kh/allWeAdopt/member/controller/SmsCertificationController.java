@@ -28,18 +28,20 @@ public class SmsCertificationController {
 		
 		System.out.println("인증번호 : " + randomNumber);
 
+										// API키                  // 시크릿키
 		Message coolsms = new Message( "NCS531VDFXLHXNN7", "2DACFRWLAEC50HPBRQKTWDBBRWG5L6AZ" );
 
         HashMap<String, String> params = new HashMap<String, String>();
-        params.put("to", memberTel);
-        params.put("from", "01089510126");
-        params.put("type", "SMS");
-        params.put("text", "[ALL WE ADOPT] 인증번호 : " + randomNumber);
+        params.put("to", memberTel); // 문자 수신할 번호
+        params.put("from", "01089510126"); // 문자 발송 번호 (coolSMS에서 인증한 번호만 가능해서 현재는 나의 번호 . . ㅠㅠ )
+        params.put("type", "SMS"); // 문자 형식. LMS 등등 여러가지 있음
+        params.put("text", "[ALL WE ADOPT] 인증번호 : " + randomNumber); // 문자 내용
         params.put("app_version", "test app 1.2"); // application name and version
 
 	    JSONObject obj = (JSONObject) coolsms.send(params);
 	    System.out.println(obj.toString());
 	    
+	    // error_count : 성공시 0, 실패시 1이상의 숫자가 카운팅됨! 
 	    if(String.valueOf(obj.get("error_count")).equals("0")) {
 	    	return randomNumber+"";
 	    }else {
