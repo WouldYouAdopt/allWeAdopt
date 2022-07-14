@@ -81,3 +81,9 @@
    background-color: rgb(251, 131, 107);
    border: none;
 }
+
+
+/* display : none */
+.none{
+    display: none;
+}

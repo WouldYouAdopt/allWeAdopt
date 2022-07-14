@@ -36,4 +36,15 @@ public interface MyPageService {
 	 */
 	int secession(Member loginMember);
 
+	
+	
+	/** 인증번호를 받은 이메일, 인증번호, 인증번호 발급 시간  -> DB 삽입
+	 * @param inputEmail 
+	 * @param inputEmail
+	 * @param cNumber
+	 * @return
+	 */
+	int insertCertification(Map<String, Object> map);
+
+
 }

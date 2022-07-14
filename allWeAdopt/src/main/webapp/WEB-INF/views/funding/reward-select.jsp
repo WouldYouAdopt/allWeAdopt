@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"  %>
 
 <!DOCTYPE html>
 <html>
@@ -92,144 +93,60 @@
 			    </div>
 			</div>
 			
-			
- 
-			
-
-
-
             <section class="py-4">
                 <div class="container px-5">
 
-
-
-
-					
-					
-					
-					
-					
 					<div class="text-center py-5">
 						<h1 class="fw-bolder">리워드 선택</h1>
 						<p class="lead fw-normal text-muted mb-0">펀딩해주시는 금액에 따라 감사의 의미로 리워드를 제공해 드립니다.</p>
 					</div>
-                    
+
+					<!-- select 값 테스트용 -->
+					<input type="hidden" value="${map.selected}" id="selected">
+
 					<div class="row gx-5">
-                    
-                    
-                    
-                    
+                    <c:forEach var="i" begin="0" end="${fn:length(map.rewardList)-1}">
 						<!-- 리워드-->
 						<div class="col-lg-6 col-xl-4 mb-5">
 							<div class="card mb-5 mb-xl-0">
 								<div class="card-body p-5">
 								
 									<div class="rew-number reward-select">
-										리워드1
+										리워드${i+1}
 									</div>
 									<div class="rew-price reward-select">
-										108,000<span>원 펀딩</span>
+										${map.rewardList[i].rewardPrice}<span>원 펀딩</span>
 									</div>
 									<div class="rew-title">
-										슈퍼얼리도그 쿨매트 러그형 M(150x250x1.5cm) 그레이
+										${map.rewardList[i].rewardTitle}
 									</div>
 									<div class="rew-content">
-										몽뚜뚜 프리미엄 러그형 쿨매트! 3D매쉬 소재로 통풍이 잘되는 애견매트로 M(150x250x1.5cm) 사이즈는 싱글 침대에 함께 사용할 수 있습니다.<br>★ 쿨매트 : 그레이 색상
+										${map.rewardList[i].rewardContent}
 									</div>
 									<div class="delivery-box">
 										<span class="deli-title">리워드 발송 시작일</span>
-										<span class="deli-content">08월 01일 부터 순차발송</span>
+										<span class="deli-content"> ${map.sendDate} &nbsp;순차발송</span>
 									</div>
 									<div class="stock-box">
-										<span class="stock">현재 47개 남음 / 제한수량 50개</span>
-										<span class="order-count">총 3개 펀딩 완료</span>
+										<span class="stock">현재 ${map.rewardList[i].maxRewardNo-map.rewardListCount[i].rewardOrderAmount}개 남음 / 제한수량 ${map.rewardList[i].maxRewardNo}개</span>
+										<c:if test="${empty map.rewardListCount[i].rewardOrderAmount}">
+											<span class="order-count">총 0개 펀딩 완료</span>
+										</c:if>
+										<c:if test="${!empty map.rewardListCount[i].rewardOrderAmount}">
+											<span class="order-count">총 ${map.rewardListCount[i].rewardOrderAmount}개 펀딩 완료</span>
+										</c:if>
 									</div>
 									
 									<div class="d-grid"><p class="rewardSelectBtn lineBtn-gr rewardSelectBtn">리워드 선택</p></div>
+								
+									<input type="number" name="${map.rewardList[i].rewardNo}" value="0" style="width:60px;">
+								
 								</div>
 							</div>
 						</div>
+                    </c:forEach>
                         
-                        
-                        
-                        <div class="col-lg-6 col-xl-4">
-                            <div class="card mb-5 mb-xl-0">
-                                <div class="card-body p-5">
 
-									<div class="rew-number reward-select">
-                                        리워드2
-                                    </div>
-                                    <div class="rew-price reward-select">
-                                        108,000<span>원 펀딩</span>
-                                    </div>
-                                    <div class="rew-title">
-                                        슈퍼얼리도그 쿨매트 러그형 M(150x250x1.5cm) 그레이
-                                    </div>
-                                    <div class="rew-content">
-                                        몽뚜뚜 프리미엄 러그형 쿨매트! 3D매쉬 소재로 통풍이 잘되는 애견매트로 M(150x250x1.5cm) 사이즈는 싱글 침대에 함께 사용할 수 있습니다.<br>★ 쿨매트 : 그레이 색상
-                                    </div>
-                                    <div class="delivery-box">
-                                        <!-- <span class="deli-title">배송비</span>
-                                        <span class="deli-content">0원</span> -->
-                                        <span class="deli-title">리워드 발송 시작일</span>
-                                        <span class="deli-content">08월 01일 부터 순차발송</span>
-                                    </div>
-                                    <div class="stock-box">
-                                        <span class="stock">현재 47개 남음 / 제한수량 50개</span>
-                                        <span class="order-count">총 3개 펀딩 완료</span>
-                                    </div>
-
-                 
-                                    <div class="d-grid"><p class="rewardSelectBtn lineBtn-gr rewardSelectBtn">리워드 선택</p></div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        
-                        
-                        <div class="col-lg-6 col-xl-4">
-                            <div class="card mb-5 mb-xl-0">
-                                <div class="card-body p-5">
-
-									<div class="rew-number reward-select">
-                                        리워드3
-                                    </div>
-                                    <div class="rew-price reward-select">
-                                        108,000<span>원 펀딩</span>
-                                    </div>
-                                    <div class="rew-title">
-                                        슈퍼얼리도그 쿨매트 러그형 M(150x250x1.5cm) 그레이
-                                    </div>
-                                    <div class="rew-content">
-                                        몽뚜뚜 프리미엄 러그형 쿨매트! 3D매쉬 소재로 통풍이 잘되는 애견매트로 M(150x250x1.5cm) 사이즈는 싱글 침대에 함께 사용할 수 있습니다.<br>★ 쿨매트 : 그레이 색상
-                                    </div>
-                                    <div class="delivery-box">
-                                        <!-- <span class="deli-title">배송비</span>
-                                        <span class="deli-content">0원</span> -->
-                                        <span class="deli-title">리워드 발송 시작일</span>
-                                        <span class="deli-content">08월 01일 부터 순차발송</span>
-                                    </div>
-                                    <div class="stock-box">
-                                        <span class="stock">현재 47개 남음 / 제한수량 50개</span>
-                                        <span class="order-count">총 3개 펀딩 완료</span>
-                                    </div>
-
-                 
-                                    <div class="d-grid"><p class="rewardSelectBtn lineBtn-gr rewardSelectBtn">리워드 선택</p></div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        
-                        
-                        
-                        
-                        
-     
-     
-                     
-                        
-                        
                         
                     </div>
                         
@@ -252,13 +169,13 @@
 	                    
 						<div style="margin: 20px auto;" class="d-flex justify-content-center">
 							<div class="form-check px-5">
-								<input class="form-check-input" type="checkbox" value="" id="name">
+								<input class="form-check-input" type="checkbox" value="N" id="name" name="nameAnonymous">
 								<label class="form-check-label" for="name">
 									이름 비공개
 								</label>
 							</div>
 							<div class="form-check px-5">
-								<input class="form-check-input" type="checkbox" value="" id="price">
+								<input class="form-check-input" type="checkbox" value="N" id="price" name="priceAnonymous">
 								<label class="form-check-label" for="price">
 									펀딩금액 비공개
 								</label>
@@ -275,42 +192,28 @@
 						<form action="my/pay" method="POST" style="border:1px solid #FB836b; padding:20px; width:300px;">
 						<!-- 리워드정보 name:리워드넘버 / value:수량-->
                             <%-- 펀딩 번호--%> 
-                            <input type="hidden" name="fundingNo" value="1">
+                            <input type="hidden" name="fundingNo" value="2">
 
                         <%--  <input type="hidden" value="4"> --%>
-                            리워드 1 : <input name="4" value="1"><br>
+                            리워드 1 : <input name="7" value="7"><br>
                             <%-- <input type="hidden" value="5"> --%>
-                            리워드 2 : <input name="5" value="2"><br>
-                            리워드 3 : <input name="6" value="0"><br>
+                            리워드 2 : <input name="8" value="8"><br>
+                            리워드 3 : <input name="9" value="9"><br>
                             
                             <!-- 공개여부 / 체크 한것이 비공개임 -->
-                            이름 공개 여부 : <input type="checkbox" name="nameAnonymous" value="true"><br>
-                            후원금액 공개여부 : <input type="checkbox" name="priceAnonymous" value="true">
+                            이름 비공개 여부 : <input type="checkbox" name="nameAnonymous" value="N"><br>
+                            후원금액 비공개여부 : <input type="checkbox" name="priceAnonymous" value="N">
                             <button type="submit">결제 임시버튼</button>
 						</form>
 						
 
                     </div>    
-                     
 
-                        
-                        
 				</div>
 
-
-
-
-
-                    
-                        
             </section>
-            
-
 
         </main>
-
-        
-            
             
 
         <!-- 푸터 -->
@@ -347,11 +250,27 @@
 		        	this.classList.toggle("selected");  
         			if(this.classList.contains("selected")){
         				this.classList.remove("btn-pk"); 
+        				
+        				this.parentElement.nextElementSibling.value="1";
+        			}else{
+        				this.parentElement.nextElementSibling.value="0";		
         			}
         		})
+
         		
+        		//const selected = document.getElementsById("selected");
+	        	// selected 넘버확인
+	        	//if(selected.value!=""){
+	        		
+					
+		        	
+		        	//if(selected==rewardNo){
+		        		//rewardSelectBtn[i].classList.add("btn-pk");
+		        	//}
+	        	//}
         	}
-        
+        	
+        	
         </script>
 
     </body>

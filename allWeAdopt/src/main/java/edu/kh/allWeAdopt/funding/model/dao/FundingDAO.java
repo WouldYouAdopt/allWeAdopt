@@ -66,12 +66,12 @@ public class FundingDAO {
 	}
 
 
-	/**펀딩의 리워드목록들을 조회하는 DAO 
+	/**펀딩의 리워드목록들을 조회하는 DAO [김현기]
 	 * @param INT FUNDINGnO
 	 * @return
 	 */
-	public List<Reward> selectRewardList(int fundingNo) {
-		return sqlSession.selectList("fundingMapper.selectRewardList",fundingNo);
+	public List<Reward> selectOnlyRewardList(int fundingNo) {
+		return sqlSession.selectList("fundingMapper.selectOnlyRewardList",fundingNo);
 	}
 
 
@@ -91,9 +91,46 @@ public class FundingDAO {
 	public Funding selectFunding(int fundingNo) {
 		return sqlSession.selectOne("fundingMapper.selectfunding",fundingNo);
 	}
+
+
+
+
+	
+	/** 구매이력 수 조회 (구매이력 있는 펀딩인지 아닌지 구분)
+	 * @param fundingNo 
+	 * @return result
+	 */
+	public int selectCountPay(int fundingNo) {
+		return sqlSession.selectOne("fundingMapper.selectCountPay",fundingNo);
+	}
+
+	/** 구매이력 없는 펀딩 detail조회
+	 * @param fundingNo
+	 * @return
+	 */
+	public FundingDetail selectFundingSaleZero(int fundingNo) {
+		return sqlSession.selectOne("fundingMapper.selectFundingSaleZero",fundingNo);
+	}
+	
+	/** 리워드+ 별 판매수량, 판매금액 조회
+	 * @param rewardList
+	 * @return
+	 */
+	public List<Reward> selectRewardList(int fundingNo) {
+		return sqlSession.selectList("fundingMapper.selectRewardList",fundingNo);
+	}
 	
 
+	/** 리워드별 판매수량, 판매금액 조회
+	 * @param fundingNo
+	 * @return
+	 */
+	public List<Reward> selectRewardOrderCount(int fundingNo) {
+		return sqlSession.selectList("fundingMapper.selectRewardOrderCount",fundingNo);
+	}
+	
 
+	
 
 
 }

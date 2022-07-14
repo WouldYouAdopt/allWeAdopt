@@ -16,7 +16,7 @@
     color: red;
 }
 
-#memberTel, #sample4_postcode{
+#currTel, #memberTel, #sample4_postcode{
     width: 87%;
     margin-right: 10px;
 }

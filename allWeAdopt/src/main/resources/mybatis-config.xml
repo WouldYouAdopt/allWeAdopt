@@ -2,6 +2,7 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
 <configuration>
 
+
 	<!-- <configuration>내부에 Mybatis 관련 설정 작성하기 -->
 
 	<!-- SqlSessionTemplate 관련 설정 -->
@@ -51,5 +52,6 @@
 
 	</mappers>
 
+  
 
 </configuration>
