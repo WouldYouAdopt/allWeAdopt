@@ -103,22 +103,24 @@ public class MyFundingController {
 	}
 
 	//결제 후 DB에 insert
-	@PostMapping("/pay/{paymentNo}")
-	public String payProgress(@PathVariable String paymentNo
+	@PostMapping("/pay/{payNo}")
+	public String payProgress(@PathVariable String payNo
 							,@ModelAttribute("OrderDetail") OrderDetail orderDetail
 							,@ModelAttribute("rewardList") List<Reward> rewardList
 							,Model model,RedirectAttributes ra
 							){
 		
-		System.out.println(paymentNo);
-		System.out.println(Integer.parseInt(paymentNo));
+		try {
+			orderDetail.setPaymentNo(Integer.parseInt(payNo));			
+		}catch(NumberFormatException e) {
+			e.printStackTrace();
+		}
 		
-		orderDetail.setPaymentNo(0);
 		int result = service.payProgress(orderDetail,rewardList);
 		
 		if(result>0) {
 			ra.addFlashAttribute("message", "등록 성공?");
-			return "redirect:../detail/{paymentNo} ";
+			return "redirect:../detail/{payNo} ";
 		}
 		
 		return null;

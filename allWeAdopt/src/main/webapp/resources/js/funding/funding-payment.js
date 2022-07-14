@@ -219,7 +219,6 @@ function newUID(memberNo) {
   const now = new Date();
 
   const uid = memberNo
-    + now.getFullYear().toString().slice(-2)
     + addZero(now.getDate())
     + addZero(now.getHours())
     + addZero(now.getMilliseconds());
