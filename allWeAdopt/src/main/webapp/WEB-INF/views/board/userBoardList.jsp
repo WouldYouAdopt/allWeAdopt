@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -100,36 +101,48 @@
                     <a href="user/boardRegist"><p class="addBoard">게시글 작성하기</p></a>
 
                     <%-- 게시글 리스트 --%>
-                    
-                    <div class="row gx-5">
-                        <c:forEach var="boardList" items="${boardList}">
-                            <div class="col-lg-4 mb-5">
-                                <div class="card h-100 shadow border-0">
-                                    <img class="card-img-top" src="https://dummyimage.com/600x350/ced4da/6c757d" alt="..." />
-                                    <div class="card-body p-4">
-                                        <div class="badge bg-primary bg-gradient rounded-pill mb-2">News</div>
-                                        <a class="text-decoration-none link-dark stretched-link" href="../board/detail/2/${boardList.boardNo}"><h5 class="card-title mb-3">${boardList.boardTitle}</h5></a>
-                                    </div>
-                                    <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
-                                        <div class="d-flex align-items-end justify-content-between">
-                                            <div class="d-flex align-items-center">
-                                                <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d" alt="..." />
-                                                <div class="small">
-                                                    <div class="fw-bold">${boardList.memberName}</div>
-                                                    <div class="text-muted">${boardList.createDate} &middot; 6 min read</div>
+                    <c:set var="test" value="0"/>
+                    <c:forEach begin="0" end="${fn:length(boardList)}" step="3">
+                        <div class="row gx-5" id="row">
+                            <c:forEach var="boardList" items="${boardList}" begin="${test}" end="${test+2}">
+                                <div class="col-lg-4 mb-5">
+                                    <div class="card h-100 shadow border-0">
+                                        <img class="card-img-top" src="https://dummyimage.com/600x350/ced4da/6c757d" alt="..." />
+                                        <div class="card-body p-4">
+                                            <div class="badge bg-primary bg-gradient rounded-pill mb-2">News</div>
+                                            <a class="text-decoration-none link-dark stretched-link" href="../board/detail/2/${boardList.boardNo}"><h5 class="card-title mb-3">${boardList.boardTitle}</h5></a>
+                                        </div>
+                                        <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
+                                            <div class="d-flex align-items-end justify-content-between">
+                                                <div class="d-flex align-items-center">
+                                                    <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d" alt="..." />
+                                                    <div class="small">
+                                                        <div class="fw-bold">${boardList.memberName}</div>
+                                                        <div class="text-muted">${boardList.createDate} &middot; 6 min read</div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </c:forEach>
+                            </c:forEach>
+                            <c:set var="test" value="${test+3}"/>
+                        </div>
+                    </c:forEach>
+                    <div class="spinner-area">
+                         <div class="spinner-border text-danger" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
                     </div>
+                   
                 </div>
             </section>
         </main>
+        <div class="footer-area">
             <!-- 푸터 -->
             <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+        </div>
+            
        
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
