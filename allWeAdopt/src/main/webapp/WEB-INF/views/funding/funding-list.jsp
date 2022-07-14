@@ -58,35 +58,30 @@
 
         </style>
     </head>
+    
     <body class="d-flex flex-column">
         <main class="flex-shrink-0">
 
 	        <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
-            
-
-
             <section class="py-4">
-
-
-
                 <div class="container px-5">
-
 
                      	<div class="text-center py-5">
                             <h1 class="fw-bolder">현재 진행중인 펀딩</h1>
                             <p class="lead fw-normal text-muted mb-0">한 달에 한번의 펀딩, 이번달 All We Adopt의 펀딩을 소개합니다.</p>
                         </div>
-                    
-						 
+                    				 
                         <!-- 펀딩 이미지, 타이틀, 달성률 들어있는 박스 -->
                         <a href="${contextPath}/funding/detail/${map.now.fundingNo}?page=1">
 	                        <div class="fundingTitleBox nowList">
-	                            <div class="fundingTitleImage" style="background: url(${contextPath}/resources/images/funding_sample/funding_title_img.png) 50% 0 ;"></div>
+	                            <div class="fundingTitleImage" style="background: url(${contextPath}${map.now.fundingThumbnail}) 50% 0 ;"></div>
 	                            <div class="fundingTitleText">
-	                                이달의 펀딩<br>${map.now.fundingTitle}<br>${map.now.fundingMiniTitle}                            
+	                                이달의 펀딩<br>${map.now.fundingTitle}                         
 	                            </div>
 	                            <div class="bottom-box">
+	                            	<div class="miniTitle">${map.now.fundingMiniTitle}</div>
+	                            	<div class="rigntText">현재 0원 달성<br>12일 남음</div>
 	                                <div class="rate-bar"></div>
 	                                <div class="rate-bar-pink"></div>
 	                                <div class="rate-text-box"><span class="rate-text"></span><span class="per">%</span></div>
@@ -94,52 +89,38 @@
 	                        </div>
                         </a>
                         
-                        
-                        
-                        
-                        
-                        
-				</div>
-				</section>
-                        
-                        
-                        
-                        
-                <section class="py-5">
-                      <div class="text-center py-5">
-                            <h1 class="fw-bolder">종료된 펀딩 둘러보기</h1>
-                            <p class="lead fw-normal text-muted mb-0">지금까지 All We Adopt가 소개한 펀딩을 둘러보세요.</p>
-                        </div>  
+                </div>
+            </section>
+                            
+            <section class="py-5">
+            	<div class="text-center py-5">
+            		<h1 class="fw-bolder">종료된 펀딩 둘러보기</h1>
+            		<p class="lead fw-normal text-muted mb-0">지금까지 All We Adopt가 소개한 펀딩을 둘러보세요.</p>
+            	</div>  
                 <div class="container px-5">
-                    <!-- <h2 class="fw-bolder fs-5 mb-4" style="text-align:right">Featured Stories</h2> -->
-                    <div class="row gx-5 mb-5" style="
-    overflow: auto;
-    overflow-y:hidden;
-    flex-wrap:nowrap; ;
-">
+                	<div class="row gx-5 mb-5" style="overflow: auto; overflow-y:hidden; flex-wrap:nowrap;">
                     	
-                    	<c:forEach var="end" items="${endList}">
-                    	
-                        <div class="col-lg-4 mb-5">
-                            <div class="card h-100 shadow border-0">
-                                <img class="card-img-top" src="${contextPath}${end.fundingThumbnail}" />
-                                <div class="card-body pt-4 px-4 pb-0">
-                                    <div class="badge bg-gradient mb-2 pd-3" style="background:rgb(251, 131, 107)">성공</div>
-                                    <a class="text-decoration-none link-dark stretched-link" href="${contextPath}/funding/detail/${map.end.fundingNo}"><div class="h5 card-title mb-3">${end.fundingTitle}</div></a>
-                                    <p class="card-text mb-0">${end.fundingMiniTitle}</p>
-                                </div>
-                                <div class="card-footer p-4 pt-4 bg-transparent border-top-0">
-                                    <div class="d-flex align-items-end justify-content-between">
-                                        <div class="d-flex align-items-center">
-                                            <div class="small">
-                                                <div class="fw-bold">달성률 120% / ${end.targetDonation}</div>
-                                                <div class="text-muted">진행 기간 ${end.startDate} ~ ${end.endDate}</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                		<c:forEach var="end" items="${endList}">
+                			<div class="col-lg-4 mb-5">
+                				<div class="card h-100 shadow border-0">
+                					<div style="background:url('${contextPath}${end.fundingThumbnail}') 50% 0; background-size:cover; height:230px;"></div>
+                                	<div class="card-body pt-4 px-4 pb-0">
+                                    	<div class="badge bg-gradient mb-2 pd-3" style="background:rgb(251, 131, 107)">성공</div>
+                                    	<a class="text-decoration-none link-dark stretched-link" href="${contextPath}/funding/detail/${end.fundingNo}?page=1"><div class="h5 card-title mb-3">${end.fundingTitle}</div></a>
+                                    	<p class="card-text mb-0">${end.fundingMiniTitle}</p>
+                                	</div>
+                                	<div class="card-footer p-4 pt-4 bg-transparent border-top-0">
+                                    	<div class="d-flex align-items-end justify-content-between">
+                                        	<div class="d-flex align-items-center">
+                                            	<div class="small">
+                                                	<div class="fw-bold">달성률 120% / ${end.targetDonation}</div>
+                                                	<div class="text-muted">진행 기간 ${end.startDate} ~ ${end.endDate}</div>
+                                            	</div>
+                                        	</div>
+                                    	</div>
+                                	</div>
+                            	</div>
+                        	</div>
                         </c:forEach>
                         
                         <div class="col-lg-4 mb-5">
@@ -206,23 +187,11 @@
                                 </div>
                             </div>
                         </div>
-                    
-<!--                     <div class="text-end mb-5 mb-xl-0">
-                        <a class="text-decoration-none" href="#!">
-                            More stories
-                            <i class="bi bi-arrow-right"></i>
-                        </a>
-                    </div> -->
-                    
-                    
-                </div>
-            </section>
-
-        </main>
-        
-        
-            
-            
+                        
+                    </div>
+            	</div>
+        	</section>
+		</main>  
 
         <!-- 푸터 -->
         <jsp:include page="/WEB-INF/views/common/footer.jsp" />

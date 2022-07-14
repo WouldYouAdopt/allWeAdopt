@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import edu.kh.allWeAdopt.board.model.service.NoticeService;
+import edu.kh.allWeAdopt.board.model.service.BoardService;
+
 import edu.kh.allWeAdopt.board.model.vo.BoardDetail;
 
 @Controller
@@ -20,7 +21,7 @@ import edu.kh.allWeAdopt.board.model.vo.BoardDetail;
 public class MyNoticeController {
 	
 	@Autowired
-	private NoticeService service;
+	private BoardService service;
 	
 	private Logger logger = LoggerFactory.getLogger(AdminNoticeController.class);
 

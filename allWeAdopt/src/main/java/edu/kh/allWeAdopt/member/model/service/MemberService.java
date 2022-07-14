@@ -1,7 +1,7 @@
 package edu.kh.allWeAdopt.member.model.service;
 
 import java.io.IOException;
-import java.util.HashMap;
+
 import java.util.Map;
 
 import org.springframework.web.multipart.MultipartFile;

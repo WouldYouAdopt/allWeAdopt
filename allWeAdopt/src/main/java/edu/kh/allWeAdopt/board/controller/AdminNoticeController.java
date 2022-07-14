@@ -1,17 +1,10 @@
 package edu.kh.allWeAdopt.board.controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.HashMap;
+
 import java.util.Map;
-import java.util.UUID;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.io.FileUtils;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,15 +16,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.multipart.MultipartFile;
+
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 
-import edu.kh.allWeAdopt.board.model.service.NoticeService;
+
+import edu.kh.allWeAdopt.board.model.service.BoardService;
+
 import edu.kh.allWeAdopt.board.model.vo.BoardDetail;
 import edu.kh.allWeAdopt.common.Util;
 
@@ -41,7 +34,7 @@ import edu.kh.allWeAdopt.common.Util;
 public class AdminNoticeController {
 	
 	@Autowired
-	private NoticeService service;
+	private BoardService service;
 	
 	private Logger logger = LoggerFactory.getLogger(AdminNoticeController.class);
 
