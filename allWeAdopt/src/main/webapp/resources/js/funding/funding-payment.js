@@ -205,7 +205,11 @@ function submitValidate(){
           return false;
         }
     }
+    
+    let bol =requestPayInicis() ;
 
+    console.log("bol : " +bol);
+    return bol;
 }
 
 
@@ -220,51 +224,47 @@ function submitValidate(){
 
 
 /* 아임포트 동의*/
-
-function requestPay() {
-  IMP.init("{imp13427583}");
+//IMP.init("{imp13427583}");
   
-  IMP.request_pay({ 
-      
-      // 파라미터 찾아보기
-      // https://docs.iamport.kr/sdk/javascript-sdk?lang=ko#request_pay
+function requestPayInicis() {
+  IMP.init("imp13427583");
 
-      //------------------------------------------------------------------
-      // pg: "kakaopay",
-      // pay_method: "kakaopay", //결제수단 
-      // merchant_uid: "TC0ONETIME",
-      // name: "노르웨이 회전 의자",
-      // amount: 100, //TC0ONETIME
-      // //주문자 정보 ---------------------------------
-      // buyer_email: "gildong@gmail.com",
-      // buyer_name: "홍길동",
-      // buyer_tel: "010-4242-4242",
-      // buyer_addr: "서울특별시 강남구 신사동",
-      // buyer_postcode: "01181"
-      //------------------------------------------------------------------
+  const uid = newUID( $('#loginMemberNo').val());
+// 이니시스 일반 결제
+// INIpayTest
+  IMP.request_pay({
+      pg : 'html5_inicis.INIpayTest',
+      pay_method : 'card',
+      merchant_uid: uid, // 상점에서 관리하는 주문 번호를 전달 (newUID으로 생성함)
+      name : $('#fundingTitle').text(), //펀딩 이름 fundingTitle
+      amount : 100,//$('#fullPrice').val()
+      buyer_email : $('#memberEmail').text(), // buyeremail 이메일은 한글 사용 불가능
+      buyer_name : $('#inputName').val(),
+      buyer_tel : $('#inputTelMain').val(),
+      buyer_addr : $('#Address').val()+$('#detailAddress').val(),
+      buyer_postcode : $('#postCode').val()
+  }, function(r) { // callback 로직
 
-      pg : 'kakaopay',
-      pay_method : 'card', //생략 가능
-      merchant_uid: "order_no_0001", // 상점에서 관리하는 주문 번호
-      name : '주문명:결제테스트',
-      amount : 14000,
-      buyer_email : 'iamport@siot.do',
-      buyer_name : '구매자이름',
-      buyer_tel : '010-1234-5678',
-      buyer_addr : '서울특별시 강남구 삼성동',
-      buyer_postcode : '123-456'
+    $('#pay_method').val(r.pay_method);
+    $('#merchant_uid').val(r.merchant_uid);
+    
+    console.log("아임포트 사용 끝");
 
-  }, function (rsp) { 
-
-    console.log(rsp);
-      // if (rsp.success) {
-      //     console.log("결제 성공!!!!!!!!!!!!!");
-      //   } else {
-      //   console.log("결제 실패ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ");        
-      // }
-
-      
+    return r.success;
   });
 }
 
+// 중복되지 않는 식별키를 생성해주는 함수
+function newUID(memberNo){
+  const now = new Date();
 
+  const uid = memberNo
+              +now.getFullYear().toString().slice(-2)
+              + addZero( now.getDate() )
+              + addZero( now.getHours()  )
+              + addZero( now.getMilliseconds() );
+  return uid;
+}
+function addZero(temp){
+ return temp < 10 ? "0" + temp : temp;;
+}
