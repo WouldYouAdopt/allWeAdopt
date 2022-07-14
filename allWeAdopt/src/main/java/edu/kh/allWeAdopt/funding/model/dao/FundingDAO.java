@@ -70,7 +70,7 @@ public class FundingDAO {
 	 * @param INT FUNDINGnO
 	 * @return
 	 */
-	public List<Reward> selectRewardList(int fundingNo) {
+	public List<Reward> selectOnlyRewardList(int fundingNo) {
 		return sqlSession.selectList("fundingMapper.selectOnlyRewardList",fundingNo);
 	}
 
@@ -112,8 +112,25 @@ public class FundingDAO {
 		return sqlSession.selectOne("fundingMapper.selectFundingSaleZero",fundingNo);
 	}
 	
+	/** 리워드+ 별 판매수량, 판매금액 조회
+	 * @param rewardList
+	 * @return
+	 */
+	public List<Reward> selectRewardList(int fundingNo) {
+		return sqlSession.selectList("fundingMapper.selectRewardList",fundingNo);
+	}
+	
 
+	/** 리워드별 판매수량, 판매금액 조회
+	 * @param fundingNo
+	 * @return
+	 */
+	public List<Reward> selectRewardOrderCount(int fundingNo) {
+		return sqlSession.selectList("fundingMapper.selectRewardOrderCount",fundingNo);
+	}
+	
 
+	
 
 
 }

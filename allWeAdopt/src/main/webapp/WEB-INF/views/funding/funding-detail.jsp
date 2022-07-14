@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"  %>
 
 <!DOCTYPE html>
 <html>
@@ -136,12 +137,12 @@
 
                             <c:if test="${detail.fundingState=='Y'}">
                             <div class="align-items-center mb-4" >
-                                <button class="fundingBtn" onclick="window.location.href='${contextPath}/funding/reward/0'">펀딩하기</button>
+                                <button class="fundingBtn" onclick="window.location.href='${contextPath}/funding/reward/${detail.fundingNo}'">펀딩하기</button>
                                 <button class="qnaBtn">문의</button>
                             </div>
                             </c:if>
-                            
-                            <c:forEach var="i" begin="0" end="2">
+
+                            <c:forEach var="i" begin="0" end="${fn:length(detail.rewardList)}">
                             <div class="reward-box">
 
                                 <div class="reward">
@@ -163,8 +164,13 @@
                                         <span class="deli-content">${detail.endDate}+1일... 부터 순차발송</span>
                                     </div>
                                     <div class="stock-box">
-                                        <span class="stock">현재 ${detail.rewardList[i].maxRewardNo-detail.rewardList[i].rewardOrderAmount}개 남음 / 제한수량 ${detail.rewardList[i].maxRewardNo}개</span>
-                                        <span class="order-count">총 ${detail.rewardList[i].rewardOrderAmount}개 펀딩 완료</span>
+                                        <span class="stock">현재 ${detail.rewardList[i].maxRewardNo-detail.rewardListCount[i].rewardOrderAmount}개 남음 / 제한수량 ${detail.rewardList[i].maxRewardNo}개</span>
+                                        <c:if test="${empty detail.rewardListCount[i].rewardOrderAmount}">
+	                                        <span class="order-count">총 0개 펀딩 완료</span>
+                                        </c:if>
+                                        <c:if test="${!empty detail.rewardListCount[i].rewardOrderAmount}">
+	                                        <span class="order-count">총 ${detail.rewardListCount[i].rewardOrderAmount}개 펀딩 완료</span>
+                                        </c:if>
                                     </div>
 
                                     <div class="rewardOver"><div class="vertical-center">이 리워드 펀딩하기</div></div>
@@ -172,14 +178,14 @@
                                 </div>
                                 
 								<form action="../reward/${detail.fundingNo}" method="get" class="goReward">
-									<input type="hidden" name="${detail.rewardList[i].rewardNo}" value="1">
+									<input type="hidden" name="selected" value="${detail.rewardList[i].rewardNo}">
 								</form>
 								</c:forEach>
 
                             </div> <!-- 리워드 전체 박스  -->
                             
                             <div class="fixbox">
-	                            <button class="fundingBtn wid-100" onclick="window.location.href='${contextPath}/funding/reward/0'">이 프로젝트 펀딩하기</button>
+	                            <button class="fundingBtn wid-100" onclick="window.location.href='${contextPath}/funding/reward/${detail.fundingNo}'">이 프로젝트 펀딩하기</button>
                         	</div>
                             
                         </div> 
@@ -248,7 +254,7 @@
         		`;
 			textBoxleft.appendChild(keyFrames2);
         	
-        	
+
             // 달성률 숫자 카운트
         	$(function() {
                 var cnt0 = 0;
