@@ -46,5 +46,10 @@ public interface FundingService {
 	 */
 	Map<String, Object> selectReward(int fundingNo);
 
+	/** 모든 펀딩 리스트 조회 : 수진
+	 * @return map
+	 */
+	Map<String, Object> selectfundingAllList();
+
 
 }

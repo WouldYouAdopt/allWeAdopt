@@ -126,8 +126,8 @@
 			    </div>
 			</div>
 			
-            <section class="py-4">
-                <div class="container px-5">
+            <section class="py-4" style="margin-bottom:60px;">
+                <div class="container px-5" style="padding-bottom:30px;">
 				
 				
 					
@@ -141,7 +141,7 @@
 					<input type="hidden" value="${map.selected}" id="selected">
 					
 					<!-- 폼태그 -->
-					<form action="my/pay" method="POST" onsubmit="return submitConfirm()" id="goPayForm">
+					<form action="../my/pay" method="POST" onsubmit="return submitConfirm()" id="goPayForm">
 					
 					<div class="row gx-5">
                     <c:forEach var="i" begin="0" end="${fn:length(map.rewardList)-1}">
@@ -191,7 +191,7 @@
                         
                     
                     
-                    <div class="mx-5 px-5 py-5" >
+                    <div class="mx-5 px-5" style="padding-bottom:30px;" >
                     
 	                    <table style="margin: 20px auto;">
 		                    <tr>
@@ -262,7 +262,9 @@
         	<c:forEach items="${map.rewardList}" var="reward">
         		priceList.push("${reward.rewardPrice}");
         	</c:forEach>
-        	console.log(${reward.rewardPrice});
+        	
+        	console.log(priceList);
+        	
         	for(let i=0; i<rewardSelectBtn.length; i++){
         		
         		// 리워드별 가격?
@@ -295,13 +297,13 @@
         				this.classList.remove("selected"); 
         				const beforeCount = this.parentElement.nextElementSibling.value;
         				this.parentElement.nextElementSibling.value="0";
-        				payPrice.innerText=parseInt(payPrice.innerText)-parseInt(beforeCount)*parseInt(price);
+        				payPrice.innerText=parseInt(payPrice.innerText)-parseInt(beforeCount)*parseInt(priceList[i]);
 
         				
         			}else{
         				this.classList.add("selected"); 
         				this.parentElement.nextElementSibling.value="1";
-        				payPrice.innerText=parseInt(payPrice.innerText)+parseInt(price);
+        				payPrice.innerText=parseInt(payPrice.innerText)+parseInt(priceList[i]);
         			}
         		})
 
@@ -324,9 +326,12 @@
         		// input값이 바뀌었을때??
         		rewardCount[i].addEventListener("change",function(){
         			
+        			var sum=0;
 		        	// value값(반복문 덧셈으로 바꾸기)
-					payPrice.innerText= parseInt(rewardCount[0].value)*parseInt(price);
-					//+parseInt(rewardCount[1].value)+parseInt(rewardCount[2].value)
+		        	for(var a=0; a<priceList.length; a++){
+		        		sum +=parseInt(rewardCount[a].value)*parseInt(priceList[a]);
+		        	}
+					payPrice.innerText= sum;
 				
 					
 					if(rewardCount[i].value>0){
