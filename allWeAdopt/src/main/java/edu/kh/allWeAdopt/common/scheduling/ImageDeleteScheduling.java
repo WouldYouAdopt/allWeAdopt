@@ -49,22 +49,21 @@ public class ImageDeleteScheduling {
 		// 2. img 태그 src 추출 정규표현식
 		Pattern pattern = Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>"); 
 		
-		// 3. SummerNote에 작성된 내용 중 img태그의 src속성의 값을 검사하여 매칭되는 값을 Matcher객체에 저장함.
-		
 		String fileName = null; // 파일명 변환 후 저장할 임시 참조 변수
 		String src = null; // src 속성값을 저장할 임시 참조 변수
-		
-		// img 태그의 src속성의 값을 담을 List
-		List<String> imgList = new ArrayList<String>();
+		List<String> imgList = new ArrayList<String>(); // img 태그의 src속성의 값을 담을 List
 		
 		for(int i = 0; i < dbList.size(); i++) {
 			
+			// 3. SummerNote에 작성된 내용 중 img태그의 src속성의 값을 검사하여 매칭되는 값을 Matcher객체에 저장함.
 			Matcher matcher = pattern.matcher(dbList.get(i));
 
 //			// matcher.find() : Matcher 객체에 저장된 값(검사를 통해 매칭된 src 속성 값)에 반복 접근하여 값이 있을 경우 true			
 			while(matcher.find()){
 				
 				src =  matcher.group(1); // 매칭된 src 속성값을  Matcher 객체에서 꺼내서 src에 저장
+				
+				System.out.println( src );
 
 				String filePath = src.substring(src.indexOf("/", 2), src.lastIndexOf("/")) + "/"; 
 				// 파일명을 제외한 경로만 별도로 저장. (/resources/images/summernote)
@@ -74,7 +73,6 @@ public class ImageDeleteScheduling {
 				String deleteImage = filePath + fileName;
 				
 				imgList.add(deleteImage);
-				System.out.println(deleteImage);
 
 			}
 			

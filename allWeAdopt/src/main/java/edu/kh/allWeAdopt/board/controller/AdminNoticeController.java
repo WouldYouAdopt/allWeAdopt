@@ -105,6 +105,10 @@ public class AdminNoticeController {
 		// 게시글 등록
 		if(mode.equals("insert")) {
 			
+			String thumbnail = Util.thumbnail(detail.getBoardContent());
+			System.out.println("내용 : " +detail.getBoardContent());
+			System.out.println("썸네일 : " + thumbnail);
+			
 			logger.info("게시글 등록 수행됨");
 			
 			result = service.insertBoard(detail);
