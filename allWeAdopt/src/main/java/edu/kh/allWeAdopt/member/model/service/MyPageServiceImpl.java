@@ -123,28 +123,7 @@ public class MyPageServiceImpl implements MyPageService{
 	}
 
 	
-	// 인증번호를 받은 이메일, 인증번호, 인증번호 발급 시간  -> DB 삽입
-	@Override
-	public int insertCertification(Map<String, Object> map) {
-		
-		// 1) 입력한 이메일과 일치하는 값이 있는가?
-		int result = dao.searchCertification(map);
-		
-		if( result > 0 ) { // 처음으로 인증번호를 발급.
-			
-			result = dao.updateCertification(map);
-			
-		} else {
-			
-			result = dao.insertCertification(map);
-		}
-		
-		
-		return result;
-	}
-	
-	
-	
+
 	
 	
 	

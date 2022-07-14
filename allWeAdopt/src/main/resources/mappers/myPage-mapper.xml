@@ -15,11 +15,7 @@
 		<result property="secessionFlag" 	column="SECESSION_FL"/>
 	</resultMap>
 	
-	<resultMap type="certification" id="certification">
-		<id property="Email" column="EMAIL"/>
-		<result property="cNumber" 		column="C_NUMBER"/>
-		<result property="issueDate" 	column="ISSUE_DT"/>
-	</resultMap>
+
 
 	
 	<!-- 나의 정보 수정 -->
@@ -64,23 +60,5 @@
 		WHERE MEMBER_NO = #{memberNo}
 	</update>
 
-	<!-- 일치하는 회원 조회 -->
-	<select id="searchCertification" resultType="_int" >
-		SELECT count(EMAIL) FROM CERTIFICATION
-		WHERE EMAIL = #{memberEmail}
-	</select>
 	
-	<!-- 처음인 사람에게 인증번호 부여 insert  -->
-	<insert id="insertCertification" >
-		INSERT INTO CERTIFICATION VALUES(#{memberEmail}, #{cNumber}, SYSDATE);
-	</insert>
-
-	<!-- 처음이 아닌 사람에게 인증번호 업데이트 -->
-	<update id="updateCertification">
-		UPDATE CERTIFICATION SET
-		C_NUMBER = #{cNumber},
-		ISSUE_DT = SYSDATE
-		WHERE EMAIL = #{memberEmail}
-	</update>
-
 </mapper>

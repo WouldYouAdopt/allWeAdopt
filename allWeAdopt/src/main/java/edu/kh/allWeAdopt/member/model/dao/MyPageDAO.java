@@ -72,38 +72,6 @@ public class MyPageDAO {
 	}
 
 	
-	/** 일치하는 회원조회
-	 * @param map
-	 * @return result
-	 */
-	public int searchCertification(Map<String, Object> map) {
-
-		
-		return sqlSession.selectOne("myPageMapper.searchCertification", map);
-	}
-
-	
-	/** 처음인 사람에게 인증번호 부여 insert 
-	 * @param map
-	 * @return result
-	 */
-	public int insertCertification(Map<String, Object> map) {
-		
-		return sqlSession.insert("myPageMapper.insertCertification", map);	
-	}
-
-	
-	/** 처음이 아닌 사람에게 인증번호 업데이트
-	 * @param map
-	 * @return result
-	 */
-	public int updateCertification(Map<String, Object> map) {
-		
-		return sqlSession.insert("myPageMapper.updateCertification", map);	
-	}
-
-	
-
 
 	
 	
