@@ -166,7 +166,17 @@ const ul2 = document.getElementsByName("animalDetailValue")[0].nextElementSiblin
 				let text = document.createTextNode(data[i].animalDetail);
 				li.appendChild(text);
 			}
-			
+
+			const animal = document.getElementsByName("animalTypeValue")[0];
+			const animalDt = document.getElementsByName("animalDetailValue")[0];
+
+			if(animal.innerText.trim()=="기타"){
+				animalDt.style.display = 'none';
+				document.getElementsByName("animalDetailValue")[0].innerText='';
+				document.getElementsByName("animalDetail")[0].value = '';
+			 } else{
+				animalDt.style.display = 'block';
+			 }
 		},
 		error: function (request, status, error){
 			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -185,4 +195,96 @@ function animalDetailFunc(){
 			document.getElementsByName("animalDetail")[0].value = document.getElementsByName("animalDetailValue")[0].innerText;
 		});
 	}
+};
+
+// 유효성 검사
+function regist(){
+	console.log("유효성");
+
+	// 카테고리 검사
+	const category = document.getElementsByName("categoryValue")[0];
+	if(category.innerText.trim() == '카테고리를 선택해주세요'){
+		alert("카테고리를 선택해주세요");
+		return false;
+	}
+
+	// 게시글 제목 검사
+	const title = document.getElementById("boardTitle");
+	if(title.value.trim()==0){
+		alert("제목을 입력해주세요");
+		return false;
+	}
+
+	// 게시글 내용 검사
+	const content = document.getElementById("summernote");
+	if(content.value.trim()==0){
+		alert("내용을 입력해주세요");
+		return false;
+	}
+
+	// 지역 검사
+	const area = document.getElementsByName("areaValue")[0];
+	if(area.innerText.trim()=='지역 선택'){
+		alert("지역을 선택해주세요");
+		return false;
+	}
+
+	// 상세 지역 검사
+	const areaDetail = document.getElementsByName("areaDetailValue")[0];
+	if(areaDetail.innerText.trim()=='상세 지역 선택'){
+		alert("상세 지역을 선택해주세요");
+		return false;
+	}
+
+	// 연락처 검사
+	const phone = document.getElementsByName("phone")[0];
+	if(phone.value.trim()==0){
+		alert("연락처를 입력해주세요");
+		return false;
+	}
+
+	// 축종 검사
+	const animal = document.getElementsByName("animalTypeValue")[0];
+	if(animal.innerText.trim()=="축종"){
+	 	alert("축종을 선택해주세요");
+	 	return false;
+	 }
+
+	 // 품종 검사
+	const animalDt = document.getElementsByName("animalDetailValue")[0];
+	if(animalDt.innerText.trim()=="품종"){
+	 	alert("품종을 선택해주세요");
+	 	return false;
+	 }
+
+	 // 성별 검사
+	const gender = document.getElementsByName("genderValue")[0];
+	if(gender.innerText.trim()=="수컷 / 암컷"){
+	 	alert("성별을 선택해주세요");
+	 	return false;
+	 }
+
+	// 중성화 검사
+	const neutering = document.getElementsByName("neuteringValue")[0];
+	if(neutering.innerText.trim()=="완료 / 미완료"){
+	 	alert("중성화 여부를 선택해주세요");
+	 	return false;
+	 }
+
+	// 날짜 검사
+	const period = document.getElementsByName("boardPeriod")[0];
+	const period2 = document.getElementsByName("boardPeriod2")[0];
+	if((period.value=='')&&(period2.value!='')){
+		alert("나머지 공유 날짜를 선택해주세요");
+		return false;
+	}else if((period.value!='')&&(period2.value=='')){
+		alert("나머지 공유 날짜를 선택해주세요");
+		return false;
+	}
+
+	if(period.value >= period2.value){
+		alert("지정된 날짜 형식이 올바르지 않습니다");
+		return false;
+	}
+
 };
