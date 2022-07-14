@@ -150,13 +150,13 @@ public class FundingDAO {
 		return sqlSession.selectOne("fundingMapper.selectNowFundinginfo");
 	}
 
-	/*	*//**
-			 * 현재 진행중인 펀딩이 구매이력이 있는지
-			 * 
-			 * @return result
-			 *//*
-				 * public int nowFundingConfirm() { return
-				 * sqlSession.selectOne("fundingMapper.nowFundingConfirm"); }
-				 */
+	/** 종료된 펀딩 목록들 조회
+	 * @return
+	 */
+	public List<FundingDetail> selectEndFundinginfo() {
+		return sqlSession.selectList("fundingMapper.selectEndFundinginfo");
+	}
+
+
 
 }

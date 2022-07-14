@@ -189,7 +189,7 @@ public class FundingServiceImpl implements FundingService {
 	@Override
 	public Map<String, Object> selectfundingAllList() {
 		
-		// 지금 진행중인 펀딩 리스트 조회
+		// 지금 진행중인 펀딩 목록 조회
 		FundingDetail now = dao.selectNowFundinginfo(); 
 		int fundingNo = now.getFundingNo();
 
@@ -205,11 +205,12 @@ public class FundingServiceImpl implements FundingService {
 		
 		
 		// 종료된 펀딩 리스트 조회
-		//FundingDetail end = dao.selectEndfundinginfo();
+		List<FundingDetail> endList = dao.selectEndFundinginfo();
+
 		
 		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("endList", endList);
 		map.put("now", now);
-		//map.put("end", end);
 		
 		return map;
 	}
