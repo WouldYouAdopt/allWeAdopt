@@ -157,6 +157,22 @@ public class FundingDAO {
 		return sqlSession.selectList("fundingMapper.selectEndFundinginfo");
 	}
 
+	/**결제정보를 삽입하는 sql
+	 * @param orderDetail
+	 * @return
+	 */
+	public int insertPaymentInfo(OrderDetail orderDetail) {
+		return sqlSession.insert("fundingMapper.insertPaymentInfo",orderDetail);
+	}
+
+	/**리워드를 저장하는 함수
+	 * @param rewardList
+	 * @return
+	 */
+	public int insertRewardList(List<Reward> rewardList) {
+		return sqlSession.insert("fundingMapper.insertRewardList",rewardList);
+	}
+
 
 
 }
