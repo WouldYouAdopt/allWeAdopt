@@ -54,8 +54,8 @@
 		<section class="py-4">
 			<!--  background: url(/allWeAdopt/src/main/webapp/resources/images/funding_sample/funding_title_img.png) 20% 10% ; -->
 			<div id="imgArea">
-				<img alt="" src="${contextPath}${funding.fundingThumbnail}"
-					style="width: 100%; max-height: 100%; object-fit: cover"><br>
+				<img alt="" src="${contextPath}${funding.fundingThumbnail}"	style="width: 100%; max-height: 100%; object-fit: cover"><br>
+				<span id="fundingTitle" style="display:none;">"${funding.fundingTitle}"</span>
 			</div>
 
 
@@ -66,7 +66,7 @@
 			</div>
 
 <%-- ------------------------------------------------------------------------------------------------------- --%>
-<form action="pay/progress" method="post" onsubmit="return submitValidate()">
+<form action="pay/progress" method="post" id="submitEvent">
 			<div class="container px-5">
 				<div class=" rounded-3 py-5 px-4 px-md-5 mb-5">
 					<div class="row gx-5 justify-content-center fundingPaymentArea">
@@ -111,7 +111,7 @@
 										<li>${loginMember.memberName}</li>
 
 										<h3>Email</h3>
-										<li>${loginMember.memberEmail}</li>
+										<li id="memberEmail">${loginMember.memberEmail}</li>
 
 										<h3>Address</h3>
 										<c:if test="${loginMember.memberAddress == null}">
@@ -231,18 +231,51 @@
 								</div>
 							</div>
 
+
+
+
+
+
+
+
+						<!-- 펀딩번호 -->
+						<input type="hidden" name="fundingNo" value="${funding.fundingNo}">
+						<!-- 회원번호 -->
+						<input type="hidden" id="loginMemberNo" name="loginMemberNo" value="${loginMember.memberNo}">
+						<!-- 모든 리워드가격 -->
+						<input type="hidden" id="fullPrice" name="fullPrice" value="${fullPrice}">
+						
+						
+						<!-- 결제방식 -->
+						<input type="hidden" name="payMethod" id="pay_method" value="" >
+						<!-- 결제번호(PK으로 생성) -->
+						<input type="hidden" name="paymentNo" id="merchant_uid" value="0">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 							<!-- 결제 버튼 영역 -->
 							<div class="paymentBtnArea">
-								<button type="submit" id="goToPay">결제 하기</button>
-								<button type="button" onclick="requestPay()" >아임포트 테스트 버튼 </button>
+								<button type="submit" id="goToPay" onclick="submitValidate()">결제 하기</button>
+								<button type="button" onclick="requestPayInicis()" >아임포트 테스트 버튼 </button>
 							</div>
 						</div>
 						
-						<!-- 펀딩번호 -->
-						<input type="hidden" name="fundingNo" value="${funding.fundingNo}">
-						<!-- 모든 리워드가격 -->
-						<input type="hidden" name="fullPrice" value="${fullPrice}">
-						<input type="hidden" name="selectedList" id="rewardList" value="${rewardList}" >
+					
+						
+						
 </form>
 <%-- ------------------------------------------------------------------------------------------------------- --%>
 						<!-- wrapper 끝 -->

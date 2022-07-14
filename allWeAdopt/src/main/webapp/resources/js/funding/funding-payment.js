@@ -12,14 +12,14 @@ const checkObj = {
 function DaumPostcode() {
   new daum.Postcode({
     oncomplete: function (data) {
-    var roadAddr = data.roadAddress; // 도로명 주소 변수
-    var extraRoadAddr = ''; // 참고 항목 변수
-    if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+      var roadAddr = data.roadAddress; // 도로명 주소 변수
+      var extraRoadAddr = ''; // 참고 항목 변수
+      if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
         extraRoadAddr += data.bname;
       }
       let addr;
-      document.getElementById("postCode").value = data.zonecode ;
-      document.getElementById("Address").value = roadAddr ;
+      document.getElementById("postCode").value = data.zonecode;
+      document.getElementById("Address").value = roadAddr;
       document.getElementById("detailAddress").focus();
       checkObj.postCode = true;
       checkObj.address = true;
@@ -52,23 +52,23 @@ function DaumPostcode() {
     if (prevOrder.orderPhoneSub != '') {
       inputTelSub.value = prevOrder.orderPhoneSub;
     }
-    
-    const addr = prevOrder.orderAddress.split(",,");
- 
-    if (addr.length >= 2){
-      postCode.value=addr[0];
-      address.value=addr[1];
-      detailAddress.value=addr[2];
 
-     checkObj.postCode = true;
-    checkObj.address = true;
+    const addr = prevOrder.orderAddress.split(",,");
+
+    if (addr.length >= 2) {
+      postCode.value = addr[0];
+      address.value = addr[1];
+      detailAddress.value = addr[2];
+
+      checkObj.postCode = true;
+      checkObj.address = true;
     }
 
 
     checkObj.inputrecipient = true;
     checkObj.inputTelMain = true;
-    
-    
+
+
   })
 
   //신규 배송지
@@ -77,8 +77,8 @@ function DaumPostcode() {
     inputName.value = "";
     inputTelMain.value = "";
     inputTelSub.value = "";
-    
-    postCode.value="";
+
+    postCode.value = "";
     address.value = "";
     detailAddress.value = "";
 
@@ -97,50 +97,51 @@ function DaumPostcode() {
 
 
     const addr = supportAddress.split(",,");
- 
-    if (addr.length >=2 ||addr!=''){
-      postCode.value=addr[0];
-      address.value=addr[1];
-      detailAddress.value=addr[2];
+
+    if (addr.length >= 2 || addr != '') {
+      postCode.value = addr[0];
+      address.value = addr[1];
+      detailAddress.value = addr[2];
       checkObj.postCode = true;
       checkObj.address = true;
     }
 
     checkObj.inputrecipient = true;
 
-    if (inputTelMain != '') {      checkObj.inputTelMain = true;    }
-    else{checkObj.inputTelMain = false;}
+    if (inputTelMain != '') { checkObj.inputTelMain = true; }
+    else { checkObj.inputTelMain = false; }
 
-    if (supportAddress != '') {       
+    if (supportAddress != '') {
       checkObj.postCode = true;
-      checkObj.address = true;  
+      checkObj.address = true;
     }
-    else{
+    else {
       checkObj.postCode = false;
-      checkObj.address = false;}
+      checkObj.address = false;
+    }
   })
 
 
   //이름 , 번호, 주소 변경 이벤트시 checkObj값 변경
-//이름
-  $('#inputName').change(function(){
-    if(this.value.trim().length==0){              checkObj.inputName = false;    }
-    else{      checkObj.inputName = true;    }
+  //이름
+  $('#inputName').change(function () {
+    if (this.value.trim().length == 0) { checkObj.inputName = false; }
+    else { checkObj.inputName = true; }
   })
 
-//번호
-  $('#inputTelMain').change(function(){
-    if(this.value.trim().length==0){              checkObj.inputTelMain = false;    }
-    else{      checkObj.inputTelMain = true;    }
+  //번호
+  $('#inputTelMain').change(function () {
+    if (this.value.trim().length == 0) { checkObj.inputTelMain = false; }
+    else { checkObj.inputTelMain = true; }
   })
 
-//주소
-$('#postCode').change(function(){
-  if(this.value.trim().length==0){         checkObj.inputAddress = false;    }
-  else{      checkObj.inputAddress = true;    }
-})
+  //주소
+  $('#postCode').change(function () {
+    if (this.value.trim().length == 0) { checkObj.inputAddress = false; }
+    else { checkObj.inputAddress = true; }
+  })
 
-  
+
 
 })();
 
@@ -148,21 +149,21 @@ $('#postCode').change(function(){
 
 
 //정보 제공 동의 
-(function(){
+(function () {
   const PIA = document.getElementById("PIA");
   const LRA = document.getElementById("LRA");
   //모두 동의용 이벤트 
-  document.getElementById("allAgree").addEventListener("change",function(){
+  document.getElementById("allAgree").addEventListener("change", function () {
     //let checked = true; //== 1: true으로 사용 가능
     let checked = document.getElementById('allAgree').checked;
 
-    if(checked){
+    if (checked) {
       PIA.checked = true;
       LRA.checked = true;
       checkObj.PIA = true;
       checkObj.LRA = true;
     }
-    if(!checked){
+    if (!checked) {
       PIA.checked = false;
       LRA.checked = false;
       checkObj.PIA = false;
@@ -170,14 +171,63 @@ $('#postCode').change(function(){
     }
   })
   //각각 체크되었을 경우 checkedObj에 추가하는 이벤트
-  document.getElementById("PIA").addEventListener("change",function(){
+  document.getElementById("PIA").addEventListener("change", function () {
     checkObj.PIA = document.getElementById('PIA').checked;
   })
-  
-  document.getElementById("LRA").addEventListener("change",function(){
+
+  document.getElementById("LRA").addEventListener("change", function () {
     checkObj.LRA = document.getElementById('LRA').checked;
   })
 })();
+
+
+
+/* --------------------------------------------------------------------------------------------- */
+/* 아임포트 동의*/
+//IMP.init("{imp13427583}");
+
+function requestPayInicis() {
+  IMP.init("imp13427583");
+
+  const uid = newUID($('#loginMemberNo').val());
+  // 이니시스 일반 결제
+  // INIpayTest
+  IMP.request_pay({
+    pg: 'html5_inicis.INIpayTest',
+    pay_method: 'card',
+    merchant_uid: uid, // 상점에서 관리하는 주문 번호를 전달 (newUID으로 생성함)
+    name: $('#fundingTitle').text(), //펀딩 이름 fundingTitle
+    amount: 100,//$('#fullPrice').val()
+    buyer_email: $('#memberEmail').text(), // buyeremail 이메일은 한글 사용 불가능
+    buyer_name: $('#inputName').val(),
+    buyer_tel: $('#inputTelMain').val(),
+    buyer_addr: $('#Address').val() + $('#detailAddress').val(),
+    buyer_postcode: $('#postCode').val()
+  }, function (r) { // callback 로직
+
+    $('#pay_method').val(r.pay_method);
+    $('#merchant_uid').val(r.merchant_uid);
+
+    console.log("아임포트 사용 끝");
+
+    return r.success;
+  });
+}
+
+// 중복되지 않는 식별키를 생성해주는 함수
+function newUID(memberNo) {
+  const now = new Date();
+
+  const uid = memberNo
+    + now.getFullYear().toString().slice(-2)
+    + addZero(now.getDate())
+    + addZero(now.getHours())
+    + addZero(now.getMilliseconds());
+  return uid;
+}
+function addZero(temp) {
+  return temp < 10 ? "0" + temp : temp;;
+}
 
 
 
@@ -185,86 +235,64 @@ $('#postCode').change(function(){
 
 //결제방식 체크된 경우 true false 반환 
 //$('.payment').is(':checked')
-
-
-
-
-
-function submitValidate(){
+function submitValidate() {
 
   //결제정보 테스트
-    if(!$('.payment').is(':checked')){
-      alert("결제정보를 선택해주세요");
+  if (!$('.payment').is(':checked')) {
+    alert("결제정보를 선택해주세요");
+    return false;
+  }
+
+
+  for (let i in checkObj) {
+    if (!checkObj[i]) {
+      alert("필수 입력 값이 입력되지 않았습니다 (" + i + " )");
       return false;
     }
+  }
 
 
-    for(let i in checkObj){
-        if(!checkObj[i]){
-          alert("필수 입력 값이 입력되지 않았습니다 ("+i+" )");
-          return false;
-        }
+  IMP.init("imp13427583");
+
+  const uid = newUID($('#loginMemberNo').val());
+  // 이니시스 일반 결제
+  // INIpayTest
+  IMP.request_pay({
+    pg: 'html5_inicis.INIpayTest',
+    pay_method: 'card',
+    merchant_uid: uid, // 상점에서 관리하는 주문 번호를 전달 (newUID으로 생성함)
+    name: $('#fundingTitle').text(), //펀딩 이름 fundingTitle
+    amount: 100,//$('#fullPrice').val()
+    buyer_email: $('#memberEmail').text(), // buyeremail 이메일은 한글 사용 불가능
+    buyer_name: $('#inputName').val(),
+    buyer_tel: $('#inputTelMain').val(),
+    buyer_addr: $('#Address').val() + $('#detailAddress').val(),
+    buyer_postcode: $('#postCode').val()
+  }, function (r) { // callback 로직
+
+    $('#pay_method').val(r.pay_method);
+    $('#merchant_uid').val( parseInt(r.merchant_uid) );
+
+    console.log("아임포트 사용 끝");
+
+    if(r.success){
+      document.getElementById("submitEvent").submit();
+    }else{
+      alert("결제에 실패하였습니다");
     }
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-/* 아임포트 동의*/
-
-function requestPay() {
-  IMP.init("{imp13427583}");
-  
-  IMP.request_pay({ 
-      
-      // 파라미터 찾아보기
-      // https://docs.iamport.kr/sdk/javascript-sdk?lang=ko#request_pay
-
-      //------------------------------------------------------------------
-      // pg: "kakaopay",
-      // pay_method: "kakaopay", //결제수단 
-      // merchant_uid: "TC0ONETIME",
-      // name: "노르웨이 회전 의자",
-      // amount: 100, //TC0ONETIME
-      // //주문자 정보 ---------------------------------
-      // buyer_email: "gildong@gmail.com",
-      // buyer_name: "홍길동",
-      // buyer_tel: "010-4242-4242",
-      // buyer_addr: "서울특별시 강남구 신사동",
-      // buyer_postcode: "01181"
-      //------------------------------------------------------------------
-
-      pg : 'kakaopay',
-      pay_method : 'card', //생략 가능
-      merchant_uid: "order_no_0001", // 상점에서 관리하는 주문 번호
-      name : '주문명:결제테스트',
-      amount : 14000,
-      buyer_email : 'iamport@siot.do',
-      buyer_name : '구매자이름',
-      buyer_tel : '010-1234-5678',
-      buyer_addr : '서울특별시 강남구 삼성동',
-      buyer_postcode : '123-456'
-
-  }, function (rsp) { 
-
-    console.log(rsp);
-      // if (rsp.success) {
-      //     console.log("결제 성공!!!!!!!!!!!!!");
-      //   } else {
-      //   console.log("결제 실패ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ");        
-      // }
-
-      
   });
+
+
+
+
+
 }
 
 
+
+//즉시 실행 함수로 이벤트 제거.
+(function () {
+  document.getElementById("submitEvent").onsubmit = function () {
+    return false;
+  }
+})()

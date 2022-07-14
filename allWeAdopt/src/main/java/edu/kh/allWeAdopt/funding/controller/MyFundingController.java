@@ -106,7 +106,8 @@ public class MyFundingController {
 		
 		return "funding/funding-payment";
 	}
-
+	///funding/my/pay/progress
+	///funding/my/pay/progress
 	@PostMapping("/pay/progress")
 	public String payProgress(@ModelAttribute("OrderDetail") OrderDetail orderDetail
 							,@ModelAttribute("rewardList") List<Reward> rewardList){
