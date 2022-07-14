@@ -71,7 +71,7 @@
 	</select>
 	
 	<!-- 처음인 사람에게 인증번호 부여 insert  -->
-	<insert id="insertCertification" >
+	<insert id="insertCertification">
 		INSERT INTO CERTIFICATION VALUES(#{memberEmail}, #{cNumber}, SYSDATE);
 	</insert>
 

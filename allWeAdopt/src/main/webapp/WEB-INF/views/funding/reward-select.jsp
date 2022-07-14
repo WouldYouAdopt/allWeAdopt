@@ -58,25 +58,56 @@
         </style>
     </head>
     <body class="">
-    
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
+
+  <!-- Modal -->
+					<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					  <div class="modal-dialog">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="exampleModalLabel">펀딩 취소 / 반환 방법 미리 체크패보세요</h5>
+					        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					      </div>
+					      <div class="modal-body py-4">
+					      
+					      	<div class="d-flex py-3">
+						      	<div class="px-3">
+						      		<input type="checkbox">
+						      	</div>
+						      	<div class="px-3">
+						        	<p>펀딩이 끝나기 전까지 언제든 결제를 취소할 수 있어요.</p>
+						        	<p>펀딩이 끝나고 바로 리워드가 제작되어 다음 날 부터 순차 발송이 시작되기 때문에, 펀딩이 끝나면 결제를 취소 할 수 없습니다.</p>
+						        </div>
+					      	</div>
+					      	
+					      	<div class="d-flex py-3">
+						      	<div class="px-3">
+					        		<input type="checkbox">
+					        	</div>
+						      	<div class="px-3">
+					        		<p>리워드에 문제가 있거나 배공일을 지키지 않으면 펀딩금을 돌려받을 수 있어요.</p>
+					        		<p>펀딩금 반환 정책 확인</p>
+						        </div>
+					      	</div>
+					        
+					      	<div class="d-flex py-3">
+						      	<div class="px-3">
+					        		<input type="checkbox">
+					        	</div>
+						      	<div class="px-3">
+					        		<p>단순 변심에 의한 펀딩금 반환은 신청할 수 없어요.</p>
+					        		<p>펀딩은 일반 쇼핑과 달리 리워드를 만드는 메이커에서 투자하고, 투자의 보상으로 제품이나 서비스를 받는 구조이기 때문에 전자상거래법상 통신판매에 해당하지 않아요. 그래서 단순 변심을 이유로 한 펀딩금 반환을 신청할 수 없습니다.</p>
+						        </div>
+					      	</div>
+					        
+					        
+					      </div>
+					      <div class="modal-footer">
+					        <button type="submit" class="btn btn-primary" id="goPay">계속해서 펀딩하기</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>  <!-- 모달끝 --> 
+
 
 
 					
@@ -84,7 +115,9 @@
         <main class="flex-shrink-0">
 
 	        <jsp:include page="/WEB-INF/views/common/header.jsp" />
+	  
 
+					
 			<!-- 펀딩 이미지, 타이틀, 달성률 들어있는 박스 -->
 			<div class="fundingTitleBox" style="height:120px;">
 			    <div class="fundingTitleImage" style="background: url(${contextPath}/resources/images/funding_sample/funding_title_img.png) 50% 0 ;"></div>
@@ -95,7 +128,10 @@
 			
             <section class="py-4">
                 <div class="container px-5">
-
+				
+				
+					
+					
 					<div class="text-center py-5">
 						<h1 class="fw-bolder">리워드 선택</h1>
 						<p class="lead fw-normal text-muted mb-0">펀딩해주시는 금액에 따라 감사의 의미로 리워드를 제공해 드립니다.</p>
@@ -103,7 +139,10 @@
 
 					<!-- select 값 테스트용 -->
 					<input type="hidden" value="${map.selected}" id="selected">
-
+					
+					<!-- 폼태그 -->
+					<form action="my/pay" method="POST" onsubmit="return submitConfirm()" id="goPayForm">
+					
 					<div class="row gx-5">
                     <c:forEach var="i" begin="0" end="${fn:length(map.rewardList)-1}">
 						<!-- 리워드-->
@@ -139,7 +178,7 @@
 									
 									<div class="d-grid"><p class="rewardSelectBtn lineBtn-gr rewardSelectBtn">리워드 선택</p></div>
 								
-									<input type="number" name="${map.rewardList[i].rewardNo}" value="0" style="width:60px;">
+									<input type="number" name="${map.rewardList[i].rewardNo}" value="0" style="width:60px;" class="rewardCount">
 								
 								</div>
 							</div>
@@ -183,36 +222,24 @@
 						</div>
 						
 						
-						<div class="text-center mt-5 fs-5">우리아이 시원하게 여름 쿨매트에 0원을 펀딩합니다.</div>
-						<button data-bs-toggle="modal" data-bs-target="#exampleModal" class="selected d-grid col-6 mx-auto my-3 py-2" style="border-radius:4px; font-size:20px;" >결제 페이지로</button>
+						<div class="text-center mt-5 fs-5">우리아이 시원하게 여름 쿨매트에 <span id="payPrice">0</span>원을 펀딩합니다.</div>
 
 
 
 
-						<form action="my/pay" method="POST" style="border:1px solid #FB836b; padding:20px; width:300px;">
-						<!-- 리워드정보 name:리워드넘버 / value:수량-->
-                            <%-- 펀딩 번호--%> 
-                            <input type="hidden" name="fundingNo" value="2">
 
-                        <%--  <input type="hidden" value="4"> --%>
-                            리워드 1 : <input name="7" value="7"><br>
-                            <%-- <input type="hidden" value="5"> --%>
-                            리워드 2 : <input name="8" value="8"><br>
-                            리워드 3 : <input name="9" value="9"><br>
-                            
-                            <!-- 공개여부 / 체크 한것이 비공개임 -->
-                            이름 비공개 여부 : <input type="checkbox" name="nameAnonymous" value="N"><br>
-                            후원금액 비공개여부 : <input type="checkbox" name="priceAnonymous" value="N">
-                            <button type="submit">결제 임시버튼</button>
-						</form>
 						
 
-                    </div>    
-
-				</div>
+                    </div>  
+                    <input type="hidden" name="fundingNo" value="${map.fundingNo}">
+                    </form>
+                    
+				
+				</div> <!-- container끝 -->
+				<button data-bs-toggle="modal" data-bs-target="#exampleModal" class="selected d-grid col-6 mx-auto my-3 py-2" style="border-radius:4px; font-size:20px;" >결제 페이지로</button>
 
             </section>
-
+					
         </main>
             
 
@@ -225,11 +252,23 @@
         <script src="${contextPath}/resources/js/scripts.js"></script>
         <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
         <script>
-        	const rewardSelectBtn = document.getElementsByClassName("rewardSelectBtn");
+        	const rewardSelectBtn = document.getElementsByClassName("rewardSelectBtn"); // 리워드 선택 버튼
+        	const payPrice = document.getElementById("payPrice"); // 아래 리워드 더해진 금액
+        	const rewardCount = document.getElementsByClassName("rewardCount");
+        	var price=null;
         	
+        	// 리워드별 가격
+        	var priceList = new Array();
+        	<c:forEach items="${map.rewardList}" var="reward">
+        		priceList.push("${reward.rewardPrice}");
+        	</c:forEach>
+        	console.log(${reward.rewardPrice});
         	for(let i=0; i<rewardSelectBtn.length; i++){
         		
-        		// 마우스오버 했을때
+        		// 리워드별 가격?
+        		price = ${map.rewardList[0].rewardPrice};
+        		
+        		/* // 마우스오버 했을때
          		rewardSelectBtn[i].addEventListener("mouseover",function(){	
         			
         			if(this.classList.contains("selected")){
@@ -243,17 +282,26 @@
         		// 마우스아웃 했을때
         		rewardSelectBtn[i].addEventListener("mouseout",function(){	
 		        	this.classList.remove("btn-pk");        		
-        		})
+        		}) */
  
         		// 클릭 했을때
         		rewardSelectBtn[i].addEventListener("click",function(){	
-		        	this.classList.toggle("selected");  
+		        	//this.classList.toggle("selected");  
+		        	
         			if(this.classList.contains("selected")){
-        				this.classList.remove("btn-pk"); 
         				
-        				this.parentElement.nextElementSibling.value="1";
+        				//console.log(select);
+        				
+        				this.classList.remove("selected"); 
+        				const beforeCount = this.parentElement.nextElementSibling.value;
+        				this.parentElement.nextElementSibling.value="0";
+        				payPrice.innerText=parseInt(payPrice.innerText)-parseInt(beforeCount)*parseInt(price);
+
+        				
         			}else{
-        				this.parentElement.nextElementSibling.value="0";		
+        				this.classList.add("selected"); 
+        				this.parentElement.nextElementSibling.value="1";
+        				payPrice.innerText=parseInt(payPrice.innerText)+parseInt(price);
         			}
         		})
 
@@ -261,8 +309,7 @@
         		//const selected = document.getElementsById("selected");
 	        	// selected 넘버확인
 	        	//if(selected.value!=""){
-	        		
-					
+
 		        	
 		        	//if(selected==rewardNo){
 		        		//rewardSelectBtn[i].classList.add("btn-pk");
@@ -270,6 +317,51 @@
 	        	//}
         	}
         	
+        	// 클릭했을때로 하니까 숫자입력했을때는 적용안됨..
+        	// value값 바꼈을때로.. 가능? changeEvent?
+        	for(let i=0; i<rewardCount.length; i++){
+        		
+        		// input값이 바뀌었을때??
+        		rewardCount[i].addEventListener("change",function(){
+        			
+		        	// value값(반복문 덧셈으로 바꾸기)
+					payPrice.innerText= parseInt(rewardCount[0].value)*parseInt(price);
+					//+parseInt(rewardCount[1].value)+parseInt(rewardCount[2].value)
+				
+					
+					if(rewardCount[i].value>0){
+						rewardSelectBtn[i].classList.add("selected");  
+					}else{
+						rewardSelectBtn[i].classList.remove("selected");  
+					}
+        		})
+        
+        	
+        	}
+        	
+        	
+        	// 리워드 아무것도 선택 안되었으면 모달창 안열리고 alert.... 모달창 제어를 못하겠어 
+        	
+        	// 결제버튼 submit
+        	const goPay = document.getElementById("goPay"); // 결제버튼
+        	const goPayForm = document.getElementById("goPayForm"); // 결제폼태그
+			
+        	goPay.addEventListener("click",function(){ // 결제버튼 클릭 했을때
+
+        		// 결제 전 유효성검사
+	        	//submitConfirm(){
+	        	
+        			// 체크박스 체크 다 안되면 false
+        		
+	        		// 체크박스 체크 다 되면 true
+	        		//console.log("이런거하나 넣을까");
+	
+	        	//}
+        		
+        		//폼태그.submit();
+        		goPayForm.submit();
+        		
+        	})
         	
         </script>
 
