@@ -383,7 +383,7 @@
 	</select>
 	
 	<!-- 현재 진행중인 펀딩의 펀딩정보(fundingNo 없이 조회) -->
-	<select id="selectNowFundinginfo" resultMap="reward_re">
+	<select id="selectNowFundinginfo" resultMap="detail_rm">
 		SELECT FUNDING_NO,
 			FUNDING_TITLE,
 			FUNDING_MINI_TITLE,
@@ -393,11 +393,28 @@
 			TRUNC(LAST_DAY(TO_DATE(REPLACE(FUNDING_SEASON,'/',''),'YYYYMM'))-SYSDATE) AS LEFTDATE,
 			FUNDING_ST,
 			FUNDING_THUMBNAIL,
-			CATEGORY_NM,
+			CATEGORY_NM
         
         FROM FUNDING
         	JOIN CATEGORY USING(FUNDING_CATEGORY)
         WHERE FUNDING_ST = 'Y'
 	</select>
 
+	<!-- 종료된 펀딩 목록들 가져오기 -->
+	<select id="selectEndFundinginfo" resultMap="detail_rm">
+		SELECT FUNDING_NO,
+			FUNDING_TITLE,
+			FUNDING_MINI_TITLE,
+			TO_CHAR(TARGET_DONATION,'999,999,999') AS TARGET_DONATION,
+			FUNDING_SEASON,
+			SUBSTR(FUNDING_SEASON,-2) AS MONTH,
+			TRUNC(LAST_DAY(TO_DATE(REPLACE(FUNDING_SEASON,'/',''),'YYYYMM'))-SYSDATE) AS LEFTDATE,
+			FUNDING_ST,
+			FUNDING_THUMBNAIL,
+			CATEGORY_NM
+        
+        FROM FUNDING
+        	JOIN CATEGORY USING(FUNDING_CATEGORY)
+        WHERE FUNDING_ST = 'N'
+	</select>
 </mapper>

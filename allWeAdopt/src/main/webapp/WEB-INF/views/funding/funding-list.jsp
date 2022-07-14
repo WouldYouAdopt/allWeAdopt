@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 
+<c:set var="endList" value="${map.endList}" />
+
 <!DOCTYPE html>
 <html>
 
@@ -76,13 +78,13 @@
                             <p class="lead fw-normal text-muted mb-0">한 달에 한번의 펀딩, 이번달 All We Adopt의 펀딩을 소개합니다.</p>
                         </div>
                     
-
+						 
                         <!-- 펀딩 이미지, 타이틀, 달성률 들어있는 박스 -->
-                        <a href="${contextPath}/funding/detail?page=1">
+                        <a href="${contextPath}/funding/detail/${map.now.fundingNo}?page=1">
 	                        <div class="fundingTitleBox nowList">
 	                            <div class="fundingTitleImage" style="background: url(${contextPath}/resources/images/funding_sample/funding_title_img.png) 50% 0 ;"></div>
 	                            <div class="fundingTitleText">
-	                                이달의 펀딩<br>우리아이 여름 쿨매트                            
+	                                이달의 펀딩<br>${map.now.fundingTitle}<br>${map.now.fundingMiniTitle}                            
 	                            </div>
 	                            <div class="bottom-box">
 	                                <div class="rate-bar"></div>
@@ -115,29 +117,30 @@
     overflow-y:hidden;
     flex-wrap:nowrap; ;
 ">
-                    
-                    
+                    	
+                    	<c:forEach var="end" items="${endList}">
+                    	
                         <div class="col-lg-4 mb-5">
                             <div class="card h-100 shadow border-0">
-                                <img class="card-img-top" src="https://dummyimage.com/600x350/ced4da/6c757d" alt="..." />
+                                <img class="card-img-top" src="${contextPath}${end.fundingThumbnail}" />
                                 <div class="card-body pt-4 px-4 pb-0">
                                     <div class="badge bg-gradient mb-2 pd-3" style="background:rgb(251, 131, 107)">성공</div>
-                                    <a class="text-decoration-none link-dark stretched-link" href="${contextPath}/funding/detail/202206"><div class="h5 card-title mb-3">안꼬이는 리드줄과 폭신한 하네스</div></a>
-                                    <p class="card-text mb-0">반려견 하네스로 돌아온 반려견 리드줄 최고 평점 메이커 리드퍼피! 차분한 색상의 파스텔톤 하네스를 앙꼬줄과 같이 만나보세요!</p>
+                                    <a class="text-decoration-none link-dark stretched-link" href="${contextPath}/funding/detail/${map.end.fundingNo}"><div class="h5 card-title mb-3">${end.fundingTitle}</div></a>
+                                    <p class="card-text mb-0">${end.fundingMiniTitle}</p>
                                 </div>
                                 <div class="card-footer p-4 pt-4 bg-transparent border-top-0">
                                     <div class="d-flex align-items-end justify-content-between">
                                         <div class="d-flex align-items-center">
                                             <div class="small">
-                                                <div class="fw-bold">달성률 120% / 880,000원</div>
-                                                <div class="text-muted">진행 기간 2022.02. 01 ~ 2022.02.28</div>
+                                                <div class="fw-bold">달성률 120% / ${end.targetDonation}</div>
+                                                <div class="text-muted">진행 기간 ${end.startDate} ~ ${end.endDate}</div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
+                        </c:forEach>
                         
                         <div class="col-lg-4 mb-5">
                             <div class="card h-100 shadow border-0">
