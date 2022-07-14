@@ -26,10 +26,12 @@ public class FundingController {
 
 	// 펀딩 리스트 조회
 	@GetMapping("/list")
-	public String list() {
+	public String list(Model model) {
 		
-		Map<String, Object> map = null;
-		/* map = service.selectFundingList(); */
+		// 모든 펀딩 리스트 조회
+		Map<String, Object> map = service.selectfundingAllList();
+		
+		model.addAttribute("map",map);
 		
 		return "funding/funding-list";
 	}

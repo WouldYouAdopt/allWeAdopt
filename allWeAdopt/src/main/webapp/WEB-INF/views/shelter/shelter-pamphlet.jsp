@@ -102,15 +102,30 @@
                             <div class="col-lg-4 mb-5">
                                 <div class="card h-100 shadow border-0">
                                     <img class="card-img-top" src="https://dummyimage.com/600x350/ced4da/6c757d" alt="..." />
-                                    <div class="card-body p-4">
+                                    <div class="card-body p-4"  id="content">
                                         <div class="badge bg-primary bg-gradient rounded-pill mb-2">실종</div>
-                                        <a class="text-decoration-none link-dark stretched-link" href="../detail/${pamphlet.boardNo}?cp=${pagination.currentPage}"><h5 class="card-title mb-3">${pamphlet.boardTitle}</h5></a>
+                                        <a class="text-decoration-none link-dark stretched-link" href="../pamphlet/detail/${pamphlet.boardNo}?cp=${pagination.currentPage}"><h5 class="card-title mb-3">${pamphlet.boardTitle}</h5></a>
                                         <p class="card-text mb-0">${pamphlet.boardContent}</p>
                                     </div>
                                     <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
                                         <div class="d-flex align-items-end justify-content-between">
                                             <div class="d-flex align-items-center">
-                                                <img class="rounded-circle me-3" src="${pamphlet.profileImage}" alt="..." />
+
+                                                <%-- 프로필 이미지 --%>
+                                                <c:if test="${empty loginMember.profileImage }">
+                                                    <img src="${contextPath}/resources/images/user.png" id="member-profile" style="width : 35px; height : 35px; ">	
+                                                </c:if>     
+
+                                                <c:if test="${!empty loginMember.profileImage && loginMember.memberType == 'K'}">
+                                                    <img src="${loginMember.profileImage}" id="member-profile" style="width : 35px; height : 35px; border:0.5px solid #ccc; border-radius:50%;">
+                                                </c:if>
+
+                                                <%-- 사용자 설정 프로필이미지 --%>
+                                                <c:if test="${!empty loginMember.profileImage && loginMember.memberType == 'M'}">
+                                                    <img src="${contextPath}/${loginMember.profileImage}" id="member-profile" style="width : 35px; height : 35px; ">
+                                                </c:if>
+                                                <%-- <img class="rounded-circle me-3" src="${pamphlet.profileImage}" alt="..." /> --%>
+
                                                 <div class="small">
                                                     <div class="fw-bold">${pamphlet.memberName}</div>
                                                     <div class="fw-bold">${pamphlet.phone}</div>
@@ -139,7 +154,7 @@
                                 </a>
                             </li>
                             <c:forEach var="i" begin="${pagination.startPage}" end="${pagination.endPage}" step="1">
-                                <c:choose>
+                                <%-- <c:choose>
                                     <c:when test="${i == pagination.currentPage}">
                                         <li class="page-item"><a class="page-link">${i}</a></li>
                                     </c:when>
@@ -147,8 +162,8 @@
                                     <c:otherwise>
                                         <li class="page-item"><a href="${url}${i}${sURL}">${i}</a></li>        
                                     </c:otherwise>
-                                </c:choose>
-                                <%-- <li class="page-item"><a class="page-link" href="${url}${i}">${i}</a></li> --%>
+                                </c:choose> --%>
+                                <li class="page-item"><a class="page-link" href="${url}${i}">${i}</a></li>
                             </c:forEach>
                             
                             <%-- 끝 페이지 --%>

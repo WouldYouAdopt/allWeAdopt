@@ -372,4 +372,32 @@
 		ORDER BY 1
 	</select>
 
+	<!-- 현재 진행중인 펀딩이 구매이력이 있는지 카운트 // 지워도될듯 -->
+	<select id="nowFundingConfirm" resultType="_int">
+		SELECT COUNT(*)
+		FROM PAYMENT
+		WHERE FUNDING_NO = 
+	        (SELECT FUNDING_NO
+	        FROM FUNDING
+	        WHERE FUNDING_ST='Y')
+	</select>
+	
+	<!-- 현재 진행중인 펀딩의 펀딩정보(fundingNo 없이 조회) -->
+	<select id="selectNowFundinginfo" resultMap="reward_re">
+		SELECT FUNDING_NO,
+			FUNDING_TITLE,
+			FUNDING_MINI_TITLE,
+			TO_CHAR(TARGET_DONATION,'999,999,999') AS TARGET_DONATION,
+			FUNDING_SEASON,
+			SUBSTR(FUNDING_SEASON,-2) AS MONTH,
+			TRUNC(LAST_DAY(TO_DATE(REPLACE(FUNDING_SEASON,'/',''),'YYYYMM'))-SYSDATE) AS LEFTDATE,
+			FUNDING_ST,
+			FUNDING_THUMBNAIL,
+			CATEGORY_NM,
+        
+        FROM FUNDING
+        	JOIN CATEGORY USING(FUNDING_CATEGORY)
+        WHERE FUNDING_ST = 'Y'
+	</select>
+
 </mapper>

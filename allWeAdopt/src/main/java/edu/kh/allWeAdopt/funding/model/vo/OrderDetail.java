@@ -12,7 +12,7 @@ import lombok.Setter;
 public class OrderDetail {
 	
 	private int fundingNo; //펀딩 번호
-	private String fundingCategory; //카테고리 이
+	private String fundingCategory; //카테고리 이름
 	private String fundingTitle; //펀딩 제목
 	private String payDate;  // 결제일 
 	private String payMethod; //결제 방식

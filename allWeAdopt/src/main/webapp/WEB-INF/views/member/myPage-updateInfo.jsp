@@ -117,7 +117,7 @@
                                         <!-- 전화번호 -->
                                         <div class="form-floating mb-3 confirm-area" id="telBox">
                                             <input class="form-control" name="memberTel" id="memberTel" type="tel" />
-                                            <label for="memberTel" id="newTel"><span>*</span>휴대폰 번호(-제외) </label>
+                                            <label for="memberTel" id="newTel">휴대폰 번호(-제외) </label>
                                             <div class="spaceArea confirmBtnArea">
                                                 <button id="confirmBtn" type="button">인증</button>
                                             </div>

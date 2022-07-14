@@ -34,13 +34,10 @@ public class FundingServiceImpl implements FundingService {
 			
 			// 펀딩 detail 상세조회
 			// 리워드 리스트 : 리워드 + 리워드별 판매수량, 리워드별 판매금액
-			// 펀딩 이미지리스트
 			FundingDetail detail = dao.selectFundingDetail(fundingNo);
 			
-			//--------------------------------------------------------------------
 			// 리워드별 구매이력 조회 (수량, 금액)
 			List<Reward> rewardListCount = dao.selectRewardList(fundingNo);
-			//--------------------------------------------------------------------여기가 잘못됨
 			
 			// 달성금액 구하기
 			int sumPrice = 0;
@@ -69,14 +66,6 @@ public class FundingServiceImpl implements FundingService {
 		}
 	}
 
-
-	
-	
-	// 이건뭐지 
-	private int Integer(String targetDonation) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 
 
@@ -115,7 +104,7 @@ public class FundingServiceImpl implements FundingService {
 
 
 	
-	/**리워드 선택후 결제 페이지로 넘어가기 위한 Service
+	/**[김현기]리워드 선택후 결제 페이지로 넘어가기 위한 Service
 	 *
 	 */
 	@Override
@@ -124,7 +113,7 @@ public class FundingServiceImpl implements FundingService {
 		//1) DB에서 리워드목록을 조회해 해오기
 		int fundingNo = Integer.parseInt((String) paramMap.get("fundingNo"));
 			//DB에 있는 리워드들을 가져오는 리스트
-		List<Reward> rewardList = dao.selectRewardList(fundingNo);
+		List<Reward> rewardList = dao.selectOnlyRewardList(fundingNo);
 			//실제 선택된 리워드들을 저장하는 리스트
 		List<Reward> selectedList = new ArrayList<Reward>();
 		
@@ -190,6 +179,37 @@ public class FundingServiceImpl implements FundingService {
 			
 		}
 		
+		
+		return map;
+	}
+
+
+
+	// 모든 펀딩 리스트 조회
+	@Override
+	public Map<String, Object> selectfundingAllList() {
+		
+		// 지금 진행중인 펀딩 리스트 조회
+		FundingDetail now = dao.selectNowFundinginfo(); 
+		int fundingNo = now.getFundingNo();
+
+		// 펀딩 번호로 구매이력 있는지 조회
+		int result = dao.selectCountPay(fundingNo);
+
+		if(result>0) { // 구매이력 있으면 리워드 정보 + 결제정보
+			
+		}else { // 구매이력 없으면 단순 리워드 정보만
+			
+		}
+			
+		
+		
+		// 종료된 펀딩 리스트 조회
+		//FundingDetail end = dao.selectEndfundinginfo();
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("now", now);
+		//map.put("end", end);
 		
 		return map;
 	}
