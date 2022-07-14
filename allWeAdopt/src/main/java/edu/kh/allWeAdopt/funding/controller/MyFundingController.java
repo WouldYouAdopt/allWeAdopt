@@ -80,20 +80,15 @@ public class MyFundingController {
 	public String Payment(@RequestParam Map<String, Object>paramMap
 						 ,@ModelAttribute("loginMember") Member loginMember
 						 ,Model model
-						 ,RedirectAttributes ra
-						 ){
-		
-		if(loginMember == null) {
-			ra.addFlashAttribute("message", "로그인 후 이용 바랍니다");
-			return "/";
-		}
+						 ,RedirectAttributes ra	){
+	
 		
 	
 		int memberNo = loginMember.getMemberNo();
 		Map<String, Object> map = service.selectRewardList(paramMap,memberNo);
 		
-		if(paramMap.get("nameAnonymous") != null) {		model.addAttribute("nameAnonymous", "true");	}
-		if(paramMap.get("priceAnonymous") != null) {	model.addAttribute("priceAnonymous", "true");	}
+		if(paramMap.get("nameAnonymous") != null) {		model.addAttribute("nameAnonymous", "N");	}
+		if(paramMap.get("priceAnonymous") != null) {	model.addAttribute("priceAnonymous", "N");	}
 		
 		
 		model.addAttribute("rewardList", map.get("rewardList"));
@@ -106,14 +101,25 @@ public class MyFundingController {
 		
 		return "funding/funding-payment";
 	}
-	///funding/my/pay/progress
-	///funding/my/pay/progress
-	@PostMapping("/pay/progress")
-	public String payProgress(@ModelAttribute("OrderDetail") OrderDetail orderDetail
-							,@ModelAttribute("rewardList") List<Reward> rewardList){
+
+	//결제 후 DB에 insert
+	@PostMapping("/pay/{paymentNo}")
+	public String payProgress(@PathVariable String paymentNo
+							,@ModelAttribute("OrderDetail") OrderDetail orderDetail
+							,@ModelAttribute("rewardList") List<Reward> rewardList
+							,Model model,RedirectAttributes ra
+							){
 		
+		System.out.println(paymentNo);
+		System.out.println(Integer.parseInt(paymentNo));
 		
+		orderDetail.setPaymentNo(0);
+		int result = service.payProgress(orderDetail,rewardList);
 		
+		if(result>0) {
+			ra.addFlashAttribute("message", "등록 성공?");
+			return "redirect:../detail/{paymentNo} ";
+		}
 		
 		return null;
 	}

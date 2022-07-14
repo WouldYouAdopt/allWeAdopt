@@ -49,7 +49,7 @@
 
 		<jsp:include page="/WEB-INF/views/common/header.jsp" />
 
-		이름 익명 : ${nameAnonymous}<br> 가격 비공개 : ${priceAnonymous}<br>
+	
 		<!-- --------------------------------------------헤더 영역 끝-------------------------------------------- -->
 		<section class="py-4">
 			<!--  background: url(/allWeAdopt/src/main/webapp/resources/images/funding_sample/funding_title_img.png) 20% 10% ; -->
@@ -66,7 +66,7 @@
 			</div>
 
 <%-- ------------------------------------------------------------------------------------------------------- --%>
-<form action="pay/progress" method="post" id="submitEvent">
+<form  method="post" id="submitEvent" name="submitEvent"><%-- action="pay/progress" --%>
 			<div class="container px-5">
 				<div class=" rounded-3 py-5 px-4 px-md-5 mb-5">
 					<div class="row gx-5 justify-content-center fundingPaymentArea">
@@ -193,17 +193,17 @@
 								<div class="paymentMeans">
 								
 									<span> 
-										<input class="form-check-input payment" type="radio" name="payMethod" id="makeAdeposit"> 
+										<input class="form-check-input payment" type="radio" name="pay-Method" id="makeAdeposit"> 
 										<label 	class="form-check-label" for="makeAdeposit"> 무통장 입금 </label>
 									</span> 
 									
 									<span> 
-										<input class="form-check-input payment" type="radio"	name="payMethod" id="simplePay">
-										 <label	class="form-check-label" for="simplePay">  카드 결제 </label>
+										<input class="form-check-input payment" type="radio"	name="pay-Method" id="simplePay">
+										 <label	class="form-check-label" for="simplePay">  일반 결제 </label>
 									</span> 
 									
 									<span> 
-										<input class="form-check-input payment" type="radio" name="payMethod" id="phonePay"> 
+										<input class="form-check-input payment" type="radio" name="pay-Method" id="phonePay"> 
 										<label	class="form-check-label" for="phonePay"> 카카오 결제 </label>
 									</span>
 								</div>
@@ -241,7 +241,7 @@
 						<!-- 펀딩번호 -->
 						<input type="hidden" name="fundingNo" value="${funding.fundingNo}">
 						<!-- 회원번호 -->
-						<input type="hidden" id="loginMemberNo" name="loginMemberNo" value="${loginMember.memberNo}">
+						<input type="hidden" id="memberNo" name="memberNo" value="${loginMember.memberNo}">
 						<!-- 모든 리워드가격 -->
 						<input type="hidden" id="fullPrice" name="fullPrice" value="${fullPrice}">
 						
@@ -249,12 +249,16 @@
 						<!-- 결제방식 -->
 						<input type="hidden" name="payMethod" id="pay_method" value="" >
 						<!-- 결제번호(PK으로 생성) -->
-						<input type="hidden" name="paymentNo" id="merchant_uid" value="0">
+						<%-- <input type="hidden" name="payNo" id="merchant_uid" type="number" > --%>
+
+						<input type="hidden" name="nameAnonymous" id="nameAnonymous" value="${nameAnonymous}">
+						<input type="hidden" name="priceAnonymous" id="priceAnonymous" value="${priceAnonymous}">
+
+						
 
 
-
-
-
+	이름 익명 : ${nameAnonymous}<br> 
+	가격 비공개 : ${priceAnonymous}<br>
 
 
 
@@ -318,8 +322,7 @@
 	<!-- iamport.payment.js -->
 	<script type="text/javascript"	src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 	<%-- -------------------------------------------- --%>
-	<%-- 토스 결제 연동 --%>	
-	<script src="https://js.tosspayments.com/v1"></script>
+	
 	<!-- 펀딩 작성 관련 JS -->
 	<script src="${contextPath}/resources/js/funding/funding-payment.js"></script>
 </body>

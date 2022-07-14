@@ -24,6 +24,11 @@ public class OrderDetail {
 	private String orderAddress; //수령인 주소
 	private int paymentNo; //결제 번호f
 	
+	private String nameAnonymous;
+	private String priceAnonymous;
+	
+	private int memberNo;//회원번호
+	
 	//해당 결제 번호로 구매한 리워드 목록
 	private List<Reward> rewardList;
 }

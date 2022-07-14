@@ -125,8 +125,8 @@ function DaumPostcode() {
   //이름 , 번호, 주소 변경 이벤트시 checkObj값 변경
   //이름
   $('#inputName').change(function () {
-    if (this.value.trim().length == 0) { checkObj.inputName = false; }
-    else { checkObj.inputName = true; }
+    if (this.value.trim().length == 0) { checkObj.inputrecipient = false; }
+    else { checkObj.inputrecipient = true; }
   })
 
   //번호
@@ -223,16 +223,17 @@ function newUID(memberNo) {
     + addZero(now.getDate())
     + addZero(now.getHours())
     + addZero(now.getMilliseconds());
-  return uid;
+
+  return parseInt(uid);
+
 }
 function addZero(temp) {
-  return temp < 10 ? "0" + temp : temp;;
+  return temp < 10 ? "0" + temp : temp;
 }
 
 
 
 //onsubmit 함수
-
 //결제방식 체크된 경우 true false 반환 
 //$('.payment').is(':checked')
 function submitValidate() {
@@ -252,9 +253,9 @@ function submitValidate() {
   }
 
 
-  IMP.init("imp13427583");
 
-  const uid = newUID($('#loginMemberNo').val());
+  IMP.init("imp13427583");
+  const uid = newUID($('#memberNo').val());
   // 이니시스 일반 결제
   // INIpayTest
   IMP.request_pay({
@@ -271,12 +272,19 @@ function submitValidate() {
   }, function (r) { // callback 로직
 
     $('#pay_method').val(r.pay_method);
-    $('#merchant_uid').val( parseInt(r.merchant_uid) );
-
-    console.log("아임포트 사용 끝");
+    
 
     if(r.success){
+      
+      // document.getElementById("submitEvent").attr('action', '/pay/'+r.merchant_uid);
+      
+      alert("동작 성공")
+      $('form[name="submitEvent"]').serialize();
+      $('form[name="submitEvent"]').attr('method', 'POST');
+      $('form[name="submitEvent"]').attr('action', 'pay/'+r.merchant_uid);
       document.getElementById("submitEvent").submit();
+      
+    
     }else{
       alert("결제에 실패하였습니다");
     }

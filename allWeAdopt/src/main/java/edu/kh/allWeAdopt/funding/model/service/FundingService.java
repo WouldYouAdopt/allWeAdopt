@@ -17,7 +17,7 @@ public interface FundingService {
 	 */
 	FundingDetail selectFundingDetail(int fundingNo);
 
-	/**자신이 참여한 펀딩 목록들을 조회후 페이지네이션과 같이 가져오는 함수
+	/**자신이 참여한 펀딩 목록들을 조회후 페이지네이션과 같이 가져오는 함수 :현기
 	 * @param memberNo
 	 * @return map
 	 */
@@ -50,6 +50,13 @@ public interface FundingService {
 	 * @return map
 	 */
 	Map<String, Object> selectfundingAllList();
+
+	/**결제 수행후 DB로 저장하는 서비스 : 현기
+	 * @param orderDetail
+	 * @param rewardList
+	 * @return
+	 */
+	int payProgress(OrderDetail orderDetail, List<Reward> rewardList);
 
 
 }
