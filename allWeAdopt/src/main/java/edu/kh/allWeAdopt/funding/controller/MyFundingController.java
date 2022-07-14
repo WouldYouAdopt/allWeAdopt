@@ -25,7 +25,7 @@ import edu.kh.allWeAdopt.member.model.vo.Member;
 
 @Controller
 @RequestMapping("/funding/my")
-@SessionAttributes({"loginMember"}) 
+@SessionAttributes({"loginMember","rewardList"}) 
 public class MyFundingController {
 	
 	@Autowired
@@ -97,12 +97,24 @@ public class MyFundingController {
 		
 		
 		model.addAttribute("rewardList", map.get("rewardList"));
+		
+		
 		model.addAttribute("prevOrder", new Gson().toJson(map.get("prevOrder")) );
 		model.addAttribute("funding", map.get("funding"));
 		
 		//익명 공개여부 추가 해야 함.
 		
 		return "funding/funding-payment";
+	}
+
+	@PostMapping("/pay/progress")
+	public String payProgress(@ModelAttribute("OrderDetail") OrderDetail orderDetail
+							,@ModelAttribute("rewardList") Reward rewardList){
+		
+		
+		
+		
+		return null;
 	}
 	
 }

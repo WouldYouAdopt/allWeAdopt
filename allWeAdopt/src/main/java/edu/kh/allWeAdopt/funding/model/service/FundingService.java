@@ -34,7 +34,7 @@ public interface FundingService {
 	 */
 	OrderDetail selectOrderDetail(int paymentNo);
 
-	/**리워드 목록을 조회하는 함수.
+	/**[김현기]리워드 선택후 결제 페이지로 넘어가기 위한
 	 * @param paramMap
 	 * @return
 	 */
