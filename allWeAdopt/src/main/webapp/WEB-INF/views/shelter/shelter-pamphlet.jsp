@@ -84,61 +84,82 @@
                 </div>
             </section>
 
-            <section class="py-5">
-                <div class="container px-5">
-                    <h2 class="fw-bolder fs-5 mb-4">전단지</h2>
-                    <div class="row gx-5">
 
+            <section class="py-5">
+                <div class="container px-5 my-5">
+                    <div class="row gx-5 justify-content-center">
+                        <div class="col-lg-8 col-xl-6">
+                            <div class="text-center">
+                                <h2 class="fw-bolder">전단지</h2>
+                                <p class="lead fw-normal text-muted mb-5">소중한 가족을 찾아주세요</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="row gx-5">
                         <c:forEach var="pamphlet" items="${pamphletList}">
                             <div class="col-lg-4 mb-5">
                                 <div class="card h-100 shadow border-0">
-                                    <img class="card-img-top" src="" alt="썸네일" />
+                                    <img class="card-img-top" src="https://dummyimage.com/600x350/ced4da/6c757d" alt="..." />
                                     <div class="card-body p-4">
-                                        <h3><div class="badge bg-primary bg-gradient rounded-pill mb-2">New</div></h3>
-                                            <a class="text-decoration-none link-dark stretched-link" href="../pamphlet/detail/${pamphlet.boardNo}" >
-                                                <li class="h5 card-title mb-3">종류 : ${pamphlet.boardContent}</li>
-                                                <%-- <li class="h5 card-title mb-3">발견 날짜 : ${pamphlet.}</li>
-                                                <li class="h5 card-title mb-3">발견 장소 : ${pamphlet.happenPlace}</li> --%>
-
-                                            </a>
-                                        </div>
+                                        <div class="badge bg-primary bg-gradient rounded-pill mb-2">실종</div>
+                                        <a class="text-decoration-none link-dark stretched-link" href="../detail/${pamphlet.boardNo}?cp=${pagination.currentPage}"><h5 class="card-title mb-3">${pamphlet.boardTitle}</h5></a>
+                                        <p class="card-text mb-0">${pamphlet.boardContent}</p>
+                                    </div>
                                     <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
                                         <div class="d-flex align-items-end justify-content-between">
                                             <div class="d-flex align-items-center">
-                                                <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d" alt="..." />
+                                                <img class="rounded-circle me-3" src="${pamphlet.profileImage}" alt="..." />
                                                 <div class="small">
-                                                    <%-- <div class="fw-bold">보호소 : ${shelter.careNm}</div> --%>
+                                                    <div class="fw-bold">${pamphlet.memberName}</div>
+                                                    <div class="fw-bold">${pamphlet.phone}</div>
+                                                    <div class="text-muted">${pamphlet.createDate}</div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                         </c:forEach>
-                    </div>                         
+                    </div>
+                                      
+                    <button type="button" class="btn btn-outline-warning" onclick="location.href='../pamphlet/write?mode=insert&cp=${pagination.currentPage}'">글쓰기</button>                  
 
-                    <button id="insertBtn" onclick="location.href='../pamphlet/write?mode=insert&cp=${pagination.currentPage}'">글쓰기</button>
 
+                    <%-- 페이지네이션 --%>
                     <c:set var="url" value="?cp="/>
 
                     <nav aria-label="Page navigation example">
-                        <ul class="pagination pagination-lg justify-content-center">
+                        <ul class="pagination justify-content-center">
+                            <%-- 첫 페이지 --%>
                             <li class="page-item">
                                 <a class="page-link" href="${url}1${sURL}" aria-label="Previous">
                                     <span aria-hidden="true">&laquo;</span>
                                 </a>
                             </li>
-                            <c:forEach var="i" begin="1" end="10" step="1">
-                                <li class="page-item"><a class="page-link" href="${url}${i}">${i}</a></li>
+                            <c:forEach var="i" begin="${pagination.startPage}" end="${pagination.endPage}" step="1">
+                                <c:choose>
+                                    <c:when test="${i == pagination.currentPage}">
+                                        <li class="page-item"><a class="page-link">${i}</a></li>
+                                    </c:when>
+
+                                    <c:otherwise>
+                                        <li class="page-item"><a href="${url}${i}${sURL}">${i}</a></li>        
+                                    </c:otherwise>
+                                </c:choose>
+                                <%-- <li class="page-item"><a class="page-link" href="${url}${i}">${i}</a></li> --%>
                             </c:forEach>
+                            
+                            <%-- 끝 페이지 --%>
                             <li class="page-item">
-                                <a class="page-link" href="${url}10${sURL}" aria-label="Next">
+                                <a class="page-link" href="${url}${pagination.maxPage}${sURL}" aria-label="Next">
                                     <span aria-hidden="true">&raquo;</span>
                                 </a>
                             </li>
                         </ul>
                     </nav>
+
                 </div>
             </section>
         </main>
