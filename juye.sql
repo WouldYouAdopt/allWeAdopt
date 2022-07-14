@@ -107,7 +107,7 @@ ELECT
    --> 1이면 THEN 구문 수행  , NULL이면 ELSE 수행
    CASE WHEN (SELECT '1' FROM CERTIFICATION
                WHERE EMAIL = 'rlawndp@hanmail.net'
-               AND C_NUMBER = '5FD5O3')  = 1
+               AND C_NUMBER = 'IH35VX')  = 1
    
       THEN NVL( (SELECT '1' FROM CERTIFICATION
                   WHERE EMAIL = 'rlawndp@hanmail.net'
@@ -129,4 +129,4 @@ SELECT
 
       ELSE '3'	
    END			
-FROM DUAL
+FROM DUAL;

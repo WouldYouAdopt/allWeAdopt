@@ -10,7 +10,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
@@ -63,6 +65,8 @@ public class KakaoController {
 	@RequestMapping(value = "/member/kakaoLogin2")
 	public String oauthKakao( @RequestParam(value = "code", required = false) String code
 							, Model model
+							, HttpServletRequest req
+						    , HttpServletResponse resp 
 							/*, RedirectAttributes ra*/) throws Exception {
 		
 		String message = null;
@@ -127,6 +131,21 @@ public class KakaoController {
 	        		
 	        		// 카카오 로그인 했었던 사람 
 	        		 model.addAttribute("loginMember", kakaoEmailCheck);
+	        		 
+	        		 //쿠키 
+	        		// 쿠키 
+        			Cookie cookie = new Cookie("intro", kakaoEmailCheck.getMemberEmail());
+        			
+        			cookie.setMaxAge(60 * 60 * 24 ); // 쿠키하루.
+        			
+        			// 쿠키가 적용될 범위(경로) 지정
+        			cookie.setPath(req.getContextPath());
+        			
+        			// 쿠키를 응답 시 클라이언트에게 전달
+        			resp.addCookie(cookie);
+	        			
+	        		 
+	        		 
 	        	      
 	        	     return "redirect:/"; //본인 원하는 경로 설정
 	        		
@@ -157,6 +176,9 @@ public class KakaoController {
         			
         			model.addAttribute("loginMember", mem);
         			message = "카카오 로그인 성공!!";
+        			
+        			
+        			
         			return  "redirect:/"; // 메인페이지
         			
         		}else { // 실패
