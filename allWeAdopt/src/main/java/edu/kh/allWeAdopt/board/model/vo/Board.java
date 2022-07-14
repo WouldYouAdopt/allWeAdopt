@@ -23,4 +23,5 @@ public class Board {
 	private String boardPeriod2;
 	private String memberName;
 	private String msg;
+	private String profileImage;
 }

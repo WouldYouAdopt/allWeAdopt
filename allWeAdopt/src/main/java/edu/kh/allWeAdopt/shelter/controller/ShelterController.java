@@ -43,7 +43,6 @@ import com.google.gson.JsonObject;
 import edu.kh.allWeAdopt.board.model.vo.Board;
 import edu.kh.allWeAdopt.board.model.vo.BoardDetail;
 import edu.kh.allWeAdopt.member.model.vo.Member;
-import edu.kh.allWeAdopt.shelter.model.service.ShelterReplyService;
 import edu.kh.allWeAdopt.shelter.model.service.ShelterService;
 import edu.kh.allWeAdopt.shelter.model.vo.Shelter;
 
@@ -54,9 +53,6 @@ public class ShelterController {
 	
 	@Autowired
 	private ShelterService service;
-	
-	@Autowired
-	private ShelterReplyService replyService;
 	
 	private Logger logger = LoggerFactory.getLogger(ShelterController.class);
 
