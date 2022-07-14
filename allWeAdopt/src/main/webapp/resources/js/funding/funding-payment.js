@@ -22,7 +22,7 @@ function DaumPostcode() {
       document.getElementById("Address").value = roadAddr ;
       document.getElementById("detailAddress").focus();
       checkObj.postCode = true;
-       checkObj.address = true;
+      checkObj.address = true;
     }
   }).open();
 }
@@ -77,12 +77,15 @@ function DaumPostcode() {
     inputName.value = "";
     inputTelMain.value = "";
     inputTelSub.value = "";
+    
+    postCode.value="";
     address.value = "";
     detailAddress.value = "";
 
     checkObj.inputrecipient = false;
     checkObj.inputTelMain = false;
-    checkObj.inputAddress = false;
+    checkObj.postCode = false;
+    checkObj.address = false;
   })
 
   //서포터 정보와 동일
@@ -91,7 +94,7 @@ function DaumPostcode() {
     inputName.value = supportName;
     inputTelMain.value = supportTel;
     inputTelSub.value = "";
-    address.value = supportAddress;
+
 
     const addr = supportAddress.split(",,");
  
@@ -99,6 +102,8 @@ function DaumPostcode() {
       postCode.value=addr[0];
       address.value=addr[1];
       detailAddress.value=addr[2];
+      checkObj.postCode = true;
+      checkObj.address = true;
     }
 
     checkObj.inputrecipient = true;
@@ -106,8 +111,13 @@ function DaumPostcode() {
     if (inputTelMain != '') {      checkObj.inputTelMain = true;    }
     else{checkObj.inputTelMain = false;}
 
-    if (supportAddress != '') {      checkObj.inputAddress = true;    }
-    else{checkObj.inputAddress = false;}
+    if (supportAddress != '') {       
+      checkObj.postCode = true;
+      checkObj.address = true;  
+    }
+    else{
+      checkObj.postCode = false;
+      checkObj.address = false;}
   })
 
 

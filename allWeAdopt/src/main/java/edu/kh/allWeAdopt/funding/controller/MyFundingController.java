@@ -109,7 +109,7 @@ public class MyFundingController {
 
 	@PostMapping("/pay/progress")
 	public String payProgress(@ModelAttribute("OrderDetail") OrderDetail orderDetail
-							,@ModelAttribute("rewardList") Reward rewardList){
+							,@ModelAttribute("rewardList") List<Reward> rewardList){
 		
 		
 		
