@@ -34,13 +34,10 @@ public class FundingServiceImpl implements FundingService {
 			
 			// 펀딩 detail 상세조회
 			// 리워드 리스트 : 리워드 + 리워드별 판매수량, 리워드별 판매금액
-			// 펀딩 이미지리스트
 			FundingDetail detail = dao.selectFundingDetail(fundingNo);
 			
-			//--------------------------------------------------------------------
 			// 리워드별 구매이력 조회 (수량, 금액)
 			List<Reward> rewardListCount = dao.selectRewardList(fundingNo);
-			//--------------------------------------------------------------------여기가 잘못됨
 			
 			// 달성금액 구하기
 			int sumPrice = 0;
@@ -190,6 +187,37 @@ public class FundingServiceImpl implements FundingService {
 			
 		}
 		
+		
+		return map;
+	}
+
+
+
+	// 모든 펀딩 리스트 조회
+	@Override
+	public Map<String, Object> selectfundingAllList() {
+		
+		// 지금 진행중인 펀딩 리스트 조회
+		FundingDetail now = dao.selectNowFundinginfo(); 
+		int fundingNo = now.getFundingNo();
+
+		// 펀딩 번호로 구매이력 있는지 조회
+		int result = dao.selectCountPay(fundingNo);
+
+		if(result>0) { // 구매이력 있으면 리워드 정보 + 결제정보
+			
+		}else { // 구매이력 없으면 단순 리워드 정보만
+			
+		}
+			
+		
+		
+		// 종료된 펀딩 리스트 조회
+		//FundingDetail end = dao.selectEndfundinginfo();
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("now", now);
+		//map.put("end", end);
 		
 		return map;
 	}
