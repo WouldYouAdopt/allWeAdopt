@@ -2,7 +2,6 @@ package edu.kh.allWeAdopt.member.model.service;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 import edu.kh.allWeAdopt.common.Util;
 

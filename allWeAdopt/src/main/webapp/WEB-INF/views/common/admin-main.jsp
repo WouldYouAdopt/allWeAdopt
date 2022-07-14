@@ -46,7 +46,7 @@
 
             <section class="py-0">
                 <div class="container px-5">
-                    <h1 style> ALL WE ADOPT for admin 메인입니당.</h1>
+                    <h1> ALL WE ADOPT for admin 메인입니당.</h1>
                 </div>
             </section>
 

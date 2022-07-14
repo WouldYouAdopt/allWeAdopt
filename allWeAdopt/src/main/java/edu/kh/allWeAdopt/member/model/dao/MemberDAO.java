@@ -1,6 +1,6 @@
 package edu.kh.allWeAdopt.member.model.dao;
 
-import java.util.HashMap;
+
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
