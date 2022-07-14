@@ -26,7 +26,7 @@
 
 		<collection property="rewardList" column="FUNDING_NO"
 			javaType="java.util.ArrayList" ofType="reward"
-			select="selectRewardList" />
+			select="selectOnlyRewardList" />
 		
 		<collection property="supportersList" column="FUNDING_NO"
 			javaType="java.util.ArrayList" ofType="supporters"
@@ -232,7 +232,7 @@
 	</select>
 
 	<!-- 펀딩번호로 리워드 전체 조회 (리워드 별 판매 현황 추가) -->
-	<select id="selectRewardList" resultMap="reward_re">
+	 <select id="selectRewardList" resultMap="reward_re">
 		SELECT
 		REWARD_NO,
 		REWARD_TITLE,
@@ -248,6 +248,19 @@
 		ORDER BY 1
 	</select>
 
+	
+	<!-- 펀딩번호로 리워드 전체 조회 **리워드들만** -->
+	<select id="selectOnlyRewardList" resultMap="reward_re">
+		SELECT
+		REWARD_NO,
+		REWARD_TITLE,
+		REWARD_CONTENT,
+		REWARD_PRICE,
+		MAX_REWARD_NO
+		FROM REWARD
+		WHERE FUNDING_NO=#{fundingNo}
+	</select>
+	
 	<!-- 가장 최근 주문정보 조회 -->
 	<select id="selectPrevOrder" resultMap="orderDetail_re">
 		SELECT *
@@ -301,17 +314,62 @@
 		    JOIN MEMBER USING (MEMBER_NO)
 		    JOIN REWARD_ORDER USING(PAYMENT_NO)
 		    JOIN REWARD USING(REWARD_NO)
-		WHERE P.FUNDING_NO= 1
+		WHERE P.FUNDING_NO= #{fundingNo}
 		AND ORDER_ST_CD IN (1,2,3,4)
 		)
 		GROUP BY MEMBER_NO,MEMBER_NM, PROFILE_IMG, PAY_DT, NAME_OPEN, PRICE_OPEN
     </select>
 
 
-
-  <select id="selectfunding" resultMap="funding_rm">
+	<!-- ?? -->
+	<select id="selectfunding" resultMap="funding_rm">
     SELECT * FROM FUNDING
     WHERE FUNDING_NO = #{fundingNo}
+	</select>
+	
+	<!-- 구매이력 수 조회 (구매이력 있는 펀딩인지 아닌지 구분) : 수진 -->
+	<select id="selectCountPay" resultType="_int">
+		SELECT COUNT(*)
+        FROM PAYMENT
+        WHERE FUNDING_NO= #{fundingNo}
+	</select>
+	
+	<!-- 구매 이력 없는 펀딩 조회 : 수진-->
+	<select id="selectFundingSaleZero" resultMap="detail_rm">
+		SELECT FUNDING_NO,
+		FUNDING_TITLE,
+		FUNDING_MINI_TITLE,
+		FUNDING_CONTENT,
+		TO_CHAR(TARGET_DONATION,'999,999,999') AS TARGET_DONATION,
+		FUNDING_SEASON,
+		SUBSTR(FUNDING_SEASON,-2) AS MONTH,
+		TO_CHAR(TO_DATE(REPLACE(FUNDING_SEASON,'/',''),'YYYYMM'),'YYYY"년"MM"월"DD"일"')
+		AS STARTDATE,
+		TO_CHAR(LAST_DAY(TO_DATE(REPLACE(FUNDING_SEASON,'/',''),'YYYYMM')),'YYYY"년"MM"월"DD"일"')
+		AS ENDDATE,
+		TRUNC(LAST_DAY(TO_DATE(REPLACE(FUNDING_SEASON,'/',''),'YYYYMM'))-SYSDATE)
+		AS LEFTDATE,
+		SUCCESS_DONATION,
+		FUNDING_ST,
+		FUNDING_THUMBNAIL,
+		DELIVERY_FEE,
+		CATEGORY_NM        
+		FROM FUNDING
+        JOIN CATEGORY USING(FUNDING_CATEGORY)
+        WHERE FUNDING_NO = #{fundingNo}
+	</select>
+	
+	<!-- 리워드별 판매된 수량,금액  -->
+	<select id="selectRewardOrderCount" resultMap="reward_re">
+		SELECT
+		REWARD_NO,
+		SUM(AMOUNT) AS REWARD_ORDER_AMOUNT,
+		SUM((REWARD_PRICE*AMOUNT)) AS REWARD_ORDER_PRICE
+		FROM
+		(SELECT * FROM REWARD WHERE FUNDING_NO= #{fundingNo})
+		JOIN REWARD_ORDER USING(REWARD_NO)
+		GROUP BY REWARD_NO, REWARD_TITLE,REWARD_CONTENT,REWARD_PRICE,MAX_REWARD_NO
+		ORDER BY 1
 	</select>
 
 </mapper>

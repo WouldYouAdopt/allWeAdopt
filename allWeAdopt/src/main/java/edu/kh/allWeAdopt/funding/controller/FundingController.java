@@ -1,5 +1,8 @@
 package edu.kh.allWeAdopt.funding.controller;
 
+import java.text.DecimalFormat;
+import java.util.Calendar;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,9 +11,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.kh.allWeAdopt.funding.model.service.FundingService;
 import edu.kh.allWeAdopt.funding.model.vo.FundingDetail;
+import edu.kh.allWeAdopt.funding.model.vo.Reward;
 
 @Controller
 @RequestMapping("/funding")
@@ -56,23 +61,42 @@ public class FundingController {
 	
 	
 	// 펀딩 리워드 선택 
-	@GetMapping("/reward")
-	public String rewardSelect() {
+	@GetMapping("/reward/{fundingNo}")
+	public String rewardSelect(@PathVariable("fundingNo") int fundingNo
+								,Model model
+								,@RequestParam(value="selected", required=false) String selected) {
 		
-		// 리워드 넘버 있으면 리워드에 선택됨 표시 어떻게함?
-		// 일단 값을 넘겨보자 어떻게든 되겠지
+		// 리워드정보 + 리워드 결제정보 조회
+		Map<String, Object> map = service.selectReward(fundingNo);
+
+		// 펀딩넘버
+		if(fundingNo!=0) {
+			map.put("fundingNo", fundingNo);
+		}
 		
-		// 로그인 세션 없을때 로그인 화면으로 >> 
-		// 로그인 후 리워드 선택 화면으로 되돌아오기??이건 어떻게함. . 로그인쪽에서... 펀딩번호가지고 넘어가기...
-		// 펀딩번호 있으면 해당 펀딩번호의 리워드 선택화면으로 오기.하면되겠네.
+		// 순차발송 날짜 구하기
+		DecimalFormat df = new DecimalFormat("00");
+        Calendar currentCalendar = Calendar.getInstance();
+        //이번해
+        String year  = df.format(currentCalendar.get(Calendar.YEAR) + 1);
+        //이번달
+        String month  = df.format(currentCalendar.get(Calendar.MONTH) + 1);
+		String sendDate = year+"년 "+month+"월 1일";
+		map.put("sendDate", sendDate);
+        
 		
+		//선택한 리워드 넘버
+		if(selected!="") {// 리워드 선택하고 넘어왔을때
+			// 선택한 리워드넘버
+			map.put("selected", selected);
+		}
 		
-		// 로그인 세션 있을때 리워드 선택 화면으로
+		// 세션에 map저장
+		model.addAttribute("map",map);
+
 		return "funding/reward-select";
 	}
 
-	// 리워드 선택 -> 결제화면으로
-	// 멤버넘버(세션), 펀딩넘버(PathVariable), 리워드 넘버와 수량(input), 이름과 펀딩금액 공개여부(input) ---넘어가야됨 
-	
+
 	
 }

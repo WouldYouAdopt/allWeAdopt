@@ -2,56 +2,57 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
 <configuration>
 
-   <!-- <configuration>내부에 Mybatis 관련 설정 작성하기 -->
 
-   <!-- SqlSessionTemplate 관련 설정 -->
-   <settings>
-   
-   <!-- insert/update 진행시 null이 포함되어 있는 경우
-       == NULL을 insert/update해라 ~~~ -->
+	<!-- <configuration>내부에 Mybatis 관련 설정 작성하기 -->
 
-      <setting name="jdbcTypeForNull" value="NULL"/>
-      
-   </settings>
+	<!-- SqlSessionTemplate 관련 설정 -->
+	<settings>
+	
+	<!-- insert/update 진행시 null이 포함되어 있는 경우
+		 == NULL을 insert/update해라 ~~~ -->
+
+		<setting name="jdbcTypeForNull" value="NULL"/>
+		
+	</settings>
 
 
 
-   <!-- 별칭 작성 부분 -->
-   <typeAliases>
-   
-	<typeAlias type="edu.kh.allWeAdopt.member.model.vo.Certification" alias="certification"/> 
-      <typeAlias type="edu.kh.allWeAdopt.member.model.vo.Member" alias="member"/> 
-      <typeAlias type="edu.kh.allWeAdopt.shelter.model.vo.Shelter" alias="shelter"/> 
-      <typeAlias type="edu.kh.allWeAdopt.board.model.vo.Board" alias="board"/> 
-      <typeAlias type="edu.kh.allWeAdopt.board.model.vo.BoardDetail" alias="detail"/> 
-      <typeAlias type="edu.kh.allWeAdopt.userBoard.model.vo.Animal" alias="animal"/> 
-      <typeAlias type="edu.kh.allWeAdopt.userBoard.model.vo.Area" alias="area"/> 
-      <!-- <typeAlias type="edu.kh.allWeAdopt.shelter.model.vo.ShelterReply" alias="shelterReply"/> --> 
-      
-      
-      <typeAlias type="edu.kh.allWeAdopt.funding.model.vo.FundingDetail" alias="fundingDetail"/> 
-      <typeAlias type="edu.kh.allWeAdopt.funding.model.vo.Funding" alias="funding"/> 
-      <typeAlias type="edu.kh.allWeAdopt.funding.model.vo.OrderDetail" alias="orderDetail"/> 
-      <typeAlias type="edu.kh.allWeAdopt.funding.model.vo.Reward" alias="reward"/> 
-      <typeAlias type="edu.kh.allWeAdopt.funding.model.vo.Supporters" alias="supporters"/> 
-   
-   
-   </typeAliases>
-   
-   
+	<!-- 별칭 작성 부분 -->
+	<typeAliases>
+	
+		<typeAlias type="edu.kh.allWeAdopt.member.model.vo.Member" alias="member"/> 
+		<typeAlias type="edu.kh.allWeAdopt.shelter.model.vo.Shelter" alias="shelter"/> 
+		<typeAlias type="edu.kh.allWeAdopt.board.model.vo.Board" alias="board"/> 
+		<typeAlias type="edu.kh.allWeAdopt.board.model.vo.BoardDetail" alias="detail"/> 
+		<typeAlias type="edu.kh.allWeAdopt.userBoard.model.vo.Animal" alias="animal"/> 
+		<typeAlias type="edu.kh.allWeAdopt.userBoard.model.vo.Area" alias="area"/> 
+		<typeAlias type="edu.kh.allWeAdopt.member.model.vo.Certification" alias="certification"/> 
+		
+		
+		<typeAlias type="edu.kh.allWeAdopt.funding.model.vo.FundingDetail" alias="fundingDetail"/> 
+		<typeAlias type="edu.kh.allWeAdopt.funding.model.vo.Funding" alias="funding"/> 
+		<typeAlias type="edu.kh.allWeAdopt.funding.model.vo.OrderDetail" alias="orderDetail"/> 
+		<typeAlias type="edu.kh.allWeAdopt.funding.model.vo.Reward" alias="reward"/> 
+		<typeAlias type="edu.kh.allWeAdopt.funding.model.vo.Supporters" alias="supporters"/> 
+	
+	
+	</typeAliases>
+	
+	
 
-   <!-- Sql이 작성되는 mapper파일 위치 등록 -->
-   <mappers>
-      <!-- <mapper resource="mapper 파일 경로"/>
-         경로를 작성하는 기준(시작지점)은 src/main/resource 폴더 -->
-       <mapper resource="/mappers/member-mapper.xml"/>
-       <mapper resource="/mappers/myPage-mapper.xml"/>
-       <mapper resource="/mappers/notice-mapper.xml"/>
-       <mapper resource="/mappers/board-mapper.xml"/>
-       <mapper resource="/mappers/funding-mapper.xml"/>
-       <mapper resource="/mappers/pamphlet-mapper.xml"/>
+	<!-- Sql이 작성되는 mapper파일 위치 등록 -->
+	<mappers>
+		<!-- <mapper resource="mapper 파일 경로"/>
+			경로를 작성하는 기준(시작지점)은 src/main/resource 폴더 -->
+		 <mapper resource="/mappers/member-mapper.xml"/>
+		 <mapper resource="/mappers/myPage-mapper.xml"/>
+		 <mapper resource="/mappers/notice-mapper.xml"/>
+		 <mapper resource="/mappers/board-mapper.xml"/>
+		 <mapper resource="/mappers/funding-mapper.xml"/>
+		 <mapper resource="/mappers/pamphlet-mapper.xml"/>
 
-   </mappers>
+	</mappers>
 
+  
 
 </configuration>

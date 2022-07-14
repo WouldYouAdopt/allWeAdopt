@@ -36,7 +36,8 @@ public class FundingDetail {
 	
 	private List<FundingImage> imageList;  //해당 유저가 구매한 리워드 수량
 
-	private List<Reward> rewardList;
+	private List<Reward> rewardList; // 리워드정보
+	private List<Reward> rewardListCount; // 리워드별 구매개수 + 구매금액
 
 	private List<Supporters> supportersList;
 	

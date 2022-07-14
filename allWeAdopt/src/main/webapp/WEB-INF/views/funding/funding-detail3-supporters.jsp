@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"  %>
 
 <div class="col-lg-9 policy">
 
@@ -8,30 +9,51 @@
 	<article class="content-box">
 	    <p class="policy-main-title">
 	        현재 이 프로젝트에<br> 
-	        <span class="pink">6명</span>의 참여가 이루어졌습니다.
+	        <span class="pink">${detail.supportersNo}명</span>의 참여가 이루어졌습니다.
 	    </p>
 	    
+	    <c:if test="${detail.supportersNo==0}">
+	    참여 서포터가 없습니다.
+	    </c:if>
+	    <c:if test="${detail.supportersNo!=0}">
+	    
+	    
 	    <table class="supporter-table">
-	    	<tr>
-	    	<th rowspan="2" style="vertical-align:center;"><img class="rounded-circle" src="${contextPath}/resources/images/funding_sample/profile-sample.png"></th>
-	    	<td style="vertical-align:bottom;">내일뭐하지님이 108,000원 펀딩으로 참여 하셨습니다.</td>
-	    	<tr class="end-oneSupporter" style="vertical-align:top;"><td>5시간 전</td></tr>
+	    	<c:forEach var="i" begin="0" end="${fn:length(detail.supportersList)}">
+	    		<c:if test="${detail.supportersList[i].nameOpen=='Y'}">
+		    		<tr>
+		    		<th rowspan="2" style="vertical-align:center;">
+		    		<c:if test="${empty detail.supportersList[i].profileImage}">
+		    			<img class="rounded-circle" src="${contextPath}/resources/images/funding_sample/profile-sample.png">
+		    		</c:if>
+		    		</th>
+		    		<td style="vertical-align:bottom;">${detail.supportersList[i].memberName}님이
+		    		<c:if test="${detail.supportersList[i].priceOpen=='Y'}">
+		    			${detail.supportersList[i].payFullPrice}원
+		    		</c:if>
+		    		<c:if test="${detail.supportersList[i].priceOpen=='N'}">
+		    		</c:if>
+		    		 펀딩으로 참여 하셨습니다.</td>
+		    		<tr class="end-oneSupporter" style="vertical-align:top;"><td>${detail.supportersList[i].payDate}</td></tr>
+	    		</c:if>
+	    		
+	    		<c:if test="${detail.supportersList[i].nameOpen=='N'}">
+		    		<tr>
+		    		<th rowspan="2" style="vertical-align:center;"><img class="rounded-circle" src="${contextPath}/resources/images/funding_sample/profile-sample.png"></th>
+		    		<td style="vertical-align:bottom;">${detail.supportersList[i].memberName}님이
+		    		<c:if test="${detail.supportersList[i].priceOpen=='Y'}">
+		    			${detail.supportersList[i].payFullPrice}원
+		    		</c:if>
+		    		<c:if test="${detail.supportersList[i].priceOpen=='N'}">
+		    		</c:if>
+		    		펀딩으로 참여 하셨습니다.</td>
+		    		<tr class="end-oneSupporter" style="vertical-align:top;"><td>${detail.supportersList[i].payDate}</td></tr>
+	    		</c:if>
+	    	</c:forEach>
 	    	
-	    	<tr style="background-color:#eee;">
-	    	<th rowspan="2" style="vertical-align:center;"><img class="rounded-circle" src="${contextPath}/resources/images/funding_sample/profile-sample.png"></th>
-	    	<td style="vertical-align:bottom;">내일뭐하지님이 108,000원 펀딩으로 참여 하셨습니다.</td>
-	    	<tr class="end-oneSupporter" style="vertical-align:top; background-color:#eee;"><td>5시간 전</td></tr>
 	    	
-	    	<tr>
-	    	<th rowspan="2" style="vertical-align:center;"><img class="rounded-circle" src="${contextPath}/resources/images/funding_sample/profile-sample.png"></th>
-	    	<td style="vertical-align:bottom;">내일뭐하지님이 108,000원 펀딩으로 참여 하셨습니다.</td>
-	    	<tr class="end-oneSupporter" style="vertical-align:top;"><td>5시간 전</td></tr>
-	    	
-	    	<tr style="background-color:#eee;">
-	    	<th rowspan="2" style="vertical-align:center;"><img class="rounded-circle" src="${contextPath}/resources/images/funding_sample/profile-sample.png"></th>
-	    	<td style="vertical-align:bottom;">내일뭐하지님이 108,000원 펀딩으로 참여 하셨습니다.</td>
-	    	<tr class="end-oneSupporter" style="vertical-align:top; background-color:#eee;"><td>5시간 전</td></tr>
 	    </table>
+	    </c:if>
 	</article>
 
 </div>

@@ -1,25 +1,3 @@
-// // 이미지 파일 업로드
-// function uploadSummernoteImageFile(file, editor){
-
-//     data = new FormData();
-
-//     data.append("file", file);
-
-//     $.ajax({
-
-//         data : data, 
-//         type : "POST",
-//         url : "/uploadSummernoteImageFile",
-//         contentType : false,
-//         processData : false, 
-//         sucesess : function(data){
-//             var contextPath = location.pathname.substring(0, window.location.pathname.indexOf("/",2));
-//             $(editor).summernote("editor.insertImage", contextPath + data.url);
-//         }
-
-//     })
-
-// }
 
 // 즉시 실행 함수
 (function(){
@@ -68,7 +46,7 @@
 
             // 목표 : delete?no=1508&type=1
 
-            let url = contextPath + "/board/delete/" + boardCode + "/" + boardNo;
+            let url = contextPath + "/shelter/pamphlet/delete/" + boardNo;
 
 
             if( confirm("정말로 삭제 하시겠습니까?") ){

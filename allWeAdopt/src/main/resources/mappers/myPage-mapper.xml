@@ -60,5 +60,21 @@
 		WHERE MEMBER_NO = #{memberNo}
 	</update>
 
-	
+
+
+
+
+	<!-- 처음인 사람에게 인증번호 부여 insert  -->
+	<!-- <insert id="insertCertification">
+		INSERT INTO CERTIFICATION VALUES(#{memberEmail}, #{cNumber}, SYSDATE);
+	</insert> -->
+
+	<!-- 처음이 아닌 사람에게 인증번호 업데이트 -->
+<!-- 	<update id="updateCertification">
+		UPDATE CERTIFICATION SET
+		C_NUMBER = #{cNumber},
+		ISSUE_DT = SYSDATE
+		WHERE EMAIL = #{memberEmail}
+	</update> -->
+
 </mapper>

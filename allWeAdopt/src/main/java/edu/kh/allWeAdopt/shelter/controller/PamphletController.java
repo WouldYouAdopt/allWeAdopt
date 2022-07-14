@@ -60,6 +60,8 @@ public class PamphletController {
 		public String pamphletDetail(@PathVariable("boardNo") int boardNo, @RequestParam(value="cp", required=false, defaultValue="1") int cp,
 									Model model, HttpSession session, HttpServletRequest req, HttpServletResponse resp) {
 			
+			logger.info("전단지 상세 조회");
+			
 			BoardDetail detail = service.pamphletDetail(boardNo);
 			
 			model.addAttribute("detail", detail);
@@ -72,6 +74,8 @@ public class PamphletController {
 		// 전단지 작성 화면
 		@GetMapping("/pamphlet/write")
 		public String pamphletWriteForm(String mode, @RequestParam(value="no", required=false, defaultValue="0") int boardNo, Model model) {
+			
+			
 			
 			if(mode.equals("update")) {
 				
@@ -93,6 +97,8 @@ public class PamphletController {
 		@PostMapping("/pamphlet/write")
 		public String pamphletWrite(BoardDetail detail, @ModelAttribute("loginMember") Member loginMember, String mode, 
 				@RequestParam(value="cp", required=false, defaultValue="1") int cp, Model model, RedirectAttributes ra, HttpServletRequest req ) {
+			
+			logger.info("전단지 작성");
 			
 			// 로그인한 회원 datail에 세팅
 			detail.setMemberNo(loginMember.getMemberNo());
@@ -141,11 +147,33 @@ public class PamphletController {
 				return "redirect:" + path; 
 				
 			}
+						
+		}
+		
+		
+		@GetMapping("/pamphlet/delete/{boardNo}")
+		public String deletePamphlet(@PathVariable("boardNo") int boardNo, HttpServletRequest req, RedirectAttributes ra) {
 			
+			int result = service.deleteBoard(boardNo);
 			
+			String message = null;
+			String path = null;
 			
+			if(result>0) {
+				message = "삭제 성공";
+				//path = "../../list/" + boardCode; // 상대경로
+				path = "/shelter/pamphlet/list/";
+			}else {
+				message = "삭제 실패";
+				path = req.getHeader("referer");
+			}
+			
+			ra.addFlashAttribute("message", message);
+			
+			return "redirect:" + path;
 			
 		}
+		
 
 }
 

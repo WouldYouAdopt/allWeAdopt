@@ -11,7 +11,7 @@ import edu.kh.allWeAdopt.funding.model.vo.Reward;
 public interface FundingService {
 
 	
-	/** 펀딩 상세 조회
+	/** 펀딩 상세 조회 : 수진
 	 * @param fundingNo
 	 * @return detail
 	 */
@@ -23,7 +23,7 @@ public interface FundingService {
 	 */
 	Map<String, Object> selectMyFundingList(int memberNo,int cp);
 
-	/** 현재 진행중인 펀딩 번호
+	/** 현재 진행중인 펀딩 번호 : 수진
 	 * @return nowFundingNo
 	 */
 	int selectNowFundingNo();
@@ -39,6 +39,12 @@ public interface FundingService {
 	 * @return
 	 */
 	Map<String, Object> selectRewardList(Map<String, Object> paramMap,int memberNo);
+
+	/** 리워드 리스트와 리워드별 구매수,금액 : 수진
+	 * @param fundingNo
+	 * @return
+	 */
+	Map<String, Object> selectReward(int fundingNo);
 
 
 }

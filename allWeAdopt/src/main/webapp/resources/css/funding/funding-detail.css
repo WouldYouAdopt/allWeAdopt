@@ -308,6 +308,11 @@
 	    top:0px;
 	    border-radius: 4px;
 	}
+	.rewardOver > button {
+		background-color: transparent;
+		color: rgb(255, 255, 255);
+		border:none;
+	}
 	.vertical-center{
 		position: absolute;
 		top: 50%;
@@ -460,7 +465,12 @@
             .pink{
             	color:#FB836B;
             }
-            
+            .supporter-table tr:nth-child(4n+3){
+            	background:#eee;
+            }
+            .supporter-table tr:nth-child(4n){
+            	background:#eee;
+            }
             
             
             .lineBtn-gr{
