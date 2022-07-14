@@ -1,0 +1,35 @@
+diff a/allWeAdopt/src/main/java/edu/kh/allWeAdopt/shelter/controller/PamphletController.java b/allWeAdopt/src/main/java/edu/kh/allWeAdopt/shelter/controller/PamphletController.java	(rejected hunks)
+@@ -141,33 +141,11 @@
+ 				return "redirect:" + path; 
+ 				
+ 			}
+-						
+-		}
+-		
+-		
+-		@GetMapping("/pamphlet/delete/{boardNo}")
+-		public String deletePamphlet(@PathVariable("boardNo") int boardNo, HttpServletRequest req, RedirectAttributes ra) {
+-			
+-			int result = service.deleteBoard(boardNo);
+ 			
+-			String message = null;
+-			String path = null;
+ 			
+-			if(result>0) {
+-				message = "삭제 성공";
+-				//path = "../../list/" + boardCode; // 상대경로
+-				path = "/shelter/pamphlet/list/";
+-			}else {
+-				message = "삭제 실패";
+-				path = req.getHeader("referer");
+-			}
+ 			
+-			ra.addFlashAttribute("message", message);
+-			
+-			return "redirect:" + path;
+ 			
+ 		}
+-		
+ 
+ }
+ 

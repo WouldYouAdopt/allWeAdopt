@@ -77,7 +77,7 @@
                         <div class="card-body p-0">
                             <div class="row gx-0">
                                 <!-- 분양소 메인 로고 (클릭 시 최상위 주소) -->
-                                <a href="${contextPath}"><div class="col-lg-6 col-xl-7"><div class="bg-featured-blog" style="background-image: url('https://dummyimage.com/700x350/343a40/6c757d')"><img src="${contextPath}/resources/images/adopt-mainLogo.png" alt="main" style="width: 500"></div></div></a>
+                                <a href="${contextPath}"><div class="col-lg-6 col-xl-7"><div class="bg-featured-blog" style="background-image: url('https://dummyimage.com/700x350/343a40/6c757d')"><img src="${contextPath}/resources/images/adopt-mainLogo.png" alt="main"></div></div></a>
                             </div>
                         </div>
                     </div>
@@ -95,7 +95,7 @@
                     <div class="row gx-5">
 
                     <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn btn-secondary dropdown-toggle btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="true">
                             <strong>시도</strong>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -118,7 +118,7 @@
                             <li><a class="dropdown-item" href="${upr_cd}6500000" role="option" aria-selected="true">제주특별자치도</a></li>
                         </ul>
 
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn btn-secondary dropdown-toggle btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                             <strong>품종</strong>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -205,7 +205,7 @@
                     <c:set var="url" value="?pageNo="/>
 
                     <nav aria-label="Page navigation example">
-                        <ul class="pagination pagination-lg justify-content-center">
+                        <ul class="pagination justify-content-center">
                             <li class="page-item">
                                 <a class="page-link" href="${url}1${sURL}" aria-label="Previous">
                                     <span aria-hidden="true">&laquo;</span>
