@@ -85,4 +85,9 @@
 		SELECT ANIMAL_DETAIL FROM ANIMAL_DB
 		WHERE ANIMAL_TYPE = #{animalType}
 	</select>
+	
+	<!-- DB BOARD_CONTENT 리스트 조회 (스케줄러용) -->
+	<select id="selectDBList" resultType="string">
+		SELECT BOARD_CONTENT FROM BOARD
+	</select>
 </mapper>

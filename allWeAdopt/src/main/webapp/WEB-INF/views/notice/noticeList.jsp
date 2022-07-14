@@ -171,7 +171,7 @@
                                 <li class="page-item"><a class="page-link nav-text-color" href="${url}${pagination.nextPage}">Next</a></li>
 
                                 <c:if test="${loginMember.memberType =='A'}">
-                                    <div style="width:72%"></div>
+                                    <div style="width:70%"></div>
                                     <li><a class="btn btn-primary mx-3 button-pink" href="${contextPath}/admin/notice/write?mode=insert&cp=${pagination.currentPage}">작성</a></li>
                                 </c:if>
 
