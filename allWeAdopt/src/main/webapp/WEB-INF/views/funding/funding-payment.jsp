@@ -66,7 +66,7 @@
 			</div>
 
 <%-- ------------------------------------------------------------------------------------------------------- --%>
-<form action="pay/progress" method="post" onsubmit="return submitValidate()">
+<form action="pay/progress" method="post" id="submitEvent">
 			<div class="container px-5">
 				<div class=" rounded-3 py-5 px-4 px-md-5 mb-5">
 					<div class="row gx-5 justify-content-center fundingPaymentArea">
@@ -231,13 +231,13 @@
 								</div>
 							</div>
 
-							<!-- 결제 버튼 영역 -->
-							<div class="paymentBtnArea">
-								<button type="submit" id="goToPay">결제 하기</button>
-								<button type="button" onclick="requestPayInicis()" >아임포트 테스트 버튼 </button>
-							</div>
-						</div>
-						
+
+
+
+
+
+
+
 						<!-- 펀딩번호 -->
 						<input type="hidden" name="fundingNo" value="${funding.fundingNo}">
 						<!-- 회원번호 -->
@@ -247,10 +247,33 @@
 						
 						
 						<!-- 결제방식 -->
-						<input type="hidden" name="payMethod" id="pay_method" value="1" >
+						<input type="hidden" name="payMethod" id="pay_method" value="" >
 						<!-- 결제번호(PK으로 생성) -->
-						<input type="hidden" name="paymentNo" id="merchant_uid" value="2" >
+						<input type="hidden" name="paymentNo" id="merchant_uid" value="0">
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+							<!-- 결제 버튼 영역 -->
+							<div class="paymentBtnArea">
+								<button type="submit" id="goToPay" onclick="submitValidate()">결제 하기</button>
+								<button type="button" onclick="requestPayInicis()" >아임포트 테스트 버튼 </button>
+							</div>
+						</div>
+						
+					
 						
 						
 </form>
