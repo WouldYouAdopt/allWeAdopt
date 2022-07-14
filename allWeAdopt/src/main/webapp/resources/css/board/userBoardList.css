@@ -105,3 +105,16 @@
 a{
     text-decoration: none;
 }
+
+.row{
+    display: none;
+}
+
+.spinner-area{
+    display: flex;
+    justify-content: center;
+}
+
+.footer-area{
+    display: none;
+}
