@@ -2,6 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 
+
+
+<c:set var="intro" value="쿠키" />
+
 <!DOCTYPE html>
 <html>
 
@@ -69,7 +73,45 @@
             <section class="py-0">
                 <div class="container px-5">
                     <h1 style> ALL WE ADOPT 메인입니당.</h1>
-                      <p>  ${loginMember.memberNo } </p>
+
+                      <c:if test="${ !empty cookie}">
+                            <p>3333333</p>
+                      </c:if>
+                      
+                      <c:if test="${ !empty cookie.intro}">
+                            <p>444444</p>
+                      </c:if>
+
+
+
+                      <c:if test="${ empty cookie.intro.value}">
+                            <p>777777</p>
+                      </c:if>
+
+                      <c:if test="${ !empty cookie.intro.value}">
+                            <p>888888</p>
+                      </c:if>
+
+                      <c:if test="${ cookie.intro.value == intro}">
+                            <p>99999</p>
+                      </c:if>
+
+                      <c:if test="${ cookie.intro.name == 'intro'}">
+                            <p>00000</p>
+                      </c:if>
+
+
+                      <p>"cookie" :  ${cookie} </p>
+
+                      <p>"cookie.intro" : ${cookie.intro} </p>
+
+
+                      <p>"cookie.intro.value" : ${cookie.intro.value} </p>
+
+                      <p>"cookie.intro.value" : ${cookie.intro.name} </p>
+
+
+
                     <%-- <p>${nickname} 1</p>
                     <p>${sessionScope.nickname} 1</p>
                     <p>${userInfo.nickname} 1</p>
