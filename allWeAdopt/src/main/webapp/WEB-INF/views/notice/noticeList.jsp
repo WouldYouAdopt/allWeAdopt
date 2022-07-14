@@ -81,7 +81,7 @@
             <!-- About section two-->
             <section class="py-0">
                 <div class="container px-5 my-1">
-                    <div class="row gx-5 align-items-center">
+                    <div class="row gx-5 align-items-start" style="min-height:468px">
 
                         <c:if test="${empty nList}">
 
@@ -141,8 +141,8 @@
             </section>
            
             <!-- About section two-->
-            <section class="py-3">
-                <div class="container px-4 my-1">
+            <section class="py-0">
+                <div class="container px-4 my-1 mb-5">
 
                     <div class="row gx-5 d-flex">
 
@@ -171,7 +171,8 @@
                                 <li class="page-item"><a class="page-link nav-text-color" href="${url}${pagination.nextPage}">Next</a></li>
 
                                 <c:if test="${loginMember.memberType =='A'}">
-                                    <li><a class="btn btn-primary mx-3 button-pink" href="${contextPath}/admin/notice/write?mode=insert&cp=${pagination.currentPage}">글작성</a></li>
+                                    <div style="width:72%"></div>
+                                    <li><a class="btn btn-primary mx-3 button-pink" href="${contextPath}/admin/notice/write?mode=insert&cp=${pagination.currentPage}">작성</a></li>
                                 </c:if>
 
                             </ul>
