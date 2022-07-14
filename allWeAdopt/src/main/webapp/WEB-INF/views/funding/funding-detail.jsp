@@ -142,7 +142,7 @@
                             </div>
                             </c:if>
 
-                            <c:forEach var="i" begin="0" end="${fn:length(detail.rewardList)}">
+                            <c:forEach var="i" begin="0" end="${fn:length(detail.rewardList)-1}">
                             <div class="reward-box">
 
                                 <div class="reward">

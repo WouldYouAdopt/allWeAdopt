@@ -16,6 +16,12 @@
 		<result property="memberType" 		column="MEMBER_TYPE"/>
 		<result property="secessionFlag" 	column="SECESSION_FL"/>
 	</resultMap>
+	
+	<resultMap type="certification" id="certification">
+		<id property="Email" column="EMAIL"/>
+		<result property="cNumber" 		column="C_NUMBER"/>
+		<result property="issueDate" 	column="ISSUE_DT"/>
+	</resultMap>
    
  
  	<!-- 로그인 -->
@@ -55,7 +61,7 @@
 
 
 	
- 	<!--카카오 로그인시 회원번호 삽 -->
+ 	<!--카카오 로그인시 회원번호 삽입 -->
 	<insert id="insertNo"  parameterType="member" useGeneratedKeys="true">
 	 <selectKey keyProperty="memberNo" resultType="_int" order="BEFORE">
       	SELECT SEQ_BOARD_NO.NEXTVAL FROM DUAL
@@ -73,6 +79,55 @@
 	JOIN MEMBER USING(MEMBER_NO)
 	WHERE MEMBER_NO=#{memberNo}
  	</select>
+ 	
+ 	
+ 	
+ 	<!-- 일치하는 회원 조회 -->
+	<select id="searchCertification" resultType="_int" >
+		SELECT count(EMAIL) FROM CERTIFICATION
+		WHERE EMAIL = #{memberEmail}
+	</select>
+	
+	<!-- 처음인 사람에게 인증번호 부여 insert  -->
+	<insert id="insertCertification" >
+		INSERT INTO CERTIFICATION VALUES(#{memberEmail}, #{cNumber}, SYSDATE)
+	</insert>
+
+	<!-- 처음이 아닌 사람에게 인증번호 업데이트 -->
+	<update id="updateCertification">
+		UPDATE CERTIFICATION SET
+		C_NUMBER = #{cNumber},
+		ISSUE_DT = SYSDATE
+		WHERE EMAIL = #{memberEmail}
+	</update>
+
+
+	<!-- 일치하는 회원 조회 -->
+	<select id="CheckNumber" resultType="_int"   >
+		SELECT 
+		   CASE WHEN (SELECT '1' FROM CERTIFICATION
+		            WHERE EMAIL = #{memberEmail}
+		            AND C_NUMBER = #{cNum})  = 1
+		   
+		      THEN NVL( (SELECT '1' FROM CERTIFICATION
+		            WHERE EMAIL = #{memberEmail}
+		            AND ISSUE_DT + (INTERVAL '5' MINUTE) >= SYSDATE) , '2') 
+		
+		      ELSE '3'	
+		   END			
+		FROM DUAL
+	</select>
+	
+ 	
+ 		
+ 	<!-- 이메일 조회 후 비밀번호 업데이트 -->
+	<update id="changePw" >
+		UPDATE MEMBER SET
+		MEMBER_PW = #{newPw}
+		WHERE MEMBER_EMAIL = #{inputEmail}
+	</update>
+ 
+ 
  
  
 </mapper>

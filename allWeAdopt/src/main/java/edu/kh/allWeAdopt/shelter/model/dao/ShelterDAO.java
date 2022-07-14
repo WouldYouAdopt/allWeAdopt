@@ -73,5 +73,14 @@ public class ShelterDAO {
 	public int updatePamphlet(BoardDetail detail) {
 		return sqlSession.update("pamphletMapper.updatePamphlet", detail);
 	}
+
+
+	/** 전단지 삭제
+	 * @param boardNo
+	 * @return
+	 */
+	public int deletePamphlet(int boardNo) {
+		return sqlSession.update("pamphletMapper.deletePamphlet", boardNo);
+	}
 	
 }

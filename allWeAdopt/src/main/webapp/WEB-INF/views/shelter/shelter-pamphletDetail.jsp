@@ -1,25 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<c:forEach var="shelter" items="${list}">
-    <c:if test="${desertionNo == shelter.desertionNo}">
-        <c:set var="careNm" value="${shelter.careNm}"/>
-        <c:set var="careTel" value="${shelter.careTel}"/>
-        <c:set var="noticeSdt" value="${shelter.noticeSdt}"/>
-        <c:set var="noticeEdt" value="${shelter.noticeEdt}"/>
-        <c:set var="popfile" value="${shelter.popfile}"/>
-        <c:set var="happenDt" value="${shelter.happenDt}"/>
-        <c:set var="happenPlace" value="${shelter.happenPlace}"/>
-        <c:set var="colorCd" value="${shelter.colorCd}"/>
-        <c:set var="age" value="${shelter.age}"/>
-        <c:set var="weight" value="${shelter.weight}"/>
-        <c:set var="processState" value="${shelter.processState}"/>
-        <c:set var="specialMark" value="${shelter.specialMark}"/>
-        <c:set var="careAddr" value="${shelter.careAddr}"/>
-        <c:set var="kindCd" value="${shelter.kindCd}"/>
-        <c:set var="sexCd" value="${shelter.sexCd}"/>
-    </c:if>    
-</c:forEach>
 
 <!DOCTYPE html>
 <html>
@@ -87,7 +68,6 @@
             <jsp:include page="/WEB-INF/views/common/header.jsp" />
             <!-- Navigation-->
 
-            <!-- Page Content-->
             <section class="py-5">
                 <div class="container px-5">
                     <div class="card border-0 shadow rounded-3 overflow-hidden">
@@ -101,15 +81,16 @@
                 </div>
             </section>
 
+
             <section class="py-5">
                 <div class="container px-5 my-5">
                     <div class="row gx-5">
                         <div class="col-lg-3">
                             <div class="d-flex align-items-center mt-lg-5 mb-4">
-                                <img class="img-fluid rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." />
+                                <img class="img-fluid rounded-circle" src="${detail.profileImage}" alt="..." />
                                 <div class="ms-3">
-                                    <div class="fw-bold"></div>
-                                    <div class="text-muted">${detail.phone}</div>
+                                    <div class="fw-bold">${detail.memberName}</div>
+                                    <div class="text-muted">News, Business</div>
                                 </div>
                             </div>
                         </div>
@@ -119,94 +100,48 @@
                                 <!-- Post header-->
                                 <header class="mb-4">
                                     <!-- Post title-->
-                                    <h1 class="fw-bolder mb-1"></h1>
+                                    <h1 class="fw-bolder mb-1">${detail.boardTitle}</h1>
                                     <!-- Post meta content-->
-                                    <div class="text-muted fst-italic mb-2"></div>
-                                    <div class="text-muted fst-italic mb-2"></div>
+                                    <div class="text-muted fst-italic mb-2">${detail.createDate}</div>
                                     <!-- Post categories-->
-                                    <a class="badge bg-secondary text-decoration-none link-light" href="#!">관심동물</a>
+                                    <a class="badge bg-secondary text-decoration-none link-light" href="#!">${detail.phone}</a>
+                                    <%-- <a class="badge bg-secondary text-decoration-none link-light" href="#!">${detail.memberEmail}</a> --%>
                                 </header>
-                                <!-- 유기동물 사진 -->
-                                <figure class="mb-4"><img class="img-fluid rounded" src="" alt="..." /></figure>
+                                <!-- Preview image figure-->
+                                <%-- <figure class="mb-4"><img class="img-fluid rounded" src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="..." /></figure> --%>
                                 <!-- Post content-->
-                                <!-- 나중에 폰트 적용 해보기! -->
                                 <section class="mb-5">
-                                    <%-- <ul class="list-group list-group-flush">
-                                        <li class="fs-5 mb-4 list-group-item" style="list-style-type:none">성별 : ${sexCd}</li>
-                                        <li class="fs-5 mb-4 list-group-item" style="list-style-type:none">색깔 : ${colorCd}</li>
-                                        <li class="fs-5 mb-4 list-group-item" style="list-style-type:none">나이 : ${age}</li>
-                                        <li class="fs-5 mb-4 list-group-item" style="list-style-type:none">무게 : ${weight}</li>
-                                        <li class="fs-5 mb-4 list-group-item" style="list-style-type:none">상태 : ${processState}</li>
-                                        <li class="fs-5 mb-4 list-group-item" style="list-style-type:none">특징 : ${specialMark}</li>
-                                        <li class="fs-5 mb-4 list-group-item" style="list-style-type:none">보호소 주소 : ${careAddr}</li>                                   
-                                    </ul> --%>
-
-                                    <ol class="list-group list-group-numbered">
-                                        <li class="list-group-item d-flex justify-content-between align-items-start">
-                                          <div class="ms-2 me-auto">
-                                            <div class="fw-bold">${detail.boardTitle}</div>
-                                            
-                                          </div>                                       
-                                        </li>
-                                        <li class="list-group-item d-flex justify-content-between align-items-start">
-                                          <div class="ms-2 me-auto">
-                                            <div class="fw-bold">${detail.boardContent}</div>
-                                           
-                                          </div>                                        
-                                        </li>
-                                        <li class="list-group-item d-flex justify-content-between align-items-start">
-                                          <div class="ms-2 me-auto">
-                                            <div class="fw-bold">종류</div>
-                                           
-                                          </div>                                         
-                                        </li>
-                                        <li class="list-group-item d-flex justify-content-between align-items-start">
-                                          <div class="ms-2 me-auto">
-                                            <div class="fw-bold">성별</div>
-                                            
-                                          </div>                                         
-                                        </li>
-                                        <li class="list-group-item d-flex justify-content-between align-items-start">
-                                          <div class="ms-2 me-auto">
-                                            <div class="fw-bold">색깔</div>
-                                            
-                                          </div>                                         
-                                        </li>
-                                        <li class="list-group-item d-flex justify-content-between align-items-start">
-                                          <div class="ms-2 me-auto">
-                                            <div class="fw-bold">나이</div>
-                                           
-                                          </div>                                         
-                                        </li>
-                                        <li class="list-group-item d-flex justify-content-between align-items-start">
-                                          <div class="ms-2 me-auto">
-                                            <div class="fw-bold">무게</div>
-                                            
-                                          </div>                                         
-                                        </li>
-                                        <li class="list-group-item d-flex justify-content-between align-items-start">
-                                          <div class="ms-2 me-auto">
-                                            <div class="fw-bold">상태</div>
-                                            
-                                          </div>                                         
-                                        </li>
-                                        <li class="list-group-item d-flex justify-content-between align-items-start">
-                                          <div class="ms-2 me-auto">
-                                            <div class="fw-bold">특징</div>
-                                           
-                                          </div>                                         
-                                        </li>
-                                        <li class="list-group-item d-flex justify-content-between align-items-start">
-                                          <div class="ms-2 me-auto">
-                                            <div class="fw-bold">보호소 주소</div>
-                                           
-                                          </div>                                         
-                                        </li>
-                                    </ol>
-                                                                                                
+                                    ${detail.boardContent}
                                 </section>
                             </article>
 
+                            <!-- 버튼 영역-->
+                            <div class="board-btn-area">
+                                <c:if test="${loginMember.memberNo == detail.memberNo}">
+                                                                            <!-- detail?type=1&cp=3&no=100 -->
+                                                                            <!-- detail?no=1522&type=2 -->
+                                    <%-- cp가 없을 경우에 대한 처리 --%>
+                                    <c:if test="${empty param.cp}">
+                                        <!-- 파라미터에 cp가 없을 경우 1 -->
+                                        <c:set var="cp" value="1" />
+                                    </c:if>
+
+                                    <c:if test="${!empty param.cp}">
+                                        <!-- 파라미터에 cp가 있을 경우 param.cp -->
+                                        <c:set var="cp" value="${param.cp}" />
+                                    </c:if>
+
+
+                                    <button id="updateBtn" class="btn btn-outline-success" onclick="location.href='../write?mode=update&cp=${cp}&no=${detail.boardNo}'">수정</button>                       
+                                    <button id="deleteBtn" class="btn btn-outline-success">삭제</button>
+                                </c:if>
+
+                                <!-- onclick="history.back();"  뒤로가기 
+                                    history.go(숫자) : 양수(앞으로가기), 음수(뒤로가기)
+                                -->
+                                <button id="goToListBtn" class="btn btn-outline-success">목록으로</button>
+
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -220,11 +155,36 @@
         <!-- Core theme JS-->
         <%-- <script src="js/scripts.js"></script> --%>
 
+            <!-- jQuery 추가 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
+ 
+
+
+    <script>
+        // 댓글 관련 JS 코드에 필요한 값을 전역 변수로 선언
+
+        // jsp 파일 : html, css, js, el, jstl 사용 가능
+        // js  파일 : js
+
+        // 코드 해석 순서  :   EL == JSTL > HTML > JS
+
+        // ** JS 코드에서 EL/JSTL을 작성하게 된다면 반드시 ""를 양쪽에 추가 **
+
+        // 최상위 주소
+        const contextPath = "${contextPath}";
+        
+        // 게시글 번호
+        const boardNo = "${detail.boardNo}"; // "500"
+
+        // 로그인한 회원 번호
+        const loginMemberNo = "${loginMember.memberNo}";
+        // -> 로그인 O  : "10";
+        // -> 로그인 X  : "";  (빈문자열)
+
+    </script>
 
         <script src="${contextPath}/resources/js/shelter.js"></script>
-
-
 
         
     </body>

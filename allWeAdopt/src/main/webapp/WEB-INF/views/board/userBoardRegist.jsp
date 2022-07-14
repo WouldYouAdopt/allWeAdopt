@@ -43,7 +43,7 @@
             <jsp:include page="/WEB-INF/views/common/header.jsp" />
         <div class="container">
             <h4>게시글 작성</h4>
-            <form action="boardRegist" method="post">
+            <form action="boardRegist" method="post" onsubmit="return regist()">
             <!-- 카테고리 선택 메뉴 -->
             <div class="dropdown category-area">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false" name="categoryValue">

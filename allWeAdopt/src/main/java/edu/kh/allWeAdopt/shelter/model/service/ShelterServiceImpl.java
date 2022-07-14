@@ -62,6 +62,15 @@ public class ShelterServiceImpl implements ShelterService {
 	public int updatePamphlet(BoardDetail detail) {
 		return dao.updatePamphlet(detail);
 	}
+
+	
+	// 전단지 삭제
+	@Override
+	public int deleteBoard(int boardNo) {
+		return dao.deletePamphlet(boardNo);
+	}
+	
+	
 	
 	
 	

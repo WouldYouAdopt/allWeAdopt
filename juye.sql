@@ -83,3 +83,50 @@ INSERT INTO CERTIFICATION VALUE(이메일,인증번호,SYSDATE);
 
 -- 인증번호 조회
 SELECT * FROM CERTIFICATION;
+
+
+SELECT count(EMAIL) FROM CERTIFICATION
+WHERE EMAIL = 'rlawndp@hanmail.net';
+
+
+-- 일정시간 지난 후 조회
+--> 인증번호 발급시간 + 5분 == 발급받은지 5분이 지남 == 인증번호 만료
+--> (INTERVAL '숫자' HOUR|MINUTE|SECOND)
+SELECT TO_CHAR(SYSDATE+(INTERVAL '5' MINUTE), 'YYYY-MM-DD HH24:MI:SS')
+FROM DUAL;
+
+-- 발급시간 + 5분 < 현재시간 == 만료 
+--  ex) 17:03 + 5분 == 17:08 < 17:11
+-- 발급시간 + 5분 > 현재시간 == 인증가능시간
+--  ex) 17:03 + 5분 == 17:08 > 17:06
+
+-- NVL(A,B) : A가 NULL이면 B를 반환
+
+ELECT 
+   -- 이메일, 인증번호가 일치하는 행이 있는지를 찾음 -> 있으면 1, 없으면 NULL
+   --> 1이면 THEN 구문 수행  , NULL이면 ELSE 수행
+   CASE WHEN (SELECT '1' FROM CERTIFICATION
+               WHERE EMAIL = 'rlawndp@hanmail.net'
+               AND C_NUMBER = '5FD5O3')  = 1
+   
+      THEN NVL( (SELECT '1' FROM CERTIFICATION
+                  WHERE EMAIL = 'rlawndp@hanmail.net'
+                  AND ISSUE_DT + (INTERVAL '5' MINUTE) >= SYSDATE) , '2') 
+
+      ELSE '3'	
+   END			
+FROM DUAL;
+
+
+SELECT 
+   CASE WHEN (SELECT '1' FROM CERTIFICATION
+            WHERE EMAIL = ?
+            AND C_NUMBER = ?)  = 1
+   
+      THEN NVL( (SELECT '1' FROM CERTIFICATION
+            WHERE EMAIL = ?
+            AND ISSUE_DT + (INTERVAL '5' MINUTE) >= SYSDATE) , '2') 
+
+      ELSE '3'	
+   END			
+FROM DUAL

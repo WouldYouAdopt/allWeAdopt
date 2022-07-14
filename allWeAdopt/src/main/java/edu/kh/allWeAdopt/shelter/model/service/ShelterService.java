@@ -35,5 +35,11 @@ public interface ShelterService {
 	 * @return
 	 */
 	int updatePamphlet(BoardDetail detail);
+ 
+	/** 전단지 삭제
+	 * @param boardNo
+	 * @return
+	 */
+	int deleteBoard(int boardNo);
 
 }

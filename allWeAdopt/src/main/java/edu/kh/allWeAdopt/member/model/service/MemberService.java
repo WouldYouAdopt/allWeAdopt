@@ -76,6 +76,30 @@ public interface MemberService {
 
 
 
+	/** 인증번호를 받은 이메일, 인증번호, 인증번호 발급 시간  -> DB 삽입
+	 * @param inputEmail 
+	 * @param inputEmail
+	 * @param cNumber
+	 * @return
+	 */
+	int insertCertification(Map<String, Object> map);
+
+	
+	
+	/** 이메일 인증번호 체크
+	 * @param map
+	 * @return result
+	 */
+	int CheckNumber(Map<String, Object> map);
+
+
+
+
+	/** 비밀번호 재설
+	 * @param map
+	 * @return
+	 */
+	public abstract int changePw(Map<String, Object> map);
 
 
 

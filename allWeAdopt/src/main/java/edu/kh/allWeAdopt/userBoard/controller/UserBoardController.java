@@ -3,6 +3,12 @@ package edu.kh.allWeAdopt.userBoard.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
@@ -119,11 +125,32 @@ public class UserBoardController {
 	public String userBoardRegist(Board board, Animal animal, Area area,
 			HttpSession session, @RequestParam("neuterings") String neuterings,
 			@RequestParam("genders") String genders,
+			@RequestParam(value="boardPeriod", required = false) String boardPeriod,
+			@RequestParam(value="boardPeriod2", required = false) String boardPeriod2,
 			@ModelAttribute("loginMember") Member loginMember) {
 		int boardNo = 0;
+		
 		board.setMemberNo(loginMember.getMemberNo());
+		
+		if(boardPeriod.equals("")||boardPeriod2.equals("")) {
+			// 현재날짜 값이 비었을 때 설정
+			LocalDate now = LocalDate.now();
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			String formatedNow = now.format(formatter);
+			boardPeriod = formatedNow;
+			board.setBoardPeriod(boardPeriod);
+			
+			Calendar cal = Calendar.getInstance();
+		    cal.setTime(new Date());
+		    DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		    cal.add(Calendar.DATE, +7);
+			boardPeriod2 = df.format(cal.getTime());
+			board.setBoardPeriod2(boardPeriod2);
+		}
+		
 		int result = service.userBoardRegist(board);
 		
+		// 게시글 등록 시 번호 얻어오기
 		if(result > 0) {
 			boardNo = service.getBoardNo();
 			area.setBoardNo(boardNo);
@@ -133,9 +160,11 @@ public class UserBoardController {
 		if(result> 0) {
 			animal.setBoardNo(boardNo);
 			
+			// 성별 설정
 			if(genders.equals("수컷")) animal.setGender('M');
 			else if(genders.equals("암컷"))animal.setGender('W');
 			
+			// 중성화 설정
 			if(neuterings.equals("완료")) animal.setNeutering('Y');
 			else if(neuterings.equals("미완료")) animal.setNeutering('N');
 			
