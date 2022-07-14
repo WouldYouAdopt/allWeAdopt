@@ -107,6 +107,63 @@ public class MemberDAO {
 	}
 
 	
+
+	/** 일치하는 회원조회
+	 * @param map
+	 * @return result
+	 */
+	public int searchCertification(Map<String, Object> map) {
+
+		
+		return sqlSession.selectOne("memberMapper.searchCertification", map);
+	}
+
+	
+	/** 처음인 사람에게 인증번호 부여 insert 
+	 * @param map
+	 * @return result
+	 */
+	public int insertCertification(Map<String, Object> map) {
+		
+		return sqlSession.insert("memberMapper.insertCertification", map);	
+	}
+
+	
+	/** 처음이 아닌 사람에게 인증번호 업데이트
+	 * @param map
+	 * @return result
+	 */
+	public int updateCertification(Map<String, Object> map) {
+		
+		return sqlSession.insert("memberMapper.updateCertification", map);	
+	}
+
+	
+	/**이메일 인증번호 체크
+	 * @param map
+	 * @return
+	 */
+	public int CheckNumber(Map<String, Object> map) {
+		return sqlSession.selectOne("memberMapper.CheckNumber", map);
+	}
+
+
+
+
+	/** 비밀번호 재설정
+	 * @param map
+	 * @return 
+	 */
+	public int changePw(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("memberMapper.changePw", map);
+	}
+
+
+	
+	
+	
+	
 	
 	
 

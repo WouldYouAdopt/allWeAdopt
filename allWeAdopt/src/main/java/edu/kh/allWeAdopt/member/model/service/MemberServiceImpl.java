@@ -191,7 +191,58 @@ public class MemberServiceImpl implements MemberService{
 	
 
 
+	// 인증번호를 받은 이메일, 인증번호, 인증번호 발급 시간  -> DB 삽입
+	@Override
+	public int insertCertification(Map<String, Object> map) {
+		
+		// 1) 입력한 이메일과 일치하는 값이 있는가?
+		int result = dao.searchCertification(map);
+		
+		if( result > 0 ) { // 처음으로 인증번호를 발급.
+			
+			result = dao.updateCertification(map);
+			
+		} else {
+			
+			result = dao.insertCertification(map);
+		}
+		
+		
+		return result;
+	}
 
+	
+	
+	
+	//이메일 인증번호 체크
+	@Override
+	public int CheckNumber(Map<String, Object> map) {
+		
+		
+		
+		return dao.CheckNumber(map);
+	}
+
+
+
+
+	//비밀번호 재설정
+	@Override
+	public int changePw(Map<String, Object> map) {
+		
+		// 1) 이메일로 회원조회
+		
+		// 2)일치하는 회원 비밀번호 재설정(update) 
+		
+		map.put("newPw",  bcrypt.encode( (String)map.get("newPw") )  );
+		// Map에 이미 같은 key가 존재하면
+		// value만 덮어씌움
+
+		return dao.changePw(map);
+	}
+	
+	
+	
 
 	
 
