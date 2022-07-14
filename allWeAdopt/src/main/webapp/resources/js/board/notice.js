@@ -62,9 +62,8 @@ function writeValidate(){
         return false;
     }
 
-    if(note.innerText.trim() == ""){
+    if( note.innerHTML.trim() == "<p><br></p>" && (note.innerText.trim() == "" || note.innerText == "\n" )){
         alert("내용을 입력해주세요");
-        note.innerText = "";
         note.focus();
         return false;
     }

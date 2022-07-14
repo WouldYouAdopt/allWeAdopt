@@ -14,6 +14,7 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.mail.internet.MimeMessage.RecipientType;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -137,6 +138,8 @@ public class MemberController {
 	@PostMapping("/login")
 	public String login(  @ModelAttribute Member inputMember
 					     , RedirectAttributes ra
+					     , HttpServletRequest req
+					     , HttpServletResponse resp 
 					     , Model model) {
 		
 		     
@@ -154,6 +157,7 @@ public class MemberController {
 			model.addAttribute("loginMember", loginMember);
 			
 			logger.info("로그인 기능 수행됨");
+			
 			
 		} else {
 			

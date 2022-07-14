@@ -87,10 +87,26 @@
                     <div class="row gx-5">
                         <div class="col-lg-3">
                             <div class="d-flex align-items-center mt-lg-5 mb-4">
-                                <img class="img-fluid rounded-circle" src="${detail.profileImage}" alt="..." />
+
+                                    <%-- 프로필 이미지 --%>
+                                    <c:if test="${empty loginMember.profileImage }">
+                                            <img src="${contextPath}/resources/images/user.png" id="member-profile" style="width : 35px; height : 35px; ">	
+                                    </c:if>     
+
+                                    <c:if test="${!empty loginMember.profileImage && loginMember.memberType == 'K'}">
+                                            <img src="${loginMember.profileImage}" id="member-profile" style="width : 35px; height : 35px; border:0.5px solid #ccc; border-radius:50%;">
+                                    </c:if>
+
+                                    <%-- 사용자 설정 프로필이미지 --%>
+                                    <c:if test="${!empty loginMember.profileImage && loginMember.memberType == 'M'}">
+                                            <img src="${contextPath}/${loginMember.profileImage}" id="member-profile" style="width : 35px; height : 35px; ">
+                                    </c:if>
+
+                                <%-- <img class="img-fluid rounded-circle" src="${detail.profileImage}" alt="..." /> --%>
+
                                 <div class="ms-3">
-                                    <div class="fw-bold">${detail.memberName}</div>
-                                    <div class="text-muted">News, Business</div>
+                                    <div class="fw-bold">이름 : ${detail.memberName}</div>
+                                    <div class="text-muted">고민</div>
                                 </div>
                             </div>
                         </div>
@@ -100,20 +116,26 @@
                                 <!-- Post header-->
                                 <header class="mb-4">
                                     <!-- Post title-->
-                                    <h1 class="fw-bolder mb-1">${detail.boardTitle}</h1>
+                                    <h1 class="fw-bolder mb-1">제목 : ${detail.boardTitle}</h1>
                                     <!-- Post meta content-->
-                                    <div class="text-muted fst-italic mb-2">${detail.createDate}</div>
+                                    <div class="text-muted fst-italic mb-2">작성일 : ${detail.createDate}</div>
+
+                                    <c:if test="${detail.createDate != detail.updateDate}">
+                                        <div class="text-muted fst-italic mb-2">수정일 : ${detail.updateDate}</div>
+                                    </c:if>
                                     <!-- Post categories-->
-                                    <a class="badge bg-secondary text-decoration-none link-light" href="#!">${detail.phone}</a>
+                                    <a class="badge bg-secondary text-decoration-none link-light" href="#!">관심 등록</a>
                                     <%-- <a class="badge bg-secondary text-decoration-none link-light" href="#!">${detail.memberEmail}</a> --%>
                                 </header>
                                 <!-- Preview image figure-->
                                 <%-- <figure class="mb-4"><img class="img-fluid rounded" src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="..." /></figure> --%>
                                 <!-- Post content-->
                                 <section class="mb-5">
-                                    ${detail.boardContent}
+                                    <h3>${detail.boardContent}<h3>
                                 </section>
                             </article>
+
+                            <jsp:include page="/WEB-INF/views/shelter/shelterReply.jsp"/>
 
                             <!-- 버튼 영역-->
                             <div class="board-btn-area">

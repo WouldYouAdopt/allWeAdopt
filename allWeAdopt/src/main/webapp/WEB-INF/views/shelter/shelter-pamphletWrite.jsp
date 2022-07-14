@@ -124,7 +124,7 @@
         <script>
             $(document).ready(function() {
                 $('#summernote').summernote({
-                    placeholder: '내용.',
+                    placeholder: '인적사항, 실종날짜, 실종장소를 상세히 적어주세요',
                     tabsize: 2,
                     height: 350,
                     toolbar: [

@@ -29,7 +29,7 @@ public class SummerNoteController {
 							   HttpServletRequest req ) throws IOException{
 		
 		// 폴더 경로
-		String filePath = "/resources/images/board/";
+		String filePath = "/resources/images/summernote/";
 		
 		// 실제 경로
 		String folderPath = req.getSession().getServletContext().getRealPath(filePath);

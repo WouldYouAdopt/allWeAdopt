@@ -19,12 +19,26 @@
 
 --%>
 
+
+
+
+
+
     <c:choose>
        <c:when test="${ loginMember.memberType == 'A' }"> 
 			<jsp:forward page="admin/main"/>
        </c:when>
 
        <c:otherwise>
-			<jsp:forward page="main"/>
+	   
+			<c:if test="${ !empty cookie.intro.name}">
+				<jsp:forward page="main"/>
+			</c:if>
+			<c:if test="${ empty cookie.intro.name}">
+				<jsp:forward page="intro"/>
+			</c:if>
+				
+			
         </c:otherwise>
     </c:choose>
+
