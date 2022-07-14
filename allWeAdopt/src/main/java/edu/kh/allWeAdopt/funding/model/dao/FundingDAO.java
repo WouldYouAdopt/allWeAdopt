@@ -112,7 +112,7 @@ public class FundingDAO {
 		return sqlSession.selectOne("fundingMapper.selectFundingSaleZero",fundingNo);
 	}
 	
-	/** 리워드+ 별 판매수량, 판매금액 조회
+	/** 리워드 + 리워드별 판매수량, 판매금액 조회
 	 * @param rewardList
 	 * @return
 	 */
@@ -121,7 +121,7 @@ public class FundingDAO {
 	}
 	
 
-	/** 리워드별 판매수량, 판매금액 조회
+	/** 리워드별 판매수량, 판매금액 만
 	 * @param fundingNo
 	 * @return
 	 */
