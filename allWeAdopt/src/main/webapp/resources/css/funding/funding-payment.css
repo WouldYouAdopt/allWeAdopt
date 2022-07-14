@@ -51,7 +51,7 @@
     list-style: none;
     background-color: #ddd;
     border-radius: 5px ;
-    height: 350px;
+    height: 380px;
 }
 
 
@@ -95,7 +95,7 @@
 }
 /* -------------------------------------------------- */
 .parcelInfo>.inputArea{
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .parcelInfo input:nth-child(1){
@@ -109,10 +109,12 @@
     border: 1px solid #FB836b;
     border-radius: 3px;
 }
+#postCodeArea{
+    display: flex;
+}
 #findPostcode{
-    width: 100%;
+    width: 50%;
     height: 30px;
-    display:inline-block;
     border: 1px solid #FB836b;
     background-color: white;
     margin-bottom: 5px;
@@ -121,13 +123,14 @@
     background-color: #FB836b;
     color: white;
 }
-
-/* 주소정보 들어오는 곳 */
-#addressInfo{
-    height: 40px;
-    width: 100%;
-    background-color: #ddd !important;
-    color: black;
+#postCode{
+    width: 45%;
+    height: 30px;
+    padding-left: 4px;
+    margin-left: 5px;
+}
+#detailAddress:focus{
+    outline-color: #f7a797;
 }
 
 .paymentMeans span{

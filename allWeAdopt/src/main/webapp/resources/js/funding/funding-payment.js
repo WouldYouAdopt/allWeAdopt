@@ -3,51 +3,26 @@
 const checkObj = {
   "inputrecipient": false,
   "inputTelMain": false,
-  "inputAddress": false,
-  "checkedPayMethod": false,
-  "agree": false
+  "postCode": false,
+  "address": false,
+  "PIA": false,
+  "LRA": false
 };
 
-
-
-function execDaumPostcode() {
+function DaumPostcode() {
   new daum.Postcode({
     oncomplete: function (data) {
-      // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
-      // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
-      // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-      var roadAddr = data.roadAddress; // 도로명 주소 변수
-      var extraRoadAddr = ''; // 참고 항목 변수
-
-      // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-      // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-      if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+    var roadAddr = data.roadAddress; // 도로명 주소 변수
+    var extraRoadAddr = ''; // 참고 항목 변수
+    if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
         extraRoadAddr += data.bname;
       }
-      // 건물명이 있고, 공동주택일 경우 추가한다.
-      if (data.buildingName !== '' && data.apartment === 'Y') {
-        extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-      }
-      // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-      if (extraRoadAddr !== '') {
-        extraRoadAddr = ' (' + extraRoadAddr + ')';
-      }
-
-      // 우편번호와 주소 정보를 해당 필드에 넣는다.
       let addr;
-      addr = "(" + data.zonecode + ")";
-      addr += roadAddr;
-
-      const p = document.createElement('p');
-      p.classList.add('badge');
-      p.classList.add('bg-primary');
-      p.classList.add('text-wrap');
-      p.setAttribute('id', 'addressInfo');
-      p.innerText = addr;
-      console.log(addr);
-      document.getElementById('findPostcode').after(p);
-      document.getElementById('address').setAttribute('value', addr)
+      document.getElementById("postCode").value = data.zonecode ;
+      document.getElementById("Address").value = roadAddr ;
+      document.getElementById("detailAddress").focus();
+      checkObj.postCode = true;
+      checkObj.address = true;
     }
   }).open();
 }
@@ -64,10 +39,9 @@ function execDaumPostcode() {
   const inputName = document.getElementById("inputName");
   const inputTelMain = document.getElementById("inputTelMain");
   const inputTelSub = document.getElementById("inputTelSub");
-  const address = document.getElementById("address");
+  const postCode = document.getElementById("postCode");
+  const address = document.getElementById("Address");
   const detailAddress = document.getElementById("detailAddress");
-
-  const backUp = document.getElementsByClassName("inputArea")[0].innerHTML;
 
   //이전 배송지
   prevDestination.addEventListener("change", function () {
@@ -75,17 +49,26 @@ function execDaumPostcode() {
 
     inputName.value = prevOrder.recipient;
     inputTelMain.value = prevOrder.orderPhoneMain;
-    if (prevOrder.orderPhoneSub != null) {
+    if (prevOrder.orderPhoneSub != '') {
       inputTelSub.value = prevOrder.orderPhoneSub;
     }
-    address.value = prevOrder.orderAddress;
-    detailAddress.value = prevOrder.orderAddress;
+    
+    const addr = prevOrder.orderAddress.split(",,");
+ 
+    if (addr.length >= 2){
+      postCode.value=addr[0];
+      address.value=addr[1];
+      detailAddress.value=addr[2];
+
+     checkObj.postCode = true;
+    checkObj.address = true;
+    }
 
 
     checkObj.inputrecipient = true;
     checkObj.inputTelMain = true;
-    checkObj.inputAddress = true;
-
+    
+    
   })
 
   //신규 배송지
@@ -94,12 +77,15 @@ function execDaumPostcode() {
     inputName.value = "";
     inputTelMain.value = "";
     inputTelSub.value = "";
+    
+    postCode.value="";
     address.value = "";
     detailAddress.value = "";
 
     checkObj.inputrecipient = false;
     checkObj.inputTelMain = false;
-    checkObj.inputAddress = false;
+    checkObj.postCode = false;
+    checkObj.address = false;
   })
 
   //서포터 정보와 동일
@@ -108,29 +94,177 @@ function execDaumPostcode() {
     inputName.value = supportName;
     inputTelMain.value = supportTel;
     inputTelSub.value = "";
-    address.value = supportAddress;
-    detailAddress.value = supportAddress;
 
+
+    const addr = supportAddress.split(",,");
+ 
+    if (addr.length >=2 ||addr!=''){
+      postCode.value=addr[0];
+      address.value=addr[1];
+      detailAddress.value=addr[2];
+      checkObj.postCode = true;
+      checkObj.address = true;
+    }
 
     checkObj.inputrecipient = true;
 
-    if (inputTelMain != '') {
-      checkObj.inputTelMain = true;
-    }
-    if (supportAddress != '') {
-      checkObj.inputAddress = true;
-    }
+    if (inputTelMain != '') {      checkObj.inputTelMain = true;    }
+    else{checkObj.inputTelMain = false;}
 
+    if (supportAddress != '') {       
+      checkObj.postCode = true;
+      checkObj.address = true;  
+    }
+    else{
+      checkObj.postCode = false;
+      checkObj.address = false;}
   })
 
-})()
+
+  //이름 , 번호, 주소 변경 이벤트시 checkObj값 변경
+//이름
+  $('#inputName').change(function(){
+    if(this.value.trim().length==0){              checkObj.inputName = false;    }
+    else{      checkObj.inputName = true;    }
+  })
+
+//번호
+  $('#inputTelMain').change(function(){
+    if(this.value.trim().length==0){              checkObj.inputTelMain = false;    }
+    else{      checkObj.inputTelMain = true;    }
+  })
+
+//주소
+$('#postCode').change(function(){
+  if(this.value.trim().length==0){         checkObj.inputAddress = false;    }
+  else{      checkObj.inputAddress = true;    }
+})
+
+  
+
+})();
 
 
 
 
-$('')
+//정보 제공 동의 
+(function(){
+  const PIA = document.getElementById("PIA");
+  const LRA = document.getElementById("LRA");
+  //모두 동의용 이벤트 
+  document.getElementById("allAgree").addEventListener("change",function(){
+    //let checked = true; //== 1: true으로 사용 가능
+    let checked = document.getElementById('allAgree').checked;
+
+    if(checked){
+      PIA.checked = true;
+      LRA.checked = true;
+      checkObj.PIA = true;
+      checkObj.LRA = true;
+    }
+    if(!checked){
+      PIA.checked = false;
+      LRA.checked = false;
+      checkObj.PIA = false;
+      checkObj.LRA = false;
+    }
+  })
+  //각각 체크되었을 경우 checkedObj에 추가하는 이벤트
+  document.getElementById("PIA").addEventListener("change",function(){
+    checkObj.PIA = document.getElementById('PIA').checked;
+  })
+  
+  document.getElementById("LRA").addEventListener("change",function(){
+    checkObj.LRA = document.getElementById('LRA').checked;
+  })
+})();
 
 
 
+//onsubmit 함수
+
+//결제방식 체크된 경우 true false 반환 
+//$('.payment').is(':checked')
+
+
+
+
+
+function submitValidate(){
+
+  //결제정보 테스트
+    if(!$('.payment').is(':checked')){
+      alert("결제정보를 선택해주세요");
+      return false;
+    }
+
+
+    for(let i in checkObj){
+        if(!checkObj[i]){
+          alert("필수 입력 값이 입력되지 않았습니다 ("+i+" )");
+          return false;
+        }
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* 아임포트 동의*/
+
+function requestPay() {
+  IMP.init("{imp13427583}");
+  
+  IMP.request_pay({ 
+      
+      // 파라미터 찾아보기
+      // https://docs.iamport.kr/sdk/javascript-sdk?lang=ko#request_pay
+
+      //------------------------------------------------------------------
+      // pg: "kakaopay",
+      // pay_method: "kakaopay", //결제수단 
+      // merchant_uid: "TC0ONETIME",
+      // name: "노르웨이 회전 의자",
+      // amount: 100, //TC0ONETIME
+      // //주문자 정보 ---------------------------------
+      // buyer_email: "gildong@gmail.com",
+      // buyer_name: "홍길동",
+      // buyer_tel: "010-4242-4242",
+      // buyer_addr: "서울특별시 강남구 신사동",
+      // buyer_postcode: "01181"
+      //------------------------------------------------------------------
+
+      pg : 'kakaopay',
+      pay_method : 'card', //생략 가능
+      merchant_uid: "order_no_0001", // 상점에서 관리하는 주문 번호
+      name : '주문명:결제테스트',
+      amount : 14000,
+      buyer_email : 'iamport@siot.do',
+      buyer_name : '구매자이름',
+      buyer_tel : '010-1234-5678',
+      buyer_addr : '서울특별시 강남구 삼성동',
+      buyer_postcode : '123-456'
+
+  }, function (rsp) { 
+
+    console.log(rsp);
+      // if (rsp.success) {
+      //     console.log("결제 성공!!!!!!!!!!!!!");
+      //   } else {
+      //   console.log("결제 실패ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ");        
+      // }
+
+      
+  });
+}
 
 

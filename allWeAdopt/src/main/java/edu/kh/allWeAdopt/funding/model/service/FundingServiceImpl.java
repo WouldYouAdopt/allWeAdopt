@@ -67,14 +67,6 @@ public class FundingServiceImpl implements FundingService {
 	}
 
 
-	
-	
-	// 이건뭐지 
-	private int Integer(String targetDonation) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 
 
 	//자신의 펀딩 목록 조회
@@ -112,7 +104,7 @@ public class FundingServiceImpl implements FundingService {
 
 
 	
-	/**리워드 선택후 결제 페이지로 넘어가기 위한 Service
+	/**[김현기]리워드 선택후 결제 페이지로 넘어가기 위한 Service
 	 *
 	 */
 	@Override
@@ -121,7 +113,7 @@ public class FundingServiceImpl implements FundingService {
 		//1) DB에서 리워드목록을 조회해 해오기
 		int fundingNo = Integer.parseInt((String) paramMap.get("fundingNo"));
 			//DB에 있는 리워드들을 가져오는 리스트
-		List<Reward> rewardList = dao.selectRewardList(fundingNo);
+		List<Reward> rewardList = dao.selectOnlyRewardList(fundingNo);
 			//실제 선택된 리워드들을 저장하는 리스트
 		List<Reward> selectedList = new ArrayList<Reward>();
 		
