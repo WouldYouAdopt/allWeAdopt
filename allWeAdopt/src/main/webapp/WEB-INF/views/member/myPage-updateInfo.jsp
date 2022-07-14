@@ -81,23 +81,56 @@
                                     </div>
                                     <div id="nameMsg" class="form-floating validate-area"></div>
 
+                                    <!-- 회원정보에 전화번호가 있는 경우 -->
+                                    <c:if test="${!empty loginMember.memberTel}">
 
-                                    <!-- 전화번호 -->
-                                    <div class="form-floating mb-3 confirm-area">
-                                        <input class="form-control" name="memberTel" id="memberTel" type="tel"  value="${loginMember.memberTel}" />
-                                        <label for="memberTel"><span>* </span>휴대폰 번호(-제외) </label>
-                                        <div class="spaceArea confirmBtnArea">
-                                            <button id="confirmBtn">인증</button>
+                                        <!-- 전화번호 -->
+                                        <div class="form-floating mb-3 confirm-area">
+                                            <input class="form-control" id="currTel" type="tel"  value="${loginMember.memberTel}" readonly/>
+                                            <label for="currTel"><span>* </span>휴대폰 번호<span>(인증 완료)</span></label>
+                                            <div class="spaceArea confirmBtnArea">
+                                                <button id="changeBtn" type="button">변경</button>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <!-- 인증번호-->
-                                    <div class="form-floating mb-2 confirm-area">
-                                        <input class="form-control" id="number" type="tel"  />
-                                        <label for="number"><span>* </span>인증번호</label>
-                                    </div>
-                                    <div id="telMsg" class="form-floating validate-area"></div>
-                                    
+                                        <!-- 전화번호 -->
+                                        <div class="form-floating mb-3 confirm-area none" id="telBox">
+                                            <input class="form-control" name="memberTel" id="memberTel" type="tel" />
+                                            <label for="memberTel" id="newTel"><span>*</span>휴대폰 번호(-제외) </label>
+                                            <div class="spaceArea confirmBtnArea">
+                                                <button id="confirmBtn" type="button">인증</button>
+                                            </div>
+                                        </div>
+
+                                        <!-- 인증번호-->
+                                        <div class="form-floating mb-2 confirm-area none" id="numBox">
+                                            <input class="form-control" id="number" type="tel"  />
+                                            <label for="number"><span>* </span>인증번호</label>
+                                        </div>
+                                        <div id="telMsg" class="form-floating validate-area"></div>
+                                        
+                                    </c:if>
+
+                                    <!-- 회원정보에 전화번호가 없는 경우 (카카오 로그인 후 번호 인증 이력 없는 경우) -->
+                                    <c:if test="${empty loginMember.memberTel}">
+
+                                        <!-- 전화번호 -->
+                                        <div class="form-floating mb-3 confirm-area" id="telBox">
+                                            <input class="form-control" name="memberTel" id="memberTel" type="tel" />
+                                            <label for="memberTel" id="newTel"><span>*</span>휴대폰 번호(-제외) </label>
+                                            <div class="spaceArea confirmBtnArea">
+                                                <button id="confirmBtn" type="button">인증</button>
+                                            </div>
+                                        </div>
+
+                                        <!-- 인증번호-->
+                                        <div class="form-floating mb-2 confirm-area" id="numBox">
+                                            <input class="form-control" id="number" type="tel"  />
+                                            <label for="number"><span>* </span>인증번호</label>
+                                        </div>
+                                        <div id="telMsg" class="form-floating validate-area"></div>
+
+                                    </c:if>                                    
 
                                     <!-- 주소 -->			<!--  fn:split(문자열, '구분자')  -->
 					                <c:set var="addr"  value="${fn:split(loginMember.memberAddress, ',,')}"  />    
@@ -140,16 +173,16 @@
                                         </div>
                                         <div class="imageBtnArea">
 
-                                            <c:if test="${!empty loginMember.profileImage && loginMember.memberType == 'M'}">
-                                                <input id="profileImage" type="file" name="uploadImage" accept="image/*">
+                                            <c:if test="${loginMember.memberType == 'M'}">
+                                                <input id="profileImage" type="file" name="uploadImage" accept="image/*" >
                                                 <label for="profileImage">수정</label>
                                                 <input type="hidden" id="deleteImage" name="deleteImage" value="0">
                                                 <label for="deleteImage" id="del">삭제</label>
                                             </c:if>
 
-                                            <c:if test="${!empty loginMember.profileImage && loginMember.memberType == 'K'}">
-                                                <input id="profileImage" type="text" name="uploadImage" accept="image/*">
-                                                <label for="profileImage" id="gray">수정</label>
+                                            <c:if test="${loginMember.memberType == 'K'}">
+                                                <input id="profileImage" type="file" name="uploadImage" accept="image/*">
+                                                <label id="gray">수정</label>
                                                 <input type="hidden" id="deleteImage" name="deleteImage" value="0">
                                                 <label for="deleteImage" id="gray">삭제</label>
                                             </c:if>
@@ -220,6 +253,9 @@
             </c:if>
             
         </script>
+        
+        <!-- jQuery 라이브러리 추가(CDN) -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
