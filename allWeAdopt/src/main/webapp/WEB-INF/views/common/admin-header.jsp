@@ -12,7 +12,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto  my-2 mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link" href="${contextPath}/board/shelter/list">게시판 관리</a></li>
-                    <li class="nav-item"><a class="nav-link" href="${contextPath}/funding/list">펀딩 관리</a></li>
+                    <li class="nav-item"><a class="nav-link" href="${contextPath}/admin/funding/management">펀딩 관리</a></li>
                     <li class="nav-item"><a class="nav-link" href="${contextPath}/ask/list">문의 관리</a></li>
                     <li class="nav-item"><a class="nav-link" href="${contextPath}/admin/notice/list">공지 관리</a></li>
                                  

@@ -14,22 +14,34 @@
         <title>펀딩 관리 : ALL WE ADOPT</title>
         
         <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="${contextPath}/resources/assets/올위어답터.ico" />
+
+        <!-- main css -->
+        <link rel="stylesheet" href="${contextPath}/resources/css/main-style.css">
+
+        <!-- 폰트어썸 (폰트)-->
+        <script src="https://kit.fontawesome.com/e4f51ae88c.js" crossorigin="anonymous"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Dongle&family=Gowun+Batang&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="${contextPath}/resources/css/styles.css" rel="stylesheet" />
         <link href="${contextPath}/resources/css/funding/funding-list.css" rel="stylesheet" />
  
-        <!-- 폰트어썸 연결 -->
-        <script src="https://kit.fontawesome.com/ea629e8085.js" crossorigin="anonymous"></script>
        </head>
     <body class="d-flex flex-column">
         <main class="flex-shrink-0">
             <!-- Navigation-->
 
   
-	        <jsp:include page="/WEB-INF/views/common/admin-header.jsp" />
+	        <!-- 헤더 -->
+            <c:if test="${loginMember.memberType =='A'}">
+                <jsp:include page="/WEB-INF/views/common/admin-header.jsp" />
+            </c:if>
 
     <!-- --------------------------------------------헤더 영역 끝-------------------------------------------- -->
             <section class="py-4">
@@ -67,11 +79,37 @@
                               </div>
 
                           </div>
-                          <!-- 진행 예정 펀딩 펀딩 -->
-                          <div id="scheduleFunding" >
-                            <h2 class="h3 fw-bolder">진행 예정 펀딩</h2>
                           
-                            <table class="table scheduleFundingTable">
+                          <!-- 진행 예정 펀딩 펀딩 -->
+                          
+                          <div class="my-5">
+                            <h2 class="h3 fw-bolder">진행 예정 펀딩</h2>
+                            
+                            <div class="d-flex justify-content-between">
+                            
+                            	<div class="fundingInfoS">
+	                            	<div class="fundingImgS" style="background:url('${contextPath}/resources/images/fundingThumbnail/funding_sample5.png') 50% 0; background-size:cover;">
+	                            		<div class="textS">2022/08</div>
+	                            	</div>
+	                            	<div class="infoS">[카테고리] 제목은 떠야지</div>
+                            	</div>
+                            	
+                            	<div class="fundingInfoS">
+	                            	<div class="fundingImgS" style="background:url('${contextPath}/resources/images/fundingThumbnail/funding_sample4.png') 50% 0; background-size:cover;">
+	                            		<div class="textS">2022/09</div>
+	                            	</div>
+	                            	<div class="infoS">[카테고리] 제목은 떠야지</div>
+                            	</div>
+                            	
+                            	<div class="fundingInfoS">
+	                            	<div class="fundingImgS registBtn">
+	                            		<div class="textS">2022/10</div>
+	                            	</div>
+	                            	<div class="infoS">마우스오버시 [등록하기]로 바뀌기 js에서</div>
+	                            	
+                            </div>
+                           
+                            <!-- <table class="table scheduleFundingTable">
                               <thead>
                                 <tr>
                                   <th scope="col">펀딩 번호</th>
@@ -97,9 +135,9 @@
                                   <td>7,540,000 WON</td>
                                 </tr>
                               </tbody>
-                            </table>
+                            </table> -->
                             
-                            <div class="paginationArea">
+                            <!-- <div class="paginationArea">
                               <ul class="pagination pagination-sm">
                                 <li class="page-item active" aria-current="page">
                                   <span class="page-link">1</span>
@@ -107,10 +145,14 @@
                                 <li class="page-item"><a class="page-link" href="#">2</a></li>
                                 <li class="page-item"><a class="page-link" href="#">3</a></li>
                               </ul>
-                            </div>
+                            </div> -->
                           </div>
+                        </div>
 
-                          <!-- 종료된 펀딩 -->
+
+
+                        <!-- 종료된 펀딩 -->
+                        <div id="scheduleFunding" >
                           <div id="endedFunding" >
                             <h2 class="h3 fw-bolder">종료된 펀딩</h2>
 
