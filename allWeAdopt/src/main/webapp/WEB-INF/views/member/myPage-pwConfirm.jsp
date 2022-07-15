@@ -32,6 +32,9 @@
         <!-- myPage-updateInfo.css-->
         <link rel="stylesheet" href="${contextPath}/resources/css/myPage-updateInfo.css">
 
+        <!-- sweetalert-->
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
         <style>
              .button-pink{
                 background-color: rgb(251, 131, 107);

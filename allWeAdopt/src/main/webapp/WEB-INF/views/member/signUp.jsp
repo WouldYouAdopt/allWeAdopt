@@ -32,6 +32,9 @@
         <!-- signUp css -->
         <link rel="stylesheet" href="${contextPath}/resources/css/signUp-style.css">
 
+        <!-- sweetalert-->
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     </head>
     <body class="d-flex flex-column">
 
