@@ -145,6 +145,9 @@
 					
 					<div class="row gx-5">
                     <c:forEach var="i" begin="0" end="${fn:length(map.rewardList)-1}">
+
+
+					
 						<!-- 리워드-->
 						<div class="col-lg-6 col-xl-4 mb-5">
 							<div class="card mb-5 mb-xl-0">
@@ -175,10 +178,10 @@
 											<span class="order-count">총 ${map.rewardListCount[i].rewardOrderAmount}개 펀딩 완료</span>
 										</c:if>
 									</div>
+
+									<div class="d-grid"><p class="rewardSelectBtn lineBtn-gr rewardSelectBtn  selected">리워드 선택</p></div>
 									
-									<div class="d-grid"><p class="rewardSelectBtn lineBtn-gr rewardSelectBtn">리워드 선택</p></div>
-								
-									<input type="number" name="${map.rewardList[i].rewardNo}" value="0" style="width:60px;" class="rewardCount">
+									<input type="number" name="${map.rewardList[i].rewardNo}" value="1" style="width:60px;" class="rewardCount">
 								
 								</div>
 							</div>
@@ -223,7 +226,7 @@
 						
 						
 						<div class="text-center mt-5 fs-5">우리아이 시원하게 여름 쿨매트에 <span id="payPrice">0</span>원을 펀딩합니다.</div>
-
+						
 
 
 

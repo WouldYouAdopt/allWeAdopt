@@ -183,6 +183,7 @@
         <!-- Core theme JS-->
         <script src="${contextPath}/resources/js/scripts.js"></script>
         <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+          <script src="${contextPath}/resources/js/funding/funding-delivery.js"></script>
   
     </body>
     

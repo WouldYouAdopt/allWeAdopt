@@ -16,7 +16,7 @@
 /* 펀딩 상단 이미지. */
 .fundingTitleBox{
     width: 100%;
-    height: 150px;
+    height: 170px;
     margin: 0;
     position: relative;
     overflow: hidden;
@@ -46,9 +46,7 @@
 }
 
 /* -------------------------------------------------------------------------------------------------------- */
-.fundingList{
-    /* min-height: 700px; */
-}
+
 
 .fundingList th,td{
     text-align: center;
@@ -84,4 +82,9 @@
 }
 .pagination-area *:hover{
     color: #FB836b;
+}
+
+
+table{
+    border: 3px solid red;
 }
