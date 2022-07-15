@@ -367,7 +367,11 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-	
+	@GetMapping("/requestAdmin")
+	public String requestAdmin() {
+		
+		return null;
+	}
 	
 	
 }
