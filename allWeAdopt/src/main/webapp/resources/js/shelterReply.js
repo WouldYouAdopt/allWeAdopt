@@ -139,13 +139,29 @@ addReply.addEventListener("click", function(){ // 댓글 등록 버튼이 클릭
 
     // 1) 로그인이 되어있나? -> 전역변수 loginMemberNo 이용
     if(loginMemberNo == ""){ // 로그인 X
-        alert("로그인 후 이용해주세요.");
+        // alert("로그인 후 이용해주세요.");
+        Swal.fire({
+            title: '로그인 후 이용해주세요!!!!',
+            width: 350,
+            padding: '3em',
+            color: 'black',
+            confirmButtonColor: 'rgb(251, 131, 107)',
+            confirmButtonText: '확인'
+            });
         return;
     }
 
     // 2) 댓글 내용이 작성되어있나?
     if(replyContent.value.trim().length == 0){ // 미작성인 경우
-        alert("댓글을 작성한 후 버튼을 클릭해주세요.");
+        // alert("댓글을 작성한 후 버튼을 클릭해주세요.");
+        Swal.fire({
+            title: '댓글을 작성한 후 버튼을 클릭해주세요!!!!',
+            width: 350,
+            padding: '3em',
+            color: 'black',
+            confirmButtonColor: 'rgb(251, 131, 107)',
+            confirmButtonText: '확인'
+            });
 
         replyContent.value = ""; // 띄어쓰기, 개행문자 제거
         replyContent.focus();
@@ -162,7 +178,15 @@ addReply.addEventListener("click", function(){ // 댓글 등록 버튼이 클릭
         success : function(result){
 
             if(result > 0){ // 등록 성공
-                alert("댓글이 등록되었습니다.");
+                // alert("댓글이 등록되었습니다.");
+                Swal.fire({
+                    title: '댓글이 등록되었습니다!!!',
+                    width: 350,
+                    padding: '3em',
+                    color: 'black',
+                    confirmButtonColor: 'rgb(251, 131, 107)',
+                    confirmButtonText: '확인'
+                    });
 
                 replyContent.value = ""; // 작성했던 댓글 삭제
 
@@ -170,7 +194,15 @@ addReply.addEventListener("click", function(){ // 댓글 등록 버튼이 클릭
                 // -> 새로운 댓글이 추가되어짐
 
             } else { // 실패
-                alert("댓글 등록에 실패했습니다...");
+                // alert("댓글 등록에 실패했습니다...");
+                Swal.fire({
+                    title: '댓글 등록 실패!!!',
+                    width: 350,
+                    padding: '3em',
+                    color: 'black',
+                    confirmButtonColor: 'rgb(251, 131, 107)',
+                    confirmButtonText: '확인'
+                    });
             }
 
         },
@@ -188,40 +220,112 @@ addReply.addEventListener("click", function(){ // 댓글 등록 버튼이 클릭
 // 댓글 삭제
 function deleteReply(replyNo){
 
-    if( confirm("정말로 삭제 하시겠습니까?") ){
-
-        // 요청주소 : /community/reply/delete
-        // 파라미터 : key : "replyNo",  value : 매개변수 replyNo
-        // 전달 방식 : "GET"
-        // success : 삭제 성공 시 -> "삭제되었습니다"   alert로 출력
-        //                           댓글 목록 조회 함수 호출
-
-        //           삭제 실패 시 -> "삭제 실패"        alert로 출력
-
-        // error : 앞 error 코드 참고
-
-        // DB에서 댓글 삭제 ==>   REPLY_ST = 'Y' 변경
-
-        $.ajax({
-            url : contextPath + "/pamphlet/reply/delete",
-            data : {"replyNo" : replyNo},
-            type : "GET",
-            success: function(result){
-                if(result > 0){
-                    alert("삭제되었습니다");
-                    selectReplyList(); // 목록을 다시 조회해서 삭제된 글을 제거
-                }else{
-                    alert("삭제 실패");
-                }
-            },
-
-            error : function(req, status, error){
-                console.log("댓글 삭제 실패")
-                console.log(req.responseText);
+    Swal.fire({
+        title: '댓글을 삭제하시겠습니까????',
+        text: "확인 버튼을 클릭하면 댓글이 삭제됩니다.",
+        width: 340,		
+        icon: 'warning',
+        iconColor: 'rgb(251, 131, 107)',
+        showCancelButton: true,
+        confirmButtonColor: 'rgb(251, 131, 107)',
+        cancelButtonColor: '#999',
+        confirmButtonText: '확인',
+        cancelButtonText: '취소'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                 // '확인'클릭시 수행될 코드 작성
+                 $.ajax({
+                    url : contextPath + "/pamphlet/reply/delete",
+                    data : {"replyNo" : replyNo},
+                    type : "GET",
+                    success: function(result){
+                        if(result > 0){
+                            // alert("삭제되었습니다");
+                            Swal.fire({
+                                title: '삭제되었습니다',
+                                width: 350,
+                                padding: '3em',
+                                color: 'black',
+                                confirmButtonColor: 'rgb(251, 131, 107)',
+                                confirmButtonText: '확인'
+                                });
+                            selectReplyList(); // 목록을 다시 조회해서 삭제된 글을 제거
+                        }else{
+                            // alert("삭제 실패");
+                            Swal.fire({
+                                title: '삭제 실패',
+                                width: 350,
+                                padding: '3em',
+                                color: 'black',
+                                confirmButtonColor: 'rgb(251, 131, 107)',
+                                confirmButtonText: '확인'
+                                });
+                        }
+                    },
+        
+                    error : function(req, status, error){
+                        console.log("댓글 삭제 실패")
+                        console.log(req.responseText);
+                    }
+        
+                });
+            }else{
+                 // '취소'클릭시 수행될 코드 작성
+                e.preventDefault();
             }
+         })
 
-        });
-    }
+
+    // if( confirm("정말로 삭제 하시겠습니까?") ){
+
+    //     // 요청주소 : /community/reply/delete
+    //     // 파라미터 : key : "replyNo",  value : 매개변수 replyNo
+    //     // 전달 방식 : "GET"
+    //     // success : 삭제 성공 시 -> "삭제되었습니다"   alert로 출력
+    //     //                           댓글 목록 조회 함수 호출
+
+    //     //           삭제 실패 시 -> "삭제 실패"        alert로 출력
+
+    //     // error : 앞 error 코드 참고
+
+    //     // DB에서 댓글 삭제 ==>   REPLY_ST = 'Y' 변경
+
+    //     $.ajax({
+    //         url : contextPath + "/pamphlet/reply/delete",
+    //         data : {"replyNo" : replyNo},
+    //         type : "GET",
+    //         success: function(result){
+    //             if(result > 0){
+    //                 // alert("삭제되었습니다");
+    //                 Swal.fire({
+    //                     title: '삭제되었습니다',
+    //                     width: 350,
+    //                     padding: '3em',
+    //                     color: 'black',
+    //                     confirmButtonColor: 'rgb(251, 131, 107)',
+    //                     confirmButtonText: '확인'
+    //                     });
+    //                 selectReplyList(); // 목록을 다시 조회해서 삭제된 글을 제거
+    //             }else{
+    //                 // alert("삭제 실패");
+    //                 Swal.fire({
+    //                     title: '삭제 실패',
+    //                     width: 350,
+    //                     padding: '3em',
+    //                     color: 'black',
+    //                     confirmButtonColor: 'rgb(251, 131, 107)',
+    //                     confirmButtonText: '확인'
+    //                     });
+    //             }
+    //         },
+
+    //         error : function(req, status, error){
+    //             console.log("댓글 삭제 실패")
+    //             console.log(req.responseText);
+    //         }
+
+    //     });
+    // }
 }
 
 
@@ -239,15 +343,37 @@ function showUpdateReply(replyNo, btn){
     
     if(temp.length > 0){ // 수정이 한 개 이상 열려 있는 경우
 
-        if(confirm("다른 댓글이 수정 중입니다. 현재 댓글을 수정 하시겠습니까?")){ // 확인
+        Swal.fire({
+            title: '현재 댓글을 수정 하시겠습니까?',
+            text: "확인 버튼을 클릭하면 현재 댓글이 수정됩니다",
+            width: 340,		
+            icon: 'warning',
+            iconColor: 'rgb(251, 131, 107)',
+            showCancelButton: true,
+            confirmButtonColor: 'rgb(251, 131, 107)',
+            cancelButtonColor: '#999',
+            confirmButtonText: '확인',
+            cancelButtonText: '취소'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                     // '확인'클릭시 수행될 코드 작성
+                     temp[0].parentElement.innerHTML = beforeReplyRow;
+                }else{
+                     // '취소'클릭시 수행될 코드 작성
+                    e.preventDefault();
+                    return;
+                }
+             })
 
-            temp[0].parentElement.innerHTML = beforeReplyRow;
-            // reply-row                       // 백업한 댓글
-            // 백업 내용으로 덮어 씌워 지면서 textarea 사라짐
+        // if(confirm("다른 댓글이 수정 중입니다. 현재 댓글을 수정 하시겠습니까?")){ // 확인
+
+        //     temp[0].parentElement.innerHTML = beforeReplyRow;
+        //     // reply-row                       // 백업한 댓글
+        //     // 백업 내용으로 덮어 씌워 지면서 textarea 사라짐
        
-        }else{ // 취소
-            return;
-        }
+        // }else{ // 취소
+        //     return;
+        // }
     }
 
 
@@ -324,9 +450,30 @@ function updateCancel(btn){
     // 매개변수 btn : 클릭된 취소 버튼
     // 전역변수 beforeReplyRow : 수정 전 원래 행(댓글)을 저장한 변수
 
-    if(confirm("댓글 수정을 취소하시겠습니까?")){
-        btn.parentElement.parentElement.innerHTML = beforeReplyRow;
-    }
+    Swal.fire({
+        title: '댓글 수정을 취소하시겠습니까?',
+        text: "확인 버튼을 클릭하면 수정이 취소 됩니다",
+        width: 340,		
+        icon: 'warning',
+        iconColor: 'rgb(251, 131, 107)',
+        showCancelButton: true,
+        confirmButtonColor: 'rgb(251, 131, 107)',
+        cancelButtonColor: '#999',
+        confirmButtonText: '확인',
+        cancelButtonText: '취소'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                 // '확인'클릭시 수행될 코드 작성
+                 btn.parentElement.parentElement.innerHTML = beforeReplyRow;
+            }else{
+                 // '취소'클릭시 수행될 코드 작성
+                e.preventDefault();
+            }
+         })
+
+    // if(confirm("댓글 수정을 취소하시겠습니까?")){
+    //     btn.parentElement.parentElement.innerHTML = beforeReplyRow;
+    // }
 }
 
 // -----------------------------------------------------------------------------------
@@ -343,7 +490,15 @@ function updateReply(replyNo, btn){
         type : "POST",
         success : function(result){
             if(result > 0){
-                alert("댓글이 수정되었습니다.");
+                Swal.fire({
+                    title: '댓글이 수정되었습니다.',
+                    width: 350,
+                    padding: '3em',
+                    color: 'black',
+                    confirmButtonColor: 'rgb(251, 131, 107)',
+                    confirmButtonText: '확인'
+                    });
+                // alert("댓글이 수정되었습니다.");
                 selectReplyList();
             }else{
                 alert("댓글 수정 실패");
@@ -370,12 +525,35 @@ function showInsertReply(parentReplyNo, btn){
 
     if(temp.length>0){ // 답글 작성 textarea가 이미 화면에 존재하는 경우
 
-        if(confirm("다른 답글 작성 중, 현재 댓글에 답글을 작성하시겠습니까?")){
-            temp[0].nextElementSibling.remove(); // 버튼 영역부터 삭제
-            temp[0].remove(); // textarea 삭제 (기준점은 마지막에 삭제해야 된다.)
-        }else{
-            return; // 함수를 종료시켜 답글이 생성되지 않게함
-        }
+        Swal.fire({
+            title: '다른 답글 작성 중, 현재 댓글에 답글을 작성하시겠습니까?',
+            text: "확인 버튼을 클릭하면 현재 댓글의 답글을 작성합니다",
+            width: 340,		
+            icon: 'warning',
+            iconColor: 'rgb(251, 131, 107)',
+            showCancelButton: true,
+            confirmButtonColor: 'rgb(251, 131, 107)',
+            cancelButtonColor: '#999',
+            confirmButtonText: '확인',
+            cancelButtonText: '취소'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                     // '확인'클릭시 수행될 코드 작성
+                     temp[0].nextElementSibling.remove(); // 버튼 영역부터 삭제
+                     temp[0].remove(); // textarea 삭제 (기준점은 마지막에 삭제해야 된다.)
+                }else{
+                     // '취소'클릭시 수행될 코드 작성
+                    e.preventDefault();
+                    return;
+                }
+             })
+
+        // if(confirm("다른 답글 작성 중, 현재 댓글에 답글을 작성하시겠습니까?")){
+        //     temp[0].nextElementSibling.remove(); // 버튼 영역부터 삭제
+        //     temp[0].remove(); // textarea 삭제 (기준점은 마지막에 삭제해야 된다.)
+        // }else{
+        //     return; // 함수를 종료시켜 답글이 생성되지 않게함
+        // }
 
     }
 
@@ -429,7 +607,17 @@ function insertChildReply(parentReplyNo, btn){
 
     // 답글 내용이 작성되지 않은 경우
     if(replyContent.trim().length == 0){
-        alert("답글 작성 후 등록 버튼을 클릭해주세요");
+
+        Swal.fire({
+            title: '답글 작성 후 등록 버튼을 클릭해주세요',
+            width: 350,
+            padding: '3em',
+            color: 'black',
+            confirmButtonColor: 'rgb(251, 131, 107)',
+            confirmButtonText: '확인'
+            });
+
+        // alert("답글 작성 후 등록 버튼을 클릭해주세요");
         btn.parentElement.previousElementSibling.value = "";
         btn.parentElement.previousElementSibling.focus();
         return;
@@ -446,10 +634,28 @@ function insertChildReply(parentReplyNo, btn){
         type : "POST",
         success :function(r){
             if(r>0){
-                alert("답글이 등록되었습니다");
+
+                Swal.fire({
+                    title: '답글이 등록되었습니다',
+                    width: 350,
+                    padding: '3em',
+                    color: 'black',
+                    confirmButtonColor: 'rgb(251, 131, 107)',
+                    confirmButtonText: '확인'
+                    });
+
+                // alert("답글이 등록되었습니다");
                 selectReplyList(); // 댓글 목록 조회
             }else{
                 alert("답글 등록 실패");
+                Swal.fire({
+                    title: '답글 등록 실패',
+                    width: 350,
+                    padding: '3em',
+                    color: 'black',
+                    confirmButtonColor: 'rgb(251, 131, 107)',
+                    confirmButtonText: '확인'
+                    });
             }
         },
         error : function(){
