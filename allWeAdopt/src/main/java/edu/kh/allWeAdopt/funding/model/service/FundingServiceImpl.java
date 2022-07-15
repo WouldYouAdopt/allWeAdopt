@@ -52,7 +52,7 @@ public class FundingServiceImpl implements FundingService {
 			DecimalFormat fm = new DecimalFormat("###,###");
 			String fullPrice = fm.format(sumPrice);
 			
-			detail.setFullPrice(fullPrice);
+			detail.setFullPrice(fullPrice); // 해당 펀딩의 전체 판매 금액
 			detail.setRewardListCount(rewardListCount);
 			
 			// 서포터즈 프로필, 이름, 금액, 이름공개여부, 금액공개여부
@@ -187,28 +187,49 @@ public class FundingServiceImpl implements FundingService {
 		return map;
 	}
 
-
+	
 
 	// 모든 펀딩 리스트 조회
 	@Override
 	public Map<String, Object> selectfundingAllList() {
 		
-		// 지금 진행중인 펀딩 목록 조회
-		FundingDetail now = dao.selectNowFundinginfo(); 
-		int fundingNo = now.getFundingNo();
-
+		
+		// 지금 진행중인 펀딩 번호
+		int fundingNo = dao.selectNowFundingNo();
+		
 		// 펀딩 번호로 구매이력 있는지 조회
 		int result = dao.selectCountPay(fundingNo);
 
+		FundingDetail now;
 		if(result>0) { // 구매이력 있으면 리워드 정보 + 결제정보
+			now = dao.selectFundingDetail(fundingNo);
+			
+			// 달성 금액이 필요해서 계산하려고 가져오는 정보
+			// 리워드별 구매이력 조회 (수량, 금액) rewardList에는 기존 리워드 정보 들어있어서 새로만듦
+			List<Reward> rewardListCount = dao.selectRewardList(fundingNo);
+			
+			// 달성금액 구하기
+			int sumPrice = 0;
+			for(int i=0; i<rewardListCount.size(); i++) {
+				sumPrice += rewardListCount.get(i).getRewardOrderPrice();			
+			}
+			
+			DecimalFormat fm = new DecimalFormat("###,###");
+			String fullPrice = fm.format(sumPrice);
+			
+			now.setFullPrice(fullPrice); // 달성금액 완료
 			
 		}else { // 구매이력 없으면 단순 리워드 정보만
-			
+			now = dao.selectNowFundinginfo(); 
+			List<Reward> rewardList = new ArrayList<Reward>();
+			rewardList = dao.selectOnlyRewardList(fundingNo);
+			now.setRewardList(rewardList);
 		}
-			
 		
 		
-		// 종료된 펀딩 리스트 조회
+		
+		
+		// 종료된 펀딩 리스트 조회 (판매이력 있다는 전제)
 		List<FundingDetail> endList = dao.selectEndFundinginfo();
 
 		

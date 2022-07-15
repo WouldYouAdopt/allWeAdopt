@@ -72,7 +72,10 @@
                 <div class="bottom-box">
                     <div class="rate-bar"></div>
                     <div class="rate-bar-pink" style="width:${detail.salesRate}%;"></div>
-                    <div class="rate-text-box" style="left:${detail.salesRate}%;"><span class="rate-text"></span><span class="per">%</span></div>
+                    <div class="rate-text-box" style="left:${detail.salesRate}%;">
+                    	<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 174 138.61"><defs><style>.cls-1{fill:rgb(255, 255, 255, 0.2)}</style></defs><path class="cls-1" d="M162.62,0H11.38C5.1,0,0,5.1,0,11.38V86.92c0,6.29,5.1,11.38,11.38,11.38H57.89l29.11,40.31,29.11-40.31h46.51c6.29,0,11.38-5.1,11.38-11.38V11.38c0-6.29-5.1-11.38-11.38-11.38Z"/></svg>
+                    	<div class="rate-text-wrap"v><span class="rate-text"></span><span class="per">%</span></div>
+                    </div>
                 </div>
             </div>
 
@@ -243,12 +246,10 @@
         		   from { 
         			   left: 2px;
    						color: #FB836B;
-   						background-color: rgb(255, 255, 255, 0.9);
         		   }
         		   to { 
         			   left: ${detail.salesRate}%;
   				 		color: #FB836B;
-  				 		background-color: rgb(255, 255, 255, 0.9);
         		    }
         		}
         		`;
