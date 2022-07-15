@@ -105,7 +105,8 @@
                                 <div class="card h-100 shadow border-0">
                                     <img class="card-img-top" src="${pamphlet.thumbnail}" alt="..." id="thumbnail" />
                                     <div class="card-body p-4"  id="content">
-                                        <div class="badge bg-primary bg-gradient rounded-pill mb-2">실종</div>
+                                        <div class="badge bg-danger bg-gradient rounded-pill mb-2">실종</div>
+
                                         <a class="text-decoration-none link-dark stretched-link" href="../pamphlet/detail/${pamphlet.boardNo}?cp=${pagination.currentPage}"><h5 class="card-title mb-3">${pamphlet.boardTitle}</h5></a>
                                         <%-- <p class="card-text mb-0">${pamphlet.boardContent}</p> --%>
                                     </div>

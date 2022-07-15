@@ -34,9 +34,10 @@
 
         <link href="${contextPath}/resources/css/shelter/shelter-main.css" rel="stylesheet" />
 
-        <%-- 지도 --%>
-        <%-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=69933a089a5ecd291058167064475d66"></script>
-        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=69933a089a5ecd291058167064475d66&libraries=services"></script> --%>
+        <!-- sweetalert-->
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
 
 
         <style>
