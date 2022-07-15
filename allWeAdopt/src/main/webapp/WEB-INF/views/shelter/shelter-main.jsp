@@ -95,9 +95,10 @@
                     <div class="row gx-5">
 
                     <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="true">
+                        <button class="btn btn-secondary dropdown-toggle btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="true" style="background-color: #FB836B; border: 0;">
                             <strong>시도</strong>
                         </button>
+
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                             <li><a class="dropdown-item" href="${upr_cd}" role="option" aria-selected="true">전체</a></li>
                             <li><a class="dropdown-item" href="${upr_cd}6110000" role="option" aria-selected="true">서울특별시</a></li>
@@ -118,7 +119,7 @@
                             <li><a class="dropdown-item" href="${upr_cd}6500000" role="option" aria-selected="true">제주특별자치도</a></li>
                         </ul>
 
-                        <button class="btn btn-secondary dropdown-toggle btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn btn-secondary dropdown-toggle btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #FB836B; border: 0;">
                             <strong>품종</strong>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -127,6 +128,7 @@
                             <li><a class="dropdown-item" href="${upkind}422400" role="option" aria-selected="true">고양이</a></li>
                         </ul>
 
+                        <div class="md-10" style="margin:10px;"></div>
 
                     </div>
 

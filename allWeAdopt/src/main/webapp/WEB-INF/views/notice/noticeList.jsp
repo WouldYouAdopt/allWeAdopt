@@ -36,6 +36,9 @@
         <!-- main css -->
         <link rel="stylesheet" href="${contextPath}/resources/css/main-style.css">
 
+        <!-- sweetalert-->
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
         <style>
         .new{
             background-color: rgb(251, 131, 107);
@@ -171,8 +174,8 @@
                                 <li class="page-item"><a class="page-link nav-text-color" href="${url}${pagination.nextPage}">Next</a></li>
 
                                 <c:if test="${loginMember.memberType =='A'}">
-                                    <div style="width:70%"></div>
-                                    <li><a class="btn btn-primary mx-3 button-pink" href="${contextPath}/admin/notice/write?mode=insert&cp=${pagination.currentPage}">작성</a></li>
+                                    <div class="mx-auto"></div>
+                                    <li><a class="btn btn-primary mx-auto button-pink" href="${contextPath}/admin/notice/write?mode=insert&cp=${pagination.currentPage}">작성</a></li>
                                 </c:if>
 
                             </ul>

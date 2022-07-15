@@ -36,6 +36,9 @@
         <link rel="stylesheet" href="${contextPath}/resources/css/signUp-style.css">
         <link rel="stylesheet" href="${contextPath}/resources/css/myPage-updateInfo.css">
 
+        <!-- sweetalert-->
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     </head>
     <body class="d-flex flex-column">
         <main class="flex-shrink-0">

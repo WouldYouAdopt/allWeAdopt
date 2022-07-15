@@ -145,9 +145,10 @@
 					
 					<div class="row gx-5">
                     <c:forEach var="i" begin="0" end="${fn:length(map.rewardList)-1}">
-
-
-					
+                    
+                    <c:if test="${map.rewardList[i].rewardNo==param.selected}">
+                    
+                    
 						<!-- 리워드-->
 						<div class="col-lg-6 col-xl-4 mb-5">
 							<div class="card mb-5 mb-xl-0">
@@ -178,14 +179,59 @@
 											<span class="order-count">총 ${map.rewardListCount[i].rewardOrderAmount}개 펀딩 완료</span>
 										</c:if>
 									</div>
-
-									<div class="d-grid"><p class="rewardSelectBtn lineBtn-gr rewardSelectBtn  selected">리워드 선택</p></div>
 									
+									<div class="d-grid"><p class="rewardSelectBtn lineBtn-gr rewardSelectBtn selected">리워드 선택</p></div>
+								
 									<input type="number" name="${map.rewardList[i].rewardNo}" value="1" style="width:60px;" class="rewardCount">
 								
 								</div>
 							</div>
 						</div>
+					</c:if>
+					
+					<c:if test="${map.rewardList[i].rewardNo!=param.selected}">
+                    
+                    
+						<!-- 리워드-->
+						<div class="col-lg-6 col-xl-4 mb-5">
+							<div class="card mb-5 mb-xl-0">
+								<div class="card-body p-5">
+								
+									<div class="rew-number reward-select">
+										리워드${i+1}
+									</div>
+									<div class="rew-price reward-select">
+										${map.rewardList[i].rewardPrice}<span>원 펀딩</span>
+									</div>
+									<div class="rew-title">
+										${map.rewardList[i].rewardTitle}
+									</div>
+									<div class="rew-content">
+										${map.rewardList[i].rewardContent}
+									</div>
+									<div class="delivery-box">
+										<span class="deli-title">리워드 발송 시작일</span>
+										<span class="deli-content"> ${map.sendDate} &nbsp;순차발송</span>
+									</div>
+									<div class="stock-box">
+										<span class="stock">현재 ${map.rewardList[i].maxRewardNo-map.rewardListCount[i].rewardOrderAmount}개 남음 / 제한수량 ${map.rewardList[i].maxRewardNo}개</span>
+										<c:if test="${empty map.rewardListCount[i].rewardOrderAmount}">
+											<span class="order-count">총 0개 펀딩 완료</span>
+										</c:if>
+										<c:if test="${!empty map.rewardListCount[i].rewardOrderAmount}">
+											<span class="order-count">총 ${map.rewardListCount[i].rewardOrderAmount}개 펀딩 완료</span>
+										</c:if>
+									</div>
+									
+									<div class="d-grid"><p class="rewardSelectBtn lineBtn-gr rewardSelectBtn">리워드 선택</p></div>
+								
+									<input type="number" name="${map.rewardList[i].rewardNo}" value="0" style="width:60px;" class="rewardCount">
+								
+								</div>
+							</div>
+						</div>
+					</c:if>
+					
                     </c:forEach>
                         
 
@@ -224,9 +270,22 @@
 							</div>
 						</div>
 						
-						
-						<div class="text-center mt-5 fs-5">우리아이 시원하게 여름 쿨매트에 <span id="payPrice">0</span>원을 펀딩합니다.</div>
-						
+						<c:forEach var="i" begin="0" end="${fn:length(map.rewardList)-1}" >
+							<c:if test="${map.rewardList[i].rewardNo==param.selected}">
+								<c:set var="defaultPrice" value="${map.rewardList[i].rewardPrice}"/>
+							</c:if>
+						</c:forEach>
+
+								<div class="text-center mt-5 fs-5">우리아이 시원하게 여름 쿨매트에 
+									<span id="payPrice">
+										<c:if test="${empty defaultPrice}">
+											0
+										</c:if>
+										<c:if test="${!empty defaultPrice}">
+											${defaultPrice}
+										</c:if>
+									</span>원을 펀딩합니다.
+								</div>
 
 
 

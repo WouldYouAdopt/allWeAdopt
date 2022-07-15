@@ -22,6 +22,9 @@
 
         <!-- main css -->
         <link rel="stylesheet" href="${contextPath}/resources/css/main-style.css">
+
+        <!-- sweetalert-->
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         
     </head>
     <body class="d-flex flex-column">
