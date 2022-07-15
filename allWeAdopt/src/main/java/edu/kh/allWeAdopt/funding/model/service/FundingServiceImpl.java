@@ -17,6 +17,10 @@ import edu.kh.allWeAdopt.funding.model.vo.OrderDetail;
 import edu.kh.allWeAdopt.funding.model.vo.Reward;
 import edu.kh.allWeAdopt.funding.model.vo.Supporters;
 
+/**
+ * @author deadWhale
+ *
+ */
 @Service
 public class FundingServiceImpl implements FundingService {
 
@@ -213,6 +217,36 @@ public class FundingServiceImpl implements FundingService {
 		map.put("now", now);
 		
 		return map;
+	}
+
+
+
+
+	
+	
+	//결제 수행후 DB로 저장하는 서비스 : 현기
+	@Override
+	public int payProgress(OrderDetail orderDetail, List<Reward> rewardList) {
+		 
+			int paymentNo = 0;
+			
+			//결제 정보를 삽입하는 dao
+			int result = dao.insertPaymentInfo(orderDetail);
+			if(result>0) {
+				
+				
+				for(Reward r : rewardList) {
+					r.setPaymentNo(orderDetail.getPaymentNo());
+				}
+				
+				result=dao.insertRewardList(rewardList);
+				
+				if(result>0) {
+					paymentNo = orderDetail.getPaymentNo();
+				}
+			}
+			
+		return paymentNo;
 	}
 	
 	

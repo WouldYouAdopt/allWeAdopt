@@ -20,4 +20,6 @@ public class Reward {
 	
 	private int rewardOrderAmount; // 리워드별 판매된 수량
 	private int rewardOrderPrice; // 리워드별 판매된 금액
+
+	private int paymentNo;//결제번호 insert할때 쓰기 위해
 }

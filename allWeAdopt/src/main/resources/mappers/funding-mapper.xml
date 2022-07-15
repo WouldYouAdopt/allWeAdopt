@@ -27,14 +27,14 @@
 		<collection property="rewardList" column="FUNDING_NO"
 			javaType="java.util.ArrayList" ofType="reward"
 			select="selectOnlyRewardList" />
-		
+
 		<collection property="supportersList" column="FUNDING_NO"
 			javaType="java.util.ArrayList" ofType="supporters"
 			select="selectFundingPayMember" />
 
 
 	</resultMap>
-	
+
 	<!-- 서포터즈 map (MEMBER+PAYMENT 섞여있음) -->
 	<resultMap type="supporters" id="supporters_rm">
 		<id property="memberNo" column="MEMBER_NO" />
@@ -70,9 +70,10 @@
 
 
 	<!-- 결제정보 상세 조회를 위한 ResultMap + -->
-	<resultMap type="orderDetail" id="orderDetail_re">
+	<resultMap type="orderDetail" id="orderDetail_rm">
 
-		<id property="fundingNo" column="FUNDING_NO" />
+		<id property="paymentNo" column="PAYMENT_NO" />
+		<result property="fundingNo" column="FUNDING_NO" />
 		<result property="fundingCategory" column="CATEGORY_NM" />
 		<result property="fundingTitle" column="FUNDING_TITLE" />
 		<result property="payDate" column="PAY_DT" />
@@ -83,7 +84,10 @@
 		<result property="orderPhoneMain" column="ORDER_PHONE1" />
 		<result property="orderPhoneSub" column="ORDER_PHONE2" />
 		<result property="orderAddress" column="ORDER_ADD" />
-		<result property="paymentNo" column="PAYMENT_NO" />
+		<result property="memberNo" column="MEMBER_NO" />
+		
+		<result property="nameAnonymous" column="NAME_OPEN" />
+		<result property="priceAnonymous" column="PRICE_OPEN" />
 
 		<collection property="rewardList" column="PAYMENT_NO"
 			javaType="java.util.ArrayList" ofType="reward" select="selectRewards" />
@@ -107,6 +111,7 @@
 		<result property="maxRewardNo" column="MAX_REWARD_NO" />
 		<result property="fundingNo" column="FUNDING_NO" />
 		<result property="amount" column="AMOUNT" />
+		<result property="paymentNo" column="PAYMENT_NO" />
 
 		<result property="rewardOrderAmount"
 			column="REWARD_ORDER_AMOUNT" />
@@ -137,16 +142,16 @@
 		FUNDING_THUMBNAIL,
 		DELIVERY_FEE,
 		CATEGORY_NM,
-        
-        ROUND(FULLPRICE/TARGET_DONATION*100) AS SALES_RATE
+
+		ROUND(FULLPRICE/TARGET_DONATION*100) AS SALES_RATE
 
 		FROM FUNDING
 		JOIN CATEGORY USING(FUNDING_CATEGORY)
-        JOIN 
-        ( SELECT  FUNDING_NO, SUM((REWARD_PRICE*AMOUNT)) AS FULLPRICE
-        FROM REWARD_ORDER
-        JOIN REWARD USING (REWARD_NO)
-        GROUP BY FUNDING_NO) USING (FUNDING_NO)
+		JOIN
+		( SELECT FUNDING_NO, SUM((REWARD_PRICE*AMOUNT)) AS FULLPRICE
+		FROM REWARD_ORDER
+		JOIN REWARD USING (REWARD_NO)
+		GROUP BY FUNDING_NO) USING (FUNDING_NO)
 		WHERE FUNDING_NO = #{fundingNo}
 	</select>
 
@@ -187,7 +192,7 @@
 
 
 	<!-- 결제번호를 가지고 하는 결제 정보 상세조회 -->
-	<select id="selectOrderDetail" resultMap="orderDetail_re">
+	<select id="selectOrderDetail" resultMap="orderDetail_rm">
 		SELECT
 		FUNDING_NO
 		,CATEGORY_NM
@@ -208,7 +213,8 @@
 		,ORDER_ADD
 		,PAYMENT_NO
 		FROM PAYMENT
-		JOIN FUNDING
+		JOIN
+		FUNDING
 		USING(FUNDING_NO)
 		JOIN ORDER_ST
 		USING(ORDER_ST_CD)
@@ -224,7 +230,8 @@
 		REWARD_TITLE,
 		AMOUNT,(REWARD_PRICE*AMOUNT)AS FULL_PRICE,
 		REWARD_PRICE
-		FROM REWARD_ORDER
+		FROM
+		REWARD_ORDER
 		JOIN REWARD USING(REWARD_NO)
 		JOIN PAYMENT
 		USING(PAYMENT_NO)
@@ -232,23 +239,26 @@
 	</select>
 
 	<!-- 펀딩번호로 리워드 전체 조회 (리워드 별 판매 현황 추가) -->
-	 <select id="selectRewardList" resultMap="reward_re">
+	<select id="selectRewardList" resultMap="reward_re">
 		SELECT
 		REWARD_NO,
 		REWARD_TITLE,
 		REWARD_CONTENT,
 		REWARD_PRICE,
 		MAX_REWARD_NO,
-		SUM(AMOUNT) AS REWARD_ORDER_AMOUNT,
+		SUM(AMOUNT) AS
+		REWARD_ORDER_AMOUNT,
 		SUM((REWARD_PRICE*AMOUNT)) AS REWARD_ORDER_PRICE
 		FROM
 		(SELECT * FROM REWARD WHERE FUNDING_NO=#{fundingNo})
-		JOIN REWARD_ORDER USING(REWARD_NO)
-		GROUP BY REWARD_NO, REWARD_TITLE,REWARD_CONTENT,REWARD_PRICE,MAX_REWARD_NO
+		JOIN
+		REWARD_ORDER USING(REWARD_NO)
+		GROUP BY REWARD_NO,
+		REWARD_TITLE,REWARD_CONTENT,REWARD_PRICE,MAX_REWARD_NO
 		ORDER BY 1
 	</select>
 
-	
+
 	<!-- 펀딩번호로 리워드 전체 조회 **리워드들만** -->
 	<select id="selectOnlyRewardList" resultMap="reward_re">
 		SELECT
@@ -260,42 +270,46 @@
 		FROM REWARD
 		WHERE FUNDING_NO=#{fundingNo}
 	</select>
-	
+
 	<!-- 가장 최근 주문정보 조회 -->
-	<select id="selectPrevOrder" resultMap="orderDetail_re">
+	<select id="selectPrevOrder" resultMap="orderDetail_rm">
 		SELECT *
 		FROM (
 		SELECT *
 		FROM PAYMENT
 		WHERE MEMBER_NO =5
 		ORDER BY PAY_DT DESC)
-		WHERE MEMBER_NO=#{memberNo}
+		WHERE
+		MEMBER_NO=#{memberNo}
 		AND ROWNUM =1
 	</select>
-	
 
-	
+
+
 	<!-- 어떻게 줄일수 있는지 모르겠어... 원하는 값은 일단 나옴 -->
 	<!-- 펀딩 번호로 서포터즈 정보 조회(프로필, 닉네임, 구매총금액, 공개여부) -->
 	<select id="selectFundingPayMember" resultMap="supporters_rm">
 		SELECT MEMBER_NO,
-        MEMBER_NM, 
-        PROFILE_IMG, 
-        CASE
-            WHEN TRUNC((SYSDATE-PAY_DT)*24*60*60)&lt;60 THEN '방금 전' 
-            WHEN TRUNC((SYSDATE-PAY_DT)*24*60)&lt;60 THEN TRUNC((SYSDATE-PAY_DT)*24*60)||'분전 전' 
-            WHEN TRUNC((SYSDATE-PAY_DT)*24)&lt;24 THEN TRUNC((SYSDATE-PAY_DT)*24)||'시간 전' 
-            WHEN TRUNC(SYSDATE-PAY_DT)&lt;30 THEN TRUNC(SYSDATE-PAY_DT)||'일 전' 
-            WHEN TRUNC((SYSDATE-PAY_DT)*30)&lt;12 THEN TRUNC((SYSDATE-PAY_DT)*30)||'달 전' 
-        END
-            AS PAY_DT,
-        
-        NAME_OPEN, 
-        PRICE_OPEN, 
-        SUM(REWARD_ORDER_PRICE) PAY_FULLPRICE
+		MEMBER_NM,
+		PROFILE_IMG,
+		CASE
+		WHEN TRUNC((SYSDATE-PAY_DT)*24*60*60)&lt;60 THEN '방금 전'
+		WHEN TRUNC((SYSDATE-PAY_DT)*24*60)&lt;60 THEN
+		TRUNC((SYSDATE-PAY_DT)*24*60)||'분전 전'
+		WHEN TRUNC((SYSDATE-PAY_DT)*24)&lt;24 THEN TRUNC((SYSDATE-PAY_DT)*24)||'시간
+		전'
+		WHEN TRUNC(SYSDATE-PAY_DT)&lt;30 THEN TRUNC(SYSDATE-PAY_DT)||'일 전'
+		WHEN TRUNC((SYSDATE-PAY_DT)*30)&lt;12 THEN TRUNC((SYSDATE-PAY_DT)*30)||'달
+		전'
+		END
+		AS PAY_DT,
+
+		NAME_OPEN,
+		PRICE_OPEN,
+		SUM(REWARD_ORDER_PRICE) PAY_FULLPRICE
 
 		FROM(
-		
+
 		SELECT
 		FUNDING_NO
 		,PAYMENT_NO
@@ -306,35 +320,37 @@
 		,PROFILE_IMG
 		,REWARD_PRICE*AMOUNT REWARD_ORDER_PRICE
 		,PRICE_OPEN
-		,NAME_OPEN 
+		,NAME_OPEN
 		,MEMBER_NO
-		
+
 		FROM PAYMENT P
-		    JOIN FUNDING F ON (P.FUNDING_NO = F.FUNDING_NO)
-		    JOIN MEMBER USING (MEMBER_NO)
-		    JOIN REWARD_ORDER USING(PAYMENT_NO)
-		    JOIN REWARD USING(REWARD_NO)
+		JOIN FUNDING F ON (P.FUNDING_NO = F.FUNDING_NO)
+		JOIN MEMBER USING (MEMBER_NO)
+		JOIN REWARD_ORDER USING(PAYMENT_NO)
+		JOIN REWARD USING(REWARD_NO)
 		WHERE P.FUNDING_NO= #{fundingNo}
-		AND ORDER_ST_CD IN (1,2,3,4)
+		AND
+		ORDER_ST_CD IN (1,2,3,4)
 		)
-		GROUP BY MEMBER_NO,MEMBER_NM, PROFILE_IMG, PAY_DT, NAME_OPEN, PRICE_OPEN
-    </select>
+		GROUP BY MEMBER_NO,MEMBER_NM, PROFILE_IMG,
+		PAY_DT, NAME_OPEN, PRICE_OPEN
+	</select>
 
 
 	<!-- ?? -->
 	<select id="selectfunding" resultMap="funding_rm">
-    SELECT * FROM FUNDING
-    WHERE FUNDING_NO = #{fundingNo}
+		SELECT * FROM FUNDING
+		WHERE FUNDING_NO = #{fundingNo}
 	</select>
-	
+
 	<!-- 구매이력 수 조회 (구매이력 있는 펀딩인지 아닌지 구분) : 수진 -->
 	<select id="selectCountPay" resultType="_int">
 		SELECT COUNT(*)
-        FROM PAYMENT
-        WHERE FUNDING_NO= #{fundingNo}
+		FROM PAYMENT
+		WHERE FUNDING_NO= #{fundingNo}
 	</select>
-	
-	<!-- 구매 이력 없는 펀딩 조회 : 수진-->
+
+	<!-- 구매 이력 없는 펀딩 조회 : 수진 -->
 	<select id="selectFundingSaleZero" resultMap="detail_rm">
 		SELECT FUNDING_NO,
 		FUNDING_TITLE,
@@ -353,51 +369,56 @@
 		FUNDING_ST,
 		FUNDING_THUMBNAIL,
 		DELIVERY_FEE,
-		CATEGORY_NM        
+		CATEGORY_NM
 		FROM FUNDING
-        JOIN CATEGORY USING(FUNDING_CATEGORY)
-        WHERE FUNDING_NO = #{fundingNo}
+		JOIN CATEGORY USING(FUNDING_CATEGORY)
+		WHERE FUNDING_NO = #{fundingNo}
 	</select>
-	
-	<!-- 리워드별 판매된 수량,금액  -->
+
+	<!-- 리워드별 판매된 수량,금액 -->
 	<select id="selectRewardOrderCount" resultMap="reward_re">
 		SELECT
 		REWARD_NO,
 		SUM(AMOUNT) AS REWARD_ORDER_AMOUNT,
-		SUM((REWARD_PRICE*AMOUNT)) AS REWARD_ORDER_PRICE
+		SUM((REWARD_PRICE*AMOUNT)) AS
+		REWARD_ORDER_PRICE
 		FROM
-		(SELECT * FROM REWARD WHERE FUNDING_NO= #{fundingNo})
+		(SELECT * FROM REWARD WHERE FUNDING_NO=
+		#{fundingNo})
 		JOIN REWARD_ORDER USING(REWARD_NO)
-		GROUP BY REWARD_NO, REWARD_TITLE,REWARD_CONTENT,REWARD_PRICE,MAX_REWARD_NO
+		GROUP BY REWARD_NO,
+		REWARD_TITLE,REWARD_CONTENT,REWARD_PRICE,MAX_REWARD_NO
 		ORDER BY 1
 	</select>
 
 	<!-- 현재 진행중인 펀딩이 구매이력이 있는지 카운트 // 지워도될듯 -->
 	<select id="nowFundingConfirm" resultType="_int">
 		SELECT COUNT(*)
-		FROM PAYMENT
-		WHERE FUNDING_NO = 
-	        (SELECT FUNDING_NO
-	        FROM FUNDING
-	        WHERE FUNDING_ST='Y')
+		FROM
+		PAYMENT
+		WHERE FUNDING_NO =
+		(SELECT FUNDING_NO
+		FROM FUNDING
+		WHERE FUNDING_ST='Y')
 	</select>
-	
+
 	<!-- 현재 진행중인 펀딩의 펀딩정보(fundingNo 없이 조회) -->
 	<select id="selectNowFundinginfo" resultMap="detail_rm">
 		SELECT FUNDING_NO,
-			FUNDING_TITLE,
-			FUNDING_MINI_TITLE,
-			TO_CHAR(TARGET_DONATION,'999,999,999') AS TARGET_DONATION,
-			FUNDING_SEASON,
-			SUBSTR(FUNDING_SEASON,-2) AS MONTH,
-			TRUNC(LAST_DAY(TO_DATE(REPLACE(FUNDING_SEASON,'/',''),'YYYYMM'))-SYSDATE) AS LEFTDATE,
-			FUNDING_ST,
-			FUNDING_THUMBNAIL,
-			CATEGORY_NM
-        
-        FROM FUNDING
-        	JOIN CATEGORY USING(FUNDING_CATEGORY)
-        WHERE FUNDING_ST = 'Y'
+		FUNDING_TITLE,
+		FUNDING_MINI_TITLE,
+		TO_CHAR(TARGET_DONATION,'999,999,999') AS TARGET_DONATION,
+		FUNDING_SEASON,
+		SUBSTR(FUNDING_SEASON,-2) AS MONTH,
+		TRUNC(LAST_DAY(TO_DATE(REPLACE(FUNDING_SEASON,'/',''),'YYYYMM'))-SYSDATE)
+		AS LEFTDATE,
+		FUNDING_ST,
+		FUNDING_THUMBNAIL,
+		CATEGORY_NM
+
+		FROM FUNDING
+		JOIN CATEGORY USING(FUNDING_CATEGORY)
+		WHERE FUNDING_ST = 'Y'
 	</select>
 
 	<!-- 종료된 펀딩 목록들 가져오기 -->
@@ -417,4 +438,40 @@
         	JOIN CATEGORY USING(FUNDING_CATEGORY)
         WHERE FUNDING_ST = 'N'
 	</select>
+
+	<!-- 결제정보 삽입 -->
+	<insert id="insertPaymentInfo" parameterType="orderDetail">
+		INSERT INTO PAYMENT VALUES(
+		#{paymentNo}, --결제번호
+		
+		<if test='nameAnonymous =="N"'>'N',</if>
+		<if test='nameAnonymous !="N"'>DEFAULT,</if>
+		<if test='priceAnonymous =="N"'>'N',</if>
+		<if test='priceAnonymous !="N"'>DEFAULT,</if>
+		
+
+		#{recipient}, --테스트 이름
+		#{orderAddress}, --주소
+		#{orderPhoneMain},#{orderPhoneSub}, --메인 휴대폰번호 서브 휴대폰번호
+		#{payMethod},--결제방식
+		DEFAULT,--결제일
+		DEFAULT,DEFAULT, --택배사/송장번호
+		#{memberNo},--주문고객번호
+		DEFAULT, --결제상태
+		#{fundingNo} --펀딩번호
+		)
+	</insert>
+
+	<insert id="insertRewardList" parameterType="list">
+			INSERT INTO REWARD_ORDER
+			SELECT  * FROM(	
+		<foreach collection="list" item="r" separator="UNION ALL">
+			SELECT #{r.paymentNo} PAYMENT_NO 
+			      ,#{r.rewardNo} REWARD_NO 
+			      ,#{r.amount} AMOUNT FROM DUAL
+		</foreach>
+		) A 
+	</insert>
+
+
 </mapper>
