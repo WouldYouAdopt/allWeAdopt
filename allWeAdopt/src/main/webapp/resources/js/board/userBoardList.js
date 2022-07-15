@@ -11,6 +11,7 @@ console.log("js출력");
 // });
 
 // 무한 스크롤
+// 무한 스크롤 설정
 let options = {
     root: null,
     rootMargin: '10px',
@@ -49,6 +50,7 @@ const io = new IntersectionObserver((entries, observer) => {
 
 
 
+
 //   let i = 1;
 // const display = document.getElementsByClassName('row');
 // display[0].style.display = 'flex';
@@ -70,3 +72,18 @@ const io = new IntersectionObserver((entries, observer) => {
 //   row.forEach((el) => {
 //     io.observe(el);
 //   })
+
+// 카테고리 배경색 설정
+const category = document.getElementsByClassName('category');
+
+for (let i = 0; i < category.length; i++) {
+  if(category[i].innerText.trim()=='실종'){
+    category[i].style.backgroundColor = 'crimson';
+  } else if(category[i].innerText.trim()=='보호'){
+    category[i].style.backgroundColor = '#FB836B';
+  } else if(category[i].innerText.trim()=='목격'){
+    category[i].style.backgroundColor = 'coral';
+  } else {
+    category[i].style.backgroundColor = '#373737';
+  }
+}

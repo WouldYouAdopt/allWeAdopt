@@ -101,6 +101,15 @@
     margin: 5px 0;
 }
 
+/* 카테고리 */
+.category{
+    border: 1px solid #FFF;
+    color: #FFF;
+    padding: 1px;
+    border-radius: 30%;
+    margin-right: 5px;
+}
+
 /* 공통 적용 사항 */
 a{
     text-decoration: none;
