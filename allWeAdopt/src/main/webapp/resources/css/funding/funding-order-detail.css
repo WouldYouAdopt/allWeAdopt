@@ -10,8 +10,11 @@
     display: flex;
     flex-direction: row-reverse;
     padding: 5px;
-    margin: 2px;
+    margin: 10px;
 }    
+#btn-area>button{
+    margin-left: 20px;
+}
 
 /* 펀딩 상단 이미지. */
 .fundingTitleBox{
@@ -99,8 +102,45 @@ td{
 #twoTable{
     display: flex;
     width: 100%;
+    
+    border-bottom: 2px solid #FB836b;
 }
 #twoTable>article{
     padding: 20px;
     width: 50%;
+}
+
+#summernoteArea{
+    margin-top: 20px;
+    padding-top: 10px;
+}
+#summernoteArea #btnArea{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+#returnSubmitBtn{
+    width: 80%;
+    height: 40px;
+    background-color: white;
+    border: 1px solid #FB836b;
+}
+
+#returnSubmitBtn:hover{
+    background-color: #FB836b;
+    border: 1px solid #fff;
+    color: white;
+}
+
+#returnCancelBtn{
+    width: 20%;
+    height: 40px;
+    background-color: white;
+    border: 1px solid #FB836b;
+}
+
+#returnCancelBtn:hover{
+    background-color: #FB836b;
+    border: 1px solid #fff;
+    color: white;
 }

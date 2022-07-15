@@ -25,6 +25,14 @@ import edu.kh.allWeAdopt.funding.model.vo.Supporters;
  * @author deadWhale
  *
  */
+/**
+ * @author deadWhale
+ *
+ */
+/**
+ * @author deadWhale
+ *
+ */
 @Service
 public class FundingServiceImpl implements FundingService {
 
@@ -278,11 +286,36 @@ public class FundingServiceImpl implements FundingService {
 
 
 
-	//결제 취소 상태로 업데이트 
+	//결제 취소 상태로 업데이트 [김현기]
 	@Override
 	public int cancelPayment(int paymentNo) {
 		return dao.cancelPayment(paymentNo);
 	}
+	
+	//환불 신청 상태로 업데이트 [김현기]
+	@Override
+	public int refundPayment(int paymentNo) {
+		return dao.refundPayment(paymentNo);
+	}
+
+	//반품 신청 상태로 변경하면서 반품 사유 보내기
+	@Override
+	public int retrunPayment(int paymentNo, String returnReason) {
+		
+		int result = dao.retrunPaymentStats(paymentNo);
+		if(result>0) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("paymentNo", paymentNo);
+			map.put("returnReason", returnReason);
+			result = dao.insertReason(map);
+			
+			if(result==0) {
+				
+			}
+		}
+		return result;
+	}
+	
 	
 	
 	

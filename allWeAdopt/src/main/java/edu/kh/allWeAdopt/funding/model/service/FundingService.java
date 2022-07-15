@@ -58,11 +58,24 @@ public interface FundingService {
 	 */
 	int payProgress(OrderDetail orderDetail, List<Reward> rewardList);
 
-	/**주문 정보를 결제 취소 상태로 변경하는 AJAX
+	/**주문 상태를 결제 취소 상태로 변경하는 AJAX
 	 * @param paymentNo
 	 * @return result
 	 */
 	int cancelPayment(int paymentNo);
+
+	/**주문 상태를 환불 신청으로 변형하는 AJAX
+	 * @param paymentNo
+	 * @return
+	 */
+	int refundPayment(int paymentNo);
+
+	/**반품 사유 작성 
+	 * @param paymentNo
+	 * @param returnReason
+	 * @return
+	 */
+	int retrunPayment(int paymentNo, String returnReason);
 
 
 }

@@ -133,9 +133,28 @@ public class MyFundingController {
 		}
 	}
 
+	//----------------------------------------------------------------------------------
+	//결제 상태들은 관리하는 AJAX들   
 	@GetMapping("/cancel/{paymentNo}")
 	@ResponseBody
 	public int cancelPayment(@PathVariable int paymentNo)throws Exception{		
 		return service.cancelPayment(paymentNo);
 	}
+	@GetMapping("/refund/{paymentNo}")
+	@ResponseBody
+	public int refundPayment(@PathVariable int paymentNo)throws Exception{		
+		return service.refundPayment(paymentNo);
+	}
+	
+	
+	@PostMapping("/return/{paymentNo}")
+	@ResponseBody
+	public int retrunPayment(@PathVariable int paymentNo
+								,String returnReason) {
+		
+//		return new Gson().toJson(returnReason);
+		
+		return serivce.retrunPayment(paymentNo,returnReason);
+	}
+	//----------------------------------------------------------------------------------
 }

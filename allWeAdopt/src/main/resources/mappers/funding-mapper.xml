@@ -526,5 +526,23 @@ SELECT
 	UPDATE PAYMENT SET ORDER_ST_CD = 5
 	WHERE  PAYMENT_NO = #{paymentNo}
 	</update>
+	
+	<!-- 환불 상태로 변경하는 SQL [김현기]-->
+	<update id="refundPayment">
+	UPDATE PAYMENT SET ORDER_ST_CD = 6
+	WHERE  PAYMENT_NO = #{paymentNo}
+	</update>
+	<!-- 반품 상태로 변경하는 SQL [김현기]-->
+	<update id="retrunPaymentStats">
+	UPDATE PAYMENT SET ORDER_ST_CD = 8
+	WHERE  PAYMENT_NO = #{paymentNo}
+	</update>
+	
+	<insert id="insertReason" parameterType="map">
+	INSERT INTO RETURN VALUES(
+    SEQ_RETURN.nextval,
+    DEFAULT,DEFAULT,
+    #{pamentNo},#{returnReason})
+	</insert>
 
 </mapper>
