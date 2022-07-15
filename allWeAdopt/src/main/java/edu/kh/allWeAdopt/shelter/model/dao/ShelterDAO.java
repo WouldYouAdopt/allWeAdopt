@@ -35,9 +35,9 @@ public class ShelterDAO {
 	 */
 	public List<Board> selectPamphletList(Pagination pagination) {
 		
-		int offset = ( pagination.getCurrentPage()-1) * pagination.getLimit();
+		int offset = ( pagination.getCurrentPage()-1) * (pagination.getLimit() -4);
 		
-		RowBounds rowBounds = new RowBounds(offset, pagination.getLimit());
+		RowBounds rowBounds = new RowBounds(offset, (pagination.getLimit()-4));
 		
 		return sqlSession.selectList("pamphletMapper.selectPamphletList", null, rowBounds);
 	}

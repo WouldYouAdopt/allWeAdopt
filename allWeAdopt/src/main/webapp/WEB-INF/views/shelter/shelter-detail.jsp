@@ -108,8 +108,8 @@
                             <div class="d-flex align-items-center mt-lg-5 mb-4">
                                 <img class="img-fluid rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." />
                                 <div class="ms-3">
-                                    <div class="fw-bold">${careNm}</div>
-                                    <div class="text-muted">${careTel}</div>
+                                    <div class="fw-bold">보호소 : ${careNm}</div>
+                                    <div class="text-muted">전화번호 : ${careTel}</div>
                                 </div>
                             </div>
                         </div>
@@ -125,6 +125,15 @@
                                     <div class="text-muted fst-italic mb-2">공고 종료일: ${noticeEdt}</div>
                                     <!-- Post categories-->
                                     <a class="badge bg-secondary text-decoration-none link-light" href="#!">관심동물</a>
+
+                                    <div class="md-10" style="margin:10px;"></div>
+
+                                    <div>                                
+                                        <a id="btnTwitter" class="link-icon twitter" href="javascript:shareTwitter();"><img src="${contextPath}\resources\images\icon-twitter.png"></a>
+                                        <a id="btnFacebook" class="link-icon facebook" href="javascript:shareFacebook();"><img src="${contextPath}\resources\images\icon-facebook.png"></a>    
+                                        <a id="btnKakao" class="link-icon kakao" href="javascript:shareKakao();"><img src="${contextPath}\resources\images\icon-kakao.png"></a>    
+                                    </div>
+
                                 </header>
                                 <!-- 유기동물 사진 -->
                                 <figure class="mb-4"><img class="img-fluid rounded" src="${popfile}" alt="..." /></figure>
@@ -258,48 +267,6 @@
                                                                                                 
                                 </section>
                             </article>
-                            <!-- 댓글 쓸지 말지 고민.. -->
-                            <%-- <section>
-                                <div class="card bg-light">
-                                    <div class="card-body">
-                                        <!-- Comment form-->
-                                        <form class="mb-4"><textarea class="form-control" rows="3" placeholder="댓글 입력" style="resize:none"></textarea></form>
-                                        <!-- Comment with nested comments-->
-                                        <div class="d-flex mb-4">
-                                            <!-- Parent comment-->
-                                            <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-                                            <div class="ms-3">
-                                                <div class="fw-bold">댓쓴이1</div>
-                                                고양이
-                                                <!-- Child comment 1-->
-                                                <div class="d-flex mt-4">
-                                                    <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-                                                    <div class="ms-3">
-                                                        <div class="fw-bold">대댓쓴이1</div>
-                                                        고양이고양이
-                                                    </div>
-                                                </div>
-                                                <!-- Child comment 2-->
-                                                <div class="d-flex mt-4">
-                                                    <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-                                                    <div class="ms-3">
-                                                        <div class="fw-bold">대댓쓴이2</div>
-                                                        고양이고양이고양이
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Single comment-->
-                                        <div class="d-flex">
-                                            <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-                                            <div class="ms-3">
-                                                <div class="fw-bold">댓쓴이2</div>
-                                                강아지
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section> --%>
                         </div>
                     </div>
                 </div>
@@ -314,8 +281,32 @@
         <%-- <script src="js/scripts.js"></script> --%>
 
 
+    <script>
+        // 댓글 관련 JS 코드에 필요한 값을 전역 변수로 선언
 
-        <%-- <script src="${contextPath}/resources/js/shelter.js"></script> --%>
+        // jsp 파일 : html, css, js, el, jstl 사용 가능
+        // js  파일 : js
+
+        // 코드 해석 순서  :   EL == JSTL > HTML > JS
+
+        // ** JS 코드에서 EL/JSTL을 작성하게 된다면 반드시 ""를 양쪽에 추가 **
+
+        // 최상위 주소
+        const contextPath = "${contextPath}";
+        
+        // 게시글 번호
+        const boardNo = "${desertionNo}"; // "500"
+
+        // 로그인한 회원 번호
+        // const loginMemberNo = "${loginMember.memberNo}";
+        // -> 로그인 O  : "10";
+        // -> 로그인 X  : "";  (빈문자열)
+
+    </script>
+
+
+        <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+        <script src="${contextPath}/resources/js/shelter.js"></script>
 
 
 
