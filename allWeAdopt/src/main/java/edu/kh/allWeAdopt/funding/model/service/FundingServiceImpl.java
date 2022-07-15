@@ -21,6 +21,10 @@ import edu.kh.allWeAdopt.funding.model.vo.Supporters;
  * @author deadWhale
  *
  */
+/**
+ * @author deadWhale
+ *
+ */
 @Service
 public class FundingServiceImpl implements FundingService {
 
@@ -269,6 +273,17 @@ public class FundingServiceImpl implements FundingService {
 			
 		return paymentNo;
 	}
+
+
+
+
+
+	//결제 취소 상태로 업데이트 
+	@Override
+	public int cancelPayment(int paymentNo) {
+		return dao.cancelPayment(paymentNo);
+	}
+	
 	
 	
 	
