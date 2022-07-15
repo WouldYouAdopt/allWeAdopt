@@ -29,6 +29,7 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="${contextPath}/resources/css/main-style.css" rel="stylesheet" />
         <link href="${contextPath}/resources/css/styles.css" rel="stylesheet" />
+        <link href="${contextPath}/resources/css/shelter/shelter-reply.css" rel="stylesheet" />
 
 
         <%-- 지도 --%>
@@ -135,10 +136,16 @@
                                 </section>
                             </article>
 
-                            <jsp:include page="/WEB-INF/views/shelter/shelterReply.jsp"/>
+
+
+                            <!-- 댓글 -->
+                            <jsp:include page="/WEB-INF/views/shelter/shelter-reply.jsp"/>
+
+
 
                             <!-- 버튼 영역-->
                             <div class="board-btn-area">
+
                                 <c:if test="${loginMember.memberNo == detail.memberNo}">
                                                                             <!-- detail?type=1&cp=3&no=100 -->
                                                                             <!-- detail?no=1522&type=2 -->
@@ -178,7 +185,7 @@
         <%-- <script src="js/scripts.js"></script> --%>
 
             <!-- jQuery 추가 -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
  
 
@@ -206,7 +213,9 @@
 
     </script>
 
-        <script src="${contextPath}/resources/js/shelter.js"></script>
+    <script src="${contextPath}/resources/js/shelterReply.js"></script>
+    <script src="${contextPath}/resources/js/shelter.js"></script>
+
 
         
     </body>
