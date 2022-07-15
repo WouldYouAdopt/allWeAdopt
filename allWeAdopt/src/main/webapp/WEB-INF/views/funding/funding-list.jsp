@@ -81,10 +81,18 @@
 	                            </div>
 	                            <div class="bottom-box">
 	                            	<div class="miniTitle">${map.now.fundingMiniTitle}</div>
-	                            	<div class="rigntText">현재 0원 달성<br>12일 남음</div>
+	                            	<div class="rigntText">
+	                            		<!-- 판매 금액 유뮤에 따라 표시 -->
+	                            		<c:if test="${empty map.now.fullPrice}">현재 0원 달성<br></c:if>
+	                            		<c:if test="${!empty map.now.fullPrice}">현재 ${map.now.fullPrice}원 달성<br></c:if>
+	                            		${map.now.leftDate}일 남음 
+	                            	</div>
 	                                <div class="rate-bar"></div>
-	                                <div class="rate-bar-pink"></div>
-	                                <div class="rate-text-box"><span class="rate-text"></span><span class="per">%</span></div>
+	                                <div class="rate-bar-pink" style="width:${map.now.salesRate}%;"></div>
+	                                <div class="rate-text-box" style="left:${map.now.salesRate}%;">
+	                                	<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 174 138.61"><defs><style>.cls-1{fill:rgb(255, 255, 255, 0.2)}</style></defs><path class="cls-1" d="M162.62,0H11.38C5.1,0,0,5.1,0,11.38V86.92c0,6.29,5.1,11.38,11.38,11.38H57.89l29.11,40.31,29.11-40.31h46.51c6.29,0,11.38-5.1,11.38-11.38V11.38c0-6.29-5.1-11.38-11.38-11.38Z"/></svg>
+                    					<div class="rate-text-wrap"><span class="rate-text"></span><span class="per">%</span></div>
+	                                </div>
 	                            </div>
 	                        </div>
                         </a>
@@ -92,7 +100,7 @@
                 </div>
             </section>
                             
-            <section class="py-5">
+            <section class="py-3">
             	<div class="text-center py-5">
             		<h1 class="fw-bolder">종료된 펀딩 둘러보기</h1>
             		<p class="lead fw-normal text-muted mb-0">지금까지 All We Adopt가 소개한 펀딩을 둘러보세요.</p>
@@ -113,7 +121,7 @@
                                     	<div class="d-flex align-items-end justify-content-between">
                                         	<div class="d-flex align-items-center">
                                             	<div class="small">
-                                                	<div class="fw-bold">달성률 120% / ${end.targetDonation}</div>
+                                                	<div class="fw-bold">달성률 ${end.salesRate}% / ${end.targetDonation}</div>
                                                 	<div class="text-muted">진행 기간 ${end.startDate} ~ ${end.endDate}</div>
                                             	</div>
                                         	</div>
@@ -122,71 +130,6 @@
                             	</div>
                         	</div>
                         </c:forEach>
-                        
-                        <div class="col-lg-4 mb-5">
-                            <div class="card h-100 shadow border-0">
-                                <img class="card-img-top" src="https://dummyimage.com/600x350/ced4da/6c757d" alt="..." />
-                                <div class="card-body pt-4 px-4 pb-0">
-                                    <div class="badge bg-gradient mb-2 pd-3" style="background:rgb(251, 131, 107)">성공</div>
-                                    <a class="text-decoration-none link-dark stretched-link" href="#!"><div class="h5 card-title mb-3">안꼬이는 리드줄과 폭신한 하네스</div></a>
-                                    <p class="card-text mb-0">반려견 하네스로 돌아온 반려견 리드줄 최고 평점 메이커 리드퍼피! 차분한 색상의 파스텔톤 하네스를 앙꼬줄과 같이 만나보세요!</p>
-                                </div>
-                                <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
-                                    <div class="d-flex align-items-end justify-content-between">
-                                        <div class="d-flex align-items-center">
-                                            <div class="small">
-                                                <div class="fw-bold">달성률 120% / 880,000원</div>
-                                                <div class="text-muted">진행 기간 2022.02. 01 ~ 2022.02.28</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        
-                        <div class="col-lg-4 mb-5">
-                            <div class="card h-100 shadow border-0">
-                                <img class="card-img-top" src="https://dummyimage.com/600x350/ced4da/6c757d" alt="..." />
-                                <div class="card-body pt-4 px-4 pb-0">
-                                    <div class="badge bg-gradient mb-2 pd-3" style="background:rgb(251, 131, 107)">성공</div>
-                                    <a class="text-decoration-none link-dark stretched-link" href="#!"><div class="h5 card-title mb-3">안꼬이는 리드줄과 폭신한 하네스</div></a>
-                                    <p class="card-text mb-0">반려견 하네스로 돌아온 반려견 리드줄 최고 평점 메이커 리드퍼피! 차분한 색상의 파스텔톤 하네스를 앙꼬줄과 같이 만나보세요!</p>
-                                </div>
-                                <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
-                                    <div class="d-flex align-items-end justify-content-between">
-                                        <div class="d-flex align-items-center">
-                                            <div class="small">
-                                                <div class="fw-bold">달성률 120% / 880,000원</div>
-                                                <div class="text-muted">진행 기간 2022.02. 01 ~ 2022.02.28</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        
-                        <div class="col-lg-4 mb-5">
-                            <div class="card h-100 shadow border-0">
-                                <img class="card-img-top" src="https://dummyimage.com/600x350/ced4da/6c757d" alt="..." />
-                                <div class="card-body pt-4 px-4 pb-0">
-                                    <div class="badge bg-gradient mb-2 pd-3" style="background:rgb(251, 131, 107)">성공</div>
-                                    <a class="text-decoration-none link-dark stretched-link" href="#!"><div class="h5 card-title mb-3">안꼬이는 리드줄과 폭신한 하네스</div></a>
-                                    <p class="card-text mb-0">반려견 하네스로 돌아온 반려견 리드줄 최고 평점 메이커 리드퍼피! 차분한 색상의 파스텔톤 하네스를 앙꼬줄과 같이 만나보세요!</p>
-                                </div>
-                                <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
-                                    <div class="d-flex align-items-end justify-content-between">
-                                        <div class="d-flex align-items-center">
-                                            <div class="small">
-                                                <div class="fw-bold">달성률 120% / 880,000원</div>
-                                                <div class="text-muted">진행 기간 2022.02. 01 ~ 2022.02.28</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         
                     </div>
             	</div>
@@ -202,25 +145,66 @@
         <script src="${contextPath}/resources/js/scripts.js"></script>
         <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
         <script>
-            // 달성률 카운트
-            $(function() {
-                var cnt0 = 0;
-                counterFn();
+     	// 달성률 
+    	const salesRate = ${map.now.salesRate};
+    
+    	// 키프레임 js에서 제어하기
+    	const pinkWidth = document.getElementsByClassName("rate-bar-pink")[0];
+    	const keyFrames = document.createElement("style");
+    	
+    	keyFrames.innerHTML = `
+    		@keyframes long1 {
+    		   from { 
+    		       width: 0;
+    		       background-color: rgb(251, 131, 107, 1);
+    		   }
+    		   to { 
+    		        width: ${map.now.salesRate}%;
+    		        background-color: rgb(251, 131, 107, 0.9);
+    		    }
+    		}
+    		`;
+		pinkWidth.appendChild(keyFrames);
+    	
+		
+		const textBoxleft = document.getElementsByClassName("rate-text-box")[0];
+    	const keyFrames2 = document.createElement("style");
+    	
+    	keyFrames2.innerHTML = `
+    		@keyframes long2 {
+    		   from { 
+    			   left: 2px;
+						color: #FB836B;
+    		   }
+    		   to { 
+    			   //left:calc(salesRate%*0.95);
+    			   left: calc(${map.now.salesRate}%*0.95);
+				 		color: #FB836B;
+    		    }
+    		}
+    		`;
+		textBoxleft.appendChild(keyFrames2);
+    	
 
-                function counterFn() {
+        // 달성률 숫자 카운트
+    	$(function() {
+            var cnt0 = 0;
+            counterFn();
 
-                    id0 = setInterval(count0Fn, 30);
+            function counterFn() {
 
-                    function count0Fn() {
-                        cnt0++;
-                        if (cnt0 > 82) {
-                            clearInterval(id0);
-                        } else {
-                            $(".rate-text").text(cnt0);
-                        }
+                id0 = setInterval(count0Fn, 30);
+
+                function count0Fn() {
+                    cnt0++;
+                    if (cnt0 > salesRate) {
+                        clearInterval(id0);
+                    } else {
+                        $(".rate-text").text(cnt0);
                     }
                 }
-		    });
+            }
+	    });
 
 
 			
