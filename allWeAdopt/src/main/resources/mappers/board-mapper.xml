@@ -14,6 +14,9 @@
 		<result property="createDate" column="CREATE_DT"/>
 		<result property="updateDate" column="UPDATE_DT"/>
 		<result property="memberName" column="MEMBER_NM"/>
+		<result property="animalDetail" column="ANIMAL_DETAIL"/>
+		<result property="animalType" column="ANIMAL_TYPE"/>
+		<result property="areaDetail" column="AREA_DETAIL"/>
 	</resultMap>
 	
 	<resultMap type="animal" id="animal_rm">
@@ -30,12 +33,14 @@
 		<result property="areaDetail" column="AREA_DETAIL"/>
 	</resultMap>
 	
+	<!-- 게시판 등록 -->
 	<insert id="userBoardRegist">
 		INSERT INTO BOARD
 		VALUES(SEQ_BOARD_NO.NEXTVAL, #{boardTitle}, #{boardContent}, SYSDATE, NULL, #{category}, 'N', 
 		TO_DATE(#{boardPeriod},'YYYY-MM-DD'),#{phone},2,#{memberNo},TO_DATE(#{boardPeriod2},'YYYY-MM-DD'))
 	</insert>
 	
+	<!-- 게시판 등록 후 게시판 번호 추출 -->
 	<select id="getBoardNo" resultType="_int">
 		SELECT BOARD_NO FROM (SELECT BOARD_NO, ROWNUM AA FROM (
 	    SELECT ROWNUM RNUM, BOARD_NO FROM BOARD
@@ -45,19 +50,23 @@
 		))WHERE AA = 1
 	</select>
 	
+	<!-- 지역 사항 추가 -->
 	<insert id="userBoardArea">
 		INSERT INTO BOARD_AREA VALUES(#{boardNo},#{area},#{areaDetail})
 	</insert>
 	
+	<!-- 동물 상세 사항 추가 -->
 	<insert id="userBoardAnimal">
 		INSERT INTO BOARD_ANIMAL VALUES(#{boardNo},#{animalType},#{animalDetail},#{gender},#{neutering})
 	</insert>
 	
+	<!-- 지역 리스트 출력 -->
 	<select id="areaList" resultMap="area_rm">
 		SELECT DISTINCT AREA FROM AREA_DB
 		ORDER BY AREA
 	</select>
 	
+	<!-- 상세 지역 리스트 출력 -->
 	<select id="loadAreaList" parameterType="string" resultMap="area_rm">
 		SELECT AREA_DETAIL FROM AREA_DB
 		WHERE AREA = #{area}
@@ -66,8 +75,13 @@
 	
 	<!-- 게시글 리스트 출력 -->
 	<select id="boardList" resultMap="board_rm">
-		SELECT BOARD_NO, BOARD_TITLE, MEMBER_NM, TO_CHAR(CREATE_DT,'YYYY-MM-DD') CREATE_DT, UPDATE_DT FROM BOARD
+		SELECT BOARD_NO, BOARD_TITLE, MEMBER_NM, TO_CHAR(CREATE_DT,'YYYY-MM-DD') CREATE_DT, 
+		UPDATE_DT, AREA, AREA_DETAIL, ANIMAL_TYPE, ANIMAL_DETAIL, GENDER, NEUTERING, CATEGORY,
+		BOARD_PERIOD, BOARD_PERIOD2
+		FROM BOARD
 		JOIN MEMBER USING(MEMBER_NO)
+		JOIN BOARD_AREA USING(BOARD_NO)
+		JOIN BOARD_ANIMAL USING(BOARD_NO)
 		WHERE BOARD_CD = 2
 		AND BOARD_ST = 'N'
 	</select>
