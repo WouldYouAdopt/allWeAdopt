@@ -84,7 +84,23 @@
     color: #FB836b;
 }
 
+/* ----------------------------- */
 
-table{
-    border: 3px solid red;
+
+td{
+    text-align: left;
+}
+
+
+#funding-info{
+    width: 100%;
+    padding: 40px;
+}
+#twoTable{
+    display: flex;
+    width: 100%;
+}
+#twoTable>article{
+    padding: 20px;
+    width: 50%;
 }

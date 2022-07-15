@@ -39,6 +39,9 @@
 <link	href="${contextPath}/resources/css/funding/funding-order-detail.css"	rel="stylesheet" />
 
 
+<%-- 달콤한 알림 --%>	
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 </head>
 <body class="d-flex flex-column">
@@ -47,6 +50,16 @@
 		<jsp:include page="/WEB-INF/views/common/header.jsp" />
   
 		<section class="py-4">
+
+    	<!-- 상단 이미지 영역 -->	
+		<div class="fundingTitleBox">
+			<div class="fundingTitleImage"></div>
+			<div class="fundingTitleText">우리아이 시원하게 여름 쿨매트</div>
+		</div>
+
+
+
+
 	   <!-- 상단 메뉴 영역. -->
         <div class="text-center mb-5" id="TOT">
             <h1 class="fw-bolder">주문관리 상세</h1>
@@ -54,13 +67,7 @@
         </div>
 
 
-			<!-- 상단 이미지 영역 -->
-      <!-- 상단 이미지 영역 -->
-      <div class="fundingTitleBox">
-          <div class="fundingTitleImage"></div>
-          <div class="fundingTitleText">우리아이 시원하게 여름 쿨매트</div>
-      </div>
-
+	
 			<div class="container px-5">
 				<div class=" rounded-3 py-5 px-4 px-md-5 mb-5">
 
@@ -88,10 +95,10 @@
 											<td >${detail.fundingCategory}</td>
 
 											<th  class="row-name">주문번호</th>
-											<td >${detail.paymentNo}</td>
+											<td  colspan="3">${detail.paymentNo}</td>
 										</tr>
 						
-									
+								
 									  <c:forEach var="reward" items="${detail.rewardList}">
 											<tr>	
 												<th>신청 리워드</th>
@@ -107,6 +114,9 @@
 								</table>
 							</article>
 
+						
+<%-- -------------------------------------------------------------------------------------------------- --%>
+<div id="twoTable"><%-- 결제 , 배송 정보 묶는 DIV 시작 --%>
 							<!-- 결제정보 테이블 -->
 							<article id="order-info" class="detail-info">
 
@@ -152,15 +162,17 @@
 									</c:when>
 
 									<c:otherwise>
-										<button type="button" class="btn btn-secondary" id="returnBtn">반품 신청</button>
+									
 									</c:otherwise>
 									
 								</c:choose>
 									
 								</div>
 							</article>
+
+
 							<!-- 배송 정보 테이블 -->
-							<article id="order-info" class="detail-info">
+							<article id="delivery-info" class="detail-info">
 								<h3 class="fw-bolder">배송 정보</h3>
 								<table class="table">
 									<tbody>
@@ -183,15 +195,15 @@
 									</tbody>
 								</table>
 							</article>
-
-
+</div><%-- 결제 , 배송 정보 묶는 DIV 끝 --%>
+<%-- -------------------------------------------------------------------------------------------------- --%>
 						</div>
 	
 	<%-- 배송정보 조회를 위한 form 태그 숨겨두기. --%>
 <form action="http://info.sweettracker.co.kr/tracking/2" method="post" id="submitSweettracker">
-	<input type="text" class="form-control" id="t_key" name="t_key" placeholder="API키" value="BZSIagSlyzWU3UEhwSNHBQ">
-	<input type="text" class="form-control" name="t_code" id="t_code" placeholder="택배사 코드" value="04">
-	<input type="text" class="form-control" name="t_invoice" id="t_invoice" placeholder="운송장 번호" value="1234567890"> 
+	<input type="hidden" class="form-control" id="t_key" name="t_key" placeholder="API키" value="BZSIagSlyzWU3UEhwSNHBQ">
+	<input type="hidden" class="form-control" name="t_code" id="t_code" placeholder="택배사 코드" value="04">
+	<input type="hidden" class="form-control" name="t_invoice" id="t_invoice" placeholder="운송장 번호" value="1234567890"> 
 </form>
 <%-- 배송정보 조회를 위한 form 태그 숨겨두기. --%>
 
@@ -211,13 +223,20 @@
 	<!-- 푸터 -->
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
+	<script>
+		const paymentNo = '${paymentNo}';
+	</script>
+
 	<!-- Bootstrap core JS-->
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></>
 	<!-- Core theme JS-->
 	<script src="${contextPath}/resources/js/scripts.js"></script>
+	
+	<%-- 제이쿼리 --%>
 	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-	<script src="${contextPath}/resources/js/funding/funding-delivery.js"></script>
+
+	<%-- 배송정보 관련 JS --%>
+	<script src="	${contextPath}/resources/js/funding/funding-delivery.js"></script>
   
 
 </body>

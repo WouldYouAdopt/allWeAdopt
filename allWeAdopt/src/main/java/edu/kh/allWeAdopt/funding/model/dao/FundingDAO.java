@@ -173,6 +173,14 @@ public class FundingDAO {
 		return sqlSession.insert("fundingMapper.insertRewardList",rewardList);
 	}
 
+	/**결제 취소상태로 업데이트 하는 sql
+	 * @param paymentNo
+	 * @return
+	 */
+	public int cancelPayment(int paymentNo) {	
+		return sqlSession.update("fundingMapper.cancelPayment",paymentNo);
+	}
+
 
 
 }

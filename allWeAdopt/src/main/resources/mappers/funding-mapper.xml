@@ -520,5 +520,11 @@ SELECT
 		GROUP BY FUNDING_NO) USING (FUNDING_NO)
 		WHERE FUNDING_ST='N'
 	</select>
+	
+	<!-- 결제 취소상태로 변경하는 SQL [김현기]-->
+	<update id="cancelPayment">
+	UPDATE PAYMENT SET ORDER_ST_CD = 5
+	WHERE  PAYMENT_NO = #{paymentNo}
+	</update>
 
 </mapper>
