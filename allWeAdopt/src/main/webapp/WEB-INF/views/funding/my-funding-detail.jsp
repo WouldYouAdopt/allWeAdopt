@@ -39,8 +39,14 @@
 <link	href="${contextPath}/resources/css/funding/funding-order-detail.css"	rel="stylesheet" />
 
 
+	<%-- 제이쿼리 --%>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <%-- 달콤한 알림 --%>	
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- summer note -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 
 
 </head>
@@ -158,11 +164,17 @@
 
 									<c:when test='${detail.orderState=="배송 완료"}'>		
 										<button type="button" class="btn btn-secondary" id="returnBtn">반품 신청</button>
-										<button type="button" class="btn btn-secondary">환불 신청</button>
+										<button type="button" class="btn btn-secondary" id="refundBtn">환불 신청</button>
+									</c:when>
+									<c:when test='${detail.orderState=="환불 신청"}'>		
+										<button type="button" class="btn btn-secondary">환불 진행 중</button>
+									</c:when>
+									<c:when test='${detail.orderState=="반품 신청"}'>		
+										<button type="button" class="btn btn-secondary" onclick="selectReturnState()">반품 진행 중</button>
 									</c:when>
 
 									<c:otherwise>
-									
+										<button type="button" class="btn btn-secondary">${detail.orderState} 진행 중</button>
 									</c:otherwise>
 									
 								</c:choose>
@@ -196,6 +208,8 @@
 								</table>
 							</article>
 </div><%-- 결제 , 배송 정보 묶는 DIV 끝 --%>
+
+   
 <%-- -------------------------------------------------------------------------------------------------- --%>
 						</div>
 	
@@ -203,7 +217,7 @@
 <form action="http://info.sweettracker.co.kr/tracking/2" method="post" id="submitSweettracker">
 	<input type="hidden" class="form-control" id="t_key" name="t_key" placeholder="API키" value="BZSIagSlyzWU3UEhwSNHBQ">
 	<input type="hidden" class="form-control" name="t_code" id="t_code" placeholder="택배사 코드" value="04">
-	<input type="hidden" class="form-control" name="t_invoice" id="t_invoice" placeholder="운송장 번호" value="1234567890"> 
+	<input type="hidden" class="form-control" name="t_invoice" id="t_invoice" placeholder="운송장 번호" value="649524304661"> 
 </form>
 <%-- 배송정보 조회를 위한 form 태그 숨겨두기. --%>
 
@@ -231,9 +245,6 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></>
 	<!-- Core theme JS-->
 	<script src="${contextPath}/resources/js/scripts.js"></script>
-	
-	<%-- 제이쿼리 --%>
-	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 
 	<%-- 배송정보 관련 JS --%>
 	<script src="	${contextPath}/resources/js/funding/funding-delivery.js"></script>

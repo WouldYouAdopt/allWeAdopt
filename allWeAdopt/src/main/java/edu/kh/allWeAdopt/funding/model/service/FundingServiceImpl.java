@@ -8,8 +8,10 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import edu.kh.allWeAdopt.board.model.vo.Pagination;
+import edu.kh.allWeAdopt.common.exception.FailReturnException;
 import edu.kh.allWeAdopt.funding.model.dao.FundingDAO;
 import edu.kh.allWeAdopt.funding.model.vo.Funding;
 import edu.kh.allWeAdopt.funding.model.vo.FundingDetail;
@@ -25,6 +27,15 @@ import edu.kh.allWeAdopt.funding.model.vo.Supporters;
  * @author deadWhale
  *
  */
+/**
+ * @author deadWhale
+ *
+ */
+/**
+ * @author deadWhale
+ *
+ */
+@Transactional(rollbackFor = { Exception.class })
 @Service
 public class FundingServiceImpl implements FundingService {
 
@@ -278,11 +289,36 @@ public class FundingServiceImpl implements FundingService {
 
 
 
-	//결제 취소 상태로 업데이트 
+	//결제 취소 상태로 업데이트 [김현기]
 	@Override
 	public int cancelPayment(int paymentNo) {
 		return dao.cancelPayment(paymentNo);
 	}
+	
+	//환불 신청 상태로 업데이트 [김현기]
+	@Override
+	public int refundPayment(int paymentNo) {
+		return dao.refundPayment(paymentNo);
+	}
+
+	//반품 신청 상태로 변경하면서 반품 사유 보내기
+	@Override
+	public int retrunPayment(int paymentNo, String returnReason) {
+		
+		int result = dao.retrunPaymentStats(paymentNo);
+		if(result>0) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("paymentNo", paymentNo);
+			map.put("returnReason", returnReason);
+			result = dao.insertReason(map);
+			
+			if(result==0) {
+				throw new FailReturnException();
+			}
+		}
+		return result;
+	}
+	
 	
 	
 	

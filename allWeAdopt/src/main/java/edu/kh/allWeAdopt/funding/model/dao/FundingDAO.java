@@ -1,6 +1,7 @@
 package edu.kh.allWeAdopt.funding.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -179,6 +180,26 @@ public class FundingDAO {
 	 */
 	public int cancelPayment(int paymentNo) {	
 		return sqlSession.update("fundingMapper.cancelPayment",paymentNo);
+	}
+	
+	/**환불 상태로 업데이트 하는 sql
+	 * @param paymentNo
+	 * @return
+	 */
+	public int refundPayment(int paymentNo) {
+		return sqlSession.update("fundingMapper.refundPayment",paymentNo);
+	}
+
+	/**반품 상태로 업데이트하는 sql
+	 * @param paymentNo
+	 * @return
+	 */
+	public int retrunPaymentStats(int paymentNo) {
+		return sqlSession.update("fundingMapper.retrunPaymentStats",paymentNo);
+	}
+
+	public int insertReason(Map<String, Object> map) {
+		return sqlSession.insert("fundingMapper.insertReason",map);
 	}
 
 
