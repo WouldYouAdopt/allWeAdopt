@@ -204,6 +204,7 @@
                                         </li>
                                     </ol>
 
+                                    <div class="md-10" style="margin:30px;"></div>
 
                                     <%-- 보호소 지도 첨부 --%>
                                     <div id="map" style="width:600px;height:400px;"></div>
