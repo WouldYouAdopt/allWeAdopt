@@ -31,6 +31,9 @@
         <link href="${contextPath}/resources/css/main-style.css" rel="stylesheet" />
         <link href="${contextPath}/resources/css/styles.css" rel="stylesheet" />
 
+
+        <link href="${contextPath}/resources/css/shelter/shelter-main.css" rel="stylesheet" />
+
         
 
         <style>
@@ -135,9 +138,9 @@
                         <c:forEach var="shelter" items="${list}">
                         <div class="col-lg-4 mb-5">
                             <div class="card h-100 shadow border-0">
-                                <img class="card-img-top" src="${shelter.popfile}" alt="썸네일" />
+                                <img class="card-img-top" src="${shelter.popfile}" alt="썸네일" id="thumbnail" />
                                 <div class="card-body p-4">
-                                    <h3><div class="badge bg-primary bg-gradient rounded-pill mb-2">New</div></h3>
+                                    <h4><div class="badge bg-primary bg-gradient rounded-pill mb-2">New</div></h4>
                                         <a class="text-decoration-none link-dark stretched-link" href="../shelter/shelterDetail/${shelter.desertionNo}" >
                                             <li class="h5 card-title mb-3">종류 : ${shelter.kindCd}</li>
                                             <li class="h5 card-title mb-3">발견 날짜 : ${shelter.happenDt}</li>
