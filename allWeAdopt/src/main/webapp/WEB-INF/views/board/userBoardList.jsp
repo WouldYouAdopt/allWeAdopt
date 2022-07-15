@@ -109,8 +109,28 @@
                                     <div class="card h-100 shadow border-0">
                                         <img class="card-img-top" src="https://dummyimage.com/600x350/ced4da/6c757d" alt="..." />
                                         <div class="card-body p-4">
-                                            <div class="badge bg-primary bg-gradient rounded-pill mb-2">News</div>
-                                            <a class="text-decoration-none link-dark stretched-link" href="../board/detail/2/${boardList.boardNo}"><h5 class="card-title mb-3">${boardList.boardTitle}</h5></a>
+                                            <div class="badge bg-primary bg-gradient rounded-pill mb-2 animal">${boardList.animalType}</div>
+                                            <c:if test="${!empty boardList.animalDetail}">
+                                                <div class="badge bg-primary bg-gradient rounded-pill mb-2 animal-detail">${boardList.animalDetail}</div>
+                                            </c:if>
+                                            <div class="badge bg-primary bg-gradient rounded-pill mb-2 gender">
+                                                <c:choose>
+                                                    <c:when test="${boardList.gender eq 'M'}">
+                                                        수컷
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        암컷
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </div>
+                                            <c:if test="${boardList.neutering eq 'Y'}">
+                                                <div class="badge bg-primary bg-gradient rounded-pill mb-2 neutering">
+                                                        중성화
+                                                </div>
+                                            </c:if>
+                                            <a class="text-decoration-none link-dark stretched-link" href="../board/detail/2/${boardList.boardNo}">
+                                                <h5 class="card-title mb-3"><span class="category">${boardList.category}</span>${boardList.boardTitle}</h5>
+                                            </a>
                                         </div>
                                         <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
                                             <div class="d-flex align-items-end justify-content-between">

@@ -24,5 +24,14 @@ public class Board {
 	private String memberName;
 	private String msg;
 	private String profileImage;
+
 	private String thumbnail;
+
+	private String area;
+	private String areaDetail;
+	private String animalType;
+	private String animalDetail;
+	private String gender;
+	private String neutering;
+
 }
