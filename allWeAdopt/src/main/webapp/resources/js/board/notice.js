@@ -39,10 +39,24 @@
 
             let url = contextPath + "/admin/notice/delete/"+ boardNo ; // 상대경로 형식으로 작성
 
-            if( confirm("정말로 삭제 하시겠습니까?") ){
-                location.href = url; // get방식으로 url에 요청
-            }
-
+            Swal.fire({
+                title: '정말로 삭제 하시겠습니까?',
+                text: "확인 버튼을 클릭하면 게시글이 삭제됩니다.",
+                width: 340,
+                icon: 'warning',
+                iconColor: 'rgb(251, 131, 107)',
+                showCancelButton: true,
+                confirmButtonColor: 'rgb(251, 131, 107)',
+                cancelButtonColor: '#999',
+                confirmButtonText: '확인',
+                cancelButtonText: '취소'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        location.href = url;
+                    }else{
+                        e.preventDefault();
+                    }
+                })
         });
     }
 
@@ -56,14 +70,31 @@ function writeValidate(){
     const note = document.getElementsByClassName("note-editable")[0];
 
     if(boardTitle.value.trim().length == 0 ){
-        alert(" 제목을 입력해주세요!");
+
+        Swal.fire({
+            title: '제목을 입력해주세요!',
+            width: 350,
+            padding: '3em',
+            color: 'black',
+            confirmButtonColor: 'rgb(251, 131, 107)',
+            confirmButtonText: '확인'
+        });
+
         boardTitle.value = "";
         boardTitle.focus();
         return false;
     }
 
     if( note.innerHTML.trim() == "<p><br></p>" && (note.innerText.trim() == "" || note.innerText == "\n" )){
-        alert("내용을 입력해주세요");
+
+        Swal.fire({
+            title: '내용을 입력해주세요!',
+            width: 350,
+            padding: '3em',
+            color: 'black',
+            confirmButtonColor: 'rgb(251, 131, 107)',
+            confirmButtonText: '확인'
+        });
         note.focus();
         return false;
     }
