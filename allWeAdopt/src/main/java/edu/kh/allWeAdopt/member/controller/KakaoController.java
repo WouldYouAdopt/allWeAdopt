@@ -132,20 +132,6 @@ public class KakaoController {
 	        		// 카카오 로그인 했었던 사람 
 	        		 model.addAttribute("loginMember", kakaoEmailCheck);
 	        		 
-	        		 //쿠키 
-	        		// 쿠키 
-        			Cookie cookie = new Cookie("intro", kakaoEmailCheck.getMemberEmail());
-        			
-        			cookie.setMaxAge(60 * 60 * 24 ); // 쿠키하루.
-        			
-        			// 쿠키가 적용될 범위(경로) 지정
-        			cookie.setPath(req.getContextPath());
-        			
-        			// 쿠키를 응답 시 클라이언트에게 전달
-        			resp.addCookie(cookie);
-	        			
-	        		 
-	        		 
 	        	      
 	        	     return "redirect:/"; //본인 원하는 경로 설정
 	        		
