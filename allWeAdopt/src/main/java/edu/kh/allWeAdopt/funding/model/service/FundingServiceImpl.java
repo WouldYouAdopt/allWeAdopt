@@ -8,8 +8,10 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import edu.kh.allWeAdopt.board.model.vo.Pagination;
+import edu.kh.allWeAdopt.common.exception.FailReturnException;
 import edu.kh.allWeAdopt.funding.model.dao.FundingDAO;
 import edu.kh.allWeAdopt.funding.model.vo.Funding;
 import edu.kh.allWeAdopt.funding.model.vo.FundingDetail;
@@ -33,6 +35,7 @@ import edu.kh.allWeAdopt.funding.model.vo.Supporters;
  * @author deadWhale
  *
  */
+@Transactional(rollbackFor = { Exception.class })
 @Service
 public class FundingServiceImpl implements FundingService {
 
@@ -310,7 +313,7 @@ public class FundingServiceImpl implements FundingService {
 			result = dao.insertReason(map);
 			
 			if(result==0) {
-				
+				throw new FailReturnException();
 			}
 		}
 		return result;

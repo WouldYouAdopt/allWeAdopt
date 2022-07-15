@@ -154,7 +154,7 @@ public class MyFundingController {
 		
 //		return new Gson().toJson(returnReason);
 		
-		return serivce.retrunPayment(paymentNo,returnReason);
+		return service.retrunPayment(paymentNo,returnReason);
 	}
 	//----------------------------------------------------------------------------------
 }

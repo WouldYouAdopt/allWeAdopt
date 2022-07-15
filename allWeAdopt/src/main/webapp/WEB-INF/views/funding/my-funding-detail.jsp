@@ -169,9 +169,12 @@
 									<c:when test='${detail.orderState=="환불 신청"}'>		
 										<button type="button" class="btn btn-secondary">환불 진행 중</button>
 									</c:when>
+									<c:when test='${detail.orderState=="반품 신청"}'>		
+										<button type="button" class="btn btn-secondary" onclick="selectReturnState()">반품 진행 중</button>
+									</c:when>
 
 									<c:otherwise>
-										<button type="button" class="btn">${detail.orderState} 진행 중</button>
+										<button type="button" class="btn btn-secondary">${detail.orderState} 진행 중</button>
 									</c:otherwise>
 									
 								</c:choose>
@@ -206,15 +209,7 @@
 							</article>
 </div><%-- 결제 , 배송 정보 묶는 DIV 끝 --%>
 
-    <div id="summernoteArea">
-		<h3>사유를 입력해주세요</h3>
-		<textarea id="summernote" name="returnReason"></textarea>  
-		<div id="btnArea">
-			<button id="returnSubmitBtn" onclick="sendReturn()">반품 신청</button>
-			<button id="returnCancelBtn" onclick="location.href=''">반품 취소</button>
-		</div>
-	</div>
-
+   
 <%-- -------------------------------------------------------------------------------------------------- --%>
 						</div>
 	

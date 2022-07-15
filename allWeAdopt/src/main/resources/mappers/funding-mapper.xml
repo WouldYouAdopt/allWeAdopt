@@ -542,7 +542,7 @@ SELECT
 	INSERT INTO RETURN VALUES(
     SEQ_RETURN.nextval,
     DEFAULT,DEFAULT,
-    #{pamentNo},#{returnReason})
+    #{paymentNo},#{returnReason})
 	</insert>
 
 </mapper>

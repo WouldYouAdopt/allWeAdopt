@@ -209,22 +209,6 @@ if($('#flexCheckDefault') != null){
 })();
 
 //섬머노트 이벤트
-$(document).ready(function() {
-    $('#summernote').summernote({
-        placeholder: '반품 사유를 작성해주세요.',
-        tabsize: 2,
-        height: 200,
-        focus:true,
-        disableResizeEditor: true,
-        toolbar: [
-            ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
-            ['color', ['forecolor','color']],
-            ['insert',['picture']],
-		    ['view', ['codeview','fullscreen']]
-        ]
-    });
-});
-
 function summer(){
     $('#summernote').summernote({
         placeholder: '반품 사유를 작성해주세요.',
@@ -246,6 +230,7 @@ function sendReturn(){
     console.log('연결 완료');
 
     const ta = document.getElementById("summernote");
+    
     if(ta.value.trim().length == 0 ){
         Swal.fire({
             title: '반품 사유를 작성해주세요',
@@ -299,4 +284,24 @@ function sendReturn(){
                 });
         }
      }) 
+}
+
+
+function selectReturnState(){
+
+    const div=document.createElement("div");
+    div.classList.add("summernoteArea");
+
+    const ta=document.createElement("textarea");
+    ta.setAttribute("name","returnReason");
+    ta.setAttribute("id","summernote");
+
+    let data =''; 
+    //ta.value=data;
+    div.append(ta); 
+
+    document.getElementById("twoTable").after(div);  
+    
+    summer();
+    $('#summernote').summernote('code', data);
 }
