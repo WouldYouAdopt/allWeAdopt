@@ -66,7 +66,6 @@
 function writeValidate(){
 
     const boardTitle = document.getElementById("exampleFormControlInput3");
-    const textarea = document.getElementById("summernote");
     const note = document.getElementsByClassName("note-editable")[0];
 
     if(boardTitle.value.trim().length == 0 ){

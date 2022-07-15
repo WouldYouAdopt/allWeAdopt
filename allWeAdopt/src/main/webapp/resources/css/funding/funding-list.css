@@ -63,3 +63,46 @@ table *{
     text-align: left;
 }
 
+
+
+
+
+/* 수진추가 */
+
+
+/* 펀딩예정인 펀딩 1개 들어갈 박스 */
+.fundingInfoS{
+	width:33%;
+
+	
+}
+/* 배경으로 펀딩 이미지 들어가는 박스 */
+.fundingImgS{
+	height:150px;
+	position:relative;
+	background-color:#ccc;
+	border-radius:5px;
+	
+}
+/* 펀딩 예정인 펀딩 이미지 위에 들어갈 텍스트 */
+.textS{
+	position:absolute;
+	top:50%;
+	left:50%;
+	transform: translate(-50%,-50%);
+	
+	font-size:40px;
+	color:rgb(255, 255, 255, 0.8);
+	font-weight:700;
+	text-shadow: 3px 3px 10px rgb(30, 30, 30, 0.7);
+}
+
+.registBtn:hover{
+	content:'등록하기';
+	background-color:#000;
+	width:100%
+}
+.infoS{
+	padding:10px;
+}
+

@@ -33,6 +33,8 @@
         <link href="${contextPath}/resources/css/main-style.css" rel="stylesheet" />
         <link href="${contextPath}/resources/css/styles.css" rel="stylesheet" />
 
+        <link href="${contextPath}/resources/css/shelter/shelter-main.css" rel="stylesheet" />
+
         <style>
             .nav-text-color{
                 /* color: rgb(251, 131, 107); */
@@ -101,11 +103,12 @@
                         <c:forEach var="pamphlet" items="${pamphletList}">
                             <div class="col-lg-4 mb-5">
                                 <div class="card h-100 shadow border-0">
-                                    <img class="card-img-top" src="${pamphlet.thumbnail}" alt="..." />
+                                    <img class="card-img-top" src="${pamphlet.thumbnail}" alt="..." id="thumbnail" />
                                     <div class="card-body p-4"  id="content">
-                                        <div class="badge bg-primary bg-gradient rounded-pill mb-2">실종</div>
+                                        <div class="badge bg-danger bg-gradient rounded-pill mb-2">실종</div>
+
                                         <a class="text-decoration-none link-dark stretched-link" href="../pamphlet/detail/${pamphlet.boardNo}?cp=${pagination.currentPage}"><h5 class="card-title mb-3">${pamphlet.boardTitle}</h5></a>
-                                        <p class="card-text mb-0">${pamphlet.boardContent}</p>
+                                        <%-- <p class="card-text mb-0">${pamphlet.boardContent}</p> --%>
                                     </div>
                                     <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
                                         <div class="d-flex align-items-end justify-content-between">
@@ -139,7 +142,7 @@
                         </c:forEach>
                     </div>
                                       
-                    <button type="button" class="btn btn-outline-warning" onclick="location.href='../pamphlet/write?mode=insert&cp=${pagination.currentPage}'">글쓰기</button>                  
+                    <button type="button" class="btn btn-outline-warning" id="allButton" onclick="location.href='../pamphlet/write?mode=insert&cp=${pagination.currentPage}'">글쓰기</button>                  
 
 
                     <%-- 페이지네이션 --%>
