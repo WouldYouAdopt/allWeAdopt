@@ -38,6 +38,9 @@
         <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
         
+        <%-- 달콤한 알림 --%>  
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     </head>
     <body class="d-flex flex-column">
         <main class="flex-shrink-0">
@@ -61,13 +64,12 @@
                 <div class="container px-5">
                     <div class=" rounded-3 py-5 px-4 px-md-5 mb-5">
                         <div class="row gx-5 justify-content-center">
-                          
-                          <form action=""></form>
+<%-- ---------------------------------------------------------------------------------------------- --%>
+
+<form action="register" method="post" id="submitEvent" name="submitEvent" enctype="multipart/form-data">
                           <!-- 펀딩 일정 입력 영역 -->
                           <div class="fundingScheduleArea">
                             <div>
-                              <button type="button" class="btn fundingBtn btn-secondary" value='unable'>2022/06</button>
-                              <button type="button" class="btn  fundingBtn btn-outline-success" value=''>2022/07</button>
                               <button type="button" class="btn  fundingBtn btn-outline-success" value=''>2022/08</button>
                               <button type="button" class="btn  fundingBtn btn-outline-success" value=''>2022/09</button>
                               <button type="button" class="btn fundingBtn btn-outline-success"  value=''>2022/10</button>
@@ -76,7 +78,8 @@
 
                           <!-- 썸네일 영역 -->
                           <div class="thumbnailArea"> 
-                            <div>썹네일을 입력해주세요</div>
+                            <h4><i class="fa-regular fa-image"/></i> 썸네일을 등록 해주세요</h4>
+                            <div class="intro"> 미등록 시 기본 이미지가 등록됩니다.</div>
 
                             <div class="previewArea">
                               <img src="" class="img-fluid" id="previewImage">
@@ -85,7 +88,7 @@
                             <div class="profile-area">
                               <label for="input-image">이미지 선택</label>
                               <input type="file" name="uploadImage" id="input-image" accept="image/*">
-                              <button id="deleteBtn">이미지 삭제</button>
+                              <button type="button" id="deleteBtn">이미지 삭제</button>
                             </div>
 
                           </div>
@@ -93,14 +96,14 @@
 
                           <!-- 펀딩 카테고리 + 제목 입력 영역 -->
                           <div class="fundingTitle">
-
-                            <div class="intro">제목과 카테고리를 입력해주세요</div>
+                            <h4><i class="fa-solid fa-angles-right"></i> 제목과 카테고리를 입력해주세요</h4>
+                            <div class="intro">필수 입력 사항입니다.</div>
                             
                             <!-- 제목과 카테고리를 둘다 가두는 DIV -->
                             <div id="titleCategory">
                               <!-- 카테고리 영역-->
                               <div id="fundingCategory">
-                                <select class="form-select" aria-label="Default select example">
+                                <select class="form-select" aria-label="Default select example" name="categoryNo">
                                   <option selected>카테고리</option>
                                   <option value="1">건강</option>
                                   <option value="2">장난감</option>
@@ -109,16 +112,16 @@
                                   <option value="5">의류</option>
                                 </select>
                               </div>
-                              <input type="text" name="" id="" placeholder="제목을 입력해주세요">
+                              <input type="text" name="fundingTitle" id="fundingTitle" placeholder="제목을 입력해주세요">
                             </div>
                           </div>
 
 
                           <!-- 펀딩 소개 입력 (소제목 컬럼 ) -->
                           <div id="subheadArea">
-                            <div>펀딩 소개</div>
+                            <h4><i class="fa-solid fa-angles-right"></i> 펀딩 소개</h4>
                             <div class="intro">펀딩에 대해 간략한 소제목</div>
-                            <textarea name="" id="subheadInput"></textarea>
+                            <textarea name="fundingMiniTitle" id="subheadInput"></textarea>
                           </div>
 
 
@@ -126,11 +129,11 @@
                           <!-- 펀딩 리워드 작성칸 + 배송비-->
                           <div id="rewardsArea" class="">
 
-                            <div>펀딩 리워드 추가</div>
-                            
+                            <h4><i class="fa-solid fa-gift"></i>펀딩 리워드 추가</h4>
+                            <div class="intro">리워드를 추가 할 수 있습니다 </div>
                             
                             <div>
-                              <button class="fa-solid fa-plus" id="addRewardBtn" onclick="addReward()"></button>
+                              <button type="button" class="fa-solid fa-plus" id="addRewardBtn" onclick="addReward()"></button>
                             </div>
 
                             <table class="table table-bordered">
@@ -140,6 +143,7 @@
                                 <th>리워드 내용</th>
                                 <th>리워드 금액</th>
                                 <th>리워드 수량</th>
+                                <th>추가하기</th>
                               </thead>
 
                               <tbody class="rewardsRows">
@@ -147,38 +151,58 @@
                                   <td>1</td>
                                   <td><input type="text"></td>
                                   <td><input type="text"></td>
-                                  <td><input type="text"></td>
-                                  <td><input type="text"></td>
+                                  <td><input type="number"></td>
+                                  <td><input type="number"></td>
+                                  <td><button type="button" class="rewardsAddBtn" onclick="addRewardList()">등록 1</button></td>
                                 </tr>
                                 <tr>
                                   <td>2</td>
                                   <td><input type="text"></td>
                                   <td><input type="text"></td>
-                                  <td><input type="text"></td>
-                                  <td><input type="text"></td>
+                                  <td><input type="number"></td>
+                                  <td><input type="number"></td>
+                                  <td><button type="button" class="rewardsAddBtn"  onclick="addRewardList()">등록 2</button></td>
                                 </tr>
                               </tbody>
 
                             </table>
 
                             <div id="deliveryFee">
-                              <span>배송비 : </span><input type="text" placeholder="배송비를 입력해주세요">
+
+                              <table>
+                                <tr>
+                                  <td><span><i class="fa-solid fa-truck"></i>배송비:</span> </td>
+                                  <td><input type="number" name="deliveryFee" placeholder="배송비를 입력해주세요"></td>
+                                </tr>
+                                <tr>
+                                  <td> <span><i class="fa-solid fa-truck"></i>목표 후원금 :</span> </td>
+                                  <td> <input type="nummber" name="targetDonation" placeholder="목표 후원금을 입력해주세요"></td>
+                                </tr>
+                              </table>
+
                             </div>
                           </div>
 
                           <!-- 섬머노트 작성칸 -->
                           <div id="summernoteArea">
                             
-                            <div><h5>펀딩 내용</h5></div>
-                            <textarea id="summernote" name="boardContent"></textarea>  
+                            <h4><i class="fa-solid fa-file-lines"></i> 펀딩 내용</h4>
+                            <div class="intro">펀딩 내용을 작성 할 수 있습니다. </div>
+
+                            <textarea id="summernote" name="fundingContent"></textarea>  
 
                           </div>
 
 
-                          <!-- 위에서 선택되는 진행 일정을 작성하는 영역 -->
-                          <input type="hidden" name="예정일" value="onsubmit함수 수행 시 대입될 예정">
 
+                          <!-- 위에서 선택되는 진행 일정을 작성하는 영역 -->
+                          <input type="hidden" name="fundingSeason" value="2020.09">
+                          <%-- 리워드목록들 전달하는거  --%>
+                          <input type="hidden" id="insertRewardList" name="insertRewardList">
                           <button class="btn btn-primary" id="writeBtn">Button</button>
+</form>
+<%-- ---------------------------------------------------------------------------------------------- --%>
+
                         </div>
                     </div>
                 </div>

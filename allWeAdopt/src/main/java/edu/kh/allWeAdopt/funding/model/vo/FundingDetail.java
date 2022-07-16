@@ -15,12 +15,12 @@ public class FundingDetail {
 	private String fundingTitle; //펀딩 제목
 	private String fundingMiniTitle; //펀딩 소제목
 	private String fundingContent; //펀딩 내용
-	private String targetDonation;  
-	private String fundingSeason;
-	private int SuccessDonation;
-	private String fundingState;
-	private String fundingThumbnail;
-	private int deliveryFee;
+	private String targetDonation;  //목표 후원금
+	private String fundingSeason; //진행 월
+	private int SuccessDonation;  //성공 
+	private String fundingState; //펀딩 상태
+	private String fundingThumbnail; //섬네일 이미지 경로
+	private int deliveryFee; //배송비
 	
 	private String month;
 	private String startDate;
@@ -28,6 +28,7 @@ public class FundingDetail {
 	private int leftDate;
 	
 	private String CategoryName;
+	private int categoryNo; // 펀딩 카테고리
 	
 	private String fullPrice; // 총 달성한(판매한) 금액
 	private int salesRate;

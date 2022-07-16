@@ -1,3 +1,49 @@
+// let rewardList = new Array();
+let rewardList1 = {
+
+    rewardTitle:'1번의 타이틀',
+    rewardContent:'1번의 내용',
+    rewardPrice:1111,
+    maxRewardNo :50
+    
+ };
+
+ let rewardList2 = {
+    rewardNo:2,
+    rewardTitle:'2번의 타이틀',
+    rewardContent:'2번의 내용',
+    rewardPrice:2222,
+    maxRewardNo :100
+} 
+
+let temp ="-"+JSON.stringify(rewardList1) +"-"+ JSON.stringify(rewardList2);
+
+function testList(){
+    
+    // console.log(JSON.stringify(rewardList));
+    // document.getElementById("test1").value= JSON.stringify(rewardList);
+
+    $.ajax({
+        url:'testList',
+        type : "get",
+        data:{'list':document.getElementById("test").value},
+        success:function(result){
+            
+            console.log(result);
+        },   
+        error(request, status, error){
+            console.log("AJAX 에러 발생");
+            console.log("상태코드 : " + request.status); // 404, 500
+        }
+     })
+}
+
+
+
+
+
+
+
 
 /* 버튼 클릭시 색이 변하는 이벤트 주는 함수 */
 let schedule = 0; //일정이 선택 되었는지 확인.
@@ -47,10 +93,28 @@ function addReward(){
     for(let i=0; i<4; i++){
         const td = document.createElement('td');
         const input = document.createElement('input');
+            if(i>=2){
+                input.setAttribute("type","number")
+            }
         td.append(input);
         tr.append(td);
     }
+
+    const td = document.createElement('td');
+    const button = document.createElement('button');
+    button.setAttribute("type",'button');
+    button.setAttribute("onclick",'addRewardList()');
+    button.classList.add("rewardsAddBtn");
+    button.innerText="등록"
+    td.append(button);
+    tr.append(td);
+
     rewardsRows.append(tr);
+
+    
+$('.rewardsAddBtn').click(checkInput);
+
+
 }
 
 
@@ -79,3 +143,62 @@ deleteBtn.addEventListener('click',function(){
 
 
 
+function addRewardList(){
+
+    
+}
+
+$('.rewardsAddBtn').click(checkInput);
+
+function checkInput(){
+    const arr=this.parentElement.parentElement.children;
+
+    const title = arr[1].children[0].value;
+    const content = arr[2].children[0].value;
+    const price =arr[3].children[0].value;
+    const amount = arr[4].children[0].value;
+   
+    //입력될 값들이 있는지 확인
+    if(title.trim().length == 0){
+        alert('리워드 타이틀을 입력해주세요');
+        return false;
+    }
+    if(content.trim().length == 0){
+        alert('리워드 내용을 입력해주세요');
+        return false;
+    }
+    if(price.trim().length == 0){
+        alert('리워드 가격을 입력해주세요');
+        return false;
+    }
+    if(amount.trim().length == 0){
+        alert('리워드 수량 입력해주세요');
+        return false;
+    }
+
+
+    let item = {
+        rewardTitle:title,
+        rewardContent:content,
+        rewardPrice:price,
+        maxRewardNo :amount
+    } 
+    const t = document.getElementById("insertRewardList");
+    t.value += JSON.stringify(item)+"-";
+    
+    this.classList.remove("rewardsAddBtn");
+    this.classList.add("btn-secondary");
+    this.removeEventListener("onclick",addRewardList);
+    
+}
+
+function alert(msg){
+    Swal.fire({
+        title: msg,
+        width: 350,
+        padding: '3em',
+        color: 'black',
+        confirmButtonColor: 'rgb(251, 131, 107)',
+        confirmButtonText: '확인'
+        });
+}

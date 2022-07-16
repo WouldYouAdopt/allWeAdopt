@@ -17,6 +17,7 @@
 		<result property="deliveryFee" column="DELIVERY_FEE" />
 
 		<result property="CategoryName" column="CATEGORY_NM" />
+		<result property="categoryNo" column="FUNDING_CATEGORY" />
 		<result property="salesRate" column="SALES_RATE" />
 
 		<result property="month" column="MONTH" />
@@ -548,5 +549,42 @@ SELECT
 	<select id="selectReturn" resultType="string">
 	SELECT return_reason FROM RETURN WHERE PAYMENT_NO = #{payment_no}
 	</select>
+	
+	<insert id="registerFunding" parameterType="fundingDetail" useGeneratedKeys="true">
+	
+    	<selectKey keyProperty="fundingNo" resultType="_int"	order="BEFORE">
+			SELECT SEQ_FUNDING.nextval FROM DUAL
+		</selectKey>
+	    
+    INSERT INTO FUNDING VALUES(
+	    #{fundingNo},
+	    #{fundingTitle},
+     	#{fundingMiniTitle},
+	    #{fundingContent}, --내용
+	    #{targetDonation}, -- 목표 달성 금액
+	    #{fundingSeason}, --일정
+	    #{SuccessDonation}, --성공 금액
+	    DEFAULT, -- 펀딩상태
+	    #{fundingThumbnail}, --썸네일 경로
+	    #{deliveryFee}, --배송비
+   		#{categoryNo} --카테고리   	
+   		)
+	</insert>
+	
+	
+	<insert id="registerRewardList" parameterType="list">
+			INSERT INTO REWARD
+			SELECT SEQ_REWARD_NO.NEXTVAL REWARD_NO, A.* FROM(	
+		<foreach collection="list" item="r" separator="UNION ALL">
+					SELECT
+					#{r.rewardTitle} REWARD_TITLE ,
+					#{r.rewardContent} REWARD_CONTENT,
+					#{r.rewardPrice} REWARD_PRICE,
+					#{r.maxRewardNo} MAX_REWARD_NO,
+					#{r.fundingNo} FUNDING_NO
+					FROM DUAL
+		</foreach>
+		) A 
+	</insert>
 
 </mapper>

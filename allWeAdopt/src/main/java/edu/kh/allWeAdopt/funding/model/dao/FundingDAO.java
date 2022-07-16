@@ -198,12 +198,36 @@ public class FundingDAO {
 		return sqlSession.update("fundingMapper.retrunPaymentStats",paymentNo);
 	}
 
+	/**반품 사유 작성 
+	 * @param map
+	 * @return
+	 */
 	public int insertReason(Map<String, Object> map) {
 		return sqlSession.insert("fundingMapper.insertReason",map);
 	}
 
+	/**반품 조회
+	 * @param paymentNo
+	 * @return
+	 */
 	public String selectReturn(int paymentNo) {
 		return sqlSession.selectOne("fundingMapper.selectReturn",paymentNo);
+	}
+
+	/**펀딩 등록
+	 * @param fundingDetail
+	 * @return
+	 */
+	public int fundingRegister(FundingDetail fundingDetail) {
+		int result = sqlSession.insert("fundingMapper.registerFunding",fundingDetail);
+			if(result>0) {
+				result = fundingDetail.getFundingNo();
+			}
+		return result;
+	}
+
+	public int registerRewardList(List<Reward> rewardList) {
+		return sqlSession.insert("fundingMapper.registerRewardList",rewardList);
 	}
 
 
