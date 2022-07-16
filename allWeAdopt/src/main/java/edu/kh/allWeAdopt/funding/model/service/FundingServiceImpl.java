@@ -1,5 +1,6 @@
 package edu.kh.allWeAdopt.funding.model.service;
 
+import java.io.File;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,8 +10,10 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import edu.kh.allWeAdopt.board.model.vo.Pagination;
+import edu.kh.allWeAdopt.common.Util;
 import edu.kh.allWeAdopt.common.exception.FailReturnException;
 import edu.kh.allWeAdopt.funding.model.dao.FundingDAO;
 import edu.kh.allWeAdopt.funding.model.vo.Funding;
@@ -326,9 +329,48 @@ public class FundingServiceImpl implements FundingService {
 
 
 
+	//반품조회
 	@Override
 	public String selectReturn(int paymentNo) {
 		return dao.selectReturn(paymentNo);
+	}
+
+
+
+
+	//펀딩 등록
+	@Override
+	public int fundingRegister(FundingDetail fundingDetail, MultipartFile uploadImage, String webPath,
+			String folderPath)throws Exception{
+		
+		
+//		해야하는데 수진님이 하셨는지 확인 필요
+//		fundingDetail.setFundingTitle(Util.newLineHandling(fundingDetail.getFundingTitle()));
+//		
+//		fundingDetail.setFundingMiniTitle(Util.newLineHandling(fundingDetail.getFundingMiniTitle()));
+//		fundingDetail.setFundingMiniTitle(Util.XSSHandling(fundingDetail.getFundingMiniTitle()));
+		
+		String rename = Util.fileRename(uploadImage.getOriginalFilename());
+		fundingDetail.setFundingThumbnail(rename);
+		
+		//성공 금액 계산에서 세팅해주기
+		fundingDetail.setSuccessDonation((int)(Integer.parseInt(fundingDetail.getTargetDonation()) * 0.8));
+	
+		int fundingNo = dao.fundingRegister(fundingDetail);
+		
+		if(fundingNo>0) {
+			//펀딩 등록 리워드 목록에 저장하기
+			for(Reward r : fundingDetail.getRewardList() ) {
+				r.setFundingNo(fundingNo);
+			}
+			//리워드목록들 저장하고
+			fundingNo = dao.registerRewardList(fundingDetail.getRewardList());
+			
+			//이미지 서버에 업로드
+			uploadImage.transferTo(new File(folderPath+rename));
+		}
+		
+		return fundingNo;
 	}
 	
 	

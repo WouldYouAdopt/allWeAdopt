@@ -3,6 +3,8 @@ package edu.kh.allWeAdopt.funding.model.service;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import edu.kh.allWeAdopt.funding.model.vo.Funding;
 import edu.kh.allWeAdopt.funding.model.vo.FundingDetail;
 import edu.kh.allWeAdopt.funding.model.vo.OrderDetail;
@@ -82,6 +84,15 @@ public interface FundingService {
 	 * @return
 	 */
 	String selectReturn(int paymentNo);
+
+	/** 펀딩 등록
+	 * @param fundingDetail
+	 * @param uploadImage
+	 * @param webPath
+	 * @param folderPath
+	 * @return
+	 */
+	int fundingRegister(FundingDetail fundingDetail, MultipartFile uploadImage, String webPath, String folderPath)throws Exception;
 
 
 }
