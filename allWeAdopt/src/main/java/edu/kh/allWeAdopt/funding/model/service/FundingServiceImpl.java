@@ -35,6 +35,10 @@ import edu.kh.allWeAdopt.funding.model.vo.Supporters;
  * @author deadWhale
  *
  */
+/**
+ * @author deadWhale
+ *
+ */
 @Transactional(rollbackFor = { Exception.class })
 @Service
 public class FundingServiceImpl implements FundingService {
@@ -318,6 +322,17 @@ public class FundingServiceImpl implements FundingService {
 		}
 		return result;
 	}
+
+
+
+
+	@Override
+	public String selectReturn(int paymentNo) {
+		return dao.selectReturn(paymentNo);
+	}
+	
+	
+	
 	
 	
 	
