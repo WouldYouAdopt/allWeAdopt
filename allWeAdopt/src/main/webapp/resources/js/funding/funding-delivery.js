@@ -289,19 +289,41 @@ function sendReturn(){
 
 function selectReturnState(){
 
+    if(document.getElementsByClassName("summernoteArea")[0] !=null){
+        document.getElementsByClassName("summernoteArea")[0].innerHTML ="";
+    }
     const div=document.createElement("div");
     div.classList.add("summernoteArea");
 
     const ta=document.createElement("textarea");
     ta.setAttribute("name","returnReason");
-    ta.setAttribute("id","summernote");
+    ta.setAttribute("id","returnReason");
 
-    let data =''; 
-    //ta.value=data;
-    div.append(ta); 
+ let data ='';
 
-    document.getElementById("twoTable").after(div);  
+
+    $.ajax({
+        url:'../selectReturn/'+paymentNo,
+        type : "post",
+        data:{'returnReason':ta.value},
+        dataType:"json",
+        success:function(result){
+                data = result;
+                div.append(ta); 
     
-    summer();
-    $('#summernote').summernote('code', data);
+                document.getElementById("twoTable").after(div);  
+                
+                $('#returnReason').summernote('code', data);
+                $('#returnReason').summernote('disable');
+        },   
+        error(request, status, error){
+            console.log("AJAX 에러 발생");
+            console.log("상태코드 : " + request.status); // 404, 500
+        }
+     }) 
+
+   
+   
+    
+    
 }

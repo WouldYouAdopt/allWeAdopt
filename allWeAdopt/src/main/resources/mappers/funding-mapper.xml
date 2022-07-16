@@ -544,5 +544,9 @@ SELECT
     DEFAULT,DEFAULT,
     #{paymentNo},#{returnReason})
 	</insert>
+	
+	<select id="selectReturn" resultType="string">
+	SELECT return_reason FROM RETURN WHERE PAYMENT_NO = #{payment_no}
+	</select>
 
 </mapper>

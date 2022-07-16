@@ -140,21 +140,25 @@ public class MyFundingController {
 	public int cancelPayment(@PathVariable int paymentNo)throws Exception{		
 		return service.cancelPayment(paymentNo);
 	}
+	//환불 신청
 	@GetMapping("/refund/{paymentNo}")
 	@ResponseBody
 	public int refundPayment(@PathVariable int paymentNo)throws Exception{		
 		return service.refundPayment(paymentNo);
 	}
 	
-	
+	//반품 신청
 	@PostMapping("/return/{paymentNo}")
 	@ResponseBody
-	public int retrunPayment(@PathVariable int paymentNo
-								,String returnReason) {
-		
-//		return new Gson().toJson(returnReason);
-		
+	public int retrunPayment(@PathVariable int paymentNo		,String returnReason) {
 		return service.retrunPayment(paymentNo,returnReason);
+	}
+	
+	//반품 내용 확용
+	@PostMapping("/selectReturn/{paymentNo}")
+	@ResponseBody
+	public String selectReturn(@PathVariable int paymentNo) {
+		return  new Gson().toJson(service.selectReturn(paymentNo));
 	}
 	//----------------------------------------------------------------------------------
 }

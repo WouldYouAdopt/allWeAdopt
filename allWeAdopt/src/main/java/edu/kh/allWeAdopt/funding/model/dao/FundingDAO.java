@@ -202,6 +202,10 @@ public class FundingDAO {
 		return sqlSession.insert("fundingMapper.insertReason",map);
 	}
 
+	public String selectReturn(int paymentNo) {
+		return sqlSession.selectOne("fundingMapper.selectReturn",paymentNo);
+	}
+
 
 
 }

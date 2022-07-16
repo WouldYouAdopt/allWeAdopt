@@ -77,5 +77,11 @@ public interface FundingService {
 	 */
 	int retrunPayment(int paymentNo, String returnReason);
 
+	/**반품 사유 작성
+	 * @param paymentNo
+	 * @return
+	 */
+	String selectReturn(int paymentNo);
+
 
 }
