@@ -26,4 +26,12 @@ public interface UserBoardService {
 
 	List<Animal> loadAnimalList(String animalType);
 
+	int boardDelete(int boardNo);
+
+	int userBoardModify(Board board);
+
+	int boardAreaModify(Area area);
+
+	int boardAnimalModify(Animal animal);
+
 }
