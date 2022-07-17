@@ -107,7 +107,7 @@
                             <c:forEach var="boardList" items="${boardList}" begin="${test}" end="${test+2}">
                                 <div class="col-lg-4 mb-5">
                                     <div class="card h-100 shadow border-0">
-                                        <img class="card-img-top" src="https://dummyimage.com/600x350/ced4da/6c757d" alt="..." />
+                                        <img class="card-img-top" src="${boardList.profileImage}" alt="..." />
                                         <div class="card-body p-4">
                                             <div class="badge bg-primary bg-gradient rounded-pill mb-2 animal">${boardList.animalType}</div>
                                             <c:if test="${!empty boardList.animalDetail}">
@@ -162,7 +162,6 @@
             <!-- 푸터 -->
             <jsp:include page="/WEB-INF/views/common/footer.jsp" />
         </div>
-            
        
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

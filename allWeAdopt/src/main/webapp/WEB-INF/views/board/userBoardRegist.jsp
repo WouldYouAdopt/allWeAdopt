@@ -42,12 +42,26 @@
       <!-- 헤더 -->
             <jsp:include page="/WEB-INF/views/common/header.jsp" />
         <div class="container">
-            <h4>게시글 작성</h4>
-            <form action="boardRegist" method="post" onsubmit="return regist()">
+            <h1 style="margin: 50px 0 10px 0;">
+              <c:if test="${!empty board}">
+                게시글 수정
+                <c:set var="formAction" value="boardModify"/>
+              </c:if>
+              <c:if test="${empty board}">
+                게시글 작성
+                <c:set var="formAction" value="boardRegist"/>
+              </c:if>
+            </h1>
+            <form action="${formAction}" method="post" onsubmit="return regist()">
             <!-- 카테고리 선택 메뉴 -->
             <div class="dropdown category-area">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false" name="categoryValue">
-                  카테고리를 선택해주세요
+                  <c:if test="${!empty board}">
+                    ${board.category}
+                  </c:if>
+                  <c:if test="${empty board}">
+                    카테고리를 선택해주세요
+                  </c:if>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
                   <li class="dropdown-item selectMenu">실종</li>
@@ -55,21 +69,21 @@
                   <li class="dropdown-item selectMenu">목격</li>
                   <li class="dropdown-item selectMenu">완료</li>
                 </ul>
-                <input type="hidden" class="value" name="category">
+                <input type="hidden" class="value" name="category" value="${board.category}">
             </div>
             
             <!-- 제목 -->
             <div class="titleArea">
                 <p class="menu">제목</p>
                 <hr>
-                <input type="text" id="boardTitle" name="boardTitle" placeholder="제목을 입력해주세요">
+                <input type="text" id="boardTitle" name="boardTitle" placeholder="제목을 입력해주세요" value="${board.boardTitle}">
             </div>
 
             <!-- 내용 -->
             <div class="contentArea">
                 <p class="menu">내용</p>
                 <hr>
-                <textarea id="summernote" name="boardContent"></textarea>
+                <textarea id="summernote" name="boardContent">${board.boardContent}</textarea>
             </div>
 
             <!-- 추가선택 사항 -->
@@ -80,9 +94,9 @@
                 <!-- 날짜 -->
                 <div class="dateArea">
                     <span class="select">날짜</span>
-                    <input type="date" class="dateBtn" name="boardPeriod">
+                    <input type="date" class="dateBtn" name="boardPeriod" value="${board.boardPeriod}">
                      ~
-                    <input type="date" class="dateBtn" name="boardPeriod2">
+                    <input type="date" class="dateBtn" name="boardPeriod2" value="${board.boardPeriod2}">
                     <p class="etc">(선택하지 않을 시 동물보호법에 의거하여 게시글 작성일로부터 7일 후까지의 기간이 등록됩니다)</p>
                 </div>
 
@@ -91,30 +105,40 @@
                     <span class="select">지역</span>
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false" name="areaValue">
-                          지역 선택
+                          <c:if test="${!empty board}">
+                            ${board.area}
+                          </c:if>
+                          <c:if test="${empty board}">
+                            지역 선택
+                          </c:if>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-dark selectArea" aria-labelledby="dropdownMenuButton2">
                           <c:forEach var="areaList" items="${areaList}">
                             <li class="dropdown-item selectMenu areaList">${areaList.area}</li>
                           </c:forEach>
                         </ul>
-                        <input type="hidden" class="value" name="area">
+                        <input type="hidden" class="value" name="area" value="${board.area}">
                     </div>
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false" name="areaDetailValue" onclick="areaDetailFunc()">
-                          상세 지역 선택
+                          <c:if test="${!empty board}">
+                            ${board.areaDetail}
+                          </c:if>
+                          <c:if test="${empty board}">
+                            상세 지역 선택
+                          </c:if>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-dark selectArea" aria-labelledby="dropdownMenuButton2">
                           
                         </ul>
-                        <input type="hidden" class="value" name="areaDetail">
+                        <input type="hidden" class="value" name="areaDetail" value="${board.areaDetail}">
                     </div>
                 </div>
                
                 <!-- 연락처 -->
                 <div class="tel-area">
                     <span class="select">연락처</span>
-                    <input type="tel" class="tel" name="phone">
+                    <input type="tel" class="tel" name="phone" value="${board.phone}">
                 </div>
                 <p class="etc">(-을 제외한 전화번호를 입력해주세요)</p>
 
@@ -123,23 +147,33 @@
                     <span class="select">품종</span>
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false" name="animalTypeValue">
-                          축종
+                          <c:if test="${!empty board}">
+                            ${board.animalType}
+                          </c:if>
+                          <c:if test="${empty board}">
+                            축종
+                          </c:if>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-dark selectArea" aria-labelledby="dropdownMenuButton2">
                           <li class="dropdown-item selectMenu animalList">개</li>
                           <li class="dropdown-item selectMenu animalList">고양이</li>
                           <li class="dropdown-item selectMenu animalList">기타</li>
                         </ul>
-                        <input type="hidden" name="animalType">
+                        <input type="hidden" name="animalType" value="${board.animalType}">
                     </div>
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false" name="animalDetailValue" onclick="animalDetailFunc()">
-                          품종
+                          <c:if test="${!empty board}">
+                            ${board.animalDetail}
+                          </c:if>
+                          <c:if test="${empty board}">
+                            품종
+                          </c:if>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-dark selectArea" aria-labelledby="dropdownMenuButton2">
                           
                         </ul>
-                        <input type="hidden" name="animalDetail">
+                        <input type="hidden" name="animalDetail" value="${board.animalDetail}">
                     </div>
                 </div>
 
@@ -148,13 +182,29 @@
                     <span class="select">성별</span>
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false" name="genderValue">
-                          수컷 / 암컷
+                          <c:if test="${!empty board}">
+                            <c:if test="${board.gender eq 'M'}">
+                              수컷
+                            </c:if>
+                            <c:if test="${board.gender eq 'W'}">
+                              암컷
+                            </c:if>
+                          </c:if>
+                          <c:if test="${empty board}">
+                            수컷 / 암컷
+                          </c:if>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
                           <li class="dropdown-item selectMenu">수컷</li>
                           <li class="dropdown-item selectMenu">암컷</li>
                         </ul>
-                        <input type="hidden" name="genders">
+                        <c:if test="${board.gender eq 'M'}">
+                          <c:set var="gValue" value="수컷"/>
+                        </c:if>
+                        <c:if test="${board.gender eq 'W'}">
+                          <c:set var="gValue" value="암컷"/>
+                        </c:if>
+                        <input type="hidden" name="genders" value="${gValue}">
                     </div>
                 </div>
                 <!-- 중성화 -->
@@ -162,13 +212,29 @@
                     <span class="select">중성화</span>
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false"  name="neuteringValue">
-                          완료 / 미완료
+                          <c:if test="${!empty board}">
+                            <c:if test="${board.neutering eq 'Y'}">
+                              완료
+                            </c:if>
+                            <c:if test="${board.neutering eq 'N'}">
+                              미완료
+                            </c:if>
+                          </c:if>
+                          <c:if test="${empty board}">
+                            완료 / 미완료
+                          </c:if>
                         </button>
+                        <c:if test="${board.neutering eq 'Y'}">
+                          <c:set var="nValue" value="완료"/>
+                        </c:if>
+                        <c:if test="${board.neutering eq 'N'}">
+                          <c:set var="nValue" value="미완료"/>
+                        </c:if>
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
                           <li class="dropdown-item selectMenu">완료</li>
                           <li class="dropdown-item selectMenu">미완료</li>
                         </ul>
-                        <input type="hidden" name="neuterings">
+                        <input type="hidden" name="neuterings" value="${nValue}">
                     </div>
                 </div>
             </div>
@@ -187,9 +253,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="${contextPath}/resources/js/scripts.js"></script>
     <script src="${contextPath}/resources/js/board/userBoardRegist.js"></script>
-    <script>
-  
-    </script>
 
 </body>
 

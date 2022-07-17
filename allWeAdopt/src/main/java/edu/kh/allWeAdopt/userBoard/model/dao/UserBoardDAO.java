@@ -62,6 +62,26 @@ public class UserBoardDAO {
 		return list;
 	}
 
+	// 게시판 삭제
+	public int boardDelete(int boardNo) {
+		return sqlSession.update("boardMapper.boardDelete", boardNo);
+	}
+
+	// 게시글 수정
+	public int userBoardModify(Board board) {
+		return sqlSession.update("boardMapper.userBoardModify",board);
+	}
+
+	// 지역 수정
+	public int boardAreaModify(Area area) {
+		return sqlSession.update("boardMapper.boardAreaModify",area);
+	}
+
+	// 추가사항 수정
+	public int boardAnimalModify(Animal animal) {
+		return sqlSession.update("boardMapper.boardAnimalModify",animal);
+	}
+
 
 
 
