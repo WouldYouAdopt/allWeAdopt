@@ -31,6 +31,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 
+import edu.kh.allWeAdopt.common.Util;
 import edu.kh.allWeAdopt.funding.model.service.FundingService;
 import edu.kh.allWeAdopt.funding.model.vo.Funding;
 import edu.kh.allWeAdopt.funding.model.vo.FundingDetail;
@@ -72,7 +73,25 @@ public class AdminFundingController {
 	
 	//펀딩 등록 페이지
 	@GetMapping("/register")
-	public String fundingRegister() {
+	public String fundingRegister(@RequestParam(value = "fundingNo", required = false, defaultValue="0")int fundingNo
+								,Model model) {
+		
+		
+		//수정의 경우
+		if(fundingNo>0) {
+			FundingDetail detail = service.selectFundingDetail(fundingNo);
+			
+			
+			
+			List<Reward> rewardList  = service.selectRewardList(fundingNo);
+			
+			model.addAttribute("detail",detail);
+			model.addAttribute("rewardList",rewardList);
+		}
+		
+		
+		
+		
 		return "funding/admin/funding-register";
 	}
 	//펀딩 등록 페이지
@@ -80,7 +99,8 @@ public class AdminFundingController {
 	public String fundingRegister(@RequestParam(value = "uploadImage", required = false) MultipartFile uploadImage
 								 ,@ModelAttribute FundingDetail fundingDetail
 								 ,String insertRewardList
-								 ,HttpServletRequest req, RedirectAttributes ra)throws Exception {
+								 ,HttpServletRequest req, RedirectAttributes ra
+									)throws Exception {
 								
 		
 		

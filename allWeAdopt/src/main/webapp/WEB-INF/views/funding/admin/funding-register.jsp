@@ -67,6 +67,8 @@
 <%-- ---------------------------------------------------------------------------------------------- --%>
 
 <form action="register" method="post" id="submitEvent" name="submitEvent" enctype="multipart/form-data">
+                      
+                          
                           <!-- 펀딩 일정 입력 영역 -->
                           <div class="fundingScheduleArea">
                             <div>
@@ -75,14 +77,19 @@
                               <button type="button" class="btn fundingBtn btn-outline-success"  value=''>2022/10</button>
                             </div>
                           </div>
-
+	
                           <!-- 썸네일 영역 -->
                           <div class="thumbnailArea"> 
                             <h4><i class="fa-regular fa-image"/></i> 썸네일을 등록 해주세요</h4>
                             <div class="intro"> 미등록 시 기본 이미지가 등록됩니다.</div>
 
                             <div class="previewArea">
-                              <img src="" class="img-fluid" id="previewImage">
+                           	   	<c:if test="${detail.fundingThumbnail != null}">
+                           	   		<img src="${contextPath}${detail.fundingThumbnail}" class="img-fluid" id="previewImage">
+                           	   	</c:if>
+                                <c:if test="${detail.fundingThumbnail == null}">
+                              		<img src="" class="img-fluid" id="previewImage">
+                                </c:if>
                             </div>
 
                             <div class="profile-area">
@@ -104,7 +111,10 @@
                               <!-- 카테고리 영역-->
                               <div id="fundingCategory">
                                 <select class="form-select" aria-label="Default select example" name="categoryNo">
-                                  <option selected>카테고리</option>
+                                  <option value="${detail.categoryNo}" selected>  
+                                  	<c:if test="${detail.categoryName != null}">${detail.categoryName}</c:if>
+                                  	<c:if test="${detail.categoryName == null}">카테고리</c:if>
+                                  </option>
                                   <option value="1">건강</option>
                                   <option value="2">장난감</option>
                                   <option value="3">간식</option>
@@ -112,7 +122,7 @@
                                   <option value="5">의류</option>
                                 </select>
                               </div>
-                              <input type="text" name="fundingTitle" id="fundingTitle" placeholder="제목을 입력해주세요">
+                              <input type="text" name="fundingTitle" id="fundingTitle" placeholder="제목을 입력해주세요" value="${detail.fundingTitle}">
                             </div>
                           </div>
 
@@ -121,7 +131,7 @@
                           <div id="subheadArea">
                             <h4><i class="fa-solid fa-angles-right"></i> 펀딩 소개</h4>
                             <div class="intro">펀딩에 대해 간략한 소제목</div>
-                            <textarea name="fundingMiniTitle" id="subheadInput"></textarea>
+                            <textarea name="fundingMiniTitle" id="subheadInput">${detail.fundingMiniTitle}</textarea>
                           </div>
 
 
@@ -146,14 +156,33 @@
                                 <th>추가하기</th>
                               </thead>
 
+
+
+
                               <tbody class="rewardsRows">
+				<c:choose>
+					
+					<c:when test="${rewardList != null}">
+						<c:forEach  var="r" items="${rewardList}">
+							<tr>
+								<td>${r.rewardNo}</td>
+								<td><input type="text" value="${r.rewardTitle}"></td>
+								<td><input type="text" value="${r.rewardContent}"></td>
+								<td><input type="number" value="${r.rewardPrice}"></td>
+								<td><input type="number" value="${r.maxRewardNo}"></td>
+								<td><button type="button" class="rewardsAddBtn" onclick="addRewardList()">등록</button></td>
+							</tr>
+						</c:forEach>
+					</c:when>
+					
+					<c:otherwise>
                                 <tr>
                                   <td>1</td>
                                   <td><input type="text"></td>
                                   <td><input type="text"></td>
                                   <td><input type="number"></td>
                                   <td><input type="number"></td>
-                                  <td><button type="button" class="rewardsAddBtn" onclick="addRewardList()">등록 1</button></td>
+                                  <td><button type="button" class="rewardsAddBtn" onclick="addRewardList()">등록</button></td>
                                 </tr>
                                 <tr>
                                   <td>2</td>
@@ -161,9 +190,14 @@
                                   <td><input type="text"></td>
                                   <td><input type="number"></td>
                                   <td><input type="number"></td>
-                                  <td><button type="button" class="rewardsAddBtn"  onclick="addRewardList()">등록 2</button></td>
+                                  <td><button type="button" class="rewardsAddBtn"  onclick="addRewardList()">등록</button></td>
                                 </tr>
+					</c:otherwise>
+				</c:choose>
                               </tbody>
+
+
+
 
                             </table>
 
@@ -171,12 +205,12 @@
 
                               <table>
                                 <tr>
-                                  <td><span><i class="fa-solid fa-truck"></i>배송비:</span> </td>
-                                  <td><input type="number" name="deliveryFee" placeholder="배송비를 입력해주세요"></td>
+                                  <td><span><i class="fa-solid fa-truck"></i>배송비</span> </td>
+                                  <td>:  <input type="number" name="deliveryFee" placeholder="배송비를 입력해주세요" value="${detail.deliveryFee}"></td>
                                 </tr>
                                 <tr>
-                                  <td> <span><i class="fa-solid fa-truck"></i>목표 후원금 :</span> </td>
-                                  <td> <input type="nummber" name="targetDonation" placeholder="목표 후원금을 입력해주세요"></td>
+                                  <td> <span><i class="fa-solid fa-truck"></i>목표 후원금</span> </td>
+                                  <td>:<input name="targetDonation"  id="targetDonation" placeholder="목표 후원금을 입력해주세요" value=""></td>
                                 </tr>
                               </table>
 
@@ -220,42 +254,20 @@
         <!-- Core theme JS-->
         <script src="${contextPath}/resources/js/scripts.js"></script>
   
-        <!-- 펀딩 작성 관련 JS -->
-        <script src="${contextPath}/resources/js/funding/funding-write.js"></script>
-
+      
         <script>
             const contextPath = "${contextPath}";
+            const currentContent = "${detail.fundingContent}";
+            let dFee = "${detail.targetDonation}";
         </script>
+ <!-- 펀딩 작성 관련 JS -->
+        <script src="${contextPath}/resources/js/funding/funding-write.js"></script>
 
         <!-- 썸머노트 -->
         <script>
-            $(document).ready(function() {
-                $('#summernote').summernote({
-                    placeholder: '내용을 입력하세요',
-                    tabsize: 2,
-                    height: 500,
-                    toolbar: [
-                        // [groupName, [list of button]]
-                        ['fontname', ['fontname']],
-                        ['fontsize', ['fontsize']],
-                        ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
-                        ['color', ['forecolor','color']],
-                        ['table', ['table']],
-                        ['para', ['ul', 'ol', 'paragraph']],
-                        ['height', ['height']],
-                        ['insert',['picture','link']],
-                        // ['view', ['fullscreen', 'help']]
-                    ],
-                    callbacks:{
-                        onImageUpload: function(files, editor) {
-                            console.log(files);
-                            sendFile(files[0], this);
-                        }
-                    }
-                });
-            });
+          
         </script>
-
+ 
         <script src="${contextPath}/resources/js/board/summerNote.js"></script>
     </body>
     

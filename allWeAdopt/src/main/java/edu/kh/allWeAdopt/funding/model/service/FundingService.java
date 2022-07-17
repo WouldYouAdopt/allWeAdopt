@@ -21,7 +21,7 @@ import edu.kh.allWeAdopt.funding.model.vo.Reward;
 public interface FundingService {
 
 	
-	/** 펀딩 상세 조회 : 수진
+	/** 펀딩 상세 조회 : 수진  ( 김현기가 지금 같이 사용중)
 	 * @param fundingNo
 	 * @return detail
 	 */
@@ -106,6 +106,12 @@ public interface FundingService {
 	 * @return
 	 */
 	List<FundingDetail> selectFundingSList();
+
+	/**위와 다르게 해당 펀딩의 리워드 목록들만 가져오는 함수 오버로딩)
+	 * @param fundingNo
+	 * @return
+	 */
+	List<Reward> selectRewardList(int fundingNo);
 
 	
 	
