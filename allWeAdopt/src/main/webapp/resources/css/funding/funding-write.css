@@ -81,6 +81,9 @@
     height: 80px;
     display: block;
 }
+#deliveryFee table td{
+    text-align: left;
+}
 #deliveryFee span{
     margin-right: 4px;
     font-size: 20px;

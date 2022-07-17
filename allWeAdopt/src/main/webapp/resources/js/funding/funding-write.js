@@ -202,3 +202,44 @@ function alert(msg){
         confirmButtonText: '확인'
         });
 }
+
+
+//내용 집어 넣는 이벤트
+(function(){
+    if(currentContent != ''){
+        $('#summernote').summernote('code', currentContent);
+    }
+    if(dFee != ''){
+        let i = dFee.replaceAll(",","");
+        i = parseInt(i);
+        dFee=i;
+        document.getElementById("targetDonation").value=i;
+    }
+})();
+
+
+$(document).ready(function() {
+    $('#summernote').summernote({
+        placeholder: '내용을 입력하세요',
+        tabsize: 2,
+        height: 500,
+        toolbar: [
+            // [groupName, [list of button]]
+            ['fontname', ['fontname']],
+            ['fontsize', ['fontsize']],
+            ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+            ['color', ['forecolor','color']],
+            ['table', ['table']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['height', ['height']],
+            ['insert',['picture','link']],
+            // ['view', ['fullscreen', 'help']]
+        ],
+        callbacks:{
+            onImageUpload: function(files, editor) {
+                console.log(files);
+                sendFile(files[0], this);
+            }
+        }
+    });
+});

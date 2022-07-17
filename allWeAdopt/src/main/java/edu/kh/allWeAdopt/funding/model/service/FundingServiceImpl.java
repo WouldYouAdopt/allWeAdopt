@@ -127,8 +127,6 @@ public class FundingServiceImpl implements FundingService {
 	}
 
 
-
-
 	
 	/**[김현기]리워드 선택후 결제 페이지로 넘어가기 위한 Service
 	 *
@@ -351,7 +349,7 @@ public class FundingServiceImpl implements FundingService {
 //		fundingDetail.setFundingMiniTitle(Util.XSSHandling(fundingDetail.getFundingMiniTitle()));
 		
 		String rename = Util.fileRename(uploadImage.getOriginalFilename());
-		fundingDetail.setFundingThumbnail(rename);
+		fundingDetail.setFundingThumbnail(webPath+rename);
 		
 		//성공 금액 계산에서 세팅해주기
 		fundingDetail.setSuccessDonation((int)(Integer.parseInt(fundingDetail.getTargetDonation()) * 0.8));
@@ -383,12 +381,19 @@ public class FundingServiceImpl implements FundingService {
 
 
 
+	//펀딩 리워드 목록 '만' 조회하는 함수(오버로딩) :현기 
+	@Override
+	public List<Reward> selectRewardList(int fundingNo) {
+		return dao.selectOnlyRewardList(fundingNo);
+	}
+
+
+	
     // 펀딩 썸네일+제목만 조회 : 수진
 	@Override
 	public Funding selectfunding(int fundingNo) {
 		return dao.selectFunding(fundingNo);
 	}
-
 
 
 	
