@@ -107,6 +107,12 @@ public interface FundingService {
 	 */
 	List<FundingDetail> selectFundingSList();
 
+	/** 펀딩 썸네일+제목만 조회 : 수진
+	 * @param fundingNo
+	 * @return
+	 */
+	Funding selectfunding(int fundingNo);
+
 	
 	
 	
