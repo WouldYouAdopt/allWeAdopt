@@ -1,6 +1,7 @@
 package edu.kh.allWeAdopt.funding.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -51,7 +52,21 @@ public class AdminFundingController {
 		
 	//펀딩 관리 페이지
 	@GetMapping("/management")
-	public String selectManagementPage() {
+	public String selectManagementPage(Model model) {
+		
+		
+		// 펀딩 진행중+ 종료된 펀딩
+		Map<String, Object> map = service.selectfundingAllList();
+		
+		// 예정된 펀딩 리스트 가져오기
+		List<FundingDetail> sList = service.selectFundingSList();
+		map.put("sList", sList);
+		
+		model.addAttribute("map",map);
+		
+		
+
+		
 		return "funding/admin/funding-management";
 	}
 	

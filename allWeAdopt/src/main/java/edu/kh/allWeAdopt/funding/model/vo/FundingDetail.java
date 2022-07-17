@@ -27,9 +27,10 @@ public class FundingDetail {
 	private String endDate;
 	private int leftDate;
 	
-	private String CategoryName;
+	private String categoryName;
 	private int categoryNo; // 펀딩 카테고리
 	
+	private int fullPriceInt; // 총 달성한(판매한) 금액
 	private String fullPrice; // 총 달성한(판매한) 금액
 	private int salesRate;
 	

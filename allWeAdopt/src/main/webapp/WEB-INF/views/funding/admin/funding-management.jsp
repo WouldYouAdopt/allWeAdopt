@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"  %>
 
 
 
@@ -31,6 +32,12 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="${contextPath}/resources/css/styles.css" rel="stylesheet" />
         <link href="${contextPath}/resources/css/funding/funding-list.css" rel="stylesheet" />
+        
+        <style>
+        .row > * {
+        	padding: 0 !important;
+        }
+        </style>
  
        </head>
     <body class="d-flex flex-column">
@@ -50,7 +57,7 @@
                 <!-- 상단 메뉴 영역. -->
                 <div class="text-center mb-5" id="TOT">
                     <h1 class="fw-bolder">펀딩관리</h1>
-                    <p class="lead fw-normal text-muted mb-0 lead"> 펀딩을 작성할 수 있는 페이지 </p>
+                    <p class="lead fw-normal text-muted mb-0 lead"> 펀딩리스트를 관리하고 새로운 펀딩을 등록할 수 있습니다 </p>
                 </div>
 
                 <!-- 상단 이미지 영역 -->
@@ -68,9 +75,14 @@
                               <!-- 어디를 클릭하던지 현재 진행중인 페이지로 전송.-->
                             <a href="deliveryController">
                               
+                              사진 : <img src="${contextPath}${map.now.fundingThumbnail}"><br>
+                              타이틀 : ${map.now.fundingTitle}
+                              달성률 : ${map.now.salesRate}
+                              달성 금액 : ${map.now.fullPrice}
+                              달성 금액 : ${map.now.fullPriceInt}
                               <!-- 펀딩 타이틀 이미지 들어오는 곳 -->
                               <%-- <div id="currentFundingTitle"><p>현재진행중인 펀딩 타이틀 이미지가 들어오는 곳</p></div> --%>
-                              <div id="currentFundingTitle" style="background:url('weAllAdopt/')"></div>
+                              <div id="currentFundingTitle" style="background:url('${contextPath}${map.nowfunding.fundingThumbnail}')"></div>
 
                             </a>
                               <div class="btnArea">
@@ -91,7 +103,7 @@
 	                            	<div class="fundingImgS" style="background:url('${contextPath}/resources/images/fundingThumbnail/funding_sample5.png') 50% 0; background-size:cover;">
 	                            		<div class="textS">2022/08</div>
 	                            	</div>
-	                            	<div class="infoS">[카테고리] 제목은 떠야지</div>
+	                            	<div class="infoS">[${map.sList[0].categoryName}] 제목은 떠야지</div>
                             	</div>
                             	
                             	<div class="fundingInfoS">
@@ -168,86 +180,18 @@
                                 </tr>
                               </thead>
                               <tbody class="endedFundingTbody">
+                              
+                              	<c:forEach var="i" begin="0" end="${fn:length(map.endList)-1}">
                                 <tr>
-                                  <th scope="row">1</th>
-                                  <td>장난감</td>
-                                  <td><a href="">장난감 관련 펀딩입니다.</a></td>
-                                  <td>2022/6</td>
-                                  <td>100%</td>
-                                  <td>1,000,000 WON</td>
+                                  <th scope="row">${map.endList[i].fundingNo}</th>
+                                  <td>${map.endList[i].categoryName}</td>
+                                  <td><a href="">${map.endList[i].fundingTitle}</a></td>
+                                  <td>${map.endList[i].fundingSeason}</td>
+                                  <td>${map.endList[i].salesRate}%</td>
+                                  <td>${map.endList[i].fullPrice}WON</td>
                                 </tr>
-                                <tr>
-                                  <th scope="row">2</th>
-                                  <td>영양제</td>
-                                  <td><a href="">영양제 관련 종료된 펀딩입니다.</a></td>
-                                  <td>2022/5</td>
-                                  <td>100%</td>
-                                  <td>1,000,000 WON</td>
-                                </tr>
-                                <tr>
-                                  <th scope="row">3</th>
-                                  <td>카테고리</td>
-                                  <td><a href="">~~ 관련 종료된 펀딩입니다.</a></td>
-                                  <td>2022/6</td>
-                                  <td>66%</td>
-                                  <td>1,000,000 WON</td>
-                                </tr>
-                                <tr>
-                                  <th scope="row">4</th>
-                                  <td>카테고리</td>
-                                  <td><a href="">~~ 관련 종료된 펀딩입니다.</a></td>
-                                  <td>2022/6</td>
-                                  <td>81%</td>
-                                  <td>1,000,000 WON</td>
-                                </tr>
-                                <tr>
-                                  <th scope="row">5</th>
-                                  <td>카테고리</td>
-                                  <td><a href="">~~ 관련 종료된 펀딩입니다.</a></td>
-                                  <td>2022/6</td>
-                                  <td>56%</td>
-                                  <td>1,000,000 WON</td>
-                                </tr>
-                                <tr>
-                                  <th scope="row">6</th>
-                                  <td>카테고리</td>
-                                  <td><a href="">~~ 관련 종료된 펀딩입니다.</a></td>
-                                  <td>2022/6</td>
-                                  <td>91%</td>
-                                  <td>1,000,000 WON</td>
-                                </tr>
-                                <tr>
-                                  <th scope="row">7</th>
-                                  <td>카테고리</td>
-                                  <td><a href="">~~ 관련 종료된 펀딩입니다.</a></td>
-                                  <td>2022/6</td>
-                                  <td>86%</td>
-                                  <td>1,000,000 WON</td>
-                                </tr>
-                                <tr>
-                                  <th scope="row">8</th>
-                                  <td>카테고리</td>
-                                  <td><a href="">~~ 관련 종료된 펀딩입니다.</a></td>
-                                  <td>2022/6</td>
-                                  <td>90%</td>
-                                  <td>1,000,000 WON</td>
-                                </tr>
-                                <tr>
-                                  <th scope="row">9</th>
-                                  <td>카테고리</td>
-                                  <td><a href="">~~ 관련 종료된 펀딩입니다.</a></td>
-                                  <td>2022/6</td>
-                                  <td>11%</td>
-                                  <td>1,000,000 WON</td>
-                                </tr>
-                                <tr>
-                                  <th scope="row">10</th>
-                                  <td>카테고리</td>
-                                  <td><a href="">~~ 관련 종료된 펀딩입니다.</a></td>
-                                  <td>2022/6</td>
-                                  <td>20%</td>
-                                  <td>1,000,000 WON</td>
-                                </tr>
+                              	</c:forEach>
+                                
                               </tbody>
                             </table>
                             

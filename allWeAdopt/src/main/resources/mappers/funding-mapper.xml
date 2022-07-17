@@ -16,9 +16,11 @@
 		<result property="fundingThumbnail" column="FUNDING_THUMBNAIL" />
 		<result property="deliveryFee" column="DELIVERY_FEE" />
 
-		<result property="CategoryName" column="CATEGORY_NM" />
+		<result property="categoryName" column="CATEGORY_NM" />
 		<result property="categoryNo" column="FUNDING_CATEGORY" />
 		<result property="salesRate" column="SALES_RATE" />
+		
+		<result property="fullPriceInt" column="FULLPRICE" />
 
 		<result property="month" column="MONTH" />
 		<result property="startDate" column="STARTDATE" />
@@ -143,16 +145,29 @@
 		FUNDING_THUMBNAIL,
 		DELIVERY_FEE,
 		CATEGORY_NM,
-
+		FULLPRICE,
+		
 		ROUND(FULLPRICE/TARGET_DONATION*100) AS SALES_RATE
 
 		FROM FUNDING
 		JOIN CATEGORY USING(FUNDING_CATEGORY)
 		JOIN
-		( SELECT FUNDING_NO, SUM((REWARD_PRICE*AMOUNT)) AS FULLPRICE
-		FROM REWARD_ORDER
-		JOIN REWARD USING (REWARD_NO)
-		GROUP BY FUNDING_NO) USING (FUNDING_NO)
+		( 
+            SELECT FUNDING_NO, NVL(SUM(REWARD_ORDER_PRICE),0) FULLPRICE
+            FROM   
+                (SELECT FUNDING_NO,REWARD_NO, 
+                    NVL(SUM(AMOUNT), 0) AS REWARD_ORDER_AMOUNT,
+                    NVL(SUM((REWARD_PRICE*AMOUNT)), 0) AS REWARD_ORDER_PRICE
+                FROM (SELECT * FROM REWARD WHERE FUNDING_NO=#{fundingNo})
+                LEFT JOIN
+                    (SELECT REWARD_NO, AMOUNT, PAYMENT_NO
+                    FROM PAYMENT
+                    JOIN REWARD_ORDER USING(PAYMENT_NO)
+                    WHERE ORDER_ST_CD IN (1,2,3,4)
+                    AND FUNDING_NO= #{fundingNo}) USING (REWARD_NO)
+                GROUP BY FUNDING_NO,REWARD_NO)
+            GROUP BY FUNDING_NO
+        ) USING (FUNDING_NO)
 		WHERE FUNDING_NO = #{fundingNo}
 	</select>
 
@@ -242,22 +257,22 @@
 
 	<!-- 펀딩번호로 리워드 전체 조회 (리워드 별 판매 현황 추가) -->
 	<select id="selectRewardList" resultMap="reward_re">
-		SELECT
-		REWARD_NO,
-		REWARD_TITLE,
-		REWARD_CONTENT,
-		REWARD_PRICE,
-		MAX_REWARD_NO,
-		SUM(AMOUNT) AS
-		REWARD_ORDER_AMOUNT,
-		SUM((REWARD_PRICE*AMOUNT)) AS REWARD_ORDER_PRICE
-		FROM
-		(SELECT * FROM REWARD WHERE FUNDING_NO=#{fundingNo})
-		JOIN
-		REWARD_ORDER USING(REWARD_NO)
-		GROUP BY REWARD_NO,
-		REWARD_TITLE,REWARD_CONTENT,REWARD_PRICE,MAX_REWARD_NO
-		ORDER BY 1
+		SELECT REWARD_NO,
+            REWARD_TITLE,
+            REWARD_CONTENT,
+            REWARD_PRICE,
+            MAX_REWARD_NO,
+            NVL(SUM(AMOUNT), 0) AS REWARD_ORDER_AMOUNT,
+            NVL(SUM((REWARD_PRICE*AMOUNT)), 0) AS REWARD_ORDER_PRICE
+        FROM (SELECT * FROM REWARD WHERE FUNDING_NO=#{fundingNo})
+        LEFT JOIN
+            (SELECT REWARD_NO, AMOUNT, PAYMENT_NO
+            FROM PAYMENT
+            JOIN REWARD_ORDER USING(PAYMENT_NO)
+            WHERE ORDER_ST_CD IN (1,2,3,4)
+            AND FUNDING_NO=#{fundingNo}) USING (REWARD_NO)
+        GROUP BY REWARD_NO, REWARD_TITLE, REWARD_CONTENT, REWARD_PRICE, MAX_REWARD_NO
+        ORDER BY 1
 	</select>
 
 
@@ -345,11 +360,12 @@
 		WHERE FUNDING_NO = #{fundingNo}
 	</select>
 
-	<!-- 구매이력 수 조회 (구매이력 있는 펀딩인지 아닌지 구분) : 수진 -->
+	<!-- 해당 펀딩 번호의 주문 건수 조회 (구매이력 있는 펀딩인지 아닌지 구분) : 수진 -->
 	<select id="selectCountPay" resultType="_int">
 		SELECT COUNT(*)
 		FROM PAYMENT
 		WHERE FUNDING_NO= #{fundingNo}
+        AND ORDER_ST_CD IN (1,2,3,4)
 	</select>
 
 	<!-- 구매 이력 없는 펀딩 조회 : 수진 -->
@@ -377,23 +393,24 @@
 		WHERE FUNDING_NO = #{fundingNo}
 	</select>
 
-	<!-- 리워드별 판매된 수량,금액 -->
+	<!-- 리워드별 판매된 수량,금액 (취소건 반영됨) -->
 	<select id="selectRewardOrderCount" resultMap="reward_re">
-SELECT
-		REWARD_NO,
-		NVL(SUM(AMOUNT), 0) AS REWARD_ORDER_AMOUNT,
-		NVL(SUM((REWARD_PRICE*AMOUNT)), 0) AS REWARD_ORDER_PRICE
-		FROM
-		(SELECT * FROM REWARD WHERE FUNDING_NO=
-		#{fundingNo})
-		LEFT JOIN REWARD_ORDER USING(REWARD_NO)
-		GROUP BY REWARD_NO,
-		REWARD_TITLE,REWARD_CONTENT,REWARD_PRICE,MAX_REWARD_NO
-		ORDER BY 1
+        SELECT REWARD_NO, 
+            NVL(SUM(AMOUNT), 0) AS REWARD_ORDER_AMOUNT,
+            NVL(SUM((REWARD_PRICE*AMOUNT)), 0) AS REWARD_ORDER_PRICE
+        FROM (SELECT * FROM REWARD WHERE FUNDING_NO= #{fundingNo})
+        LEFT JOIN
+            (SELECT REWARD_NO, AMOUNT, PAYMENT_NO
+            FROM PAYMENT
+            JOIN REWARD_ORDER USING(PAYMENT_NO)
+            WHERE ORDER_ST_CD IN (1,2,3,4)
+            AND FUNDING_NO= #{fundingNo}) USING (REWARD_NO)
+        GROUP BY REWARD_NO
+        ORDER BY 1
 	</select>
 
 	<!-- 현재 진행중인 펀딩이 구매이력이 있는지 카운트 // 지워도될듯 -->
-	<select id="nowFundingConfirm" resultType="_int">
+<!-- 	<select id="nowFundingConfirm" resultType="_int">
 		SELECT COUNT(*)
 		FROM
 		PAYMENT
@@ -401,7 +418,7 @@ SELECT
 		(SELECT FUNDING_NO
 		FROM FUNDING
 		WHERE FUNDING_ST='Y')
-	</select>
+	</select> -->
 
 	<!-- 현재 진행중인 펀딩의 펀딩정보(fundingNo 없이 조회) -->
 	<select id="selectNowFundinginfo" resultMap="detail_rm">
@@ -509,7 +526,8 @@ SELECT
 		FUNDING_THUMBNAIL,
 		DELIVERY_FEE,
 		CATEGORY_NM,
-
+		FULLPRICE,
+		
 		ROUND(FULLPRICE/TARGET_DONATION*100) AS SALES_RATE
 
 		FROM FUNDING
@@ -587,4 +605,12 @@ SELECT
 		) A 
 	</insert>
 
+	<!-- 진행예정중인 펀딩 썸네일 + 카테고리 + 타이틀 -->
+	<select id="selectFundingSList" resultMap="detail_rm">
+		SELECT FUNDING_NO, FUNDING_SEASON, FUNDING_THUMBNAIL, CATEGORY_NM, FUNDING_TITLE
+		FROM FUNDING
+		JOIN CATEGORY USING (FUNDING_CATEGORY)
+		WHERE FUNDING_ST='S'
+        ORDER BY FUNDING_SEASON
+	</select>
 </mapper>
