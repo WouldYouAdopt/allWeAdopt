@@ -240,7 +240,7 @@
                         
                     
                     
-                    <div class="mx-5 px-5" style="padding-bottom:30px;" >
+                    <div class="mx-5 px-5">
                     
 	                    <table style="margin: 20px auto;">
 		                    <tr>

@@ -372,7 +372,20 @@ public class FundingServiceImpl implements FundingService {
 		
 		return fundingNo;
 	}
+
+
+
+	// 진행예정중인 펀딩 썸네일 + 카테고리 + 타이틀
+	@Override
+	public List<FundingDetail> selectFundingSList() {
+		return dao.selectFundingSList();
+	}
+
+
+
 	
+
+
 	
 	
 	

@@ -230,6 +230,12 @@ public class FundingDAO {
 		return sqlSession.insert("fundingMapper.registerRewardList",rewardList);
 	}
 
+	/** 진행예정중인 펀딩 썸네일 + 카테고리 + 타이틀
+	 * @return
+	 */
+	public List<FundingDetail> selectFundingSList() {
+		return sqlSession.selectList("fundingMapper.selectFundingSList");
+	}
 
 
 }

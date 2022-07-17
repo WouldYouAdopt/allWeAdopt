@@ -10,6 +10,14 @@ import edu.kh.allWeAdopt.funding.model.vo.FundingDetail;
 import edu.kh.allWeAdopt.funding.model.vo.OrderDetail;
 import edu.kh.allWeAdopt.funding.model.vo.Reward;
 
+/**
+ * @author DamE
+ *
+ */
+/**
+ * @author DamE
+ *
+ */
 public interface FundingService {
 
 	
@@ -93,6 +101,16 @@ public interface FundingService {
 	 * @return
 	 */
 	int fundingRegister(FundingDetail fundingDetail, MultipartFile uploadImage, String webPath, String folderPath)throws Exception;
+
+	/** 진행예정중인 펀딩 썸네일 + 카테고리 + 타이틀
+	 * @return
+	 */
+	List<FundingDetail> selectFundingSList();
+
+	
+	
+	
+
 
 
 }
