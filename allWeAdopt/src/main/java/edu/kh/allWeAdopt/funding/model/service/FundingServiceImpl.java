@@ -383,9 +383,17 @@ public class FundingServiceImpl implements FundingService {
 
 
 
+    // 펀딩 썸네일+제목만 조회 : 수진
+	@Override
+	public Funding selectfunding(int fundingNo) {
+		return dao.selectFunding(fundingNo);
+	}
+
+
+
 	
 
-
+	
 	
 	
 	

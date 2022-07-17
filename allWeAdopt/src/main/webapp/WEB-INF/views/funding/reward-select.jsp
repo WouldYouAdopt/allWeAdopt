@@ -120,9 +120,9 @@
 					
 			<!-- 펀딩 이미지, 타이틀, 달성률 들어있는 박스 -->
 			<div class="fundingTitleBox" style="height:120px;">
-			    <div class="fundingTitleImage" style="background: url(${contextPath}/resources/images/funding_sample/funding_title_img.png) 50% 0 ;"></div>
+			    <div class="fundingTitleImage" style="background: url(${contextPath}${map.funding.fundingThumbnail}) 50% 0 ;"></div>
 			    <div class="fundingTitleText" style="top:30px;">
-			        우리아이 시원하게 여름 쿨매트
+			        ${map.funding.fundingTitle}
 			    </div>
 			</div>
 			

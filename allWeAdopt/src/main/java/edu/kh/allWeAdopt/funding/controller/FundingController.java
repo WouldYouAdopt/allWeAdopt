@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.kh.allWeAdopt.funding.model.service.FundingService;
+import edu.kh.allWeAdopt.funding.model.vo.Funding;
 import edu.kh.allWeAdopt.funding.model.vo.FundingDetail;
 import edu.kh.allWeAdopt.funding.model.vo.Reward;
 
@@ -48,6 +49,15 @@ public class FundingController {
 		// 맵이 있어야 결제정보(멤버 프로필이미지, 이름, 결제금액, 공개여부) 옮기지..
 		// detail에 그냥 같이 넣으까
 		
+		// 순차발송 날짜 구하기
+		DecimalFormat df = new DecimalFormat("00");
+        Calendar currentCalendar = Calendar.getInstance();
+        //이번해
+        String year  = df.format(currentCalendar.get(Calendar.YEAR));
+        //다음달(0:1월 이기 때문에 다음달 계산은 +2해야함)
+        String month  = df.format(currentCalendar.get(Calendar.MONTH)+2);
+		String sendDate = year+"년 "+month+"월 1일";
+		detail.setSendDate(sendDate);
 		
 		if(detail!=null) { // 펀딩상세조회 성공 시
 			model.addAttribute("detail",detail);
@@ -80,18 +90,22 @@ public class FundingController {
 		DecimalFormat df = new DecimalFormat("00");
         Calendar currentCalendar = Calendar.getInstance();
         //이번해
-        String year  = df.format(currentCalendar.get(Calendar.YEAR) + 1);
-        //이번달
-        String month  = df.format(currentCalendar.get(Calendar.MONTH) + 1);
+        String year  = df.format(currentCalendar.get(Calendar.YEAR));
+        //다음달(0:1월 이기 때문에 다음달 계산은 +2해야함)
+        String month  = df.format(currentCalendar.get(Calendar.MONTH)+2);
 		String sendDate = year+"년 "+month+"월 1일";
 		map.put("sendDate", sendDate);
         
 		
 		//선택한 리워드 넘버
-		if(selected!="") {// 리워드 선택하고 넘어왔을때
-			// 선택한 리워드넘버
-			map.put("selected", selected);
-		}
+		/*
+		 * if(selected!="") {// 리워드 선택하고 넘어왔을때 // 선택한 리워드넘버 map.put("selected",
+		 * selected); }
+		 */
+		
+		// 펀딩 타이틀 + 썸네일
+		Funding funding = service.selectfunding(fundingNo);
+		map.put("funding", funding);
 		
 		// 세션에 map저장
 		model.addAttribute("map",map);
