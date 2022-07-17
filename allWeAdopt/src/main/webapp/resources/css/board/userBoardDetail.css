@@ -41,13 +41,12 @@ a{
     justify-content: space-between;
 }
 
-.like-area{
-    font-size: 16px;
+#likeIcon{
+    color: crimson;
+    cursor: pointer;
+    margin-left: 5px;
 }
 
-.like{
-    color: crimson;
-}
 /* 공유 */
 .share-area{
     margin-bottom: 25px;

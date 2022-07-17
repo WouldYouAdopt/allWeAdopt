@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import edu.kh.allWeAdopt.board.model.vo.Board;
 import edu.kh.allWeAdopt.userBoard.model.vo.Animal;
 import edu.kh.allWeAdopt.userBoard.model.vo.Area;
+import edu.kh.allWeAdopt.userBoard.model.vo.Likes;
 
 @Repository
 public class UserBoardDAO {
@@ -80,6 +81,23 @@ public class UserBoardDAO {
 	// 추가사항 수정
 	public int boardAnimalModify(Animal animal) {
 		return sqlSession.update("boardMapper.boardAnimalModify",animal);
+	}
+
+	// 관심동물 등록
+	public int likeRegist(Board board, int likeNo) {
+		int result = 0;
+		System.out.println(likeNo);
+		if(likeNo==0) {
+			result = sqlSession.insert("boardMapper.likeRegist",board);
+		}else {
+			result = sqlSession.delete("boardMapper.likeDelete",board);
+		}
+		return result;
+	}
+
+	// 관심동물 호출
+	public int likeList(Board likeBoard) {
+		return sqlSession.selectOne("boardMapper.likeList",likeBoard);
 	}
 
 

@@ -48,6 +48,7 @@ import edu.kh.allWeAdopt.member.model.vo.Member;
 import edu.kh.allWeAdopt.userBoard.model.service.UserBoardService;
 import edu.kh.allWeAdopt.userBoard.model.vo.Animal;
 import edu.kh.allWeAdopt.userBoard.model.vo.Area;
+import edu.kh.allWeAdopt.userBoard.model.vo.Likes;
 
 @Controller
 @RequestMapping("/board")
@@ -71,11 +72,23 @@ public class UserBoardController {
 	public String boardDetail(@PathVariable("boardNo") int boardNo, Model model,
 			HttpSession session) {
 		
+		// 게시판 내용 출력
 		Board board = service.boardDetail(boardNo);
 		Member loginMember = (Member)session.getAttribute("loginMember");
+		System.out.println(loginMember==null);
+		
+		// 관심동물 리스트 출력
+		Board likeBoard = new Board();
+		int like = 0;
+		if(loginMember!=null) {
+			likeBoard.setBoardNo(boardNo);
+			likeBoard.setMemberNo(loginMember.getMemberNo());
+			like = service.likeList(likeBoard);
+		}
 		
 		model.addAttribute("board",board);
 		model.addAttribute("loginMember",loginMember);
+		model.addAttribute("like",like);
 		
 		return "board/userBoardDetail";
 	}
@@ -302,4 +315,19 @@ public class UserBoardController {
 		ra.addFlashAttribute("message",message);
 		return "redirect:" + path;
 	}
+	
+	// 관심동물 등록
+	@RequestMapping(value ="/detail/2/likeRegist")
+	@ResponseBody
+	public int likeRegist(@RequestParam("memberNo") int memberNo,
+		@RequestParam("boardNo") int boardNo, @RequestParam("likeNo") int likeNo) {
+		Board board = new Board();
+		board.setBoardNo(boardNo);
+		board.setMemberNo(memberNo);
+		int result = service.likeRegist(board,likeNo);
+		
+		return result;
+	}
+	
+	
 }

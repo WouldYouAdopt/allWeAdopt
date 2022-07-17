@@ -63,7 +63,10 @@
                                         </c:if>
                                     </div>
                                     <!-- Post meta content-->
-                                    <div class="text-muted fst-italic mb-2">${board.createDate}</div>
+                                    <div class="text-muted fst-italic mb-2">${board.createDate} || 조회수 : 0
+                                    ||<span id="likeIcon">&#x2661;</span>
+                                    <input type="hidden" value=0 class="iconValue" name="iconValue">
+                                    </div>
                                     <!-- Post categories-->
                                     <div class="tag-area">
                                         <div class="tag">
@@ -86,10 +89,6 @@
                                                         중성화
                                                 </a>
                                             </c:if>
-                                        </div>
-                                        <div class="like-area">
-                                            <span class="dislike">&#x2661;</span>
-                                            <span class="like">&#x2665;</span>
                                         </div>
                                     </div>
                                 </header>
@@ -124,15 +123,15 @@
         </main>
        <!-- 푸터 -->
         <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+        <script>
+        const loginMember = ${loginMember.memberNo};
+        const boardNo = ${board.boardNo};
+        </script>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></>
         <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+        <script src="${contextPath}/resources/js/scripts.js"></script>
+        <script src="${contextPath}/resources/js/board/userBoardDetail.js"></script>
 
-        <script>
-        if(${!empty message}){
-            alert(${message});
-        }
-        </script>
     </body>
 </html>
