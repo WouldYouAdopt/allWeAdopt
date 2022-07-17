@@ -381,7 +381,7 @@ public class FundingServiceImpl implements FundingService {
 
 
 
-	//펀딩 리워드 목록 '만' 조회하는 함수(오버로딩)
+	//펀딩 리워드 목록 '만' 조회하는 함수(오버로딩) :현기 
 	@Override
 	public List<Reward> selectRewardList(int fundingNo) {
 		return dao.selectOnlyRewardList(fundingNo);
@@ -389,10 +389,16 @@ public class FundingServiceImpl implements FundingService {
 
 
 	
+    // 펀딩 썸네일+제목만 조회 : 수진
+	@Override
+	public Funding selectfunding(int fundingNo) {
+		return dao.selectFunding(fundingNo);
+	}
+
 
 	
 
-
+	
 	
 	
 	

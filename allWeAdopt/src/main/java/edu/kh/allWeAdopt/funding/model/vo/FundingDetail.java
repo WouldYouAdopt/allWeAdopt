@@ -34,6 +34,8 @@ public class FundingDetail {
 	private String fullPrice; // 총 달성한(판매한) 금액
 	private int salesRate;
 	
+	private String sendDate; // 발송일 (현재날짜 구하기> 다음달 의 1일)
+	
 	private int supportersNo; // 구매한 서포터즈 인원 수 
 	
 	private List<FundingImage> imageList;  //해당 유저가 구매한 리워드 수량

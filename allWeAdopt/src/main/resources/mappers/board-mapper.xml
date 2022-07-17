@@ -17,6 +17,7 @@
 		<result property="animalDetail" column="ANIMAL_DETAIL"/>
 		<result property="animalType" column="ANIMAL_TYPE"/>
 		<result property="areaDetail" column="AREA_DETAIL"/>
+		<result property="profileImage" column="THUMBNAIL"/>
 	</resultMap>
 	
 	<resultMap type="animal" id="animal_rm">
@@ -37,7 +38,7 @@
 	<insert id="userBoardRegist">
 		INSERT INTO BOARD
 		VALUES(SEQ_BOARD_NO.NEXTVAL, #{boardTitle}, #{boardContent}, SYSDATE, NULL, #{category}, 'N', 
-		TO_DATE(#{boardPeriod},'YYYY-MM-DD'),#{phone},2,#{memberNo},TO_DATE(#{boardPeriod2},'YYYY-MM-DD'))
+		TO_DATE(#{boardPeriod},'YYYY-MM-DD'),#{phone},2,#{memberNo},TO_DATE(#{boardPeriod2},'YYYY-MM-DD'),#{profileImage})
 	</insert>
 	
 	<!-- 게시판 등록 후 게시판 번호 추출 -->
@@ -76,8 +77,9 @@
 	<!-- 게시글 리스트 출력 -->
 	<select id="boardList" resultMap="board_rm">
 		SELECT BOARD_NO, BOARD_TITLE, MEMBER_NM, TO_CHAR(CREATE_DT,'YYYY-MM-DD') CREATE_DT, 
-		UPDATE_DT, AREA, AREA_DETAIL, ANIMAL_TYPE, ANIMAL_DETAIL, GENDER, NEUTERING, CATEGORY,
-		BOARD_PERIOD, BOARD_PERIOD2
+		TO_CHAR(UPDATE_DT,'YYYY-MM-DD') UPDATE_DT, AREA, AREA_DETAIL, ANIMAL_TYPE, ANIMAL_DETAIL, 
+		GENDER, NEUTERING, CATEGORY,
+		BOARD_PERIOD, BOARD_PERIOD2, THUMBNAIL
 		FROM BOARD
 		JOIN MEMBER USING(MEMBER_NO)
 		JOIN BOARD_AREA USING(BOARD_NO)
@@ -88,9 +90,15 @@
 	
 	<!-- 상세 게시글 출력 -->
 	<select id="boardDetail" resultMap="board_rm">
-		SELECT BOARD_NO,BOARD_TITLE, BOARD_CONTENT , TO_CHAR(CREATE_DT,'YYYY-MM-DD') CREATE_DT, UPDATE_DT,
-		MEMBER_NM, MEMBER_NO FROM BOARD
+		SELECT BOARD_NO, BOARD_TITLE, BOARD_CONTENT, MEMBER_NM, TO_CHAR(CREATE_DT,'YYYY-MM-DD') CREATE_DT, 
+		TO_CHAR(UPDATE_DT,'YYYY-MM-DD') UPDATE_DT, AREA, AREA_DETAIL, PHONE,
+		ANIMAL_TYPE, ANIMAL_DETAIL, GENDER, NEUTERING, CATEGORY, MEMBER_NO,
+		TO_CHAR(BOARD_PERIOD,'YYYY-MM-DD') BOARD_PERIOD, 
+		TO_CHAR(BOARD_PERIOD2,'YYYY-MM-DD') BOARD_PERIOD2, THUMBNAIL
+		FROM BOARD
 		JOIN MEMBER USING(MEMBER_NO)
+		JOIN BOARD_AREA USING(BOARD_NO)
+		JOIN BOARD_ANIMAL USING(BOARD_NO)
 		WHERE BOARD_NO = ${boardNo}
 	</select>
 	
@@ -104,4 +112,31 @@
 	<select id="selectDBList" resultType="string">
 		SELECT BOARD_CONTENT FROM BOARD
 	</select>
+	
+	<!-- 게시글 삭제 -->
+	<update id="boardDelete">
+		UPDATE BOARD SET BOARD_ST = 'Y'
+		WHERE BOARD_NO = #{boardNo}
+	</update>
+	
+	<!-- 게시글 수정 -->
+	<update id="userBoardModify">
+		UPDATE BOARD SET BOARD_TITLE = #{boardTitle}, BOARD_CONTENT = #{boardContent}, 
+		UPDATE_DT = SYSDATE, CATEGORY = #{category}, BOARD_PERIOD = TO_DATE(#{boardPeriod},'YYYY-MM-DD'),
+		PHONE = #{phone}, BOARD_PERIOD2 = TO_DATE(#{boardPeriod2},'YYYY-MM-DD'), THUMBNAIL = #{profileImage}
+		WHERE BOARD_NO = #{boardNo}
+	</update>
+	
+	<!-- 지역 수정 -->
+	<update id="boardAreaModify">
+		UPDATE BOARD_AREA SET AREA = #{area}, AREA_DETAIL = #{areaDetail}
+		WHERE BOARD_NO = #{boardNo}
+	</update>
+	
+	<!-- 추가사항 수정 -->
+	<update id="boardAnimalModify">
+		UPDATE BOARD_ANIMAL SET ANIMAL_TYPE = #{animalType}, ANIMAL_DETAIL = #{animalDetail}, 
+		GENDER = #{gender}, NEUTERING = #{neutering}
+		WHERE BOARD_NO = #{boardNo}
+	</update>
 </mapper>

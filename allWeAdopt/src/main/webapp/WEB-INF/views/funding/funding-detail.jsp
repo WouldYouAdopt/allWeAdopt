@@ -164,7 +164,7 @@
                                     <div class="delivery-box">
 
                                         <span class="deli-title">리워드 발송 시작일</span>
-                                        <span class="deli-content">${detail.endDate}+1일... 부터 순차발송</span>
+                                        <span class="deli-content">${detail.sendDate} 부터 순차발송</span>
                                     </div>
                                     <div class="stock-box">
                                         <span class="stock">현재 ${detail.rewardList[i].maxRewardNo-detail.rewardListCount[i].rewardOrderAmount}개 남음 / 제한수량 ${detail.rewardList[i].maxRewardNo}개</span>

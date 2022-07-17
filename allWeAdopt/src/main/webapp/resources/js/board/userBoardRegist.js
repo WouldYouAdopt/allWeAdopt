@@ -77,9 +77,9 @@ for (let i = 0; i < selectMenu.length; i++) {
 
 		document.getElementsByName("animalType")[0].value = document.getElementsByName("animalTypeValue")[0].innerText;
 
-		document.getElementsByName("genders")[0].value = document.getElementsByName("genderValue")[0].innerText;
+		document.getElementsByName("genders")[0].value = document.getElementsByName("genderValue")[0].innerText.trim();
 
-		document.getElementsByName("neuterings")[0].value = document.getElementsByName("neuteringValue")[0].innerText;
+		document.getElementsByName("neuterings")[0].value = document.getElementsByName("neuteringValue")[0].innerText.trim();
 	})
 };
 
@@ -282,9 +282,26 @@ function regist(){
 		return false;
 	}
 
+	if((period.value=='')&&(period2.value=='')){
+		return true;
+	}
+
 	if(period.value >= period2.value){
 		alert("지정된 날짜 형식이 올바르지 않습니다");
 		return false;
 	}
 
+	// img검사
+	const imgBool = !!document.querySelector('.card-block img');
+	if(!imgBool){
+		alert("최소 1장의 이미지를 삽입해야 합니다");
+		return false;
+	}
+
+	alert("게시글을 수정하였습니다");
 };
+
+// 게시글 삭제버튼 클릭 시
+document.getElementsByClassName('delete')[0].addEventListener("click", function () {
+	alert("게시글이 삭제되었습니다");
+});
