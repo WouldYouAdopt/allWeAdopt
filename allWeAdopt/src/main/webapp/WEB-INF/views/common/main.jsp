@@ -95,7 +95,7 @@
 				<p>다같이 어답터<br>되어보실까요?</p>
 			</div>
 			<div class="sticky-elem main-message d">
-				<img src="../logo2.png">
+				<img src="${contextPath}/resources/images/logo2.png">
 			</div>
 		</section>
 		<section class="scroll-section" id="scroll-section-1">
