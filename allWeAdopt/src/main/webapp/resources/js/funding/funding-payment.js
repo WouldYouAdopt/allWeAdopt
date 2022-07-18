@@ -183,13 +183,11 @@ function DaumPostcode() {
 
 
 /* --------------------------------------------------------------------------------------------- */
-/* 아임포트 동의*/
-//IMP.init("{imp13427583}");
-
+/* 아임포트 일반 결제*/
 function requestPayInicis() {
-  IMP.init("imp13427583");
 
-  const uid = newUID($('#loginMemberNo').val());
+  IMP.init("imp13427583");
+  const uid = newUID($('#memberNo').val());
   // 이니시스 일반 결제
   // INIpayTest
   IMP.request_pay({
@@ -206,13 +204,49 @@ function requestPayInicis() {
   }, function (r) { // callback 로직
 
     $('#pay_method').val(r.pay_method);
-    $('#merchant_uid').val(r.merchant_uid);
+    if (r.success) {
+      $('form[name="submitEvent"]').serialize();
+      $('form[name="submitEvent"]').attr('method', 'POST');
+      $('form[name="submitEvent"]').attr('action', 'pay/' + r.merchant_uid);
+      document.getElementById("submitEvent").submit();
+    } else {
+      alert("결제에 실패하였습니다");
+    }
+  });
 
-    console.log("아임포트 사용 끝");
 
-    return r.success;
+}
+
+
+function kakaoPay() {
+  IMP.init("imp13427583");
+  const uid = newUID($('#memberNo').val());
+
+  IMP.request_pay({
+    pg: 'kakaopay.TC0ONETIME',
+    pay_method: 'card', //생략 가능
+    merchant_uid: uid, // 상점에서 관리하는 주문 번호
+    name:$('#fundingTitle').text(),
+    amount: 100,
+    buyer_email: $('#memberEmail').text(), // buyeremail 이메일은 한글 사용 불가능
+    buyer_name: $('#inputName').val(),
+    buyer_tel: $('#inputTelMain').val(),
+    buyer_addr: $('#Address').val() + $('#detailAddress').val(),
+    buyer_postcode: $('#postCode').val()
+  }, function (r) {
+
+    $('#pay_method').val(r.pay_method);
+    if (r.success) {
+      $('form[name="submitEvent"]').serialize();
+      $('form[name="submitEvent"]').attr('method', 'POST');
+      $('form[name="submitEvent"]').attr('action', 'pay/' + r.merchant_uid);
+      document.getElementById("submitEvent").submit();
+    } else {
+      alert("결제에 실패하였습니다");
+    }
   });
 }
+
 
 // 중복되지 않는 식별키를 생성해주는 함수
 function newUID(memberNo) {
@@ -239,59 +273,52 @@ function submitValidate() {
 
   //결제정보 테스트
   if (!$('.payment').is(':checked')) {
-    alert("결제정보를 선택해주세요");
+    Swal.fire({
+      title: "결제정보를 선택해주세요",
+      width: 500,
+      padding: '3em',
+      color: 'black',
+      confirmButtonColor: 'rgb(251, 131, 107)',
+      confirmButtonText: '확인'
+      });
     return false;
   }
 
 
   for (let i in checkObj) {
     if (!checkObj[i]) {
-      alert("필수 입력 값이 입력되지 않았습니다 (" + i + " )");
+      Swal.fire({
+        title: "필수 입력 값이 입력되지 않았습니다 (" + i + " )",
+        width: 500,
+        padding: '3em',
+        color: 'black',
+        confirmButtonColor: 'rgb(251, 131, 107)',
+        confirmButtonText: '확인'
+        });
+
       return false;
     }
   }
 
 
+  let payMethod = $('input[name=pay-Method]:checked').val();
 
-  IMP.init("imp13427583");
-  const uid = newUID($('#memberNo').val());
-  // 이니시스 일반 결제
-  // INIpayTest
-  IMP.request_pay({
-    pg: 'html5_inicis.INIpayTest',
-    pay_method: 'card',
-    merchant_uid: uid, // 상점에서 관리하는 주문 번호를 전달 (newUID으로 생성함)
-    name: $('#fundingTitle').text(), //펀딩 이름 fundingTitle
-    amount: 100,//$('#fullPrice').val()
-    buyer_email: $('#memberEmail').text(), // buyeremail 이메일은 한글 사용 불가능
-    buyer_name: $('#inputName').val(),
-    buyer_tel: $('#inputTelMain').val(),
-    buyer_addr: $('#Address').val() + $('#detailAddress').val(),
-    buyer_postcode: $('#postCode').val()
-  }, function (r) { // callback 로직
+  switch (payMethod) {
 
-    $('#pay_method').val(r.pay_method);
-    
+    case 'none': 
+        Swal.fire({
+          title: '은행사의 문제로 지원되지 않습니다',
+          width: 500,
+          padding: '3em',
+          color: 'black',
+          confirmButtonColor: 'rgb(251, 131, 107)',
+          confirmButtonText: '확인'
+          });
+      break;
+    case 'pay': requestPayInicis(); break;
+    case 'kakaoPay': kakaoPay(); break;
 
-    if(r.success){
-      
-      // document.getElementById("submitEvent").attr('action', '/pay/'+r.merchant_uid);
-      
-      alert("동작 성공")
-      $('form[name="submitEvent"]').serialize();
-      $('form[name="submitEvent"]').attr('method', 'POST');
-      $('form[name="submitEvent"]').attr('action', 'pay/'+r.merchant_uid);
-      document.getElementById("submitEvent").submit();
-      
-    
-    }else{
-      alert("결제에 실패하였습니다");
-    }
-  });
-
-
-
-
+  }
 
 }
 
@@ -302,4 +329,37 @@ function submitValidate() {
   document.getElementById("submitEvent").onsubmit = function () {
     return false;
   }
-})()
+})();
+
+
+
+/* --------------------------------------------------------------- */
+/* label 클릭 이벤트용 함수. */
+
+//Selected Pay Method
+//체크된 결제가 있는지 없는지
+let SPM = true;
+let temp = "";
+$(".payBtn").click(function(){
+
+  if(SPM){
+    $(".payBtn").removeClass('reversBtnColor');
+    $(".pp").removeClass('reversPp');
+    // this.classList.add('fa-spin');
+    
+    // setTimeout(function() {
+    //   $(".payBtn").removeClass('fa-spin');
+
+    //  }, 1500);
+    this.classList.add('reversBtnColor');
+    const p = this.children[1];
+    p.classList.add('reversPp');
+
+
+    SPM=true;
+  }else{
+    SPM=false;
+  }
+ 
+});
+

@@ -133,15 +133,55 @@
     outline-color: #f7a797;
 }
 
-.paymentMeans span{
-    display: block;
-    margin: 20px 0;
+.payment{
+    display: none;
 }
+.payBtn{
+    width: 100px;
+    height: 80px;
+    border: 1px solid #f7a797;
+    background-color: white;
+    display: block;
+    margin: auto;
+    text-align: center;
+     
+}
+.pp{
+    width: 100%;
+    color: #FB836b;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+}
+.reversPp{
+    color: white;
+}
+.reversBtnColor{
+    border: 1px solid white;
+    background-color: #f7a797;
+    color: white;
+}
+
+.payBtn:hover{
+    border: 1px solid white;
+    background-color:#f7a797;
+
+}
+.paymentMeans{
+    display: flex;
+    justify-content: space-around;
+}
+.paymentMeans span{
+    display: flex;
+    justify-content: space-around;
+}
+
 
 .agreeWrapper a{
     text-decoration: none;
     color: #373737;
 }
+
 
 
 #goToPay{

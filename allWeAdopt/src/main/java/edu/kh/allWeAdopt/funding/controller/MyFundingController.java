@@ -1,5 +1,6 @@
 package edu.kh.allWeAdopt.funding.controller;
 
+import java.net.http.HttpRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -10,8 +11,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -108,6 +111,7 @@ public class MyFundingController {
 							,@ModelAttribute("OrderDetail") OrderDetail orderDetail
 							,@ModelAttribute("rewardList") List<Reward> rewardList
 							,Model model,RedirectAttributes ra
+							,@RequestHeader("referer") String referer 
 							){
 		
 		try {
@@ -120,10 +124,41 @@ public class MyFundingController {
 		
 		if(result>0) {
 			ra.addFlashAttribute("message", "등록 성공?");
+			ra.addFlashAttribute("paymentNo",payNo);
 			return "redirect:../detail/{payNo} ";
+			
+		}else {
+			ra.addFlashAttribute("message", "구매중 에러가 발생했습니다.");
+			return "redirect"+referer;//이전 페이지로 되돌림.
 		}
-		
-		return null;
+	}
+
+	//----------------------------------------------------------------------------------
+	//결제 상태들은 관리하는 AJAX들   
+	@GetMapping("/cancel/{paymentNo}")
+	@ResponseBody
+	public int cancelPayment(@PathVariable int paymentNo)throws Exception{		
+		return service.cancelPayment(paymentNo);
+	}
+	//환불 신청
+	@GetMapping("/refund/{paymentNo}")
+	@ResponseBody
+	public int refundPayment(@PathVariable int paymentNo)throws Exception{		
+		return service.refundPayment(paymentNo);
 	}
 	
+	//반품 신청
+	@PostMapping("/return/{paymentNo}")
+	@ResponseBody
+	public int retrunPayment(@PathVariable int paymentNo		,String returnReason) {
+		return service.retrunPayment(paymentNo,returnReason);
+	}
+	
+	//반품 내용 확용
+	@PostMapping("/selectReturn/{paymentNo}")
+	@ResponseBody
+	public String selectReturn(@PathVariable int paymentNo) {
+		return  new Gson().toJson(service.selectReturn(paymentNo));
+	}
+	//----------------------------------------------------------------------------------
 }

@@ -31,6 +31,9 @@
         <link href="${contextPath}/resources/css/main-style.css" rel="stylesheet" />
         <link href="${contextPath}/resources/css/styles.css" rel="stylesheet" />
 
+
+        <link href="${contextPath}/resources/css/shelter/shelter-main.css" rel="stylesheet" />
+
         
 
         <style>
@@ -95,9 +98,10 @@
                     <div class="row gx-5">
 
                     <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="true">
+                        <button class="btn btn-secondary dropdown-toggle btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="true" style="background-color: #FB836B; border: 0;">
                             <strong>시도</strong>
                         </button>
+
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                             <li><a class="dropdown-item" href="${upr_cd}" role="option" aria-selected="true">전체</a></li>
                             <li><a class="dropdown-item" href="${upr_cd}6110000" role="option" aria-selected="true">서울특별시</a></li>
@@ -118,7 +122,7 @@
                             <li><a class="dropdown-item" href="${upr_cd}6500000" role="option" aria-selected="true">제주특별자치도</a></li>
                         </ul>
 
-                        <button class="btn btn-secondary dropdown-toggle btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn btn-secondary dropdown-toggle btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #FB836B; border: 0;">
                             <strong>품종</strong>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -127,15 +131,17 @@
                             <li><a class="dropdown-item" href="${upkind}422400" role="option" aria-selected="true">고양이</a></li>
                         </ul>
 
+                        <div class="md-10" style="margin:10px;"></div>
 
                     </div>
 
                         <c:forEach var="shelter" items="${list}">
                         <div class="col-lg-4 mb-5">
                             <div class="card h-100 shadow border-0">
-                                <img class="card-img-top" src="${shelter.popfile}" alt="썸네일" />
+                                <img class="card-img-top" src="${shelter.popfile}" alt="썸네일" id="thumbnail" />
                                 <div class="card-body p-4">
-                                    <h3><div class="badge bg-primary bg-gradient rounded-pill mb-2">New</div></h3>
+                                    <h5><span class="badge bg-secondary">New</span></h5>
+                                    <%-- <h5 ><div class="badge bg-primary bg-gradient rounded-pill mb-2" >New</div></h5> --%>
                                         <a class="text-decoration-none link-dark stretched-link" href="../shelter/shelterDetail/${shelter.desertionNo}" >
                                             <li class="h5 card-title mb-3">종류 : ${shelter.kindCd}</li>
                                             <li class="h5 card-title mb-3">발견 날짜 : ${shelter.happenDt}</li>
@@ -146,7 +152,8 @@
                                 <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
                                     <div class="d-flex align-items-end justify-content-between">
                                         <div class="d-flex align-items-center">
-                                            <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d" alt="..." />
+                                            <%-- <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d" alt="..." /> --%>
+                                            <img src="${contextPath}/resources/images/user.png" id="member-profile" style="width : 35px; height : 35px; ">	
                                             <div class="small">
                                                 <div class="fw-bold">보호소 : ${shelter.careNm}</div>
                                             </div>

@@ -1,5 +1,6 @@
 package edu.kh.allWeAdopt.funding.model.service;
 
+import java.io.File;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,8 +9,12 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import edu.kh.allWeAdopt.board.model.vo.Pagination;
+import edu.kh.allWeAdopt.common.Util;
+import edu.kh.allWeAdopt.common.exception.FailReturnException;
 import edu.kh.allWeAdopt.funding.model.dao.FundingDAO;
 import edu.kh.allWeAdopt.funding.model.vo.Funding;
 import edu.kh.allWeAdopt.funding.model.vo.FundingDetail;
@@ -21,6 +26,23 @@ import edu.kh.allWeAdopt.funding.model.vo.Supporters;
  * @author deadWhale
  *
  */
+/**
+ * @author deadWhale
+ *
+ */
+/**
+ * @author deadWhale
+ *
+ */
+/**
+ * @author deadWhale
+ *
+ */
+/**
+ * @author deadWhale
+ *
+ */
+@Transactional(rollbackFor = { Exception.class })
 @Service
 public class FundingServiceImpl implements FundingService {
 
@@ -52,7 +74,7 @@ public class FundingServiceImpl implements FundingService {
 			DecimalFormat fm = new DecimalFormat("###,###");
 			String fullPrice = fm.format(sumPrice);
 			
-			detail.setFullPrice(fullPrice);
+			detail.setFullPrice(fullPrice); // 해당 펀딩의 전체 판매 금액
 			detail.setRewardListCount(rewardListCount);
 			
 			// 서포터즈 프로필, 이름, 금액, 이름공개여부, 금액공개여부
@@ -103,8 +125,6 @@ public class FundingServiceImpl implements FundingService {
 	public OrderDetail selectOrderDetail(int paymentNo) {
 		return dao.selectOrderDetail(paymentNo);
 	}
-
-
 
 
 	
@@ -187,28 +207,49 @@ public class FundingServiceImpl implements FundingService {
 		return map;
 	}
 
-
+	
 
 	// 모든 펀딩 리스트 조회
 	@Override
 	public Map<String, Object> selectfundingAllList() {
 		
-		// 지금 진행중인 펀딩 목록 조회
-		FundingDetail now = dao.selectNowFundinginfo(); 
-		int fundingNo = now.getFundingNo();
-
+		
+		// 지금 진행중인 펀딩 번호
+		int fundingNo = dao.selectNowFundingNo();
+		
 		// 펀딩 번호로 구매이력 있는지 조회
 		int result = dao.selectCountPay(fundingNo);
 
+		FundingDetail now;
 		if(result>0) { // 구매이력 있으면 리워드 정보 + 결제정보
+			now = dao.selectFundingDetail(fundingNo);
+			
+			// 달성 금액이 필요해서 계산하려고 가져오는 정보
+			// 리워드별 구매이력 조회 (수량, 금액) rewardList에는 기존 리워드 정보 들어있어서 새로만듦
+			List<Reward> rewardListCount = dao.selectRewardList(fundingNo);
+			
+			// 달성금액 구하기
+			int sumPrice = 0;
+			for(int i=0; i<rewardListCount.size(); i++) {
+				sumPrice += rewardListCount.get(i).getRewardOrderPrice();			
+			}
+			
+			DecimalFormat fm = new DecimalFormat("###,###");
+			String fullPrice = fm.format(sumPrice);
+			
+			now.setFullPrice(fullPrice); // 달성금액 완료
 			
 		}else { // 구매이력 없으면 단순 리워드 정보만
-			
+			now = dao.selectNowFundinginfo(); 
+			List<Reward> rewardList = new ArrayList<Reward>();
+			rewardList = dao.selectOnlyRewardList(fundingNo);
+			now.setRewardList(rewardList);
 		}
-			
 		
 		
-		// 종료된 펀딩 리스트 조회
+		
+		
+		// 종료된 펀딩 리스트 조회 (판매이력 있다는 전제)
 		List<FundingDetail> endList = dao.selectEndFundinginfo();
 
 		
@@ -248,6 +289,120 @@ public class FundingServiceImpl implements FundingService {
 			
 		return paymentNo;
 	}
+
+
+
+
+
+	//결제 취소 상태로 업데이트 [김현기]
+	@Override
+	public int cancelPayment(int paymentNo) {
+		return dao.cancelPayment(paymentNo);
+	}
+	
+	//환불 신청 상태로 업데이트 [김현기]
+	@Override
+	public int refundPayment(int paymentNo) {
+		return dao.refundPayment(paymentNo);
+	}
+
+	//반품 신청 상태로 변경하면서 반품 사유 보내기
+	@Override
+	public int retrunPayment(int paymentNo, String returnReason) {
+		
+		int result = dao.retrunPaymentStats(paymentNo);
+		if(result>0) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("paymentNo", paymentNo);
+			map.put("returnReason", returnReason);
+			result = dao.insertReason(map);
+			
+			if(result==0) {
+				throw new FailReturnException();
+			}
+		}
+		return result;
+	}
+
+
+
+
+	//반품조회
+	@Override
+	public String selectReturn(int paymentNo) {
+		return dao.selectReturn(paymentNo);
+	}
+
+
+
+
+	//펀딩 등록
+	@Override
+	public int fundingRegister(FundingDetail fundingDetail, MultipartFile uploadImage, String webPath,
+			String folderPath)throws Exception{
+		
+		
+//		해야하는데 수진님이 하셨는지 확인 필요
+//		fundingDetail.setFundingTitle(Util.newLineHandling(fundingDetail.getFundingTitle()));
+//		
+//		fundingDetail.setFundingMiniTitle(Util.newLineHandling(fundingDetail.getFundingMiniTitle()));
+//		fundingDetail.setFundingMiniTitle(Util.XSSHandling(fundingDetail.getFundingMiniTitle()));
+		
+		String rename = Util.fileRename(uploadImage.getOriginalFilename());
+		fundingDetail.setFundingThumbnail(webPath+rename);
+		
+		//성공 금액 계산에서 세팅해주기
+		fundingDetail.setSuccessDonation((int)(Integer.parseInt(fundingDetail.getTargetDonation()) * 0.8));
+	
+		int fundingNo = dao.fundingRegister(fundingDetail);
+		
+		if(fundingNo>0) {
+			//펀딩 등록 리워드 목록에 저장하기
+			for(Reward r : fundingDetail.getRewardList() ) {
+				r.setFundingNo(fundingNo);
+			}
+			//리워드목록들 저장하고
+			fundingNo = dao.registerRewardList(fundingDetail.getRewardList());
+			
+			//이미지 서버에 업로드
+			uploadImage.transferTo(new File(folderPath+rename));
+		}
+		
+		return fundingNo;
+	}
+
+
+
+	// 진행예정중인 펀딩 썸네일 + 카테고리 + 타이틀
+	@Override
+	public List<FundingDetail> selectFundingSList() {
+		return dao.selectFundingSList();
+	}
+
+
+
+	//펀딩 리워드 목록 '만' 조회하는 함수(오버로딩) :현기 
+	@Override
+	public List<Reward> selectRewardList(int fundingNo) {
+		return dao.selectOnlyRewardList(fundingNo);
+	}
+
+
+	
+    // 펀딩 썸네일+제목만 조회 : 수진
+	@Override
+	public Funding selectfunding(int fundingNo) {
+		return dao.selectFunding(fundingNo);
+	}
+
+
+	
+
+	
+	
+	
+	
+	
 	
 	
 	

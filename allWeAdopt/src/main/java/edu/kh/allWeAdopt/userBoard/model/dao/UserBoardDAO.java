@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import edu.kh.allWeAdopt.board.model.vo.Board;
 import edu.kh.allWeAdopt.userBoard.model.vo.Animal;
 import edu.kh.allWeAdopt.userBoard.model.vo.Area;
+import edu.kh.allWeAdopt.userBoard.model.vo.Likes;
 
 @Repository
 public class UserBoardDAO {
@@ -60,6 +61,43 @@ public class UserBoardDAO {
 	public List<Animal> loadAnimalList(String animalType) {
 		List<Animal> list = sqlSession.selectList("boardMapper.loadAnimalList",animalType);
 		return list;
+	}
+
+	// 게시판 삭제
+	public int boardDelete(int boardNo) {
+		return sqlSession.update("boardMapper.boardDelete", boardNo);
+	}
+
+	// 게시글 수정
+	public int userBoardModify(Board board) {
+		return sqlSession.update("boardMapper.userBoardModify",board);
+	}
+
+	// 지역 수정
+	public int boardAreaModify(Area area) {
+		return sqlSession.update("boardMapper.boardAreaModify",area);
+	}
+
+	// 추가사항 수정
+	public int boardAnimalModify(Animal animal) {
+		return sqlSession.update("boardMapper.boardAnimalModify",animal);
+	}
+
+	// 관심동물 등록
+	public int likeRegist(Board board, int likeNo) {
+		int result = 0;
+		System.out.println(likeNo);
+		if(likeNo==0) {
+			result = sqlSession.insert("boardMapper.likeRegist",board);
+		}else {
+			result = sqlSession.delete("boardMapper.likeDelete",board);
+		}
+		return result;
+	}
+
+	// 관심동물 호출
+	public int likeList(Board likeBoard) {
+		return sqlSession.selectOne("boardMapper.likeList",likeBoard);
 	}
 
 

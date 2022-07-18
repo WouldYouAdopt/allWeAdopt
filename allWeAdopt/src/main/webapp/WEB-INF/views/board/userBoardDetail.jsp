@@ -55,31 +55,62 @@
                                     <!-- Post title-->
                                     <div class="title-area">
                                         <h1 class="fw-bolder mb-1">${board.boardTitle}</h1>
+                                        <c:if test="${loginMember.memberNo == board.memberNo}">
                                         <div>
-                                            <a href="#"><p class="modify">수정</p></a>
-                                            <a href="#"><p class="delete">삭제</p></a>
+                                            <a href="${board.boardNo}/boardModify"><p class="modify">수정</p></a>
+                                            <a href="${board.boardNo}/boardDelete"><p class="delete">삭제</p></a>
                                         </div> 
+                                        </c:if>
                                     </div>
+                                    ${like}
                                     <!-- Post meta content-->
-                                    <div class="text-muted fst-italic mb-2">${board.createDate}</div>
+                                    <div class="text-muted fst-italic mb-2">${board.createDate} || 조회수 : 0
+                                    <c:if test="${!empty loginMember}">||
+                                        <c:if test="${like==0}">
+                                            <span id="likeIcon">&#x2661;</span>
+                                            <c:set var="iconValue" value="0"/>
+                                        </c:if>
+                                         <c:if test="${like==1}">
+                                            <span id="likeIcon">&#x2665;</span>
+                                            <c:set var="iconValue" value="1"/>
+                                        </c:if>
+                                    </c:if>
+                                    <input type="hidden" value="${iconValue}" class="iconValue" name="iconValue">
+                                    </div>
                                     <!-- Post categories-->
                                     <div class="tag-area">
                                         <div class="tag">
-                                            <a class="badge bg-secondary text-decoration-none link-light" href="#!">강아지</a>
-                                            <a class="badge bg-secondary text-decoration-none link-light" href="#!">중성화 여부</a>
-                                            <a class="badge bg-secondary text-decoration-none link-light" href="#!">성별</a>
-                                        </div>
-                                        <div class="like-area">
-                                            <span class="dislike">&#x2661;</span>
-                                            <span class="like">&#x2665;</span>
+                                            <a class="badge bg-secondary text-decoration-none link-light animal" href="#!">${board.animalType}</a>
+                                            <c:if test="${!empty board.animalDetail}">
+                                                <a class="badge bg-secondary text-decoration-none link-light animalDetail" href="#!">${board.animalDetail}</a>
+                                            </c:if>
+                                            <a class="badge bg-secondary text-decoration-none link-light gender" href="#!">
+                                                <c:choose>
+                                                    <c:when test="${board.gender eq 'M'}">
+                                                        수컷
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        암컷
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </a>
+                                            <c:if test="${board.neutering eq 'Y'}">
+                                                <a class="badge bg-secondary text-decoration-none link-light neutering" href="#!">
+                                                        중성화
+                                                </a>
+                                            </c:if>
                                         </div>
                                     </div>
                                 </header>
                                 <!-- Preview image figure-->
-                                <figure class="mb-4"><img class="img-fluid rounded" src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="..." /></figure>
+                                <figure class="mb-4"><img class="img-fluid rounded" src="${board.profileImage}" alt="..." /></figure>
                                 <!-- Post content-->
                                 <section class="mb-5">
                                     ${board.boardContent}
+
+                                    * 연락처 : ${board.phone} <br><br>
+                                    * 지역 : ${board.area} ${board.areaDetail} <br><br>
+                                    * 공유 기간 : ${board.boardPeriod} ~ ${board.boardPeriod2}
                                 </section>
                             </article>
 
@@ -102,9 +133,15 @@
         </main>
        <!-- 푸터 -->
         <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+        <script>
+        const loginMember = ${loginMember.memberNo};
+        const boardNo = ${board.boardNo};
+        </script>
         <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></>
         <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+        <script src="${contextPath}/resources/js/scripts.js"></script>
+        <script src="${contextPath}/resources/js/board/userBoardDetail.js"></script>
+
     </body>
 </html>

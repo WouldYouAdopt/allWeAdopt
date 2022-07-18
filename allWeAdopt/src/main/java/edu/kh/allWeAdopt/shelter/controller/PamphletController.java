@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.kh.allWeAdopt.board.model.vo.BoardDetail;
+import edu.kh.allWeAdopt.common.Util;
 import edu.kh.allWeAdopt.member.model.vo.Member;
 import edu.kh.allWeAdopt.shelter.model.service.ShelterService;
 
@@ -43,7 +44,7 @@ public class PamphletController {
 		
 		
 		Map<String , Object> map = null;
-		
+				
 
 		map = service.selectPamphletList(cp);
 
@@ -53,6 +54,7 @@ public class PamphletController {
 		
 		return "shelter/shelter-pamphlet";
 	}
+	
 		
 		
 		// 전단지 상세 조회
@@ -105,6 +107,13 @@ public class PamphletController {
 			
 			
 			if(mode.equals("insert")) { // 삽입
+								
+				String thumbnail = Util.thumbnail(detail.getBoardContent());
+				System.out.println("내용 : " +detail.getBoardContent());
+				System.out.println("썸네일 : " + thumbnail);
+				
+				detail.setThumbnail(thumbnail);
+				
 				
 				int boardNo = service.insertPamphlet(detail);
 				

@@ -30,10 +30,14 @@
         <link href="${contextPath}/resources/css/main-style.css" rel="stylesheet" />
         <link href="${contextPath}/resources/css/styles.css" rel="stylesheet" />
 
+        <link href="${contextPath}/resources/css/shelter/shelter-reply.css" rel="stylesheet" />
 
-        <%-- 지도 --%>
-        <%-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=69933a089a5ecd291058167064475d66"></script>
-        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=69933a089a5ecd291058167064475d66&libraries=services"></script> --%>
+        <link href="${contextPath}/resources/css/shelter/shelter-main.css" rel="stylesheet" />
+
+        <!-- sweetalert-->
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
 
 
         <style>
@@ -123,22 +127,41 @@
                                     <c:if test="${detail.createDate != detail.updateDate}">
                                         <div class="text-muted fst-italic mb-2">수정일 : ${detail.updateDate}</div>
                                     </c:if>
+                                    
                                     <!-- Post categories-->
                                     <a class="badge bg-secondary text-decoration-none link-light" href="#!">관심 등록</a>
+
+                                    <div class="md-10" style="margin:10px;"></div>
+
+                            <div>                                
+                                <a id="btnTwitter" class="link-icon twitter" href="javascript:shareTwitter();"><img src="${contextPath}\resources\images\icon-twitter.png"></a>
+                                <a id="btnFacebook" class="link-icon facebook" href="javascript:shareFacebook();"><img src="${contextPath}\resources\images\icon-facebook.png"></a>    
+                                <a id="btnKakao" class="link-icon kakao" href="javascript:shareKakao();"><img src="${contextPath}\resources\images\icon-kakao.png"></a>    
+                            </div>
                                     <%-- <a class="badge bg-secondary text-decoration-none link-light" href="#!">${detail.memberEmail}</a> --%>
                                 </header>
                                 <!-- Preview image figure-->
                                 <%-- <figure class="mb-4"><img class="img-fluid rounded" src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="..." /></figure> --%>
+
+                                <div class="md-10" style="margin:10px;"></div>
+
                                 <!-- Post content-->
                                 <section class="mb-5">
                                     <h3>${detail.boardContent}<h3>
+                                    <%-- <a href="${detail.thumbnail}" download="${detail.thumbnail}"></a> --%>
                                 </section>
                             </article>
 
-                            <jsp:include page="/WEB-INF/views/shelter/shelterReply.jsp"/>
+
+
+                            <!-- 댓글 -->
+                            <jsp:include page="/WEB-INF/views/shelter/shelter-reply.jsp"/>
+
+
 
                             <!-- 버튼 영역-->
                             <div class="board-btn-area">
+
                                 <c:if test="${loginMember.memberNo == detail.memberNo}">
                                                                             <!-- detail?type=1&cp=3&no=100 -->
                                                                             <!-- detail?no=1522&type=2 -->
@@ -154,14 +177,19 @@
                                     </c:if>
 
 
-                                    <button id="updateBtn" class="btn btn-outline-success" onclick="location.href='../write?mode=update&cp=${cp}&no=${detail.boardNo}'">수정</button>                       
-                                    <button id="deleteBtn" class="btn btn-outline-success">삭제</button>
+                                    <button id="updateBtn" class="btn btn-outline-success allButton" onclick="location.href='../write?mode=update&cp=${cp}&no=${detail.boardNo}'">수정</button>                       
+                                    <button id="deleteBtn" class="btn btn-outline-success allButton">삭제</button>
                                 </c:if>
 
                                 <!-- onclick="history.back();"  뒤로가기 
                                     history.go(숫자) : 양수(앞으로가기), 음수(뒤로가기)
                                 -->
-                                <button id="goToListBtn" class="btn btn-outline-success">목록으로</button>
+                                <button id="goToListBtn" class="btn btn-outline-success allButton">목록으로</button>
+
+
+                                
+
+
 
                             </div>
                         </div>
@@ -178,7 +206,7 @@
         <%-- <script src="js/scripts.js"></script> --%>
 
             <!-- jQuery 추가 -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
  
 
@@ -206,7 +234,11 @@
 
     </script>
 
-        <script src="${contextPath}/resources/js/shelter.js"></script>
+    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+    <script src="${contextPath}/resources/js/shelterReply.js"></script>
+    <script src="${contextPath}/resources/js/shelter.js"></script>
+
+    <%-- 카카오톡 공유하기 --%>
 
         
     </body>

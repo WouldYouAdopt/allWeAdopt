@@ -13,7 +13,11 @@ import edu.kh.allWeAdopt.board.model.dao.BoardDAO;
 import edu.kh.allWeAdopt.board.model.vo.Board;
 import edu.kh.allWeAdopt.board.model.vo.BoardDetail;
 import edu.kh.allWeAdopt.board.model.vo.Pagination;
+<<<<<<< HEAD
 import edu.kh.allWeAdopt.member.model.vo.Member;
+=======
+import edu.kh.allWeAdopt.common.Util;
+>>>>>>> 725c00c8d0ff285779ecb802893a93f127829ca3
 
 @Service
 public class BoardServiceImpl implements BoardService{
@@ -47,11 +51,6 @@ public class BoardServiceImpl implements BoardService{
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		for(Board n : nList) {
-			System.out.println(n.getBoardNo());
-			System.out.println(n.getBoardTitle());
-		}
-		
 		map.put("nList", nList);
 		map.put("pagination", pagination);
 		
@@ -62,12 +61,18 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public BoardDetail selectNoticeDetail(int boardNo) {
 		
-		return dao.selectNoticeDetail(boardNo);
+		BoardDetail detail = dao.selectNoticeDetail(boardNo);
+		
+		return detail;
 	}
 
 	// 게시글 작성 기능 구현
 	@Override
 	public int insertBoard(BoardDetail detail) {
+		
+		// 제목만 XSS, 개행처리
+		detail.setBoardTitle(Util.XSSHandling(detail.getBoardTitle()));
+		detail.setBoardTitle(Util.newLineHandling(detail.getBoardTitle()));
 		
 		return dao.insertBoard(detail);
 	}
@@ -75,6 +80,10 @@ public class BoardServiceImpl implements BoardService{
 	// 게시글 수정 기능 구현
 	@Override
 	public int updateBoard(BoardDetail detail) {
+		
+		// 제목만 XSS, 개행처리
+		detail.setBoardTitle(Util.XSSHandling(detail.getBoardTitle()));
+		detail.setBoardTitle(Util.newLineHandling(detail.getBoardTitle()));
 		
 		return dao.updateBoard(detail);
 	}

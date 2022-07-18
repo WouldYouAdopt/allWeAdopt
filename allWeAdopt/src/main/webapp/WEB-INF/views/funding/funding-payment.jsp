@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+
 
 
 <!DOCTYPE html>
@@ -15,6 +18,10 @@
 <!-- Favicon-->
 <link rel="icon" type="image/x-icon"
 	href="${contextPath}/resources/assets/올위어답터.ico" />
+
+<%-- FastBoot --%>
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" />
+
 
 <!-- main css -->
 <link rel="stylesheet"
@@ -33,6 +40,9 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
 	rel="stylesheet" />
+
+<%-- 달콤한 알림 --%>	
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="${contextPath}/resources/css/main-style.css"
@@ -118,7 +128,7 @@
 											<li>등록된 주소가 없습니다.</li>
 										</c:if>
 										<c:if test="${loginMember.memberAddress != null}">
-											<li>${loginMember.memberAddress}</li>
+											<li>${fn:replace(loginMember.memberAddress, ',,', ' ')}</li>
 										</c:if>
 
 										<h3>Phone</h3>
@@ -130,6 +140,7 @@
 										</c:if>
 
 									</ul>
+
 								</div>
 
 
@@ -193,18 +204,28 @@
 								<div class="paymentMeans">
 								
 									<span> 
-										<input class="form-check-input payment" type="radio" name="pay-Method" id="makeAdeposit"> 
-										<label 	class="form-check-label" for="makeAdeposit"> 무통장 입금 </label>
+										<input class="form-check-input payment" type="radio" name="pay-Method" id="makeAdeposit" value="none">  
+										<label 	class="btn payBtn" for="makeAdeposit">
+											<div class="fa-solid fa-won-sign fa-3x fa-fw"></div>
+											<p class="pp">계좌 이체</p>
+										</label>
 									</span> 
 									
 									<span> 
-										<input class="form-check-input payment" type="radio"	name="pay-Method" id="simplePay">
-										 <label	class="form-check-label" for="simplePay">  일반 결제 </label>
+										<input class="form-check-input payment" type="radio" name="pay-Method" id="Pay" value="pay">
+										<label	class="btn payBtn" for="Pay"> 
+											<div class="fa-solid fa-credit-card fa-3x fa-fw "></div>
+											<p class="pp">일반 결제</p>
+											<%-- fa-spin 스핀 --%>
+										</label>
 									</span> 
 									
 									<span> 
-										<input class="form-check-input payment" type="radio" name="pay-Method" id="phonePay"> 
-										<label	class="form-check-label" for="phonePay"> 카카오 결제 </label>
+										<input class="form-check-input payment" type="radio" name="pay-Method" id="kakaoPay" value="kakaoPay"> 
+										<label	class="btn payBtn " for="kakaoPay">
+											<div class="fa-solid fa-comment-dollar fa-3x fa-fw"></div>
+											<p class="pp">카카오결제</p>
+										</label>
 									</span>
 								</div>
 							</div>
@@ -222,12 +243,12 @@
 								<div>
 									<%-- Personal Information Agree --%>
 									<input class="form-check-input" type="checkbox" id="PIA">
-									<a href="">개인정보 제3자 제공 동의</a>
+									<a href="javaScript:void(0)">개인정보 제3자 제공 동의</a>
 								</div>
 								<div>
 									<%-- Liability Regulation Agree --%>
 									<input class="form-check-input" type="checkbox" id="LRA">
-									<a href="">책임 규정에 대한 동의</a>
+									<a href="javaScript:void(0)">책임 규정에 대한 동의</a>
 								</div>
 							</div>
 
@@ -257,9 +278,9 @@
 						
 
 
-	이름 익명 : ${nameAnonymous}<br> 
+	<%-- 이름 익명 : ${nameAnonymous}<br> 
 	가격 비공개 : ${priceAnonymous}<br>
-
+ --%>
 
 
 
@@ -273,7 +294,6 @@
 							<!-- 결제 버튼 영역 -->
 							<div class="paymentBtnArea">
 								<button type="submit" id="goToPay" onclick="submitValidate()">결제 하기</button>
-								<button type="button" onclick="requestPayInicis()" >아임포트 테스트 버튼 </button>
 							</div>
 						</div>
 						

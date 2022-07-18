@@ -1,6 +1,7 @@
 package edu.kh.allWeAdopt.funding.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -172,6 +173,70 @@ public class FundingDAO {
 	public int insertRewardList(List<Reward> rewardList) {
 		return sqlSession.insert("fundingMapper.insertRewardList",rewardList);
 	}
+
+	/**결제 취소상태로 업데이트 하는 sql
+	 * @param paymentNo
+	 * @return
+	 */
+	public int cancelPayment(int paymentNo) {	
+		return sqlSession.update("fundingMapper.cancelPayment",paymentNo);
+	}
+	
+	/**환불 상태로 업데이트 하는 sql
+	 * @param paymentNo
+	 * @return
+	 */
+	public int refundPayment(int paymentNo) {
+		return sqlSession.update("fundingMapper.refundPayment",paymentNo);
+	}
+
+	/**반품 상태로 업데이트하는 sql
+	 * @param paymentNo
+	 * @return
+	 */
+	public int retrunPaymentStats(int paymentNo) {
+		return sqlSession.update("fundingMapper.retrunPaymentStats",paymentNo);
+	}
+
+	/**반품 사유 작성 
+	 * @param map
+	 * @return
+	 */
+	public int insertReason(Map<String, Object> map) {
+		return sqlSession.insert("fundingMapper.insertReason",map);
+	}
+
+	/**반품 조회
+	 * @param paymentNo
+	 * @return
+	 */
+	public String selectReturn(int paymentNo) {
+		return sqlSession.selectOne("fundingMapper.selectReturn",paymentNo);
+	}
+
+	/**펀딩 등록
+	 * @param fundingDetail
+	 * @return
+	 */
+	public int fundingRegister(FundingDetail fundingDetail) {
+		int result = sqlSession.insert("fundingMapper.registerFunding",fundingDetail);
+			if(result>0) {
+				result = fundingDetail.getFundingNo();
+			}
+		return result;
+	}
+
+	public int registerRewardList(List<Reward> rewardList) {
+		return sqlSession.insert("fundingMapper.registerRewardList",rewardList);
+	}
+
+	/** 진행예정중인 펀딩 썸네일 + 카테고리 + 타이틀
+	 * @return
+	 */
+	public List<FundingDetail> selectFundingSList() {
+		return sqlSession.selectList("fundingMapper.selectFundingSList");
+	}
+
 
 
 

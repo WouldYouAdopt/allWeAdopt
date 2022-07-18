@@ -9,6 +9,7 @@ import edu.kh.allWeAdopt.board.model.vo.Board;
 import edu.kh.allWeAdopt.userBoard.model.dao.UserBoardDAO;
 import edu.kh.allWeAdopt.userBoard.model.vo.Animal;
 import edu.kh.allWeAdopt.userBoard.model.vo.Area;
+import edu.kh.allWeAdopt.userBoard.model.vo.Likes;
 
 @Service
 public class UserBoardImpl implements UserBoardService {
@@ -73,5 +74,43 @@ public class UserBoardImpl implements UserBoardService {
 		List<Animal> list = dao.loadAnimalList(animalType);
 		return list;
 	}
+
+	// 게시글 삭제
+	@Override
+	public int boardDelete(int boardNo) {
+		return dao.boardDelete(boardNo);
+	}
+
+	// 게시글 수정
+	@Override
+	public int userBoardModify(Board board) {
+		return dao.userBoardModify(board);
+	}
+
+	// 지역 수정
+	@Override
+	public int boardAreaModify(Area area) {
+		return dao.boardAreaModify(area);
+	}
+	
+	// 추가사항 수정
+	@Override
+	public int boardAnimalModify(Animal animal) {
+		return dao.boardAnimalModify(animal);
+	}
+
+	// 관심동물 등록
+	@Override
+	public int likeRegist(Board board, int likeNo) {
+		return dao.likeRegist(board,likeNo);
+	}
+
+	// 관심동물 호출
+	@Override
+	public int likeList(Board likeBoard) {
+		return dao.likeList(likeBoard);
+	}
+
+	
 	
 }

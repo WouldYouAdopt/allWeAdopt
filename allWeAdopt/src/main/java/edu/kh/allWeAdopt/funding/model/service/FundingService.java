@@ -3,15 +3,25 @@ package edu.kh.allWeAdopt.funding.model.service;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import edu.kh.allWeAdopt.funding.model.vo.Funding;
 import edu.kh.allWeAdopt.funding.model.vo.FundingDetail;
 import edu.kh.allWeAdopt.funding.model.vo.OrderDetail;
 import edu.kh.allWeAdopt.funding.model.vo.Reward;
 
+/**
+ * @author DamE
+ *
+ */
+/**
+ * @author DamE
+ *
+ */
 public interface FundingService {
 
 	
-	/** 펀딩 상세 조회 : 수진
+	/** 펀딩 상세 조회 : 수진  ( 김현기가 지금 같이 사용중)
 	 * @param fundingNo
 	 * @return detail
 	 */
@@ -57,6 +67,64 @@ public interface FundingService {
 	 * @return
 	 */
 	int payProgress(OrderDetail orderDetail, List<Reward> rewardList);
+
+	/**주문 상태를 결제 취소 상태로 변경하는 AJAX
+	 * @param paymentNo
+	 * @return result
+	 */
+	int cancelPayment(int paymentNo);
+
+	/**주문 상태를 환불 신청으로 변형하는 AJAX
+	 * @param paymentNo
+	 * @return
+	 */
+	int refundPayment(int paymentNo);
+
+	/**반품 사유 작성 
+	 * @param paymentNo
+	 * @param returnReason
+	 * @return
+	 */
+	int retrunPayment(int paymentNo, String returnReason);
+
+	/**반품 사유 작성
+	 * @param paymentNo
+	 * @return
+	 */
+	String selectReturn(int paymentNo);
+
+	/** 펀딩 등록
+	 * @param fundingDetail
+	 * @param uploadImage
+	 * @param webPath
+	 * @param folderPath
+	 * @return
+	 */
+	int fundingRegister(FundingDetail fundingDetail, MultipartFile uploadImage, String webPath, String folderPath)throws Exception;
+
+	/** 진행예정중인 펀딩 썸네일 + 카테고리 + 타이틀
+	 * @return
+	 */
+	List<FundingDetail> selectFundingSList();
+
+	/**위와 다르게 해당 펀딩의 리워드 목록들만 가져오는 함수 오버로딩)
+	 * @param fundingNo
+	 * @return
+	 */
+	List<Reward> selectRewardList(int fundingNo);
+
+
+	/** 펀딩 썸네일+제목만 조회 : 수진
+	 * @param fundingNo
+	 * @return
+	 */
+	Funding selectfunding(int fundingNo);
+
+
+	
+	
+	
+
 
 
 }

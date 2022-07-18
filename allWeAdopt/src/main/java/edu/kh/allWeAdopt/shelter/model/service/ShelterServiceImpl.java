@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import edu.kh.allWeAdopt.board.model.vo.Board;
 import edu.kh.allWeAdopt.board.model.vo.BoardDetail;
 import edu.kh.allWeAdopt.board.model.vo.Pagination;
+import edu.kh.allWeAdopt.common.Util;
 import edu.kh.allWeAdopt.shelter.model.dao.ShelterDAO;
 
 @Service
@@ -34,6 +35,7 @@ public class ShelterServiceImpl implements ShelterService {
 		// 전단지 목록 조회 
 		List<Board> pamphletList = dao.selectPamphletList(pagination);
 		
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("pagination", pagination);
 		map.put("pamphletList", pamphletList);
@@ -53,6 +55,9 @@ public class ShelterServiceImpl implements ShelterService {
 	// 전단지 작성
 	@Override
 	public int insertPamphlet(BoardDetail detail) {
+		
+		// 1) XSS 방지 처리 + 개행문자 처리
+		
 		return dao.insertPamphlet(detail);
 	}
 

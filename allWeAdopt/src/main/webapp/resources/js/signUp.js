@@ -300,9 +300,16 @@ function signUpValidate(){
             case "sms"            : str="휴대폰 인증을"; break;
             }
 
-            str += " 다시 확인해주세요.";
+            str += " 확인해주세요.";
 
-            alert(str);
+            Swal.fire({
+                title: str,
+                width: 350,
+                padding: '3em',
+                color: 'black',
+                confirmButtonColor: 'rgb(251, 131, 107)',
+                confirmButtonText: '확인'
+                });
             document.getElementById(key).focus();
             return false; // form태그 기본 이벤트 제거
         }
@@ -318,10 +325,23 @@ const confirmBtn = document.getElementById("confirmBtn");
 confirmBtn.addEventListener("click", function(){
 
     if(!checkObj.memberTel){
-        alert("휴대폰 번호를 확인해주세요.");
+        Swal.fire({
+            title: '휴대폰 번호를 확인해주세요.',
+            width: 350,
+            padding: '3em',
+            color: 'black',
+            confirmButtonColor: 'rgb(251, 131, 107)',
+            confirmButtonText: '확인'
+            });
     }else{
-
-        alert("인증번호 전송 완료! 30초~ 1분정도 소요됩니다 :^)");
+        Swal.fire({
+            title: '인증번호 전송 완료! 30초~ 1분정도 소요됩니다 :^)',
+            width: 350,
+            padding: '3em',
+            color: 'black',
+            confirmButtonColor: 'rgb(251, 131, 107)',
+            confirmButtonText: '확인'
+            });
 
         $.ajax({
             url : contextPath + "/member/sms",

@@ -60,6 +60,47 @@
 
 
 
+// 트위터
+function shareTwitter() {
+    var sendText = "allWeAdopt"; // 전달할 텍스트
+    var sendUrl = contextPath + "/shelter/pamphlet/detail/" + boardNo; // 전달할 URL
+    window.open("https://twitter.com/intent/tweet?text=" + sendText + "&url=" + sendUrl);
+}
+
+
+// 페이스북
+// 고정 IP라서 지금 오류남
+function shareFacebook() {
+    var sendUrl = contextPath + "/shelter/pamphlet/detail/" + boardNo; // 전달할 URL
+    window.open("http://www.facebook.com/sharer/sharer.php?u=" + sendUrl);
+}
+
+
+// 로컬호스트여서 보내지기만 가능
+// 카카오톡 공유하기
+function shareKakao() {
+ 
+    // 사용할 앱의 JavaScript 키 설정
+    Kakao.init('69933a089a5ecd291058167064475d66');
+   
+    // 카카오링크 버튼 생성
+    Kakao.Link.createDefaultButton({
+      container: '#btnKakao', // 카카오공유버튼ID
+      objectType: 'feed',
+      content: {
+        title: "allWeAdopt", // 보여질 제목
+        description: "allWeAdopt입니다", // 보여질 설명
+        imageUrl: contextPath + "/resources/images/intro.png",
+        // "http://localhost:8081/allWeAdopt/shelter/pamphlet/detail/" + boardNo, // 콘텐츠 URL
+        link: {
+        //    mobileWebUrl: "devpad.tistory.com/",
+           webUrl: "http://localhost:8081/allWeAdopt"
+        }
+      }
+    });
+  }
+
+
 
 
 

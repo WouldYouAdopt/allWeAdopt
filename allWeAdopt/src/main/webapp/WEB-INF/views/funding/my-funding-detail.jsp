@@ -25,8 +25,7 @@
 	crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-	href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Dongle&family=Gowun+Batang&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap"
+<link	href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Dongle&family=Gowun+Batang&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap"
 	rel="stylesheet">
 
 <!-- Bootstrap icons-->
@@ -37,9 +36,17 @@
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="${contextPath}/resources/css/main-style.css"	rel="stylesheet" />
 <link href="${contextPath}/resources/css/styles.css" rel="stylesheet" />
-<link	href="${contextPath}/resources/css/funding/funding-order-detail.css"
-	rel="stylesheet" />
+<link	href="${contextPath}/resources/css/funding/funding-order-detail.css"	rel="stylesheet" />
 
+
+	<%-- 제이쿼리 --%>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<%-- 달콤한 알림 --%>	
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- summer note -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 
 
 </head>
@@ -49,6 +56,16 @@
 		<jsp:include page="/WEB-INF/views/common/header.jsp" />
   
 		<section class="py-4">
+
+    	<!-- 상단 이미지 영역 -->	
+		<div class="fundingTitleBox">
+			<div class="fundingTitleImage"></div>
+			<div class="fundingTitleText">우리아이 시원하게 여름 쿨매트</div>
+		</div>
+
+
+
+
 	   <!-- 상단 메뉴 영역. -->
         <div class="text-center mb-5" id="TOT">
             <h1 class="fw-bolder">주문관리 상세</h1>
@@ -56,13 +73,7 @@
         </div>
 
 
-			<!-- 상단 이미지 영역 -->
-      <!-- 상단 이미지 영역 -->
-      <div class="fundingTitleBox">
-          <div class="fundingTitleImage"></div>
-          <div class="fundingTitleText">우리아이 시원하게 여름 쿨매트</div>
-      </div>
-
+	
 			<div class="container px-5">
 				<div class=" rounded-3 py-5 px-4 px-md-5 mb-5">
 
@@ -90,37 +101,28 @@
 											<td >${detail.fundingCategory}</td>
 
 											<th  class="row-name">주문번호</th>
-											<td >${detail.paymentNo}</td>
+											<td  colspan="3">${detail.paymentNo}</td>
 										</tr>
 						
-									
-								  <c:forEach var="reward" items="${detail.rewardList}">
-										<tr>	
-											<th>신청 리워드</th>
-											<td>${reward.rewardTitle}</td>
-											<th>수량</th>
-											<td>${reward.amount}</td>
-											<th>금액</th>
-											<td>reward.fullPrice</td>
-										</tr>
+								
+									  <c:forEach var="reward" items="${detail.rewardList}">
+											<tr>	
+												<th>신청 리워드</th>
+												<td>${reward.rewardTitle}</td>
+												<th>수량</th>
+												<td>${reward.amount}</td>
+												<th>금액</th>
+												<td>${reward.fullPrice} 원</td>
+											</tr>
                                       </c:forEach>
-						
-
-								<!-- 
-										<tr>
-											<th>신청 리워드</th>
-											<td>2번 리워드</td>
-											<th>수량</th>
-											<td>1</td>
-											<th>금액</th>
-											<td>40,000</td>
-										</tr> -->
-
 
 									</tbody>
 								</table>
 							</article>
 
+						
+<%-- -------------------------------------------------------------------------------------------------- --%>
+<div id="twoTable"><%-- 결제 , 배송 정보 묶는 DIV 시작 --%>
 							<!-- 결제정보 테이블 -->
 							<article id="order-info" class="detail-info">
 
@@ -150,36 +152,39 @@
 								
 								<c:choose>
 									
-									<c:when test='${detail.orderState!="결제 완료"}'>
-										<button type="button" class="btn btn-secondary">결제 취소</button>
+									<c:when test='${detail.orderState=="결제 완료"}'>
+										<button type="button" class="btn btn-secondary" id="cancelPayment">결제 취소</button>
 									</c:when>
 									
 									
 									<c:when test='${detail.orderState=="배송 중"}'>
-									<button type="button" class="btn btn-secondary">반품 신청</button>
-									<button type="button" class="btn btn-success">배송 조회</button>
+										<%-- <button type="button" class="btn btn-secondary" id="returnBtn">반품 신청</button> --%>
+										<button type="button" class="btn btn-success" id="selectDelivery">배송 조회</button>
 									</c:when>
 
-									<c:when test='${detail.orderState=="배송 중"}'>
-									<button type="button" class="btn btn-secondary">반품 신청</button>
-									<button type="button" class="btn btn-success">배송 조회</button>
+									<c:when test='${detail.orderState=="배송 완료"}'>		
+										<button type="button" class="btn btn-secondary" id="returnBtn">반품 신청</button>
+										<button type="button" class="btn btn-secondary" id="refundBtn">환불 신청</button>
 									</c:when>
-
-									<c:when test='${detail.orderState=="배송 완료"}'>
-									<button type="button" class="btn btn-secondary">반품 신청</button>
-									<button type="button" class="btn btn-secondary">환불 신청</button>
+									<c:when test='${detail.orderState=="환불 신청"}'>		
+										<button type="button" class="btn btn-secondary">환불 진행 중</button>
+									</c:when>
+									<c:when test='${detail.orderState=="반품 신청"}'>		
+										<button type="button" class="btn btn-secondary" onclick="selectReturnState()">반품 진행 중</button>
 									</c:when>
 
 									<c:otherwise>
-									<button type="button" class="btn btn-secondary">반품 신청</button>
+										<button type="button" class="btn btn-secondary">${detail.orderState} 진행 중</button>
 									</c:otherwise>
 									
 								</c:choose>
 									
 								</div>
 							</article>
+
+
 							<!-- 배송 정보 테이블 -->
-							<article id="order-info" class="detail-info">
+							<article id="delivery-info" class="detail-info">
 								<h3 class="fw-bolder">배송 정보</h3>
 								<table class="table">
 									<tbody>
@@ -202,10 +207,19 @@
 									</tbody>
 								</table>
 							</article>
+</div><%-- 결제 , 배송 정보 묶는 DIV 끝 --%>
 
-
+   
+<%-- -------------------------------------------------------------------------------------------------- --%>
 						</div>
-
+	
+	<%-- 배송정보 조회를 위한 form 태그 숨겨두기. --%>
+<form action="http://info.sweettracker.co.kr/tracking/2" method="post" id="submitSweettracker">
+	<input type="hidden" class="form-control" id="t_key" name="t_key" placeholder="API키" value="BZSIagSlyzWU3UEhwSNHBQ">
+	<input type="hidden" class="form-control" name="t_code" id="t_code" placeholder="택배사 코드" value="04">
+	<input type="hidden" class="form-control" name="t_invoice" id="t_invoice" placeholder="운송장 번호" value="649524304661"> 
+</form>
+<%-- 배송정보 조회를 위한 form 태그 숨겨두기. --%>
 
 
 
@@ -220,21 +234,21 @@
 
 
 
-
-
-
-
-
-
 	<!-- 푸터 -->
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
+	<script>
+		const paymentNo = '${paymentNo}';
+	</script>
+
 	<!-- Bootstrap core JS-->
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></>
 	<!-- Core theme JS-->
 	<script src="${contextPath}/resources/js/scripts.js"></script>
-	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+	<%-- 배송정보 관련 JS --%>
+	<script src="	${contextPath}/resources/js/funding/funding-delivery.js"></script>
+  
 
 </body>
 

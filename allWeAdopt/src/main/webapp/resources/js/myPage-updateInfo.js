@@ -53,7 +53,14 @@ if(document.getElementById("changeBtn")){
 
     changeBtn.addEventListener("click", function(){
 
-        alert("휴대폰 번호 입력 후 인증을 완료해주세요.");
+        Swal.fire({
+            title: '휴대폰 번호 입력 후 인증을 완료해주세요.',
+            width: 350,
+            padding: '3em',
+            color: 'black',
+            confirmButtonColor: 'rgb(251, 131, 107)',
+            confirmButtonText: '확인'
+            });
 
         // 전화번호, 인증번호 입력란 화면에 노출시켜주고
         telBox.classList.remove("none");
@@ -110,10 +117,27 @@ const confirmBtn = document.getElementById("confirmBtn");
 confirmBtn.addEventListener("click", function(){
 
     if(!checkObj.memberTel){
-        alert("휴대폰 번호를 확인해주세요.");
+
+        Swal.fire({
+            title: '휴대폰 번호를 확인해주세요.',
+            width: 350,
+            padding: '3em',
+            color: 'black',
+            confirmButtonColor: 'rgb(251, 131, 107)',
+            confirmButtonText: '확인'
+            });
+
     }else{
 
-        alert("인증번호 전송 완료! 30초~ 1분정도 소요됩니다 :^)");
+        Swal.fire({
+            title: '인증번호 전송 완료! 30초~ 1분정도 소요됩니다 :^)',
+            width: 350,
+            padding: '3em',
+            color: 'black',
+            confirmButtonColor: 'rgb(251, 131, 107)',
+            confirmButtonText: '확인'
+            });
+        
 
         $.ajax({
             url : contextPath + "/member/sms",
@@ -175,14 +199,27 @@ confirmBtn.addEventListener("click", function(){
                         // 인증 완료 후 번호를 변경하는 경우
                         if(checkObj.sms){
                             memberTel.addEventListener("click", function(){
-                                if(confirm("번호 수정시 인증을 다시 진행해주셔야합니다. 수정하시겠습니까?")){
 
-                                    // 문자 인증번호 지우고 유효성검사 false로 변경
-                                    checkObj.sms = false;
-                                    number.value = ""
-                                    memberTel.focus();
-
-                                }
+                                Swal.fire({
+                                    title: '휴대폰 번호를 수정하시겠습니까?',
+                                    text: "번호 수정시 인증을 다시 진행해주셔야합니다.",
+                                    width: 340,
+                                    icon: 'warning',
+                                    iconColor: 'rgb(251, 131, 107)',
+                                    showCancelButton: true,
+                                    confirmButtonColor: 'rgb(251, 131, 107)',
+                                    cancelButtonColor: '#999',
+                                    confirmButtonText: '확인',
+                                    cancelButtonText: '취소'
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            checkObj.sms = false;
+                                            number.value = ""
+                                            memberTel.focus();
+                                        }else{
+                                            e.preventDefault();
+                                        }
+                                    })
 
                             });
                         }
