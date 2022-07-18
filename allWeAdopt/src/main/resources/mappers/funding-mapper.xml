@@ -641,4 +641,12 @@
 		DELETE FROM REWARD WHERE FUNDING_NO =#{fundingNo}
 	</delete>
 	
+	<!-- 종료된 펀딩 넘버 모두 조회 -->
+	<select id="selectEndCount" resultType="_int">
+		SELECT FUNDING_NO
+		FROM FUNDING
+		WHERE FUNDING_ST='N'
+		ORDER BY FUNDING_SEASON DESC
+	</select>
+	
 </mapper>
