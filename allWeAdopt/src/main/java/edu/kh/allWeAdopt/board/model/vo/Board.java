@@ -24,4 +24,6 @@ public class Board {
 	private String memberName;
 	private String msg;
 	private String profileImage;
+	// 게시글 답변 완/미완 == 코멘트 유/무
+	private String answer;
 }

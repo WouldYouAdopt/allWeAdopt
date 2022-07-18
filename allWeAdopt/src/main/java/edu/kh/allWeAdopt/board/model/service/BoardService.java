@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import edu.kh.allWeAdopt.board.model.vo.BoardDetail;
+import edu.kh.allWeAdopt.member.model.vo.Member;
 
 public interface BoardService {
 
@@ -43,5 +44,12 @@ public interface BoardService {
 	 * @return result
 	 */
 	int deleteBoard(int boardNo);
+
+	/** 문의글 조회하는 서비스 호출
+	 * @param cp
+	 * @param loginMember 
+	 * @return aList
+	 */
+	Map<String, Object> selectaskList(int cp, Member loginMember);
 
 }
