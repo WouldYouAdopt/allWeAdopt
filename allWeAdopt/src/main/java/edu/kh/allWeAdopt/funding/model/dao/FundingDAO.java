@@ -237,17 +237,30 @@ public class FundingDAO {
 		return sqlSession.selectList("fundingMapper.selectFundingSList");
 	}
 
+	/**펀딩 수정
+	 * @param fundingDetail
+	 * @return
+	 */
 	public int fundingUpdate(FundingDetail fundingDetail) {
 		return sqlSession.update("fundingMapper.fundingUpdate",fundingDetail);
 	}
 
+	/**기존 펀딩 썸네일 조회
+	 * @param fundingNo
+	 * @return
+	 */
 	public String selectThumbnail(int fundingNo) {
 		return sqlSession.selectOne("fundingMapper.selectThumbnail",fundingNo);
 	}
 
+	/**기존 리워드 목록들 제거
+	 * @param fundingNo
+	 * @return
+	 */
 	public int deleteRewardList(int fundingNo) {
 		return sqlSession.delete("fundingMapper.deleteRewardList",fundingNo);
 	}
+
 
 	/** 종료된 펀딩 넘버 모두 가져오기
 	 * @return
@@ -255,6 +268,7 @@ public class FundingDAO {
 	public List<Integer> selectEndCount() {
 		return sqlSession.selectList("fundingMapper.selectEndCount");
 	}
+
 
 
 
