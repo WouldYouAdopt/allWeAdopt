@@ -19,6 +19,8 @@
 		<result property="updateDate" column="UPDATE_DT"/>
 		<result property="boardSt" column="BOARD_ST"/>
 		<result property="category" column="CATEGORY"/>
+		<result property="memberNo" column="MEMBER_NO"/>
+		<result property="boardPeriod" column="BOARD_PERIOD"/>
 	</resultMap>
 	
 	<!-- 게시글 수 조회 -->
@@ -26,6 +28,7 @@
 	SELECT COUNT(*) FROM BOARD
 	WHERE BOARD_CD = 6
 	AND BOARD_ST = 'N'
+	AND MEMBER_NO = #{loginMember}
 	</select>
 	
 	<!-- 게시글 목록 조회 -->
@@ -84,5 +87,36 @@
 	WHERE BOARD_NO = #{boardNo}
 	AND BOARD_CD = 6
 	</update>
+	
+	
+	<!-- 문의사항 게시글 수 조회 -->
+	<select id="paginationCount" resultType="_int">
+	SELECT COUNT(*) FROM BOARD
+	WHERE BOARD_CD = 5
+	AND BOARD_ST = 'N'
+	AND MEMBER_NO = #{memberNo}
+	</select>
+	
+	
+	<!-- 게시글 목록 조회 -->
+	<select id="selectAskList" resultMap="board_rm">
+	    
+	SELECT BOARD_NO,CATEGORY, BOARD_TITLE, MEMBER_NO,
+		  CASE WHEN SYSDATE - CREATE_DT &lt; 1
+		        THEN TO_CHAR(CREATE_DT, 'HH24:MI')
+		        ELSE TO_CHAR(CREATE_DT, 'YYYY-MM-DD')
+		  END CREATE_DT,
+		  TO_CHAR(CREATE_DT, 'YYYY-MM-DD') BOARD_PERIOD,
+		  BOARD_ST          
+	FROM BOARD
+	WHERE BOARD_CD = 5
+	AND BOARD_ST = 'N'
+	AND MEMBER_NO = #{memberNo}
+	ORDER BY BOARD_NO DESC
+	
+	</select>
+	
+	
+	
   
 </mapper>

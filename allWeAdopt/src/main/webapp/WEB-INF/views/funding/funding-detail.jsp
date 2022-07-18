@@ -73,8 +73,13 @@
                     <div class="rate-bar"></div>
                     <div class="rate-bar-pink" style="width:${detail.salesRate}%;"></div>
                     <div class="rate-text-box" style="left:${detail.salesRate}%;">
-                    	<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 174 138.61"><defs><style>.cls-1{fill:rgb(255, 255, 255, 0.2)}</style></defs><path class="cls-1" d="M162.62,0H11.38C5.1,0,0,5.1,0,11.38V86.92c0,6.29,5.1,11.38,11.38,11.38H57.89l29.11,40.31,29.11-40.31h46.51c6.29,0,11.38-5.1,11.38-11.38V11.38c0-6.29-5.1-11.38-11.38-11.38Z"/></svg>
-                    	<div class="rate-text-wrap"v><span class="rate-text"></span><span class="per">%</span></div>
+                    	<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 174 138.61">
+	                    	<defs>
+	                    		<style>.tooltip_icon{fill:rgb(255, 255, 255, 0.3);}</style>
+	                    	</defs>
+                    		<path class="tooltip_icon" d="M162.62,0H11.38C5.1,0,0,5.1,0,11.38V86.92c0,6.29,5.1,11.38,11.38,11.38H57.89l29.11,40.31,29.11-40.31h46.51c6.29,0,11.38-5.1,11.38-11.38V11.38c0-6.29-5.1-11.38-11.38-11.38Z"/>
+                    	</svg>
+                    	<div class="rate-text-wrap"><span class="rate-text"></span><span class="per">%</span></div>
                     </div>
                 </div>
             </div>
@@ -263,7 +268,7 @@
 
                 function counterFn() {
 
-                    id0 = setInterval(count0Fn, 30);
+                    id0 = setInterval(count0Fn, 20);
 
                     function count0Fn() {
                         cnt0++;
@@ -280,23 +285,26 @@
             const rewards = document.getElementsByClassName("reward");
             const rewardOvers = document.getElementsByClassName("rewardOver");
             const goReward = document.getElementsByClassName("goReward");
-
-            for(var i=0; i<rewards.length; i++){
-                rewards[i].addEventListener("mouseover",function(){
-                    this.lastElementChild.classList.add('visable');
-                })
-
-                rewards[i].addEventListener("mouseout",function(){
-                    this.lastElementChild.classList.remove('visable');
-                })
-                
-                
-                // 리워드 클릭 시
-                rewardOvers[i].addEventListener("click", function(){
-                	this.parentElement.nextElementSibling.submit();
-                	return;
-                })
-            }
+			
+            if(${detail.fundingState=='Y'}){
+            	
+	            for(var i=0; i<rewards.length; i++){
+	                rewards[i].addEventListener("mouseover",function(){
+	                    this.lastElementChild.classList.add('visable');
+	                })
+	
+	                rewards[i].addEventListener("mouseout",function(){
+	                    this.lastElementChild.classList.remove('visable');
+	                })
+	                
+	                
+	                // 리워드 클릭 시
+	                rewardOvers[i].addEventListener("click", function(){
+	                	this.parentElement.nextElementSibling.submit();
+	                	return;
+	                })
+	            }
+            } //if(${detail.fundingState=='Y'})
 			
             // 스크롤 reward 끝에 닿으면 버튼 보이게?
             // 스크롤Y 값이 header (헤더)
@@ -307,14 +315,17 @@
             var fixBox = document.querySelector('.fixbox');
             
            	// window.scrollY 가 div 합보다 크거나 같을때 반환
-            document.addEventListener('scroll', function() {
-            	
-    		    if(window.scrollY > 1630){
-    		    	fixBox.classList.add('visable');
-    		    }else{
-    		    	fixBox.classList.remove('visable');
-    		    }
-            });
+           	if(${detail.fundingState=='Y'}){
+           		
+	            document.addEventListener('scroll', function() {
+	            	
+	    		    if(window.scrollY > 1630){
+	    		    	fixBox.classList.add('visable');
+	    		    }else{
+	    		    	fixBox.classList.remove('visable');
+	    		    }
+	            });
+           	}
 
            	
            	

@@ -89,8 +89,8 @@
 	                            	</div>
 	                                <div class="rate-bar"></div>
 	                                <div class="rate-bar-pink" style="width:${map.now.salesRate}%;"></div>
-	                                <div class="rate-text-box" style="left:${map.now.salesRate}%;">
-	                                	<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 174 138.61"><defs><style>.cls-1{fill:rgb(255, 255, 255, 0.2)}</style></defs><path class="cls-1" d="M162.62,0H11.38C5.1,0,0,5.1,0,11.38V86.92c0,6.29,5.1,11.38,11.38,11.38H57.89l29.11,40.31,29.11-40.31h46.51c6.29,0,11.38-5.1,11.38-11.38V11.38c0-6.29-5.1-11.38-11.38-11.38Z"/></svg>
+	                                <div class="rate-text-box" style="left:calc(${map.now.salesRate}%*0.95);">
+	                                	<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 174 138.61"><defs><style>.tooltip_icon_pk{fill:rgb(255,255,255,0.2); border:1px solid #000; }</style></defs><path class="tooltip_icon_pk" d="M162.62,0H11.38C5.1,0,0,5.1,0,11.38V86.92c0,6.29,5.1,11.38,11.38,11.38H57.89l29.11,40.31,29.11-40.31h46.51c6.29,0,11.38-5.1,11.38-11.38V11.38c0-6.29-5.1-11.38-11.38-11.38Z"/></svg>
                     					<div class="rate-text-wrap"><span class="rate-text"></span><span class="per">%</span></div>
 	                                </div>
 	                            </div>
@@ -113,7 +113,12 @@
                 				<div class="card h-100 shadow border-0">
                 					<div style="background:url('${contextPath}${end.fundingThumbnail}') 50% 0; background-size:cover; height:230px;"></div>
                                 	<div class="card-body pt-4 px-4 pb-0">
-                                    	<div class="badge bg-gradient mb-2 pd-3" style="background:rgb(251, 131, 107)">성공</div>
+                                		<c:if test="${end.salesRate<80}">
+                                    		<div class="badge bg-gradient mb-2 pd-3" style="background:#999;">실패</div>
+                                		</c:if>
+                                		<c:if test="${end.salesRate>=80}">
+                                    		<div class="badge bg-gradient mb-2 pd-3" style="background:rgb(251, 131, 107)">성공</div>
+                                		</c:if>
                                     	<a class="text-decoration-none link-dark stretched-link" href="${contextPath}/funding/detail/${end.fundingNo}?page=1"><div class="h5 card-title mb-3">${end.fundingTitle}</div></a>
                                     	<p class="card-text mb-0">${end.fundingMiniTitle}</p>
                                 	</div>
@@ -174,12 +179,10 @@
     		@keyframes long2 {
     		   from { 
     			   left: 2px;
-						color: #FB836B;
     		   }
     		   to { 
     			   //left:calc(salesRate%*0.95);
     			   left: calc(${map.now.salesRate}%*0.95);
-				 		color: #FB836B;
     		    }
     		}
     		`;
@@ -193,11 +196,11 @@
 
             function counterFn() {
 
-                id0 = setInterval(count0Fn, 30);
+                id0 = setInterval(count0Fn, 20);
 
                 function count0Fn() {
                     cnt0++;
-                    if (cnt0 > salesRate) {
+                    if (cnt0 > ${map.now.salesRate}) {
                         clearInterval(id0);
                     } else {
                         $(".rate-text").text(cnt0);

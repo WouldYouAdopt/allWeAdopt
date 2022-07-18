@@ -85,8 +85,8 @@
     }
 
     .video-size{
-        width : 1200px;
-        height: 500px;
+        width : 850px;
+        height: 300px;
         object-fit: fill;
     }
 

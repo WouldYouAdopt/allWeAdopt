@@ -59,65 +59,59 @@
     </head>
     <body class="">
 
-  <!-- Modal -->
-					<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-					  <div class="modal-dialog">
-					    <div class="modal-content">
-					      <div class="modal-header">
-					        <h5 class="modal-title" id="exampleModalLabel">펀딩 취소 / 반환 방법 미리 체크패보세요</h5>
-					        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-					      </div>
-					      <div class="modal-body py-4">
-					      
-					      	<div class="d-flex py-3">
-						      	<div class="px-3">
-						      		<input type="checkbox">
-						      	</div>
-						      	<div class="px-3">
-						        	<p>펀딩이 끝나기 전까지 언제든 결제를 취소할 수 있어요.</p>
-						        	<p>펀딩이 끝나고 바로 리워드가 제작되어 다음 날 부터 순차 발송이 시작되기 때문에, 펀딩이 끝나면 결제를 취소 할 수 없습니다.</p>
-						        </div>
-					      	</div>
-					      	
-					      	<div class="d-flex py-3">
-						      	<div class="px-3">
-					        		<input type="checkbox">
-					        	</div>
-						      	<div class="px-3">
-					        		<p>리워드에 문제가 있거나 배공일을 지키지 않으면 펀딩금을 돌려받을 수 있어요.</p>
-					        		<p>펀딩금 반환 정책 확인</p>
-						        </div>
-					      	</div>
-					        
-					      	<div class="d-flex py-3">
-						      	<div class="px-3">
-					        		<input type="checkbox">
-					        	</div>
-						      	<div class="px-3">
-					        		<p>단순 변심에 의한 펀딩금 반환은 신청할 수 없어요.</p>
-					        		<p>펀딩은 일반 쇼핑과 달리 리워드를 만드는 메이커에서 투자하고, 투자의 보상으로 제품이나 서비스를 받는 구조이기 때문에 전자상거래법상 통신판매에 해당하지 않아요. 그래서 단순 변심을 이유로 한 펀딩금 반환을 신청할 수 없습니다.</p>
-						        </div>
-					      	</div>
-					        
-					        
-					      </div>
-					      <div class="modal-footer">
-					        <button type="submit" class="btn btn-primary" id="goPay">계속해서 펀딩하기</button>
-					      </div>
-					    </div>
-					  </div>
-					</div>  <!-- 모달끝 --> 
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">펀딩 취소 / 반환 방법 미리 체크패보세요</h5>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		      <div class="modal-body py-4">
+		      
+		      	<div class="d-flex py-3">
+			      	<div class="px-3">
+			      		<input type="checkbox" class="payCheck">
+			      	</div>
+			      	<div class="px-3">
+			        	<p>펀딩이 끝나기 전까지 언제든 결제를 취소할 수 있어요.</p>
+			        	<p>펀딩이 끝나고 바로 리워드가 제작되어 다음 날 부터 순차 발송이 시작되기 때문에, 펀딩이 끝나면 결제를 취소 할 수 없습니다.</p>
+			        </div>
+		      	</div>
+		      	
+		      	<div class="d-flex py-3">
+			      	<div class="px-3">
+		        		<input type="checkbox" class="payCheck">
+		        	</div>
+			      	<div class="px-3">
+		        		<p>리워드에 문제가 있거나 배공일을 지키지 않으면 펀딩금을 돌려받을 수 있어요.</p>
+		        		<p>펀딩금 반환 정책 확인</p>
+			        </div>
+		      	</div>
+		        
+		      	<div class="d-flex py-3">
+			      	<div class="px-3">
+		        		<input type="checkbox" class="payCheck">
+		        	</div>
+			      	<div class="px-3">
+		        		<p>단순 변심에 의한 펀딩금 반환은 신청할 수 없어요.</p>
+		        		<p>펀딩은 일반 쇼핑과 달리 리워드를 만드는 메이커에서 투자하고, 투자의 보상으로 제품이나 서비스를 받는 구조이기 때문에 전자상거래법상 통신판매에 해당하지 않아요. 그래서 단순 변심을 이유로 한 펀딩금 반환을 신청할 수 없습니다.</p>
+			        </div>
+		      	</div>
+		        
+		        
+		      </div>
+		      <div class="modal-footer">
+		        <button type="submit" class="btn btn-primary" id="goPay">계속해서 펀딩하기</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>  <!-- 모달끝 --> 
 
+		<main class="flex-shrink-0">
 
-
-					
-					
-        <main class="flex-shrink-0">
-
-	        <jsp:include page="/WEB-INF/views/common/header.jsp" />
-	  
-
-					
+			<jsp:include page="/WEB-INF/views/common/header.jsp" />
+		
 			<!-- 펀딩 이미지, 타이틀, 달성률 들어있는 박스 -->
 			<div class="fundingTitleBox" style="height:120px;">
 			    <div class="fundingTitleImage" style="background: url(${contextPath}${map.funding.fundingThumbnail}) 50% 0 ;"></div>
@@ -129,9 +123,6 @@
             <section class="py-4" style="margin-bottom:60px;">
                 <div class="container px-5" style="padding-bottom:30px;">
 				
-				
-					
-					
 					<div class="text-center py-5">
 						<h1 class="fw-bolder">리워드 선택</h1>
 						<p class="lead fw-normal text-muted mb-0">펀딩해주시는 금액에 따라 감사의 의미로 리워드를 제공해 드립니다.</p>
@@ -147,7 +138,6 @@
                     <c:forEach var="i" begin="0" end="${fn:length(map.rewardList)-1}">
                     
                     <c:if test="${map.rewardList[i].rewardNo==param.selected}">
-                    
                     
 						<!-- 리워드-->
 						<div class="col-lg-6 col-xl-4 mb-5">
@@ -190,8 +180,7 @@
 					</c:if>
 					
 					<c:if test="${map.rewardList[i].rewardNo!=param.selected}">
-                    
-                    
+
 						<!-- 리워드-->
 						<div class="col-lg-6 col-xl-4 mb-5">
 							<div class="card mb-5 mb-xl-0">
@@ -232,14 +221,9 @@
 						</div>
 					</c:if>
 					
-                    </c:forEach>
-                        
-
-                        
+                    </c:forEach>  
                     </div>
                         
-                    
-                    
                     <div class="mx-5 px-5">
                     
 	                    <table style="margin: 20px auto;">
@@ -253,7 +237,6 @@
 		                    	</td>
 		                    </tr>
 	                    </table>
-	                    
 	                    
 						<div style="margin: 20px auto;" class="d-flex justify-content-center">
 							<div class="form-check px-5">
@@ -288,17 +271,18 @@
 								</div>
 
 
-
-
-						
-
                     </div>  
                     <input type="hidden" name="fundingNo" value="${map.fundingNo}">
                     </form>
                     
 				
 				</div> <!-- container끝 -->
-				<button data-bs-toggle="modal" data-bs-target="#exampleModal" class="selected d-grid col-6 mx-auto my-3 py-2" style="border-radius:4px; font-size:20px;" >결제 페이지로</button>
+				<c:if test="${empty defaultPrice}">
+				<button id="toModal" data-bs-toggle="modal" class="selected d-grid col-6 mx-auto my-3 py-2" style="border-radius:4px; font-size:20px;" >결제 페이지로</button>
+				</c:if>
+				<c:if test="${!empty defaultPrice}">
+				<button id="toModal" data-bs-target="#exampleModal" data-bs-toggle="modal" class="selected d-grid col-6 mx-auto my-3 py-2" style="border-radius:4px; font-size:20px;" >결제 페이지로</button>
+				</c:if>
 
             </section>
 					
@@ -317,7 +301,9 @@
         	const rewardSelectBtn = document.getElementsByClassName("rewardSelectBtn"); // 리워드 선택 버튼
         	const payPrice = document.getElementById("payPrice"); // 아래 리워드 더해진 금액
         	const rewardCount = document.getElementsByClassName("rewardCount");
+        	const toModal = document.getElementById("toModal"); // 모달 열리는 버튼
         	var price=null;
+        	var selectValidate=true;
         	
         	// 리워드별 가격
         	var priceList = new Array();
@@ -332,40 +318,39 @@
         		// 리워드별 가격?
         		price = ${map.rewardList[0].rewardPrice};
         		
-        		/* // 마우스오버 했을때
-         		rewardSelectBtn[i].addEventListener("mouseover",function(){	
-        			
-        			if(this.classList.contains("selected")){
-        				this.classList.remove("btn-pk"); 
-        			}else{
-			        	this.classList.add("btn-pk");        		        				
-        			}
-        			
-        		})
-        		
-        		// 마우스아웃 했을때
-        		rewardSelectBtn[i].addEventListener("mouseout",function(){	
-		        	this.classList.remove("btn-pk");        		
-        		}) */
  
         		// 클릭 했을때
         		rewardSelectBtn[i].addEventListener("click",function(){	
-		        	//this.classList.toggle("selected");  
 		        	
         			if(this.classList.contains("selected")){
-        				
-        				//console.log(select);
+
         				
         				this.classList.remove("selected"); 
         				const beforeCount = this.parentElement.nextElementSibling.value;
         				this.parentElement.nextElementSibling.value="0";
         				payPrice.innerText=parseInt(payPrice.innerText)-parseInt(beforeCount)*parseInt(priceList[i]);
-
-        				
+						
+        				// 버튼 클릭시 바뀐 값에 따라 서브밋(selected해제 할때)
+        				if(payPrice.innerText!=0){
+        					toModal.setAttribute( 'data-bs-target', '#exampleModal');
+        					selectValidate=true;
+        				}else{
+        					toModal.removeAttribute( 'data-bs-target', '#exampleModal');
+        					selectValidate=false;
+        				}
         			}else{
         				this.classList.add("selected"); 
         				this.parentElement.nextElementSibling.value="1";
         				payPrice.innerText=parseInt(payPrice.innerText)+parseInt(priceList[i]);
+        				
+        				// 버튼 클릭시 바뀐 값에 따라 서브밋(selected 들어갈때)
+        				if(payPrice.innerText!=0){
+        					toModal.setAttribute( 'data-bs-target', '#exampleModal');
+        					selectValidate=true;
+        				}else{
+        					toModal.removeAttribute( 'data-bs-target', '#exampleModal');
+        					selectValidate=false;
+        				}
         			}
         		})
 
@@ -394,6 +379,15 @@
 		        		sum +=parseInt(rewardCount[a].value)*parseInt(priceList[a]);
 		        	}
 					payPrice.innerText= sum;
+					
+					// input value change에 따라 서브밋(selected 들어갈때)
+    				if(payPrice.innerText!=0){
+    					toModal.setAttribute( 'data-bs-target', '#exampleModal');
+    					selectValidate=true
+    				}else{
+    					toModal.removeAttribute( 'data-bs-target', '#exampleModal');
+    					selectValidate=false;
+    				}
 				
 					
 					if(rewardCount[i].value>0){
@@ -407,29 +401,45 @@
         	}
         	
         	
-        	// 리워드 아무것도 선택 안되었으면 모달창 안열리고 alert.... 모달창 제어를 못하겠어 
         	
         	// 결제버튼 submit
         	const goPay = document.getElementById("goPay"); // 결제버튼
         	const goPayForm = document.getElementById("goPayForm"); // 결제폼태그
-			
+        	
+
         	goPay.addEventListener("click",function(){ // 결제버튼 클릭 했을때
 
         		// 결제 전 유효성검사
-	        	//submitConfirm(){
+
+	        	// class="payCheck" 세개 다 체크되어 있어야 submit
+	        	const payCheck1 = document.getElementsByClassName("payCheck")[0];
+	        	const payCheck2 = document.getElementsByClassName('payCheck')[1];
+	        	const payCheck3 = document.getElementsByClassName('payCheck')[2];
+
+		        if(payCheck1.checked && payCheck2.checked && payCheck3.checked){        	
+        			goPayForm.submit();
+		        }else{
+		        	alert("모두 체크하렴 스윗얼럿 적용하기");
+		        }
 	        	
-        			// 체크박스 체크 다 안되면 false
-        		
-	        		// 체크박스 체크 다 되면 true
-	        		//console.log("이런거하나 넣을까");
-	
-	        	//}
-        		
-        		//폼태그.submit();
-        		goPayForm.submit();
+	        	
         		
         	})
         	
+        	//모달 열리는 버튼 클릭이벤트
+        	
+        	toModal.addEventListener("click",function(){
+        		if(selectValidate=='false'){
+        		alert("리워드를 선택하렴");
+        		// 이거 이전에 모달연결하는 class빠져있으면 부트스트랩 js에서 오류남
+        			
+        			
+        		}
+        	});
+        	
+        	
+
+
         </script>
 
     </body>
