@@ -18,6 +18,10 @@
 		<result property="animalType" column="ANIMAL_TYPE"/>
 		<result property="areaDetail" column="AREA_DETAIL"/>
 		<result property="profileImage" column="THUMBNAIL"/>
+		<result property="diff" column="DIFF"/>
+		<result property="diff2" column="DIFF2"/>
+		<result property="profileImage" column="PROFILE_IMG"/>
+		<result property="thumbnail" column="THUMBNAIL"/>
 	</resultMap>
 	
 	<resultMap type="animal" id="animal_rm">
@@ -78,8 +82,9 @@
 	<select id="boardList" resultMap="board_rm">
 		SELECT BOARD_NO, BOARD_TITLE, MEMBER_NM, TO_CHAR(CREATE_DT,'YYYY-MM-DD') CREATE_DT, 
 		TO_CHAR(UPDATE_DT,'YYYY-MM-DD') UPDATE_DT, AREA, AREA_DETAIL, ANIMAL_TYPE, ANIMAL_DETAIL, 
-		GENDER, NEUTERING, CATEGORY,
-		BOARD_PERIOD, BOARD_PERIOD2, THUMBNAIL
+		GENDER, NEUTERING, CATEGORY, (SYSDATE - CREATE_DT)*24*60*60 AS "DIFF", 
+       (SYSDATE - UPDATE_DT)*24*60*60 AS "DIFF2",
+		BOARD_PERIOD, BOARD_PERIOD2, THUMBNAIL,PROFILE_IMG
 		FROM BOARD
 		JOIN MEMBER USING(MEMBER_NO)
 		JOIN BOARD_AREA USING(BOARD_NO)
