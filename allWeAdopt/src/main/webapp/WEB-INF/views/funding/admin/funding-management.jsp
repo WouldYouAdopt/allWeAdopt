@@ -73,21 +73,22 @@
                             <h2 class="h3 fw-bolder">현재 진행중 펀딩</h2>
                               <!-- 펀딩 이미지, 타이틀, 달성률 들어있는 박스 -->
                               <!-- 어디를 클릭하던지 현재 진행중인 페이지로 전송.-->
-                            <a href="${contextPath}/admin/funding/register?fundingNo=${map.now.fundingNo}">
-                              <div></div>
-                              사진 : <img src="${contextPath}${map.now.fundingThumbnail}"><br>
-                              타이틀 : ${map.now.fundingTitle}
-                              달성률 : ${map.now.salesRate}
-                              달성 금액 : ${map.now.fullPrice}
-                              달성 금액 : ${map.now.fullPriceInt}
+                            <a href="${contextPath}/admin/funding/register?fundingNo=${map.now.fundingNo}&fundingSeason=${map.now.fundingSeason}">
+
+                              <%-- 달성 금액 : ${map.now.fullPrice}
+                              달성 금액 : ${map.now.fullPriceInt} --%>
                               <!-- 펀딩 타이틀 이미지 들어오는 곳 -->
 							
-                              <div id="currentFundingTitle" style="background:url('${contextPath}${map.now.fundingThumbnail}')"></div>
+                              <div id="currentFundingTitle" style="background:url('${contextPath}${map.now.fundingThumbnail}') 50% 50%; background-size:cover;">
+                              <p>[${map.now.categoryName}] ${map.now.fundingTitle} &nbsp;(${map.now.salesRate}% 달성중)</p>
+                              </div>
 
                             </a>
                               <div class="btnArea">
+                              
                                 <button type="button" class="btn btn-secondary" >진행중 펀딩 수정</button>
-                                <button type="button" class="btn btn-secondary" onclick='location.href="deliveryController"'>배송 관리</button>
+                                <button type="button" class="btn btn-secondary" onclick='location.href="delivery"'>배송 관리</button>
+                                <br>버튼 넣? 빼?
                               </div>
 
                           </div>
@@ -123,7 +124,7 @@
                            			</c:if>
                            			<c:if test="${!empty next0}">
 	                            	<div class="fundingInfoS">
-			                            <a href="${contextPath}/admin/funding/register?fundingNo=${next0.fundingNo}">
+			                            <a href="${contextPath}/admin/funding/register?fundingNo=${next0.fundingNo}&fundingSeason=${map.nextSeason[0]}">
 		                            	<div class="fundingImgS" style="background:url('${contextPath}${next0.fundingThumbnail}') 50% 0; background-size:cover;">
 		                            		<div class="textS">${map.nextSeason[0]}</div>
 		                            	</div>
@@ -148,7 +149,7 @@
                            			</c:if>
                            			<c:if test="${!empty next1}">
 	                            	<div class="fundingInfoS">
-			                            <a href="${contextPath}/admin/funding/register?fundingNo=${next1.fundingNo}">
+			                            <a href="${contextPath}/admin/funding/register?fundingNo=${next1.fundingNo}&fundingSeason=${map.nextSeason[1]}">
 		                            	<div class="fundingImgS" style="background:url('${contextPath}${next1.fundingThumbnail}') 50% 0; background-size:cover;">
 		                            		<div class="textS">${map.nextSeason[1]}</div>
 		                            	</div>
@@ -160,7 +161,7 @@
 	                            	</c:if>
 	                            	
 	                            	
-	                            	<!-- 1달 뒤 펀딩 -->
+	                            	<!-- 3달 뒤 펀딩 -->
                            			<c:if test="${empty next2}">
                            			<div class="fundingInfoS">
 	                            	<a href="${contextPath}/admin/funding/register?fundingSeason=${map.nextSeason[2]}">
@@ -173,7 +174,7 @@
                            			</c:if>
                            			<c:if test="${!empty next2}">
 	                            	<div class="fundingInfoS">
-			                            <a href="${contextPath}/admin/funding/register?fundingNo=${next2.fundingNo}">
+			                            <a href="${contextPath}/admin/funding/register?fundingNo=${next2.fundingNo}&fundingSeason=${map.nextSeason[2]}">
 		                            	<div class="fundingImgS" style="background:url('${contextPath}${next0.fundingThumbnail}') 50% 0; background-size:cover;">
 		                            		<div class="textS">${map.nextSeason[2]}</div>
 		                            	</div>
@@ -248,7 +249,7 @@
                         <div id="scheduleFunding" >
                           <div id="endedFunding" >
                             <h2 class="h3 fw-bolder">종료된 펀딩</h2>
-
+								페이지네이션 해야됨
                             <table class="table endedFundingTable">
                               <thead>
                                 <tr>
@@ -266,7 +267,7 @@
                                 <tr>
                                   <th scope="row">${map.endList[i].fundingNo}</th>
                                   <td>${map.endList[i].categoryName}</td>
-                                  <td><a href="${contextPath}/admin/funding/register?fundingNo=${map.endList[i].fundingNo}">${map.endList[i].fundingTitle}</a></td>
+                                  <td><a href="${contextPath}/admin/funding/select?fundingNo=${map.endList[i].fundingNo}">${map.endList[i].fundingTitle}</a></td>
                                   <td>${map.endList[i].fundingSeason}</td>
                                   <td>${map.endList[i].salesRate}%</td>
                                   <td>${map.endList[i].fullPrice}WON</td>
