@@ -73,7 +73,7 @@
                             <h2 class="h3 fw-bolder">현재 진행중 펀딩</h2>
                               <!-- 펀딩 이미지, 타이틀, 달성률 들어있는 박스 -->
                               <!-- 어디를 클릭하던지 현재 진행중인 페이지로 전송.-->
-                            <a href="deliveryController">
+                            <a href="${contextPath}/admin/funding/register?fundingNo=${map.now.fundingNo}">
                               
                               사진 : <img src="${contextPath}${map.now.fundingThumbnail}"><br>
                               타이틀 : ${map.now.fundingTitle}
@@ -81,8 +81,8 @@
                               달성 금액 : ${map.now.fullPrice}
                               달성 금액 : ${map.now.fullPriceInt}
                               <!-- 펀딩 타이틀 이미지 들어오는 곳 -->
-                              <%-- <div id="currentFundingTitle"><p>현재진행중인 펀딩 타이틀 이미지가 들어오는 곳</p></div> --%>
-                              <div id="currentFundingTitle" style="background:url('${contextPath}${map.nowfunding.fundingThumbnail}')"></div>
+
+                              <div id="currentFundingTitle" style="background:url('${contextPath}/admin/funding/register?fundingNo=${map.now.fundingNo}')"></div>
 
                             </a>
                               <div class="btnArea">
@@ -96,15 +96,19 @@
                           
                           <div class="my-5">
                             <h2 class="h3 fw-bolder">진행 예정 펀딩</h2>
-                            
+                            펀딩 등록 안되어 있어도 펀딩 시즌 날짜 들어가 있어야함.. 오늘날짜>다음달 구하기 해서 3달 정보 가져오기. 시즌으로 대조해서 해당 시즌에 값 넣기
+                         
                             <div class="d-flex justify-content-between">
-                            
+                            	<c:forEach begin="0" end="${fn:length(map.sList)-1}" var="i">
+                            	<a href="${contextPath}/admin/funding/register?fundingNo=${map.sList[0].fundingNo}">
                             	<div class="fundingInfoS">
-	                            	<div class="fundingImgS" style="background:url('${contextPath}/resources/images/fundingThumbnail/funding_sample5.png') 50% 0; background-size:cover;">
-	                            		<div class="textS">2022/08</div>
+	                            	<div class="fundingImgS" style="background:url('${contextPath}${map.sList[0].fundingThumbnail}') 50% 0; background-size:cover;">
+	                            		<div class="textS">${map.sList[0].fundingSeason}</div>
 	                            	</div>
-	                            	<div class="infoS">[${map.sList[0].categoryName}] 제목은 떠야지</div>
+	                            	<div class="infoS">[${map.sList[0].categoryName}] ${map.sList[0].fundingTitle}</div>
                             	</div>
+                            	</a>
+                            	</c:forEach>
                             	
                             	<div class="fundingInfoS">
 	                            	<div class="fundingImgS" style="background:url('${contextPath}/resources/images/fundingThumbnail/funding_sample4.png') 50% 0; background-size:cover;">
@@ -185,7 +189,7 @@
                                 <tr>
                                   <th scope="row">${map.endList[i].fundingNo}</th>
                                   <td>${map.endList[i].categoryName}</td>
-                                  <td><a href="">${map.endList[i].fundingTitle}</a></td>
+                                  <td><a href="${contextPath}/admin/funding/register?fundingNo=${map.endList[i].fundingNo}">${map.endList[i].fundingTitle}</a></td>
                                   <td>${map.endList[i].fundingSeason}</td>
                                   <td>${map.endList[i].salesRate}%</td>
                                   <td>${map.endList[i].fullPrice}WON</td>
