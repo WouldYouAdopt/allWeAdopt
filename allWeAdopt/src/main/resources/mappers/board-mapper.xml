@@ -139,4 +139,22 @@
 		GENDER = #{gender}, NEUTERING = #{neutering}
 		WHERE BOARD_NO = #{boardNo}
 	</update>
+	
+	<!-- 관심동물 추가 -->
+	<insert id="likeRegist">
+		INSERT INTO LIKE_DB VALUES(SEQ_LIKE_NO.NEXTVAL,#{memberNo},#{boardNo})
+	</insert>
+
+	<!-- 관심동물 삭제  -->
+	<delete id="likeDelete">
+		DELETE FROM LIKE_DB WHERE MEMBER_NO = #{memberNo} 
+		AND BOARD_NO = #{boardNo}
+	</delete>
+	
+	<!-- 관심동물 호출 -->
+	<select id="likeList" resultType="_int">
+		SELECT * FROM LIKE_DB
+		WHERE MEMBER_NO = #{memberNo}
+		AND BOARD_NO= #{boardNo}
+	</select>
 </mapper>
