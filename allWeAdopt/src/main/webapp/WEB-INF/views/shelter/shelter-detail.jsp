@@ -109,8 +109,8 @@
                                 <%-- <img class="img-fluid rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /> --%>
                                 <img src="${contextPath}/resources/images/user.png" id="member-profile" style="width : 35px; height : 35px; ">	
                                 <div class="ms-3">
-                                    <div class="fw-bold">보호소 : ${careNm}</div>
-                                    <div class="text-muted">전화번호 : ${careTel}</div>
+                                    <div class="fw-bold">${careNm}</div>
+                                    <div class="text-muted">${careTel}</div>
                                 </div>
                             </div>
                         </div>
@@ -125,7 +125,7 @@
                                     <div class="text-muted fst-italic mb-2">공고 시작일: ${noticeSdt}</div>
                                     <div class="text-muted fst-italic mb-2">공고 종료일: ${noticeEdt}</div>
                                     <!-- Post categories-->
-                                    <a class="badge bg-secondary text-decoration-none link-light" href="#!">관심동물</a>
+                                    <%-- <a class="badge bg-secondary text-decoration-none link-light" href="#!">관심동물</a> --%>
 
                                     <div class="md-10" style="margin:10px;"></div>
 
@@ -219,6 +219,8 @@
                                     <%-- 보호소 지도 첨부 --%>
                                     <div id="map" style="width:600px;height:400px;"></div>
 
+
+
                                     <script>
                                         const careAddr = "${careAddr}";
                                     </script>
@@ -263,10 +265,15 @@
                                         } 
                                     });    
                                     </script>
-                                    
-
-                                                                                                
+                                                                                                                                   
                                 </section>
+
+                                <div class="position-relative">
+                                    <div class="position-absolute top-100 start-100 translate-middle">
+                                        <a href="#" style="display:scroll; position:fixed; left:30px; rigit: 50px; bottom: 10px; title=top"><h3><i class="bi bi-arrow-up-circle bt_top" style="color: #FB836B;"></i></h3></a>
+                                    </div>
+                                </div>
+                                
                             </article>
                         </div>
                     </div>

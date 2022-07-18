@@ -154,8 +154,9 @@
                                         <div class="d-flex align-items-center">
                                             <%-- <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d" alt="..." /> --%>
                                             <img src="${contextPath}/resources/images/user.png" id="member-profile" style="width : 35px; height : 35px; ">	
+                                            <div class="md-10" style="margin:5px;"></div>
                                             <div class="small">
-                                                <div class="fw-bold">보호소 : ${shelter.careNm}</div>
+                                                <div class="fw-bold">${shelter.careNm}</div>
                                             </div>
                                         </div>
                                     </div>
@@ -164,7 +165,13 @@
                         </div>
 
                         </c:forEach>
-                    </div>                         
+                    </div>    
+
+                    <div class="position-relative">
+                        <div class="position-absolute top-100 start-100 translate-middle">
+                            <a href="#" style="display:scroll; position:fixed; left:30px; rigit: 50px; bottom: 10px; title=top"><h3><i class="bi bi-arrow-up-circle bt_top" style="color: #FB836B;"></i></h3></a>
+                        </div>
+                    </div>                     
 
 
 
@@ -228,6 +235,8 @@
                             </li>
                         </ul>
                     </nav>
+
+
 
                 </div>
             </section>

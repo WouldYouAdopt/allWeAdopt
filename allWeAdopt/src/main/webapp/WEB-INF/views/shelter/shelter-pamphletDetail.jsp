@@ -78,7 +78,7 @@
                         <div class="card-body p-0">
                             <div class="row gx-0">
                                 <!-- 분양소 메인 로고 (클릭 시 최상위 주소) -->
-                                <a href="#"><div class="col-lg-6 col-xl-7"><div class="bg-featured-blog" style="background-image: url('https://dummyimage.com/700x350/343a40/6c757d')"><img src="${contextPath}/resources/images/adopt-mainLogo.png" alt="main"></div></div></a>
+                                <a href="${contextPath}"><div class="col-lg-6 col-xl-7"><div class="bg-featured-blog" style="background-image: url('https://dummyimage.com/700x350/343a40/6c757d')"><img src="${contextPath}/resources/images/adopt-mainLogo.png" alt="main"></div></div></a>
                             </div>
                         </div>
                     </div>
@@ -109,8 +109,8 @@
                                 <%-- <img class="img-fluid rounded-circle" src="${detail.profileImage}" alt="..." /> --%>
 
                                 <div class="ms-3">
-                                    <div class="fw-bold">이름 : ${detail.memberName}</div>
-                                    <div class="text-muted">고민</div>
+                                    <div class="fw-bold">${detail.memberName}</div>
+                                    <%-- <div class="text-muted">고민</div> --%>
                                 </div>
                             </div>
                         </div>
@@ -120,11 +120,11 @@
                                 <!-- Post header-->
                                 <header class="mb-4">
                                     <!-- Post title-->
-                                    <h1 class="fw-bolder mb-1">제목 : ${detail.boardTitle}</h1>
+                                    <h1 class="fw-bolder mb-1">${detail.boardTitle}</h1>
                                     <!-- Post meta content-->
                                     <div class="text-muted fst-italic mb-2">작성일 : ${detail.createDate}</div>
 
-                                    <c:if test="${detail.createDate != detail.updateDate}">
+                                    <c:if test="${!empty detail.updateDate}">
                                         <div class="text-muted fst-italic mb-2">수정일 : ${detail.updateDate}</div>
                                     </c:if>
                                     
@@ -138,6 +138,15 @@
                                 <a id="btnFacebook" class="link-icon facebook" href="javascript:shareFacebook();"><img src="${contextPath}\resources\images\icon-facebook.png"></a>    
                                 <a id="btnKakao" class="link-icon kakao" href="javascript:shareKakao();"><img src="${contextPath}\resources\images\icon-kakao.png"></a>    
                             </div>
+
+
+                            <c:if test="${!empty detail.thumbnail}">
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                    <a href="${detail.thumbnail}" download="${detail.thumbnail}"><button type="button" class="btn btn-outline-secondary btn-sm allButton">전단지 <i class="bi bi-download"></i></button></a>
+                                </div>
+                            </c:if>
+
+
                                     <%-- <a class="badge bg-secondary text-decoration-none link-light" href="#!">${detail.memberEmail}</a> --%>
                                 </header>
                                 <!-- Preview image figure-->
@@ -147,9 +156,11 @@
 
                                 <!-- Post content-->
                                 <section class="mb-5">
-                                    <h3>${detail.boardContent}<h3>
-                                    <%-- <a href="${detail.thumbnail}" download="${detail.thumbnail}"></a> --%>
+                                    <h3>${detail.boardContent}<h3>                                
                                 </section>
+
+
+
                             </article>
 
 
@@ -185,12 +196,6 @@
                                     history.go(숫자) : 양수(앞으로가기), 음수(뒤로가기)
                                 -->
                                 <button id="goToListBtn" class="btn btn-outline-success allButton">목록으로</button>
-
-
-                                
-
-
-
                             </div>
                         </div>
                     </div>
