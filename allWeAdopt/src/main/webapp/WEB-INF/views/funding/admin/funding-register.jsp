@@ -66,7 +66,7 @@
                         <div class="row gx-5 justify-content-center">
 <%-- ---------------------------------------------------------------------------------------------- --%>
 
-<form action="register" method="post" id="submitEvent" name="submitEvent" enctype="multipart/form-data">
+<form action="register" method="post" id="submitEvent" name="submitEvent" enctype="multipart/form-data" onsubmit="return submitValidate()">
                       
                           
                           <!-- 펀딩 일정 입력 영역 -->
@@ -77,7 +77,6 @@
                               <button type="button" class="btn fundingBtn btn-outline-success"  value=''>2022/10</button>
                             </div>
                           </div>
-	
                           <!-- 썸네일 영역 -->
                           <div class="thumbnailArea"> 
                             <h4><i class="fa-regular fa-image"/></i> 썸네일을 등록 해주세요</h4>
@@ -206,7 +205,7 @@
                               <table>
                                 <tr>
                                   <td><span><i class="fa-solid fa-truck"></i>배송비</span> </td>
-                                  <td>:  <input type="number" name="deliveryFee" placeholder="배송비를 입력해주세요" value="${detail.deliveryFee}"></td>
+                                  <td>:  <input type="number" id="delivery" name="deliveryFee" placeholder="배송비를 입력해주세요" value="${detail.deliveryFee}"></td>
                                 </tr>
                                 <tr>
                                   <td> <span><i class="fa-solid fa-truck"></i>목표 후원금</span> </td>
@@ -233,6 +232,15 @@
                           <input type="hidden" name="fundingSeason" value="2020.09">
                           <%-- 리워드목록들 전달하는거  --%>
                           <input type="hidden" id="insertRewardList" name="insertRewardList">
+                          
+                          <c:if test="${param.fundingNo>0}">
+                          	<input type="hidden" id="mode" name="mode" value="update">
+                          </c:if>
+                          <c:if test="${param.fundingNo==null}">
+                          	<input type="hidden" id="mode" name="mode" value="insert">
+                          </c:if>
+                          
+                          
                           <button class="btn btn-primary" id="writeBtn">Button</button>
 </form>
 <%-- ---------------------------------------------------------------------------------------------- --%>
