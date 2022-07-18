@@ -109,8 +109,8 @@
                                 <%-- <img class="img-fluid rounded-circle" src="${detail.profileImage}" alt="..." /> --%>
 
                                 <div class="ms-3">
-                                    <div class="fw-bold">이름 : ${detail.memberName}</div>
-                                    <div class="text-muted">고민</div>
+                                    <div class="fw-bold">${detail.memberName}</div>
+                                    <%-- <div class="text-muted">고민</div> --%>
                                 </div>
                             </div>
                         </div>
@@ -124,7 +124,7 @@
                                     <!-- Post meta content-->
                                     <div class="text-muted fst-italic mb-2">작성일 : ${detail.createDate}</div>
 
-                                    <c:if test="${detail.createDate != detail.updateDate}">
+                                    <c:if test="${!empty detail.updateDate}">
                                         <div class="text-muted fst-italic mb-2">수정일 : ${detail.updateDate}</div>
                                     </c:if>
                                     
@@ -138,6 +138,11 @@
                                 <a id="btnFacebook" class="link-icon facebook" href="javascript:shareFacebook();"><img src="${contextPath}\resources\images\icon-facebook.png"></a>    
                                 <a id="btnKakao" class="link-icon kakao" href="javascript:shareKakao();"><img src="${contextPath}\resources\images\icon-kakao.png"></a>    
                             </div>
+
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <a href="${detail.thumbnail}" download="${detail.thumbnail}"><button type="button" class="btn btn-outline-secondary btn-sm allButton">전단지 <i class="bi bi-download"></i></button></a>
+                            </div>
+
                                     <%-- <a class="badge bg-secondary text-decoration-none link-light" href="#!">${detail.memberEmail}</a> --%>
                                 </header>
                                 <!-- Preview image figure-->
@@ -147,9 +152,11 @@
 
                                 <!-- Post content-->
                                 <section class="mb-5">
-                                    <h3>${detail.boardContent}<h3>
-                                    <%-- <a href="${detail.thumbnail}" download="${detail.thumbnail}"></a> --%>
+                                    <h3>${detail.boardContent}<h3>                                
                                 </section>
+
+
+
                             </article>
 
 

@@ -103,7 +103,17 @@
                         <c:forEach var="pamphlet" items="${pamphletList}">
                             <div class="col-lg-4 mb-5">
                                 <div class="card h-100 shadow border-0">
-                                    <img class="card-img-top" src="${pamphlet.thumbnail}" alt="..." id="thumbnail" />
+
+                                   
+
+                                    <c:if test="${!empty pamphlet.thumbnail}">
+                                        <img class="card-img-top" src="${pamphlet.thumbnail}" alt="썸네일" id="thumbnail" />
+                                    </c:if>
+
+                                    <c:if test="${empty pamphlet.thumbnail}">
+                                         <img class="card-img-top" src="${contextPath}/resources/images/pamphlet-noImage.jpg" alt="썸네일" id="thumbnail" />
+                                    </c:if>
+
                                     <div class="card-body p-4"  id="content">
                                         <div class="badge bg-danger bg-gradient rounded-pill mb-2">실종</div>
 
@@ -129,6 +139,8 @@
                                                 </c:if>
                                                 <%-- <img class="rounded-circle me-3" src="${pamphlet.profileImage}" alt="..." /> --%>
 
+                                                <div class="md-10" style="margin:10px;"></div>
+
                                                 <div class="small">
                                                     <div class="fw-bold">${pamphlet.memberName}</div>
                                                     <div class="fw-bold">${pamphlet.phone}</div>
@@ -141,9 +153,11 @@
                             </div>
                         </c:forEach>
                     </div>
-                                      
-                    <button type="button" class="btn btn-outline-warning" id="allButton" onclick="location.href='../pamphlet/write?mode=insert&cp=${pagination.currentPage}'">글쓰기</button>                  
 
+
+                    <c:if test="${!empty loginMember}">                 
+                    <button type="button" class="btn btn-outline-warning" id="allButton" onclick="location.href='../pamphlet/write?mode=insert&cp=${pagination.currentPage}'">글쓰기</button>                  
+                    </c:if>
 
                     <%-- 페이지네이션 --%>
                     <c:set var="url" value="?cp="/>

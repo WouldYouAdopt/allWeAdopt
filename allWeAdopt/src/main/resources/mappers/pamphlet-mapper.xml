@@ -51,9 +51,9 @@
 	
 	<!-- 전단지 상세 조회 -->
 	<select id="pamphletDetail" resultMap="detail_rm">
-		SELECT BOARD_NO, BOARD_TITLE, BOARD_CONTENT, PHONE, PROFILE_IMG, MEMBER_NM, MEMBER_NO,
+		SELECT BOARD_NO, BOARD_TITLE, BOARD_CONTENT, PHONE, PROFILE_IMG, MEMBER_NM, MEMBER_NO, THUMBNAIL,
 	        TO_CHAR(CREATE_DT, 'YYYY"년" MM"월" DD"일" HH24"시" MI"분" SS"초"') CREATE_DT,
-	        TO_CHAR(CREATE_DT, 'YYYY"년" MM"월" DD"일" HH24"시" MI"분" SS"초"') UPDATE_DT
+	        TO_CHAR(UPDATE_DT, 'YYYY"년" MM"월" DD"일" HH24"시" MI"분" SS"초"') UPDATE_DT
 		FROM BOARD
 		JOIN MEMBER USING(MEMBER_NO)
 		WHERE BOARD_NO = ${boardNo}
@@ -67,7 +67,7 @@
 		   SELECT SEQ_BOARD_NO.NEXTVAL FROM DUAL
 		</selectKey>
 		
-		INSERT INTO BOARD VALUES(#{boardNo}, #{boardTitle}, #{boardContent}, SYSDATE, NULL, NULL, 'N', 
+		INSERT INTO BOARD VALUES(#{boardNo}, #{boardTitle}, #{boardContent}, SYSDATE, DEFAULT, NULL, 'N', 
 		NULL, NULL, 1, #{memberNo}, NULL, #{thumbnail})
 	</insert>
 	
