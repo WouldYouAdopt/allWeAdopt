@@ -206,6 +206,7 @@ public class AdminFundingController {
 	//배송 관리 페이지.
 	@GetMapping("/delivery")
 	public String deliveryController() {
+		
 		return "funding/admin/delivery-controller";
 	}
 	
