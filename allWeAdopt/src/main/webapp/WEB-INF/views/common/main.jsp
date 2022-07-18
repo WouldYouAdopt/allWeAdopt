@@ -70,16 +70,16 @@
 
     </head>
 
-
-    <body class="before-load">
-    <jsp:include page="/WEB-INF/views/common/header.jsp" />
+        <jsp:include page="/WEB-INF/views/common/header.jsp" />
+        
+<body class="before-load" style=" z-index:-5;">
 
 	<div class="loading">
 		<svg class="loading-circle">
 			<circle cx="50%" cy="50%" r="25"></circle>
 		</svg>
 	</div>
-		<div class="container">
+		<div class="container" >
 		<section class="scroll-section" id="scroll-section-0">
 			<h1>함께해요</h1>
 			<div class="sticky-elem sticky-elem-canvas">
@@ -92,7 +92,7 @@
 				<p>상처를 받은 동물들이<br>치유되도록</p>
 			</div>
 			<div class="sticky-elem main-message c">
-				<p>온종일 편안한<br>가족을 만들도록</p>
+				<p>다같이 어답터<br>되어보실까요?</p>
 			</div>
 			<div class="sticky-elem main-message d">
 				<img src="${contextPath}/resources/images/logo2.png">
@@ -145,38 +145,23 @@
 	</div>
 
 			
-		</section>
-	</div>
 
-    <!-- 푸터 -->
-    <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+         <!-- 푸터 -->
+         <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 	
-        <!-- 카운트 -->
-        <script>
-            let countBox = document.querySelector('#count'),
-                count = 0;
-
-            let counting = setInterval(function () {
-                if (count == 10000) {
-                    clearInterval(counting);
-                    return false;
-                }
-                count += 100;
-                countBox.innerHTML = new Intl.NumberFormat().format(count);
-            }, 20);
-        </script>
         <script>
             const contextPath = "${contextPath}";
         </script>
 
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="${contextPath}/resources/js/scripts.js"></script>
         
         <!-- main js -->
         <script src="${contextPath}/resources/js/main_study.js"></script>
 
+        <!-- Core theme JS-->
+        <script src="${contextPath}/resources/js/scripts.js"></script>
+
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
     </body>
     
