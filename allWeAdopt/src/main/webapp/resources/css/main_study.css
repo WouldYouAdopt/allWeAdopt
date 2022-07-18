@@ -117,6 +117,12 @@ body.before-load {
 	opacity: 0;
 }
 
+.main-message img{
+	display: flex;
+	margin: 0 auto; /* 중간배열*/
+	justify-content: center;
+}
+
 /*  */
 .main-message p {
 	font-weight: bold;
