@@ -42,17 +42,18 @@
        </head>
     <body class="d-flex flex-column">
         <main class="flex-shrink-0">
-            <!-- Navigation-->
 
-  
-	        <!-- 헤더 -->
-            <c:if test="${loginMember.memberType =='A'}">
-                <jsp:include page="/WEB-INF/views/common/admin-header.jsp" />
+            <!-- 헤더 -->
+            <%-- <c:if test="${loginMember.memberType =='M' || loginMember.memberType == 'K'}">
+                <jsp:include page="/WEB-INF/views/common/header.jsp" />
+                <jsp:include page="/WEB-INF/views/common/mypage-header.jsp" />
             </c:if>
+            <c:if test="${loginMember.memberType =='A'}"> --%>
+                <jsp:include page="/WEB-INF/views/common/admin-header.jsp" />
+            <%-- </c:if> --%>
 
     <!-- --------------------------------------------헤더 영역 끝-------------------------------------------- -->
             <section class="py-4">
-
 
                 <!-- 상단 메뉴 영역. -->
                 <div class="text-center mb-5" id="TOT">
@@ -61,7 +62,6 @@
                 </div>
 
                 <!-- 상단 이미지 영역 -->
-               
                 
                 <div class="container px-5">
                     <div class=" rounded-3 py-5 px-4 px-md-5 mb-5">
@@ -86,9 +86,8 @@
                             </a>
                               <div class="btnArea">
                               
-                                <button type="button" class="btn btn-secondary" >진행중 펀딩 수정</button>
+                                <button type="button" class="btn btn-secondary" onclick='location.href="register?fundingNo=${map.now.fundingNo}&fundingSeason=${map.now.fundingSeason}"'>진행중 펀딩 수정</button>
                                 <button type="button" class="btn btn-secondary" onclick='location.href="delivery"'>배송 관리</button>
-                                <br>버튼 넣? 빼?
                               </div>
 
                           </div>
@@ -184,62 +183,7 @@
 		                            	</a>
 	                            	</div>
 	                            	</c:if>
-
-                            	
-                            	
-	                             	 <%-- <div class="fundingInfoS">
-		                            	<div class="fundingImgS" style="background:url('${contextPath}/resources/images/fundingThumbnail/funding_sample4.png') 50% 0; background-size:cover;">
-		                            		<div class="textS">${map.nextSeason[1]}</div>
-		                            	</div>
-		                            	<div class="infoS">[카테고리] 제목은 떠야지</div>
-	                            	</div>
-	                            	
-	                            	<div class="fundingInfoS">
-		                            	<div class="fundingImgS">
-		                            		<div class="textS">${map.nextSeason[2]}</div>
-		                            	</div>
-		                            	<div class="infoS">마우스오버시 [등록하기]로 바뀌기 js에서</div>
-		                            	
-	                            	</div>  --%> 
-                           		
-                           		
-                            <!-- <table class="table scheduleFundingTable">
-                              <thead>
-                                <tr>
-                                  <th scope="col">펀딩 번호</th>
-                                  <th scope="col">카테고리</th>
-                                  <th scope="col">펀딩 제목</th>
-                                  <th scope="col">펀딩 예정 일정</th>
-                                  <th scope="col">펀딩 금액</th>
-                                </tr>
-                              </thead>
-                              <tbody class="scheduleFundingTbody">
-                                <tr>
-                                  <th scope="row">1</th>
-                                  <td>장난감</td>
-                                  <td><a href="">장난감 관련 펀딩입니다.</a></td>
-                                  <td>2022/6</td>
-                                  <td>1,000,000 WON</td>
-                                </tr>
-                                <tr>
-                                  <th scope="row">2</th>
-                                  <td>식품</td>
-                                  <td><a href="">식품 관련 펀딩입니다.</a></td>
-                                  <td>2022/7</td>
-                                  <td>7,540,000 WON</td>
-                                </tr>
-                              </tbody>
-                            </table> -->
-                            
-                            <!-- <div class="paginationArea">
-                              <ul class="pagination pagination-sm">
-                                <li class="page-item active" aria-current="page">
-                                  <span class="page-link">1</span>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                              </ul>
-                            </div> -->
+	                             	
                           </div>
                         </div>
 
@@ -249,7 +193,6 @@
                         <div id="scheduleFunding" >
                           <div id="endedFunding" >
                             <h2 class="h3 fw-bolder">종료된 펀딩</h2>
-								페이지네이션 해야됨
                             <table class="table endedFundingTable">
                               <thead>
                                 <tr>
@@ -270,7 +213,7 @@
                                   <td><a href="${contextPath}/admin/funding/select?fundingNo=${map.endList[i].fundingNo}">${map.endList[i].fundingTitle}</a></td>
                                   <td>${map.endList[i].fundingSeason}</td>
                                   <td>${map.endList[i].salesRate}%</td>
-                                  <td>${map.endList[i].fullPrice}WON</td>
+                                  <td>${map.endList[i].fullPriceInt}WON</td>
                                 </tr>
                               	</c:forEach>
                                 

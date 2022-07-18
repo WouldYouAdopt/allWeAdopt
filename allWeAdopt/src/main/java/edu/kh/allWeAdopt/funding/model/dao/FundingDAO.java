@@ -249,6 +249,13 @@ public class FundingDAO {
 		return sqlSession.delete("fundingMapper.deleteRewardList",fundingNo);
 	}
 
+	/** 종료된 펀딩 넘버 모두 가져오기
+	 * @return
+	 */
+	public List<Integer> selectEndCount() {
+		return sqlSession.selectList("fundingMapper.selectEndCount");
+	}
+
 
 
 
