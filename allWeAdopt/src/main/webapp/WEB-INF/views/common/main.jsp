@@ -70,9 +70,10 @@
 
     </head>
 
-    <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
     <body class="before-load">
+    <jsp:include page="/WEB-INF/views/common/header.jsp" />
+    
 	<div class="loading">
 		<svg class="loading-circle">
 			<circle cx="50%" cy="50%" r="25"></circle>
