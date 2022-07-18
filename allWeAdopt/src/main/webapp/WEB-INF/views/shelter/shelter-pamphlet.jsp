@@ -154,6 +154,12 @@
                         </c:forEach>
                     </div>
 
+                    <div class="position-relative">
+                        <div class="position-absolute top-100 start-100 translate-middle">
+                            <a href="#" style="display:scroll; position:fixed; left:30px; rigit: 50px; bottom: 10px; title=top"><h3><i class="bi bi-arrow-up-circle bt_top" style="color: #FB836B;"></i></h3></a>
+                        </div>
+                    </div>
+
 
                     <c:if test="${!empty loginMember}">                 
                     <button type="button" class="btn btn-outline-warning" id="allButton" onclick="location.href='../pamphlet/write?mode=insert&cp=${pagination.currentPage}'">글쓰기</button>                  
@@ -205,7 +211,9 @@
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+        <%-- <script src="js/scripts.js"></script> --%>
+
+        <%-- <script src="${contextPath}/resources/js/shelter.js"></script> --%>
 
       
     </body>
