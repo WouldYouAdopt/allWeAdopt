@@ -235,8 +235,29 @@ public class FundingServiceImpl implements FundingService {
 		
 		
 		// 종료된 펀딩 리스트 조회 (판매이력 있다는 전제)
-		List<FundingDetail> endList = dao.selectEndFundinginfo();
+		//List<FundingDetail> endList = dao.selectEndFundinginfo();원래 있던거
 
+		//펀딩 종료된 리스트 갯수와 펀딩 넘버
+		List<Integer> endStateFunding = dao.selectEndCount();
+		
+		// 종료된 펀딩 갯수
+		int endCount = endStateFunding.size()-1;
+		
+		List<FundingDetail> endList = new ArrayList<FundingDetail>();
+		
+		// ??? FundingDetail fundings[] = new FundingDetail[endCount];
+		
+		// 종료된 펀딩넘버 하나씩 매개변수로 넣어서 조회해오기
+		for(int i=0; i<=endCount; i++) {
+			int endFundingNo = endStateFunding.get(i);
+
+			FundingDetail funding = new FundingDetail();
+			
+			funding = dao.selectFundingDetail(endFundingNo);
+			endList.add(funding);
+		}
+	
+		
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("endList", endList);

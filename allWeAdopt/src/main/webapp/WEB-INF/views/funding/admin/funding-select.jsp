@@ -10,7 +10,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>펀딩 등록 : ALL WE ADOPT</title>
+        <title>펀딩 조회 : ALL WE ADOPT</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="${contextPath}/resources/assets/올위어답터.ico" />
 
@@ -41,6 +41,11 @@
         <%-- 달콤한 알림 --%>  
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+        <style>
+          h4{
+            margin-top:30px;
+          }
+        </style>
     </head>
     <body class="d-flex flex-column">
         <main class="flex-shrink-0">
@@ -54,8 +59,8 @@
 
                 <!-- 상단 메뉴 영역. -->
                 <div class="text-center mb-5" id="TOT">
-                    <h1 class="fw-bolder">신규 펀딩 등록하기</h1>
-                    <p class="lead fw-normal text-muted mb-0"> 펀딩을 작성할 수 있는 페이지 </p>
+                    <h1 class="fw-bolder"> 펀딩 조회하기</h1>
+                    <p class="lead fw-normal text-muted mb-0"> 종료된 펀딩 목록을 조회할 수 있습니다. </p>
                 </div>
 
                 <!-- 상단 이미지 영역 -->
@@ -71,12 +76,15 @@
                           
                           <!-- 펀딩 일정 입력 영역 -->
                           <div class="fundingScheduleArea">
-                              <p class="fundingSeason">${param.fundingSeason}</p>
+                            <div>
+                              <button type="button" class="btn  fundingBtn btn-outline-success" value=''>2022/08</button>
+                              <button type="button" class="btn  fundingBtn btn-outline-success" value=''>2022/09</button>
+                              <button type="button" class="btn fundingBtn btn-outline-success"  value=''>2022/10</button>
+                            </div>
                           </div>
                           <!-- 썸네일 영역 -->
                           <div class="thumbnailArea"> 
-                            <h4><i class="fa-regular fa-image"/></i> 썸네일을 등록 해주세요</h4>
-                            <div class="intro"> 필수적으로 등록해야 합니다.</div>
+                            <h4><i class="fa-regular fa-image"/></i> 썸네일</h4>
 
                             <div class="previewArea">
                            	   	<c:if test="${detail.fundingThumbnail != null}">
@@ -86,38 +94,24 @@
                               		<img src="" class="img-fluid" id="previewImage">
                                 </c:if>
                             </div>
-
-                            <div class="profile-area">
-                              <label for="input-image">이미지 선택</label>
-                              <input type="file" name="uploadImage" id="input-image" accept="image/*">
-                              <button type="button" id="deleteBtn">이미지 삭제</button>
-                            </div>
-
                           </div>
                           
 
                           <!-- 펀딩 카테고리 + 제목 입력 영역 -->
                           <div class="fundingTitle">
-                            <h4><i class="fa-solid fa-angles-right"></i> 제목과 카테고리를 입력해주세요</h4>
-                            <div class="intro">필수 입력 사항입니다.</div>
+                            <h4><i class="fa-solid fa-angles-right"></i> 제목  카테고리</h4>
                             
                             <!-- 제목과 카테고리를 둘다 가두는 DIV -->
                             <div id="titleCategory">
                               <!-- 카테고리 영역-->
                               <div id="fundingCategory">
-                                <select class="form-select" aria-label="Default select example" name="categoryNo">
-                                  <option value="${detail.categoryNo}" selected>  
-                                  	<c:if test="${detail.categoryName != null}">${detail.categoryName}</c:if>
-                                  	<c:if test="${detail.categoryName == null}">카테고리</c:if>
+                                <select class="form-select" disabled aria-label="Default select example" name="categoryNo">
+                                  <option value="${detail.categoryNo}"  selected>  
+                                  	${detail.categoryName}
                                   </option>
-                                  <option value="1">건강</option>
-                                  <option value="2">장난감</option>
-                                  <option value="3">간식</option>
-                                  <option value="4">사료</option>
-                                  <option value="5">의류</option>
                                 </select>
                               </div>
-                              <input type="text" name="fundingTitle" id="fundingTitle" placeholder="제목을 입력해주세요" value="${detail.fundingTitle}">
+                              <input type="text" name="fundingTitle" id="fundingTitle"  disabled value="${detail.fundingTitle}">
                             </div>
                           </div>
 
@@ -126,7 +120,7 @@
                           <div id="subheadArea">
                             <h4><i class="fa-solid fa-angles-right"></i> 펀딩 소개</h4>
                             <div class="intro">펀딩에 대해 간략한 소제목</div>
-                            <textarea name="fundingMiniTitle" id="subheadInput">${detail.fundingMiniTitle}</textarea>
+                            <textarea name="fundingMiniTitle" id="subheadInput" disabled>${detail.fundingMiniTitle}</textarea>
                           </div>
 
 
@@ -138,7 +132,7 @@
                             <div class="intro">리워드를 추가 할 수 있습니다 </div>
                             
                             <div>
-                              <button type="button" class="fa-solid fa-plus" id="addRewardBtn" onclick="addReward()"></button>
+                            
                             </div>
 
                             <table class="table table-bordered">
@@ -148,47 +142,25 @@
                                 <th>리워드 내용</th>
                                 <th>리워드 금액</th>
                                 <th>리워드 수량</th>
-                                <th>추가하기</th>
                               </thead>
 
 
 
 
                               <tbody class="rewardsRows">
-				<c:choose>
+	
 					
-					<c:when test="${rewardList != null}">
-						<c:forEach  var="r" items="${rewardList}">
+						<c:forEach  var="r" items="${detail.rewardList}">
 							<tr>
 								<td>${r.rewardNo}</td>
-								<td><input type="text" value="${r.rewardTitle}"></td>
-								<td style="width:40%;"><input type="text" value="${r.rewardContent}"></td>
-								<td><input type="number" value="${r.rewardPrice}"></td>
-								<td><input type="number" value="${r.maxRewardNo}"></td>
-								<td><button type="button" class="rewardsAddBtn" onclick="addRewardList()">등록</button></td>
+								<td><input type="text" disabled value="${r.rewardTitle}"></td>
+								<td style="width:40%;"><input type="text" disabled value="${r.rewardContent}"></td>
+								<td><input type="number" disabled value="${r.rewardPrice}"></td>
+								<td><input type="number" disabled value="${r.maxRewardNo}"></td>
 							</tr>
 						</c:forEach>
-					</c:when>
 					
-					<c:otherwise>
-                                <tr>
-                                  <td>1</td>
-                                  <td><input type="text"></td>
-                                  <td><input type="text"></td>
-                                  <td><input type="number"></td>
-                                  <td><input type="number"></td>
-                                  <td><button type="button" class="rewardsAddBtn" onclick="addRewardList()">등록</button></td>
-                                </tr>
-                                <tr>
-                                  <td>2</td>
-                                  <td><input type="text"></td>
-                                  <td><input type="text"></td>
-                                  <td><input type="number"></td>
-                                  <td><input type="number"></td>
-                                  <td><button type="button" class="rewardsAddBtn"  onclick="addRewardList()">등록</button></td>
-                                </tr>
-					</c:otherwise>
-				</c:choose>
+		
                               </tbody>
 
 
@@ -201,11 +173,15 @@
                               <table>
                                 <tr>
                                   <td><span><i class="fa-solid fa-truck"></i>배송비</span> </td>
-                                  <td>:  <input type="number" id="delivery" name="deliveryFee" placeholder="배송비를 입력해주세요" value="${detail.deliveryFee}"></td>
+                                  <td>: <input  disabled type="number" id="delivery" name="deliveryFee" value="${detail.deliveryFee}"></td>
                                 </tr>
                                 <tr>
-                                  <td> <span><i class="fa-solid fa-truck"></i>목표 후원금</span> </td>
-                                  <td>:<input name="targetDonation"  id="targetDonation" placeholder="목표 후원금을 입력해주세요" value=""></td>
+                                  <td><span><i class="fa-solid fa-truck"></i>목표 후원금</span> </td>
+                                  <td>: <input disabled name="targetDonation"  id="targetDonation" value=""></td>
+                                </tr>
+                                <tr>
+                                  <td><span><i class="fa-solid fa-truck"></i>달성 후원금</span> </td>
+                                  <td>: <input disabled value="${detail.fullPriceInt}"></td>
                                 </tr>
                               </table>
 
@@ -218,7 +194,7 @@
                             <h4><i class="fa-solid fa-file-lines"></i> 펀딩 내용</h4>
                             <div class="intro">펀딩 내용을 작성 할 수 있습니다. </div>
 
-                            <textarea id="summernote" name="fundingContent"></textarea>  
+                            <textarea id="textarea" disabled style="padding:20px; margin-top:40px" name="fundingContent">${detail.fundingContent}</textarea>  
 
                           </div>
 
@@ -226,19 +202,8 @@
 
                           <!-- 위에서 선택되는 진행 일정을 작성하는 영역 -->
                           <input type="hidden" id="fundingSeason" name="fundingSeason" value="${param.fundingSeason}">
-                          <%-- 리워드목록들 전달하는거  --%>
-                          <input type="hidden" id="insertRewardList" name="insertRewardList">
+          
                           
-                          <c:if test="${param.fundingNo>0}">
-                          	<input type="hidden" id="mode" name="mode" value="update">
-                          	<input type="hidden" id="fundingNo" name="fundingNo" value="${param.fundingNo}">
-                          </c:if>
-                          <c:if test="${param.fundingNo==null}">
-                          	<input type="hidden" id="mode" name="mode" value="insert">
-                          </c:if>
-                          
-                          
-                          <button class="btn btn-primary" id="writeBtn">Button</button>
 </form>
 <%-- ---------------------------------------------------------------------------------------------- --%>
 
@@ -261,21 +226,24 @@
   
       
         <script>
-            $('#summernote').summernote('code', '${detail.fundingContent}');
-            const contextPath = "${contextPath}";
-            const currentContent = '';
             let dFee = "${detail.targetDonation}";
+            if(dFee != ''){
+                    let i = dFee.replaceAll(",","");
+                    i = parseInt(i);
+                    dFee=i;
+                    document.getElementById("targetDonation").value=i;
+                }
 
         </script>
  <!-- 펀딩 작성 관련 JS -->
-        <script src="${contextPath}/resources/js/funding/funding-write.js"></script>
+        <%-- <script src="${contextPath}/resources/js/funding/funding-write.js"></script> --%>
 
         <!-- 썸머노트 -->
         <script>
           
         </script>
  
-        <script src="${contextPath}/resources/js/board/summerNote.js"></script>
+     <%--    <script src="${contextPath}/resources/js/board/summerNote.js"></script> --%>
     </body>
     
 </html>

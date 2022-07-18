@@ -52,16 +52,6 @@ let objectC = {
 
 
 
-function ttt(){
-    let note = document.getElementById("summernote");
-    if(note.value.replace(reg,'').trim() == ''){
-        alert("게시글을 작성해주세요.");
-        note.value="";
-        return;
-    }
-}
-
-
 //form 태그 입력 검증용 
 function submitValidate(){
     //카테고리 선택 됬는지
