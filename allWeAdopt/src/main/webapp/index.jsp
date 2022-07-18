@@ -35,7 +35,7 @@
 				<jsp:forward page="main"/>
 			</c:if>
 			<c:if test="${ empty cookie.intro.name}">
-				<jsp:forward page="common/intro"/>
+				<jsp:forward page="intro"/>
 			</c:if>
 				
 			
