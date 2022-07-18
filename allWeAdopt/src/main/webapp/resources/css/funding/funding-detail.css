@@ -137,7 +137,7 @@
 	    animation-duration: 2s; 
 	}
 
-	.cls-1{
+	.tooltip_icon{
 		fill:rgb(255, 255, 255, 0.2);
 		
 		animation-name: backChange; 
@@ -165,7 +165,8 @@
 	.rate-text-wrap {
 		position: absolute;
 		bottom: 20px;
-		left: 12px;
+		left: 50%;
+		transform: translate(-50%,0)
 	}
 	
 
