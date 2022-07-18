@@ -28,7 +28,9 @@
 	SELECT COUNT(*) FROM BOARD
 	WHERE BOARD_CD = 6
 	AND BOARD_ST = 'N'
-	AND MEMBER_NO = #{loginMember}
+		<if test='loginMember!=null'>
+			AND MEMBER_NO = #{loginMember}
+		</if> 
 	</select>
 	
 	<!-- 게시글 목록 조회 -->
