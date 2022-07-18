@@ -4,8 +4,6 @@
 
 
 
-<c:set var="intro" value="쿠키" />
-
 <!DOCTYPE html>
 <html>
 
@@ -37,6 +35,7 @@
         <!-- main -->
         <link rel="stylesheet" href="${contextPath}/resources/css/default.css">
 	    <link rel="stylesheet" href="${contextPath}/resources/css/main_study.css">
+
         <!-- sweetalert-->
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -70,7 +69,9 @@
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
     </head>
-	        <jsp:include page="/WEB-INF/views/common/header.jsp" />
+
+    <jsp:include page="/WEB-INF/views/common/header.jsp" />
+
     <body class="before-load">
 	<div class="loading">
 		<svg class="loading-circle">
@@ -150,7 +151,10 @@
 		</section>
 	</div>
 
+    <!-- 푸터 -->
+    <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 	
+        <!-- 카운트 -->
         <script>
             let countBox = document.querySelector('#count'),
                 count = 0;
@@ -164,26 +168,17 @@
                 countBox.innerHTML = new Intl.NumberFormat().format(count);
             }, 20);
         </script>
-
-
-        <!-- main js -->
-        <script src="${contextPath}/resources/js/main_study.js"></script>
-
         <script>
             const contextPath = "${contextPath}";
         </script>
-
-
-
-        <!-- 푸터 -->
-        <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="${contextPath}/resources/js/scripts.js"></script>
-
-
+        
+        <!-- main js -->
+        <script src="${contextPath}/resources/js/main_study.js"></script>
 
 
     </body>
