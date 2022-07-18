@@ -41,6 +41,26 @@ function testList(){
 
 
 
+let objectC = {
+    category : false, //$('select').val()
+    title : false, //document.getElementById('fundingTitle').value.trim() == ''
+    subHead : false, //document.getElementById('subheadInput').value.trim() == ''
+    reward : false,//document.getElementById('insertRewardList').value == ''
+    delivery : false, //document.getElementById('delivery').value.trim() == ''
+    targetDonation :false,//document.getElementById('targetDonation').value.trim() == ''
+
+    
+}
+function ttt(){
+    let note = document.getElementById("summernote");
+    if(note.value.replace(/<p><br><\/p>/gm,'') == ''){
+        alert("게시글을 작성해주세요.");
+        note.value="";
+        return false;
+    }
+}
+
+
 
 
 

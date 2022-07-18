@@ -206,7 +206,7 @@
                               <table>
                                 <tr>
                                   <td><span><i class="fa-solid fa-truck"></i>배송비</span> </td>
-                                  <td>:  <input type="number" name="deliveryFee" placeholder="배송비를 입력해주세요" value="${detail.deliveryFee}"></td>
+                                  <td>:  <input type="number" id="delivery" name="deliveryFee" placeholder="배송비를 입력해주세요" value="${detail.deliveryFee}"></td>
                                 </tr>
                                 <tr>
                                   <td> <span><i class="fa-solid fa-truck"></i>목표 후원금</span> </td>
