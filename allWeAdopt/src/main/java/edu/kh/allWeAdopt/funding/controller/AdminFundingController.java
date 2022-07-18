@@ -99,6 +99,7 @@ public class AdminFundingController {
 	public String fundingRegister(@RequestParam(value = "uploadImage", required = false) MultipartFile uploadImage
 								 ,@ModelAttribute FundingDetail fundingDetail
 								 ,String insertRewardList
+								 ,String mode
 								 ,HttpServletRequest req, RedirectAttributes ra
 									)throws Exception {
 								
