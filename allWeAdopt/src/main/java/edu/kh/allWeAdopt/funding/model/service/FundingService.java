@@ -87,13 +87,13 @@ public interface FundingService {
 	 */
 	int retrunPayment(int paymentNo, String returnReason);
 
-	/**반품 사유 작성
+	/**반품 사유 작성 :현기
 	 * @param paymentNo
 	 * @return
 	 */
 	String selectReturn(int paymentNo);
 
-	/** 펀딩 등록
+	/** 펀딩 등록  : 현기
 	 * @param fundingDetail
 	 * @param uploadImage
 	 * @param webPath
@@ -107,7 +107,7 @@ public interface FundingService {
 	 */
 	List<FundingDetail> selectFundingSList();
 
-	/**위와 다르게 해당 펀딩의 리워드 목록들만 가져오는 함수 오버로딩)
+	/**위와 다르게 해당 펀딩의 리워드 목록들만 가져오는 함수 오버로딩) :현기
 	 * @param fundingNo
 	 * @return
 	 */
@@ -119,6 +119,15 @@ public interface FundingService {
 	 * @return
 	 */
 	Funding selectfunding(int fundingNo);
+
+	/**펀딩 업데이트 등록 : 현기
+	 * @param fundingDetail
+	 * @param uploadImage
+	 * @param webPath
+	 * @param folderPath
+	 * @return
+	 */
+	int fundingUpdate(FundingDetail fundingDetail, MultipartFile uploadImage, String webPath, String folderPath)throws Exception;
 
 
 	

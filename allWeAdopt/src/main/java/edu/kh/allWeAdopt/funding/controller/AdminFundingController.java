@@ -1,6 +1,9 @@
 package edu.kh.allWeAdopt.funding.controller;
 
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -63,10 +66,46 @@ public class AdminFundingController {
 		List<FundingDetail> sList = service.selectFundingSList();
 		map.put("sList", sList);
 		
+		
+		try {
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		// 날짜 표현 형식 지정 (년도와 월만 필요함)
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM");
+		// 현재 날짜 가져오기
+        Calendar cal = Calendar.getInstance();
+        
+        // 다음달 구해서
+        cal.add(Calendar.MONTH, 1); 
+        // String으로 날짜 출력하기
+        String date1 = sdf.format(cal.getTime());
+        
+        // 한달 더 더함(두달뒤)
+        cal.add(Calendar.MONTH, 1); 
+        String date2 = sdf.format(cal.getTime());
+        
+        // 한달 더 더함 (세달뒤)
+        cal.add(Calendar.MONTH, 1); 
+        String date3 = sdf.format(cal.getTime());
+        
+        String nextSeason[] = new String[3];
+        // season형식 맞추기 2022/08
+        nextSeason[0] = date1.substring(0, 4) +"/"+ date1.substring(4, 6);
+        nextSeason[1] = date2.substring(0, 4) +"/"+ date2.substring(4, 6);
+        nextSeason[2] = date3.substring(0, 4) +"/"+ date3.substring(4, 6);
+        
+/*      String nextSeason[0] = (date1.substring(0, 4))+"/"+(date1.substring(4, 6));
+        String nextSeason2 = (date2.substring(0, 4))+"/"+(date2.substring(4, 6));
+        String nextSeason3 = (date3.substring(0, 4))+"/"+(date3.substring(4, 6));
+*/        
+        
+        // map에 바로 넣어서 가자
+		map.put("nextSeason", nextSeason);
+		
 		model.addAttribute("map",map);
 		
-		
-
 		
 		return "funding/admin/funding-management";
 	}
@@ -81,7 +120,7 @@ public class AdminFundingController {
 		if(fundingNo>0) {
 			FundingDetail detail = service.selectFundingDetail(fundingNo);
 			
-			
+			//detail.setFundingContent(new Gson().toJson(detail.getFundingContent()));
 			
 			List<Reward> rewardList  = service.selectRewardList(fundingNo);
 			
@@ -96,10 +135,11 @@ public class AdminFundingController {
 	}
 	//펀딩 등록 페이지
 	@PostMapping("/register")
-	public String fundingRegister(@RequestParam(value = "uploadImage", required = false) MultipartFile uploadImage
+	public String fundingRegister(@RequestParam(value = "uploadImage", required = false, defaultValue="0") MultipartFile uploadImage
 								 ,@ModelAttribute FundingDetail fundingDetail
 								 ,String insertRewardList
 								 ,String mode
+								 ,@RequestParam(value = "fundingNo", required = false, defaultValue="0") int fundingNo
 								 ,HttpServletRequest req, RedirectAttributes ra
 									)throws Exception {
 								
@@ -112,6 +152,7 @@ public class AdminFundingController {
 			
 			for(String temp : arr) {
 				Reward r = gson.fromJson(temp, Reward.class);
+				r.setFundingNo(fundingNo);//최초 생성시에는 0 , 업데이트일때는 자동으로 펀딩 번호 넣어짐	
 				rewardList.add(r);
 			}
 			
@@ -123,14 +164,28 @@ public class AdminFundingController {
 		//리스트 형태로 가공한 데이터 DB에 저장하기	
 		fundingDetail.setRewardList(rewardList);
 		
-		int fundingNo = service.fundingRegister(fundingDetail,uploadImage,webPath,folderPath);
 		
-		if(fundingNo>0) {
-			ra.addFlashAttribute("massage","성공적으로 등록되었습니다.");
-			return "redirect:management";
+		
+		
+		if(mode.equals("update")) {
+			fundingDetail.setFundingNo(fundingNo);
+			int result = service.fundingUpdate(fundingDetail,uploadImage,webPath,folderPath);
+			if(result>0) {
+				ra.addFlashAttribute("massage","성공적으로 수정 되었습니다.");
+				return "redirect:management";
+			}
 		}
 		
+		if(mode.equals("insert")) {
+			fundingNo = service.fundingRegister(fundingDetail,uploadImage,webPath,folderPath);
+			if(fundingNo>0) {
+				ra.addFlashAttribute("massage","성공적으로 등록되었습니다.");
+				//펀딩 상세 보기 페이지로 리다이렉트 하기.
+				return "redirect:management";
+			}
+		}
 		
+
 		
 		
 		return null;

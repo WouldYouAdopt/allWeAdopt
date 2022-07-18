@@ -75,7 +75,6 @@ public class UserBoardController {
 		// 게시판 내용 출력
 		Board board = service.boardDetail(boardNo);
 		Member loginMember = (Member)session.getAttribute("loginMember");
-		System.out.println(loginMember==null);
 		
 		// 관심동물 리스트 출력
 		Board likeBoard = new Board();

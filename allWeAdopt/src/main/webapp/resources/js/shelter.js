@@ -48,10 +48,34 @@
 
             let url = contextPath + "/shelter/pamphlet/delete/" + boardNo;
 
+            Swal.fire({
+                title: '전단지를 삭제 하시겠습니까?',
+                text: "확인 버튼을 클릭하면 전단지가 삭제됩니다.",
+                width: 340,		
+                icon: 'warning',
+                iconColor: 'rgb(251, 131, 107)',
+                showCancelButton: true,
+                confirmButtonColor: 'rgb(251, 131, 107)',
+                cancelButtonColor: '#999',
+                confirmButtonText: '확인',
+                cancelButtonText: '취소'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                         // '확인'클릭시 수행될 코드 작성
+                         location.href = url;
+                    }else{
+                         // '취소'클릭시 수행될 코드 작성
+                        e.preventDefault();
+                    }
+                 })
 
-            if( confirm("정말로 삭제 하시겠습니까?") ){
-                location.href = url; // get방식으로 url에 요청
-            }
+
+            // if( confirm("정말로 삭제 하시겠습니까?") ){
+            //     location.href = url; // get방식으로 url에 요청
+
+                
+
+            // }
 
         });
     }

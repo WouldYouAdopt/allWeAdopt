@@ -23,6 +23,10 @@ import edu.kh.allWeAdopt.funding.model.vo.Reward;
 import edu.kh.allWeAdopt.funding.model.vo.Supporters;
 
 
+/**
+ * @author deadWhale
+ *
+ */
 @Transactional(rollbackFor = { Exception.class })
 @Service
 public class FundingServiceImpl implements FundingService {
@@ -374,6 +378,51 @@ public class FundingServiceImpl implements FundingService {
 	@Override
 	public Funding selectfunding(int fundingNo) {
 		return dao.selectFunding(fundingNo);
+	}
+
+
+
+
+	
+	
+	
+	/**펀딩 업데이트
+	 *
+	 */
+	@Override
+	public int fundingUpdate(FundingDetail fundingDetail, MultipartFile uploadImage, String webPath,
+			String folderPath)throws Exception{
+		
+		String rename="";
+		if(uploadImage.getSize() == 0) {
+			String root = dao.selectThumbnail(fundingDetail.getFundingNo());
+			fundingDetail.setFundingThumbnail(root);
+		}else {
+			rename = Util.fileRename(uploadImage.getOriginalFilename());
+			fundingDetail.setFundingThumbnail(webPath+rename);
+		}
+		
+		int result = dao.fundingUpdate(fundingDetail);
+		
+		if(result>0) {
+			
+			//기존 리워드 삭제
+			result = dao.deleteRewardList(fundingDetail.getFundingNo());
+			
+			if(result>0) {
+				//리워드 등록
+				result = dao.registerRewardList(fundingDetail.getRewardList());
+
+				//리워드가 정상적으로 수행되고 썸네일이 변경된 경우.
+				if(uploadImage.getSize() != 0) {					
+					//썸네일이 변경된 경우.
+					uploadImage.transferTo(new File(folderPath+rename));
+				}
+			}
+			
+		}
+		
+		return result;
 	}
 
 

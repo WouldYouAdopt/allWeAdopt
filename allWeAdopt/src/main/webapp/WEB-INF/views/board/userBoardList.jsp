@@ -60,9 +60,11 @@
 
                 <!-- 상태여부 필터 -->
                 <span class="filter-menu">상태여부 ▼
-                    <div class="select">
-                        <span class="neutering-select">중성화 완료</span>
-                        <span class="neutering-select">중성화 미완료</span>
+                    <div class="select" style="width:100px; text-align:center; padding: 5px;">
+                        <span class="category-select">보호</span><br>
+                        <span class="category-select">실종</span><br>
+                        <span class="category-select">목격</span><br>
+                        <span class="category-select">완료</span>
                     </div>
                 </span>
             </div>
@@ -107,7 +109,7 @@
                             <c:forEach var="boardList" items="${boardList}" begin="${test}" end="${test+2}">
                                 <div class="col-lg-4 mb-5">
                                     <div class="card h-100 shadow border-0">
-                                        <img class="card-img-top" src="${boardList.profileImage}" alt="..." />
+                                        <img class="card-img-top" src="${boardList.thumbnail}" alt="..." />
                                         <div class="card-body p-4">
                                             <div class="badge bg-primary bg-gradient rounded-pill mb-2 animal">${boardList.animalType}</div>
                                             <c:if test="${!empty boardList.animalDetail}">
@@ -135,10 +137,18 @@
                                         <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
                                             <div class="d-flex align-items-end justify-content-between">
                                                 <div class="d-flex align-items-center">
-                                                    <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d" alt="..." />
+                                                    <img class="rounded-circle me-3" src="/allWeAdopt${boardList.profileImage}" alt="..." />
                                                     <div class="small">
                                                         <div class="fw-bold">${boardList.memberName}</div>
-                                                        <div class="text-muted">${boardList.createDate} &middot; 6 min read</div>
+                                                        <div class="text-muted">
+                                                            <c:if test="${empty boardList.updateDate}">
+                                                                ${boardList.createDate} &middot; <span class='diffTime'>${boardList.diff}</span>
+                                                            </c:if>
+                                                             <c:if test="${!empty boardList.updateDate}">
+                                                                ${boardList.updateDate} &middot; <span class='diffTime'>${boardList.diff2}</span>
+                                                            </c:if>
+                                                            
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

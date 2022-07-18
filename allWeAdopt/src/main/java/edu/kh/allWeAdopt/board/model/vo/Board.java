@@ -22,7 +22,8 @@ public class Board {
 	private String boardPeriod;
 	private String boardPeriod2;
 	private String memberName;
-	private String msg;
+	private long diff;
+	private long diff2;
 	private String profileImage;
 	// 게시글 답변 완/미완 == 코멘트 유/무
 	private String answer;
