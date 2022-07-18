@@ -110,11 +110,11 @@
 				canvas: document.querySelector('.image-blend-canvas'),
 				context: document.querySelector('.image-blend-canvas').getContext('2d'),
 				imagesPath: [
-					'./images/blend-image-1.jpg',
+					contextPath+'/resources/images/main/blend-image-1.jpg',
 					// './images/blend-image-2.jpg'
 
 					// './images/funding.jpg',
-					'./images/map.jpg'
+					contextPath+'/resources/images/main/map.jpg'
 					
 				],
 				images: []
@@ -136,8 +136,9 @@
 		for (let i = 0; i < sceneInfo[0].values.videoImageCount; i++) {
 			imgElem = new Image();
             // 이미지
-			// imgElem.src = `../video/003/KakaoTalk_20220717_170549055_${1000 + i}.JPG`;
-			imgElem.src = `contextPath/resources/video/003/KakaoTalk_20220717_170549055_${1000 + i}.JPG`;
+			imgElem.src = contextPath + `/resources/video/003/KakaoTalk_20220717_170549055_${1000+i}.jpg`;
+			// <script src="${contextPath}/resources/js/scripts.js"></script>
+			// imgElem.src = `${contextPath}/resources/video/003/KakaoTalk_20220717_170549055_${1000 + i}.JPG`;
 			sceneInfo[0].objs.videoImages.push(imgElem);
 		}
 
@@ -147,7 +148,7 @@
             // 이미지 
 			// ebackwon_0.jpg
 			// imgElem2.src = `./video/004/ebackwon_${1 + i}.JPG`;
-			// imgElem2.src = `${contextPath}/resources/video/004/ebackwon_${1 + i}.JPG`;
+			imgElem2.src = contextPath + `/resources/video/004/ebackwon_${1+i}.jpg`;
 			sceneInfo[2].objs.videoImages.push(imgElem2);
 		}
 

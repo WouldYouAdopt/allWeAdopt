@@ -1,6 +1,9 @@
 package edu.kh.allWeAdopt.funding.controller;
 
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -63,10 +66,46 @@ public class AdminFundingController {
 		List<FundingDetail> sList = service.selectFundingSList();
 		map.put("sList", sList);
 		
+		
+		try {
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		// 날짜 표현 형식 지정 (년도와 월만 필요함)
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM");
+		// 현재 날짜 가져오기
+        Calendar cal = Calendar.getInstance();
+        
+        // 다음달 구해서
+        cal.add(Calendar.MONTH, 1); 
+        // String으로 날짜 출력하기
+        String date1 = sdf.format(cal.getTime());
+        
+        // 한달 더 더함(두달뒤)
+        cal.add(Calendar.MONTH, 1); 
+        String date2 = sdf.format(cal.getTime());
+        
+        // 한달 더 더함 (세달뒤)
+        cal.add(Calendar.MONTH, 1); 
+        String date3 = sdf.format(cal.getTime());
+        
+        String nextSeason[] = new String[3];
+        // season형식 맞추기 2022/08
+        nextSeason[0] = date1.substring(0, 4) +"/"+ date1.substring(4, 6);
+        nextSeason[1] = date2.substring(0, 4) +"/"+ date2.substring(4, 6);
+        nextSeason[2] = date3.substring(0, 4) +"/"+ date3.substring(4, 6);
+        
+/*      String nextSeason[0] = (date1.substring(0, 4))+"/"+(date1.substring(4, 6));
+        String nextSeason2 = (date2.substring(0, 4))+"/"+(date2.substring(4, 6));
+        String nextSeason3 = (date3.substring(0, 4))+"/"+(date3.substring(4, 6));
+*/        
+        
+        // map에 바로 넣어서 가자
+		map.put("nextSeason", nextSeason);
+		
 		model.addAttribute("map",map);
 		
-		
-
 		
 		return "funding/admin/funding-management";
 	}
