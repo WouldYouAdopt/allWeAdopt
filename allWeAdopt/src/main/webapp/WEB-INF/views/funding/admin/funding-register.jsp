@@ -229,13 +229,13 @@
 
 
                           <!-- 위에서 선택되는 진행 일정을 작성하는 영역 -->
-                          <input type="hidden" name="fundingSeason" value="2020/09">
+                          <input type="hidden" id="fundingSeason" name="fundingSeason" value="${param.fundingSeason}">
                           <%-- 리워드목록들 전달하는거  --%>
                           <input type="hidden" id="insertRewardList" name="insertRewardList">
                           
                           <c:if test="${param.fundingNo>0}">
                           	<input type="hidden" id="mode" name="mode" value="update">
-                          	<input type="hidden"  name="fundingNo" value="${param.fundingNo}">
+                          	<input type="hidden" id="fundingNo" name="fundingNo" value="${param.fundingNo}">
                           </c:if>
                           <c:if test="${param.fundingNo==null}">
                           	<input type="hidden" id="mode" name="mode" value="insert">
