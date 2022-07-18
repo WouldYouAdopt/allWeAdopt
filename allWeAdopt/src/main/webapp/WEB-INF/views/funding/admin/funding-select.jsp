@@ -45,6 +45,7 @@
           h4{
             margin-top:30px;
           }
+
         </style>
     </head>
     <body class="d-flex flex-column">
@@ -71,17 +72,12 @@
                         <div class="row gx-5 justify-content-center">
 <%-- ---------------------------------------------------------------------------------------------- --%>
 
-<form action="register" method="post" id="submitEvent" name="submitEvent" enctype="multipart/form-data" onsubmit="return submitValidate()">
-                      
-                          
+                        
                           <!-- 펀딩 일정 입력 영역 -->
                           <div class="fundingScheduleArea">
-                            <div>
-                              <button type="button" class="btn  fundingBtn btn-outline-success" value=''>2022/08</button>
-                              <button type="button" class="btn  fundingBtn btn-outline-success" value=''>2022/09</button>
-                              <button type="button" class="btn fundingBtn btn-outline-success"  value=''>2022/10</button>
-                            </div>
+                              <p class="fundingSeason">${detail.fundingSeason}</p>
                           </div>
+
                           <!-- 썸네일 영역 -->
                           <div class="thumbnailArea"> 
                             <h4><i class="fa-regular fa-image"/></i> 썸네일</h4>
@@ -194,7 +190,7 @@
                             <h4><i class="fa-solid fa-file-lines"></i> 펀딩 내용</h4>
                             <div class="intro">펀딩 내용을 작성 할 수 있습니다. </div>
 
-                            <textarea id="textarea" disabled style="padding:20px; margin-top:40px" name="fundingContent">${detail.fundingContent}</textarea>  
+                            <textarea id="textarea" disabled style="padding:20px; margin-top:40px" name="fundingContent"></textarea>  
 
                           </div>
 
@@ -203,8 +199,6 @@
                           <!-- 위에서 선택되는 진행 일정을 작성하는 영역 -->
                           <input type="hidden" id="fundingSeason" name="fundingSeason" value="${param.fundingSeason}">
           
-                          
-</form>
 <%-- ---------------------------------------------------------------------------------------------- --%>
 
                         </div>
@@ -234,6 +228,8 @@
                     document.getElementById("targetDonation").value=i;
                 }
 
+      $('#textarea').summernote('code', '${detail.fundingContent}');
+      $('#textarea').summernote('disable');
         </script>
  <!-- 펀딩 작성 관련 JS -->
         <%-- <script src="${contextPath}/resources/js/funding/funding-write.js"></script> --%>

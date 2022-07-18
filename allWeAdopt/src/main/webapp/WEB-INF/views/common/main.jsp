@@ -95,7 +95,7 @@
 				<p>온종일 편안한<br>가족을 만들도록</p>
 			</div>
 			<div class="sticky-elem main-message d">
-				<img src="../logo2.png">
+				<img src="${contextPath}/resources/images/logo2.png">
 			</div>
 		</section>
 		<section class="scroll-section" id="scroll-section-1">
