@@ -62,10 +62,20 @@
                                         </div> 
                                         </c:if>
                                     </div>
+                                    ${like}
                                     <!-- Post meta content-->
                                     <div class="text-muted fst-italic mb-2">${board.createDate} || 조회수 : 0
-                                    ||<span id="likeIcon">&#x2661;</span>
-                                    <input type="hidden" value=0 class="iconValue" name="iconValue">
+                                    <c:if test="${!empty loginMember}">||
+                                        <c:if test="${like==0}">
+                                            <span id="likeIcon">&#x2661;</span>
+                                            <c:set var="iconValue" value="0"/>
+                                        </c:if>
+                                         <c:if test="${like==1}">
+                                            <span id="likeIcon">&#x2665;</span>
+                                            <c:set var="iconValue" value="1"/>
+                                        </c:if>
+                                    </c:if>
+                                    <input type="hidden" value="${iconValue}" class="iconValue" name="iconValue">
                                     </div>
                                     <!-- Post categories-->
                                     <div class="tag-area">

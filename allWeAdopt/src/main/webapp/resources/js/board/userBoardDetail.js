@@ -1,7 +1,7 @@
 console.log("js");
 
 function likeFunc(loginMember,boardNo,likeNo) {
-    //좋아요 아이콘 클릭 시 변경
+    //좋아요 아이콘 클릭 시 DB 등록
 	$.ajax({
 		url: "likeRegist",
 		contentType: "application/json",
@@ -28,6 +28,7 @@ function likeFunc(loginMember,boardNo,likeNo) {
     console.log("dd");
 }
 
+// 좋아요 아이콘 변경
 const likeIcon = document.getElementById('likeIcon');
 const iconValue = document.getElementsByClassName("iconValue")[0];
 likeIcon.addEventListener("click",function() {
