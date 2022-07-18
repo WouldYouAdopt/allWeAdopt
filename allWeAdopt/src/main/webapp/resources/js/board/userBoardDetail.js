@@ -25,7 +25,6 @@ function likeFunc(loginMember,boardNo,likeNo) {
 			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 		}
 	});
-    console.log("dd");
 }
 
 // 좋아요 아이콘 변경
@@ -42,3 +41,48 @@ likeIcon.addEventListener("click",function() {
     };
     likeFunc(loginMember,boardNo,likeNo);
 });
+
+// 트위터 공유 기능
+function shareTwitter() {
+    const url = "/localhost:8081/allWeAdopt/board/detail/2/"+boardNo;
+    var sendText = "allWeAdopt"; // 전달할 텍스트
+    var sendUrl = encodeURIComponent(url); // 전달할 URL
+    // var sendUrl = "devpad.tistory.com/"; // 전달할 URL
+    window.open("https://twitter.com/intent/tweet?text=" + sendText + "&url=" + sendUrl);
+}
+
+//페이스북 공유 기능
+function shareFacebook() {
+    const url = "http://localhost:8081/allWeAdopt/board/detail/2/"+boardNo;
+    var sendUrl = encodeURIComponent(url); // 전달할 URL
+    window.open("http://www.facebook.com/sharer/sharer.php?href=" + sendUrl);
+}
+
+// function sethref() 
+// {
+//  document.getElementById("shareFB").setAttribute("href","https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(document.URL));
+// }
+
+// window.onload = sethref;
+// 카카오톡 공유 기능
+function shareKakao() {
+    const url = "http://localhost:8081/allWeAdopt/board/detail/2/"+boardNo;
+    // 사용할 앱의 JavaScript 키 설정
+    Kakao.init('c2a34c4788a9b6f5a1d552ea9a4f9083');
+   
+    // 카카오링크 버튼 생성
+    Kakao.Link.createDefaultButton({
+      container: '#btnKakao', // 카카오공유버튼ID
+      objectType: 'feed',
+      content: {
+        title: "allWeAdopt", // 보여질 제목
+        description: "동물입양 사이트입니다", // 보여질 설명
+        imageUrl: "http://localhost:8081/allWeAdopt/", // 콘텐츠 URL
+        link: {
+           mobileWebUrl: url,
+           webUrl: url
+        }
+      }
+    });
+  }
+

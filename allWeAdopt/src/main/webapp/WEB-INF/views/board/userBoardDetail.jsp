@@ -62,7 +62,6 @@
                                         </div> 
                                         </c:if>
                                     </div>
-                                    ${like}
                                     <!-- Post meta content-->
                                     <div class="text-muted fst-italic mb-2">${board.createDate} || 조회수 : 0
                                     <c:if test="${!empty loginMember}">||
@@ -116,9 +115,9 @@
 
                             <!-- 공유 기능 -->
                             <div class="share-area">
-                                <a href=""><img src="${contextPath}\resources\images\icon-twitter.png"></a>
-                                <a href=""><img src="${contextPath}\resources\images\icon-kakao.png"></a>
-                                <a href=""><img src="${contextPath}\resources\images\icon-facebook.png"></a>
+                                <a id="btnTwitter" class="link-icon twitter" href="javascript:shareTwitter();"><img src="${contextPath}\resources\images\icon-twitter.png"></a>
+                                <a id="btnFacebook" class="link-icon facebook" href="javascript:shareFacebook();"><img src="${contextPath}\resources\images\icon-facebook.png"></a>    
+                                <a id="btnKakao" class="link-icon kakao" href="javascript:shareKakao();"><img src="${contextPath}\resources\images\icon-kakao.png"></a>    
                             </div>
 
                             <!-- 문의 버튼 -->
@@ -142,6 +141,7 @@
         <!-- Core theme JS-->
         <script src="${contextPath}/resources/js/scripts.js"></script>
         <script src="${contextPath}/resources/js/board/userBoardDetail.js"></script>
+        <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 
     </body>
 </html>
