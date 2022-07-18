@@ -13,11 +13,9 @@ import edu.kh.allWeAdopt.board.model.dao.BoardDAO;
 import edu.kh.allWeAdopt.board.model.vo.Board;
 import edu.kh.allWeAdopt.board.model.vo.BoardDetail;
 import edu.kh.allWeAdopt.board.model.vo.Pagination;
-<<<<<<< HEAD
 import edu.kh.allWeAdopt.member.model.vo.Member;
-=======
 import edu.kh.allWeAdopt.common.Util;
->>>>>>> 725c00c8d0ff285779ecb802893a93f127829ca3
+
 
 @Service
 public class BoardServiceImpl implements BoardService{

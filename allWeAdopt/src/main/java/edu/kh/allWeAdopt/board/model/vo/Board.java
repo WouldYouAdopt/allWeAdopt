@@ -4,8 +4,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
 @Setter
+@Getter
 @NoArgsConstructor
 public class Board {
 	
@@ -24,10 +24,8 @@ public class Board {
 	private String memberName;
 	private String msg;
 	private String profileImage;
-<<<<<<< HEAD
 	// 게시글 답변 완/미완 == 코멘트 유/무
 	private String answer;
-=======
 
 	private String thumbnail;
 
@@ -38,5 +36,4 @@ public class Board {
 	private String gender;
 	private String neutering;
 
->>>>>>> 725c00c8d0ff285779ecb802893a93f127829ca3
 }

@@ -34,14 +34,11 @@
         <link href="${contextPath}/resources/css/main-style.css" rel="stylesheet" />
         <link href="${contextPath}/resources/css/styles.css" rel="stylesheet" />
 
-<<<<<<< HEAD
         <!-- main -->
         <link rel="stylesheet" href="${contextPath}/resources/css/default.css">
 	    <link rel="stylesheet" href="${contextPath}/resources/css/main_study.css">
-=======
         <!-- sweetalert-->
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
->>>>>>> 725c00c8d0ff285779ecb802893a93f127829ca3
 
         <style>
             .nav-text-color{
