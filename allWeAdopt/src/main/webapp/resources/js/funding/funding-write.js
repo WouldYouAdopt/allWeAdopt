@@ -41,6 +41,60 @@ function testList(){
 
 
 
+let objectC = {
+    category : false, //$('select').val()
+    title : false, //document.getElementById('fundingTitle').value.trim() == ''
+    subHead : false, //document.getElementById('subheadInput').value.trim() == ''
+    reward : false,//document.getElementById('insertRewardList').value == ''
+    delivery : false, //document.getElementById('delivery').value.trim() == ''
+    targetDonation :false,//document.getElementById('targetDonation').value.trim() == ''
+}
+
+
+
+function ttt(){
+    let note = document.getElementById("summernote");
+    if(note.value.replace(reg,'').trim() == ''){
+        alert("게시글을 작성해주세요.");
+        note.value="";
+        return;
+    }
+}
+
+
+//form 태그 입력 검증용 
+function submitValidate(){
+    //카테고리 선택 됬는지
+    if($('select').val().trim()==''){alert('카테고리를 선택해주세요'); return false;   }
+ 
+    //타이틀 선택 됬는지
+    if($('#fundingTitle').val().trim()==''){alert('펀딩 타이틀을 입력 해주세요'); return false;   }
+  
+    //소제목 선택 됬는지
+    if($('#subheadInput').val().trim()==''){alert('펀딩 소개를 입력 해주세요'); return false;   }
+
+    //배송비 선택 됬는지
+    if($('#delivery').val().trim()==''){alert('배송비를 입력 해주세요'); return false;   }
+ 
+    // 목표 후원금 선택 됬는지
+    if($('#targetDonation').val().trim()==''){alert('목표 후원금을 입력 해주세요'); return false;   }
+    
+    //섬머노트에 내용이 입력되었는지. (정규삭)
+    const reg = /<\/p>|<p>|&nbsp;|<br>/gm;
+    let note = document.getElementById("summernote");
+    if(note.value.replace(reg,'').trim() == ''){
+        alert("게시글을 작성해주세요.");
+        note.value="";
+        return false;
+    }
+
+    //리워드 목록 검증용 
+    if($('#insertRewardList').val().trim()==''){
+        alert('리워드를 등록해주세요 <br> (수정 포함)');
+        return false;
+    }
+}
+
 
 
 

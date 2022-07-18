@@ -22,26 +22,7 @@ import edu.kh.allWeAdopt.funding.model.vo.OrderDetail;
 import edu.kh.allWeAdopt.funding.model.vo.Reward;
 import edu.kh.allWeAdopt.funding.model.vo.Supporters;
 
-/**
- * @author deadWhale
- *
- */
-/**
- * @author deadWhale
- *
- */
-/**
- * @author deadWhale
- *
- */
-/**
- * @author deadWhale
- *
- */
-/**
- * @author deadWhale
- *
- */
+
 @Transactional(rollbackFor = { Exception.class })
 @Service
 public class FundingServiceImpl implements FundingService {
