@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import edu.kh.allWeAdopt.board.model.vo.Board;
 import edu.kh.allWeAdopt.board.model.vo.BoardDetail;
 import edu.kh.allWeAdopt.board.model.vo.Pagination;
+import edu.kh.allWeAdopt.member.model.vo.Member;
 
 @Repository
 public class BoardDAO {
@@ -85,4 +86,34 @@ public class BoardDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.update("noticeMapper.deleteBoard", boardNo);
 	}
+
+	/** 공지사항 게시글 수 조회 DAO
+	 * @param memberNo 
+	 * @return paginationCount
+	 */
+	public int paginationCount(int memberNo) {
+		
+		return sqlSession.selectOne("noticeMapper.paginationCount", memberNo);
+	}
+
+	/** 문의사항 게시글 목록 조회
+	 * @param pagination
+	 * @return aList
+	 */
+	public List<Board> selectAskList(Pagination pagination, Member loginMember) {
+		
+		int offset = ( pagination.getCurrentPage()-1) * pagination.getLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, pagination.getLimit());
+		
+		return sqlSession.selectList("noticeMapper.selectAskList", loginMember, rowBounds);
+		
+	}
+
+	
+	
+
+	
+	
+	
 }

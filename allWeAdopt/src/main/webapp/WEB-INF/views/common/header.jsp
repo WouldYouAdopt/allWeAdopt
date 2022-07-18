@@ -71,7 +71,7 @@
                                         <li><a class="dropdown-item" href="portfolio-item.html">작성글 목록</a></li>
                                         <li><a class="dropdown-item" href="${contextPath}/funding/my/list">펀딩 참여 내역</a></li>
                                         <li><a class="dropdown-item" href="javascript:void(0)" onclick="popUpOpne()">채팅 목록</a></li>
-                                        <li><a class="dropdown-item" href="portfolio-item.html">문의하기</a></li>
+                                        <li><a class="dropdown-item" href="${contextPath}/member/myPage/ask/list">문의하기</a></li>
                                         <li><a class="dropdown-item" href="${contextPath}/member/myPage/notice/list">공지사항</a></li>
                                         <c:if test="${  loginMember.memberType == 'M' }">
                                             <li><a class="dropdown-item" href="${contextPath}/member/logout">로그아웃1</a></li>

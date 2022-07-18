@@ -13,7 +13,11 @@ import edu.kh.allWeAdopt.board.model.dao.BoardDAO;
 import edu.kh.allWeAdopt.board.model.vo.Board;
 import edu.kh.allWeAdopt.board.model.vo.BoardDetail;
 import edu.kh.allWeAdopt.board.model.vo.Pagination;
+<<<<<<< HEAD
+import edu.kh.allWeAdopt.member.model.vo.Member;
+=======
 import edu.kh.allWeAdopt.common.Util;
+>>>>>>> 725c00c8d0ff285779ecb802893a93f127829ca3
 
 @Service
 public class BoardServiceImpl implements BoardService{
@@ -89,7 +93,41 @@ public class BoardServiceImpl implements BoardService{
 	public int deleteBoard(int boardNo) {
 
 		return dao.deleteBoard(boardNo);
+	}
+	
+	// 문의사항 조회 리스트 구현
+	@Override
+	public Map<String, Object> selectaskList(int cp, Member loginMember) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		
+		// 1-1. 게시글 수 조회
+		int paginationCount = dao.paginationCount(loginMember.getMemberNo());
+		
+		// 1-2. 페이지네이션 객체 생성
+		Pagination pagination = new Pagination(cp, paginationCount);
+		
+		// 2. 게시글 목록 조회
+		List<Board> aList = dao.selectAskList(pagination,loginMember);
+		
+		
+		for(Board a : aList) {
+			System.out.println(a.getBoardNo());
+			System.out.println(a.getBoardTitle());
+		}
+		
+		map.put("aList", aList);
+		map.put("pagination", pagination);
+		
+		return map;		
+		
 	}	
+	
+	
+	
+	
+	
 	
 	
 	
