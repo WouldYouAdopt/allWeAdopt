@@ -81,7 +81,7 @@ public class AdminFundingController {
 		if(fundingNo>0) {
 			FundingDetail detail = service.selectFundingDetail(fundingNo);
 			
-			
+			//detail.setFundingContent(new Gson().toJson(detail.getFundingContent()));
 			
 			List<Reward> rewardList  = service.selectRewardList(fundingNo);
 			
@@ -96,10 +96,11 @@ public class AdminFundingController {
 	}
 	//펀딩 등록 페이지
 	@PostMapping("/register")
-	public String fundingRegister(@RequestParam(value = "uploadImage", required = false) MultipartFile uploadImage
+	public String fundingRegister(@RequestParam(value = "uploadImage", required = false, defaultValue="0") MultipartFile uploadImage
 								 ,@ModelAttribute FundingDetail fundingDetail
 								 ,String insertRewardList
 								 ,String mode
+								 ,@RequestParam(value = "fundingNo", required = false, defaultValue="0") int fundingNo
 								 ,HttpServletRequest req, RedirectAttributes ra
 									)throws Exception {
 								
@@ -112,6 +113,7 @@ public class AdminFundingController {
 			
 			for(String temp : arr) {
 				Reward r = gson.fromJson(temp, Reward.class);
+				r.setFundingNo(fundingNo);//최초 생성시에는 0 , 업데이트일때는 자동으로 펀딩 번호 넣어짐	
 				rewardList.add(r);
 			}
 			
@@ -123,14 +125,28 @@ public class AdminFundingController {
 		//리스트 형태로 가공한 데이터 DB에 저장하기	
 		fundingDetail.setRewardList(rewardList);
 		
-		int fundingNo = service.fundingRegister(fundingDetail,uploadImage,webPath,folderPath);
 		
-		if(fundingNo>0) {
-			ra.addFlashAttribute("massage","성공적으로 등록되었습니다.");
-			return "redirect:management";
+		
+		
+		if(mode.equals("update")) {
+			fundingDetail.setFundingNo(fundingNo);
+			int result = service.fundingUpdate(fundingDetail,uploadImage,webPath,folderPath);
+			if(result>0) {
+				ra.addFlashAttribute("massage","성공적으로 수정 되었습니다.");
+				return "redirect:management";
+			}
 		}
 		
+		if(mode.equals("insert")) {
+			fundingNo = service.fundingRegister(fundingDetail,uploadImage,webPath,folderPath);
+			if(fundingNo>0) {
+				ra.addFlashAttribute("massage","성공적으로 등록되었습니다.");
+				//펀딩 상세 보기 페이지로 리다이렉트 하기.
+				return "redirect:management";
+			}
+		}
 		
+
 		
 		
 		return null;

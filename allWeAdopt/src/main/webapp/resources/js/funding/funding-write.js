@@ -260,9 +260,6 @@ function alert(msg){
 
 //내용 집어 넣는 이벤트
 (function(){
-    if(currentContent != ''){
-        $('#summernote').summernote('code', currentContent);
-    }
     if(dFee != ''){
         let i = dFee.replaceAll(",","");
         i = parseInt(i);

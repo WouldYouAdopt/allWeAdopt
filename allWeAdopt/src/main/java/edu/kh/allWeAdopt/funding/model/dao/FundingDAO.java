@@ -237,6 +237,18 @@ public class FundingDAO {
 		return sqlSession.selectList("fundingMapper.selectFundingSList");
 	}
 
+	public int fundingUpdate(FundingDetail fundingDetail) {
+		return sqlSession.update("fundingMapper.fundingUpdate",fundingDetail);
+	}
+
+	public String selectThumbnail(int fundingNo) {
+		return sqlSession.selectOne("fundingMapper.selectThumbnail",fundingNo);
+	}
+
+	public int deleteRewardList(int fundingNo) {
+		return sqlSession.delete("fundingMapper.deleteRewardList",fundingNo);
+	}
+
 
 
 

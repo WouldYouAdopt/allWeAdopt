@@ -615,4 +615,30 @@
         ORDER BY FUNDING_SEASON
 	</select>
 	
+	
+	<!-- 펀딩을 수정하는 SQL -->
+	<update id="fundingUpdate" parameterType="fundingDetail" >
+	UPDATE FUNDING SET
+		FUNDING_TITLE=#{fundingTitle},
+		FUNDING_MINI_TITLE=#{fundingMiniTitle},
+		FUNDING_CONTENT=#{fundingContent},
+		TARGET_DONATION =#{targetDonation},
+		FUNDING_SEASON =#{fundingSeason},
+		SUCCESS_DONATION =#{targetDonation}*0.8,
+		FUNDING_THUMBNAIL = #{fundingThumbnail},
+		DELIVERY_FEE= #{deliveryFee},
+		FUNDING_CATEGORY = #{categoryNo}
+	WHERE FUNDING_NO = #{fundingNo}
+	</update>
+	
+	<!-- 썸네일을 변경하지 않는 경우 기존의 썸네일 경로를 추출.-->
+	<select id="selectThumbnail" resultType="string">
+	SELECT FUNDING_THUMBNAIL FROM FUNDING WHERE FUNDING_NO = #{fundingNo}
+	</select>
+	
+	<!-- 리워드 목록 제거 -->
+	<delete id="deleteRewardList">
+		DELETE FROM REWARD WHERE FUNDING_NO =#{fundingNo}
+	</delete>
+	
 </mapper>
