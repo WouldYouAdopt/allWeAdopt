@@ -127,3 +127,8 @@ a{
 .footer-area{
     display: none;
 }
+
+.rounded-circle{
+    max-width: 13%;
+    object-fit: contain;
+}
