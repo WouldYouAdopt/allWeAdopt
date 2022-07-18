@@ -16,6 +16,7 @@ import edu.kh.allWeAdopt.board.model.vo.Pagination;
 import edu.kh.allWeAdopt.member.model.vo.Member;
 import edu.kh.allWeAdopt.common.Util;
 
+
 @Service
 public class BoardServiceImpl implements BoardService{
 	

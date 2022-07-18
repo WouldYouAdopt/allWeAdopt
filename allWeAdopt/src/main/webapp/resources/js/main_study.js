@@ -136,9 +136,8 @@
 		for (let i = 0; i < sceneInfo[0].values.videoImageCount; i++) {
 			imgElem = new Image();
             // 이미지
-			imgElem.src = `../video/003/KakaoTalk_20220717_170549055_${1000 + i}.JPG`;
-			// <script src="${contextPath}/resources/js/scripts.js"></script>
-			// imgElem.src = `${contextPath}/resources/video/003/KakaoTalk_20220717_170549055_${1000 + i}.JPG`;
+			// imgElem.src = `../video/003/KakaoTalk_20220717_170549055_${1000 + i}.JPG`;
+			imgElem.src = `contextPath/resources/video/003/KakaoTalk_20220717_170549055_${1000 + i}.JPG`;
 			sceneInfo[0].objs.videoImages.push(imgElem);
 		}
 
