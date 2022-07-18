@@ -184,12 +184,24 @@ public class AdminFundingController {
 				return "redirect:management";
 			}
 		}
-		
+		return "redirect:management";
 
-		
-		
-		return null;
 	}
+	
+	
+	
+	@GetMapping("/select")
+	public String selectFundingDetail(int fundingNo
+									,Model model) {
+		
+		FundingDetail detail = service.selectFundingDetail(fundingNo);
+		
+		model.addAttribute("detail", detail);
+		
+		return "funding/admin/funding-select";
+	}
+	
+	
 	
 	//배송 관리 페이지.
 	@GetMapping("/delivery")
