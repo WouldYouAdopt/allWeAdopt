@@ -268,28 +268,3 @@ function alert(msg){
 })();
 
 
-$(document).ready(function() {
-    $('#summernote').summernote({
-        placeholder: '내용을 입력하세요',
-        tabsize: 2,
-        height: 500,
-        toolbar: [
-            // [groupName, [list of button]]
-            ['fontname', ['fontname']],
-            ['fontsize', ['fontsize']],
-            ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
-            ['color', ['forecolor','color']],
-            ['table', ['table']],
-            ['para', ['ul', 'ol', 'paragraph']],
-            ['height', ['height']],
-            ['insert',['picture','link']],
-            // ['view', ['fullscreen', 'help']]
-        ],
-        callbacks:{
-            onImageUpload: function(files, editor) {
-                console.log(files);
-                sendFile(files[0], this);
-            }
-        }
-    });
-});
