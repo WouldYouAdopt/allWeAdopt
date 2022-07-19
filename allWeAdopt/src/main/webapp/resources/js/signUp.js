@@ -6,8 +6,9 @@ const checkObj = {
     "memberPw"        : false,
     "memberPwConfirm" : false,
     "memberName"  : false,
-    "memberTel"       : false,
-    //"sms"       : false   // 인증번호 발송 체크
+    "memberTel"       : false
+    // "number"       : false,
+    // "timer" : false
 };
 
 // 이메일 유효성 검사
@@ -224,7 +225,6 @@ memberTel.addEventListener("input", function(){
 
 
 
-
 // 다음 주소 api
 //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
 function sample4_execDaumPostcode() {
@@ -296,8 +296,8 @@ function signUpValidate(){
             case "memberPw"       : str="비밀번호 입력란을"; break;    
             case "memberPwConfirm": str="비밀번호 확인 입력란을"; break;
             case "memberName"     : str="닉네임 입력란을"; break;
-            case "memberTel"      : str="전화번호 입력란을"; break;
-            case "sms"            : str="휴대폰 인증을"; break;
+            // case "memberTel"      : str="전화번호 입력란을"; break;
+            // case "number"            : str="휴대폰 인증을"; break;
             }
 
             str += " 확인해주세요.";
@@ -310,7 +310,7 @@ function signUpValidate(){
                 confirmButtonColor: 'rgb(251, 131, 107)',
                 confirmButtonText: '확인'
                 });
-            document.getElementById(key).focus();
+
             return false; // form태그 기본 이벤트 제거
         }
     }
@@ -319,10 +319,21 @@ function signUpValidate(){
 
 }
 
+
 // 문자 인증
 const confirmBtn = document.getElementById("confirmBtn");
 
+// 타이머에 사용될 변수
+const cMessage = document.getElementById("cMessage");
+let checkInterval; // setInterval을 저장할 변수
+let min = 4;
+let sec = 59;
+
 confirmBtn.addEventListener("click", function(){
+
+    number.readOnly = false;
+    number.value="";
+    cMessage.innerText = "";
 
     if(!checkObj.memberTel){
         Swal.fire({
@@ -356,40 +367,85 @@ confirmBtn.addEventListener("click", function(){
                     console.log("문자 발송 실패");
                     telMsg.innerText = "휴대폰번호 재확인 후 다시 인증버튼을 눌러주세요. ";
                     memberTel.focus();
-                    checkObj.sms = false; // 유효하지 않은 상태임을 기록
+                    checkObj.number = false; // 유효하지 않은 상태임을 기록
                 }else{
                     
                     console.log("문자 발송 성공 : " + randomNumber);
+                    checkObj.timer = true;
 
-                    const number = document.getElementById("number");
-                    number.addEventListener("input",function(){
+                    // 5분 타이머
+                    // setInerval(함수, 지연시간) : 지연시간이 지난 후 함수를 수행 (반복)
+                    cMessage.innerText = "5:00"; // 초기값 5분
+                    min = 4;
+                    sec = 59; // 분, 초 초기화
 
-                        if(number.value.trim().length == 0){
+                    cMessage.classList.remove("confirm");
+                    cMessage.classList.remove("error");
 
-                            telMsg.innerText = "인증번호를 입력해주세요.";
-                            telMsg.classList.add("error");
-                            telMsg.classList.remove("confirm");
-                            checkObj.sms = false; // 유효하지 않은 상태임을 기록
+                    // 변수에 저장해야지 멈출 수 있음
+                    checkInterval = setInterval(function(){
+                        if(sec < 10) sec = "0" + sec;
+                            cMessage.innerText = min + ":" + sec;
+
+                        if(Number(sec) === 0){
+                        min--;
+                        sec = 59;
+                        }else{
+                            sec--;
+                        }
+
+                        if(min === -1){ // 만료
+                        cMessage.innerText = "";
+                        telMsg.classList.add("error");
+                        telMsg.classList.remove("confirm");
+                        telMsg.innerText = "인증시간 만료";
+                        checkObj.timer = false;
+                        clearInterval(checkInterval); // checkInterval 반복을 지움
+
+                        }else{
+
+                            const number = document.getElementById("number");
+                            number.addEventListener("input",function(){
+
+                                if(number.value.trim().length == 0){
+
+                                    telMsg.innerText = "인증번호를 입력해주세요.";
+                                    telMsg.classList.add("error");
+                                    telMsg.classList.remove("confirm");
+                                    checkObj.number = false; // 유효하지 않은 상태임을 기록
+
+                                }
+
+                                if(number.value.trim().length != 0){
+
+                                    if(number.value == randomNumber&&checkObj.timer){
+                                        telMsg.innerText = "휴대폰 인증 완료";
+                                        clearInterval(checkInterval);
+                                        telMsg.classList.remove("error");
+                                        telMsg.classList.add("confirm");
+                                        checkObj.number = true; // 유효 O 기록
+                                        number.readOnly = true;
+                                    }else if(!checkObj.timer){
+                                        telMsg.innerText = "인증시간 만료";
+                                        telMsg.classList.add("error");
+                                        telMsg.classList.remove("confirm");
+                                        checkObj.number = false; // 유효하지 않은 상태임을 기록
+                                    }else{
+                                        telMsg.innerText = "인증번호 불일치";
+                                        telMsg.classList.add("error");
+                                        telMsg.classList.remove("confirm");
+                                        checkObj.number = false; // 유효하지 않은 상태임을 기록
+
+                                    }
+
+                                }
+
+                            })
 
                         }
 
-                        if(number.value.trim().length != 0){
+                    }, 1000); // 1초 지연 후 수행
 
-                            if(number.value == randomNumber){
-                                telMsg.innerText = "휴대폰 인증 완료";
-                                telMsg.classList.remove("error");
-                                telMsg.classList.add("confirm");
-                                checkObj.sms = true; // 유효 O 기록
-                            }else{
-                                telMsg.innerText = "인증번호 불일치";
-                                telMsg.classList.add("error");
-                                telMsg.classList.remove("confirm");
-                                checkObj.sms = false; // 유효하지 않은 상태임을 기록
-                            }
-
-                        }
-
-                    })
                 }
 
             },
@@ -398,12 +454,8 @@ confirmBtn.addEventListener("click", function(){
                 console.log("에러 발생");
             }
 
-
-
-
         });
 
     }
-
 
 });

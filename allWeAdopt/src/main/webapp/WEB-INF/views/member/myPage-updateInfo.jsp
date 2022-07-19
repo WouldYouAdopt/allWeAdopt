@@ -89,7 +89,7 @@
 
                                         <!-- 전화번호 -->
                                         <div class="form-floating mb-3 confirm-area">
-                                            <input class="form-control" id="currTel" type="tel"  value="${loginMember.memberTel}" readonly/>
+                                            <input class="form-control" name="memberTel" id="currTel" type="tel"  value="${loginMember.memberTel}" readonly/>
                                             <label for="currTel"><span>* </span>휴대폰 번호<span>(인증 완료)</span></label>
                                             <div class="spaceArea confirmBtnArea">
                                                 <button id="changeBtn" type="button">변경</button>
@@ -98,7 +98,7 @@
 
                                         <!-- 전화번호 -->
                                         <div class="form-floating mb-3 confirm-area none" id="telBox">
-                                            <input class="form-control" name="memberTel" id="memberTel" type="tel" />
+                                            <input class="form-control" id="memberTel" type="tel" />
                                             <label for="memberTel" id="newTel"><span>*</span>휴대폰 번호(-제외) </label>
                                             <div class="spaceArea confirmBtnArea">
                                                 <button id="confirmBtn" type="button">인증</button>
@@ -108,7 +108,7 @@
                                         <!-- 인증번호-->
                                         <div class="form-floating mb-2 confirm-area none" id="numBox">
                                             <input class="form-control" id="number" type="tel"  />
-                                            <label for="number"><span>* </span>인증번호</label>
+                                            <label for="number" id="cMessage"><span>* </span>인증번호</label>
                                         </div>
                                         <div id="telMsg" class="form-floating validate-area"></div>
                                         
@@ -129,7 +129,7 @@
                                         <!-- 인증번호-->
                                         <div class="form-floating mb-2 confirm-area" id="numBox">
                                             <input class="form-control" id="number" type="tel"  />
-                                            <label for="number"><span>* </span>인증번호</label>
+                                            <label for="number" id="cMessage"><span>* </span>인증번호</label>
                                         </div>
                                         <div id="telMsg" class="form-floating validate-area"></div>
 

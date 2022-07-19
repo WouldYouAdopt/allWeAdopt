@@ -142,7 +142,7 @@
                                     <!-- 인증번호-->
                                     <div class="form-floating mb-2 confirm-area">
                                         <input class="form-control" id="number" type="tel" placeholder="(010) 456-7890"  />
-                                        <label for="number"><span>* </span>인증번호</label>
+                                        <label for="number" id="cMessage"><span>* </span>인증번호</label>
                                     </div>
                                     <div id="telMsg" class="form-floating validate-area"></div>
 
