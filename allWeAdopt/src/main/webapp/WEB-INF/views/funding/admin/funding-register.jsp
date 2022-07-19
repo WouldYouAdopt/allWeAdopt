@@ -171,28 +171,28 @@
 								<td style="width:40%;"><input type="text" value="${r.rewardContent}"></td>
 								<td><input type="number" value="${r.rewardPrice}"></td>
 								<td><input type="number" value="${r.maxRewardNo}"></td>
-								<td><button type="button" class="rewardsAddBtn" onclick="addRewardList()">등록</button></td>
+								<td><button type="button" class="rewardsAddBtn">등록</button></td>
 							</tr>
 						</c:forEach>
 					</c:when>
 					
 					<c:otherwise>
-                                <tr>
-                                  <td>0</td>
-                                  <td><input type="text"></td>
-                                  <td><input type="text"></td>
-                                  <td><input type="number"></td>
-                                  <td><input type="number"></td>
-                                  <td><button type="button" class="rewardsAddBtn" onclick="addRewardList()">등록</button></td>
-                                </tr>
-                                <tr>
-                                  <td>0</td>
-                                  <td><input type="text"></td>
-                                  <td><input type="text"></td>
-                                  <td><input type="number"></td>
-                                  <td><input type="number"></td>
-                                  <td><button type="button" class="rewardsAddBtn"  onclick="addRewardList()">등록</button></td>
-                                </tr>
+            <tr>
+              <td>0</td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="number"></td>
+              <td><input type="number"></td>
+              <td><button type="button" class="rewardsAddBtn" >등록</button></td>
+            </tr>
+            <tr>
+              <td>0</td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="number"></td>
+              <td><input type="number"></td>
+              <td><button type="button" class="rewardsAddBtn" onclick="addRewardList()">등록</button></td>
+            </tr>
 					</c:otherwise>
 				</c:choose>
                               </tbody>

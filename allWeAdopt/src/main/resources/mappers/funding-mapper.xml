@@ -357,8 +357,8 @@
 	</select>
 
 
-	<!-- 이제 부터 김현기가 사용중 -->
-	<select id="FundingSelect" resultMap="detail_rm">
+	<!-- ???? -->
+	<select id="selectfunding" resultMap="funding_rm">
 		SELECT * FROM FUNDING
 		WHERE FUNDING_NO = #{fundingNo}
 	</select>

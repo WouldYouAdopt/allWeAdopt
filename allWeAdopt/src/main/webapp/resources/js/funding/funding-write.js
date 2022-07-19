@@ -155,8 +155,8 @@ function addReward(){
 
     rewardsRows.append(tr);
 
-    
-$('.rewardsAddBtn').click(checkInput);
+    $('.rewardsAddBtn').off("click",checkInput);
+    $('.rewardsAddBtn').click(checkInput);
 
 
 }
@@ -188,13 +188,13 @@ deleteBtn.addEventListener('click',function(){
 
 
 function addRewardList(){
+    
 }
 
 $('.rewardsAddBtn').click(checkInput);
 
 function checkInput(){
     const arr=this.parentElement.parentElement.children;
-
     
     const rewardNo= arr[0].innerText;
     const title = arr[1].children[0].value;
@@ -237,8 +237,8 @@ function checkInput(){
     
     this.classList.remove("rewardsAddBtn");
     this.classList.add("btn-secondary");
-    this.removeEventListener("onclick",addRewardList);
     
+     $('.btn-secondary').off("click",checkInput);
 }
 
 function alert(msg){
