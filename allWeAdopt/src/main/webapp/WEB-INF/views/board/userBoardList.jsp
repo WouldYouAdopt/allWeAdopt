@@ -72,11 +72,12 @@
                         <p class="subTitle">추억을 공유하거나 가족을 만드는 공간입니다</p>
 
                     <!-- 검색 필터 영역 -->
+                    <form action="user" method="GET" onsubmit="return search()">
                     <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2">
-                        검색하기
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" onclick="searchDisplay()">
+                        검색조건
                         </button>
-                        <div class="search-area">
+                        <div class="search-area" id="search-area">
                             <div class="filter-area">상태 여부
                                 <div class="btn-group dropend">
                                     <button type="button" name="categoryValue" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -130,19 +131,21 @@
                                         <li class="dropdown-item selectMenu animalList">고양이</li>
                                         <li class="dropdown-item selectMenu animalList">기타</li>
                                     </ul>
-                                    <input type="hidden" name="animalType" value="">
+                                    <input type="hidden" name="animalType">
                                     <button type="button" name="animalDetailValue" onclick="animalDetailFunc()" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                         품종
                                     </button>
                                       <ul class="dropdown-menu">
                                           
                                       </ul>
-                                    <input type="hidden" name="animalDetail" value="">
+                                    <input type="hidden" name="animalDetail">
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
+                    <button class="searchBtn" id="searchBtn">검색하기</button>
+                    </form>
+
                     <!-- 게시글 작성 -->
                     <a href="user/boardRegist"><p class="addBoard">게시글 작성하기</p></a>
 

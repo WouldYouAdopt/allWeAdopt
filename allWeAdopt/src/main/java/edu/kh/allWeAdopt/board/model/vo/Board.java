@@ -3,10 +3,12 @@ package edu.kh.allWeAdopt.board.model.vo;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Setter
 @Getter
 @NoArgsConstructor
+@ToString
 public class Board {
 	
 	private int boardNo;

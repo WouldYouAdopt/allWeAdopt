@@ -122,6 +122,11 @@ a{
     color: #FFF;
 }
 
+.dropdown-menu{
+    height: 250px;
+    overflow: auto;
+}
+
 /* 검색 필터 */
 .search-area{
     width: 100%;
@@ -129,6 +134,7 @@ a{
     border-top: 1px solid #999;
     border-bottom: 1px solid #999;
     margin-top: 10px;
+    display: none;
 }
 
 .filter-area{
@@ -161,4 +167,18 @@ hr{
 
 .aa{
     margin-left: 55px;
+}
+
+.searchBtn{
+    border-radius: 5px;
+    border: 1px solid #FB836B;
+    color: #FB836B;
+    margin-top: 10px;
+    display: none;
+}
+
+.searchBtn:hover{
+    color: #FFF;
+    background-color: #FB836B;
+    transition-duration: 200ms;
 }
