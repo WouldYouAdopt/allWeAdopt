@@ -123,7 +123,7 @@
                                             <th scope="row" class="col-sm-1 text-center" >${a.boardNo}</th>
                                             <td><a href="${url}">${a.category}</a></td>
                                             <td><a href="${url}">${a.boardTitle}</a></td>
-                                            <td>${a.categcreateDateory}</td>
+                                            <td>${a.createDate}</td>
                                             <td>답변중</td>
                                         </tr>
                                     </c:otherwise>
