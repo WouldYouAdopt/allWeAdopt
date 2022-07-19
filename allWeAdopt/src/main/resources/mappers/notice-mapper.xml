@@ -119,6 +119,17 @@
 	</select>
 	
 	
+	<!-- 게시글 상세 조회 -->
+	<select id="selectAskDetail" resultMap="detail_rm">
+	SELECT BOARD_NO, BOARD_TITLE, BOARD_CONTENT, CATEGORY, MEMBER_NM,
+	      TO_CHAR(CREATE_DT, 'YYYY"년" MM"월" DD"일" HH24:MI:SS') CREATE_DT,
+	      TO_CHAR(UPDATE_DT, 'YYYY"년" MM"월" DD"일" HH24:MI:SS') UPDATE_DT,
+	      BOARD_ST
+	FROM BOARD
+	JOIN MEMBER USING (MEMBER_NO)
+	WHERE BOARD_NO = ${boardNo}
+	</select>
+	
 	
   
 </mapper>

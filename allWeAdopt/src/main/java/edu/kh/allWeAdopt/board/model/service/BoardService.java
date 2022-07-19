@@ -52,4 +52,10 @@ public interface BoardService {
 	 */
 	Map<String, Object> selectaskList(int cp, Member loginMember);
 
+	/** 문의글 조회
+	 * @param boardNo
+	 * @return
+	 */
+	BoardDetail selectAskDetail(int boardNo);
+
 }
