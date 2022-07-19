@@ -20,8 +20,10 @@
 									리워드 배송비 ${detail.deliveryFee}원<br>
 									<p>목표 금액의 80% 이상 모이면 펀딩이 성공되며, 펀딩 마감일까지 목표 금액이 80% 모이지 않으면 결제한 수단으로 환불이 진행됩니다.</p>
 	                            </div>
-
+								
+								<div class="content">
 								${detail.fundingContent}
+								</div>
 
 
                             </article>

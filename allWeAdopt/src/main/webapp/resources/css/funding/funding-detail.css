@@ -234,6 +234,15 @@
 	    width: 100%;
 	}
 	
+	.content{
+		width: 100%;
+	}
+	.content  p {
+
+	}
+	.content p img {
+		width: 100% !important;
+	}
 	
 	
 	
@@ -268,7 +277,7 @@
 	    margin-bottom: 16px;
 	}
 	.pointText{
-	    font-size: 26px;
+	    font-size: 24px;
 	    font-weight: 600;
 	}
 	

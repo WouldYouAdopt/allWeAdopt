@@ -47,7 +47,7 @@ public class SmsCertificationController {
 	    }else {
 	    	return "0";
 	    }
-	    
+		
 	}
 	
 }
