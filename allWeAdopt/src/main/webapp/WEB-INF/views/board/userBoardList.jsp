@@ -24,54 +24,20 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Dongle&family=Gowun+Batang&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
 
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
         <!-- main css -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="${contextPath}/resources/css/main-style.css">
         <link rel="stylesheet" href="${contextPath}/resources/css/board/userBoardList.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     </head>
     <body class="d-flex flex-column h-100">
         <main class="flex-shrink-0">
             <!-- 헤더 -->
             <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
-            <!-- 검색 필터 -->
-            <div class="filter-area">
-
-                <!-- 날짜 필터 -->
-                <span class="filter-menu">날짜 ▼
-                    <div class="select">
-                        <input type="date"> ~ <input type="date">
-                    </div>
-                </span>
-                
-                <!-- 종류 필터 -->
-                <span class="filter-menu">종류 ▼
-                    <div class="select"> 품종을 입력하세요
-                        <input type="text">
-                    </div>
-                </span>
-
-                <!-- 지역 필터 -->
-                <span class="filter-menu">지역 ▼
-                    <div class="select">
-                        <span class="area-select">지역선택</span>
-                        <span class="area-select">상세선택</span>
-                    </div>
-                </span>
-
-                <!-- 상태여부 필터 -->
-                <span class="filter-menu">상태여부 ▼
-                    <div class="select" style="width:100px; text-align:center; padding: 5px;">
-                        <span class="category-select">보호</span><br>
-                        <span class="category-select">실종</span><br>
-                        <span class="category-select">목격</span><br>
-                        <span class="category-select">완료</span>
-                    </div>
-                </span>
-            </div>
-        
-            <!-- Blog preview section-->
-            <section class="py-5">
-                <div class="container px-5 my-5">
                     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-indicators">
                           <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -80,13 +46,13 @@
                         </div>
                         <div class="carousel-inner">
                           <div class="carousel-item active">
-                            <img src="/images/cat-3113513_1920.jpg" class="d-block w-100" alt="...">
+                            <img src="${contextPath}/resources/images/userMain3.jpg" class="d-block w-100" alt="...">
                           </div>
                           <div class="carousel-item">
-                            <img src="/images/cocker-spaniel-2785074_1920.jpg" class="d-block w-100" alt="...">
+                            <img src="${contextPath}/resources/images/userMain2.jpg" class="d-block w-100" alt="...">
                           </div>
                           <div class="carousel-item">
-                            <img src="/images/pet-5054023_1920.jpg" class="d-block w-100" alt="...">
+                            <img src="${contextPath}/resources/images/userMain1.jpg" class="d-block w-100" alt="...">
                           </div>
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -98,8 +64,86 @@
                           <span class="visually-hidden">Next</span>
                         </button>
                       </div>
+        
+            <!-- Blog preview section-->
+            <section class="py-5">
+                <div class="container px-5 my-5">
+                        <h2 class="titleText">사용자 게시판</h2>
+                        <p class="subTitle">추억을 공유하거나 가족을 만드는 공간입니다</p>
 
-                       <!-- 게시글 작성 -->
+                    <!-- 검색 필터 영역 -->
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2">
+                        검색하기
+                        </button>
+                        <div class="search-area">
+                            <div class="filter-area">상태 여부
+                                <div class="btn-group dropend">
+                                    <button type="button" name="categoryValue" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                      상태여부
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-item selectMenu">실종</li>
+                                        <li class="dropdown-item selectMenu">보호</li>
+                                        <li class="dropdown-item selectMenu">목격</li>
+                                        <li class="dropdown-item selectMenu">완료</li>
+                                    </ul>
+                                    <input type="hidden" name="category">
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="filter-area">공유 기간
+                                <span class="dateFilter">
+                                    <input class="dateValue" name="boardPeriod" type="date"> ~ 
+                                    <input class="dateValue" name="boardPeriod2" type="date">
+                                </span>
+                            </div>
+                            <hr>
+                            <div class="filter-area">지역
+                                <div class="btn-group dropend">
+                                    <button type="button" name="areaValue" class="btn aa btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                      지역선택
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                       <c:forEach var="areaList" items="${areaList}">
+                                            <li class="dropdown-item selectMenu areaList">${areaList.area}</li>
+                                        </c:forEach>
+                                    </ul>
+                                    <input type="hidden" name="area">
+                                    <button type="button" name="areaDetailValue" onclick="areaDetailFunc()" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                        상세지역 선택
+                                    </button>
+                                      <ul class="dropdown-menu">
+                                         
+                                      </ul>
+                                    <input type="hidden" name="areaDetail">
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="filter-area">종류
+                                <div class="btn-group dropend">
+                                    <button type="button" name="animalTypeValue" class="btn aa btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                      축종
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-item selectMenu animalList">개</li>
+                                        <li class="dropdown-item selectMenu animalList">고양이</li>
+                                        <li class="dropdown-item selectMenu animalList">기타</li>
+                                    </ul>
+                                    <input type="hidden" name="animalType" value="">
+                                    <button type="button" name="animalDetailValue" onclick="animalDetailFunc()" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                        품종
+                                    </button>
+                                      <ul class="dropdown-menu">
+                                          
+                                      </ul>
+                                    <input type="hidden" name="animalDetail" value="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 게시글 작성 -->
                     <a href="user/boardRegist"><p class="addBoard">게시글 작성하기</p></a>
 
                     <%-- 게시글 리스트 --%>
@@ -173,7 +217,6 @@
             <jsp:include page="/WEB-INF/views/common/footer.jsp" />
         </div>
        
-        <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
        <script src="${contextPath}/resources/js/scripts.js"></script>
