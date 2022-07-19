@@ -35,6 +35,8 @@
 
         <link href="${contextPath}/resources/css/shelter/shelter-main.css" rel="stylesheet" />
 
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
         <style>
             .nav-text-color{
                 /* color: rgb(251, 131, 107); */
@@ -103,9 +105,7 @@
                         <c:forEach var="pamphlet" items="${pamphletList}">
                             <div class="col-lg-4 mb-5">
                                 <div class="card h-100 shadow border-0">
-
-                                   
-
+                                  
                                     <c:if test="${!empty pamphlet.thumbnail}">
                                         <img class="card-img-top" src="${pamphlet.thumbnail}" alt="썸네일" id="thumbnail" />
                                     </c:if>
@@ -146,13 +146,57 @@
                                                     <div class="fw-bold">${pamphlet.phone}</div>
                                                     <div class="text-muted">${pamphlet.createDate}</div>
                                                 </div>
+
+                                                <div class="md-10" style="margin:10px;"></div>
+                            
+                                                <button type="button" class="btn btn-primary" style="background-color: #FB836B; border: 0;">
+                                                댓글<span class="badge text-bg-secondary" id="rArea">${rCount}</span>
+                                                </button>
+
+
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <script>
+
+                                var boardNo = "${pamphlet.boardNo}";
+
+                                console.log(boardNo);
+
+                                countReplyList();
+
+                                function countReplyList(){
+                                    
+                                    $.ajax({
+                                        url : "/allWeAdopt/pamphlet/reply/countReplyList",
+                                        data : {"boardNo" : boardNo},
+                                        type : "GET",
+                                        dataType : "JSON", 
+                                        success : function(rCount){
+                                            
+                                            console.log(rCount);
+                                            
+                                            const rArea = document.getElementById("rArea");
+
+                                                // rArea.innerHTML = rCount;
+
+                                                // var rCount = $(rCount);
+
+                                        },
+                                        error : function(req, status, error){
+                                            console.log("에러 발생");
+                                            console.log(req.responseText);
+                                        }
+                                    })
+
+                                }
+                            </script>
                         </c:forEach>
                     </div>
+
+                    
 
                     <div class="position-relative">
                         <div class="position-absolute top-100 start-100 translate-middle">
@@ -162,8 +206,12 @@
 
 
                     <c:if test="${!empty loginMember}">                 
-                    <button type="button" class="btn btn-outline-warning" id="allButton" onclick="location.href='../pamphlet/write?mode=insert&cp=${pagination.currentPage}'">글쓰기</button>                  
+                        <button type="button" class="btn btn-outline-warning" id="allButton" onclick="location.href='../pamphlet/write?mode=insert&cp=${pagination.currentPage}'">글쓰기</button>                  
                     </c:if>
+
+                    <%-- <c:if test="${empty loginMember}">
+                        <button type="button" class="btn btn-outline-warning" id="allButton" name="writeBtn">글쓰기</button>    
+                    </c:if> --%>
 
                     <%-- 페이지네이션 --%>
                     <c:set var="url" value="?cp="/>
@@ -205,6 +253,9 @@
         <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
 
+    
+
+
         <!-- jQuery 라이브러리 추가 -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
@@ -213,7 +264,7 @@
         <!-- Core theme JS-->
         <%-- <script src="js/scripts.js"></script> --%>
 
-        <%-- <script src="${contextPath}/resources/js/shelter.js"></script> --%>
+        <script src="${contextPath}/resources/js/shelter.js"></script>
 
       
     </body>

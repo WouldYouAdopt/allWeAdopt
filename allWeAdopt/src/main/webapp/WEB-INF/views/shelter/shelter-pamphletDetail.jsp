@@ -110,7 +110,7 @@
 
                                 <div class="ms-3">
                                     <div class="fw-bold">${detail.memberName}</div>
-                                    <%-- <div class="text-muted">고민</div> --%>
+                                    <div class="text-muted">${detail.memberEmail}</div>
                                 </div>
                             </div>
                         </div>
@@ -129,7 +129,7 @@
                                     </c:if>
                                     
                                     <!-- Post categories-->
-                                    <a class="badge bg-secondary text-decoration-none link-light" href="#!">관심 등록</a>
+                                    <%-- <a class="badge bg-secondary text-decoration-none link-light" href="#!">관심 등록</a> --%>
 
                                     <div class="md-10" style="margin:10px;"></div>
 
