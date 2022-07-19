@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
 <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-white" style="border-bottom: 1px solid;
-	 z-index: 10;">
-        <div class="container px-5">
+    <nav class="px-0 navbar navbar-expand-lg navbar-light bg-white" style="border-bottom: 1px solid;  position:relative; z-index:100;">
+        <div class="container  px-0">
             <a class="navbar-brand pt-1" href="${contextPath}">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 291.1 41.24" id="logo">
 					<defs><style>.cls-1{fill:#fb836b;}.cls-2{fill:#373737;}#logo{width:240px}</style></defs>
@@ -26,12 +26,12 @@
 				</svg>
             </a>
             
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <button  class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent" >
                 <ul class="navbar-nav ms-auto  my-2 mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link" href="${contextPath}/shelter/shelterList">보호소</a></li>
                     <li class="nav-item"><a class="nav-link" href="${contextPath}/shelter/pamphlet/list">전단지</a></li>
-                    <li class="nav-item"><a class="nav-link" href="${contextPath}/board/user">사용자</a></li>
+                    <li class="nav-item"><a class="nav-link" href="${contextPath}/board/user">어답터</a></li>
                     <li class="nav-item"><a class="nav-link" href="${contextPath}/funding/detail/${nowFundingNo}?page=1">펀딩</a></li>
                     <li class="nav-item"><a class="nav-link" href="${contextPath}/findHospital">병원찾기</a></li>
 
@@ -43,8 +43,8 @@
 
                         <c:otherwise>
                                 <!-- 사이트로 로그인 했을 때 -->
-                                <li class="nav-item dropdown" >
-                                    <a class="nav-link dropdown-toggle py-1" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="border-radius: 50%;">
+                                <li class=" nav-item dropdown" style="position:initial">
+                                    <a class="nav-link dropdown-toggle py-0" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="border-radius: 50%;">
                                         <%-- 기본 프로필이미지(= 프로필이미지 설정 안했을때) --%>
                                         <c:if test="${empty loginMember.profileImage }">
                                              <img src="${contextPath}/resources/images/user.png" id="member-profile" style="width : 35px; height : 35px; ">	
@@ -61,7 +61,8 @@
 
 
                                     </a>
-                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio"  >
+                                    <%-- 버튼 클릭시 이 부분 class에 show가 생김--%>
+                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio" style="right: 11%">
                                         <c:if test="${loginMember.memberType == 'M'}">
                                             <li><a class="dropdown-item" href="${contextPath}/member/myPage/pwConfirm">회원 정보 수정</a></li>
                                         </c:if>
