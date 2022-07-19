@@ -32,6 +32,8 @@
         <link href="${contextPath}/resources/css/funding/funding-orders.css" rel="stylesheet" />
        
 
+        <%-- 달콤한 알림 --%>  
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
     </head>
     <body class="d-flex flex-column">
@@ -65,12 +67,12 @@
                     <c:choose >
                       <%-- 신규 주문 --%>
                       <c:when test="${orderCode == 1}">
-                        <button type="button" class="btn btn-secondary">배송준비</button>
-                        <button type="button" class="btn btn-secondary">결제취소</button>
+                        <button type="button" class="btn btn-secondary" onclick="processing(2)">배송준비</button>
+                        <button type="button" class="btn btn-secondary" onclick="processing(5)">결제취소</button>
                       </c:when>
                       <%-- 배송준비에서는 배송만 있음 주문 --%>
                       <c:when test="${orderCode == 2}">
-                        <button type="button" class="btn btn-secondary">발송 처리</button>
+                        <button type="button" class="btn btn-secondary" onclick="sendProcessing(3)">발송 처리</button>
                       </c:when>
                       <%-- 배송중에는 반품신청만 --%>
                       <c:when test="${orderCode == 4 || orderCode==3}">
@@ -126,7 +128,7 @@
       <c:forEach var="o" items="${orderList}">
           <tr>
               <th scope="row">
-                <input class="form-check-input" type="checkbox">
+                <input class="form-check-input" type="checkbox" value="${o.paymentNo}">
               </th>
 
               <td>${o.paymentNo}</td>
@@ -179,13 +181,15 @@
                                   <td>${o.recipient}</td>
                                   <td>${o.payDate}</td>
                                   
-                                  <td>
-                                    <select>
-                                      <option>CJ대한통운</option>
+                                  <td class="parcel">
+                                    <select class="form-select" class="parcelCompany" name="parcelCompany" aria-label="Default select example">
+                                      <option value="04">CJ대한통운</option>
+                                      <option value="04">롯데택배</option>
+                                      <option value="04">우체국택배</option>
                                     </select>
                                   </td>
                                   
-                                  <td><input type="text" value="" name=""></td>
+                                  <td class="parcel"><input type="text" value="" class="parcelNo" name="parcelNo"></td>
 
                               </tr>
                           </c:forEach>

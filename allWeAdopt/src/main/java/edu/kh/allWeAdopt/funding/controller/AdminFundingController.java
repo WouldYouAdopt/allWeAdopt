@@ -216,9 +216,13 @@ public class AdminFundingController {
 	
 	
 	
-	
-	
-	
+	@ResponseBody
+	@GetMapping("/delivery/processing")
+	public int processing(int code, String list ) {
+		System.out.println(list);
+		System.out.println(code);
+		return 1;
+	}
 	
 	
 	
