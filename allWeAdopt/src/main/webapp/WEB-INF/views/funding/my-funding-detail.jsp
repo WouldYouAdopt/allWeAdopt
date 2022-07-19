@@ -58,7 +58,7 @@
 		<jsp:include page="/WEB-INF/views/common/header.jsp" />
 		<jsp:include page="/WEB-INF/views/common/mypage-header.jsp" />
 	</c:if>
-	<c:if test="${loginMember.memberType =='A'}"> --%>
+	<c:if test="${loginMember.memberType =='A'}">
 		<jsp:include page="/WEB-INF/views/common/admin-header.jsp" />
 	</c:if>
   
