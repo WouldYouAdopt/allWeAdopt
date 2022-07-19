@@ -131,7 +131,11 @@ function addReward(){
     const tr = document.createElement('tr');
 
     const td1 = document.createElement('td');
-    td1.innerText=0 //document.querySelectorAll('.rewardsRows>tr>td:nth-child(1)').length+1;
+    const rInput = document.createElement('input');
+    rInput.setAttribute("type","hidden");
+    rInput.setAttribute("value",0);
+    td1.append(rInput);
+    td1.append(document.querySelectorAll('.rewardsRows>tr>td:nth-child(1)').length+1);
     tr.append(td1);
     
     for(let i=0; i<4; i++){
@@ -196,7 +200,7 @@ $('.rewardsAddBtn').click(checkInput);
 function checkInput(){
     const arr=this.parentElement.parentElement.children;
     
-    const rewardNo= arr[0].innerText;
+    const rewardNo= arr[0].children[0].value;
     const title = arr[1].children[0].value;
     const content = arr[2].children[0].value;
     const price =arr[3].children[0].value;
