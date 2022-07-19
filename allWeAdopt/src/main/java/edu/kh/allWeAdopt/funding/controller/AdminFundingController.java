@@ -94,18 +94,12 @@ public class AdminFundingController {
         // season형식 맞추기 2022/08
         nextSeason[0] = date1.substring(0, 4) +"/"+ date1.substring(4, 6);
         nextSeason[1] = date2.substring(0, 4) +"/"+ date2.substring(4, 6);
-        nextSeason[2] = date3.substring(0, 4) +"/"+ date3.substring(4, 6);
-        
-/*      String nextSeason[0] = (date1.substring(0, 4))+"/"+(date1.substring(4, 6));
-        String nextSeason2 = (date2.substring(0, 4))+"/"+(date2.substring(4, 6));
-        String nextSeason3 = (date3.substring(0, 4))+"/"+(date3.substring(4, 6));
-*/        
+        nextSeason[2] = date3.substring(0, 4) +"/"+ date3.substring(4, 6);    
         
         // map에 바로 넣어서 가자
 		map.put("nextSeason", nextSeason);
 		
 		model.addAttribute("map",map);
-		
 		
 		return "funding/admin/funding-management";
 	}
@@ -219,6 +213,33 @@ public class AdminFundingController {
 	}
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//배송 관리 상세 페이지
+	@GetMapping("/delivery/detail/{paymentNo}")
+	public String selectDeliveryDetail(@PathVariable int paymentNo
+										,Model model
+										,RedirectAttributes ra) {
+		
+		OrderDetail detail = service.selectOrderDetail(paymentNo);
+		
+		if(detail != null) {
+			model.addAttribute("detail", detail);
+		}else{
+			ra.addFlashAttribute("message", "조회중 오류가 발생했습니다.");
+			return "redirect:/";
+		}
+		
+		return "funding/my-funding-detail";
+	}
 	
 	
 }

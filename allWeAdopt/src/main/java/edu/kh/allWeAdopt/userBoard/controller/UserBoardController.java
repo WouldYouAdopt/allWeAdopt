@@ -62,7 +62,12 @@ public class UserBoardController {
 	@GetMapping("/user")
 	public String boardList(Model model) {
 		
+		// 게시글 리스트 출력
 		List<Board> list = service.boardList();
+		// 지역 리스트 출력
+		List<Area> areaList = service.areaList();
+		
+		model.addAttribute("areaList",areaList);
 		model.addAttribute("boardList",list);
 		return "board/userBoardList";
 	}
@@ -95,9 +100,9 @@ public class UserBoardController {
 //	사용자 게시판 등록 페이지
 	@GetMapping("/user/boardRegist")
 	public String boardRegist(Model model) {
-		List<Area> areaList = service.areaList();
 		
 		// 지역 리스트 출력
+		List<Area> areaList = service.areaList();
 		model.addAttribute("areaList",areaList);
 		
 		return "board/userBoardRegist";
@@ -197,7 +202,7 @@ public class UserBoardController {
 	}
 	
 	// 상세 지역 호출
-	@RequestMapping(value ={"/user/loadAreaList","/detail/2/{boardNo}/loadAreaList"})
+	@RequestMapping(value ={"/user/loadAreaList","/detail/2/{boardNo}/loadAreaList","/loadAreaList"})
 	@ResponseBody
 	public List<Area> loadAreaList(@RequestParam("area") String area) {
 		List<Area> list = service.loadAreaList(area);
@@ -206,7 +211,7 @@ public class UserBoardController {
 	}
 	
 	// 품종 호출
-	@RequestMapping(value={"/user/loadAnimalList","/detail/2/{boardNo}/loadAnimalList"})
+	@RequestMapping(value={"/user/loadAnimalList","/detail/2/{boardNo}/loadAnimalList","/loadAnimalList"})
 	@ResponseBody
 	public List<Animal> loadAnimalList(@RequestParam("animalType") String animalType) {
 		List<Animal> list = service.loadAnimalList(animalType);
