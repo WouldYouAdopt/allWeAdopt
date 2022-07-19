@@ -24,6 +24,8 @@ public class OrderDetail {
 	private String orderAddress; //수령인 주소
 	private int paymentNo; //결제 번호f
 	
+	private String fundingThumbnail; //썸네일 경로 추가함
+	
 	private String nameAnonymous;
 	private String priceAnonymous;
 	
