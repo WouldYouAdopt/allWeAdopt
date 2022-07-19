@@ -120,7 +120,21 @@ public class BoardServiceImpl implements BoardService{
 		
 		return map;		
 		
+	}
+
+	
+	
+	//문의사항 글 조회 구현
+	@Override
+	public BoardDetail selectAskDetail(int boardNo) {
+		
+		BoardDetail detail = dao.selectAskDetail(boardNo);
+		
+		return detail;
 	}	
+	
+	
+	
 	
 	
 	

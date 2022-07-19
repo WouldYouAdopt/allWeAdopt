@@ -110,6 +110,15 @@ public class BoardDAO {
 		
 	}
 
+	/** 문의사항 글 조회 구현
+	 * @param boardNo
+	 * @return
+	 */
+	public BoardDetail selectAskDetail(int boardNo) {
+		
+		return sqlSession.selectOne("noticeMapper.selectAskDetail", boardNo);
+	}
+
 	
 	
 
