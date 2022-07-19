@@ -208,7 +208,9 @@ function requestPayInicis() {
       $('form[name="submitEvent"]').serialize();
       $('form[name="submitEvent"]').attr('method', 'POST');
       $('form[name="submitEvent"]').attr('action', 'pay/' + r.merchant_uid);
+      
       document.getElementById("submitEvent").submit();
+
     } else {
       alert("결제에 실패하였습니다");
     }
