@@ -28,6 +28,8 @@
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="${contextPath}/resources/css/styles.css" rel="stylesheet" />
 
         <!-- main -->
         <link rel="stylesheet" href="${contextPath}/resources/css/default.css">
@@ -35,6 +37,9 @@
 
         <!-- sweetalert-->
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+
 
         <style>
             .nav-text-color{
@@ -71,6 +76,7 @@
 
 <body class="before-load" >
 
+
 	<div class="loading">
 		<svg class="loading-circle">
 			<circle cx="50%" cy="50%" r="25"></circle>
@@ -92,7 +98,7 @@
 				<p>다같이 어답터<br>되어보실까요?</p>
 			</div>
 			<div class="sticky-elem main-message d">
-				<img src="${contextPath}/resources/main/logo2.png">
+				<img src="${contextPath}/resources/images/logo2.png">
 			</div>
 		</section>
 		<section class="scroll-section" id="scroll-section-1">
