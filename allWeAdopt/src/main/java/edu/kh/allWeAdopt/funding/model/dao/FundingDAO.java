@@ -294,6 +294,11 @@ public class FundingDAO {
 	}
 
 
+	public int deliveryProcession(Map<String, Object> map) {
+		return sqlSession.update("fundingMapper.delivery",map);
+	}
+
+
 	
 
 
