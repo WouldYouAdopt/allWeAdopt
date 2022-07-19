@@ -41,14 +41,8 @@
 
         <style>
         .new{
-            background-color: rgb(251, 131, 107);
-            color : white;
-            font-size : 8px;
-            font-weight : bold;
-            border-radius : 5px;
-            padding : 0px 3px;
-            margin: auto 4px;
-            text-align : center;
+            width : 4em;
+            margin : 0px 6px;
         }
 
         .newa{
@@ -119,7 +113,7 @@
                                             <c:when test="${ n.category == today }"> 
                                                 <tr>
                                                     <th scope="row" class="col-sm-1 text-center" >${n.boardNo}</th>
-                                                    <td><a href="${url}" class="newa">${n.boardTitle} <div class="new">N</div></a></td>
+                                                    <td><a href="${url}" class="newa">${n.boardTitle}<img class="new" src="${contextPath}/resources/images/new_2.png"></a></td>
                                                     <td>${n.createDate}</td>
                                                 </tr>
                                             </c:when>

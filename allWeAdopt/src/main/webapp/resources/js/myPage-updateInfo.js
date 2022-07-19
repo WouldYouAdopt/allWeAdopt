@@ -13,37 +13,41 @@ const checkObj = {
 const memberName = document.getElementById("memberName");
 const nameMsg = document.getElementById("nameMsg");
 
-memberName.addEventListener("change", function(){
+if(document.getElementById("memberName")!=null){
+    
+    memberName.addEventListener("change", function(){
+    
+        checkObj.memberName = false;
+    
+        // 입력되지 않은 경우
+        if(memberName.value.length == 0){
+    
+            nameMsg.innerText = "영어/숫자/한글 2~10글자 사이로 작성해주세요.";
+            nameMsg.classList.remove("confirm");
+            nameMsg.classList.add("error");
+            checkObj.memberName = false; // 유효 X 기록
+            return;
+        }
+    
+        const regExp = /^[a-zA-Z0-9가-힣]{2,10}$/;
+    
+        if( regExp.test(memberName.value) ){ // 유효한 경우
+    
+            nameMsg.innerText = "정상 입력";
+            nameMsg.classList.remove("error");
+            nameMsg.classList.add("confirm");
+            checkObj.memberName = true; // 유효 O 기록
+        }else{
+    
+            nameMsg.innerText = "이름 형식이 유효하지 않습니다.";
+            nameMsg.classList.remove("confirm");
+            nameMsg.classList.add("error");
+            checkObj.memberName = false; // 유효 X 기록
+        }
+    
+    }); 
+}
 
-    checkObj.memberName = false;
-
-    // 입력되지 않은 경우
-    if(memberName.value.length == 0){
-
-        nameMsg.innerText = "영어/숫자/한글 2~10글자 사이로 작성해주세요.";
-        nameMsg.classList.remove("confirm");
-        nameMsg.classList.add("error");
-        checkObj.memberName = false; // 유효 X 기록
-        return;
-    }
-
-    const regExp = /^[a-zA-Z0-9가-힣]{2,10}$/;
-
-    if( regExp.test(memberName.value) ){ // 유효한 경우
-
-        nameMsg.innerText = "정상 입력";
-        nameMsg.classList.remove("error");
-        nameMsg.classList.add("confirm");
-        checkObj.memberName = true; // 유효 O 기록
-    }else{
-
-        nameMsg.innerText = "이름 형식이 유효하지 않습니다.";
-        nameMsg.classList.remove("confirm");
-        nameMsg.classList.add("error");
-        checkObj.memberName = false; // 유효 X 기록
-    }
-
-});
 
 if(document.getElementById("changeBtn")){
 
@@ -79,170 +83,173 @@ if(document.getElementById("changeBtn")){
 const memberTel = document.getElementById("memberTel");
 const telMsg = document.getElementById("telMsg");
 
-memberTel.addEventListener("change", function(){
+if(document.getElementById("memberTel")!=null){
 
-    checkObj.memberTel = false; 
-    
-    // 입력이 되지 않은 경우
-    if(memberTel.value.length == 0){
-        telMsg.innerText = "휴대폰 번호를 입력해주세요.(- 제외)";
-        telMsg.classList.remove("confirm");
-        telMsg.classList.add("error");
-        checkObj.memberTel = false; // 유효하지 않은 상태임을 기록
 
-        return;
-    }
+    memberTel.addEventListener("change", function(){
 
-    // 전화번호 정규식
-    const regExp = /^01[01679]\d{3,4}\d{4}$/;
-
-    if(regExp.test(memberTel.value)){ // 유효한 경우
-        telMsg.innerText = "유효한 전화번호 형식입니다. 문자 인증을 진행해주세요.";
-        telMsg.classList.add("confirm");
-        telMsg.classList.remove("error");
-        checkObj.memberTel = true; // 유효한 상태임을 기록
+        checkObj.memberTel = false; 
         
-    } else{ // 유효하지 않은 경우
-        telMsg.innerText = "전화번호 형식이 올바르지 않습니다.";
-        telMsg.classList.add("error");
-        telMsg.classList.remove("confirm");
-        checkObj.memberTel = false; // 유효하지 않은 상태임을 기록
-    }
-});
+        // 입력이 되지 않은 경우
+        if(memberTel.value.length == 0){
+            telMsg.innerText = "휴대폰 번호를 입력해주세요.(- 제외)";
+            telMsg.classList.remove("confirm");
+            telMsg.classList.add("error");
+            checkObj.memberTel = false; // 유효하지 않은 상태임을 기록
+
+            return;
+        }
+
+        // 전화번호 정규식
+        const regExp = /^01[01679]\d{3,4}\d{4}$/;
+
+        if(regExp.test(memberTel.value)){ // 유효한 경우
+            telMsg.innerText = "유효한 전화번호 형식입니다. 문자 인증을 진행해주세요.";
+            telMsg.classList.add("confirm");
+            telMsg.classList.remove("error");
+            checkObj.memberTel = true; // 유효한 상태임을 기록
+            
+        } else{ // 유효하지 않은 경우
+            telMsg.innerText = "전화번호 형식이 올바르지 않습니다.";
+            telMsg.classList.add("error");
+            telMsg.classList.remove("confirm");
+            checkObj.memberTel = false; // 유효하지 않은 상태임을 기록
+        }
+    });
 
 
-// 문자 인증
-const confirmBtn = document.getElementById("confirmBtn");
+    // 문자 인증
+    const confirmBtn = document.getElementById("confirmBtn");
 
-confirmBtn.addEventListener("click", function(){
+    confirmBtn.addEventListener("click", function(){
 
-    if(!checkObj.memberTel){
+        if(!checkObj.memberTel){
 
-        Swal.fire({
-            title: '휴대폰 번호를 확인해주세요.',
-            width: 350,
-            padding: '3em',
-            color: 'black',
-            confirmButtonColor: 'rgb(251, 131, 107)',
-            confirmButtonText: '확인'
-            });
+            Swal.fire({
+                title: '휴대폰 번호를 확인해주세요.',
+                width: 350,
+                padding: '3em',
+                color: 'black',
+                confirmButtonColor: 'rgb(251, 131, 107)',
+                confirmButtonText: '확인'
+                });
 
-    }else{
+        }else{
 
-        Swal.fire({
-            title: '인증번호 전송 완료! 30초~ 1분정도 소요됩니다 :^)',
-            width: 350,
-            padding: '3em',
-            color: 'black',
-            confirmButtonColor: 'rgb(251, 131, 107)',
-            confirmButtonText: '확인'
-            });
-        
+            Swal.fire({
+                title: '인증번호 전송 완료! 30초~ 1분정도 소요됩니다 :^)',
+                width: 350,
+                padding: '3em',
+                color: 'black',
+                confirmButtonColor: 'rgb(251, 131, 107)',
+                confirmButtonText: '확인'
+                });
+            
 
-        $.ajax({
-            url : contextPath + "/member/sms",
-            data : { "memberTel" : memberTel.value },
-            type : "GET", // 데이터 전달 방식 type
-            success : function( randomNumber ){
+            $.ajax({
+                url : contextPath + "/member/sms",
+                data : { "memberTel" : memberTel.value },
+                type : "GET", // 데이터 전달 방식 type
+                success : function( randomNumber ){
 
-                console.log(randomNumber);
-                
-                // 성공시 인증번호 반환, 실패시 0 반환
-                if(randomNumber==0){
-                    console.log("문자 발송 실패");
-                    telMsg.innerText = "휴대폰번호 재확인 후 다시 인증버튼을 눌러주세요. ";
-                    memberTel.focus();
-                    checkObj.sms = false; // 유효하지 않은 상태임을 기록
-                }else{
+                    console.log(randomNumber);
                     
-                    console.log("문자 발송 성공 : " + randomNumber);
+                    // 성공시 인증번호 반환, 실패시 0 반환
+                    if(randomNumber==0){
+                        console.log("문자 발송 실패");
+                        telMsg.innerText = "휴대폰번호 재확인 후 다시 인증버튼을 눌러주세요. ";
+                        memberTel.focus();
+                        checkObj.sms = false; // 유효하지 않은 상태임을 기록
+                    }else{
+                        
+                        console.log("문자 발송 성공 : " + randomNumber);
 
-                    const number = document.getElementById("number");
-                    number.addEventListener("keyup",function(){
+                        const number = document.getElementById("number");
+                        number.addEventListener("keyup",function(){
 
-                        // 인증번호를 입력하지 않은 경우
-                        if(number.value.trim().length == 0){
+                            // 인증번호를 입력하지 않은 경우
+                            if(number.value.trim().length == 0){
 
-                            telMsg.innerText = "인증번호를 입력해주세요.";
-                            telMsg.classList.add("error");
-                            telMsg.classList.remove("confirm");
-                            checkObj.sms = false; // 유효하지 않은 상태임을 기록
-
-                        }
-
-                        // 인증번호를 입력한 경우
-                        if(number.value.trim().length != 0){
-
-                            if(number.value == randomNumber){
-
-                                telMsg.classList.add("confirm");
-                                telMsg.classList.remove("error");
-                                telMsg.innerText = "인증 완료 (하단의 수정버튼을 눌러주셔야 회원정보에 반영됩니다.)";
-                                
-                                alert("인증 완료! 하단의 수정 버튼을 눌러주셔야 회원정보에 반영됩니다.");
-
-                                const newTel = document.getElementById("newTel");
-                                newTel.innerHTML = "<span>* </span>휴대폰 번호<span>(인증 완료)</span>";
-
-                                checkObj.sms = true; // 유효 O 기록
-
-
-                            }else{
-                                telMsg.innerText = "인증번호 불일치";
+                                telMsg.innerText = "인증번호를 입력해주세요.";
                                 telMsg.classList.add("error");
                                 telMsg.classList.remove("confirm");
                                 checkObj.sms = false; // 유효하지 않은 상태임을 기록
+
                             }
 
-                        }
+                            // 인증번호를 입력한 경우
+                            if(number.value.trim().length != 0){
 
-                        // 인증 완료 후 번호를 변경하는 경우
-                        if(checkObj.sms){
-                            memberTel.addEventListener("click", function(){
+                                if(number.value == randomNumber){
 
-                                Swal.fire({
-                                    title: '휴대폰 번호를 수정하시겠습니까?',
-                                    text: "번호 수정시 인증을 다시 진행해주셔야합니다.",
-                                    width: 340,
-                                    icon: 'warning',
-                                    iconColor: 'rgb(251, 131, 107)',
-                                    showCancelButton: true,
-                                    confirmButtonColor: 'rgb(251, 131, 107)',
-                                    cancelButtonColor: '#999',
-                                    confirmButtonText: '확인',
-                                    cancelButtonText: '취소'
-                                    }).then((result) => {
-                                        if (result.isConfirmed) {
-                                            checkObj.sms = false;
-                                            number.value = ""
-                                            memberTel.focus();
-                                        }else{
-                                            e.preventDefault();
-                                        }
-                                    })
+                                    telMsg.classList.add("confirm");
+                                    telMsg.classList.remove("error");
+                                    telMsg.innerText = "인증 완료 (하단의 수정버튼을 눌러주셔야 회원정보에 반영됩니다.)";
+                                    
+                                    alert("인증 완료! 하단의 수정 버튼을 눌러주셔야 회원정보에 반영됩니다.");
 
-                            });
-                        }
+                                    const newTel = document.getElementById("newTel");
+                                    newTel.innerHTML = "<span>* </span>휴대폰 번호<span>(인증 완료)</span>";
 
-                    })
+                                    checkObj.sms = true; // 유효 O 기록
+
+
+                                }else{
+                                    telMsg.innerText = "인증번호 불일치";
+                                    telMsg.classList.add("error");
+                                    telMsg.classList.remove("confirm");
+                                    checkObj.sms = false; // 유효하지 않은 상태임을 기록
+                                }
+
+                            }
+
+                            // 인증 완료 후 번호를 변경하는 경우
+                            if(checkObj.sms){
+                                memberTel.addEventListener("click", function(){
+
+                                    Swal.fire({
+                                        title: '휴대폰 번호를 수정하시겠습니까?',
+                                        text: "번호 수정시 인증을 다시 진행해주셔야합니다.",
+                                        width: 340,
+                                        icon: 'warning',
+                                        iconColor: 'rgb(251, 131, 107)',
+                                        showCancelButton: true,
+                                        confirmButtonColor: 'rgb(251, 131, 107)',
+                                        cancelButtonColor: '#999',
+                                        confirmButtonText: '확인',
+                                        cancelButtonText: '취소'
+                                        }).then((result) => {
+                                            if (result.isConfirmed) {
+                                                checkObj.sms = false;
+                                                number.value = ""
+                                                memberTel.focus();
+                                            }else{
+                                                e.preventDefault();
+                                            }
+                                        })
+
+                                });
+                            }
+
+                        })
+                    }
+
+                },
+                error : function(){
+                    // 비동기 통신(ajax) 중 오류가 발생한 경우
+                    console.log("에러 발생");
                 }
 
-            },
-            error : function(){
-                // 비동기 통신(ajax) 중 오류가 발생한 경우
-                console.log("에러 발생");
-            }
 
 
 
+            });
 
-        });
-
-    }
+        }
 
 
-});
-
+    });
+}
 
 
 // 다음 주소 api

@@ -268,10 +268,33 @@ public class FundingDAO {
 	public List<Integer> selectEndCount() {
 		return sqlSession.selectList("fundingMapper.selectEndCount");
 	}
-
+ 
+	/**배송 관리 신규 주문 페이지
+	 * @param map
+	 * @return
+	 */
 	public List<OrderDetail> selectOrderList(Map<String, Object> map) {
 		return sqlSession.selectList("fundingMapper.selectOrderList",map);
 	}
+
+	/**리워드 업데이트(리워드 번호가 있을 경우)
+	 * @param r
+	 * @return
+	 */
+	public int updateReward(Reward r) {
+		return sqlSession.insert("fundingMapper.updateReward",r);
+	}
+
+	/**리워드 업데이트(리워드 번호가 없을 경우)
+	 * @param r
+	 * @return
+	 */
+	public int insertReward(Reward r) {
+		return sqlSession.insert("fundingMapper.insertReward",r);
+	}
+
+
+	
 
 
 

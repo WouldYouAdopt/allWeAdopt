@@ -131,7 +131,7 @@ function addReward(){
     const tr = document.createElement('tr');
 
     const td1 = document.createElement('td');
-    td1.innerText= document.querySelectorAll('.rewardsRows>tr>td:nth-child(1)').length+1;
+    td1.innerText=0 //document.querySelectorAll('.rewardsRows>tr>td:nth-child(1)').length+1;
     tr.append(td1);
     
     for(let i=0; i<4; i++){
@@ -188,8 +188,6 @@ deleteBtn.addEventListener('click',function(){
 
 
 function addRewardList(){
-
-    
 }
 
 $('.rewardsAddBtn').click(checkInput);
@@ -197,6 +195,8 @@ $('.rewardsAddBtn').click(checkInput);
 function checkInput(){
     const arr=this.parentElement.parentElement.children;
 
+    
+    const rewardNo= arr[0].innerText;
     const title = arr[1].children[0].value;
     const content = arr[2].children[0].value;
     const price =arr[3].children[0].value;
@@ -220,12 +220,17 @@ function checkInput(){
         return false;
     }
 
+    if(fundingNo==''){
+        fundingNo = 0;
+    }
 
     let item = {
+        rewardNo:rewardNo,
         rewardTitle:title,
         rewardContent:content,
         rewardPrice:price,
-        maxRewardNo :amount
+        maxRewardNo :amount,
+        fundingNo:fundingNo
     } 
     const t = document.getElementById("insertRewardList");
     t.value += JSON.stringify(item)+"-";
