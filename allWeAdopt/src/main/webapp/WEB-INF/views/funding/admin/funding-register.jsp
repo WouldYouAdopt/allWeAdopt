@@ -167,7 +167,7 @@
 						<c:forEach  var="r" items="${rewardList}">
               <c:set var="i" value="${i+1}"/>
 							<tr>
-              
+
 								<td><input type="hidden" value="${r.rewardNo}">${i}</td>
 
 								<td><input type="text" value="${r.rewardTitle}"></td>
@@ -227,7 +227,7 @@
                             <h4><i class="fa-solid fa-file-lines"></i> 펀딩 내용</h4>
                             <div class="intro">펀딩 내용을 작성 할 수 있습니다. </div>
 
-                            <textarea id="summernote" name="fundingContent"></textarea>  
+                            <textarea id="summernote" name="fundingContent">${detail.fundingContent}</textarea>  
 
                           </div>
 
@@ -270,19 +270,44 @@
   
       
         <script>
-            $('#summernote').summernote('code', '${detail.fundingContent}');
             const contextPath = "${contextPath}";
             const currentContent = '';
             let dFee = "${detail.targetDonation}";
             let fundingNo = "${param.fundingNo}";
-
          </script>
+
  <!-- 펀딩 작성 관련 JS -->
         <script src="${contextPath}/resources/js/funding/funding-write.js"></script>
 
         <!-- 썸머노트 -->
         <script>
-          
+        $(document).ready(function() {
+            $('#summernote').summernote({
+                placeholder: '내용을 입력하세요',
+                tabsize: 2,
+                height: 500,
+                toolbar: [
+                    // [groupName, [list of button]]
+                    ['fontname', ['fontname']],
+                    ['fontsize', ['fontsize']],
+                    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+                    ['color', ['forecolor','color']],
+                    ['table', ['table']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['height', ['height']],
+                    ['insert',['picture','link']],
+                    // ['view', ['fullscreen', 'help']]
+                ],
+                callbacks:{
+                    onImageUpload: function(files, editor) {
+                        console.log(files);
+                        sendFile(files[0], this);
+                    }
+                }
+            });
+        });
+
+       // $('#summernote').summernote('code', '${detail.fundingContent}');
         </script>
  
         <script src="${contextPath}/resources/js/board/summerNote.js"></script>
