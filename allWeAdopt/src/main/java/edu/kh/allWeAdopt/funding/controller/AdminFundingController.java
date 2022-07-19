@@ -181,8 +181,7 @@ public class AdminFundingController {
 		return "redirect:management";
 
 	}
-	
-	
+		
 	
 	@GetMapping("/select")
 	public String selectFundingDetail(int fundingNo
@@ -194,7 +193,6 @@ public class AdminFundingController {
 		
 		return "funding/admin/funding-select";
 	}
-	
 	
 	
 	//배송 관리 페이지.
