@@ -7,9 +7,11 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 
@@ -60,12 +62,53 @@ public class UserBoardController {
 	
 	// 사용자 게시판 리스트 출력
 	@GetMapping("/user")
-	public String boardList(Model model) {
+	public String boardList(Model model,
+			@RequestParam(value="boardPeriod", required = false, defaultValue = "") String boardPeriod,
+			@RequestParam(value="boardPeriod2", required = false, defaultValue = "") String boardPeriod2,
+			@RequestParam(value="category", required = false, defaultValue = "") String category,
+			@RequestParam(value="area", required = false, defaultValue = "") String area,
+			@RequestParam(value="areaDetail", required = false, defaultValue = "") String areaDetail,
+			@RequestParam(value="animalType", required = false, defaultValue = "") String animalType,
+			@RequestParam(value="animalDetail", required = false, defaultValue = "") String animalDetail) {
 		
-		// 게시글 리스트 출력
-		List<Board> list = service.boardList();
+		Board board = new Board();
+		
+		if(boardPeriod.equals("")) boardPeriod = null;
+		board.setBoardPeriod(boardPeriod);
+		
+		if(boardPeriod2.equals("")) boardPeriod2 = null;
+		board.setBoardPeriod2(boardPeriod2);
+		
+		if(category.equals("") || category.equals("상태여부")) category = null;
+		board.setCategory(category);
+		
+		if(area.equals("") || area.equals("지역선택")) area = null;
+		board.setArea(area);
+		
+		if(areaDetail.equals("") || areaDetail.equals("상세지역 선택")) areaDetail = null;
+		board.setAreaDetail(areaDetail);
+		
+		if(animalType.equals("") || animalType.equals("축종")) animalType = null;
+		board.setAnimalType(animalType);
+		
+		if(animalDetail.equals("") || animalDetail.equals("품종")) animalDetail = null;
+		board.setAnimalDetail(animalDetail);
+		
 		// 지역 리스트 출력
 		List<Area> areaList = service.areaList();
+		
+		// 게시글 리스트 출력
+		List<Board> list = new ArrayList<Board>();
+		
+		if((board.getAnimalDetail()==null)&&(board.getAnimalType()==null)
+				&&(board.getArea()==null)&&(board.getAreaDetail()==null)
+				&&(board.getBoardPeriod()==null)&&(board.getBoardPeriod2()==null)
+				&&(board.getCategory()==null)) {
+			list =  service.boardList();				
+		}else {
+			list = service.searchList(board);
+		}
+		
 		
 		model.addAttribute("areaList",areaList);
 		model.addAttribute("boardList",list);
@@ -333,5 +376,15 @@ public class UserBoardController {
 		return result;
 	}
 	
-	
+//	// 검색
+//	@PostMapping("/user")
+//	public String searchList(Board board, Model model) {
+//		List<Board> list = service.searchList(board);
+//		// 지역 리스트 출력
+//		List<Area> areaList = service.areaList();
+//		
+//		model.addAttribute("searchList",list);
+//		model.addAttribute("areaList",areaList);
+//		return "redirect:/board/user";
+//	}
 }

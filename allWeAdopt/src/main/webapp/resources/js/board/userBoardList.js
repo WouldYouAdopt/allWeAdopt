@@ -1,5 +1,6 @@
 console.log("js출력");
 
+// 몇 분전, 몇 일전 표시
 (function (){ 
   const diffTime = document.getElementsByClassName('diffTime');
 
@@ -92,11 +93,11 @@ for (let i = 0; i < selectMenu.length; i++) {
 	selectMenu[i].addEventListener("click",function () {
 		selectMenu[i].parentElement.previousElementSibling.innerText = selectMenu[i].innerText;
 
-		document.getElementsByName("category")[0].value = document.getElementsByName("categoryValue")[0].innerText;
+		document.getElementsByName("category")[0].value = document.getElementsByName("categoryValue")[0].innerText.trim();
 
-		document.getElementsByName("area")[0].value = document.getElementsByName("areaValue")[0].innerText;
+		document.getElementsByName("area")[0].value = document.getElementsByName("areaValue")[0].innerText.trim();
 
-		document.getElementsByName("animalType")[0].value = document.getElementsByName("animalTypeValue")[0].innerText;
+		document.getElementsByName("animalType")[0].value = document.getElementsByName("animalTypeValue")[0].innerText.trim();
 	})
 };
 
@@ -147,7 +148,7 @@ function areaDetailFunc(){
 	for (let i = 0; i < Adetail.length; i++) {
 			Adetail[i].addEventListener("click",function () {
 			Adetail[i].parentElement.previousElementSibling.innerText = Adetail[i].innerText;
-			document.getElementsByName("areaDetail")[0].value = document.getElementsByName("areaDetailValue")[0].innerText;
+			document.getElementsByName("areaDetail")[0].value = document.getElementsByName("areaDetailValue")[0].innerText.trim();
 		});
 	}
 };
@@ -209,7 +210,28 @@ function animalDetailFunc(){
 	for (let i = 0; i < Adetail.length; i++) {
 			Adetail[i].addEventListener("click",function () {
 			Adetail[i].parentElement.previousElementSibling.innerText = Adetail[i].innerText;
-			document.getElementsByName("animalDetail")[0].value = document.getElementsByName("animalDetailValue")[0].innerText;
+			document.getElementsByName("animalDetail")[0].value = document.getElementsByName("animalDetailValue")[0].innerText.trim();
 		});
 	}
 };
+
+// 검색하기 버튼 클릭 시 해당 조건에 일치하는 게시글 리스트 검색
+const searchST = document.getElementsByName('searchST')[0];
+const searchBtn = document.getElementsByClassName('searchBtn')[0];
+
+searchBtn.addEventListener("click", function () {
+  searchST.value = 1;
+})
+
+function searchDisplay() {
+  const display = document.getElementById("search-area");
+  const displayBtn = document.getElementById("searchBtn");
+  console.log(document.getElementsByClassName('search-area')[0].style.display);
+  if((display.style.display=="")||(display.style.display=="none")){
+    display.style.display = 'block';
+    displayBtn.style.display = 'block';
+  }else{
+    display.style.display = 'none';
+    displayBtn.style.display = 'none';
+  }
+}
