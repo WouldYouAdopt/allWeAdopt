@@ -165,8 +165,11 @@
 					
 					<c:when test="${rewardList != null}">
 						<c:forEach  var="r" items="${rewardList}">
+              <c:set var="i" value="${i+1}"/>
 							<tr>
-								<td>${r.rewardNo}</td>
+              
+								<td><input type="hidden" value="${r.rewardNo}">${i}</td>
+
 								<td><input type="text" value="${r.rewardTitle}"></td>
 								<td style="width:40%;"><input type="text" value="${r.rewardContent}"></td>
 								<td><input type="number" value="${r.rewardPrice}"></td>
@@ -178,7 +181,7 @@
 					
 					<c:otherwise>
             <tr>
-              <td>0</td>
+              <td>1</td>
               <td><input type="text"></td>
               <td><input type="text"></td>
               <td><input type="number"></td>
@@ -186,7 +189,7 @@
               <td><button type="button" class="rewardsAddBtn" >등록</button></td>
             </tr>
             <tr>
-              <td>0</td>
+              <td>2</td>
               <td><input type="text"></td>
               <td><input type="text"></td>
               <td><input type="number"></td>

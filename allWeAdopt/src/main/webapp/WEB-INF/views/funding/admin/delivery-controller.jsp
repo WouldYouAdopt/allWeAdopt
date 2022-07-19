@@ -52,11 +52,11 @@
                 <div id="controllerArea">
                     <!-- A태그 영역 -->
                     <div>
-                      <a href="#" class="navController" id="bacc">신규 주문</a>
-                      <a href="#" class="navController">주문 확인</a>
-                      <a href="#" class="navController">배송 준비중</a>
-                      <a href="#" class="navController">배송중</a>
-                      <a href="#" class="navController">배송완료</a>
+                      <a href="1" class="navController" id="bacc">신규 주문</a>
+                      <a href="2" class="navController">주문 확인</a>
+                      <a href="3" class="navController">배송 준비중</a>
+                      <a href="4" class="navController">배송중</a>
+                      <a href="5" class="navController">배송완료</a>
                     </div>
 
                     <!-- 작업 버튼 영역 -->
