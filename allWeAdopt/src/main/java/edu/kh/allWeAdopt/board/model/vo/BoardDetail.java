@@ -22,6 +22,7 @@ public class BoardDetail {
 	private String boardPeriodS;
 	private String boardPeriodE;
 	private String memberName;
+	private String memberEmail;
 	private String profileImage;
 	private String boardName;
 	private String thumbnail;

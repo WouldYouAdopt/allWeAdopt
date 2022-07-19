@@ -131,7 +131,11 @@ function addReward(){
     const tr = document.createElement('tr');
 
     const td1 = document.createElement('td');
-    td1.innerText=0 //document.querySelectorAll('.rewardsRows>tr>td:nth-child(1)').length+1;
+    const rInput = document.createElement('input');
+    rInput.setAttribute("type","hidden");
+    rInput.setAttribute("value",0);
+    td1.append(rInput);
+    td1.append(document.querySelectorAll('.rewardsRows>tr>td:nth-child(1)').length+1);
     tr.append(td1);
     
     for(let i=0; i<4; i++){
@@ -155,8 +159,8 @@ function addReward(){
 
     rewardsRows.append(tr);
 
-    
-$('.rewardsAddBtn').click(checkInput);
+    $('.rewardsAddBtn').off("click",checkInput);
+    $('.rewardsAddBtn').click(checkInput);
 
 
 }
@@ -188,15 +192,15 @@ deleteBtn.addEventListener('click',function(){
 
 
 function addRewardList(){
+    
 }
 
 $('.rewardsAddBtn').click(checkInput);
 
 function checkInput(){
     const arr=this.parentElement.parentElement.children;
-
     
-    const rewardNo= arr[0].innerText;
+    const rewardNo= arr[0].children[0].value;
     const title = arr[1].children[0].value;
     const content = arr[2].children[0].value;
     const price =arr[3].children[0].value;
@@ -237,8 +241,8 @@ function checkInput(){
     
     this.classList.remove("rewardsAddBtn");
     this.classList.add("btn-secondary");
-    this.removeEventListener("onclick",addRewardList);
     
+     $('.btn-secondary').off("click",checkInput);
 }
 
 function alert(msg){
@@ -264,28 +268,3 @@ function alert(msg){
 })();
 
 
-$(document).ready(function() {
-    $('#summernote').summernote({
-        placeholder: '내용을 입력하세요',
-        tabsize: 2,
-        height: 500,
-        toolbar: [
-            // [groupName, [list of button]]
-            ['fontname', ['fontname']],
-            ['fontsize', ['fontsize']],
-            ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
-            ['color', ['forecolor','color']],
-            ['table', ['table']],
-            ['para', ['ul', 'ol', 'paragraph']],
-            ['height', ['height']],
-            ['insert',['picture','link']],
-            // ['view', ['fullscreen', 'help']]
-        ],
-        callbacks:{
-            onImageUpload: function(files, editor) {
-                console.log(files);
-                sendFile(files[0], this);
-            }
-        }
-    });
-});

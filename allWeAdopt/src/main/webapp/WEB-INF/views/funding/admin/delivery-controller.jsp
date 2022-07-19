@@ -52,18 +52,40 @@
                 <div id="controllerArea">
                     <!-- A태그 영역 -->
                     <div>
-                      <a href="#" class="navController" id="bacc">신규 주문</a>
-                      <a href="#" class="navController">주문 확인</a>
-                      <a href="#" class="navController">배송 준비중</a>
-                      <a href="#" class="navController">배송중</a>
-                      <a href="#" class="navController">배송완료</a>
+                      <a href="1" class="navController" id="bacc">신규 주문</a>
+                      <a href="2" class="navController">배송준비</a>
+                      <a href="3" class="navController">배송중</a>
+                      <a href="4" class="navController">배송완료</a>
+                      <a href="8" class="navController">반품/환불</a>
                     </div>
 
                     <!-- 작업 버튼 영역 -->
                     <div class="controllerBtnArea">
-                      <button type="button" class="btn btn-secondary">발송 처리</button>
-                       <button type="button" class="btn btn-secondary">반품처리</button>
-                      <button type="button" class="btn btn-secondary">환불처리</button>
+
+                    <c:choose >
+                      <%-- 신규 주문 --%>
+                      <c:when test="${orderCode == 1}">
+                        <button type="button" class="btn btn-secondary">배송준비</button>
+                        <button type="button" class="btn btn-secondary">결제취소</button>
+                      </c:when>
+                      <%-- 배송준비에서는 배송만 있음 주문 --%>
+                      <c:when test="${orderCode == 2}">
+                        <button type="button" class="btn btn-secondary">발송 처리</button>
+                      </c:when>
+                      <%-- 배송중에는 반품신청만 --%>
+                      <c:when test="${orderCode == 4 || orderCode==3}">
+                        <button type="button" class="btn btn-secondary">반품 처리</button>
+                      </c:when>
+                      <%-- 반품/환불  --%>
+                      <c:when test="${orderCode == 8}">
+                        <button type="button" class="btn btn-secondary">반품 처리</button>
+                        <button type="button" class="btn btn-secondary">환불 처리</button>
+                      </c:when>
+                      
+                        <%-- <button type="button" class="btn btn-secondary">반품처리</button>
+                        <button type="button" class="btn btn-secondary">환불처리</button> --%>
+                      </c:choose >
+
                     </div>
 
                 </div>
@@ -79,80 +101,104 @@
                         <div class="row gx-5 justify-content-center">
 
                             <table class="table  fundingList">
-                                <thead>
-                                  <tr>
-                                    <th scope="col" class="dt1">
-                                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    </th>
-                                    <th scope="col" class="dt2">주문번호</th>
-                                    <th scope="col" class="dt3">카테고리</th>
-                                    <th scope="col" class="dt4">펀딩제목</th>
-                                    <th scope="col" class="dt5">주문자</th>
-                                    <th scope="col">결제일</th>
-                                    <th scope="col">결제 금액</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <%-- <tr>
-                                    <th scope="row">
-                                      <input class="form-check-input" type="checkbox" value="">
-                                    </th>
-                                    <td>h12132</td>
-                                    <td>간식</td>
-                                    <td class="fundi ngTitle"><a href="">간식 관련 펀딩 제목입니다.</a></td>
-                                    <td>결제 완료</td>
-                                    <td>2022//09/21</td>
-                                  </tr> --%>
-                             
-                                     <c:forEach var="o" items="${orderList}">
-                                          <tr>
-                                              <th scope="row">
-                                                <input class="form-check-input" type="checkbox" value="">
-                                              </th>
 
-                                              <td>${o.paymentNo}</td>
-                                              <td>${o.fundingCategory}</td>
-                                              
-                                              <td>
-                                              <a href="../detail/${o.paymentNo}">
-                                               ${o.fundingTitle}
-                                              </a>
-                                              </td>
 
-                                              <td>${o.recipient}</td>
-                                              <td>${o.payDate}</td>
-                                              <td>${o.fullPrice}</td>
-                                          </tr>
-                                      </c:forEach>
-                            
+
+                   <c:choose > <%-- 테이블 반복 영역 시잔 --%>
+
+
+                      <c:when test="${orderCode == 1}"><%-- 신규 주문일때. --%>
+    <thead>
+    <tr>
+    <th scope="col" class="dt1">
+      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+    </th>
+    <th scope="col" class="dt2">주문번호</th>
+    <th scope="col" class="dt3">카테고리</th>
+    <th scope="col" class="dt4">펀딩제목</th>
+    <th scope="col" class="dt5">주문자</th>
+    <th scope="col" class="dt6">주문상태</th>
+    <th scope="col">결제일</th>
+    <th scope="col">결제 금액</th>
+    </tr>
+    </thead>
+    <tbody>
+      <c:forEach var="o" items="${orderList}">
+          <tr>
+              <th scope="row">
+                <input class="form-check-input" type="checkbox">
+              </th>
+
+              <td>${o.paymentNo}</td>
+              <td>${o.fundingCategory}</td>
+              
+              <td>
+                <a href="../detail/${o.paymentNo}">
+                  ${o.fundingTitle}
+                </a>
+              </td>
+
+              <td>${o.recipient}</td>
+              <td>${o.orderState}</td>
+              <td>${o.payDate}</td>
+              <td>${o.fullPrice}</td>
+          </tr>
+      </c:forEach>
+                      </c:when>              
+                      
+                      <c:when test="${orderCode == 2}"><%-- 배송준비 --%>  
+                        <thead>
+                          <tr >
+                            <th scope="col" class="dt1">
+                              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            </th>
+                            <th scope="col">주문번호</th>
+                            <th scope="col">카테고리</th>
+                            <th scope="col">펀딩제목</th>
+                            <th scope="col">주문자</th>
+                            <th scope="col">결제일</th>
+                            <th scope="col">택배사</th>
+                            <th scope="col">운송장 번호</th>
+
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <c:forEach var="o" items="${orderList}">
+                              <tr>
+                                  <th scope="row">
+                                    <input class="form-check-input" type="checkbox" value="${o.paymentNo}">
+                                  </th>
+
+                                  <td>${o.paymentNo}</td>
+                                  <td>${o.fundingCategory}</td>
+                                  
+                                  <td>
+                                    <a href="../detail/${o.paymentNo}">${o.fundingTitle}</a>
+                                  </td>
+
+                                  <td>${o.recipient}</td>
+                                  <td>${o.payDate}</td>
+                                  
+                                  <td>
+                                    <select>
+                                      <option>CJ대한통운</option>
+                                    </select>
+                                  </td>
+                                  
+                                  <td><input type="text" value="" name=""></td>
+
+                              </tr>
+                          </c:forEach>
+                      </c:when>                
+                  </c:choose ><%-- 테이블 반복 영역  끝--%>
+
                                   
                
                                 </tbody>
+
+
                               </table>
 
-
-                              <!-- 페이지 네이션 영역 시작 -->
-                            <div class="pagination-area">
-                              <nav aria-label="Page navigation example">
-                                <ul class="pagination">
-                                  <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous">
-                                      <span aria-hidden="true">&laquo;</span>
-                                    </a>
-                                  </li>
-                                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                  <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
-                                      <span aria-hidden="true">&raquo;</span>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </nav>
-                            </div><!-- 페이지 네이션 영역 끝 -->
-
-                            
                         </div>
                     </div>
                 </div>

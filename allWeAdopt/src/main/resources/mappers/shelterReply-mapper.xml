@@ -60,5 +60,9 @@
 		WHERE REPLY_NO = #{replyNo} 
 	</update>
 	
+	<select id="countReplyList" resultType="_int">
+		SELECT COUNT(*) FROM REPLY WHERE BOARD_NO = #{boardNo}
+	</select>
+	
 
 </mapper>

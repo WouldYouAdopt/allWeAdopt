@@ -127,6 +127,7 @@ public class AdminFundingController {
 		
 		return "funding/admin/funding-register";
 	}
+	
 	//펀딩 등록 페이지
 	@PostMapping("/register")
 	public String fundingRegister(@RequestParam(value = "uploadImage", required = false, defaultValue="0") MultipartFile uploadImage

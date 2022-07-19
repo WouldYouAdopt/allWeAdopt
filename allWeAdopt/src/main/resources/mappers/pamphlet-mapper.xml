@@ -29,6 +29,7 @@
 		<result property="memberName" column="MEMBER_NM"/>
 		<result property="profileImage" column="PROFILE_IMG"/>
 		<result property="thumbnail" column="THUMBNAIL"/>
+		<result property="memberEmail" column="MEMBER_EMAIL"/>
 	</resultMap>
 	
 	<!-- 전단지 전체 수 조회 -->
@@ -51,7 +52,7 @@
 	
 	<!-- 전단지 상세 조회 -->
 	<select id="pamphletDetail" resultMap="detail_rm">
-		SELECT BOARD_NO, BOARD_TITLE, BOARD_CONTENT, PHONE, PROFILE_IMG, MEMBER_NM, MEMBER_NO, THUMBNAIL,
+		SELECT BOARD_NO, BOARD_TITLE, BOARD_CONTENT, PHONE, PROFILE_IMG, MEMBER_NM, MEMBER_NO, THUMBNAIL, MEMBER_EMAIL,
 	        TO_CHAR(CREATE_DT, 'YYYY"년" MM"월" DD"일" HH24"시" MI"분"') CREATE_DT,
 	        TO_CHAR(UPDATE_DT, 'YYYY"년" MM"월" DD"일" HH24"시" MI"분"') UPDATE_DT
 		FROM BOARD

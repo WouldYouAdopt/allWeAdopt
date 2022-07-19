@@ -73,9 +73,8 @@ table *{
 
 /* 펀딩예정인 펀딩 1개 들어갈 박스 */
 .fundingInfoS{
+	position:relative;
 	width:33%;
-
-	
 }
 /* 배경으로 펀딩 이미지 들어가는 박스 */
 .fundingImgS{
@@ -87,10 +86,15 @@ table *{
 }
 /* 펀딩 예정인 펀딩 이미지 위에 들어갈 텍스트 */
 .textS{
+	width:100%;
+	height:150px;
+	
 	position:absolute;
 	top:50%;
 	left:50%;
 	transform: translate(-50%,-50%);
+	text-align:center;
+	padding-top:40px;
 	
 	font-size:40px;
 	color:rgb(255, 255, 255, 0.8);
@@ -104,6 +108,40 @@ table *{
 	width:100%
 }
 .infoS{
-	padding:10px;
+	padding:5px;
+}
+.preview{
+	color:#fff;
+	padding:0px 5px;;
+	background:#999;
+	border-radius:4px;
+	font-size:12px;
+} 
+
+/* 예정인 펀딩 마우스오버 시 노출될 박스*/
+.hover{
+	display:none;
+	background: rgba(251,131,107, 0.7);
+	/* background: rgba(0,0,0, 0.6); */
+	height:150px;
+	border-radius:5px;
+	width:100%;
+	
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:3;
+	
+	text-align:center;
+	padding-top:54px;
+	color:#fff;
+	font-size: 30px;
+	font-weight:bold;
 }
 
+.hover.visable{
+	display:block !important;
+}
+.hoverEvent{
+	background: #ff0000;
+}

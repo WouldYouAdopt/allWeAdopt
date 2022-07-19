@@ -92,6 +92,9 @@
 		
 		<result property="nameAnonymous" column="NAME_OPEN" />
 		<result property="priceAnonymous" column="PRICE_OPEN" />
+		
+		<result property="nameAnonymous" column="PARCEL_COMPANY" /><!-- 택배사. -->
+		<result property="priceAnonymous" column="PARCEL_NO" /><!-- 운송장 번호 -->
 
 		<collection property="rewardList" column="PAYMENT_NO"
 			javaType="java.util.ArrayList" ofType="reward" select="selectRewards" />
@@ -357,8 +360,8 @@
 	</select>
 
 
-	<!-- 이제 부터 김현기가 사용중 -->
-	<select id="FundingSelect" resultMap="detail_rm">
+	<!-- ???? -->
+	<select id="selectfunding" resultMap="funding_rm">
 		SELECT * FROM FUNDING
 		WHERE FUNDING_NO = #{fundingNo}
 	</select>

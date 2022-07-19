@@ -121,8 +121,7 @@ function selectReplyList(){
 
         },
         error : function(req, status, error){
-            console.log("에러 발생");
-            console.log(req.responseText);
+
         }
     });
 }
