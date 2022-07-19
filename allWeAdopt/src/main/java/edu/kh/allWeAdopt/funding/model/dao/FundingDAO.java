@@ -269,6 +269,10 @@ public class FundingDAO {
 		return sqlSession.selectList("fundingMapper.selectEndCount");
 	}
 
+	public List<OrderDetail> selectOrderList(Map<String, Object> map) {
+		return sqlSession.selectList("fundingMapper.selectOrderList",map);
+	}
+
 
 
 
