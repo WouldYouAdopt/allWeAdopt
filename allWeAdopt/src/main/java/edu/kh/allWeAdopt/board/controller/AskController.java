@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -49,8 +50,10 @@ public class AskController {
 	
 	
 	// 문의사항 상세 조회
-	@GetMapping("/ask/detail")
-	public String askDetail() {
+	@GetMapping("/ask/detail/{boardNo}")
+	public String askDetail( @PathVariable("boardNo") int boardNo,
+						 	 @RequestParam(value="cp", required=false, defaultValue="1") int cp,
+						 	 Model model ) {
 		
 		
 		return "ask/askDetail";

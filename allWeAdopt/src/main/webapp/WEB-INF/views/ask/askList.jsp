@@ -105,7 +105,7 @@
                                     <c:set var="url" value="${contextPath}/member/myPage/notice/detail/${n.boardNo}?cp=${pagination.currentPage}" />
                                 </c:if>
                                 <c:if test="${loginMember.memberType =='A'}">
-                                    <c:set var="url" value="${contextPath}/admin/notice/detail/${n.boardNo}?cp=${pagination.currentPage}"/>
+                                    <c:set var="url" value="${contextPath}/admin/notice/detail/${a.boardNo}?cp=${pagination.currentPage}"/>
                                 </c:if>
 
 

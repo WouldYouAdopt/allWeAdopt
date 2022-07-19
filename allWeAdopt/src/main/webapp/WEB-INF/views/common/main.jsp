@@ -158,7 +158,7 @@
 
         
         <!-- main js -->
-        <script src="${contextPath}/resources/js/main_study.js"></script>
+        <!-- <script src="${contextPath}/resources/js/main_study.js"></script> -->
 
         <!-- Core theme JS-->
         <script src="${contextPath}/resources/js/scripts.js"></script>
