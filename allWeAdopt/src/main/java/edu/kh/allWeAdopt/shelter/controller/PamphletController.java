@@ -159,7 +159,7 @@ public class PamphletController {
 						
 		}
 		
-		
+		// 전단지 삭제
 		@GetMapping("/pamphlet/delete/{boardNo}")
 		public String deletePamphlet(@PathVariable("boardNo") int boardNo, HttpServletRequest req, RedirectAttributes ra) {
 			

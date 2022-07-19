@@ -37,6 +37,7 @@
 
 
 
+
 (function(){
     const deleteBtn = document.getElementById("deleteBtn"); // 존재하지 않으면 null
 
@@ -123,6 +124,9 @@ function shareKakao() {
       }
     });
   }
+
+
+
 
 
 
