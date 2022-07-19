@@ -226,8 +226,19 @@ public class AdminFundingController {
 	
 	
 	//배송 관리 상세 페이지
-	@GetMapping("/delivery/detail/{payNo}")
-	public String selectDeliveryDetail() {
+	@GetMapping("/delivery/detail/{paymentNo}")
+	public String selectDeliveryDetail(@PathVariable int paymentNo
+										,Model model
+										,RedirectAttributes ra) {
+		
+		OrderDetail detail = service.selectOrderDetail(paymentNo);
+		
+		if(detail != null) {
+			model.addAttribute("detail", detail);
+		}else{
+			ra.addFlashAttribute("message", "조회중 오류가 발생했습니다.");
+			return "redirect:/";
+		}
 		
 		return "funding/my-funding-detail";
 	}
