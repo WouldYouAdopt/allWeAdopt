@@ -79,6 +79,7 @@ public class MyPageController {
 	@PostMapping("/updateInfo/{mode}")
 	public String updateInfo( @PathVariable("mode") int mode,
 							  @ModelAttribute("loginMember") Member loginMember,
+							  @RequestParam(value="newTel", required=false) String newTel,
 							  @RequestParam(value="memberAddress", required=false) String[] memberAddress,
 							  @RequestParam(value="uploadImage", required=false) MultipartFile uploadImage,
 							  @RequestParam Map<String, Object> map,
@@ -88,6 +89,17 @@ public class MyPageController {
 		
 		// 회원번호 세팅
 		map.put("memberNo", loginMember.getMemberNo());
+		
+		System.out.println( "기존 전화번호 : "+loginMember.getMemberTel());		
+		System.out.println("map" +(String)map.get("memberTel"));		
+		
+		if(newTel!=null) {
+			map.put("memberTel", newTel);
+		}
+		
+		System.out.println("새 전번"+ newTel);
+		System.out.println("map" +(String)map.get("memberTel"));		
+
 		
 		// mode1 : 나의 정보 수정
 		if(mode==1) {
@@ -113,8 +125,8 @@ public class MyPageController {
 			
 			if(result>0 ) {
 				
-				loginMember.setMemberName( (String)map.get("memberName") );
-				loginMember.setMemberTel( (String)map.get("memberTel") );
+				loginMember.setMemberName( (String)map.get("memberName") );	
+				loginMember.setMemberTel((String)map.get("memberTel"));
 				loginMember.setMemberAddress(newAddr);
 				loginMember.setProfileImage( (String)map.get("profileImage"));
 				
