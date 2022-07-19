@@ -88,6 +88,7 @@
 		<result property="orderPhoneSub" column="ORDER_PHONE2" />
 		<result property="orderAddress" column="ORDER_ADD" />
 		<result property="memberNo" column="MEMBER_NO" />
+		<result property="fundingThumbnail" column="FUNDING_THUMBNAIL" />
 		
 		<result property="nameAnonymous" column="NAME_OPEN" />
 		<result property="priceAnonymous" column="PRICE_OPEN" />
@@ -215,6 +216,7 @@
 		FUNDING_NO
 		,CATEGORY_NM
 		,FUNDING_TITLE
+		,FUNDING_THUMBNAIL
 		,TO_CHAR(PAY_DT,'YYYY.MM.DD') AS PAY_DT
 		,PAY_METHOD
 		,( SELECT SUM((REWARD_PRICE*AMOUNT))AS FULL_PRICE

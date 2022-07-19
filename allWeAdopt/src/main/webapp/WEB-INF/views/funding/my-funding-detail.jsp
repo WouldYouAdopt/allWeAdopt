@@ -53,21 +53,28 @@
 <body class="d-flex flex-column">
 	<main class="flex-shrink-0">
 
+	<!-- 로그인 타입에 따라 헤더 변경 -->
+	<c:if test="${loginMember.memberType =='M' || loginMember.memberType == 'K'}">
 		<jsp:include page="/WEB-INF/views/common/header.jsp" />
+		<jsp:include page="/WEB-INF/views/common/mypage-header.jsp" />
+	</c:if>
+	<c:if test="${loginMember.memberType =='A'}"> --%>
+		<jsp:include page="/WEB-INF/views/common/admin-header.jsp" />
+	</c:if>
   
-		<section class="py-4">
+		<section class="">
 
     	<!-- 상단 이미지 영역 -->	
 		<div class="fundingTitleBox">
-			<div class="fundingTitleImage"></div>
-			<div class="fundingTitleText">우리아이 시원하게 여름 쿨매트</div>
+			<div class="fundingTitleImage" style="background: url(${contextPath}${detail.fundingThumbnail}) 50% 50% ;"></div>
+			<div class="fundingTitleText">${detail.fundingTitle}</div>
 		</div>
 
 
 
 
 	   <!-- 상단 메뉴 영역. -->
-        <div class="text-center mb-5" id="TOT">
+        <div class="text-center pt-4" id="TOT">
             <h1 class="fw-bolder">주문관리 상세</h1>
             <p class="lead fw-normal text-muted mb-0">펀딩 상세 내역을 조회하는 페이지입니다.</p>
         </div>
