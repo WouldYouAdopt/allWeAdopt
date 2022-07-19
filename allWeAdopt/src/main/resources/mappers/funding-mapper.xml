@@ -355,8 +355,8 @@
 	</select>
 
 
-	<!-- ?? -->
-	<select id="selectfunding" resultMap="funding_rm">
+	<!-- 이제 부터 김현기가 사용중 -->
+	<select id="FundingSelect" resultMap="detail_rm">
 		SELECT * FROM FUNDING
 		WHERE FUNDING_NO = #{fundingNo}
 	</select>
@@ -388,6 +388,9 @@
 		FUNDING_ST,
 		FUNDING_THUMBNAIL,
 		DELIVERY_FEE,
+		
+		FUNDING_CATEGORY,
+		
 		CATEGORY_NM
 		FROM FUNDING
 		JOIN CATEGORY USING(FUNDING_CATEGORY)
@@ -667,4 +670,23 @@
 	AND ORDER_ST_CD=#{orderCode}
     </select>
 	
+	<insert id="updateReward">
+	INSERT INTO REWARD VALUES(
+	  #{rewardNo},
+	  #{rewardTitle},
+	  #{rewardContent},
+	  #{rewardPrice},
+	  #{maxRewardNo},
+	  #{fundingNo} )
+	</insert>
+
+	<insert id="insertReward">
+	INSERT INTO REWARD VALUES(
+	  SEQ_REWARD_NO.NEXTVAL,
+	  #{rewardTitle},
+	  #{rewardContent},
+	  #{rewardPrice},
+	  #{maxRewardNo},
+	  #{fundingNo} )
+	</insert>	
 </mapper>

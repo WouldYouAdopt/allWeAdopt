@@ -106,9 +106,15 @@
                               <!-- 카테고리 영역-->
                               <div id="fundingCategory">
                                 <select class="form-select" aria-label="Default select example" name="categoryNo">
-                                  <option value="${detail.categoryNo}" selected>  
-                                  	<c:if test="${detail.categoryName != null}">${detail.categoryName}</c:if>
-                                  	<c:if test="${detail.categoryName == null}">카테고리</c:if>
+                      
+                                  	<c:if test="${detail.categoryName != null}">
+                                    <option value="${detail.categoryNo}" selected> ${detail.categoryName}
+                                    </c:if>
+
+                                  	<c:if test="${detail.categoryName == null}">
+                                     <option selected> ${detail.categoryName}
+                                    </c:if>
+
                                   </option>
                                   <option value="1">건강</option>
                                   <option value="2">장난감</option>
@@ -172,7 +178,7 @@
 					
 					<c:otherwise>
                                 <tr>
-                                  <td>1</td>
+                                  <td>0</td>
                                   <td><input type="text"></td>
                                   <td><input type="text"></td>
                                   <td><input type="number"></td>
@@ -180,7 +186,7 @@
                                   <td><button type="button" class="rewardsAddBtn" onclick="addRewardList()">등록</button></td>
                                 </tr>
                                 <tr>
-                                  <td>2</td>
+                                  <td>0</td>
                                   <td><input type="text"></td>
                                   <td><input type="text"></td>
                                   <td><input type="number"></td>
@@ -265,8 +271,9 @@
             const contextPath = "${contextPath}";
             const currentContent = '';
             let dFee = "${detail.targetDonation}";
+            let fundingNo = "${param.fundingNo}";
 
-        </script>
+         </script>
  <!-- 펀딩 작성 관련 JS -->
         <script src="${contextPath}/resources/js/funding/funding-write.js"></script>
 

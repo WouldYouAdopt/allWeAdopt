@@ -4,6 +4,7 @@ import java.io.File;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -402,9 +403,6 @@ public class FundingServiceImpl implements FundingService {
 	}
 
 
-
-
-	
 	
 	
 	/**펀딩 업데이트
@@ -428,12 +426,23 @@ public class FundingServiceImpl implements FundingService {
 		if(result>0) {
 			
 			//기존 리워드 삭제
+			//기존 리워드 시퀀스 번호에 의존하는 경우가 존재해 에러 발생 이를 보안하기 위해 향상된 for문을 이용해 한번씩 update와 insert를 검증해야한다.
+			
+			//방식을 다시 변경 리워드 번호가 부여된다는 기준을 삼는다
+			//일단 펀딩 번호를 기준으로 리워드를 모두 정리한 후
 			result = dao.deleteRewardList(fundingDetail.getFundingNo());
 			
 			if(result>0) {
-				//리워드 등록
-				result = dao.registerRewardList(fundingDetail.getRewardList());
-
+				//result = dao.registerRewardList(fundingDetail.getRewardList());
+				for(Reward r : fundingDetail.getRewardList()) {
+					if(r.getRewardNo()==0) { //0인 경우는 삽입
+						result = dao.insertReward(r);
+					}else {
+						result = dao.updateReward(r);
+					}
+				}
+						
+				
 				//리워드가 정상적으로 수행되고 썸네일이 변경된 경우.
 				if(uploadImage.getSize() != 0) {					
 					//썸네일이 변경된 경우.
@@ -450,9 +459,10 @@ public class FundingServiceImpl implements FundingService {
 
 
 
-	
-	
-	
+
+
+
+
 	/**주문관리 페이지를 위한 List 조회
 	 *
 	 */
