@@ -2,8 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
-<header >
-    <nav class="px-0 navbar navbar-expand-lg navbar-light bg-white" style="border-bottom: 1px solid;  z-index: 100 ; ">
+<header>
+    <nav class="px-0 navbar navbar-expand-lg navbar-light bg-white" style="border-bottom: 1px solid;  position:relative; z-index:100;">
         <div class="container  px-0">
             <a class="navbar-brand pt-1" href="${contextPath}">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 291.1 41.24" id="logo">
@@ -43,8 +43,8 @@
 
                         <c:otherwise>
                                 <!-- 사이트로 로그인 했을 때 -->
-                                <li class=" nav-item dropdown" >
-                                    <a class="nav-link dropdown-toggle py-0" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="border-radius: 50%; ">
+                                <li class=" nav-item dropdown" style="position:initial">
+                                    <a class="nav-link dropdown-toggle py-0" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="border-radius: 50%;">
                                         <%-- 기본 프로필이미지(= 프로필이미지 설정 안했을때) --%>
                                         <c:if test="${empty loginMember.profileImage }">
                                              <img src="${contextPath}/resources/images/user.png" id="member-profile" style="width : 35px; height : 35px; ">	
@@ -61,7 +61,8 @@
 
 
                                     </a>
-                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio" style=" z-index:10 position:absolute; right: 12%; ">
+                                    <%-- 버튼 클릭시 이 부분 class에 show가 생김--%>
+                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio" style="right: 11%">
                                         <c:if test="${loginMember.memberType == 'M'}">
                                             <li><a class="dropdown-item" href="${contextPath}/member/myPage/pwConfirm">회원 정보 수정</a></li>
                                         </c:if>
