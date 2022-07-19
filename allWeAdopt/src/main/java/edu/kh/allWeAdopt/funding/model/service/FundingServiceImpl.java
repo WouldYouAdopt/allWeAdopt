@@ -447,6 +447,30 @@ public class FundingServiceImpl implements FundingService {
 	}
 
 
+
+
+
+	
+	
+	
+	/**주문관리 페이지를 위한 List 조회
+	 *
+	 */
+	@Override
+	public List<OrderDetail> selectOrderList(Map<String, Object> map) {
+		
+		int orderCode = (int)map.get("orderCode");
+		List<OrderDetail> orderList = new ArrayList<OrderDetail>();
+		//나중에 필요하면 여기 조건문 수정
+		//현재는 0이 아닌 상태일 경우 모두 
+		if(orderCode != 0) {
+			orderList = dao.selectOrderList(map);
+		}
+			
+		return orderList;
+	}
+
+
 	
 
 	

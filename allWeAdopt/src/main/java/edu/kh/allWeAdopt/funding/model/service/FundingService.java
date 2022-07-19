@@ -129,6 +129,12 @@ public interface FundingService {
 	 */
 	int fundingUpdate(FundingDetail fundingDetail, MultipartFile uploadImage, String webPath, String folderPath)throws Exception;
 
+	/**배송관리 페이지를 위한 List 조회 : 김현기
+	 * @param map
+	 * @return
+	 */
+	List<OrderDetail> selectOrderList(Map<String, Object> map);
+
 
 	
 	

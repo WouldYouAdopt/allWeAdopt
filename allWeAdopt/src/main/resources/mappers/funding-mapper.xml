@@ -649,22 +649,22 @@
 		ORDER BY FUNDING_SEASON DESC
 	</select>
 	
-	<select id="selectDelivary" resultMap="orderDetail_rm">
+	<!-- 배송관리 -->
+	<select id="selectOrderList" resultMap="orderDetail_rm">
 	SELECT A.PAYMENT_NO,CATEGORY_NM,RECIPIENT,
+			FUNDING_TITLE,
 	        TO_CHAR(PAY_DT, 'YYYY/MM/DD') AS PAY_DT,
 	        ORDER_ST,
 	           (SELECT SUM(REWARD_PRICE*AMOUNT )
-	            FROM REWARD_ORDER
+	            FROM REWARD_ORDER B
 	            JOIN REWARD USING(REWARD_NO)
-	            WHERE PAYMENT_NO = A.PAYMENT_NO ) AS FULL_PRICE
+	            WHERE B.PAYMENT_NO = A.PAYMENT_NO ) AS FULL_PRICE
 	FROM PAYMENT A
 	JOIN FUNDING USING(FUNDING_NO)
 	JOIN CATEGORY USING(FUNDING_CATEGORY)
 	JOIN ORDER_ST USING(ORDER_ST_CD)
-	
-	<!-- 수정 예정 -->
-	WHERE FUNDING_NO = (
-	    SELECT FUNDING_NO FROM FUNDING WHERE FUNDING_ST = 'Y')
+	WHERE FUNDING_NO =#{fundingNo}
+	AND ORDER_ST_CD=#{orderCode}
     </select>
 	
 </mapper>

@@ -204,8 +204,18 @@ public class AdminFundingController {
 	
 	
 	//배송 관리 페이지.
-	@GetMapping("/delivery")
-	public String deliveryController() {
+	@GetMapping("/delivery/{fundingNo}/{orderCode}")
+	public String deliveryController(@PathVariable int fundingNo
+								 	,@PathVariable int orderCode
+								 	,Model model) {
+		
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("fundingNo", fundingNo);
+		map.put("orderCode", orderCode);
+		List<OrderDetail> orderList = service.selectOrderList(map);
+		model.addAttribute("orderList", orderList);
+		
 		
 		return "funding/admin/delivery-controller";
 	}

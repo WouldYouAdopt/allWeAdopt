@@ -87,12 +87,13 @@
                                     <th scope="col" class="dt2">주문번호</th>
                                     <th scope="col" class="dt3">카테고리</th>
                                     <th scope="col" class="dt4">펀딩제목</th>
-                                    <th scope="col" class="dt5">주문상태</th>
-                                    <th scope="col">펀딩 결제일</th>
+                                    <th scope="col" class="dt5">주문자</th>
+                                    <th scope="col">결제일</th>
+                                    <th scope="col">결제 금액</th>
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  <tr>
+                                  <%-- <tr>
                                     <th scope="row">
                                       <input class="form-check-input" type="checkbox" value="">
                                     </th>
@@ -101,43 +102,30 @@
                                     <td class="fundi ngTitle"><a href="">간식 관련 펀딩 제목입니다.</a></td>
                                     <td>결제 완료</td>
                                     <td>2022//09/21</td>
-                                  </tr>
-                            
-                                  <tr>
-                                    <th scope="row">
-                                      <input class="form-check-input" type="checkbox" value="">
-                                    </th>
-                                    <td>h12132</td>
-                                    <td>간식</td>
-                                    <td class="fundi ngTitle"><a href="">간식 관련 펀딩 제목입니다.</a></td>
-                                    <td>결제 완료</td>
-                                    <td>2022//09/21</td>
-                                  </tr>
+                                  </tr> --%>
                              
+                                     <c:forEach var="o" items="${orderList}">
+                                          <tr>
+                                              <th scope="row">
+                                                <input class="form-check-input" type="checkbox" value="">
+                                              </th>
+
+                                              <td>${o.paymentNo}</td>
+                                              <td>${o.fundingCategory}</td>
+                                              
+                                              <td>
+                                              <a href="../detail/${o.paymentNo}">
+                                               ${o.fundingTitle}
+                                              </a>
+                                              </td>
+
+                                              <td>${o.recipient}</td>
+                                              <td>${o.payDate}</td>
+                                              <td>${o.fullPrice}</td>
+                                          </tr>
+                                      </c:forEach>
                             
-                                  <tr>
-                                    <th scope="row">
-                                      <input class="form-check-input" type="checkbox" value="">
-                                    </th>
-                                    <td>h12132</td>
-                                    <td>간식</td>
-                                    <td class="fundi ngTitle"><a href="">간식 관련 펀딩 제목입니다.</a></td>
-                                    <td>결제 완료</td>
-                                    <td>2022//09/21</td>
-                                  </tr>
-                             
-                            
-                                  <tr>
-                                    <th scope="row">
-                                      <input class="form-check-input" type="checkbox" value="">
-                                    </th>
-                                    <td>h12132</td>
-                                    <td>간식</td>
-                                    <td class="fundi ngTitle"><a href="">간식 관련 펀딩 제목입니다.</a></td>
-                                    <td>결제 완료</td>
-                                    <td>2022//09/21</td>
-                                  </tr>
-                             
+                                  
                
                                 </tbody>
                               </table>
