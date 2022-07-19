@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import edu.kh.allWeAdopt.board.model.service.BoardService;
+import edu.kh.allWeAdopt.board.model.vo.BoardDetail;
 import edu.kh.allWeAdopt.member.model.vo.Member;
 
 @Controller
@@ -55,6 +56,9 @@ public class AskController {
 						 	 @RequestParam(value="cp", required=false, defaultValue="1") int cp,
 						 	 Model model ) {
 		
+		BoardDetail detail = service.selectAskDetail(boardNo); 
+		
+		model.addAttribute("detail",detail);
 		
 		return "ask/askDetail";
 	}
