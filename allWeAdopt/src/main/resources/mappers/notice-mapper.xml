@@ -94,7 +94,7 @@
 	<!-- 문의사항 게시글 수 조회 -->
 	<select id="paginationCount" resultType="_int">
 	SELECT COUNT(*) FROM BOARD
-	WHERE BOARD_CD = 5
+	WHERE BOARD_CD = 5 
 	AND BOARD_ST = 'N'
 	AND MEMBER_NO = #{memberNo}
 	</select>

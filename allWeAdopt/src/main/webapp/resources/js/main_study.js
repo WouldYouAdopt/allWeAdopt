@@ -27,8 +27,8 @@
 				videoImages: []
 			},
 			values: {
-				videoImageCount: 50,
-				imageSequence: [0, 49],
+				videoImageCount: 100,
+				imageSequence: [0, 99],
 				canvas_opacity: [1, 0, { start: 0.9, end: 1 }],
 				messageA_opacity_in: [0, 1, { start: 0.1, end: 0.2 }],
 				messageB_opacity_in: [0, 1, { start: 0.3, end: 0.4 }],
@@ -75,8 +75,8 @@
 				videoImages: []
 			},
 			values: {
-				videoImageCount: 60,
-				imageSequence: [0, 59],
+				videoImageCount: 80,
+				imageSequence: [0, 79],
 				canvas_opacity_in: [0, 1, { start: 0, end: 0.1 }],
 				canvas_opacity_out: [1, 0, { start: 0.95, end: 1 }],
 				messageA_translateY_in: [20, 0, { start: 0.15, end: 0.2 }],
@@ -111,10 +111,7 @@
 				context: document.querySelector('.image-blend-canvas').getContext('2d'),
 				imagesPath: [
 					contextPath+'/resources/images/main/blend-image-1.jpg',
-					// './images/blend-image-2.jpg'
-
-					// './images/funding.jpg',
-					contextPath+'/resources/images/main/map.jpg'
+					contextPath+'/resources/images/main/funding.png'
 					
 				],
 				images: []
