@@ -37,6 +37,7 @@
         .row > * {
         	padding: 0 !important;
         }
+        
         </style>
  
        </head>
@@ -56,7 +57,7 @@
             <section class="py-4">
 
                 <!-- 상단 메뉴 영역. -->
-                <div class="text-center mb-5" id="TOT">
+                <div class="text-center mb-5 pt-5">
                     <h1 class="fw-bolder">펀딩관리</h1>
                     <p class="lead fw-normal text-muted mb-0 lead"> 펀딩리스트를 관리하고 새로운 펀딩을 등록할 수 있습니다 </p>
                 </div>
@@ -87,7 +88,7 @@
                               <div class="btnArea">
                               
                                 <button type="button" class="btn btn-secondary" onclick='location.href="register?fundingNo=${map.now.fundingNo}&fundingSeason=${map.now.fundingSeason}"'>진행중 펀딩 수정</button>
-                                <button type="button" class="btn btn-secondary" onclick='location.href="delivery"'>배송 관리</button>
+                                <button type="button" class="btn btn-secondary" onclick='location.href="delivery/${nowFundingNo}/1"'>배송 관리</button>
                               </div>
 
                           </div>
@@ -111,27 +112,31 @@
                            		</c:forEach>
                            		
                            			<!-- 1달 뒤 펀딩 -->
+                           			<!-- 예약없을때 -->
                            			<c:if test="${empty next0}">
                            			<div class="fundingInfoS">
 	                            	<a href="${contextPath}/admin/funding/register?fundingSeason=${map.nextSeason[0]}">
 		                            	<div class="fundingImgS">
 		                            		<div class="textS">${map.nextSeason[0]}</div>
 		                            	</div>
+	                            		<div class="hover">펀딩 등록</div>
 		                            	<div class="infoS"></div>
 	                            	</a>
 	                            	</div>
                            			</c:if>
+
+                           			<!-- 예약있을때  -->
                            			<c:if test="${!empty next0}">
 	                            	<div class="fundingInfoS">
 			                            <a href="${contextPath}/admin/funding/register?fundingNo=${next0.fundingNo}&fundingSeason=${map.nextSeason[0]}">
 		                            	<div class="fundingImgS" style="background:url('${contextPath}${next0.fundingThumbnail}') 50% 0; background-size:cover;">
 		                            		<div class="textS">${map.nextSeason[0]}</div>
 		                            	</div>
-		                            	<div class="infoS">
-		                            	[${next0.categoryName}] ${next0.fundingTitle}
-		                            	</div>
+		                            	<div class="hover">펀딩 수정</div>
+		                            	<div class="infoS">[${next0.categoryName}] ${next0.fundingTitle}</div>
 		                            	</a>
 	                            	</div>
+	                            	<!-- <a href=""><span class="preview">미리보기</span></a> -->
 	                            	</c:if>
 	                            	
 	                            	
@@ -142,6 +147,7 @@
 		                            	<div class="fundingImgS">
 		                            		<div class="textS">${map.nextSeason[1]}</div>
 		                            	</div>
+		                            	<div class="hover">펀딩 등록</div>
 		                            	<div class="infoS"></div>
 	                            	</a>
 	                            	</div>
@@ -152,9 +158,8 @@
 		                            	<div class="fundingImgS" style="background:url('${contextPath}${next1.fundingThumbnail}') 50% 0; background-size:cover;">
 		                            		<div class="textS">${map.nextSeason[1]}</div>
 		                            	</div>
-		                            	<div class="infoS">
-		                            	[${next1.categoryName}] ${next0.fundingTitle}
-		                            	</div>
+		                            	<div class="hover">펀딩 수정</div>
+		                            	<div class="infoS">[${next1.categoryName}] ${next0.fundingTitle}</div>
 		                            	</a>
 	                            	</div>
 	                            	</c:if>
@@ -167,6 +172,7 @@
 		                            	<div class="fundingImgS">
 		                            		<div class="textS">${map.nextSeason[2]}</div>
 		                            	</div>
+		                            	<div class="hover">펀딩 등록</div>
 		                            	<div class="infoS"></div>
 	                            	</a>
 	                            	</div>
@@ -177,13 +183,11 @@
 		                            	<div class="fundingImgS" style="background:url('${contextPath}${next0.fundingThumbnail}') 50% 0; background-size:cover;">
 		                            		<div class="textS">${map.nextSeason[2]}</div>
 		                            	</div>
-		                            	<div class="infoS">
-		                            	[${next2.categoryName}] ${next2.fundingTitle}
-		                            	</div>
+		                            	<div class="hover">펀딩 수정</div>
+		                            	<div class="infoS">[${next2.categoryName}] ${next2.fundingTitle}</div>
 		                            	</a>
 	                            	</div>
 	                            	</c:if>
-	                             	
                           </div>
                         </div>
 
@@ -261,6 +265,6 @@
         <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
        
         <!-- 펀딩 작성 관련 JS -->
-        <script src="/allWeAdopt/src/main/webapp/resources/js/funding/funding-write.js"></script>
+        <script src="${contextPath}/resources/js/funding/funding-management.js"></script>
     </body>
 </html>
