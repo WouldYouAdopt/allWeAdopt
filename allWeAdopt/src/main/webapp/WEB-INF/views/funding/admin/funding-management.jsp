@@ -87,8 +87,9 @@
                             </a>
                               <div class="btnArea">
                               
-                                <button type="button" class="btn btn-secondary" onclick='location.href="register?fundingNo=${map.now.fundingNo}&fundingSeason=${map.now.fundingSeason}"'>진행중 펀딩 수정</button>
                                 <button type="button" class="btn btn-secondary" onclick='location.href="delivery/${nowFundingNo}/1"'>배송 관리</button>
+                                <button type="button" class="btn btn-secondary" onclick='location.href="register?fundingNo=${map.now.fundingNo}&fundingSeason=${map.now.fundingSeason}"'>진행중 펀딩 수정</button>
+                                <button type="button" class="btn btn-secondary" onclick="window.open('${contextPath}/funding/detail/${map.now.fundingNo}?page=1')">진행중 펀딩 바로가기</button>
                               </div>
 
                           </div>
