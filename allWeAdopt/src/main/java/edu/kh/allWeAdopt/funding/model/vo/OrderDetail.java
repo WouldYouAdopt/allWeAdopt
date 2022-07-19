@@ -31,6 +31,9 @@ public class OrderDetail {
 	
 	private int memberNo;//회원번호
 	
+	private String parcelCompany; //택배사
+	private int parcelNo; //운송장 번호
+	
 	//해당 결제 번호로 구매한 리워드 목록
 	private List<Reward> rewardList;
 }
