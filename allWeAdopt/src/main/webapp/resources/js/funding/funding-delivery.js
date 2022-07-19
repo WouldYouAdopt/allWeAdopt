@@ -362,13 +362,17 @@ function processing(code) {
     
     $.ajax({
         url: '../processing',
-        data: { code: code ,
-                list:obj},
+        data: { code:code , //변경할 값
+                orderCode:orderCode, //현재 카테고리 번호
+                list:obj  ,  //체크된 대상들
+                fundingNo : fundingNo // 현재 펀딩 번호/
+            },
         type: "get",
-        success: function (result) {
-            if(result>0){
+        dataType:"json",
+        success: function (orderList) {
+            if(orderList != null){
                 alert(msg+' 처리 가 완료되었습니다');
-                //location.href="";
+                console.log(orderList);
             }
         },
         error(request, status, error) {

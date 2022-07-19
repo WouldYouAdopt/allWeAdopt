@@ -28,6 +28,10 @@ import edu.kh.allWeAdopt.funding.model.vo.Supporters;
  * @author deadWhale
  *
  */
+/**
+ * @author deadWhale
+ *
+ */
 @Transactional(rollbackFor = { Exception.class })
 @Service
 public class FundingServiceImpl implements FundingService {
@@ -478,6 +482,17 @@ public class FundingServiceImpl implements FundingService {
 		}
 			
 		return orderList;
+	}
+
+
+
+
+	/**배송 관리 서비스
+	 *
+	 */
+	@Override
+	public int deliveryProcession(Map<String, Object> map) {
+		return dao.deliveryProcession(map);
 	}
 
 

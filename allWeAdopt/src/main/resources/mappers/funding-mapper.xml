@@ -194,7 +194,7 @@
 		,FUNDING_TITLE
 		,CATEGORY_NM
 		,ORDER_ST
-		,TO_CHAR(PAY_DT, 'YY-MM-DD HH24:MI')AS PAY_DT
+		,TO_CHAR(PAY_DT, 'YYYY-MM-DD HH24:MI')AS PAY_DT
 		FROM PAYMENT
 		JOIN FUNDING
 		USING(FUNDING_NO)
@@ -694,4 +694,11 @@
 	  #{maxRewardNo},
 	  #{fundingNo} )
 	</insert>	
+	
+	<update id="delivery">
+	UPDATE PAYMENT SET
+	ORDER_ST_CD = #{code}
+	WHERE PAYMENT_NO IN (#{list})
+	</update>
+	
 </mapper>

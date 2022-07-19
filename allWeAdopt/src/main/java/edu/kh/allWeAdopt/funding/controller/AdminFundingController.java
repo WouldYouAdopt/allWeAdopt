@@ -218,10 +218,20 @@ public class AdminFundingController {
 	
 	@ResponseBody
 	@GetMapping("/delivery/processing")
-	public int processing(int code, String list ) {
-		System.out.println(list);
-		System.out.println(code);
-		return 1;
+	public String processing(int code,String list ,int fundingNo,int orderCode) {
+		
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("orderCode", orderCode);
+		map.put("fundingNo",fundingNo);
+		map.put("list",list);
+		map.put("code",code);
+		
+		int result = service.deliveryProcession(map);
+		List<OrderDetail> orderList = service.selectOrderList(map);		
+		
+		return new Gson().toJson(orderList);
 	}
 	
 	
