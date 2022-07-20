@@ -11,18 +11,33 @@
 
 .fundingPaymentArea>div>div{
     /* border: 1px solid #FB836b; */
-    border-top:2px solid #FB836b ;
-    margin-top: 20px;
+    /* border-top:2px solid #FB836b ;
+    margin-top: 20px; */
+    margin-bottom: 90px;
 }
 
 .paymentWrapper{
     width: 800px;
 }
-
+/* 새로만든 class */
+.sujin{
+	position:relative;
+	border-bottom: 1px solid #f7a797;
+	padding: 10px 0;
+	margin: 10px 0;
+}
 .resultInfo{
     display: flex;
     flex-direction: row-reverse;
-    border-bottom: 1px solid #f7a797;
+    /* border-bottom: 1px solid #f7a797; */
+    height: 30px;
+    margin: 12px 0;
+    
+    /* sujin class 만들면서 위치조정 */
+    position: absolute;
+    text-align:right;
+    right:0;
+    top:30px;
 }
 .rewardTitle{
     color: #FB836b;
@@ -47,11 +62,12 @@
 
 
 .supporterInfo{
-    padding: 10px;
+    padding: 20px 30px;
     list-style: none;
     background-color: #ddd;
     border-radius: 5px ;
-    height: 380px;
+    height: 410px;
+    margin-right: 30px;
 }
 
 
@@ -71,10 +87,12 @@
 .supporterInfo .fw-bolder{    font-size: 1.1em;}
 
 .supporterInfo h3{
-    color: #f7a797;
+    color: #fff;
+    margin-bottom: 5px;
 }
 .supporterInfo li{
-    margin-left: 20px;
+    margin-top: 0px;
+    margin-bottom: 20px;
     font-size: 18px;
 }
 
@@ -91,7 +109,7 @@
 
 
 .resultPay{
-    width:110px;
+    /* width:110px; */
 }
 /* -------------------------------------------------- */
 .parcelInfo>.inputArea{
@@ -105,26 +123,33 @@
 .inputArea input{
     display: block;
     width: 100%;
-    margin-bottom: 10px;
     border: 1px solid #FB836b;
     border-radius: 3px;
+    margin-left:0px;
+    margin : 5px 0 15px 0;
+    padding-left: 6px;
+    height: 33px;
 }
 #postCodeArea{
     display: flex;
+    justify-content: space-between;
 }
 #findPostcode{
     width: 50%;
     height: 30px;
-    border: 1px solid #FB836b;
-    background-color: white;
     margin-bottom: 5px;
+    margin-top: 5px;
+    
+    border: 1px solid #FB836b;
+    background-color: #FB836b;
+    color: white;
+    border-radius:3px;
 }
 #findPostcode:hover{
     background-color: #FB836b;
-    color: white;
 }
 #postCode{
-    width: 45%;
+    width: 48%;
     height: 30px;
     padding-left: 4px;
     margin-left: 5px;
