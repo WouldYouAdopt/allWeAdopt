@@ -3,16 +3,16 @@
 
 
 <!-- Footer-->
-<footer class="bg-dark py-4 mt-auto">
+<footer class="py-4 mt-auto" id="footer">
     <div class="container px-5">
         <div class="row align-items-center justify-content-between flex-column flex-sm-row">
-            <div class="col-auto"><div class="small m-0 text-white">Copyright &copy; Your Website 2022</div></div>
+            <div class="col-auto"><div class="small m-0 text-white">&copy; ALL WE ADOPT all rights reserved. </div></div>
             <div class="col-auto">
-                <a class="link-light small" href="#!">Privacy</a>
+                <a class="link-light small text-decoration-none" href="${contextPath}/etc?mode=1">Privacy</a>
+                <span class="text-white mx-1 ">&middot;</span>
+                <a class="link-light small text-decoration-none" href="${contextPath}/etc?mode=2">Terms</a>
                 <span class="text-white mx-1">&middot;</span>
-                <a class="link-light small" href="#!">Terms</a>
-                <span class="text-white mx-1">&middot;</span>
-                <a class="link-light small" href="#!">Contact</a>
+                <a class="link-light small text-decoration-none" href="${contextPath}/etc?mode=3">Contact</a>
             </div>
         </div>
     </div>

@@ -47,7 +47,12 @@
     border: none;
 }
 
-
+/*버튼*/
+#btnMain{
+    background-color: rgb(251, 131, 107);
+    color: white;
+    border: none;
+}
 
 
 /* 게시글 리스트 a태그 style없애기*/
@@ -70,3 +75,19 @@
 .swal2-html-container{
     font-size: 0.7em !important;
 }
+
+/* footer */
+#footer{
+   background-color: #999;
+}
+
+
+/* 마우스 커서*/
+/* 산책 강쥐 (전체에 적용시키기) */
+/* * {cursor: url(https://cur.cursors-4u.net/nature/nat-4/nat354.ani), url(https://cur.cursors-4u.net/nature/nat-4/nat354.png), auto !important;}*/
+
+/* 고양이 발바닥 (전체에 적용시키기) */
+/* * { cursor: url(https://cur.cursors-4u.net/nature/nat-3/nat260.cur), default; } */
+
+/* 갈색 발바닥 (내용만 긁어서 cursor :pointer 자리에 넣으면 되는데... 전체 바꿀거면 bootstrap css의 내용을 바꾸면 될듯!)*/
+/* * { cursor: url(https://cur.cursors-4u.net/nature/nat-3/nat261.cur), pointer; } */
