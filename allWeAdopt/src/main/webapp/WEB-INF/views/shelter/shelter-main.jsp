@@ -102,7 +102,7 @@
                             <strong>시도</strong>
                         </button>
 
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="height: 200px; overflow-x: hidden; overflow-y: scroll;">
                             <li><a class="dropdown-item" href="${upr_cd}" role="option" aria-selected="true">전체</a></li>
                             <li><a class="dropdown-item" href="${upr_cd}6110000" role="option" aria-selected="true">서울특별시</a></li>
                             <li><a class="dropdown-item" href="${upr_cd}6260000" role="option" aria-selected="true">부산광역시</a></li>
@@ -167,7 +167,7 @@
                         </c:forEach>
                     </div>    
 
-                    <div class="position-relative">
+                    <div class="position-relative" position="sticky">
                         <div class="position-absolute top-100 start-100 translate-middle">
                             <a href="#" style="display:scroll; position:fixed; left:30px; rigit: 50px; bottom: 10px; title=top"><h3><i class="bi bi-arrow-up-circle bt_top" style="color: #FB836B;"></i></h3></a>
                         </div>
@@ -221,15 +221,15 @@
                     <nav aria-label="Page navigation example">
                         <ul class="pagination justify-content-center">
                             <li class="page-item">
-                                <a class="page-link" href="${url}1${sURL}" aria-label="Previous">
+                                <a class="page-link" href="${url}1${sURL}" aria-label="Previous" style="color:gray;">
                                     <span aria-hidden="true">&laquo;</span>
                                 </a>
                             </li>
                             <c:forEach var="i" begin="1" end="10" step="1">
-                                <li class="page-item"><a class="page-link" href="${url}${i}">${i}</a></li>
+                                <li class="page-item"><a class="page-link" style="color:gray;" href="${url}${i}">${i}</a></li>
                             </c:forEach>
                             <li class="page-item">
-                                <a class="page-link" href="${url}10${sURL}" aria-label="Next">
+                                <a class="page-link" href="${url}10${sURL}" aria-label="Next" style="color:gray;">
                                     <span aria-hidden="true">&raquo;</span>
                                 </a>
                             </li>
@@ -251,7 +251,7 @@
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+        <%-- <script src="js/scripts.js"></script> --%>
 
       
     </body>

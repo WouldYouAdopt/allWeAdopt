@@ -85,8 +85,11 @@
                     <div class="row gx-5 align-items-start" >
 
                         <c:if test="${empty aList}">
-                            <div>게시글이 없습니당. </div>
+                            <div>문의가 없습니당...! </div>
                         </c:if>
+
+
+
                         <c:if test="${!empty aList}">
 
                         <table class="table boardList">
@@ -102,10 +105,10 @@
                             <tbody>
                              <c:forEach var="a" items="${aList}">
                                 <c:if test="${loginMember.memberType =='M' || loginMember.memberType == 'K'}">
-                                    <c:set var="url" value="${contextPath}/member/myPage/notice/detail/${n.boardNo}?cp=${pagination.currentPage}" />
+                                    <c:set var="url" value="${contextPath}/member/myPage/ask/detail/${a.boardNo}?cp=${pagination.currentPage}" />
                                 </c:if>
                                 <c:if test="${loginMember.memberType =='A'}">
-                                    <c:set var="url" value="${contextPath}/admin/notice/detail/${a.boardNo}?cp=${pagination.currentPage}"/>
+                                    <c:set var="url" value="${contextPath}/admin/ask/detail/${a.boardNo}?cp=${pagination.currentPage}"/>
                                 </c:if>
 
 
@@ -128,14 +131,6 @@
                                         </tr>
                                     </c:otherwise>
                                 </c:choose>
-
-                                <tr>
-                                    <th scope="row" class="col-sm-1 text-center" >${a.boardNo}</th>
-                                    <td>회원정보 문의</td>
-                                    <td><a href="${contextPath}/member/myPage/ask/detail">입양관련 문의사항 입니다.</a></td>
-                                    <td>yyyy.mm.dd</td>
-                                    <td>답변중</td>
-                                </tr>
 
 
                               </c:forEach>

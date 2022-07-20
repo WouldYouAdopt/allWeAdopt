@@ -30,7 +30,7 @@
                             <li><a class="dropdown-item" href="${contextPath}/member/myPage/pwConfirm">게시판 관리</a></li>
                             <li><a class="dropdown-item" href="${contextPath}/admin/funding/management">펀딩 관리</a></li>
                             <li><a class="dropdown-item" href="${contextPath}/admin/funding/delivery//${nowFundingNo}/1">주문 관리</a></li>
-                            <li><a class="dropdown-item" href="${contextPath}/ask/list">문의 관리</a></li>
+                            <li><a class="dropdown-item" href="${contextPath}/member/myPage/ask/list">문의 관리</a></li>
                             <li><a class="dropdown-item" href="${contextPath}/admin/notice/list">공지 관리</a></li>
                             <li><a class="dropdown-item" href="${contextPath}/member/logout">로그아웃</a></li>
                         </ul>

@@ -23,7 +23,10 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>공지사항</title>
-        
+
+        <%-- jQuery CDN --%>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="${contextPath}/resources/assets/올위어답터.ico" />
         
@@ -71,12 +74,12 @@
                 <div class="container px-3">
                         <div class="col-lg-8 col-xxl-6">
                             <div class="text-left my-4">
-                                <h2 class="fw-bolder mb-3">문의한 글 제목</h2>
-                                <div class="text-muted  mb-2">2022.07.04</div>
-                                
+                                <h2 class="fw-bolder mb-3">${detail.boardTitle}</h2>
+                                <div class="text-muted  mb-2">${detail.category} | ${detail.createDate}</div>
+                                    ${rList}
                                 <div class="col-md-5 col-sm-6 mt-3">
                                     <label for="exampleFormControlInput1" class="form-label">작성자</label>
-                                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="김주에" readonly >
+                                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder=" ${detail.memberName} " readonly >
                                 </div>
                                 
                                 <div class="md-10"></div>
@@ -104,13 +107,7 @@
 
                                     <!-- Post content-->
                                     <div class="fs-6  ">
-                                        내용입니다.<br>
-                                        내용입니다.<br>
-                                        내용입니다.<br>
-                                        내용입니다.<br>
-                                        내용입니다.<br>
-                                        내용입니다.<br>
-                                        내용입니다.<br>
+                                        ${detail.boardContent}
                                     </div> 
 
 
@@ -123,57 +120,8 @@
                 </div>
             </section>
            
-            <!-- 댓글 -->
-            <section class="py-0 " >
-                <div class="container px-2 my-1 mt-3">
-                    <div class="row gx-5 align-items-center">
-
-                        <div class="ms-3">
-                            
-                            <div class="card bg-light">
-                                <div class="card-body">
-
-                                     <c:if test="${loginMember.memberType =='A' }">
-                                        <!-- Comment form-->
-                                        <div class="row g-2 mb-4 align-items-center">
-                                            <div class="col-md-11 ">
-                                                <textarea class="form-control" placeholder="관리자 로그인 일때만 보임." id="floatingTextarea" style="resize: none;"></textarea>
-                                            </div>
-                                            <div class="col-auto">
-                                            <button type="submit" class="btn button-pink col-mb-1 btn-lg" style="color: white;">등록</button>
-                                            </div>
-                                        </div>
-                                    </c:if>
-
-                                <!-- Comment with nested comments-->
-                                <div class="d-flex mb-">
-                                    <!-- Parent comment-->
-                                    <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-                                        <div class="ms-3 ">
-                                            <div class="col-lg-8  fw-bold">관리자</div>
-                                                    <div class="col-sm-8 mb-1">
-                                                        If you're going to lead a space frontier, it has to be government; it'll never be private enterprise. Because the space frontier is dangerous, and it's expensive, and it has unquantified risks.
-                                                    </div>
-                                                     <c:if test="${loginMember.memberType =='A' }">
-                                                        <div class="col-sm-6">
-                                                            <button type="submit" class="btn btn-outline-secondary mb-2  btn-sm">수정</button>
-                                                            <button type="submit" class="btn btn-outline-secondary mb-2 btn-sm">삭제</button>
-                                                        </div>
-                                                     </c:if> 
-                                            </div>
-                                    </div>
-                                </div>
-
-                                <c:if test="${loginMember.memberType =='A' }">
-                                  <button type="submit" class="btn bg-pink mt-3" style="color : white; height : 50px" >해당 문의글 삭제(관리자)</button> 
-                                </c:if>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-           
-
+        <!-- 댓글 인클루드 -->
+        <jsp:include page="/WEB-INF/views/ask/askReply.jsp" />
 
         </main>
 
@@ -188,5 +136,13 @@
         
         <!-- Core theme JS-->
         <script src="${contextPath}/resources/js/scripts.js"></script>
+
+        <script>
+            const contextPath = '${contextPath}';
+            const boardNo = ${boardNo};
+        </script>
+
+        <script src="${contextPath}/resources/js/board/notice.js"></script>
+        <script src="${contextPath}/resources/js/board/reply.js"></script>
     </body>
 </html>

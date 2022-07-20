@@ -20,6 +20,7 @@
 		<result property="boardSt" column="BOARD_ST"/>
 		<result property="category" column="CATEGORY"/>
 		<result property="memberNo" column="MEMBER_NO"/>
+		<result property="memberName" column="MEMBER_NM"/>
 		<result property="boardPeriod" column="BOARD_PERIOD"/>
 	</resultMap>
 	
