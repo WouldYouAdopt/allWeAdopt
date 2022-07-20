@@ -46,6 +46,7 @@
 }
 
 /* -------------------------------------------------------------------------------------------------------- */
+
 .fundingList th,td{
     text-align: center;
     /* border: 1px solid #ddd; */
@@ -110,4 +111,21 @@
     border: 1px solid #FB836b;
     background-color: white;
     color: #FB836b;
+}
+
+.parcel{
+    width: 150px;
+}
+
+.parcel *{  
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+.parcelCompany{
+    width: 100%;
+}
+.parcelNo{
+    width:100%;
+    border: 1px solid #FB836b;
 }

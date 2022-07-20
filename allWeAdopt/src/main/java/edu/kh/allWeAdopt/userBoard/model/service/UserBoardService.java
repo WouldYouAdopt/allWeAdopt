@@ -39,4 +39,6 @@ public interface UserBoardService {
 
 	int likeList(Board likeBoard);
 
+	List<Board> searchList(Board board);
+
 }

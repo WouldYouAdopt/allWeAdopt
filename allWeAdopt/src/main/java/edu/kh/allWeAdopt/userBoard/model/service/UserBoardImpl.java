@@ -111,6 +111,13 @@ public class UserBoardImpl implements UserBoardService {
 		return dao.likeList(likeBoard);
 	}
 
+	// 게시글 검색
+	@Override
+	public List<Board> searchList(Board board) {
+		List<Board> list = dao.searchList(board);
+		return list;
+	}
+
 	
 	
 }

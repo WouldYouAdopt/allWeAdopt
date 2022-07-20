@@ -100,6 +100,11 @@ public class UserBoardDAO {
 		return sqlSession.selectOne("boardMapper.likeList",likeBoard);
 	}
 
+	public List<Board> searchList(Board board) {
+		List<Board> list = sqlSession.selectList("boardMapper.searchList",board);
+		return list;
+	}
+
 
 
 

@@ -68,19 +68,19 @@ public interface FundingService {
 	 */
 	int payProgress(OrderDetail orderDetail, List<Reward> rewardList);
 
-	/**주문 상태를 결제 취소 상태로 변경하는 AJAX
+	/**주문 상태를 결제 취소 상태로 변경하는 AJAX ;현기
 	 * @param paymentNo
 	 * @return result
 	 */
 	int cancelPayment(int paymentNo);
 
-	/**주문 상태를 환불 신청으로 변형하는 AJAX
+	/**주문 상태를 환불 신청으로 변형하는 AJAX ; 현기
 	 * @param paymentNo
 	 * @return
 	 */
 	int refundPayment(int paymentNo);
 
-	/**반품 사유 작성 
+	/**반품 사유 작성 :현기
 	 * @param paymentNo
 	 * @param returnReason
 	 * @return
@@ -134,6 +134,12 @@ public interface FundingService {
 	 * @return
 	 */
 	List<OrderDetail> selectOrderList(Map<String, Object> map);
+
+	/**배송 관리에서 수행하는 서비스 : 김현기
+	 * @param map
+	 * @return
+	 */
+	int deliveryProcession(Map<String, Object> map);
 
 
 
