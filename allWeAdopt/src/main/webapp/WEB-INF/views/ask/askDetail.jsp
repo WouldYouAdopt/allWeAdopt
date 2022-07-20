@@ -23,7 +23,10 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>공지사항</title>
-        
+
+        <%-- jQuery CDN --%>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="${contextPath}/resources/assets/올위어답터.ico" />
         
@@ -73,7 +76,7 @@
                             <div class="text-left my-4">
                                 <h2 class="fw-bolder mb-3">${detail.boardTitle}</h2>
                                 <div class="text-muted  mb-2">${detail.category} | ${detail.createDate}</div>
-                                
+                                    ${rList}
                                 <div class="col-md-5 col-sm-6 mt-3">
                                     <label for="exampleFormControlInput1" class="form-label">작성자</label>
                                     <input type="email" class="form-control" id="exampleFormControlInput1" placeholder=" ${detail.memberName} " readonly >
@@ -117,7 +120,8 @@
                 </div>
             </section>
            
-          <jsp:include page="/WEB-INF/views/ask/askReply.jsp" />
+        <!-- 댓글 인클루드 -->
+        <jsp:include page="/WEB-INF/views/ask/askReply.jsp" />
 
         </main>
 
@@ -132,6 +136,11 @@
         
         <!-- Core theme JS-->
         <script src="${contextPath}/resources/js/scripts.js"></script>
+
+        <script>
+            const contextPath = '${contextPath}';
+            const boardNo = ${boardNo};
+        </script>
 
         <script src="${contextPath}/resources/js/board/notice.js"></script>
         <script src="${contextPath}/resources/js/board/reply.js"></script>

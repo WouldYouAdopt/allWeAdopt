@@ -85,8 +85,11 @@
                     <div class="row gx-5 align-items-start" >
 
                         <c:if test="${empty aList}">
-                            <div>게시글이 없습니당. </div>
+                            <div>문의가 없습니당...! </div>
                         </c:if>
+
+
+
                         <c:if test="${!empty aList}">
 
                         <table class="table boardList">
@@ -128,14 +131,6 @@
                                         </tr>
                                     </c:otherwise>
                                 </c:choose>
-
-                                <tr>
-                                    <th scope="row" class="col-sm-1 text-center" >${a.boardNo}</th>
-                                    <td>회원정보 문의</td>
-                                    <td><a href="${contextPath}/member/myPage/ask/detail">입양관련 문의사항 입니다.</a></td>
-                                    <td>yyyy.mm.dd</td>
-                                    <td>답변중</td>
-                                </tr>
 
 
                               </c:forEach>
