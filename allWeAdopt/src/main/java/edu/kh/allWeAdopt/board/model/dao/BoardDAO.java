@@ -96,7 +96,7 @@ public class BoardDAO {
 		return sqlSession.selectOne("noticeMapper.paginationCount", memberNo);
 	}
 
-	/** 문의사항 게시글 목록 조회
+	/** 문의사항 게시글 목록 조회 DAO
 	 * @param pagination
 	 * @return aList
 	 */
@@ -110,13 +110,22 @@ public class BoardDAO {
 		
 	}
 
-	/** 문의사항 글 조회 구현
+	/** 문의사항 글 조회 DAO
 	 * @param boardNo
 	 * @return
 	 */
 	public BoardDetail selectAskDetail(int boardNo) {
 		
 		return sqlSession.selectOne("noticeMapper.selectAskDetail", boardNo);
+	}
+
+	/** 문의사항 글 작성 DAO
+	 * @param detail
+	 * @return
+	 */
+	public int insertAskWrite(BoardDetail detail) {
+		
+		return sqlSession.insert("noticeMapper.insertAskWrite", detail);
 	}
 
 	

@@ -174,8 +174,10 @@
 
                                 <c:if test="${loginMember.memberType =='K' || loginMember.memberType =='M' }">
                                     <div class="mx-auto"></div>
-                                    <li><a class="btn btn-primary button-pink mx-auto" href="${contextPath}/member/myPage/ask/write">문의글 작성</a></li>
+                                    <li><a class="btn btn-primary button-pink mx-auto" href="${contextPath}/member/myPage/ask/write?mode=insert&cp=${pagination.currentPage}">문의글 작성</a></li>
                                 </c:if>
+
+
                             </ul>
                         </nav>
 
