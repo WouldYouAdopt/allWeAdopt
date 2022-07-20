@@ -126,6 +126,27 @@ function shareKakao() {
   }
 
 
+// 위로 가기 버튼
+window.onload = function() {
+    let top = document.querySelector("#toTop");
+
+
+    window.addEventListener('scroll',function() {
+        top.classList.toggle("active",window.scrollY > 1000);
+
+    })
+    top.addEventListener('click',function() {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+
+        })
+    })
+}
+
+
+
+
 
 
 

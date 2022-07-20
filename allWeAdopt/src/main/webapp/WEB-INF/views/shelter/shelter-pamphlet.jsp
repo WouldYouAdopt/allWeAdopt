@@ -103,6 +103,9 @@
                     
                     <div class="row gx-5">
                         <c:forEach var="pamphlet" items="${pamphletList}">
+
+                        
+
                             <div class="col-lg-4 mb-5">
                                 <div class="card h-100 shadow border-0">
                                   
@@ -147,10 +150,10 @@
                                                     <div class="text-muted">${pamphlet.createDate}</div>
                                                 </div>
 
-                                                <div class="md-10" style="margin:10px;"></div>
+                                                <div class="md-10" style="margin:30px;"></div>
                             
-                                                <button type="button" class="btn btn-primary" style="background-color: #FB836B; border: 0;">
-                                                댓글<span class="badge text-bg-secondary" id="rArea">${rCount}</span>
+                                                <button type="button" class="btn btn-primary" style="color: #FB836B; border: 2px solid #FB836B; background-color: white; border-radius:50%;" id="rArea">
+                                                <span class="badge text-bg-secondary" style="color: #FB836B; font-weight: bold;">${pamphlet.replyCount}</span>
                                                 </button>
 
 
@@ -159,50 +162,19 @@
                                     </div>
                                 </div>
                             </div>
-                            <script>
-
-                                var boardNo = "${pamphlet.boardNo}";
-
-                                console.log(boardNo);
-
-                                countReplyList();
-
-                                function countReplyList(){
-                                    
-                                    $.ajax({
-                                        url : "/allWeAdopt/pamphlet/reply/countReplyList",
-                                        data : {"boardNo" : boardNo},
-                                        type : "GET",
-                                        dataType : "JSON", 
-                                        success : function(rCount){
-                                            
-                                            console.log(rCount);
-                                            
-                                            const rArea = document.getElementById("rArea");
-
-                                                // rArea.innerHTML = rCount;
-
-                                                // var rCount = $(rCount);
-
-                                        },
-                                        error : function(req, status, error){
-                                            console.log("에러 발생");
-                                            console.log(req.responseText);
-                                        }
-                                    })
-
-                                }
-                            </script>
                         </c:forEach>
                     </div>
 
                     
-
+                    <%-- goTotop  --%>
                     <div class="position-relative">
                         <div class="position-absolute top-100 start-100 translate-middle">
-                            <a href="#" style="display:scroll; position:fixed; left:30px; rigit: 50px; bottom: 10px; title=top"><h3><i class="bi bi-arrow-up-circle bt_top" style="color: #FB836B;"></i></h3></a>
+                            <a href="#" id="toTop" style="display:scroll; position:fixed; left:30px; rigit: 50px; bottom: 10px; title=top"><h3><i class="bi bi-arrow-up-circle bt_top" style="color: #FB836B;"></i></h3></a>
                         </div>
                     </div>
+
+                    <%-- <a id="toTop" href="#">TOP</a> --%>
+
 
 
                     <c:if test="${!empty loginMember}">                 
@@ -220,7 +192,7 @@
                         <ul class="pagination justify-content-center">
                             <%-- 첫 페이지 --%>
                             <li class="page-item">
-                                <a class="page-link" href="${url}1${sURL}" aria-label="Previous">
+                                <a class="page-link" href="${url}1${sURL}" aria-label="Previous" style="color:gray;">
                                     <span aria-hidden="true">&laquo;</span>
                                 </a>
                             </li>
@@ -234,12 +206,12 @@
                                         <li class="page-item"><a href="${url}${i}${sURL}">${i}</a></li>        
                                     </c:otherwise>
                                 </c:choose> --%>
-                                <li class="page-item"><a class="page-link" href="${url}${i}">${i}</a></li>
+                                <li class="page-item"><a class="page-link" style="color:gray;" href="${url}${i}">${i}</a></li>
                             </c:forEach>
                             
                             <%-- 끝 페이지 --%>
                             <li class="page-item">
-                                <a class="page-link" href="${url}${pagination.maxPage}${sURL}" aria-label="Next">
+                                <a class="page-link" href="${url}${pagination.maxPage}${sURL}" aria-label="Next" style="color:gray;">
                                     <span aria-hidden="true">&raquo;</span>
                                 </a>
                             </li>

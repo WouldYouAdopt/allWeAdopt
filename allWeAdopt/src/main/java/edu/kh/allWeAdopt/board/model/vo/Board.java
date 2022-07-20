@@ -36,5 +36,7 @@ public class Board {
 	private String animalDetail;
 	private String gender;
 	private String neutering;
-
+	
+	private int replyCount;
+	
 }
