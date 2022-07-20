@@ -213,7 +213,9 @@ public class AdminFundingController {
 		return "funding/admin/delivery-controller";
 	}
 	
+
 	
+//---------------------------------------------------------------------------------------------	
 	
 	
 	@ResponseBody
@@ -238,11 +240,13 @@ public class AdminFundingController {
 	@GetMapping("/delivery/return/processing")
 	public String returnProcessing(@RequestParam Map<String,Object> paramMap) {
 		
-		System.out.println(paramMap);
-		return new Gson().toJson(paramMap);
+		List<OrderDetail> orderList = service.returnProcessing(paramMap);
+
+		return new Gson().toJson(orderList);
 	}
 	
 	
+//---------------------------------------------------------------------------------------------
 	
 	
 	

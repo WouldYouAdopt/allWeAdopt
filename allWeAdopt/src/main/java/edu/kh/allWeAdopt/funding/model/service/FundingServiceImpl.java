@@ -496,6 +496,27 @@ public class FundingServiceImpl implements FundingService {
 	}
 
 
+
+
+	
+	/**반품처리 비동기 통신
+	 *
+	 */
+	@Override
+	public List<OrderDetail> returnProcessing(Map<String, Object> paramMap) {
+		List<OrderDetail> orderList = new ArrayList<OrderDetail>();
+
+		paramMap.put("list",paramMap.get("paymentNo"));	
+		int result = dao.deliveryProcession(paramMap);
+		if(result>0) {
+			result = dao.insertReason(paramMap);
+			if(result>0)orderList = dao.selectOrderList(paramMap);
+		}
+		
+		return orderList;
+	}
+
+
 	
 
 	

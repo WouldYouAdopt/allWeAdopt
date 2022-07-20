@@ -64,11 +64,11 @@
                     <!-- A태그 영역 -->
                     <div>
                       <div>
-                      <a href="1" class="navController" id="bacc">신규 주문</a>
-                      <a href="2" class="navController">배송준비</a>
-                      <a href="3" class="navController">배송중</a>
-                      <a href="4" class="navController">배송완료</a>
-                      <a href="8" class="navController">반품/환불</a>
+                      <a href="1" id="1" class="navController" id="bacc">신규 주문</a>
+                      <a href="2" id="2" class="navController">배송준비</a>
+                      <a href="3" id="3" class="navController">배송중</a>
+                      <a href="4" id="4" class="navController">배송완료</a>
+                      <a href="8" id="8" class="navController">반품/환불</a>
                       </div>
                     </div>
 
@@ -93,10 +93,9 @@
                       <c:when test="${orderCode==4}">
                         <button type="button" class="btn btn-secondary" onclick="returnProcess(8)">반품 처리</button>
                       </c:when>
-                      <%-- 반품/환불  --%>
+                      <%-- 반품신청 들어온 후 환불 처리 --%>
                       <c:when test="${orderCode == 8}">
-                        <button type="button" class="btn btn-secondary">반품 처리</button>
-                        <button type="button" class="btn btn-secondary">환불 처리</button>
+                        <button type="button" class="btn btn-secondary"  onclick="process(8)">환불 처리</button>
                       </c:when>
                        </c:choose >
 
@@ -133,12 +132,8 @@
 <c:when test="${orderCode == 4}">
   <jsp:include page="/WEB-INF/views/funding/admin/delivery-tables/return-delivery-table.jsp" />
 </c:when>
-<c:when test="${orderCode == 5}">
-  <%-- <jsp:include page="/WEB-INF/views/funding/admin/delivery-tables/preparing-table.jsp" /> --%>
-  <h1>배송완료영역</h1>
-</c:when>
 <c:when test="${orderCode == 8}">
-  <jsp:include page="/WEB-INF/views/funding/admin/delivery-tables/return-refond-table.jsp" /> 
+  <jsp:include page="/WEB-INF/views/funding/admin/delivery-tables/return-delivery-table.jsp" />
 </c:when>
 
 

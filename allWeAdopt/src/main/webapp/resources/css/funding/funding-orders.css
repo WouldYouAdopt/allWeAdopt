@@ -111,6 +111,14 @@
     font-weight: bold;
     padding: 5px;
 }
+.navCoice{
+    border-bottom: 3px solid #FB836b;
+    color:#FB836b;
+    font-weight: bold;
+    padding: 5px;
+}
+
+
 .controllerBtnArea>button{
     background-color: #FB836b;
     margin: 5px;
@@ -145,6 +153,11 @@
 /* 라디오 버튼 모양 바꾸기 */
 .form-check-input{
     border-radius: 0 !important;
+    accent-color :  #FB836b !important;
+}
+.form-check-input:checked{
+    border-radius: 0 !important;
+    background-color: #FB836b !important;
 }
 .inputReason{
     margin: 0;
