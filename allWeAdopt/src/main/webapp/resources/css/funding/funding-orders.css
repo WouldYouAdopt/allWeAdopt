@@ -1,5 +1,8 @@
 #TOT{
     margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .detail-info{
@@ -79,18 +82,26 @@
 /* ----------------------------------------------- */
 #controllerArea{
     display: flex;
-    justify-content: center;
     align-items: center;
     border-bottom: 3px solid #ddd;
     padding: 5px;
     flex-wrap: nowrap;
 }
+#controllerArea>div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#controllerArea>div:nth-child(1){    width: 30%;}
+#controllerArea>div:nth-child(2){    width: 40%;}
+#controllerArea>div:nth-child(3){    width: 30%;}
+
+
 .navController{
     margin: 5px;
     color:#FB836b;
     text-decoration: none;
     font-size: 1.1em;
-    
     -webkit-transform:rotate(180deg);
     transform:rotate(180deg);
 }
@@ -100,12 +111,9 @@
     font-weight: bold;
     padding: 5px;
 }
-.controllerBtnArea{
-    width: 250px;
-    margin-left: 110px;
-}
 .controllerBtnArea>button{
     background-color: #FB836b;
+    margin: 5px;
 }
 .controllerBtnArea>button:hover{
     border: 1px solid #FB836b;
@@ -129,3 +137,25 @@
     width:100%;
     border: 1px solid #FB836b;
 }
+
+#month{
+    width: 30%;
+}
+
+/* 라디오 버튼 모양 바꾸기 */
+.form-check-input{
+    border-radius: 0 !important;
+}
+.inputReason{
+    margin: 0;
+    border: 1px solid #FB836b;
+    padding: 2px;
+    color: #FB836b;
+    border-radius: 1px;
+    font-size: 13px;
+}
+.inputReason:hover{
+    color: white;
+    background-color: #FB836b;
+}
+

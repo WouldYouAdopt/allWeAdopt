@@ -329,7 +329,7 @@ function selectReturnState() {
 function alert(msg){
     Swal.fire({
         title: msg,
-        width: 350,
+        width: 400,
         padding: '3em',
         color: 'black',
         confirmButtonColor: 'rgb(251, 131, 107)',
@@ -340,26 +340,32 @@ function alert(msg){
 
 //발송 처리 버튼
 
-function processing(code) {
+function process(code) {
     var obj = '';
     let msg="";
     switch(code){
         case 2:msg='배송';break;
-
+        case 4:msg='배송 완료';break;
         case 5:msg='결제 취소';break;
-
-        case 3:msg='발송 처리';break;
     }
 
-    console.log(msg);
-
     $('input[type="checkbox"]:checked').each(function (index) {
+        
+        obj += $(this).val();
         if (index != 0) {
             obj += ', ';
         }
-        obj += $(this).val();
     });
     
+
+    if(obj == ''){
+        alert('주문을 체크해주세요');
+        return false;
+    } else{
+        console.log('프로세스 진행');
+    }
+
+
     $.ajax({
         url: '../processing',
         data: { code:code , //변경할 값
@@ -371,8 +377,46 @@ function processing(code) {
         dataType:"json",
         success: function (orderList) {
             if(orderList != null){
-                alert(msg+' 처리 가 완료되었습니다');
-                console.log(orderList);
+               alert(msg+' 처리 가 완료되었습니다');
+               const tbody = document.getElementById("tbody");
+               
+               tbody.innerHTML = "";
+                for(let o of orderList){
+                    const tr = document.createElement("tr");
+
+                    const th1 = document.createElement("th");
+                    const input1 = document.createElement("input");
+                    input1.classList.add("form-check-input");
+                    input1.setAttribute("type","checkbox");
+                    input1.setAttribute("value",o.paymentNo);
+                    th1.append(input1);
+                    tr.append(th1);
+
+                    const td1 = document.createElement("td");
+                    td1.innerText=o.paymentNo;
+                    const td2 = document.createElement("td");
+                    td2.innerText=o.fundingCategory;
+                     
+
+                    const td3 = document.createElement("td");
+                    const a = document.createElement("a");
+                    a.setAttribute("href","../detail/"+o.paymentNo);
+                    a.innerHTML=o.fundingTitle;
+                    td3.append(a);
+                    const td4 = document.createElement("td");
+                    td4.innerText=o.recipient;
+                    const td5 = document.createElement("td");
+                    td5.innerText=o.orderState;
+                    const td6 = document.createElement("td");
+                    td6.innerText=o.payDate;
+                    const td7 = document.createElement("td");
+                    td7.innerText=o.fullPrice;
+
+                    tr.append(td1,td2,td3,td4,td5,td6,td7);
+                    tbody.append(tr);
+                }
+            
+
             }
         },
         error(request, status, error) {
@@ -381,4 +425,58 @@ function processing(code) {
         }
     })
 
+}
+
+
+async function returnProcess(code){
+
+  
+    if(!$('input:radio[name=flexRadioDefault]').is(':checked')){
+        alert('주문을 체크해주세요');
+        return false;
+    } 
+    const { value: text } = await Swal.fire({
+        input: 'textarea',
+        inputLabel: '반품 사유를 작성해주세요',
+        inputPlaceholder: '반품 사유를 작성해주세요',
+        inputAttributes: {
+          'aria-label': 'Type your message here'
+        }
+      })
+
+      if (text == '') {
+        Swal.fire('반품사유를 작성해주세요');
+        return false;
+      }
+
+      $.ajax({
+        url: '../return/processing',
+        data: { code:code , //변경할 값
+                orderCode:orderCode, //현재 카테고리 번호
+                fundingNo : fundingNo, // 현재 펀딩 번호/
+                text:text,
+                paymentNo:$("input[name='flexRadioDefault']:checked").val(),
+            },
+        type: "get",
+        dataType:"json",
+        success: function (orderList) {
+            console.log(code);
+            console.log(orderCode);
+            console.log(fundingNo);
+            console.log(text);
+            console.log(paymentNo);
+        },error(request, status, error) {
+            console.log("AJAX 에러 발생");
+            console.log("상태코드 : " + request.status); // 404, 500
+        }
+    
+    })
+
+
+}
+
+function opneInputArea(btn){
+    console.log(btn);
+
+    prompt("사유를 작성하세요");
 }
