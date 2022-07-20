@@ -73,8 +73,7 @@
             <!-- nav -->
 
             <!-- Page Content-->
-            <!-- 메인 로고 부분(사진 끝에 흰거 나중에 여쭙기) -->
-            <section class="py-5">
+            <%-- <section class="py-5">
                 <div class="container px-5">
                     <div class="card border-0 shadow rounded-3 overflow-hidden">
                         <div class="card-body p-0">
@@ -85,7 +84,9 @@
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> --%>
+
+            <img src="${contextPath}/resources/images/adopt-mainLogo.png" class="img-fluid" alt="...">
 
             <!-- 분앙소 불러오기 -->
             <c:set var="upkind" value="?pageNo=&upkind="/>
@@ -140,12 +141,12 @@
                             <div class="card h-100 shadow border-0">
                                 <img class="card-img-top" src="${shelter.popfile}" alt="썸네일" id="thumbnail" />
                                 <div class="card-body p-4">
-                                    <h5><span class="badge bg-secondary">New</span></h5>
+                                    <span class="badge" style="background-color: #FB836B; font-size: 13px; margin-bottom: 10px; margin-bottom: 10px;" >New</span>
                                     <%-- <h5 ><div class="badge bg-primary bg-gradient rounded-pill mb-2" >New</div></h5> --%>
                                         <a class="text-decoration-none link-dark stretched-link" href="../shelter/shelterDetail/${shelter.desertionNo}" >
-                                            <li class="h5 card-title mb-3">종류 : ${shelter.kindCd}</li>
-                                            <li class="h5 card-title mb-3">발견 날짜 : ${shelter.happenDt}</li>
-                                            <li class="h5 card-title mb-3">발견 장소 : ${shelter.happenPlace}</li>
+                                            <li class="card-title" style="list-style-type:none; font-size: 15px">종류 : ${shelter.kindCd}</li>
+                                            <li class="card-title" style="list-style-type:none; font-size: 15px">발견 날짜 : ${shelter.happenDt}</li>
+                                            <li class="card-title" style="list-style-type:none; font-size: 15px">발견 장소 : ${shelter.happenPlace}</li>
 
                                         </a>
                                     </div>
@@ -167,11 +168,13 @@
                         </c:forEach>
                     </div>    
 
-                    <div class="position-relative" position="sticky">
+                    <%-- <div class="position-relative" position="sticky">
                         <div class="position-absolute top-100 start-100 translate-middle">
                             <a href="#" style="display:scroll; position:fixed; left:30px; rigit: 50px; bottom: 10px; title=top"><h3><i class="bi bi-arrow-up-circle bt_top" style="color: #FB836B;"></i></h3></a>
                         </div>
-                    </div>                     
+                    </div>               --%>
+
+                    <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="bi bi-arrow-up-circle bt_top" style="color: #FB836B;"></i></button>       
 
 
 
@@ -252,7 +255,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <%-- <script src="js/scripts.js"></script> --%>
-
+        <script src="${contextPath}/resources/js/shelter.js"></script>
       
     </body>
     

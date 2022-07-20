@@ -127,22 +127,60 @@ function shareKakao() {
 
 
 // 위로 가기 버튼
-window.onload = function() {
-    let top = document.querySelector("#toTop");
+mybutton = document.getElementById("myBtn");
+
+if(mybutton != null){
+
+  window.onscroll = function() {scrollFunction()};
+
+  function scrollFunction() {
+    if (document.body.scrollTop > 30 || document.documentElement.scrollTop > 30) {
+      mybutton.style.display = "block";
+    } else {
+      mybutton.style.display = "none";
+    }
+  }
 
 
-    window.addEventListener('scroll',function() {
-        top.classList.toggle("active",window.scrollY > 1000);
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0; 
+  }
 
-    })
-    top.addEventListener('click',function() {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-
-        })
-    })
 }
+
+
+
+
+
+// 전단지
+// (function(){
+
+//   const makePam = document.getElementById("makePam");
+//   const modal = document.getElementsByClassName("modal");
+//   const pamphlet = document.getElementById("modal-image");
+
+//   for(let img of makePam){
+
+//     img.addEventListener("click", function(){
+
+//       pamphlet.setAttribute("src", img.getAttribute("src"));
+
+//       modal.classList.toggle('show');
+
+//     })
+
+//   }
+
+// })();
+
+
+// const makePam = document.getElementById('makePam')
+// const pamphlet = document.getElementById('modal-image')
+
+// makePam.addEventListener('shown.bs.modal', () => {
+//   pamphlet.focus()
+// })
 
 
 

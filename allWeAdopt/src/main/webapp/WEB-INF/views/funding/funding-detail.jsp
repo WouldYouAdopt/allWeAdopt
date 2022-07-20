@@ -11,7 +11,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>ALL WE ADOPT</title>
+        <title>펀딩 상세 조회 : ALL WE ADOPT</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="${contextPath}/resources/assets/올위어답터.ico" />
 
@@ -152,7 +152,7 @@
 
                             <c:forEach var="i" begin="0" end="${fn:length(detail.rewardList)-1}">
                             <div class="reward-box">
-
+							
                                 <div class="reward">
                                     <div class="rew-number">
                                         리워드${i+1}
@@ -171,6 +171,9 @@
                                         <span class="deli-title">리워드 발송 시작일</span>
                                         <span class="deli-content">${detail.sendDate} 부터 순차발송</span>
                                     </div>
+                                    
+                           			<!-- 재고수량 0보다 클때 -->
+                           			<c:if test="${detail.rewardList[i].maxRewardNo-detail.rewardListCount[i].rewardOrderAmount>0}">
                                     <div class="stock-box">
                                         <span class="stock">현재 ${detail.rewardList[i].maxRewardNo-detail.rewardListCount[i].rewardOrderAmount}개 남음 / 제한수량 ${detail.rewardList[i].maxRewardNo}개</span>
                                         <c:if test="${empty detail.rewardListCount[i].rewardOrderAmount}">
@@ -180,6 +183,15 @@
 	                                        <span class="order-count">총 ${detail.rewardListCount[i].rewardOrderAmount}개 펀딩 완료</span>
                                         </c:if>
                                     </div>
+                           			</c:if>
+                           			
+                           			<!-- 재고수량 0보다 작을때 품절처리 -->
+                           			<c:if test="${detail.rewardList[i].maxRewardNo-detail.rewardListCount[i].rewardOrderAmount<=0}">
+                           			<div class="stock-box">
+                                        <span class="stock">품절</span>
+                                        <span class="order-count">총 ${detail.rewardListCount[i].rewardOrderAmount}개 펀딩 완료</span>
+                                    </div>
+                           			</c:if>
 
                                     <div class="rewardOver"><div class="vertical-center">이 리워드 펀딩하기</div></div>
 
@@ -281,30 +293,40 @@
                 }
 		    });
 
-            // 리워드 마우스 오버
             const rewards = document.getElementsByClassName("reward");
             const rewardOvers = document.getElementsByClassName("rewardOver");
             const goReward = document.getElementsByClassName("goReward");
 			
+            // 펀딩이 현재 진행중일때
             if(${detail.fundingState=='Y'}){
-            	
+				            	
 	            for(var i=0; i<rewards.length; i++){
-	                rewards[i].addEventListener("mouseover",function(){
-	                    this.lastElementChild.classList.add('visable');
-	                })
-	
-	                rewards[i].addEventListener("mouseout",function(){
-	                    this.lastElementChild.classList.remove('visable');
-	                })
-	                
-	                
-	                // 리워드 클릭 시
-	                rewardOvers[i].addEventListener("click", function(){
-	                	this.parentElement.nextElementSibling.submit();
-	                	return;
-	                })
-	            }
-            } //if(${detail.fundingState=='Y'})
+		                	
+	            		
+	            		// 리워드 마우스 오버
+						rewards[i].addEventListener("mouseover",function(){
+		                    this.lastElementChild.classList.add('visable');
+		                })
+		
+		                rewards[i].addEventListener("mouseout",function(){
+		                    this.lastElementChild.classList.remove('visable');
+		                })		                
+		                
+		                // 리워드 클릭 시
+		                rewardOvers[i].addEventListener("click", function(){
+		                	
+		                	if(this.previousElementSibling.firstElementChild.innerText=='품절'){
+		                    	alert("품절입니다");
+							}else{
+			                	this.parentElement.nextElementSibling.submit();
+			                	return;
+							}
+		                })
+		                
+	            	
+	            } 
+			} 
+			 
 			
             // 스크롤 reward 끝에 닿으면 버튼 보이게?
             // 스크롤Y 값이 header (헤더)
@@ -357,6 +379,13 @@
 			supporters.classList.remove('nowSelect')
 		}
 		
+		
+		
+		
+		// 재고수량 0일때 품절처리하기
+		if(${detail.rewardList[i].maxRewardNo-detail.rewardListCount[i].rewardOrderAmount}<=0){
+			//품절 처리
+		}
         </script>
     </body>
     
