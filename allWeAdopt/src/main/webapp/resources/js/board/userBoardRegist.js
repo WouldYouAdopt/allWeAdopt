@@ -200,14 +200,21 @@ function animalDetailFunc(){
 // 유효성 검사
 function regist(){
 	console.log("유효성");
-
+	
 	// 카테고리 검사
 	const category = document.getElementsByName("categoryValue")[0];
 	if(category.innerText.trim() == '카테고리를 선택해주세요'){
 		alert("카테고리를 선택해주세요");
 		return false;
 	}
-
+	
+	// img검사
+	const imgBool = !!document.querySelector('.card-block img');
+	if(!imgBool){
+		alert("최소 1장의 이미지를 삽입해야 합니다");
+		return false;
+	}
+	
 	// 게시글 제목 검사
 	const title = document.getElementById("boardTitle");
 	if(title.value.trim()==0){
@@ -291,12 +298,6 @@ function regist(){
 		return false;
 	}
 
-	// img검사
-	const imgBool = !!document.querySelector('.card-block img');
-	if(!imgBool){
-		alert("최소 1장의 이미지를 삽입해야 합니다");
-		return false;
-	}
 
 	alert("게시글을 수정하였습니다");
 };
