@@ -1,5 +1,6 @@
 package edu.kh.allWeAdopt.shelter.model.service;
 
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,14 +13,15 @@ import org.springframework.stereotype.Service;
 import edu.kh.allWeAdopt.board.model.vo.Board;
 import edu.kh.allWeAdopt.board.model.vo.BoardDetail;
 import edu.kh.allWeAdopt.board.model.vo.Pagination;
-import edu.kh.allWeAdopt.common.Util;
 import edu.kh.allWeAdopt.shelter.model.dao.ShelterDAO;
+
 
 @Service
 public class ShelterServiceImpl implements ShelterService {
 	
 	@Autowired
 	private ShelterDAO dao;
+	
 	
 	private Logger logger = LoggerFactory.getLogger(ShelterServiceImpl.class);
 
@@ -30,15 +32,18 @@ public class ShelterServiceImpl implements ShelterService {
 		// 전단지 수 조회 
 		int listCount = dao.getListCount();
 		
+		
 		Pagination pagination = new Pagination(cp, listCount);
 		
 		// 전단지 목록 조회 
 		List<Board> pamphletList = dao.selectPamphletList(pagination);
+				
 		
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("pagination", pagination);
 		map.put("pamphletList", pamphletList);
+
 		
 		
 		return map;
