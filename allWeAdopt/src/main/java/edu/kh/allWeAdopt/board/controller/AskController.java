@@ -1,5 +1,6 @@
 package edu.kh.allWeAdopt.board.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -16,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import edu.kh.allWeAdopt.board.model.service.BoardService;
+import edu.kh.allWeAdopt.board.model.service.ReplyService;
 import edu.kh.allWeAdopt.board.model.vo.BoardDetail;
+import edu.kh.allWeAdopt.board.model.vo.Reply;
 import edu.kh.allWeAdopt.member.model.vo.Member;
 
 @Controller
@@ -27,6 +30,9 @@ public class AskController {
 
 	@Autowired
 	private BoardService service;
+	
+	@Autowired
+	private ReplyService ReplyService;
 	
 	private Logger logger = LoggerFactory.getLogger(AdminNoticeController.class);
 	
@@ -43,7 +49,7 @@ public class AskController {
 		// aList를 조회하는 서비스 호출 
 		Map<String, Object> map = service.selectaskList(cp,loginMember);
 		
-		// request범위에 nList 세팅
+		// request범위에 aList 세팅
 		model.addAttribute("map", map);
 		
 		return "ask/askList";
@@ -58,7 +64,13 @@ public class AskController {
 		
 		BoardDetail detail = service.selectAskDetail(boardNo); 
 		
+		List<Reply> rList = ReplyService.selectReplyList(boardNo);
+		
+		
 		model.addAttribute("detail",detail);
+		model.addAttribute("rList",rList);
+		
+		
 		
 		return "ask/askDetail";
 	}
@@ -72,6 +84,7 @@ public class AskController {
 		
 		return "ask/askWrite";
 	}
+	
 	
 	
 	

@@ -52,6 +52,7 @@
 		 <mapper resource="/mappers/funding-mapper.xml"/>
 		 <mapper resource="/mappers/pamphlet-mapper.xml"/>
 		 <mapper resource="/mappers/shelterReply-mapper.xml"/>
+		 <mapper resource="/mappers/reply-mapper.xml"/>
 
 	</mappers>
 
