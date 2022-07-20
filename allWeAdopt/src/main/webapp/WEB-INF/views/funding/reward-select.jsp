@@ -11,7 +11,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>펀딩목록 : ALL WE ADOPT</title>
+        <title>리워드 선택 : ALL WE ADOPT</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="${contextPath}/resources/assets/올위어답터.ico" />
 
@@ -33,6 +33,34 @@
         <link href="${contextPath}/resources/css/funding/funding-detail.css" rel="stylesheet" />
 
         <style>
+        	/* input number에 화살표 없애기 */
+        	input[type="number"]::-webkit-outer-spin-button,
+			input[type="number"]::-webkit-inner-spin-button {
+			    -webkit-appearance: none;
+			    -moz-appearance: none;
+			    appearance: none;
+			}
+			.minus, .plus, .rewardCount {
+
+				background : #fff;
+				margin:0;
+				width: 35px !important;
+				padding:0;
+				height:35px;
+			}
+			.minus, .plus{
+				border:1px solid #999;
+			}
+			.rewardCount{
+				text-align:center;
+				border-top :1px solid #999;
+				border-bottom :1px solid #999;
+				border-left: none;
+				border-right: none;
+				
+			}
+
+
             .nav-text-color{
                 /* color: rgb(251, 131, 107); */
                 color: black;
@@ -62,18 +90,18 @@
 		<!-- Modal -->
 		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		  <div class="modal-dialog">
-		    <div class="modal-content">
+		    <div class="modal-content" style="border-radius:40px; overflow:hidden;">
 		      <div class="modal-header">
-		        <h5 class="modal-title" id="exampleModalLabel">펀딩 취소 / 반환 방법 미리 체크패보세요</h5>
-		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		        <h5 class="modal-title" id="exampleModalLabel">펀딩 취소 / 반환 방법 미리 체크해보세요</h5>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="margin-right:25px;"></button>
 		      </div>
-		      <div class="modal-body py-4">
+		      <div class="modal-body py-4" style="padding-right:30px;">
 		      
 		      	<div class="d-flex py-3">
 			      	<div class="px-3">
 			      		<input type="checkbox" class="payCheck">
 			      	</div>
-			      	<div class="px-3">
+			      	<div class="px-2 modalcon">
 			        	<p>펀딩이 끝나기 전까지 언제든 결제를 취소할 수 있어요.</p>
 			        	<p>펀딩이 끝나고 바로 리워드가 제작되어 다음 날 부터 순차 발송이 시작되기 때문에, 펀딩이 끝나면 결제를 취소 할 수 없습니다.</p>
 			        </div>
@@ -83,7 +111,7 @@
 			      	<div class="px-3">
 		        		<input type="checkbox" class="payCheck">
 		        	</div>
-			      	<div class="px-3">
+			      	<div class="px-2 modalcon">
 		        		<p>리워드에 문제가 있거나 배공일을 지키지 않으면 펀딩금을 돌려받을 수 있어요.</p>
 		        		<p>펀딩금 반환 정책 확인</p>
 			        </div>
@@ -93,7 +121,7 @@
 			      	<div class="px-3">
 		        		<input type="checkbox" class="payCheck">
 		        	</div>
-			      	<div class="px-3">
+			      	<div class="px-2 modalcon">
 		        		<p>단순 변심에 의한 펀딩금 반환은 신청할 수 없어요.</p>
 		        		<p>펀딩은 일반 쇼핑과 달리 리워드를 만드는 메이커에서 투자하고, 투자의 보상으로 제품이나 서비스를 받는 구조이기 때문에 전자상거래법상 통신판매에 해당하지 않아요. 그래서 단순 변심을 이유로 한 펀딩금 반환을 신청할 수 없습니다.</p>
 			        </div>
@@ -160,20 +188,35 @@
 										<span class="deli-title">리워드 발송 시작일</span>
 										<span class="deli-content"> ${map.sendDate} &nbsp;순차발송</span>
 									</div>
-									<div class="stock-box">
-										<span class="stock">현재 ${map.rewardList[i].maxRewardNo-map.rewardListCount[i].rewardOrderAmount}개 남음 / 제한수량 ${map.rewardList[i].maxRewardNo}개</span>
-										<c:if test="${empty map.rewardListCount[i].rewardOrderAmount}">
-											<span class="order-count">총 0개 펀딩 완료</span>
-										</c:if>
-										<c:if test="${!empty map.rewardListCount[i].rewardOrderAmount}">
-											<span class="order-count">총 ${map.rewardListCount[i].rewardOrderAmount}개 펀딩 완료</span>
-										</c:if>
-									</div>
+									
+									<!-- 재고수량 0보다 클때 -->
+                           			<c:if test="${map.rewardList[i].maxRewardNo-map.rewardListCount[i].rewardOrderAmount>0}">
+                                    <div class="stock-box">
+                                        <span class="stock">현재 ${map.rewardList[i].maxRewardNo-map.rewardListCount[i].rewardOrderAmount}개 남음 / 제한수량 ${map.rewardList[i].maxRewardNo}개</span>
+                                        <c:if test="${empty map.rewardListCount[i].rewardOrderAmount}">
+	                                        <span class="order-count">총 0개 펀딩 완료</span>
+                                        </c:if>
+                                        <c:if test="${!empty map.rewardListCount[i].rewardOrderAmount}">
+	                                        <span class="order-count">총 ${map.rewardListCount[i].rewardOrderAmount}개 펀딩 완료</span>
+                                        </c:if>
+                                    </div>
+                           			</c:if>
+                           			
+                           			<!-- 재고수량 0보다 작을때 품절처리 -->
+                           			<c:if test="${map.rewardList[i].maxRewardNo-map.rewardListCount[i].rewardOrderAmount<=0}">
+                           			<div class="stock-box">
+                                        <span class="stock">품절</span>
+                                        <span class="order-count">총 ${map.rewardListCount[i].rewardOrderAmount}개 펀딩 완료</span>
+                                    </div>
+                           			</c:if>
+                           			
+
+                          
 									
 									<div class="d-grid"><p class="rewardSelectBtn lineBtn-gr rewardSelectBtn selected">리워드 선택</p></div>
-								
-									<input type="number" name="${map.rewardList[i].rewardNo}" value="1" style="width:60px;" class="rewardCount">
-								
+									
+									<button type="button" class="minus"><i class="fa-solid fa-minus"></i></button><input type="number" min="0" max="${map.rewardList[i].maxRewardNo-map.rewardListCount[i].rewardOrderAmount}" name="${map.rewardList[i].rewardNo}" value="1" style="width:60px;" class="rewardCount"><button type="button" class="plus"><i class="fa-solid fa-plus"></i></button>
+									
 								</div>
 							</div>
 						</div>
@@ -202,20 +245,34 @@
 										<span class="deli-title">리워드 발송 시작일</span>
 										<span class="deli-content"> ${map.sendDate} &nbsp;순차발송</span>
 									</div>
-									<div class="stock-box">
-										<span class="stock">현재 ${map.rewardList[i].maxRewardNo-map.rewardListCount[i].rewardOrderAmount}개 남음 / 제한수량 ${map.rewardList[i].maxRewardNo}개</span>
-										<c:if test="${empty map.rewardListCount[i].rewardOrderAmount}">
-											<span class="order-count">총 0개 펀딩 완료</span>
-										</c:if>
-										<c:if test="${!empty map.rewardListCount[i].rewardOrderAmount}">
-											<span class="order-count">총 ${map.rewardListCount[i].rewardOrderAmount}개 펀딩 완료</span>
-										</c:if>
-									</div>
+									
+									
+									<!-- 재고수량 0보다 클때 -->
+                           			<c:if test="${map.rewardList[i].maxRewardNo-map.rewardListCount[i].rewardOrderAmount>0}">
+                                    <div class="stock-box">
+                                        <span class="stock">현재 ${map.rewardList[i].maxRewardNo-map.rewardListCount[i].rewardOrderAmount}개 남음 / 제한수량 ${map.rewardList[i].maxRewardNo}개</span>
+                                        <c:if test="${empty map.rewardListCount[i].rewardOrderAmount}">
+	                                        <span class="order-count">총 0개 펀딩 완료</span>
+                                        </c:if>
+                                        <c:if test="${!empty map.rewardListCount[i].rewardOrderAmount}">
+	                                        <span class="order-count">총 ${map.rewardListCount[i].rewardOrderAmount}개 펀딩 완료</span>
+                                        </c:if>
+                                    </div>
+                           			</c:if>
+                           			
+                           			<!-- 재고수량 0보다 작을때 품절처리 -->
+                           			<c:if test="${map.rewardList[i].maxRewardNo-map.rewardListCount[i].rewardOrderAmount<=0}">
+                           			<div class="stock-box">
+                                        <span class="stock">품절</span>
+                                        <span class="order-count">총 ${map.rewardListCount[i].rewardOrderAmount}개 펀딩 완료</span>
+                                    </div>
+                           			</c:if>
+                           			
+                           			
+                           			
 									
 									<div class="d-grid"><p class="rewardSelectBtn lineBtn-gr rewardSelectBtn">리워드 선택</p></div>
-								
-									<input type="number" name="${map.rewardList[i].rewardNo}" value="0" style="width:60px;" class="rewardCount">
-								
+									<button type="button" class="minus"><i class="fa-solid fa-minus"></i></button><input type="number" min="0" max="${map.rewardList[i].maxRewardNo-map.rewardListCount[i].rewardOrderAmount}" name="${map.rewardList[i].rewardNo}" value="0" style="width:60px;" class="rewardCount"><button type="button" class="plus"><i class="fa-solid fa-plus"></i></button>
 								</div>
 							</div>
 						</div>
@@ -313,6 +370,7 @@
         	
         	console.log(priceList);
         	
+        	// 리워드 선택버튼 반복쓰
         	for(let i=0; i<rewardSelectBtn.length; i++){
         		
         		// 리워드별 가격?
@@ -326,8 +384,8 @@
 
         				
         				this.classList.remove("selected"); 
-        				const beforeCount = this.parentElement.nextElementSibling.value;
-        				this.parentElement.nextElementSibling.value="0";
+        				const beforeCount = this.parentElement.nextElementSibling.nextElementSibling.value;
+        				this.parentElement.nextElementSibling.nextElementSibling.value="0";
         				payPrice.innerText=parseInt(payPrice.innerText)-parseInt(beforeCount)*parseInt(priceList[i]);
 						
         				// 버튼 클릭시 바뀐 값에 따라 서브밋(selected해제 할때)
@@ -339,18 +397,26 @@
         					selectValidate=false;
         				}
         			}else{
-        				this.classList.add("selected"); 
-        				this.parentElement.nextElementSibling.value="1";
-        				payPrice.innerText=parseInt(payPrice.innerText)+parseInt(priceList[i]);
+
+        				// 품절 아니라면
+        				if(this.parentElement.previousElementSibling.firstElementChild.innerText!='품절'){
+        					
         				
-        				// 버튼 클릭시 바뀐 값에 따라 서브밋(selected 들어갈때)
-        				if(payPrice.innerText!=0){
-        					toModal.setAttribute( 'data-bs-target', '#exampleModal');
-        					selectValidate=true;
-        				}else{
-        					toModal.removeAttribute( 'data-bs-target', '#exampleModal');
-        					selectValidate=false;
+	        				this.classList.add("selected"); 
+	        				this.parentElement.nextElementSibling.nextElementSibling.value="1";
+	        				payPrice.innerText=parseInt(payPrice.innerText)+parseInt(priceList[i]);
+	        				
+	        				// 버튼 클릭시 바뀐 값에 따라 서브밋(selected 들어갈때)
+	        				if(payPrice.innerText!=0){
+	        					toModal.setAttribute( 'data-bs-target', '#exampleModal');
+	        					selectValidate=true;
+	        				}else{
+	        					toModal.removeAttribute( 'data-bs-target', '#exampleModal');
+	        					selectValidate=false;
+	        				}
+        				
         				}
+        				
         			}
         		})
 
@@ -366,7 +432,7 @@
 	        	//}
         	}
         	
-        	// 클릭했을때로 하니까 숫자입력했을때는 적용안됨..
+
         	// value값 바꼈을때로.. 가능? changeEvent?
         	for(let i=0; i<rewardCount.length; i++){
         		
@@ -396,10 +462,73 @@
 						rewardSelectBtn[i].classList.remove("selected");  
 					}
         		})
-        
         	
         	}
         	
+        	
+        	
+        	const minus = document.getElementsByClassName("minus");
+        	const plus = document.getElementsByClassName("plus");
+        	// plus minus 버튼 동작
+        	for(let i=0; i<minus.length; i++){
+        		minus[i].addEventListener("click",function(){
+        			if(this.nextElementSibling.value>0){        				
+	        			this.nextElementSibling.value= parseInt(this.nextElementSibling.value)-1;
+	     				
+	        			if(this.nextElementSibling.value==0){
+	        				rewardSelectBtn[i].classList.remove("selected");
+	        			}
+	        			
+        			var sum=0;
+	        			for(var a=0; a<priceList.length; a++){
+			        		sum +=parseInt(rewardCount[a].value)*parseInt(priceList[a]);
+			        	}
+						payPrice.innerText= sum;
+	        			
+        			}
+        			
+        			// input value change에 따라 서브밋(selected 들어갈때)
+        			if(payPrice.innerText!=0){
+        				toModal.setAttribute( 'data-bs-target', '#exampleModal');
+        				selectValidate=true
+        			}else{
+        				toModal.removeAttribute( 'data-bs-target', '#exampleModal');
+        				selectValidate=false;
+        			}
+        		})
+        		
+        		const max = plus[i].previousElementSibling.getAttribute('max');
+        		plus[i].addEventListener("click",function(){
+        			// input의 max속성값 가져오기
+        			if(this.previousElementSibling.value<parseInt(max)){        				
+	        			this.previousElementSibling.value= parseInt(this.previousElementSibling.value)+1;
+	        			rewardSelectBtn[i].classList.add("selected");
+	        			
+        			var sum=0;
+	        			for(var a=0; a<priceList.length; a++){
+			        		sum +=parseInt(rewardCount[a].value)*parseInt(priceList[a]);
+			        	}
+						payPrice.innerText= sum;
+        			}
+        			
+        			
+        			
+        			// input value change에 따라 서브밋(selected 들어갈때)
+        			if(payPrice.innerText!=0){
+        				toModal.setAttribute( 'data-bs-target', '#exampleModal');
+        				selectValidate=true
+        			}else{
+        				toModal.removeAttribute( 'data-bs-target', '#exampleModal');
+        				selectValidate=false;
+        			}
+        		})
+        		
+        		
+        		
+        		
+        	}
+        	
+
         	
         	
         	// 결제버튼 submit
@@ -419,7 +548,7 @@
 		        if(payCheck1.checked && payCheck2.checked && payCheck3.checked){        	
         			goPayForm.submit();
 		        }else{
-		        	alert("모두 체크하렴 스윗얼럿 적용하기");
+		        	alert("모든 항목을 확인하고 체크해주세요");
 		        }
 	        	
 	        	

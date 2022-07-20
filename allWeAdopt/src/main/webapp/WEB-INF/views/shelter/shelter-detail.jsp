@@ -49,6 +49,8 @@
         <link href="${contextPath}/resources/css/main-style.css" rel="stylesheet" />
         <link href="${contextPath}/resources/css/styles.css" rel="stylesheet" />
 
+        <link href="${contextPath}/resources/css/shelter/shelter-main.css" rel="stylesheet" />
+
 
         <%-- 지도 --%>
         <%-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=69933a089a5ecd291058167064475d66"></script>
@@ -88,7 +90,7 @@
             <!-- Navigation-->
 
             <!-- Page Content-->
-            <section class="py-5">
+            <%-- <section class="py-5">
                 <div class="container px-5">
                     <div class="card border-0 shadow rounded-3 overflow-hidden">
                         <div class="card-body p-0">
@@ -99,7 +101,9 @@
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> --%>
+
+            <img src="${contextPath}/resources/images/adopt-mainLogo.png" class="img-fluid" alt="...">
 
             <section class="py-5">
                 <div class="container px-5 my-5">
@@ -122,8 +126,8 @@
                                     <!-- Post title-->
                                     <h1 class="fw-bolder mb-1">${careNm}</h1>
                                     <!-- Post meta content-->
-                                    <div class="text-muted fst-italic mb-2">공고 시작일: ${noticeSdt}</div>
-                                    <div class="text-muted fst-italic mb-2">공고 종료일: ${noticeEdt}</div>
+                                    <div class="text-muted fst-italic mb-2">공고 시작일: ${noticeSdt} | 공고 종료일: ${noticeEdt}</div>
+                                    <%-- <div class="text-muted fst-italic mb-2">공고 종료일: ${noticeEdt}</div> --%>
                                     <!-- Post categories-->
                                     <%-- <a class="badge bg-secondary text-decoration-none link-light" href="#!">관심동물</a> --%>
 
@@ -137,7 +141,7 @@
 
                                 </header>
                                 <!-- 유기동물 사진 -->
-                                <figure class="mb-4"><img class="img-fluid rounded" src="${popfile}" alt="..." /></figure>
+                                <figure class="mb-4"><img class="img-fluid rounded" style="width: 700px;" src="${popfile}" alt="..." /></figure>
                                 <!-- Post content-->
                                 <!-- 나중에 폰트 적용 해보기! -->
                                 <section class="mb-5">
@@ -151,7 +155,7 @@
                                         <li class="fs-5 mb-4 list-group-item" style="list-style-type:none">보호소 주소 : ${careAddr}</li>                                   
                                     </ul> --%>
 
-                                    <ol class="list-group list-group-numbered">
+                                    <ol class="list-group list-group-numbered" style="width: 700px;">
                                         <li class="list-group-item d-flex justify-content-between align-items-start">
                                           <div class="ms-2 me-auto">
                                             <div class="fw-bold">접수일</div>
@@ -217,7 +221,7 @@
                                     <div class="md-10" style="margin:30px;"></div>
 
                                     <%-- 보호소 지도 첨부 --%>
-                                    <div id="map" style="width:600px;height:400px;"></div>
+                                    <div id="map" style="width:700px;height:400px;"></div>
 
 
 
@@ -268,11 +272,13 @@
                                                                                                                                    
                                 </section>
 
-                                <div class="position-relative">
+                                <%-- <div class="position-relative">
                                     <div class="position-absolute top-100 start-100 translate-middle">
                                         <a href="#" style="display:scroll; position:fixed; left:30px; rigit: 50px; bottom: 10px; title=top"><h3><i class="bi bi-arrow-up-circle bt_top" style="color: #FB836B;"></i></h3></a>
                                     </div>
-                                </div>
+                                </div> --%>
+
+                                <button onclick="topFunction()" id="myBtn" title="Go to top"><h3><i class="bi bi-arrow-up-circle bt_top" style="color: #FB836B;"></i></h3></button>    
                                 
                             </article>
                         </div>

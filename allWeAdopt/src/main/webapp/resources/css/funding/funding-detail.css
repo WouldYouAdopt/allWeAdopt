@@ -535,3 +535,31 @@
 			    font-size: 1rem;
 			    border-radius: 0.25rem;
            }
+.modal-header{
+	/* background:#FB836B; */
+}          
+.modal-title{
+	margin-left: 50px;
+	padding: 10px 0;
+	color:#FB836B;
+}
+.modalcon p:first-child{
+	font-weight:700;
+}
+.modal-footer{
+	padding:15px !important;
+	background:#eee;
+	
+
+}
+#goPay{
+	background:transparent;
+	border:none;
+	width:100%;
+	height:100%;
+	
+	font-size:22px;
+	font-weight:500;
+	outline:0 !important;
+}
+

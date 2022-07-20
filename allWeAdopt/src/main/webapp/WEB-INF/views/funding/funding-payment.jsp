@@ -87,14 +87,16 @@
 								<c:set var="fullPrice" value="0" />
 
 								<c:forEach var="reward" items="${rewardList}">
-
+									<div class="sujin"><!-- 수진만듦 기능 깨지면 삭제할것 -->
 									<h5 class="h5 fw-bolder rewardTitle">${reward.rewardTitle}</h5>
 									<span>${reward.rewardContent}</span>
 
 									<div class="resultInfo">
-										<span class="resultPay">${reward.fullPrice} 원 </span> <span>수량:
+										<span class="resultPay">${reward.fullPrice} 원 </span> <span>수량 :
 											${reward.amount}</span>
 									</div>
+									</div>
+									
 									<input type="hidden" value="${fullPrice = fullPrice+reward.fullPrice}">
 								</c:forEach>
 
@@ -116,6 +118,7 @@
 							<div id="information">
 								<div class="supporterWrapper">
 									<h4 class="fw-bolder">펀딩 서포터</h4>
+									<hr style="width:346px; margin-bottom:18px;">
 									<ul class="supporterInfo">
 										<h3>Name</h3>
 										<li>${loginMember.memberName}</li>
@@ -149,20 +152,27 @@
 														
 								<!-- 리워드 정보 입력 영역-->
 								<div class="parcelInfo">
-									<h4 class="fw-bolder">
+									<h4 class="fw-bolder" style="margin-bottom:10px;">
 										리워드 배송지
-										<p style="margin: 0; padding: 3px; font-size: 12px">* 기호는
-											필수 작성 영역입니다</p>
+										<span style="margin: 0; padding: 3px; font-size: 12px; font-weight: 400;">
+											* 기호는 필수 작성 영역입니다
+										</span>
 									</h4>
 									
-
-									<span><label for="prevDestination">이전 배송지 </label> <input
-										type="radio" name="destination" id="prevDestination"></span>
-
-									<span><label for="newDestination">신규 배송지 </label> <input
-										type="radio" name="destination" id="newDestination"></span> <span><label
-										for="supportDestination">서포터 정보와 동일 </label> <input
-										type="radio" name="destination" id="supportDestination"></span>
+									<hr style="margin-bottom: 0px;">
+									
+									<span>
+										<input type="radio" name="destination" id="prevDestination">
+										<label for="prevDestination">이전 배송지 &nbsp;</label> 
+									</span>
+									<span>
+										<input type="radio" name="destination" id="newDestination">
+										<label for="newDestination">신규 배송지 &nbsp;</label> 
+									</span> 
+									<span>
+										<input type="radio" name="destination" id="supportDestination">
+										<label for="supportDestination">서포터 정보와 동일 </label> 
+									</span>
 
 									<div class="inputArea">
 
@@ -185,9 +195,9 @@
 											<span>*주소</span><br>
 											<div id="postCodeArea">
 												<button type="button" onclick="DaumPostcode()" id="findPostcode">우편번호 찾기</button>
-												<input type="text" name="orderAddress" id="postCode"	placeholder="우편번호"><br>
+												<input type="text" name="orderAddress" id="postCode" placeholder="우편번호" style="margin-bottom:5px;"><br>
 											</div>
-											<input type="text" name="orderAddress" id="Address"	placeholder="주소">
+											<input type="text" name="orderAddress" id="Address"	placeholder="주소" style="margin-bottom:10px;">
 											<input type="text" name="orderAddress" id="detailAddress"	placeholder="상세주소를 입력해주세요">
 											
 										</div>

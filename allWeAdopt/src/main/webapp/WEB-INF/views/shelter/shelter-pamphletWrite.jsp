@@ -48,7 +48,7 @@
             <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
 
-            <section class="py-5">
+            <%-- <section class="py-5">
                 <div class="container px-5">
                     <div class="card border-0 shadow rounded-3 overflow-hidden">
                         <div class="card-body p-0">
@@ -59,7 +59,9 @@
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> --%>
+
+            <img src="${contextPath}/resources/images/Pet-Friendly.jpg" class="img-fluid" alt="...">
 
            
             <!-- About section two-->
@@ -72,7 +74,7 @@
 
                           <div class="col-md-5 col-sm-6 mt-3">
                               <label for="exampleFormControlInput3" class="form-label">제목</label>
-                              <input type="text" name="boardTitle" class="form-control" id="exampleFormControlInput3" placeholder="게시글의 제목을 입력하세요..." value="${detail.boardTitle}" >
+                              <input type="text" name="boardTitle" class="form-control" id="exampleFormControlInput3" placeholder="전단지 제목" value="${detail.boardTitle}" >
                           </div>
 
                           <div class="md-10"></div>
@@ -122,7 +124,7 @@
         <script>
             $(document).ready(function() {
                 $('#summernote').summernote({
-                    placeholder: '인적사항, 실종날짜, 실종장소를 상세히 적어주세요',
+                    placeholder: '인적사항, 실종날짜, 실종장소, 잃어버린 동물의 사진을 상세히 적어주세요',
                     tabsize: 2,
                     height: 350,
                     toolbar: [

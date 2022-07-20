@@ -375,16 +375,4 @@ public class UserBoardController {
 		
 		return result;
 	}
-	
-//	// 검색
-//	@PostMapping("/user")
-//	public String searchList(Board board, Model model) {
-//		List<Board> list = service.searchList(board);
-//		// 지역 리스트 출력
-//		List<Area> areaList = service.areaList();
-//		
-//		model.addAttribute("searchList",list);
-//		model.addAttribute("areaList",areaList);
-//		return "redirect:/board/user";
-//	}
 }
