@@ -60,6 +60,7 @@
                             <table class="table  fundingList">
                                 <thead>
                                   <tr>
+                                    <th scope="col">No.</th>
                                     <th scope="col" class="dt1">펀딩번호</th>
                                     <th scope="col" class="dt2">결제번호</th> <%-- 주문번호칸이 따로 필요 없는것 같기도..? --%>
                                     <th scope="col" class="dt3">카테고리</th>
@@ -79,12 +80,13 @@
                                    </c:when>      
 
                                    <c:otherwise>   
-                                      <c:forEach var="funding" items="${fundingList}">
+                                      <c:forEach var="funding" items="${fundingList}" varStatus="status">
                                           <tr>
+                                              <td>${status.count}</td>
                                               <td>${funding.fundingNo}</td>
                                               <td>${funding.paymentNo}</td>
                                               <td>${funding.fundingCategory}</td>
-                                              <td> 
+                                              <td class="titleTd" style="padding-left: 20px;"> 
                                                   <a href="detail/${funding.paymentNo}">${funding.fundingTitle}</a>    
                                               </td>
                                               <td>${funding.orderState}</td>

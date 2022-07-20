@@ -89,14 +89,16 @@
 /* ----------------------------- */
 
 
-td{
-    text-align: left;
+td {
+    text-align: center;
 }
-
+.titleTd{
+	text-align: left;
+}
 
 #funding-info{
     width: 100%;
-    padding: 40px;
+    padding: 40px !important;
 }
 #twoTable{
     display: flex;
