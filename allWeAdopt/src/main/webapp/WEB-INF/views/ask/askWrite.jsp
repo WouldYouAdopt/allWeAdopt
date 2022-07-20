@@ -86,78 +86,59 @@
             <section class="py-0">
                 <div class="container px-3 my-1">
                     <div class="row gx-5 align-items-center">
-                        <div class="col-md-5 col-sm-6 ">
-                            <span class="form-label">문의사항을 선택해주세요.</span>
-                            <select class="form-select" aria-label="Default select example">
-                                <option selected>문의사항 선택</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                                <option value="3">Three</option>
-                              </select>
-                        </div>
+                             <form action="${contextPath}/member/myPage/ask/write" method="post" onsubmit="return writeValidate()">
+                                    <div class="col-md-5 col-sm-6 ">
+                                        <span class="form-label">문의사항을 </span>
+                                                <select name="category" id="category" style="color: gray;">
+                                                    <option value="0" >선택</option>
+                                                    <option value="1" >보호소 문의</option>
+                                                    <option value="2" >사용자 문의</option>
+                                                    <option value="3" >펀딩 문의</option>
+                                                    <option value="4" >병원찾기 문의</option>
+                                                    <option value="6" >공지사항 문의</option>
+                                                    <option value="5" >기타 문의</option>
+                                                </select>
+                                            합니다.
+                                        
+                                    </div>
 
-                        <div class="md-10"></div>
+                                     <!-- 숨겨진 값(hidden) : mode, boardNo, cp-->
+                                    <input type="hidden" name="mode" value="${param.mode}">
+                                    <input type="hidden" name="boardNo" value="${empty param.no ? 0 : param.no}">
+                                    <input type="hidden" name="cp" value="${param.cp}">
+                                    <input type="hidden" name="memberNo" value="${loginMember.memberNo}">
 
-                        <div class="col-md-5 col-sm-6 mt-3">
-                            <label for="exampleFormControlInput3" class="form-label">게시글 제목</label>
-                            <input type="email" class="form-control" id="exampleFormControlInput3" placeholder="게시글의 제목을 입력하세요..."  >
-                        </div>
 
-                        <div class="md-10"></div>
-                        
-                        <div class="col-md-5 col-sm-6 mt-3">
-                            <label for="exampleFormControlInput2" class="form-label">이메일</label>
-                            <input type="email" class="form-control" id="exampleFormControlInput2" placeholder="김주에@naver.com(시간나면하도록)"  >
-                        </div>
+                                    <div class="md-10"></div>
 
-                        <div class="md-10"></div>
+                                    <div class="col-md-5 col-sm-6 mt-3">
+                                        <label for="exampleFormControlInput3" class="form-label">게시글 제목</label>
+                                        <input name="boardTitle" type="text" class="form-control" id="exampleFormControlInput3" placeholder="게시글의 제목을 입력하세요..."  >
+                                    </div>
 
-                        <div class="col-md-5 col-sm-6 mt-3">
-                            <label for="exampleFormControlInput1" class="form-label">작성자</label>
-                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="김주에" readonly >
-                        </div>
 
-                        <div class="md-10"></div>
+                                    <div class="md-10"></div>
 
-                        <div class="mb-3 mt-3">
-                            <label for="exampleFormControlTextarea1" class="form-label">문의내용 작성</label>
-                            <textarea id="summernote" name="editordata"></textarea>    
-                            <button class="btn btn-primary mt-3 button-pink" type="submit">글작성</button>
-                        </div>
-
+                                    <div class="mb-3 mt-3">
+                                        <label for="exampleFormControlTextarea1" class="form-label">문의내용 작성</label>
+                                        <textarea id="summernote" name="boardContent"></textarea>    
+                                        <button class="btn btn-primary mt-3 button-pink" type="submit">글작성</button>
+                                    </div>
+                             </form>
                     </div>
                 </div>
             </section>
            
             
-            <!-- About section three-->
-            <section class="py-3">
-                <div class="container px-4 my-1">
-                    <div class="row gx-5 align-items-center">
-                        
-                    </div>
-                </div>
-            </section>
 
 
         </main>
 
-        <!-- Footer-->
-        <footer class="bg-dark py-4 mt-auto">
-            <div class="container px-5">
-                <div class="row align-items-center justify-content-between flex-column flex-sm-row">
-                    <div class="col-auto"><div class="small m-0 text-white">Copyright &copy; Your Website 2022</div></div>
-                    <div class="col-auto">
-                        <a class="link-light small" href="#!">Privacy</a>
-                        <span class="text-white mx-1">&middot;</span>
-                        <a class="link-light small" href="#!">Terms</a>
-                        <span class="text-white mx-1">&middot;</span>
-                        <a class="link-light small" href="#!">Contact</a>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        
+        <!-- 푸터 -->
+        <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+
+        
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->

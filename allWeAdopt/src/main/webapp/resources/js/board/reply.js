@@ -15,7 +15,15 @@ function selectReplyList(){
             // rList에 저장된 요소를 하나씩 접근
             for(let reply of rList){
 
-                
+                const contentDiv = document.createElement("div");
+                const btnDiv = document.createElement("div");
+
+                const updateBtn = document.createElement("button");
+                const deleteBtn = document.createElement("button");
+
+                updateBtn.classList.add("btn");
+
+                // divTag2.classList.add("class1", "class2", "class3"); // 클래스 여러개
 
             }
 

@@ -131,8 +131,17 @@ public class BoardServiceImpl implements BoardService{
 		BoardDetail detail = dao.selectAskDetail(boardNo);
 		
 		return detail;
-	}	
-	
+	}
+
+	// 문의사항 글 작성
+	@Override
+	public int insertAskWrite(BoardDetail detail) {
+		// 제목만 XSS, 개행처리
+		detail.setBoardTitle(Util.XSSHandling(detail.getBoardTitle()));
+		detail.setBoardTitle(Util.newLineHandling(detail.getBoardTitle()));
+		
+		return dao.insertAskWrite(detail);
+	}
 	
 	
 	

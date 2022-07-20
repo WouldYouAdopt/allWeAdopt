@@ -37,7 +37,9 @@
                                                 <div class="ms-3 ">
                                                     <div class="col-lg-8  fw-bold" id="reply-name" >관리자</div>
                                                     <!-- 코멘트 조회 넣기 -->
-                                                        If you're going to lead a space frontier, it has to be government; it'll never be private enterprise. Because the space frontier is dangerous, and it's expensive, and it has unquantified risks.
+                                                        <div>
+                                                           22222 If you're going to lead a space frontier, it has to be government; it'll never be private enterprise. Because the space frontier is dangerous, and it's expensive, and it has unquantified risks.
+                                                        </div>
                                                         <c:if test="${loginMember.memberType =='A' }">
                                                             <div class="col-sm-6">
                                                                 <button type="submit" class="btn btn-outline-secondary mb-2  btn-sm">수정</button>
