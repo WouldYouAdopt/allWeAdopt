@@ -75,7 +75,7 @@
 
             <!-- Page Content-->
             <!-- 메인 로고 부분(사진 끝에 흰거 나중에 여쭙기) -->
-            <section class="py-5">
+            <%-- <section class="py-5">
                 <div class="container px-5">
                     <div class="card border-0 shadow rounded-3 overflow-hidden">
                         <div class="card-body p-0">
@@ -86,7 +86,9 @@
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> --%>
+
+            <img src="${contextPath}/resources/images/Pet-Friendly.jpg" class="img-fluid" alt="...">
 
 
             <section class="py-5">
@@ -118,7 +120,7 @@
                                     </c:if>
 
                                     <div class="card-body p-4"  id="content">
-                                        <div class="badge bg-danger bg-gradient rounded-pill mb-2">실종</div>
+                                        <span class="badge" style="background-color: #FB836B; font-size: 13px; margin-bottom: 10px; margin-bottom: 10px;" >실종</span>
 
                                         <a class="text-decoration-none link-dark stretched-link" href="../pamphlet/detail/${pamphlet.boardNo}?cp=${pagination.currentPage}"><h5 class="card-title mb-3">${pamphlet.boardTitle}</h5></a>
                                         <%-- <p class="card-text mb-0">${pamphlet.boardContent}</p> --%>
@@ -150,7 +152,7 @@
                                                     <div class="text-muted">${pamphlet.createDate}</div>
                                                 </div>
 
-                                                <div class="md-10" style="margin:30px;"></div>
+                                                <div class="md-10" style="margin:20px;"></div>
                             
                                                 <button type="button" class="btn btn-primary" style="color: #FB836B; border: 2px solid #FB836B; background-color: white; border-radius:50%;" id="rArea">
                                                 <span class="badge text-bg-secondary" style="color: #FB836B; font-weight: bold;">${pamphlet.replyCount}</span>
@@ -167,13 +169,15 @@
 
                     
                     <%-- goTotop  --%>
-                    <div class="position-relative">
+                    <%-- <div class="position-relative">
                         <div class="position-absolute top-100 start-100 translate-middle">
                             <a href="#" id="toTop" style="display:scroll; position:fixed; left:30px; rigit: 50px; bottom: 10px; title=top"><h3><i class="bi bi-arrow-up-circle bt_top" style="color: #FB836B;"></i></h3></a>
                         </div>
-                    </div>
+                    </div> --%>
 
                     <%-- <a id="toTop" href="#">TOP</a> --%>
+
+                    <button onclick="topFunction()" id="myBtn" title="Go to top"><h3><i class="bi bi-arrow-up-circle bt_top" style="color: #FB836B;"></i></h3></button>
 
 
 

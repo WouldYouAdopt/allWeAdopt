@@ -95,7 +95,7 @@ public class PamphletController {
 		}
 		
 		
-//		// 전단지 작성(삽입/수정)
+		// 전단지 작성(삽입/수정)
 		@PostMapping("/pamphlet/write")
 		public String pamphletWrite(BoardDetail detail, @ModelAttribute("loginMember") Member loginMember, String mode, 
 				@RequestParam(value="cp", required=false, defaultValue="1") int cp, Model model, RedirectAttributes ra, HttpServletRequest req ) {
@@ -105,32 +105,33 @@ public class PamphletController {
 			// 로그인한 회원 datail에 세팅
 			detail.setMemberNo(loginMember.getMemberNo());
 			
+
+			
 			
 			if(mode.equals("insert")) { // 삽입
 								
 				String thumbnail = Util.thumbnail(detail.getBoardContent());
 				System.out.println("내용 : " +detail.getBoardContent());
-				System.out.println("썸네일 : " + thumbnail);
-				
-				detail.setThumbnail(thumbnail);
-				
+				System.out.println("썸네일 : " + thumbnail);								
+
+				detail.setThumbnail(thumbnail);		
 				
 				int boardNo = service.insertPamphlet(detail);
 				
 				String path = null;
 				String message = null;
-				
-				
-				if(boardNo>0) {
+									
+				if(boardNo>0 && thumbnail != null) {
 					path = "../pamphlet/detail/" + boardNo;
-					message = "게시글 등록 성공";
+					message = "전단지 작성 성공";
 				}else {
 					path = req.getHeader("referer");
-					message = "게시글 등록 실패";
+					message = "전단지 작성 실패";
 				}
+					
 				
 				
-				
+															
 				ra.addFlashAttribute("message", message);
 				
 				return "redirect:" + path;
@@ -171,7 +172,7 @@ public class PamphletController {
 			if(result>0) {
 				message = "삭제 성공";
 				//path = "../../list/" + boardCode; // 상대경로
-				path = "/shelter/pamphlet/list/";
+				path = "/shelter/pamphlet/list";
 			}else {
 				message = "삭제 실패";
 				path = req.getHeader("referer");

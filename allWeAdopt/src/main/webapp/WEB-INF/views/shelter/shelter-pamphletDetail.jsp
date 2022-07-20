@@ -72,7 +72,7 @@
             <jsp:include page="/WEB-INF/views/common/header.jsp" />
             <!-- Navigation-->
 
-            <section class="py-5">
+            <%-- <section class="py-5">
                 <div class="container px-5">
                     <div class="card border-0 shadow rounded-3 overflow-hidden">
                         <div class="card-body p-0">
@@ -83,7 +83,9 @@
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> --%>
+
+            <img src="${contextPath}/resources/images/Pet-Friendly.jpg" class="img-fluid" alt="...">
 
 
             <section class="py-5">
@@ -133,18 +135,18 @@
 
                                     <div class="md-10" style="margin:10px;"></div>
 
-                            <div>                                
-                                <a id="btnTwitter" class="link-icon twitter" href="javascript:shareTwitter();"><img src="${contextPath}\resources\images\icon-twitter.png"></a>
-                                <a id="btnFacebook" class="link-icon facebook" href="javascript:shareFacebook();"><img src="${contextPath}\resources\images\icon-facebook.png"></a>    
-                                <a id="btnKakao" class="link-icon kakao" href="javascript:shareKakao();"><img src="${contextPath}\resources\images\icon-kakao.png"></a>    
-                            </div>
+                                    <div>                                
+                                        <a id="btnTwitter" class="link-icon twitter" href="javascript:shareTwitter();"><img src="${contextPath}\resources\images\icon-twitter.png"></a>
+                                        <a id="btnFacebook" class="link-icon facebook" href="javascript:shareFacebook();"><img src="${contextPath}\resources\images\icon-facebook.png"></a>    
+                                        <a id="btnKakao" class="link-icon kakao" href="javascript:shareKakao();"><img src="${contextPath}\resources\images\icon-kakao.png"></a>    
+                                    </div>
 
 
-                            <c:if test="${!empty detail.thumbnail}">
-                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                    <a href="${detail.thumbnail}" download="${detail.thumbnail}"><button type="button" class="btn btn-outline-secondary btn-sm allButton">전단지 <i class="bi bi-download"></i></button></a>
-                                </div>
-                            </c:if>
+                                    <c:if test="${!empty detail.thumbnail}">
+                                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                            <button type="button" class="btn btn-outline-secondary btn-sm allButton"  data-bs-toggle="modal" data-bs-target="#makePam">전단지 만들기</button>
+                                        </div>
+                                    </c:if>
 
 
                                     <%-- <a class="badge bg-secondary text-decoration-none link-light" href="#!">${detail.memberEmail}</a> --%>
@@ -156,7 +158,7 @@
 
                                 <!-- Post content-->
                                 <section class="mb-5">
-                                    <h3>${detail.boardContent}<h3>                                
+                                    ${detail.boardContent}       
                                 </section>
 
 
@@ -198,6 +200,27 @@
                                 <button id="goToListBtn" class="btn btn-outline-success allButton">목록으로</button>
                             </div>
                         </div>
+
+
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="makePam" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <img src="${detail.thumbnail}" style="width: 450px; height: 400px;"/>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="${detail.thumbnail}" download="${detail.thumbnail}"><button type="button" class="btn btn-primary" style="background-color:#FB836B; border:0;">전단지 저장</button></a>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+
                     </div>
                 </div>
             </section>
@@ -236,6 +259,8 @@
         const loginMemberNo = "${loginMember.memberNo}";
         // -> 로그인 O  : "10";
         // -> 로그인 X  : "";  (빈문자열)
+
+        const thumbnail = "${detail.thumbnail}";
 
     </script>
 
