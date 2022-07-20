@@ -162,13 +162,14 @@
     display: none;
 }
 .payBtn{
-    width: 100px;
-    height: 80px;
-    border: 1px solid #f7a797;
+    width: 240px;
+    height: 110px;
+    border: 1px solid #999;
     background-color: white;
     display: block;
     margin: auto;
     text-align: center;
+    padding-top: 20px;
      
 }
 .pp{
@@ -190,7 +191,6 @@
 .payBtn:hover{
     border: 1px solid white;
     background-color:#f7a797;
-
 }
 .paymentMeans{
     display: flex;
@@ -215,7 +215,6 @@
     border: 1px solid #FB836b;
     background-color: white;
     color: #FB836b;
-    margin-top: 50px;
     border-radius: 5px;
 }
 #goToPay:hover{

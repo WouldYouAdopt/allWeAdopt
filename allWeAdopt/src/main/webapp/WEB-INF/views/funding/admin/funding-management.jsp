@@ -181,7 +181,7 @@
                            			<c:if test="${!empty next2}">
 	                            	<div class="fundingInfoS">
 			                            <a href="${contextPath}/admin/funding/register?fundingNo=${next2.fundingNo}&fundingSeason=${map.nextSeason[2]}">
-		                            	<div class="fundingImgS" style="background:url('${contextPath}${next0.fundingThumbnail}') 50% 0; background-size:cover;">
+		                            	<div class="fundingImgS" style="background:url('${contextPath}${next2.fundingThumbnail}') 50% 0; background-size:cover;">
 		                            		<div class="textS">${map.nextSeason[2]}</div>
 		                            	</div>
 		                            	<div class="hover">펀딩 수정</div>
