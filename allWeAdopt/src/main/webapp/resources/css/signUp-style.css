@@ -121,6 +121,7 @@
     margin: 0 auto;
     text-align: center;
     cursor: pointer;
+    /* cursor: url(https://cur.cursors-4u.net/nature/nat-3/nat261.cur), pointer; */
 }
 
 #gray{

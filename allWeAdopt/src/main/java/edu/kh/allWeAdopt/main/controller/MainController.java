@@ -5,7 +5,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MainController {
@@ -49,6 +51,15 @@ public class MainController {
 		return "common/intro";
 	}
 	
+	// 이용약관, 개인정보취급방침 . . .등
+	@RequestMapping("etc")
+	public String etcMain(@RequestParam("mode") int mode,
+						  Model model) {
+		
+		model.addAttribute("mode", mode);
+		
+		return "common/etcMain";
+	}
 	
 
 }
