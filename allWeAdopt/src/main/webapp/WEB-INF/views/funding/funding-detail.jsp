@@ -71,8 +71,15 @@
                 </div>
                 <div class="bottom-box">
                     <div class="rate-bar"></div>
+                    <!-- 달성률 100이하로 제한하기 -->
+                    <c:if test="${detail.salesRate>=100}">
+                    <div class="rate-bar-pink" style="width:100%;"></div>
+                    <div class="rate-text-box" style="left:100%;">
+                    </c:if>
+                    <c:if test="${detail.salesRate<100}">
                     <div class="rate-bar-pink" style="width:${detail.salesRate}%;"></div>
                     <div class="rate-text-box" style="left:${detail.salesRate}%;">
+                    </c:if>
                     	<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 174 138.61">
 	                    	<defs>
 	                    		<style>.tooltip_icon{fill:rgb(255, 255, 255, 0.3);}</style>
@@ -247,7 +254,7 @@
         		       background-color: rgb(251, 131, 107, 1);
         		   }
         		   to { 
-        		        width: ${detail.salesRate}%;
+        		        width: salesRate%;
         		        background-color: rgb(251, 131, 107, 0.9);
         		    }
         		}
@@ -265,7 +272,7 @@
    						color: #FB836B;
         		   }
         		   to { 
-        			   left: ${detail.salesRate}%;
+        			   left: salesRate%;
   				 		color: #FB836B;
         		    }
         		}

@@ -56,6 +56,7 @@
 	.fundingTitleBox.nowList .bottom-box{
 		height: 100px;
 		background-color: rgba(0, 0, 0, 0.4);
+		width:100%;
 	}
 	/* 목록페이지에 타이틀하단 박스의 소제목 */
 	.fundingTitleBox.nowList .bottom-box .miniTitle{
@@ -116,6 +117,7 @@
 	/* 목록페이지에 달성률 핑크바 */
 	.fundingTitleBox.nowList .bottom-box .rate-bar-pink{
 		left: 24px;
+		background:#FB836B;
 	}
 	
 	.rate-text-box{
@@ -153,14 +155,28 @@
 	 }
 	 
 	/* 목록페이지에서의 텍스트박스  */
-	.fundingTitleBox.nowList .bottom-box .rate-text-box {
+/* 	.fundingTitleBox.nowList .bottom-box .rate-text-box {
 		transform: none;
 		width: 54px;
 	    height: 50px;
 		
 		animation-name: long2; 
 	    animation-duration: 2s;
+	} */
+	
+	.sujin .rate-text-box {
+		transform: none;
+		width: 54px;
+	    height: 50px;
+		
+		animation-name: long2; 
+	    animation-duration: 2s;
+	    bottom: -45px;
 	}
+	.sujin .rate-text-box .rate-text-wrap {
+		bottom: 9px;
+	}
+	
 	
 	.rate-text-wrap {
 		position: absolute;
@@ -250,7 +266,7 @@
 		margin : 30px 0;
 		border-bottom: 1px solid #ccc;
 		padding: 0 5px;
-		font-size: 13px;
+		font-size: 14px;
 		color:#FB836B;
 	}
 	.funding-summary > p{

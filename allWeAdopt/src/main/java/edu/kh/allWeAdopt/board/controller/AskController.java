@@ -12,14 +12,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.kh.allWeAdopt.board.model.service.BoardService;
 import edu.kh.allWeAdopt.board.model.service.ReplyService;
 import edu.kh.allWeAdopt.board.model.vo.BoardDetail;
 import edu.kh.allWeAdopt.board.model.vo.Reply;
+import edu.kh.allWeAdopt.common.Util;
 import edu.kh.allWeAdopt.member.model.vo.Member;
 
 @Controller
@@ -76,13 +79,76 @@ public class AskController {
 	}
 	
 	
-	
-	// 문의사항 글작성
+	// 관리자 - 공지사항 작성화면
 	@GetMapping("/ask/write")
-	public String askWrite() {
+	public String askWrite( String mode,
+									@RequestParam(value="no", required=false, defaultValue="0") int boardNo, 
+									Model model) {
 		
+			
+		BoardDetail detail = service.selectAskDetail(boardNo); 
+		
+		model.addAttribute("detail",detail);
 		
 		return "ask/askWrite";
+	}
+	
+	
+	
+	// 문의사항 글작성
+	@PostMapping("/ask/write")
+	public String askWrite( BoardDetail detail, // 멤버 넘버 / 카테고리 밸류랑 / 제목 / 내용
+							String mode,
+							int cp,
+							Model model,
+							RedirectAttributes ra) {
+		
+		int result = 0;
+		String message = null;
+		String path = null;
+		
+		// 게시글 등록
+		if(mode.equals("insert")) {
+								
+			System.out.println("내용 : " +detail.getBoardContent());
+			
+			logger.info("게시글 등록 수행됨");
+			
+			result = service.insertAskWrite(detail);
+			
+			if(result>0) {
+				message = "게시글 등록 성공"; 
+				path = "redirect:detail/"+detail.getBoardNo();
+			}else {
+				message = "게시글 등록 실패"; 
+				path = "redirect:write";
+			}
+			
+		}
+		
+		// 게시글 수정
+		if(mode.equals("update")) {
+			
+			logger.info("게시글 수정 수행됨");
+			
+			result = service.updateBoard(detail);
+			
+			if(result>0) {
+				message = "게시글 수정 성공"; 
+				path = "redirect:detail/"+detail.getBoardNo()+"?cp="+cp;
+			}else {
+				message = "게시글 수정 실패"; 
+				path = "redirect:write";
+			}
+			
+		}
+		
+		ra.addFlashAttribute( "message", message );
+		model.addAttribute("detail",detail);
+		
+		return path;
+		
+		
 	}
 	
 	

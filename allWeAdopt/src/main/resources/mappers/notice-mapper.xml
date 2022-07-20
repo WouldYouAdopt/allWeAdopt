@@ -101,36 +101,50 @@
 	</select>
 	
 	
-	<!-- 게시글 목록 조회 -->
+	<!-- 게시글 목록 조회 : 노션에 따로 공부하기 ㅎ.. -->
 	<select id="selectAskList" resultMap="board_rm">
-	    
-	SELECT BOARD_NO,CATEGORY, BOARD_TITLE, MEMBER_NO,
-		  CASE WHEN SYSDATE - CREATE_DT &lt; 1
-		        THEN TO_CHAR(CREATE_DT, 'HH24:MI')
-		        ELSE TO_CHAR(CREATE_DT, 'YYYY-MM-DD')
-		  END CREATE_DT,
-		  TO_CHAR(CREATE_DT, 'YYYY-MM-DD') BOARD_PERIOD,
-		  BOARD_ST          
-	FROM BOARD
-	WHERE BOARD_CD = 5
+	SELECT BOARD_NO, BOARD_TITLE, BOARD_CONTENT, MEMBER_NO, 
+	      CASE WHEN SYSDATE - CREATE_DT &lt; 1
+	         THEN TO_CHAR(CREATE_DT, 'HH24:MI')
+	         ELSE TO_CHAR(CREATE_DT, 'YYYY-MM-DD')
+	      END CREATE_DT,
+	      TO_CHAR(CREATE_DT, 'YYYY-MM-DD') BOARD_PERIOD,
+	      BOARD_ST,
+	      BOARD_NAME AS CATEGORY
+	FROM BOARD B
+	JOIN BOARD_TYPE T ON(CATEGORY= T.BOARD_CD)
+	WHERE B.BOARD_CD =5
 	AND BOARD_ST = 'N'
 	AND MEMBER_NO = #{memberNo}
 	ORDER BY BOARD_NO DESC
-	
 	</select>
 	
 	
 	<!-- 게시글 상세 조회 -->
 	<select id="selectAskDetail" resultMap="detail_rm">
-	SELECT BOARD_NO, BOARD_TITLE, BOARD_CONTENT, CATEGORY, MEMBER_NM,
+	SELECT BOARD_NO, BOARD_TITLE, BOARD_CONTENT, MEMBER_NO, MEMBER_NM,
 	      TO_CHAR(CREATE_DT, 'YYYY"년" MM"월" DD"일" HH24:MI:SS') CREATE_DT,
 	      TO_CHAR(UPDATE_DT, 'YYYY"년" MM"월" DD"일" HH24:MI:SS') UPDATE_DT,
-	      BOARD_ST
-	FROM BOARD
+	      BOARD_ST,
+	      BOARD_NAME AS CATEGORY
+	FROM BOARD B
 	JOIN MEMBER USING (MEMBER_NO)
+	JOIN BOARD_TYPE T ON(CATEGORY= T.BOARD_CD)
 	WHERE BOARD_NO = ${boardNo}
+	AND BOARD_ST = 'N'
 	</select>
 	
+	
+		
+	<!-- 게시글 작성 -->
+	<insert id="insertAskWrite"  parameterType="detail" useGeneratedKeys="true">
+		<selectKey keyProperty="boardNo" resultType="_int" order="BEFORE">
+		   SELECT SEQ_BOARD_NO.NEXTVAL FROM DUAL
+		</selectKey>
+		   INSERT INTO BOARD VALUES(#{boardNo}, #{boardTitle}, #{boardContent}, DEFAULT, NULL, #{category}, DEFAULT, NULL, 
+			NULL, 5, #{memberNo}, NULL,NULL)
+		    
+	</insert>
 	
   
 </mapper>

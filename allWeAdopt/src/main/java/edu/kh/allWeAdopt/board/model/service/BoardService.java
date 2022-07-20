@@ -58,4 +58,11 @@ public interface BoardService {
 	 */
 	BoardDetail selectAskDetail(int boardNo);
 
+	/** 문의글 작성
+	 * @param detail
+	 * @return
+	 */
+	int insertAskWrite(BoardDetail detail);
+
+	
 }

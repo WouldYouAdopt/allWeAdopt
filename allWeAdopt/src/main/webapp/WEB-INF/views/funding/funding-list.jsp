@@ -88,13 +88,28 @@
 	                            		${map.now.leftDate}일 남음 
 	                            	</div>
 	                                <div class="rate-bar"></div>
+	                                <c:if test="${map.now.salesRate>=100}">
+	                                <div class="rate-bar-pink" style="width:calc(100%*0.96);"></div>
+	                                </c:if>
+	                                <c:if test="${map.now.salesRate<100}">
 	                                <div class="rate-bar-pink" style="width:${map.now.salesRate}%;"></div>
-	                                <div class="rate-text-box" style="left:calc(${map.now.salesRate}%*0.95);">
-	                                	<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 174 138.61"><defs><style>.tooltip_icon_pk{fill:rgb(255,255,255,0.2); border:1px solid #000; }</style></defs><path class="tooltip_icon_pk" d="M162.62,0H11.38C5.1,0,0,5.1,0,11.38V86.92c0,6.29,5.1,11.38,11.38,11.38H57.89l29.11,40.31,29.11-40.31h46.51c6.29,0,11.38-5.1,11.38-11.38V11.38c0-6.29-5.1-11.38-11.38-11.38Z"/></svg>
-                    					<div class="rate-text-wrap"><span class="rate-text"></span><span class="per">%</span></div>
-	                                </div>
+	                                </c:if>
+
 	                            </div>
 	                        </div>
+	                        <div style="position:relative" class="sujin">
+	                        	<c:if test="${map.now.salesRate>=100}">
+		                        <div class="rate-text-box" style="left:calc(100%*0.95);">
+	                        	</c:if>
+	                        	<c:if test="${map.now.salesRate<100}">
+		                        <div class="rate-text-box" style="left:calc(${map.now.salesRate}%*0.95);">
+	                        	</c:if>
+	                    			<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 174 138.61"><defs><style>.tooltip_icon_pk{fill:#fb836b;}</style></defs><path class="tooltip_icon_pk" d="M11.38,138.61H162.62c6.28,0,11.38-5.1,11.38-11.38V51.69c0-6.29-5.1-11.38-11.38-11.38h-46.51L87,0l-29.11,40.31H11.38c-6.29,0-11.38,5.1-11.38,11.38V127.23c0,6.29,5.1,11.38,11.38,11.38Z"/></svg>
+	                    			<div class="rate-text-wrap"><span class="rate-text"></span><span class="per">%</span></div>
+		                        </div>
+	                        </div>
+	                        
+	                        
                         </a>
                         
                 </div>
@@ -157,19 +172,19 @@
     	const pinkWidth = document.getElementsByClassName("rate-bar-pink")[0];
     	const keyFrames = document.createElement("style");
     	
-    	keyFrames.innerHTML = `
+    	/* keyFrames.innerHTML = `
     		@keyframes long1 {
     		   from { 
     		       width: 0;
     		       background-color: rgb(251, 131, 107, 1);
     		   }
     		   to { 
-    		        width: ${map.now.salesRate}%;
+    		        width: salesRate%;
     		        background-color: rgb(251, 131, 107, 0.9);
     		    }
     		}
     		`;
-		pinkWidth.appendChild(keyFrames);
+		pinkWidth.appendChild(keyFrames); */
     	
 		
 		const textBoxleft = document.getElementsByClassName("rate-text-box")[0];
@@ -182,7 +197,7 @@
     		   }
     		   to { 
     			   //left:calc(salesRate%*0.95);
-    			   left: calc(${map.now.salesRate}%*0.95);
+    			   left: salesRate;
     		    }
     		}
     		`;
