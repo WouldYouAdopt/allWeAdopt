@@ -102,35 +102,6 @@ function writeValidate(){
     return true;
 };
 
-
-// 템플릿 추가해주는 버튼이 있을 때 (write)
-// if(document.getElementById("writeTemplate")){
-
-//         const start = document.getElementById("start");
-//         const end = document.getElementById("end");
-//         const addTemplate = document.getElementById("addTemplate");
-//         const placeholder = document.getElementsByClassName("note-placeholder");
-
-//         start.addEventListener("click", function(){
-
-//             placeholder[1].style.display ="none";
-
-//             if(note[1].childNodes[0].innerHTML == '<br>'){
-//                 note[1].childNodes[0].innerHTML = "안녕하세요. <br> ALL WE ADOPT 입니다. <br>";
-//             }else{
-//                 note[1].childNodes[0].innerHTML += "안녕하세요. <br> ALL WE ADOPT 입니다. <br>" ;
-//             }
-
-//         });
-//         end.addEventListener("click", function(){
-
-//         });
-//         addTemplate.addEventListener("click", function(){
-
-//         });
-
-// }
-
 // 템플릿 설정 버튼 클릭여부 알려주는 변수
 let check = false;
 
@@ -235,6 +206,7 @@ if(document.getElementById("closeBtn")!=null){
     const tempContent = document.getElementById("summernote2");
     const exampleModal = document.getElementById("exampleModal");
 
+    // 창 외부 클릭해서 끄는경우는 다시 생각해보기 ㅠㅠ
     // exampleModal.addEventListener("click", function(){
     //     tempName.value = "";
     //     note[0].innerHTML = "<p><br></p>";
@@ -258,7 +230,7 @@ if(document.getElementById("delete")!=null){
     deleteB.addEventListener("click", function(){
 
         let num = "";
-        for(let i=0; i<tLength; i++){
+        for(let i=0; i<chk.length; i++){
             if(chk[i].checked){
                 num += chk[i].value + ",";
             }
@@ -289,8 +261,6 @@ if(document.getElementById("delete")!=null){
 // 템플릿 조회하는 함수
 function selectTemplateList(tList){
 
-    console.log(tList);
-
     const tListArea = document.getElementById("tListArea");
     const buttonArea = document.getElementById("buttonArea");
     const exampleModal = document.getElementById("exampleModal");
@@ -309,7 +279,7 @@ function selectTemplateList(tList){
         input.setAttribute("type", "checkbox");
         input.setAttribute("name", "chk");
         input.setAttribute("title", t.tempEnc);
-        input.value=t.tempContent;
+        input.value=t.tempNo;
         input.classList.add("chk");
 
         tListArea.append(input);
@@ -317,9 +287,10 @@ function selectTemplateList(tList){
 
         // 템플릿 버튼영역
         button = document.createElement("button");
-        button.classList.add("btn", "btn-primary", "button-pink", "form-check-label", "p-1",  "m-1");
+        button.classList.add("btn", "btn-primary", "button-pink", "form-check-label", "p-1",  "m-1", "tempBtn");
         button.setAttribute("type", "button");
         button.setAttribute("title", t.tempEnc);
+        button.value = t.tempContent;
         button.innerText = t.tempName;
 
         buttonArea.append(button);
@@ -336,16 +307,25 @@ function selectTemplateList(tList){
 
     // 다 완료하면 내용 지우기
     tempName.value = "";
-    tempContent.value = "";
+    note[0].innerHTML = "<p><br></p>";
+    const placeholder = document.getElementsByClassName("note-placeholder");
+    placeholder[1].style.display ="";
+
+    print();
 
 }
 
 // 각 템플릿 클릭시 썸머노트에 출력되게 만들기 . . . ><
 if(document.getElementById("buttonArea")!=null){
+    print();
+}
+
+function print(){
 
     const tempBtn = document.getElementsByClassName("tempBtn");
 
-    for(let i=0; i<tLength; i++){
+    for(let i=0; i<tempBtn.length; i++){
+        
         tempBtn[i].addEventListener("click", function(){
 
             const placeholder = document.getElementsByClassName("note-placeholder");
@@ -361,8 +341,5 @@ if(document.getElementById("buttonArea")!=null){
 
         });
     }
-
-
-
 
 }
