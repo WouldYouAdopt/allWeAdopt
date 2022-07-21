@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"  %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -165,7 +166,7 @@
                                         리워드${i+1}
                                     </div>
                                     <div class="rew-price">
-                                        ${detail.rewardList[i].rewardPrice}<span>원 펀딩</span>
+                                        <fmt:formatNumber value="${detail.rewardList[i].rewardPrice}"/><span>원 펀딩</span>
                                     </div>
                                     <div class="rew-title">
                                         ${detail.rewardList[i].rewardTitle}
