@@ -1,5 +1,3 @@
-console.log("js출력");
-
 // 몇 분전, 몇 일전 표시
 (function (){ 
   const diffTime = document.getElementsByClassName('diffTime');

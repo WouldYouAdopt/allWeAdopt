@@ -40,4 +40,26 @@ public class MyPageBoardServiceImpl implements MyPageBoardService {
 		return map;
 	}
 
+	/** 관심등록 리스트 조회
+	 * @param cp
+	 * @param memberNo
+	 * @return map
+	 */
+	@Override
+	public Map<String, Object> likeListBoard(int cp, int memberNo) {
+		
+		// 페이지네이션 객체 생성
+		int listCount = dao.getLikeCount(memberNo);
+		Pagination pagination = new Pagination(cp, listCount,9);
+		
+		// 게시판 목록 조회
+		List<Board> boardList = dao.likeBoardList(pagination,memberNo);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("pagination", pagination);
+		map.put("boardList", boardList);
+		return map;
+	}
+
 }
