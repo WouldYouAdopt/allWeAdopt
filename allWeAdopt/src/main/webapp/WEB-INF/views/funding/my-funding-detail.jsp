@@ -71,7 +71,7 @@
 		</div>
 
 
-
+		
 
 	   <!-- 상단 메뉴 영역. -->
         <div class="text-center pt-4" id="TOT">
@@ -246,10 +246,11 @@
 
 	<script>
 		const paymentNo = '${paymentNo}';
+		const contextPath = '${contextPath}';
 	</script>
 
 	<!-- Bootstrap core JS-->
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- Core theme JS-->
 	<script src="${contextPath}/resources/js/scripts.js"></script>
 
