@@ -32,6 +32,9 @@
         <link href="${contextPath}/resources/css/main-style.css" rel="stylesheet" />
         <link href="${contextPath}/resources/css/styles.css" rel="stylesheet" />
         <link href="${contextPath}/resources/css/funding/funding-detail.css" rel="stylesheet" />
+        
+        <!-- sweetalert-->
+		<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
         <style>
             .nav-text-color{
@@ -154,7 +157,7 @@
                             <c:if test="${detail.fundingState=='Y'}">
                             <div class="align-items-center mb-4" >
                                 <button class="fundingBtn" onclick="window.location.href='${contextPath}/funding/reward/${detail.fundingNo}'">펀딩하기</button>
-                                <button class="qnaBtn">문의</button>
+                                <button class="qnaBtn" onclick="window.location.href='${contextPath}/member/myPage/ask/list'">문의</button>
                             </div>
                             </c:if>
 
@@ -324,7 +327,15 @@
 		                rewardOvers[i].addEventListener("click", function(){
 		                	
 		                	if(this.previousElementSibling.firstElementChild.innerText=='품절'){
-		                    	alert("품절입니다");
+		                		
+		                		Swal.fire({
+		                		     title: '품절된 리워드 입니다.',
+		                		     width: 350,
+		                		     padding: '3em',
+		                		     color: 'black',
+		                		     confirmButtonColor: 'rgb(251, 131, 107)',
+		                		     confirmButtonText: '확인'
+		                		     });
 							}else{
 			                	this.parentElement.nextElementSibling.submit();
 			                	return;
