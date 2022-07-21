@@ -171,7 +171,7 @@
 
 									<c:when test='${detail.orderState=="배송 완료"}'>		
 										<button type="button" class="btn btn-secondary" id="returnBtn">반품 신청</button>
-										<button type="button" class="btn btn-secondary" id="refundBtn">환불 신청</button>
+										<%-- <button type="button" class="btn btn-secondary" id="refundBtn">환불 신청</button> --%>
 									</c:when>
 									<c:when test='${detail.orderState=="환불 신청"}'>		
 										<button type="button" class="btn btn-secondary">환불 진행 중</button>
