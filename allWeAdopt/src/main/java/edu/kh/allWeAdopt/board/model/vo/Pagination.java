@@ -5,6 +5,7 @@ public class Pagination {
 
 	private int currentPage;      // 현재 페이지 번호
 	private int listCount;         // 전체 게시글 수
+	private int limitCount;
 
 	private int limit = 10;         // 한 페이지에 보여질 게시글의 수
 	private int pageSize = 10;      // 목록 하단 페이지 번호의 노출 개수
@@ -25,6 +26,13 @@ public class Pagination {
 		calculatePagination(); // 계산 메서드 호출
 	}
 
+	public Pagination(int currentPage, int listCount, int limitCount) {
+	      this.currentPage = currentPage;
+	      this.listCount = listCount;
+	      this.limitCount = limitCount;
+	      
+	      calculatePagination(); // 계산 메서드 호출
+	  }
 
 	public int getCurrentPage() {
 		return currentPage;
@@ -123,6 +131,15 @@ public class Pagination {
 		this.nextPage = nextPage;
 	}
 
+	public int getLimitCount() {
+		   return limitCount;
+	   }
+	   
+	public void setLimitCount(int limitCount) {
+		   this.limitCount = limitCount;
+		   
+		   calculatePagination();
+	   }
 
 	@Override
 	public String toString() {
@@ -144,8 +161,11 @@ public class Pagination {
 		// 전체 게시글 수 : 501개  //  보여지는 게시글 수: 10개
 		// -> 마지막 페이지 번호는?  501 / 10 =  51  (50.1의 올림 처리)
 
-		maxPage = (int)Math.ceil(  (double)listCount / limit  );
-
+		if(limitCount==0) {
+			maxPage = (int)Math.ceil(  (double)listCount / limit  );
+		} else {
+			maxPage = (int)Math.ceil(  (double)listCount / limitCount  );
+		}
 
 
 		// * startPage : 목록 하단에 노출된 페이지의 시작 번호

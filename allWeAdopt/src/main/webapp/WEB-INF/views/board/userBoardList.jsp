@@ -206,6 +206,8 @@
                             <c:set var="test" value="${test+3}"/>
                         </div>
                     </c:forEach>
+
+                    <!-- 로딩 아이콘 -->
                     <div class="spinner-area">
                          <div class="spinner-border text-danger" role="status">
                             <span class="visually-hidden">Loading...</span>
