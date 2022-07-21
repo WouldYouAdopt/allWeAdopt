@@ -315,6 +315,14 @@ public class FundingDAO {
 		return sqlSession.update("fundingMapper.sendProcessing",o);
 	}
 
+	/**진행했던 펀딩 목록들을가져옴
+	 * @return
+	 */
+	public List<Funding> selectSeasonList() {
+		return sqlSession.selectList("fundingMapper.selectSeasonList");
+
+	}
+
 	
 	
 

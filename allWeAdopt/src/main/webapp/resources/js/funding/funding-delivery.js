@@ -612,40 +612,122 @@ function refoudPouprocess(){
 
 function sendProcessing(){
     let obj = "";
+    let bol=false;
     $('input[class="tList"]:checked').each(function (index) {
          const payNo = $(this).val();
 //         const company = $(this).parent().parent().children(6).children(0);
-         const parcelCompany = this.parentElement.parentElement.children[6].children[0].value;
+         const pc = this.parentElement.parentElement.children[6].children[0].value;
          const parcelNo = this.parentElement.parentElement.children[7].children[0].value;
          
-         if (index != 0) {
-         //   obj += '--';
+         
+         if (parcelNo == '') {
+            alert("송장번호가 입력되지 않았습니다.");
+            this.parentElement.parentElement.children[7].children[0].focus();
+            bol=true;
         }
+
         const jsObj={
             'paymentNo':payNo,
-            'parcelCompany':parcelCompany,
+            'parcelCompany':pc,
             'parcelNo':parcelNo
         }
         obj += JSON.stringify(jsObj)+"-";
-    });
-
+    })
+    
+    if (obj == '') {
+        alert('선택된 주문이 없습니다.');
+        return false;
+    }
+    if(bol){
+        alert("송장번호가 입력되지 않았습니다.");
+    }
     
     $.ajax({
         url: '../sendProcessing',
         type: "post",
         data: { 'insertJSON': obj,
                 'orderCode':orderCode,
+                fundingNo : fundingNo
               },
-        //dataType: "json",
-        success: function (result) {
-            console.log(result);
+        dataType: "json",
+        success: function (sendList) {
+            if(sendList != null){
+
+       
+            alert('발송 처리 가 완료되었습니다');
+               const tbody = document.getElementById("tbody");
+               
+               tbody.innerHTML = "";
+                for(let o of sendList){
+
+                    const tr = document.createElement("tr");
+
+                    const th1=document.createElement("th");
+                        const input1=document.createElement("input");
+                        input1.classList.add("tList");
+                        input1.setAttribute("type","checkbox");
+                        input1.value=o.paymentNo;
+                        th1.append(input1);
+
+                    const td2=document.createElement("td");
+                       td2.innerText=o.paymentNo;
+                       
+                    const td3=document.createElement("td");
+                       td3.innerText=o.fundingCategory;
+
+                    const td4=document.createElement("td");
+                        const a = document.createElement("a");
+                        a.setAttribute("href","../detail/"+o.paymentNo);
+                        a.innerText=o.fundingTitle;
+                        td4.append(a);
+
+                    const td5=document.createElement("td");
+                        td5.innerText=o.recipient;
+                    const td6=document.createElement("td");
+                        td6.innerText=o.payDate;
+
+                    const td7=document.createElement("td");
+                    td7.classList.add("parcel");
+                        const select = document.createElement("select");
+                        select.classList.add("form-select");
+                        select.classList.add("parcelCompany");
+                        select.setAttribute("name","parcelCompany");
+                        select.setAttribute("aria-label","Default select example");     
+                        const o1 = document.createElement("option");
+                        o1.value="CJ대한통운";
+                        o1.innerText="CJ대한통운";
+                        const o2 = document.createElement("option");
+                        o2.value="롯데택배";
+                        o2.innerText="롯데택배";
+                        const o3 = document.createElement("option");
+                        o3.value="우체국택배";
+                        o3.innerText="우체국택배";
+                        select.append(o1,o2,o3);
+                    td7.append(select);
+
+                    const td8=document.createElement("td");
+                    td8.classList.add("parcel");
+                        const input2=document.createElement("input");
+                        input2.setAttribute("type",'text');
+                        input2.setAttribute("name",'parcelNo');
+                        input2.classList.add("parcelNo");
+                    td8.append(input2);
+                    
+                    tr.append(th1,td2,td3,td4,td5,td6,td7,td8);
+                    
+                    tbody.append(tr);
+                }                    
+            }    
         },
         error(request, status, error) {
             console.log("AJAX 에러 발생");
             console.log("상태코드 : " + request.status); // 404, 500
         }
     })
-    
-    
-    //console.log(obj[1]);
+}
+
+function changeFunding(sel){
+    const fundingNo = sel.options[sel.selectedIndex].value;
+    location.href="../" + fundingNo+"/"+orderCode;
+
 }

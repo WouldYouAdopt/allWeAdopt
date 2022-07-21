@@ -152,7 +152,12 @@ public interface FundingService {
 	 * @param map 
 	 * @return
 	 */
-	int sendProcessing(List<OrderDetail> sendList, Map<String, Object> map);
+	List<OrderDetail> sendProcessing(List<OrderDetail> sendList, Map<String, Object> map);
+
+	/**이전까지 진행된 펀딩번호 , 진행 월을 가져오는 서비스 
+	 * @return
+	 */
+	List<Funding> selectSeasonList();
 
 
 

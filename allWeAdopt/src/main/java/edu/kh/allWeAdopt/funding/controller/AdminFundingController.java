@@ -206,7 +206,10 @@ public class AdminFundingController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("fundingNo", fundingNo);
 		map.put("orderCode", orderCode);
+		
+		List<Funding> seasonList = service.selectSeasonList();
 		List<OrderDetail> orderList = service.selectOrderList(map);
+		model.addAttribute("seasonList", seasonList);
 		model.addAttribute("orderList", orderList);
 		
 		
@@ -262,7 +265,7 @@ public class AdminFundingController {
 	 */
 	@ResponseBody
 	@PostMapping("/delivery/sendProcessing")
-	public int sendProcessing(String insertJSON,@RequestParam Map<String,Object> map){
+	public String sendProcessing(String insertJSON,@RequestParam Map<String,Object> map){
 		
 		String json = insertJSON;
 		String arr[] = json.split("-");
@@ -273,8 +276,8 @@ public class AdminFundingController {
 			sendList.add(r);
 		}
 		
-		int result = service.sendProcessing(sendList,map);
-		return result;
+		sendList = service.sendProcessing(sendList,map);
+		return new Gson().toJson(sendList);
 	}
 	
 //---------------------------------------------------------------------------------------------
