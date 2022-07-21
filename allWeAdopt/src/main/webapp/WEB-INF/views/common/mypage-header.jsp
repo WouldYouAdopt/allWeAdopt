@@ -13,7 +13,7 @@
                 <c:if test="${loginMember.memberType == 'K'}">
                     <li class="nav-item" ><a class="nav-link" href="${contextPath}/member/myPage/updateInfo">회원 정보 수정</a></li>
                 </c:if>
-                <li class="nav-item"><a class="nav-link" href="#">관심목록</a></li>
+                <li class="nav-item"><a class="nav-link" href="${contextPath}/member/myPage/likeList">관심목록</a></li>
                 <li class="nav-item"><a class="nav-link" href="${contextPath}/member/myPage/boardList">작성글 목록</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">펀딩내역</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">채팅목록</a></li>
