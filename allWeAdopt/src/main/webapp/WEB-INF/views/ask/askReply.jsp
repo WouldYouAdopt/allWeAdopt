@@ -27,34 +27,81 @@
                                         </div>
                                     </c:if>
 
-                                   
 
-
-                                    <!-- 관리자 답변 조회 공간-->
-                                    <c:forEach var="reply" items="${rList}">
-                                        <div class="d-flex" id="reply-row">
+                                    <c:if test="${empty rList}">
+                                    <div id="area">
+                                    <div>
+                                        <div class="d-flex">
                                             <div class="flex-shrink-0" ><img class="rounded-circle" src="${contextPath}/resources/images/user.png" style="width: 50px;"/></div>
                                                 <div class="ms-3 ">
                                                     <div class="col-lg-8  fw-bold" id="reply-name" >관리자</div>
                                                     <!-- 코멘트 조회 넣기 -->
                                                         <div>
+                                                          답변 작성중....
+                                                        </div>
+                                                </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0" ><img class="rounded-circle" src="${contextPath}/resources/images/user.png" style="width: 50px;"/></div>
+                                                <div class="ms-3 ">
+                                                    <div class="col-lg-8  fw-bold" id="reply-name" >관리자</div>
+                                                    <!-- 코멘트 조회 넣기 -->
+                                                        <div>
+                                                          답변 작성중....
+                                                        </div>
+                                                </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0" ><img class="rounded-circle" src="${contextPath}/resources/images/user.png" style="width: 50px;"/></div>
+                                                <div class="ms-3 ">
+                                                    <div class="col-lg-8  fw-bold" id="reply-name" >관리자</div>
+                                                    <!-- 코멘트 조회 넣기 -->
+                                                        <div>
+                                                          답변 작성중....
+                                                        </div>
+                                                </div>
+                                        </div>
+                                    </div>
+                                    </div>
+
+
+                                    </c:if>
+
+                                    <div id="comentArea"> 
+                                    <!-- 관리자 답변 조회 공간-->
+                                    <c:forEach var="reply" items="${rList}">
+                                    <div class="reply-row">
+                                        <div class="d-flex" >
+                                            <div class="flex-shrink-0" ><img class="rounded-circle" src="${contextPath}/resources/images/user.png" style="width: 50px;"/></div>
+                                                <div class="ms-3 ">
+                                                    <div class="col-lg-8  fw-bold" >관리자</div>
+                                                    <!-- 코멘트 조회 넣기 -->
+                                                        <div>
                                                            22222 If you're going to lead a space frontier, it has to be government; it'll never be private enterprise. Because the space frontier is dangerous, and it's expensive, and it has unquantified risks.
+                                                           
                                                         </div>
                                                         <c:if test="${loginMember.memberType =='A' }">
-                                                            <div class="col-sm-6">
+                                                            <div class="col-lg-6">
                                                                 <button type="submit" class="btn btn-outline-secondary mb-2  btn-sm">수정</button>
                                                                 <button type="submit" class="btn btn-outline-secondary mb-2 btn-sm">삭제</button>
                                                             </div>
                                                         </c:if> 
-                                          </div>
+                                                </div>
+                                                
                                         </div>
+                                    </div>
                                     </c:forEach>
+                                    <div>
                                 
-                                <c:if test="${loginMember.memberType =='A' }">
-                                    <button type="submit" class="btn bg-pink mt-3" style="color : white; height : 50px" >해당 문의글 삭제(관리자)</button> 
-                                </c:if>
                             </div>
                         </div>
+                                <c:if test="${loginMember.memberType =='A' }">
+                                    <button type="submit" class="col-lg-12  btn bg-pink mt-3" style="color : white; height : 50px" >해당 문의글 삭제(관리자)</button> 
+                                </c:if>
                     </div>
                 </div>
 

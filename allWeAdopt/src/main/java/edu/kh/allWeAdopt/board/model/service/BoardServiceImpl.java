@@ -85,6 +85,7 @@ public class BoardServiceImpl implements BoardService{
 		
 		return dao.updateBoard(detail);
 	}
+	
 
 	// 게시글 삭제 기능 구현
 	@Override
@@ -92,6 +93,7 @@ public class BoardServiceImpl implements BoardService{
 
 		return dao.deleteBoard(boardNo);
 	}
+	
 	
 	// 문의사항 조회 리스트 구현
 	@Override
@@ -101,7 +103,7 @@ public class BoardServiceImpl implements BoardService{
 		
 		
 		// 1-1. 게시글 수 조회
-		int paginationCount = dao.paginationCount(loginMember.getMemberNo());
+		int paginationCount = dao.paginationCount(loginMember);
 		
 		// 1-2. 페이지네이션 객체 생성
 		Pagination pagination = new Pagination(cp, paginationCount);
@@ -142,6 +144,7 @@ public class BoardServiceImpl implements BoardService{
 		
 		return dao.insertAskWrite(detail);
 	}
+
 	
 	
 	

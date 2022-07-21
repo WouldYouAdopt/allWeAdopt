@@ -35,7 +35,7 @@
 	</select>
 	
 	<!-- 게시글 목록 조회 -->
-	<select id="selectNoticeList" resultMap="board_rm">
+	<select id="selectNoticeList" resultMap="board_rm" >
  	SELECT BOARD_NO, BOARD_TITLE,
             CASE WHEN SYSDATE - CREATE_DT &lt; 1
                  THEN TO_CHAR(CREATE_DT, 'HH24:MI')
@@ -93,16 +93,18 @@
 	
 	
 	<!-- 문의사항 게시글 수 조회 -->
-	<select id="paginationCount" resultType="_int">
+	<select id="paginationCount" resultType="_int" parameterType="member">
 	SELECT COUNT(*) FROM BOARD
 	WHERE BOARD_CD = 5 
 	AND BOARD_ST = 'N'
-	AND MEMBER_NO = #{memberNo}
+		<if test='memberType!="A"'>
+			AND MEMBER_NO = #{memberNo}
+		</if>
 	</select>
 	
 	
 	<!-- 게시글 목록 조회 : 노션에 따로 공부하기 ㅎ.. -->
-	<select id="selectAskList" resultMap="board_rm">
+	<select id="selectAskList" resultMap="board_rm" parameterType="member">
 	SELECT BOARD_NO, BOARD_TITLE, BOARD_CONTENT, MEMBER_NO, 
 	      CASE WHEN SYSDATE - CREATE_DT &lt; 1
 	         THEN TO_CHAR(CREATE_DT, 'HH24:MI')
@@ -115,7 +117,9 @@
 	JOIN BOARD_TYPE T ON(CATEGORY= T.BOARD_CD)
 	WHERE B.BOARD_CD =5
 	AND BOARD_ST = 'N'
-	AND MEMBER_NO = #{memberNo}
+	<if  test='memberType!="A"'>
+			AND MEMBER_NO = #{memberNo}
+	</if>
 	ORDER BY BOARD_NO DESC
 	</select>
 	

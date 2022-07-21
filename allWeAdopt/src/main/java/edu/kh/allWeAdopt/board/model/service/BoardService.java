@@ -45,7 +45,7 @@ public interface BoardService {
 	 */
 	int deleteBoard(int boardNo);
 
-	/** 문의글 조회하는 서비스 호출
+	/** 문의글 조회하는 서비스 호출 ( 관리자 & 사용자)
 	 * @param cp
 	 * @param loginMember 
 	 * @return aList
@@ -63,6 +63,7 @@ public interface BoardService {
 	 * @return
 	 */
 	int insertAskWrite(BoardDetail detail);
+
 
 	
 }

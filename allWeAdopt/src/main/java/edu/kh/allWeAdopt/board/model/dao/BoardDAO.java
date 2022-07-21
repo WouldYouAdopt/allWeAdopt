@@ -1,6 +1,7 @@
 package edu.kh.allWeAdopt.board.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -91,9 +92,9 @@ public class BoardDAO {
 	 * @param memberNo 
 	 * @return paginationCount
 	 */
-	public int paginationCount(int memberNo) {
+	public int paginationCount( Member loginMember) {
 		
-		return sqlSession.selectOne("noticeMapper.paginationCount", memberNo);
+		return sqlSession.selectOne("noticeMapper.paginationCount", loginMember);
 	}
 
 	/** 문의사항 게시글 목록 조회 DAO
@@ -128,7 +129,27 @@ public class BoardDAO {
 		return sqlSession.insert("noticeMapper.insertAskWrite", detail);
 	}
 
-	
+
+	/**관리자 - 문의사항 게시글 수 조회 DAO
+	 * @return
+	 */
+	public int paginationCount() {
+		return sqlSession.selectOne("noticeMapper.paginationCount");
+	}
+
+	/** 관리자 - 문의사항 게시글 목록조회 
+	 * @param pagination
+	 * @return
+	 */
+	public List<Board> selectAskList(Pagination pagination) {
+		
+		int offset = ( pagination.getCurrentPage()-1) * pagination.getLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, pagination.getLimit());
+		
+		return sqlSession.selectList("noticeMapper.selectAskList", null, rowBounds);
+		
+	}
 	
 
 	
