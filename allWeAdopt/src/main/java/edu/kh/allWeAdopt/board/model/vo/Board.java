@@ -41,4 +41,6 @@ public class Board {
 	
 	private int replyCount;
 	
+	private int memberType;
+	
 }

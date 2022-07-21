@@ -139,7 +139,7 @@
 
         <script>
             const contextPath = '${contextPath}';
-            // const boardNo = ${boardNo};
+            const boardNo = '${boardNo}';
             const memberType = '${loginMember.memberType}';
         </script>
 
