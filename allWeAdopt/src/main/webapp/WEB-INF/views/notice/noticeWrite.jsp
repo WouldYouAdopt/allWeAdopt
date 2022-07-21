@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -33,9 +34,47 @@
 
         <!-- sweetalert-->
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <!-- 폰트어썸 -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <style>
+        
+        .none{
+            display : none;
+        }
+        
+        </style>
         
     </head>
-    <body class="d-flex flex-column">
+    <body class="d-flex flex-column" id="body">
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title mx-auto" id="exampleModalLabel">(로고)사용자 정의 템플릿</h5>
+                        <button type="button" class="btn-close mx-0" data-bs-dismiss="modal" aria-label="Close" id="closeBtn"></button>
+                    </div>
+                    <div class="modal-body py-2">
+                    
+                        <div class="d-flex flex-column align-items-center py-2">
+                            <div class="pb-3">
+                                템플릿명 : <input type="text" id="tempName">
+                            </div>
+                            <div class="px-auto mb-1">
+                                <textarea id="summernote2" name="boardContent"></textarea> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button type="submit" class="d-grid btn btn-primary btn-lg col-sm-11 button-pink" id="add">저장</button>
+                    </div>
+                </div>
+            </div>
+        </div>  <!-- 모달끝 -->
+
         <main class="flex-shrink-0">
 
             <!-- 헤더 -->
@@ -60,11 +99,52 @@
                         <form action="${contextPath}/admin/notice/write" method="post" onsubmit="return writeValidate()">
 
                             <div class="col-md-5 col-sm-6">
+                                
                                 <label for="exampleFormControlInput3" class="form-label"></label>
                                 <input type="text" name="boardTitle" class="form-control" id="exampleFormControlInput3" placeholder="제목을 입력하세요" value="${detail.boardTitle}" >
                             </div>
 
-                            <div class="md-10"></div>
+                            <div class="btn"></div>
+
+                            <div class="md-10" id="writeTemplate">
+
+                                <fieldset class="form-group">
+                                    <div class="row">
+
+                                        <!-- 평소에 안보이다가 설정 클릭하면 보이기 -->
+                                        <div class="my-0 mx-2 px-0 d-flex">
+                                            <legend class="btn col-form-label p-1 m-1" style="width:12%; border: 1px solid #ddd;" id="setting" type="button"><i class="fa-solid fa-gear"></i> 템플릿 설정</legend>
+                                            <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary button-pink form-check-label none p-1 m-1" id="insert" type="button">신규 등록</button>
+                                            <button class="btn btn-primary button-pink form-check-label none p-1 m-1" type="button" id="delete">선택 삭제</button>                                             
+                                        </div>
+        
+                                        <div class="col-sm-10 mb-3 d-flex">
+
+                                            <div id="tListArea" class="bg-white p-3 mx-0 form-control none">
+
+                                                <c:forEach var="t" items="${tList}">
+                                                    <input type="checkbox" name="chk" value='${t.tempNo}' title='${t.tempEnc}'  class="chk"> ${t.tempName} <br>
+                                                </c:forEach>                                                
+
+                                            </div>
+                                        
+                                        </div>
+
+
+                                        <div class="col-sm-10">
+
+                                            <div class="form-check px-0" id="buttonArea">
+                                                <c:forEach var="t" items="${tList}">
+                                                    <button class="btn btn-primary button-pink form-check-label p-1 tempBtn" value="${t.tempContent}" type="button" title='${t.tempEnc}' >${t.tempName}</button>
+                                                </c:forEach>      
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                            </div>
 
                             <div class="mb-5 pb-3">
                                 
@@ -115,19 +195,44 @@
             <c:if test="${loginMember.memberType =='M' || loginMember.memberType == 'K'}">
                 const url = "${contextPath}/member/myPage/notice/list?";
             </c:if>
-            
+
+            const tLength = "${fn:length(tList)}";
 
         </script>
         <!-- 썸머노트 -->
         <script>
             $(document).ready(function() {
+                $('#summernote2').summernote({
+                    placeholder: '내용을 입력해주세요.',
+                    tabsize: 2,
+                    height: 200,
+                    toolbar: [
+                        // ['fontname', ['fontname']],
+                        ['fontsize', ['fontsize']],
+                        ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+                        ['color', ['forecolor','color']],
+                        ['insert',['picture','link']]
+                    ],
+                    callbacks:{
+                        onImageUpload: function(files, editor) {
+                            // 업로드된 이미지를 ajax를 이용하여 서버에 저장
+                            console.log("이미지 업로드됨");
+                            console.log(files);
+                            sendFile(files[0], this);
+                        }
+                    }
+                });
+            });
+
+
+            $(document).ready(function() {
                 $('#summernote').summernote({
-                    placeholder: '내용을 입력하세요',
+                    placeholder: '내용을 입력해주세요.',
                     tabsize: 2,
                     height: 500,
                     toolbar: [
                         // [groupName, [list of button]]
-                        ['fontname', ['fontname']],
+                        // ['fontname', ['fontname']],
                         ['fontsize', ['fontsize']],
                         ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
                         ['color', ['forecolor','color']],
