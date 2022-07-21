@@ -298,6 +298,23 @@ public class FundingDAO {
 		return sqlSession.update("fundingMapper.delivery",map);
 	}
 
+	/**반품신청 반품완료 , 
+	 * @param map
+	 * @return
+	 */
+	public List<OrderDetail> selectRList(Map<String, Object> map) {
+	 return sqlSession.selectList("fundingMapper.selectRList",map);
+	}
+
+
+	/** 배송 처리
+	 * @param o
+	 * @return
+	 */
+	public int sendProcessing(OrderDetail o) {
+		return sqlSession.update("fundingMapper.sendProcessing",o);
+	}
+
 	
 	
 

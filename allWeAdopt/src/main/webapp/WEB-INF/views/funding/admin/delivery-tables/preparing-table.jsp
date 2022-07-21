@@ -18,10 +18,11 @@ pageEncoding="UTF-8"%>
   </tr>
 </thead>
 <tbody>
+<c:if test="${!empty orderList}">
   <c:forEach var="o" items="${orderList}">
       <tr>
           <th scope="row">
-            <input type="checkbox" value="${o.paymentNo}">
+            <input class="tList" type="checkbox" value="${o.paymentNo}">
           </th>
 
           <td>${o.paymentNo}</td>
@@ -36,9 +37,9 @@ pageEncoding="UTF-8"%>
           
           <td class="parcel">
             <select class="form-select" class="parcelCompany" name="parcelCompany" aria-label="Default select example">
-              <option value="04">CJ대한통운</option>
-              <option value="04">롯데택배</option>
-              <option value="04">우체국택배</option>
+              <option value="CJ대한통운">CJ대한통운</option>
+              <option value="롯데택배">롯데택배</option>
+              <option value="우체국택배">우체국택배</option>
             </select>
           </td>
           
@@ -46,3 +47,9 @@ pageEncoding="UTF-8"%>
 
       </tr>
   </c:forEach>
+</c:if>
+<c:if test="${empty orderList}">
+<tr>
+<td colspan="8"><h2>배송 준비 중인 주문건이 없습니다.</h2></td>
+<tr>
+</c:if>

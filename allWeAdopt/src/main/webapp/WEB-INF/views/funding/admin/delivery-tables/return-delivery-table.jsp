@@ -46,6 +46,6 @@
 
 <c:if test="${empty orderList}">
 <tr>
-<td colspan="8"><h2>주문건이 없습니다.</h2></td>
+<td colspan="8"><h2>해당하는 주문건이 없습니다.</h2></td>
 <tr>
 </c:if>

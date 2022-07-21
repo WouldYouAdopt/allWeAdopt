@@ -83,7 +83,7 @@
                       </c:when>
                       <%-- 배송준비에서는 배송만 있음 주문 --%>
                       <c:when test="${orderCode == 2}">
-                        <button type="button" class="btn btn-secondary" onclick="sendProcessing(3)">발송 처리</button>
+                        <button type="button" class="btn btn-secondary" onclick="sendProcessing()">발송 처리</button>
                       </c:when>
                       <%-- 배송중에는 배송완료만 --%>
                       <c:when test="${orderCode==3}">
@@ -95,7 +95,8 @@
                       </c:when>
                       <%-- 반품신청 들어온 후 환불 처리 --%>
                       <c:when test="${orderCode == 8}">
-                        <button type="button" class="btn btn-secondary"  onclick="process(8)">환불 처리</button>
+                        <button type="button" class="btn btn-secondary"  onclick="process(9)">반품 완료 처리</button>
+                        <button type="button" class="btn btn-secondary"  onclick="refoudPouprocess()">환불 처리</button>
                       </c:when>
                        </c:choose >
 

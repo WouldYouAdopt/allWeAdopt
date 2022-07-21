@@ -218,6 +218,13 @@ public class AdminFundingController {
 //---------------------------------------------------------------------------------------------	
 	
 	
+	/**배송 상태 변경용 범용 서비스
+	 * @param code
+	 * @param list
+	 * @param fundingNo
+	 * @param orderCode
+	 * @return
+	 */
 	@ResponseBody
 	@GetMapping("/delivery/processing")
 	public String processing(int code,String list ,int fundingNo,int orderCode) {
@@ -236,6 +243,10 @@ public class AdminFundingController {
 		return new Gson().toJson(orderList);
 	}
 	
+	/**반품 처리를 위한 서비스
+	 * @param paramMap
+	 * @return
+	 */
 	@ResponseBody
 	@GetMapping("/delivery/return/processing")
 	public String returnProcessing(@RequestParam Map<String,Object> paramMap) {
@@ -245,6 +256,26 @@ public class AdminFundingController {
 		return new Gson().toJson(orderList);
 	}
 	
+	/**택배 발송 처리를 위한 서비스
+	 * @param insertJSON
+	 * @return
+	 */
+	@ResponseBody
+	@PostMapping("/delivery/sendProcessing")
+	public int sendProcessing(String insertJSON,@RequestParam Map<String,Object> map){
+		
+		String json = insertJSON;
+		String arr[] = json.split("-");
+		Gson gson = new Gson();
+		List<OrderDetail> sendList = new ArrayList<OrderDetail>(); 
+		for(String temp : arr) {
+			OrderDetail r = gson.fromJson(temp, OrderDetail.class);
+			sendList.add(r);
+		}
+		
+		int result = service.sendProcessing(sendList,map);
+		return result;
+	}
 	
 //---------------------------------------------------------------------------------------------
 	

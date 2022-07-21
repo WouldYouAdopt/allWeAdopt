@@ -147,6 +147,13 @@ public interface FundingService {
 	 */
 	List<OrderDetail> returnProcessing(Map<String, Object> paramMap);
 
+	/**택배 발송을 위한 서비스
+	 * @param sendList
+	 * @param map 
+	 * @return
+	 */
+	int sendProcessing(List<OrderDetail> sendList, Map<String, Object> map);
+
 
 
 
