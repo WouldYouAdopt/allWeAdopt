@@ -54,10 +54,12 @@
                 <div id="controllerArea">
 
                     <!-- SELCET바 영역 -->
-                    <div id="">
-                      <select class="form-select" aria-label="Default select example" id="month">
-                        <option selected>2022/08</option>
-                        <option value="1"></option>
+                    <div id="seasonListArea" ><!-- seasonList -->
+                      <select class="form-select" aria-label="Default select example" id="month" onchange="changeFunding(this)">
+                        <c:forEach var="o" items="${seasonList}">
+                          <c:if test="${o.fundingNo==fundingNo}"><option value='${o.fundingNo}' selected>${o.fundingSeason}</option> </c:if>
+                          <c:if test="${o.fundingNo!=fundingNo}"><option value='${o.fundingNo}'>${o.fundingSeason}</option> </c:if>
+                          </c:forEach>
                       </select>
                     </div>
 

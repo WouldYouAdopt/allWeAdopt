@@ -723,13 +723,18 @@
 	</select>
 	
 	<!-- 택배사와 송장번호 입력 -->
-	<update id="sendProcessing" parameterType="java.util.List">	
-		<foreach collection="list" item="i" separator=";" open="DECLARE BEGIN" close="; END;">
+	<update id="sendProcessing">	
 			UPDATE PAYMENT SET 
-			PARCEL_COMPANY=#{i.parcelCompany},
-			PARCEL_NO=#{i.parcelNo}
-			WHERE PAYMENT_NO=#{i.paymentNo}
-		</foreach>
+			PARCEL_COMPANY=#{parcelCompany},
+			PARCEL_NO=#{parcelNo},
+			ORDER_ST_CD=3
+			WHERE PAYMENT_NO=#{paymentNo}
 	</update>
+	
+	<select id="selectSeasonList" resultMap="funding_rm">
+	SELECT FUNDING_NO,FUNDING_SEASON FROM FUNDING
+	WHERE FUNDING_ST IN('N','Y')
+	ORDER BY FUNDING_SEASON DESC
+	</select>
 	
 </mapper>

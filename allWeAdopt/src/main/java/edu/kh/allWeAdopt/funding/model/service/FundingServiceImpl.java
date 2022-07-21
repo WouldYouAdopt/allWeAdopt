@@ -466,18 +466,28 @@ public class FundingServiceImpl implements FundingService {
 	 *
 	 */
 	@Override
-	public int sendProcessing(List<OrderDetail> sendList, Map<String, Object> map){
+	public List<OrderDetail> sendProcessing(List<OrderDetail> sendList, Map<String, Object> map){
 		int result = 0;
 		List<OrderDetail> orderList = new ArrayList<OrderDetail>();
 		for (OrderDetail o : sendList) {
 			result = dao.sendProcessing(o);
-			if (result > 0) {
-				orderList = dao.selectOrderList(map);
-			} else {
+			if (result == 0) {
 				throw new FailsendProcessingException(o.getPaymentNo());
 			}
 		}
-		return result;
+		if(result>0) {
+			orderList = dao.selectOrderList(map);
+		}
+		return orderList;
 	}
 
+	/**현재까지 진행된 펀딩 번호와 펀딩 진행월을 가져오는 서비스
+	 *
+	 */
+	@Override
+	public List<Funding> selectSeasonList() {
+		return dao.selectSeasonList();
+	}
+
+	
 }

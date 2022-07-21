@@ -147,7 +147,9 @@
 }
 
 #month{
-    width: 30%;
+    width: 27%;
+    border:2px solid #FB836b;
+    font-weight: bold;
 }
 
 /* 라디오 버튼 모양 바꾸기 */
