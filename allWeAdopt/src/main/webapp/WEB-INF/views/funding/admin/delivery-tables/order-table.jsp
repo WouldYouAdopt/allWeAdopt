@@ -6,7 +6,7 @@
 <thead>
 <tr>
 <th scope="col" class="dt1">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+  <input class="form-check-input" type="button" id="flexCheckDefault">
 </th>
 <th scope="col" class="dt2">주문번호</th>
 <th scope="col" class="dt3">카테고리</th>

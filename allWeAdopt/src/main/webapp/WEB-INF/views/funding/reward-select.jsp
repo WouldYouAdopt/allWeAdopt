@@ -270,7 +270,7 @@
                                     <div class="d-grid"><p class="rewardSelectBtn lineBtn-gr rewardSelectBtn">품절</p></div>
                            			</c:if>
                            			
-									<button type="button" class="minus"><i class="fa-solid fa-minus"></i></button><input type="number" min="0" max="${map.rewardList[i].maxRewardNo-map.rewardListCount[i].rewardOrderAmount}" name="${map.rewardList[i].rewardNo}" value="0" style="width:60px;" class="rewardCount" disabled><button type="button" class="plus"><i class="fa-solid fa-plus"></i></button>
+									<button type="button" class="minus"><i class="fa-solid fa-minus"></i></button><input type="number" min="0" max="${map.rewardList[i].maxRewardNo-map.rewardListCount[i].rewardOrderAmount}" name="${map.rewardList[i].rewardNo}" value="0" style="width:60px;" class="rewardCount"><button type="button" class="plus"><i class="fa-solid fa-plus"></i></button>
 								</div>
 							</div>
 						</div>

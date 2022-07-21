@@ -2,17 +2,19 @@
 
 
 /* 모두 체크하는 이벤트 부여 */
-let bol = false;
-(function () {
 
+let bol = true;
+(function () {
     if ($('#flexCheckDefault') != null) {
         $('#flexCheckDefault').click(function () {
-            var checked = $('#flexCheckDefault').is(':checked');
-
-            if (checked) {
+            if (bol) {
                 $('input:checkbox').prop('checked', true);
+                this.style.backgroundColor="#FB836b";
+                bol=false;
             } else {
                 $('input:checkbox').prop('checked', false);
+                this.style.backgroundColor="white";
+                bol=true;
             }
         });
     }
@@ -290,32 +292,31 @@ function sendReturn() {
 
 function selectReturnState() {
 
-    if (document.getElementsByClassName("summernoteArea")[0] != null) {
+    if (
+        document.getElementsByClassName("summernoteArea")[0] != null) {
         document.getElementsByClassName("summernoteArea")[0].innerHTML = "";
     }
-    const div = document.createElement("div");
-    div.classList.add("summernoteArea");
-
-    const ta = document.createElement("textarea");
-    ta.setAttribute("name", "returnReason");
-    ta.setAttribute("id", "returnReason");
-
-    let data = '';
+ 
 
 
     $.ajax({
-        url: '../selectReturn/' + paymentNo,
-        type: "post",
-        data: { 'returnReason': ta.value },
+        url: contextPath+'/funding/my/selectReturn/' + paymentNo,
+        type: "POST",
         dataType: "json",
         success: function (result) {
-            data = result;
+            console.log(result);
+            const div = document.createElement("div");
+            div.classList.add("summernoteArea");
+
+            const ta = document.createElement("textarea");
+            ta.readOnly="true";
+            ta.setAttribute("id", "returnReason");
+            ta.innerHTML=result;
             div.append(ta);
 
             document.getElementById("twoTable").after(div);
 
-            $('#returnReason').summernote('code', data);
-            $('#returnReason').summernote('disable');
+         
         },
         error(request, status, error) {
             console.log("AJAX 에러 발생");
@@ -349,6 +350,7 @@ function process(code) {
         case 5:msg='결제 취소';break;
         case 9:msg='반품 완료';break;
     }
+
     if(code==9){
         if($("input[name='flexRadioDefault']:checked").parent().siblings()[4].innerText != '반품 신청'){
             alert('반품 신청중인 주문만 처리 가능합니다.');
@@ -357,15 +359,12 @@ function process(code) {
         obj = $("input[type='radio']:checked").val();
     }else{
         $('input[type="checkbox"]:checked').each(function (index) {
-            if (index != 0) {
-                if(index != 1){
+           
+                obj += $(this).val();
+                if(index != 0){
                     obj += ', ';
                 }
-                obj += $(this).val();
-            }
         });
-        console.log(obj);
-     
     }
         
 
@@ -532,7 +531,11 @@ async function returnProcess(code){
 
 
 /* 즉시 실행 함수로 현재 선택된 페이지에 클래스 부여해주는 이벤트 */
-(function(){    document.getElementById(orderCode).classList.add("navCoice");})();
+
+(function(){ 
+    const oc = document.getElementById('orderCode'); 
+    if(oc !=null) {    oc.classList.add("navCoice");}
+} )();
 
 
 function refoudPouprocess(){

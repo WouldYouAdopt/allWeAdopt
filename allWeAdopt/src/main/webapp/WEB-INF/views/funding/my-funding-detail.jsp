@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 
 <!DOCTYPE html>
@@ -71,7 +72,7 @@
 		</div>
 
 
-
+		
 
 	   <!-- 상단 메뉴 영역. -->
         <div class="text-center pt-4" id="TOT">
@@ -119,7 +120,8 @@
 												<th>수량</th>
 												<td>${reward.amount}</td>
 												<th>금액</th>
-												<td>${reward.fullPrice} 원</td>
+												
+												<td><fmt:formatNumber value="${reward.fullPrice}" type="number"/> 원</td>
 											</tr>
                                       </c:forEach>
 
@@ -147,7 +149,7 @@
 										</tr>
 										<tr>
 											<th>총결제 금액</th>
-											<td>${detail.fullPrice}</td>
+											<td><fmt:formatNumber value="${detail.fullPrice}" type="number"/></td>
 										</tr>
 										<tr>
 											<th>주문 상태</th>
@@ -202,9 +204,13 @@
 										<tr>
 											<th>전화번호-1</th>
 											<td>${detail.orderPhoneMain}</td>
+											<th>전화번호-2</th>
+											<td>${detail.orderPhoneSub}</td>
 										</tr>
 										<tr>
-											<th>전화번호-2</th>
+											<th>택배사</th>
+											<td>${detail.orderPhoneSub}</td>
+											<th>운송장번호</th>
 											<td>${detail.orderPhoneSub}</td>
 										</tr>
 										<tr>
@@ -246,10 +252,11 @@
 
 	<script>
 		const paymentNo = '${paymentNo}';
+		const contextPath = '${contextPath}';
 	</script>
 
 	<!-- Bootstrap core JS-->
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- Core theme JS-->
 	<script src="${contextPath}/resources/js/scripts.js"></script>
 
