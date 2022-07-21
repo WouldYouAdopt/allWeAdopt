@@ -62,7 +62,7 @@ public class UserBoardController {
 	
 	// 사용자 게시판 리스트 출력
 	@GetMapping("/user")
-	public String boardList(Model model,
+	public String boardList(Model model,HttpSession session,
 			@RequestParam(value="boardPeriod", required = false, defaultValue = "") String boardPeriod,
 			@RequestParam(value="boardPeriod2", required = false, defaultValue = "") String boardPeriod2,
 			@RequestParam(value="category", required = false, defaultValue = "") String category,
@@ -72,6 +72,7 @@ public class UserBoardController {
 			@RequestParam(value="animalDetail", required = false, defaultValue = "") String animalDetail) {
 		
 		Board board = new Board();
+		Member loginMember = (Member)session.getAttribute("loginMember");
 		
 		if(boardPeriod.equals("")) boardPeriod = null;
 		board.setBoardPeriod(boardPeriod);
@@ -112,6 +113,7 @@ public class UserBoardController {
 		
 		model.addAttribute("areaList",areaList);
 		model.addAttribute("boardList",list);
+		model.addAttribute("loginMember",loginMember);
 		return "board/userBoardList";
 	}
 	

@@ -31,8 +31,15 @@
     </head>
     <body class="d-flex flex-column">
         <main class="flex-shrink-0">
-             <!-- 헤더 -->
-            <jsp:include page="/WEB-INF/views/common/header.jsp" />
+            <!-- 헤더 -->
+           <c:if test="${empty adminMember}">
+                <jsp:include page="/WEB-INF/views/common/header.jsp" />
+                <c:set var="url" value="../board/detail/2/"/>
+            </c:if>
+            <c:if test="${!empty adminMember}">
+                <jsp:include page="/WEB-INF/views/common/admin-header.jsp" />
+                <c:set var="url" value="${contextPath}/admin/board/detail/2/"/>
+            </c:if>
 
             <!-- Page Content-->
             <section class="py-5">
@@ -55,10 +62,10 @@
                                     <!-- Post title-->
                                     <div class="title-area">
                                         <h1 class="fw-bolder mb-1">${board.boardTitle}</h1>
-                                        <c:if test="${loginMember.memberNo == board.memberNo}">
+                                        <c:if test="${(loginMember.memberNo == board.memberNo) || loginMember.memberType == 'A'}">
                                         <div>
                                             <a href="${board.boardNo}/boardModify"><p class="modify">수정</p></a>
-                                            <a href="${board.boardNo}/boardDelete"><p class="delete">삭제</p></a>
+                                            <a href="${board.boardNo}/boardDelete"><p class="delete" onclick="return deleteBtn()">삭제</p></a>
                                         </div> 
                                         </c:if>
                                     </div>

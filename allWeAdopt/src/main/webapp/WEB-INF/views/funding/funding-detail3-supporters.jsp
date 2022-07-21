@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"  %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <div class="col-lg-9 policy">
 
@@ -20,16 +21,22 @@
 	    
 	    <table class="supporter-table">
 	    	<c:forEach var="i" begin="0" end="${fn:length(detail.supportersList)}">
+	    	
+	    	
 	    		<c:if test="${detail.supportersList[i].nameOpen=='Y'}">
 		    		<tr>
 		    		<th rowspan="2" style="vertical-align:center;">
 		    		<c:if test="${empty detail.supportersList[i].profileImage}">
 		    			<img class="rounded-circle" src="${contextPath}/resources/images/funding_sample/profile-sample.png">
 		    		</c:if>
+		    		<c:if test="${!empty detail.supportersList[i].profileImage}">
+		    			<img class="rounded-circle" src="${contextPath}${detail.supportersList[i].profileImage}">
+		    		</c:if>
 		    		</th>
+		    		
 		    		<td style="vertical-align:bottom;">${detail.supportersList[i].memberName}님이
 		    		<c:if test="${detail.supportersList[i].priceOpen=='Y'}">
-		    			${detail.supportersList[i].payFullPrice}원
+		    			<fmt:formatNumber value="${detail.supportersList[i].payFullPrice}" pattern="####-####"/>원
 		    		</c:if>
 		    		<c:if test="${detail.supportersList[i].priceOpen=='N'}">
 		    		</c:if>
@@ -40,7 +47,7 @@
 	    		<c:if test="${detail.supportersList[i].nameOpen=='N'}">
 		    		<tr>
 		    		<th rowspan="2" style="vertical-align:center;"><img class="rounded-circle" src="${contextPath}/resources/images/funding_sample/profile-sample.png"></th>
-		    		<td style="vertical-align:bottom;">${detail.supportersList[i].memberName}님이
+		    		<td style="vertical-align:bottom;">All We Adopt Supporter님이
 		    		<c:if test="${detail.supportersList[i].priceOpen=='Y'}">
 		    			${detail.supportersList[i].payFullPrice}원
 		    		</c:if>

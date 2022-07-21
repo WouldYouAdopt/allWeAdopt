@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"  %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 
 
@@ -201,6 +202,7 @@
                             <table class="table endedFundingTable">
                               <thead>
                                 <tr>
+                                  <th scope="col">No.</th>
                                   <th scope="col">펀딩 번호</th>
                                   <th scope="col">카테고리</th>
                                   <th scope="col">펀딩 제목</th>
@@ -213,19 +215,20 @@
                               
                               	<c:forEach var="i" begin="0" end="${fn:length(map.endList)-1}">
                                 <tr>
+                                  <th scope="row">${i+1}</th>
                                   <th scope="row">${map.endList[i].fundingNo}</th>
-                                  <td>${map.endList[i].categoryName}</td>
-                                  <td><a href="${contextPath}/admin/funding/select?fundingNo=${map.endList[i].fundingNo}">${map.endList[i].fundingTitle}</a></td>
+                                  <td style="text-align:center;">${map.endList[i].categoryName}</td>
+                                  <td style="text-align:left; padding-left:20px;"><a href="${contextPath}/admin/funding/select?fundingNo=${map.endList[i].fundingNo}">${map.endList[i].fundingTitle}</a></td>
                                   <td>${map.endList[i].fundingSeason}</td>
                                   <td>${map.endList[i].salesRate}%</td>
-                                  <td>${map.endList[i].fullPriceInt}WON</td>
+                                  <td><fmt:formatNumber value="${map.endList[i].fullPriceInt}"/>원</td>
                                 </tr>
                               	</c:forEach>
                                 
                               </tbody>
                             </table>
                             
-                            <div class="paginationArea">
+                            <!-- <div class="paginationArea">
                               <ul class="pagination pagination-sm">
                                 <li class="page-item active" aria-current="page">
                                   <span class="page-link">1</span>
@@ -236,7 +239,7 @@
                                 <li class="page-item"><a class="page-link" href="#">5</a></li>
                                 <li class="page-item"><a class="page-link" href="#">6</a></li>
                               </ul>
-                            </div>
+                            </div> -->
                           </div>
                           </divi>
 
