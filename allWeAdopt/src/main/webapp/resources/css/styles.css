@@ -3058,16 +3058,19 @@ textarea.form-control-lg {
   border-color: #0d6efd;
 }
 
+/* 버튼 색상, 호버색상 수정함 : 수진 */
 .btn-secondary {
   color: #fff;
-  background-color: #6c757d;
-  border-color: #6c757d;
+  background-color: #FB836b;
+  border-color: #FB836b;
 }
 .btn-secondary:hover {
   color: #fff;
-  background-color: #5c636a;
-  border-color: #565e64;
+  background-color: #FB836b;
+  border-color: #FB836b;
 }
+
+
 .btn-check:focus + .btn-secondary, .btn-secondary:focus {
   color: #fff;
   background-color: #5c636a;
