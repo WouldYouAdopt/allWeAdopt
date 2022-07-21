@@ -675,6 +675,7 @@
 	AND ORDER_ST_CD=#{orderCode}
     </select>
 	
+	<!-- 리워드 수정 -->
 	<insert id="updateReward">
 	INSERT INTO REWARD VALUES(
 	  #{rewardNo},
@@ -685,6 +686,7 @@
 	  #{fundingNo} )
 	</insert>
 
+	<!-- 리워드 삽입 -->
 	<insert id="insertReward">
 	INSERT INTO REWARD VALUES(
 	  SEQ_REWARD_NO.NEXTVAL,
@@ -695,10 +697,44 @@
 	  #{fundingNo} )
 	</insert>	
 	
+	<!-- 배송 -->
 	<update id="delivery">
 	UPDATE PAYMENT SET
 	ORDER_ST_CD = #{code}
-	WHERE PAYMENT_NO IN (#{list})
+	WHERE PAYMENT_NO IN (${list})
 	</update>
+	
+	<!-- 반품환분 모든 상태를 가져오기 위한 서비스 -->
+	<select id="selectRList" resultMap="orderDetail_rm">
+	SELECT A.PAYMENT_NO,CATEGORY_NM,RECIPIENT,
+			FUNDING_TITLE,
+	        TO_CHAR(PAY_DT, 'YYYY/MM/DD') AS PAY_DT,
+	        ORDER_ST,
+	           (SELECT SUM(REWARD_PRICE*AMOUNT )
+	            FROM REWARD_ORDER B
+	            JOIN REWARD USING(REWARD_NO)
+	            WHERE B.PAYMENT_NO = A.PAYMENT_NO ) AS FULL_PRICE
+	FROM PAYMENT A
+	JOIN FUNDING USING(FUNDING_NO)
+	JOIN CATEGORY USING(FUNDING_CATEGORY)
+	JOIN ORDER_ST USING(ORDER_ST_CD)
+	WHERE FUNDING_NO =#{fundingNo}
+	AND ORDER_ST_CD IN (6,7,8,9)
+	</select>
+	
+	<!-- 택배사와 송장번호 입력 -->
+	<update id="sendProcessing">	
+			UPDATE PAYMENT SET 
+			PARCEL_COMPANY=#{parcelCompany},
+			PARCEL_NO=#{parcelNo},
+			ORDER_ST_CD=3
+			WHERE PAYMENT_NO=#{paymentNo}
+	</update>
+	
+	<select id="selectSeasonList" resultMap="funding_rm">
+	SELECT FUNDING_NO,FUNDING_SEASON FROM FUNDING
+	WHERE FUNDING_ST IN('N','Y')
+	ORDER BY FUNDING_SEASON DESC
+	</select>
 	
 </mapper>

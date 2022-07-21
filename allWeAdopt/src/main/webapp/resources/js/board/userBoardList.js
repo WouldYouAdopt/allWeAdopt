@@ -1,5 +1,3 @@
-console.log("js출력");
-
 // 몇 분전, 몇 일전 표시
 (function (){ 
   const diffTime = document.getElementsByClassName('diffTime');
@@ -25,16 +23,6 @@ console.log("js출력");
       }
       }
 })();
-
-// window.addEventListener('scroll',function(){
-//     console.log(window.scrollY);
-
-//     if(this.window.scrollY>=68){
-//         document.getElementsByClassName("filter-area")[0].classList.add("fixed");
-//     }else{
-//         document.getElementsByClassName("filter-area")[0].classList.remove("fixed");
-//     }
-// });
 
 // 무한 스크롤
 // 무한 스크롤 설정
@@ -223,10 +211,11 @@ searchBtn.addEventListener("click", function () {
   searchST.value = 1;
 })
 
+// 검색 필터 창 열람
 function searchDisplay() {
   const display = document.getElementById("search-area");
   const displayBtn = document.getElementById("searchBtn");
-  console.log(document.getElementsByClassName('search-area')[0].style.display);
+
   if((display.style.display=="")||(display.style.display=="none")){
     display.style.display = 'block';
     displayBtn.style.display = 'block';

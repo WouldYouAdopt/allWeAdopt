@@ -36,8 +36,15 @@
     <body class="d-flex flex-column h-100">
         <main class="flex-shrink-0">
             <!-- 헤더 -->
-            <jsp:include page="/WEB-INF/views/common/header.jsp" />
-
+            <c:if test="${empty adminMember}">
+                <jsp:include page="/WEB-INF/views/common/header.jsp" />
+                <c:set var="url" value="../board/detail/2/"/>
+            </c:if>
+            <c:if test="${!empty adminMember}">
+                <jsp:include page="/WEB-INF/views/common/admin-header.jsp" />
+                <c:set var="url" value="${contextPath}/admin/board/detail/2/"/>
+            </c:if>
+          
                     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-indicators">
                           <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -70,11 +77,11 @@
                 <div class="container px-5 my-5">
                         <h2 class="titleText">사용자 게시판</h2>
                         <p class="subTitle">추억을 공유하거나 가족을 만드는 공간입니다</p>
-
+                  
                     <!-- 검색 필터 영역 -->
                     <form action="user" method="GET" onsubmit="return search()">
                     <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" onclick="searchDisplay()">
+                        <button class="btn btn-secondary dropdown-toggle" style="margin-bottom:10px;" type="button" id="dropdownMenuButton2" onclick="searchDisplay()">
                         검색조건
                         </button>
                         <div class="search-area" id="search-area">
@@ -147,7 +154,9 @@
                     </form>
 
                     <!-- 게시글 작성 -->
-                    <a href="user/boardRegist"><p class="addBoard">게시글 작성하기</p></a>
+                    <c:if test="${!empty loginMember && loginMember.memberType!='A'}">
+                        <a href="user/boardRegist"><p class="addBoard">게시글 작성하기</p></a>
+                    </c:if>
 
                     <%-- 게시글 리스트 --%>
                     <c:set var="test" value="0"/>
@@ -177,7 +186,8 @@
                                                         중성화
                                                 </div>
                                             </c:if>
-                                            <a class="text-decoration-none link-dark stretched-link" href="../board/detail/2/${boardList.boardNo}">
+                                            
+                                            <a class="text-decoration-none link-dark stretched-link" href="${url}${boardList.boardNo}">
                                                 <h5 class="card-title mb-3"><span class="category">${boardList.category}</span>${boardList.boardTitle}</h5>
                                             </a>
                                         </div>
@@ -206,6 +216,8 @@
                             <c:set var="test" value="${test+3}"/>
                         </div>
                     </c:forEach>
+
+                    <!-- 로딩 아이콘 -->
                     <div class="spinner-area">
                          <div class="spinner-border text-danger" role="status">
                             <span class="visually-hidden">Loading...</span>

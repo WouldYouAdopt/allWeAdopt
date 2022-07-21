@@ -190,7 +190,9 @@
                             <h4><i class="fa-solid fa-file-lines"></i> 펀딩 내용</h4>
                             <div class="intro">펀딩 내용을 작성 할 수 있습니다. </div>
 
-                            <textarea id="textarea" disabled style="padding:20px; margin-top:40px" name="fundingContent"></textarea>  
+                            <div style="padding: 20px; min-height: 200px; background-color: #ddd;">
+                            ${detail.fundingContent}
+                            </div>  
 
                           </div>
 
@@ -228,8 +230,8 @@
                     document.getElementById("targetDonation").value=i;
                 }
 
-      $('#textarea').summernote('code', '${detail.fundingContent}');
-      $('#textarea').summernote('disable');
+      // $('#textarea').summernote('code', '');
+      // $('#textarea').summernote('disable');
         </script>
  <!-- 펀딩 작성 관련 JS -->
         <%-- <script src="${contextPath}/resources/js/funding/funding-write.js"></script> --%>

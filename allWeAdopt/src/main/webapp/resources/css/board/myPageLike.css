@@ -1,0 +1,54 @@
+.rounded-circle{
+    max-width: 13%;
+    object-fit: contain;
+}
+
+/* 페이지네이션 설정 */
+.listArea{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 37px;
+}
+
+.listArea *{
+    margin: 12px;
+    cursor: pointer;
+}
+
+.listArea span:not(:first-of-type,:last-of-type){
+    padding: 3px 0px;
+    border: 1px solid white;
+    border-radius: 5px;
+}
+
+.listArea span:first-of-type,.listArea span:last-of-type{
+    font-size: 18px;
+    padding-top: 2px;
+}
+
+.listNumber:hover, .listNumber a:hover{
+    color: #FFF;
+    background-color: #FB836B;
+    transition-duration: 200ms;
+}
+
+.listNumber{
+    width: 35px;
+    padding: 1px 0 0 1px;
+    border-radius: 5px;
+}
+
+a{
+    text-decoration: none;
+    color: #333;
+}
+
+/* 카테고리 */
+.category{
+    border: 1px solid #FFF;
+    color: #FFF;
+    padding: 1px;
+    border-radius: 30%;
+    margin-right: 5px;
+}

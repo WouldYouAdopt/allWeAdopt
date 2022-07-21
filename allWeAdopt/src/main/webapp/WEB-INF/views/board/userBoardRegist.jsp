@@ -39,8 +39,15 @@
 </head>
 <body>
     <main>
-      <!-- 헤더 -->
+        <!-- 헤더 -->
+        <c:if test="${empty adminMember}">
             <jsp:include page="/WEB-INF/views/common/header.jsp" />
+            <c:set var="url" value="../board/detail/2/"/>
+        </c:if>
+        <c:if test="${!empty adminMember}">
+            <jsp:include page="/WEB-INF/views/common/admin-header.jsp" />
+            <c:set var="url" value="${contextPath}/admin/board/detail/2/"/>
+        </c:if>
         <div class="container">
             <h1 style="margin: 50px 0 10px 0;">
               <c:if test="${!empty board}">

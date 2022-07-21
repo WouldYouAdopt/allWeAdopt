@@ -209,7 +209,7 @@
 
 							<!-- 결제 정보 입력 영역-->
 
-							<div class="paymentWrapper">
+							<div class="">
 								<h4 class="fw-bolder">결제 방식 선택</h4>
 								<div class="paymentMeans">
 								
@@ -248,17 +248,17 @@
 								<br>
 								<div>
 									<input class="form-check-input" type="checkbox" id="allAgree">
-									<label for="allAgree">전체 동의하기</label>
+									<label for="allAgree">&nbsp;전체 동의하기</label>
 								</div>
 								<div>
 									<%-- Personal Information Agree --%>
 									<input class="form-check-input" type="checkbox" id="PIA">
-									<a href="javaScript:void(0)">개인정보 제3자 제공 동의</a>
+									<a href="javaScript:void(0)">&nbsp;개인정보 제3자 제공 동의</a>
 								</div>
 								<div>
 									<%-- Liability Regulation Agree --%>
 									<input class="form-check-input" type="checkbox" id="LRA">
-									<a href="javaScript:void(0)">책임 규정에 대한 동의</a>
+									<a href="javaScript:void(0)">&nbsp;책임 규정에 대한 동의</a>
 								</div>
 							</div>
 

@@ -26,6 +26,8 @@
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         
+        
+
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="${contextPath}/resources/css/main-style.css" rel="stylesheet" />
         <link href="${contextPath}/resources/css/styles.css" rel="stylesheet" />
@@ -208,14 +210,71 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">전단지</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <img src="${detail.thumbnail}" style="width: 450px; height: 400px;"/>
+                                <%-- <img src="${detail.thumbnail}" style="width: 450px; height: 400px;"/> --%>
+
+                                <p>
+                                    <%-- <textarea onkeyup='writeText(this)' id='textArea' 
+                                        placeholder='연락처를 입력해주세요' rows='2' cols='50'>
+                                    </textarea> --%>
+                                </p>
+
+                                <div>
+                                    <!--The parent container, image and container for text (to place over the image)-->
+                                    <div class="mainContainer" id='mainContainer'>
+
+                                        <!--The default image. You can select a different image too.-->
+                                        <%-- <img src="default-pam.png" id="myimage2" alt="" />
+                                        <img src="" id="myimage" alt="" /> --%>
+                                        
+                                        <img id="myimage" style="width: 100px; height: 100px; display: none;" src="${detail.thumbnail}" alt="The Scream">
+                                        <img id="myimage2" style="width: 20px; height: 20px; display: none;" src="${contextPath}\resources\images\default-pam.png"alt="The Scream">
+
+                                        <canvas id="myCanvas" width="600" height="800" style="border:1px solid #d3d3d3;">
+                                        </canvas>
+                                        
+                                        <!--The text, which is also draggable.-->
+                                        <%-- <div style="margin-left: 210px; left: -1.00002px; top: -522px;" class='theText' onmousedown='this.style.border = "dashed 2px #FF7F27";'>광고할 내용을 입력하세요(마우스로 위치 조정)</div>
+                                        <div style="left: 0px; top: -319px; margin-left: 80px; font-size: 50px; color:red; font-style: bold;" class='theText' onmousedown='this.style.border = "dashed 2px #FF7F27";'>${detail.memberName}</div> --%>
+                                    </div>
+
+                                    <!--Button to save the image with the text.-->
+                                    <p>
+                                        <%-- <input type="button"  onclick="saveImageWithText();" id="bt" value="Save the Image" />  --%>
+                                    </p>
+                                </div>
+
+
+
+                                <script>
+                                const memberName = "${detail.memberName}"
+                                // const content = "${detail.boardContent}"
+
+                                window.onload = function() {
+                                var c = document.getElementById("myCanvas");
+                                var ctx = c.getContext("2d");
+                                var img = document.getElementById("myimage");
+                                var img2 = document.getElementById("myimage2");
+                                ctx.drawImage(img2, 0, 0, 600, 800);
+                                ctx.drawImage(img, 10, 130, 250, 300);
+                                ctx.font = "70px Arial";
+                                ctx.fillStyle  = "red";
+                                ctx.fillText(memberName, 95, 505);
+
+
+                                ctx.font = "30px Arial";
+                                ctx.fillStyle  = "red";
+                                ctx.fillText('잃어버린곳', 270, 160);
+                                }
+                                </script>
+
+
                             </div>
                             <div class="modal-footer">
-                                <a href="${detail.thumbnail}" download="${detail.thumbnail}"><button type="button" class="btn btn-primary" style="background-color:#FB836B; border:0;">전단지 저장</button></a>
+                                <button type="button" onclick="saveImageWithText();" id="bt" value="Save the Image" class="btn btn-primary" style="background-color:#FB836B; border:0;">전단지 저장</button>
                             </div>
                             </div>
                         </div>
@@ -235,7 +294,9 @@
 
             <!-- jQuery 추가 -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
+            <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
  
 
 

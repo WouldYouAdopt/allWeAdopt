@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"  %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -31,6 +32,9 @@
         <link href="${contextPath}/resources/css/main-style.css" rel="stylesheet" />
         <link href="${contextPath}/resources/css/styles.css" rel="stylesheet" />
         <link href="${contextPath}/resources/css/funding/funding-detail.css" rel="stylesheet" />
+        
+        <!-- sweetalert-->
+		<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
         <style>
             .nav-text-color{
@@ -71,8 +75,15 @@
                 </div>
                 <div class="bottom-box">
                     <div class="rate-bar"></div>
+                    <!-- 달성률 100이하로 제한하기 -->
+                    <c:if test="${detail.salesRate>=100}">
+                    <div class="rate-bar-pink" style="width:100%;"></div>
+                    <div class="rate-text-box" style="left:100%;">
+                    </c:if>
+                    <c:if test="${detail.salesRate<100}">
                     <div class="rate-bar-pink" style="width:${detail.salesRate}%;"></div>
                     <div class="rate-text-box" style="left:${detail.salesRate}%;">
+                    </c:if>
                     	<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 174 138.61">
 	                    	<defs>
 	                    		<style>.tooltip_icon{fill:rgb(255, 255, 255, 0.3);}</style>
@@ -146,7 +157,7 @@
                             <c:if test="${detail.fundingState=='Y'}">
                             <div class="align-items-center mb-4" >
                                 <button class="fundingBtn" onclick="window.location.href='${contextPath}/funding/reward/${detail.fundingNo}'">펀딩하기</button>
-                                <button class="qnaBtn">문의</button>
+                                <button class="qnaBtn" onclick="window.location.href='${contextPath}/member/myPage/ask/list'">문의</button>
                             </div>
                             </c:if>
 
@@ -158,7 +169,7 @@
                                         리워드${i+1}
                                     </div>
                                     <div class="rew-price">
-                                        ${detail.rewardList[i].rewardPrice}<span>원 펀딩</span>
+                                        <fmt:formatNumber value="${detail.rewardList[i].rewardPrice}"/><span>원 펀딩</span>
                                     </div>
                                     <div class="rew-title">
                                         ${detail.rewardList[i].rewardTitle}
@@ -247,7 +258,7 @@
         		       background-color: rgb(251, 131, 107, 1);
         		   }
         		   to { 
-        		        width: ${detail.salesRate}%;
+        		        width: salesRate%;
         		        background-color: rgb(251, 131, 107, 0.9);
         		    }
         		}
@@ -265,7 +276,7 @@
    						color: #FB836B;
         		   }
         		   to { 
-        			   left: ${detail.salesRate}%;
+        			   left: salesRate%;
   				 		color: #FB836B;
         		    }
         		}
@@ -316,7 +327,15 @@
 		                rewardOvers[i].addEventListener("click", function(){
 		                	
 		                	if(this.previousElementSibling.firstElementChild.innerText=='품절'){
-		                    	alert("품절입니다");
+		                		
+		                		Swal.fire({
+		                		     title: '품절된 리워드 입니다.',
+		                		     width: 350,
+		                		     padding: '3em',
+		                		     color: 'black',
+		                		     confirmButtonColor: 'rgb(251, 131, 107)',
+		                		     confirmButtonText: '확인'
+		                		     });
 							}else{
 			                	this.parentElement.nextElementSibling.submit();
 			                	return;

@@ -36,9 +36,12 @@ a{
     flex-direction: row-reverse;
 }
 .btnArea>button{
-    background-color: #FB836b;
-    border: 1px solid #ddd;
+    background-color: #fff;
+    border: 1px solid #FB836b;
+/*     background-color: #FB836b;
+    border: 1px solid #ddd; */
     margin-left:7px;
+    color:#FB836b;
 }
 
 table *{

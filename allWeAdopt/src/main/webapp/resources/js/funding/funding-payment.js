@@ -49,7 +49,7 @@ function DaumPostcode() {
 
     inputName.value = prevOrder.recipient;
     inputTelMain.value = prevOrder.orderPhoneMain;
-    if (prevOrder.orderPhoneSub != '') {
+    if (prevOrder.orderPhoneSub != null) {
       inputTelSub.value = prevOrder.orderPhoneSub;
     }
 
