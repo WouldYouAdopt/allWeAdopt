@@ -62,11 +62,12 @@
 
 })();
 
+
+const boardTitle = document.getElementById("exampleFormControlInput3");
+const note = document.getElementsByClassName("note-editable");
+
 // 게시글 작성 유효성검사
 function writeValidate(){
-
-    const boardTitle = document.getElementById("exampleFormControlInput3");
-    const note = document.getElementsByClassName("note-editable")[0];
 
     if(boardTitle.value.trim().length == 0 ){
 
@@ -84,7 +85,7 @@ function writeValidate(){
         return false;
     }
 
-    if( note.innerHTML.trim() == "<p><br></p>" && (note.innerText.trim() == "" || note.innerText == "\n" )){
+    if( note[1].innerHTML.trim() == "<p><br></p>" && (note[1].innerText.trim() == "" || note[1].innerText == "\n" )){
 
         Swal.fire({
             title: '내용을 입력해주세요!',
@@ -94,9 +95,274 @@ function writeValidate(){
             confirmButtonColor: 'rgb(251, 131, 107)',
             confirmButtonText: '확인'
         });
-        note.focus();
+        note[1].focus();
         return false;
     }
 
     return true;
 };
+
+
+// 템플릿 추가해주는 버튼이 있을 때 (write)
+// if(document.getElementById("writeTemplate")){
+
+//         const start = document.getElementById("start");
+//         const end = document.getElementById("end");
+//         const addTemplate = document.getElementById("addTemplate");
+//         const placeholder = document.getElementsByClassName("note-placeholder");
+
+//         start.addEventListener("click", function(){
+
+//             placeholder[1].style.display ="none";
+
+//             if(note[1].childNodes[0].innerHTML == '<br>'){
+//                 note[1].childNodes[0].innerHTML = "안녕하세요. <br> ALL WE ADOPT 입니다. <br>";
+//             }else{
+//                 note[1].childNodes[0].innerHTML += "안녕하세요. <br> ALL WE ADOPT 입니다. <br>" ;
+//             }
+
+//         });
+//         end.addEventListener("click", function(){
+
+//         });
+//         addTemplate.addEventListener("click", function(){
+
+//         });
+
+// }
+
+// 템플릿 설정 버튼 클릭여부 알려주는 변수
+let check = false;
+
+// 템플릿 설정 클릭시
+if(document.getElementById("setting")!=null){
+
+    const setting = document.getElementById("setting");
+
+    // 템플릿 설정 버튼 클릭시
+    setting.addEventListener("click", function(){
+
+        const insertB = document.getElementById("insert");
+        const deleteB = document.getElementById("delete");
+        const tListArea = document.getElementById("tListArea");
+        const buttonArea = document.getElementById("buttonArea");
+
+        if(!check){
+            check = true;
+            insertB.classList.remove("none");
+            deleteB.classList.remove("none");
+            tListArea.classList.remove("none");
+            buttonArea.classList.add("none");
+        }else{
+            check = false;
+            insertB.classList.add("none");
+            deleteB.classList.add("none");
+            tListArea.classList.add("none");
+            buttonArea.classList.remove("none");
+        }
+
+    });
+
+
+}
+
+// 저장 버튼 클릭시
+if(document.getElementById("add")!=null){
+
+    const add = document.getElementById("add");
+    const tempName = document.getElementById("tempName");
+    const tempContent = document.getElementById("summernote2");
+
+    add.addEventListener("click", function(){
+
+        // 제목 입력 안한경우
+        if(tempName.value.trim().length == 0 ){
+
+            Swal.fire({
+                title: '제목을 입력해주세요!',
+                width: 350,
+                padding: '3em',
+                color: 'black',
+                confirmButtonColor: 'rgb(251, 131, 107)',
+                confirmButtonText: '확인'
+            });
+    
+            tempName.value = "";
+            tempName.focus();
+            return;
+        }
+    
+        if( note[0].innerHTML.trim() == "<p><br></p>" && (note[0].innerText.trim() == "" || note[0].innerText == "\n" )){
+    
+            Swal.fire({
+                title: '내용을 입력해주세요!',
+                width: 350,
+                padding: '3em',
+                color: 'black',
+                confirmButtonColor: 'rgb(251, 131, 107)',
+                confirmButtonText: '확인'
+            });
+            note[0].focus();
+            return;
+        }
+
+        $.ajax({
+            url : contextPath+"/admin/template/write",
+            type : "post",
+            data : {
+                "tempName" : tempName.value,
+                "tempContent" : tempContent.value
+            },
+            dataType: "json",
+            success : function(tList){
+                selectTemplateList(tList);
+            },
+            error : function(){
+                console.log("ajax 실패");
+            }
+    
+        });
+
+    });
+
+}
+
+// 작성 중 모달창을 끈 경우 (x버튼 혹은 창 외부 클릭시)
+if(document.getElementById("closeBtn")!=null){
+
+    const closeBtn = document.getElementById("closeBtn");
+    const tempName = document.getElementById("tempName");
+    const tempContent = document.getElementById("summernote2");
+    const exampleModal = document.getElementById("exampleModal");
+
+    // exampleModal.addEventListener("click", function(){
+    //     tempName.value = "";
+    //     note[0].innerHTML = "<p><br></p>";
+    //     console.log("수행됨");
+    // })
+
+    closeBtn.addEventListener("click", function(){
+        tempName.value = "";
+        note[0].innerHTML = "<p><br></p>";
+        console.log("수행됨");
+    });
+}
+
+
+// 요소 체크 + 삭제 버튼 클릭시 선택 템플릿 삭제 . . . 
+if(document.getElementById("delete")!=null){
+
+    const deleteB = document.getElementById("delete");
+    const chk = document.getElementsByClassName("chk");
+
+    deleteB.addEventListener("click", function(){
+
+        let num = "";
+        for(let i=0; i<tLength; i++){
+            if(chk[i].checked){
+                num += chk[i].value + ",";
+            }
+        }
+
+        num = num.substring(0, num.length-1);
+
+        console.log(num);
+
+        $.ajax({
+            url : contextPath+"/admin/template/delete",
+            type : "post",
+            data : { "tempNo" : num },
+            dataType: "json",
+            success : function(tList){
+                selectTemplateList(tList);
+            },
+            error : function(){
+                console.log("ajax 실패");
+            }
+
+        });
+
+
+    });
+}
+
+// 템플릿 조회하는 함수
+function selectTemplateList(tList){
+
+    console.log(tList);
+
+    const tListArea = document.getElementById("tListArea");
+    const buttonArea = document.getElementById("buttonArea");
+    const exampleModal = document.getElementById("exampleModal");
+    const body = document.getElementById("body");
+    const tempName = document.getElementById("tempName");
+    const tempContent = document.getElementById("summernote2");
+
+    let input;
+    let button;
+    tListArea.innerHTML ="";
+    buttonArea.innerHTML ="";
+    for(let t of tList){
+
+        // 템플릿 설정영역
+        input = document.createElement("input");
+        input.setAttribute("type", "checkbox");
+        input.setAttribute("name", "chk");
+        input.setAttribute("title", t.tempEnc);
+        input.value=t.tempContent;
+        input.classList.add("chk");
+
+        tListArea.append(input);
+        tListArea.innerHTML += " "+ t.tempName + "<br>";
+
+        // 템플릿 버튼영역
+        button = document.createElement("button");
+        button.classList.add("btn", "btn-primary", "button-pink", "form-check-label", "p-1",  "m-1");
+        button.setAttribute("type", "button");
+        button.setAttribute("title", t.tempEnc);
+        button.innerText = t.tempName;
+
+        buttonArea.append(button);
+
+    }
+
+    exampleModal.classList.remove("show");
+    exampleModal.style.display ="none";
+    exampleModal.removeAttribute("role","dialog");
+
+    body.classList.remove("modal-open");
+    body.style ="";
+    body.removeChild(body.lastChild);
+
+    // 다 완료하면 내용 지우기
+    tempName.value = "";
+    tempContent.value = "";
+
+}
+
+// 각 템플릿 클릭시 썸머노트에 출력되게 만들기 . . . ><
+if(document.getElementById("buttonArea")!=null){
+
+    const tempBtn = document.getElementsByClassName("tempBtn");
+
+    for(let i=0; i<tLength; i++){
+        tempBtn[i].addEventListener("click", function(){
+
+            const placeholder = document.getElementsByClassName("note-placeholder");
+
+            console.log(tempBtn[i].value);
+
+            if(note[1].childNodes[0].innerHTML == '<br>'){
+                placeholder[1].style.display ="none";
+                note[1].childNodes[0].innerHTML = tempBtn[i].value;
+            }else{
+                note[1].childNodes[0].innerHTML += tempBtn[i].value;
+            }
+
+        });
+    }
+
+
+
+
+}

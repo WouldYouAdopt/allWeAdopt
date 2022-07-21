@@ -1,6 +1,7 @@
 package edu.kh.allWeAdopt.board.controller;
 
 
+import java.util.List;
 import java.util.Map;
 
 
@@ -16,17 +17,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-
+import com.google.gson.Gson;
 
 import edu.kh.allWeAdopt.board.model.service.BoardService;
 
 import edu.kh.allWeAdopt.board.model.vo.BoardDetail;
-import edu.kh.allWeAdopt.common.Util;
+import edu.kh.allWeAdopt.board.model.vo.Template;
 
 @Controller
 @RequestMapping("/admin")
@@ -73,6 +74,10 @@ public class AdminNoticeController {
 									@RequestParam(value="no", required=false, defaultValue="0") int boardNo, 
 									Model model) {
 		
+		List<Template> tList = service.selectTemplate();
+		
+		model.addAttribute("tList", tList);
+		
 		if(mode.equals("update")) {
 			
 			BoardDetail detail = service.selectNoticeDetail(boardNo); 
@@ -97,10 +102,6 @@ public class AdminNoticeController {
 		
 		// 게시글 등록
 		if(mode.equals("insert")) {
-			
-			String thumbnail = Util.thumbnail(detail.getBoardContent());
-			System.out.println("내용 : " +detail.getBoardContent());
-			System.out.println("썸네일 : " + thumbnail);
 			
 			logger.info("게시글 등록 수행됨");
 			
@@ -161,6 +162,38 @@ public class AdminNoticeController {
 		ra.addFlashAttribute("message", message);
 		return path;
 	}
+	
+	@PostMapping("/template/write")
+	@ResponseBody
+	public String insertTemplate(Template template) {
+		
+		int result = service.insertTemplate(template);
+		
+		List<Template> tList = null;
+		if(result>0) {
+			tList = service.selectTemplate();
+		}
+		
+		return new Gson().toJson(tList);
+		
+	}
+	
+	@PostMapping("/template/delete")
+	@ResponseBody
+	public String deleteTemplate(String tempNo) {
+		
+		int result = service.deleteTemplate(tempNo);
+		
+		List<Template> tList = null;
+		if(result>0) {
+			tList = service.selectTemplate();
+		}
+		
+		return new Gson().toJson(tList);
+		
+	}
+	
+	
 	
 
 }

@@ -41,7 +41,7 @@ console.log("summerNote.js 정상 연결됨");
           
           
        }, error : function(){
-        console.log("ajax 실패")
+        console.log("ajax 실패");
        }
        
     });

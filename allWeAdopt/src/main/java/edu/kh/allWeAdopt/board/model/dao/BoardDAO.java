@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import edu.kh.allWeAdopt.board.model.vo.Board;
 import edu.kh.allWeAdopt.board.model.vo.BoardDetail;
 import edu.kh.allWeAdopt.board.model.vo.Pagination;
+import edu.kh.allWeAdopt.board.model.vo.Template;
 import edu.kh.allWeAdopt.member.model.vo.Member;
 
 @Repository
@@ -149,6 +150,32 @@ public class BoardDAO {
 		
 		return sqlSession.selectList("noticeMapper.selectAskList", null, rowBounds);
 		
+	}
+	
+	/** 템플릿 조회 DAO
+	 * @return
+	 */
+	public List<Template> selectTemplate() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("noticeMapper.selectTemplate");
+	}
+
+	/** 템플릿 삽입 DAO
+	 * @param template
+	 * @return result
+	 */
+	public int insertTemplate(Template template) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("noticeMapper.insertTemplate", template);
+	}
+
+	/** 템플릿 삭제 DAO
+	 * @param tempNo
+	 * @return result
+	 */
+	public int deleteTemplate(String tempNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("noticeMapper.deleteTemplate", tempNo);
 	}
 	
 
