@@ -99,7 +99,7 @@
 		      
 		      	<div class="d-flex py-3">
 			      	<div class="px-3">
-			      		<input type="checkbox" class="payCheck">
+			      		<input type="checkbox" class="payCheck form-check-input">
 			      	</div>
 			      	<div class="px-2 modalcon">
 			        	<p>펀딩이 끝나기 전까지 언제든 결제를 취소할 수 있어요.</p>
@@ -109,7 +109,7 @@
 		      	
 		      	<div class="d-flex py-3">
 			      	<div class="px-3">
-		        		<input type="checkbox" class="payCheck">
+		        		<input type="checkbox" class="payCheck form-check-input">
 		        	</div>
 			      	<div class="px-2 modalcon">
 		        		<p>리워드에 문제가 있거나 배공일을 지키지 않으면 펀딩금을 돌려받을 수 있어요.</p>
@@ -119,7 +119,7 @@
 		        
 		      	<div class="d-flex py-3">
 			      	<div class="px-3">
-		        		<input type="checkbox" class="payCheck">
+		        		<input type="checkbox" class="payCheck form-check-input">
 		        	</div>
 			      	<div class="px-2 modalcon">
 		        		<p>단순 변심에 의한 펀딩금 반환은 신청할 수 없어요.</p>
@@ -130,7 +130,7 @@
 		        
 		      </div>
 		      <div class="modal-footer">
-		        <button type="submit" class="btn btn-primary" id="goPay">계속해서 펀딩하기</button>
+		        <button type="submit" class="" id="goPay">계속해서 펀딩하기</button>
 		      </div>
 		    </div>
 		  </div>
@@ -215,7 +215,7 @@
 									
 									<div class="d-grid"><p class="rewardSelectBtn lineBtn-gr rewardSelectBtn selected">리워드 선택</p></div>
 									
-									<button type="button" class="minus"><i class="fa-solid fa-minus"></i></button><input type="number" min="0" max="${map.rewardList[i].maxRewardNo-map.rewardListCount[i].rewardOrderAmount}" name="${map.rewardList[i].rewardNo}" value="1" style="width:60px;" class="rewardCount"><button type="button" class="plus"><i class="fa-solid fa-plus"></i></button>
+									<button type="button" class="minus"><i class="fa-solid fa-minus"></i></button><input type="number" min="0" max="${map.rewardList[i].maxRewardNo-map.rewardListCount[i].rewardOrderAmount}" name="${map.rewardList[i].rewardNo}" value="1" style="width:60px;" class="rewardCount" disabled><button type="button" class="plus"><i class="fa-solid fa-plus"></i></button>
 									
 								</div>
 							</div>
@@ -258,6 +258,7 @@
 	                                        <span class="order-count">총 ${map.rewardListCount[i].rewardOrderAmount}개 펀딩 완료</span>
                                         </c:if>
                                     </div>
+                                    <div class="d-grid"><p class="rewardSelectBtn lineBtn-gr rewardSelectBtn">리워드 선택</p></div>
                            			</c:if>
                            			
                            			<!-- 재고수량 0보다 작을때 품절처리 -->
@@ -266,13 +267,10 @@
                                         <span class="stock">품절</span>
                                         <span class="order-count">총 ${map.rewardListCount[i].rewardOrderAmount}개 펀딩 완료</span>
                                     </div>
+                                    <div class="d-grid"><p class="rewardSelectBtn lineBtn-gr rewardSelectBtn">품절</p></div>
                            			</c:if>
                            			
-                           			
-                           			
-									
-									<div class="d-grid"><p class="rewardSelectBtn lineBtn-gr rewardSelectBtn">리워드 선택</p></div>
-									<button type="button" class="minus"><i class="fa-solid fa-minus"></i></button><input type="number" min="0" max="${map.rewardList[i].maxRewardNo-map.rewardListCount[i].rewardOrderAmount}" name="${map.rewardList[i].rewardNo}" value="0" style="width:60px;" class="rewardCount"><button type="button" class="plus"><i class="fa-solid fa-plus"></i></button>
+									<button type="button" class="minus"><i class="fa-solid fa-minus"></i></button><input type="number" min="0" max="${map.rewardList[i].maxRewardNo-map.rewardListCount[i].rewardOrderAmount}" name="${map.rewardList[i].rewardNo}" value="0" style="width:60px;" class="rewardCount" disabled><button type="button" class="plus"><i class="fa-solid fa-plus"></i></button>
 								</div>
 							</div>
 						</div>
