@@ -6,11 +6,8 @@
 }
 
 .carousel-item > img{
-    /* height: 260px; */
     width: auto;
     margin-bottom: 10px;
-    /* object-fit: contain; */
-    
 }
 
 /* 제목 */
@@ -56,6 +53,20 @@
 
 /* 공통 적용 사항 */
 a{
+    text-decoration: none;
+    color: #FFF;
+}
+
+a:hover{
+    /* text-decoration: none;
+    color: #FB836B;
+    background-color: #FFF;
+    transition-duration: 200ms; 다시 재수정*/
+    text-decoration: none;
+    color: #FFF;
+}
+
+p{
     text-decoration: none;
 }
 

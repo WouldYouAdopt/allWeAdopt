@@ -46,6 +46,7 @@
 	  }
 
 	  if(document.getElementsByName("animalTypeValue")[0].innerText.trim()=="축종"){
+		console.log("축종실행");
 		document.getElementsByName("animalDetailValue")[0].style.display = "none";	
 	  }
 
@@ -230,7 +231,7 @@ function animalDetailAjax(animalType) {
 			const animal = document.getElementsByName("animalTypeValue")[0];
 			const animalDt = document.getElementsByName("animalDetailValue")[0];
 
-			if(animal.innerText.trim()=="기타"){
+			if((animal.innerText.trim()=="기타")||(animal.innerText.trim()=="축종")){
 				animalDt.style.display = 'none';
 				document.getElementsByName("animalDetailValue")[0].innerText='';
 				document.getElementsByName("animalDetail")[0].value = '';
