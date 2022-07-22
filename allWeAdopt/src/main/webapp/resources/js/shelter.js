@@ -149,43 +149,13 @@ if(mybutton != null){
 
 }
 
+function download(){
+  var download = document.getElementById("download");
+  var image = document.getElementById("myCanvas").toDataURL("image/png")
+              .replace("image/png", "image/octet-stream");
+  download.setAttribute("href", image);
 
-
-
-
-// 전단지
-// (function(){
-
-//   const makePam = document.getElementById("makePam");
-//   const modal = document.getElementsByClassName("modal");
-//   const pamphlet = document.getElementById("modal-image");
-
-//   for(let img of makePam){
-
-//     img.addEventListener("click", function(){
-
-//       pamphlet.setAttribute("src", img.getAttribute("src"));
-
-//       modal.classList.toggle('show');
-
-//     })
-
-//   }
-
-// })();
-
-
-// const makePam = document.getElementById('makePam')
-// const pamphlet = document.getElementById('modal-image')
-
-// makePam.addEventListener('shown.bs.modal', () => {
-//   pamphlet.focus()
-// })
-
-
-
-
-
+}
 
 
 
