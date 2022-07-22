@@ -9,6 +9,18 @@ const checkObj = {
   "LRA": false
 };
 
+function alert(msg){
+  Swal.fire({
+      title: msg,
+      width: 400,
+      padding: '3em',
+      color: 'black',
+      confirmButtonColor: 'rgb(251, 131, 107)',
+      confirmButtonText: '확인'
+      });
+}
+
+
 function DaumPostcode() {
   new daum.Postcode({
     oncomplete: function (data) {
@@ -46,6 +58,11 @@ function DaumPostcode() {
   //이전 배송지
   prevDestination.addEventListener("change", function () {
     console.log('이전 주소 체크됨');
+
+    if(prevOrder==null){
+      alert("이전 배송지가 없습니다");
+      return;
+    }
 
     inputName.value = prevOrder.recipient;
     inputTelMain.value = prevOrder.orderPhoneMain;
@@ -108,10 +125,15 @@ function DaumPostcode() {
 
     checkObj.inputrecipient = true;
 
-    if (inputTelMain != '') { checkObj.inputTelMain = true; }
-    else { checkObj.inputTelMain = false; }
+    if (inputTelMain.value.trim() != '') {
+      console.log(inputTelMain.value.trim());
+       checkObj.inputTelMain = true; 
+      }
+    else {
+       checkObj.inputTelMain = false; 
+      }
 
-    if (supportAddress != '') {
+    if (supportAddress.value.trim() != '') {
       checkObj.postCode = true;
       checkObj.address = true;
     }
@@ -205,11 +227,22 @@ function requestPayInicis() {
 
     $('#pay_method').val(r.pay_method);
     if (r.success) {
-      $('form[name="submitEvent"]').serialize();
-      $('form[name="submitEvent"]').attr('method', 'POST');
-      $('form[name="submitEvent"]').attr('action', 'pay/' + r.merchant_uid);
-      
-      document.getElementById("submitEvent").submit();
+      Swal.fire({
+        title: '결제 완료',
+        text: "결제가 완료되었습니다!.",
+        width: 340,		
+        iconColor: 'rgb(251, 131, 107)',
+        confirmButtonColor: 'rgb(251, 131, 107)',
+        confirmButtonText: '확인',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            $('form[name="submitEvent"]').serialize();
+            $('form[name="submitEvent"]').attr('method', 'POST');
+            $('form[name="submitEvent"]').attr('action', 'pay/' + r.merchant_uid);
+            
+            document.getElementById("submitEvent").submit();
+          }
+         })
 
     } else {
       alert("결제에 실패하였습니다");
