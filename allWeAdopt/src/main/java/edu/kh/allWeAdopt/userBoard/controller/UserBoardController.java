@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -15,8 +16,10 @@ import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
@@ -73,6 +76,7 @@ public class UserBoardController {
 		
 		Board board = new Board();
 		Member loginMember = (Member)session.getAttribute("loginMember");
+		int displayValue = 0;
 		
 		if(boardPeriod.equals("")) boardPeriod = null;
 		board.setBoardPeriod(boardPeriod);
@@ -105,15 +109,19 @@ public class UserBoardController {
 				&&(board.getArea()==null)&&(board.getAreaDetail()==null)
 				&&(board.getBoardPeriod()==null)&&(board.getBoardPeriod2()==null)
 				&&(board.getCategory()==null)) {
-			list =  service.boardList();				
+			list =  service.boardList();	
+			displayValue = 0;
 		}else {
 			list = service.searchList(board);
+			displayValue = 1;
 		}
 		
 		
 		model.addAttribute("areaList",areaList);
 		model.addAttribute("boardList",list);
 		model.addAttribute("loginMember",loginMember);
+		model.addAttribute("searchList",board);
+		model.addAttribute("displayValue",displayValue);
 		return "board/userBoardList";
 	}
 	
@@ -187,7 +195,7 @@ public class UserBoardController {
 		return a;
 	}
 	
-//	사용자 게시글 등록
+	//	사용자 게시글 등록
 	@PostMapping("/user/boardRegist")
 	public String userBoardRegist(Board board, Animal animal, Area area,
 			HttpSession session, @RequestParam("neuterings") String neuterings,
@@ -249,7 +257,7 @@ public class UserBoardController {
 	// 상세 지역 호출
 	@RequestMapping(value ={"/user/loadAreaList","/detail/2/{boardNo}/loadAreaList","/loadAreaList"})
 	@ResponseBody
-	public List<Area> loadAreaList(@RequestParam("area") String area) {
+	public List<Area> loadAreaList(@RequestParam(value="area", required = false) String area) {
 		List<Area> list = service.loadAreaList(area);
 		
 		return list;
@@ -258,7 +266,7 @@ public class UserBoardController {
 	// 품종 호출
 	@RequestMapping(value={"/user/loadAnimalList","/detail/2/{boardNo}/loadAnimalList","/loadAnimalList"})
 	@ResponseBody
-	public List<Animal> loadAnimalList(@RequestParam("animalType") String animalType) {
+	public List<Animal> loadAnimalList(@RequestParam(value="animalType", required = false) String animalType) {
 		List<Animal> list = service.loadAnimalList(animalType);
 		
 		return list;

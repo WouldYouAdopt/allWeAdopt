@@ -94,3 +94,9 @@ a{
     border: none;
     border-radius: 5px;
 }
+
+/* 프로필 이미지 */
+.img-fluid{
+    height: 40px;
+    width: 40px;
+}

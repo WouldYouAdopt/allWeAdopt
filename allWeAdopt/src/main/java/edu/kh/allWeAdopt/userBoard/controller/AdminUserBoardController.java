@@ -230,7 +230,7 @@ public class AdminUserBoardController {
 			int boardNo = 0;
 			board.setMemberNo(loginMember.getMemberNo());
 			boardNo = board.getBoardNo();
-			
+		
 			if(boardPeriod.equals("")&&boardPeriod2.equals("")) {
 				// 현재날짜 값이 비었을 때 설정
 				LocalDate now = LocalDate.now();

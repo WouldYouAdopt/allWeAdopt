@@ -32,6 +32,11 @@
 		<result property="tempState" column="TEMP_ST"/>
 	</resultMap>
 	
+	<!-- 펀딩 내용만 조회 (스케줄러용) -->
+	<select id="selectFundingList" resultType="string">
+	SELECT FUNDING_CONTENT FROM FUNDING
+	</select>
+	
 	<!-- 게시글 수 조회 -->
 	<select id="getListCount" resultType="_int">
 	SELECT COUNT(*) FROM BOARD
@@ -161,7 +166,7 @@
 	<!-- 템플릿 조회 -->
 	<select id="selectTemplate" resultMap="template_rm">
 	SELECT * FROM TEMPLATE
-	WHERE TEMP_ST = 'N'
+	WHERE TEMP_ST = 'N' ORDER BY TEMP_NO
 	</select>
 	
 	<!-- 템플릿 삽입 -->

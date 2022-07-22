@@ -30,7 +30,15 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public List<String> selectDBList() {
 		
-		return dao.selectDBList();
+		List<String> dbList = dao.selectDBList();
+		
+		List<String> fundingList = dao.selectFundingList();
+		
+		for(String f : fundingList) {
+			dbList.add(f);
+		}
+		
+		return dbList;
 	}
 	
 	// ------------------------- 공지사항 ---------------------------

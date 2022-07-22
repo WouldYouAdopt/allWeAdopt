@@ -47,10 +47,9 @@
                     <div class="row gx-5">
                         <div class="col-lg-3">
                             <div class="d-flex align-items-center mt-lg-5 mb-4">
-                                <img class="img-fluid rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." />
+                                <img class="img-fluid rounded-circle" src="${contextPath}${board.profileImage}" alt="..." />
                                 <div class="ms-3">
                                     <div class="fw-bold">${board.memberName}</div>
-                                    <button onclick="selectThisUser(${board.memberNo})">채팅</button>
                                 </div>
                             </div>
                         </div>
@@ -70,7 +69,7 @@
                                         </c:if>
                                     </div>
                                     <!-- Post meta content-->
-                                    <div class="text-muted fst-italic mb-2">${board.createDate} || 조회수 : 0
+                                    <div class="text-muted fst-italic mb-2">${board.createDate}
                                     <c:if test="${!empty loginMember}">||
                                         <c:if test="${like==0}">
                                             <span id="likeIcon">&#x2661;</span>
@@ -108,8 +107,7 @@
                                         </div>
                                     </div>
                                 </header>
-                                <!-- Preview image figure-->
-                                <figure class="mb-4"><img class="img-fluid rounded" src="${board.profileImage}" alt="..." /></figure>
+                                
                                 <!-- Post content-->
                                 <section class="mb-5">
                                     ${board.boardContent}
@@ -126,11 +124,13 @@
                                 <a id="btnFacebook" class="link-icon facebook" href="javascript:shareFacebook();"><img src="${contextPath}\resources\images\icon-facebook.png"></a>    
                                 <a id="btnKakao" class="link-icon kakao" href="javascript:shareKakao();"><img src="${contextPath}\resources\images\icon-kakao.png"></a>    
                             </div>
-
+                           
                             <!-- 문의 버튼 -->
-                            <div class="btn-area">
-                                <button class="btnRegist">문의하기</button>
-                            </div>
+                            <c:if test="${(board.memberNo!=loginMember.memberNo) && !empty loginMember}">
+                                <div class="btn-area">
+                                    <button class="btnRegist" onclick="selectThisUser(${board.memberNo})">문의하기</button>
+                                </div>
+                            </c:if>
                            
                         </div>
                     </div>
