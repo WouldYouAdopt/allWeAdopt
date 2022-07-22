@@ -26,7 +26,6 @@ public class Board {
 	private String memberName;
 	private long diff;
 	private long diff2;
-	private int readCount;
 	private String profileImage;
 	// 게시글 답변 완/미완 == 코멘트 유/무
 	private String answer;
