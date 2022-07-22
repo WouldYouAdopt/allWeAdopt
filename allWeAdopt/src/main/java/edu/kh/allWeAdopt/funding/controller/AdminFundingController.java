@@ -120,6 +120,8 @@ public class AdminFundingController {
 			
 			model.addAttribute("detail",detail);
 			model.addAttribute("rewardList",rewardList);
+		}else {
+			model.addAttribute("rewardList",null);
 		}
 		
 		
