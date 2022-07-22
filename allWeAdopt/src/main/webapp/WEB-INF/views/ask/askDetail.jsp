@@ -39,6 +39,9 @@
         <!-- main css -->
         <link rel="stylesheet" href="${contextPath}/resources/css/main-style.css">
 
+        <!-- sweetalert-->
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
         <style>
         .new{
             background-color: rgb(251, 131, 107);
@@ -96,7 +99,7 @@
             
             <!-- About section two-->
             <section class="py-0 mb-5" >
-                ${rList}
+                
                 <div class="container px-2 my-1">
                     <div class="row gx-5 align-items-center">
                         
@@ -141,6 +144,7 @@
             const contextPath = '${contextPath}';
             const boardNo = '${boardNo}';
             const memberType = '${loginMember.memberType}';
+            const loginMemberNo = "${loginMember.memberNo}";
         </script>
 
         <script src="${contextPath}/resources/js/board/notice.js"></script>
