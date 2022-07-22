@@ -59,6 +59,7 @@
                 <c:set var="formAction" value="boardRegist"/>
               </c:if>
             </h1>
+            
             <form action="${formAction}" method="post" onsubmit="return regist()">
             <!-- 카테고리 선택 메뉴 -->
             <div class="dropdown category-area">
@@ -256,6 +257,9 @@
       <!-- 푸터 -->
       <jsp:include page="/WEB-INF/views/common/footer.jsp" />
     </main>
+    <script>
+      const message = "${message}";
+    </script>
      <!-- Core theme JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="${contextPath}/resources/js/scripts.js"></script>

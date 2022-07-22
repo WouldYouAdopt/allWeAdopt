@@ -153,11 +153,11 @@ public class UserBoardController {
 //	사용자 게시판 등록 페이지
 	@GetMapping("/user/boardRegist")
 	public String boardRegist(Model model) {
-		
+		String message = "게시글을 등록하였습니다";
 		// 지역 리스트 출력
 		List<Area> areaList = service.areaList();
 		model.addAttribute("areaList",areaList);
-		
+		model.addAttribute("message",message);
 		return "board/userBoardRegist";
 	}
 	
@@ -275,19 +275,17 @@ public class UserBoardController {
 	// 게시글 삭제
 	@GetMapping("/detail/2/{boardNo}/boardDelete")
 	public String boardDelete(@PathVariable("boardNo") int boardNo,
-			RedirectAttributes ra, @RequestHeader("referer") String referer) {
-		String message = null;
+			@RequestHeader("referer") String referer) {
+
 		String path = null;
 		int result = service.boardDelete(boardNo);
 		
 		if(result>0) {
-			message = "게시글이 삭제되었습니다";
 			path ="/board/user";
 		} else {
-			message = "게시글 삭제에 실패하였습니다";
 			path = referer;
 		}
-		ra.addFlashAttribute("message",message);
+
 		return "redirect:" + path;
 	}
 	
@@ -295,7 +293,7 @@ public class UserBoardController {
 	@GetMapping("/detail/2/{boardNo}/boardModify")
 	public String boardModify(@PathVariable("boardNo") int boardNo,
 			@ModelAttribute("loginMember") Member loginMember, Model model) {
-		
+		String message = "게시글을 수정하였습니다";
 		// 지역 리스트 출력
 		List<Area> areaList = service.areaList();
 		model.addAttribute("areaList",areaList);
@@ -304,7 +302,7 @@ public class UserBoardController {
 		Board board = service.boardDetail(boardNo);
 		board.setBoardContent(board.getBoardContent().replaceAll("(\r\n|\r|\n|\n\r)", " "));
 		model.addAttribute("board",board);
-		
+		model.addAttribute("message",message);
 		return "board/userBoardRegist";
 	}
 	
@@ -318,7 +316,6 @@ public class UserBoardController {
 			@ModelAttribute("loginMember") Member loginMember,
 			RedirectAttributes ra, @RequestHeader("referer") String referer) {
 		String profileImage = null;
-		String message = "게시글 수정을 실패하였습니다";
 		String path = referer;
 		int boardNo = 0;
 		board.setMemberNo(loginMember.getMemberNo());
@@ -365,11 +362,9 @@ public class UserBoardController {
 			else if(neuterings.equals("미완료")) animal.setNeutering('N');
 			
 			result = service.boardAnimalModify(animal);
-			message = "게시글을 수정하였습니다";
 			path = "/board/user";
 		}
 		
-		ra.addFlashAttribute("message",message);
 		return "redirect:" + path;
 	}
 	

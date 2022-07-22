@@ -193,7 +193,7 @@
 
                     <!-- 게시글 작성 -->
                     <c:if test="${!empty loginMember && loginMember.memberType!='A'}">
-                        <a href="user/boardRegist"><p class="addBoard">게시글 작성하기</p></a>
+                        <p class="addBoard"><a href="user/boardRegist">게시글 작성하기</a></p>
                     </c:if>
 
                     <c:if test="${empty boardList}">
