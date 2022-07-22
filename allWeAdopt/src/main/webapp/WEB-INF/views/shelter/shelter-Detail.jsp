@@ -56,6 +56,12 @@
         <%-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=69933a089a5ecd291058167064475d66"></script>
         <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=69933a089a5ecd291058167064475d66&libraries=services"></script> --%>
 
+                <!-- jQuery 추가 -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
 
         <style>
             .nav-text-color{
@@ -137,6 +143,10 @@
                                         <a id="btnTwitter" class="link-icon twitter" href="javascript:shareTwitter();"><img src="${contextPath}\resources\images\icon-twitter.png"></a>
                                         <a id="btnFacebook" class="link-icon facebook" href="javascript:shareFacebook();"><img src="${contextPath}\resources\images\icon-facebook.png"></a>    
                                         <a id="btnKakao" class="link-icon kakao" href="javascript:shareKakao();"><img src="${contextPath}\resources\images\icon-kakao.png"></a>    
+                                    </div>
+
+                                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                        <button type="button" class="btn btn-outline-secondary btn-sm allButton"  data-bs-toggle="modal" data-bs-target="#makePam">전단지 만들기</button>
                                     </div>
 
                                 </header>
@@ -269,6 +279,114 @@
                                         } 
                                     });    
                                     </script>
+
+
+                                    <div class="modal fade" id="makePam" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">전단지</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <%-- <img src="${detail.thumbnail}" style="width: 450px; height: 400px;"/> --%>
+
+                                    <p>
+                                        <%-- <textarea onkeyup='writeText(this)' id='textArea' 
+                                            placeholder='연락처를 입력해주세요' rows='2' cols='50'>
+                                        </textarea> --%>
+                                    </p>
+
+                                    <div>
+                                        <!--The parent container, image and container for text (to place over the image)-->
+                                        <div class="mainContainer" id='mainContainer'>
+
+                                            <!--The default image. You can select a different image too.-->
+                                            <%-- <img src="default-pam.png" id="myimage2" alt="" />
+                                            <img src="" id="myimage" alt="" /> --%>
+                                            
+                                            <img id="myimage" style="width: 100px; height: 100px; display: none;" src="${popfile}" alt="myPet">
+                                            <img id="myimage2" style="width: 20px; height: 20px; display: none;" src="${contextPath}\resources\images\shelter.png"alt="The Scream">
+
+                                            <canvas id="myCanvas" width="1000" height="1000" ></canvas>
+
+                                        </div>
+                                    </div>
+
+
+
+                                    <script>
+
+                                    
+                                    const happenPlace = "${happenPlace}"
+                                    const sexCd = "${sexCd}"
+                                    const age = "${age}"
+                                    const careNm = "${careNm}"
+                                    const careTel = "${careTel}"
+                                    const colorCd = "${colorCd}"
+                                    const kindCd = "${kindCd}"
+                                    
+
+
+
+
+                                    // const date = "${detail.createDate}"
+
+                                    window.onload = function() {
+
+                                    var c = document.getElementById("myCanvas");
+                                    var ctx = c.getContext("2d");
+                                    var img = document.getElementById("myimage");
+                                    var img2 = document.getElementById("myimage2");
+                                    ctx.drawImage(img2, 0, 0, 1000, 1000);
+                                    ctx.drawImage(img, 20, 20, 600, 550);
+
+
+                                    ctx.font = "25px Helvetica";
+                                    ctx.fillStyle  = "black";
+                                    ctx.fillText(careNm, 220, 800);
+
+                                    ctx.font = "35px Helvetica";
+                                    ctx.fillStyle  = "black";
+                                    ctx.fillText(careTel, 545, 800);
+
+
+                                    ctx.font = "35px bold Helvetica";
+                                    ctx.fillStyle  = "black";
+                                    ctx.fillText('발견 장소 : ' + happenPlace, 30, 620);
+
+
+                                    ctx.font = "40px Helvetica";
+                                    ctx.fillStyle  = "black";
+                                    ctx.fillText(age, 650, 130);
+
+                                    ctx.font = "40px Helvetica";
+                                    ctx.fillStyle  = "black";
+                                    ctx.fillText(sexCd, 650, 180);
+
+                                    ctx.font = "40px Helvetica";
+                                    ctx.fillStyle  = "black";
+                                    ctx.fillText(colorCd, 650, 230);
+
+                                    ctx.font = "40px Helvetica";
+                                    ctx.fillStyle  = "black";
+                                    ctx.fillText(kindCd, 650, 60);
+
+                                    }
+
+
+                                    </script>
+
+
+                                </div>
+                                <div class="modal-footer">
+                                    <a id = "download" download="image.png">
+                                        <button type="button" onclick="download()" class="btn btn-primary" style="background-color:#FB836B; border:0;">전단지 저장</button>                             
+                                    </a>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
                                                                                                                                    
                                 </section>
 
@@ -293,6 +411,17 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <%-- <script src="js/scripts.js"></script> --%>
+
+
+        <!-- jQuery 추가 -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+ 
+
+
+
 
 
     <script>
@@ -321,6 +450,7 @@
 
         <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
         <script src="${contextPath}/resources/js/shelter.js"></script>
+        
 
 
 
