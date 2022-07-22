@@ -92,7 +92,7 @@
                         </c:if>
                                                         <%-- 현재위치 : /board/detail/1/1523 --%>
                                                         <%-- 목표위치 : /board/write/1/ --%>
-                        <a class="btn btn-primary mx-1 button-pink" onclick="location.href='../write/?mode=update&cp=${cp}&no=${detail.boardNo}'"">수정</a>
+                        <a class="btn btn-primary mx-1 button-pink" onclick="location.href='../write/?mode=update&cp=${cp}&no=${detail.boardNo}'">수정</a>
                         <a class="btn btn-primary mx-1 button-pink" id="deleteBtn">삭제</a>
 
                     </c:if>

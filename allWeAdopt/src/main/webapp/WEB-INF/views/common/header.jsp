@@ -56,7 +56,7 @@
 
                                         <%-- 사용자 설정 프로필이미지 --%>
                                         <c:if test="${!empty loginMember.profileImage && loginMember.memberType == 'M'}">
-                                             <img src="${contextPath}/${loginMember.profileImage}" id="member-profile" style="width : 35px; height : 35px; ">
+                                             <img src="${contextPath}/${loginMember.profileImage}" id="member-profile" style="width : 35px; height : 35px; border:0.5px solid #ccc; border-radius:50%;">
                                         </c:if>
 
 
