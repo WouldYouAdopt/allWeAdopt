@@ -25,6 +25,7 @@
 		FROM REPLY
 		JOIN MEMBER USING(MEMBER_NO)
 		WHERE BOARD_NO = #{boardNo}
+		AND REPLY_ST='N'
 	</select>
 	
 	

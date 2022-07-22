@@ -28,6 +28,8 @@
                                     </c:if>
 
 
+
+
                                     <c:if test="${empty rList}">
                                      <div id="comentArea"> 
                                         <!-- 관리자 답변 조회 공간-->
@@ -70,8 +72,8 @@
                                                 </div>
                                                 <c:if test="${loginMember.memberType =='A' }">
                                                 <div class="col-lg-6">
-                                                    <button type="submit" class="btn btn-outline-secondary mb-2  btn-sm">수정</button>
-                                                    <button type="submit" class="btn btn-outline-secondary mb-2 btn-sm">삭제</button>
+                                                    <button id="up" type="submit" class="btn btn-primary mb-2  btn-sm" onclick="showUpdateReply('${reply.replyNo}', this);">수정</button>
+                                                    <button type="submit" class="btn btn-outline-secondary mb-2 btn-sm" onclick="deleteReply('${reply.replyNo}')">삭제</button>
                                                 </div>
                                                 </c:if> 
                                             </div>
