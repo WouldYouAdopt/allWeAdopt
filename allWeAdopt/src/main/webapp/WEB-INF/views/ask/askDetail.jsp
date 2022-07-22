@@ -141,6 +141,7 @@
             const contextPath = '${contextPath}';
             const boardNo = '${boardNo}';
             const memberType = '${loginMember.memberType}';
+            const loginMemberNo = "${loginMember.memberNo}";
         </script>
 
         <script src="${contextPath}/resources/js/board/notice.js"></script>
