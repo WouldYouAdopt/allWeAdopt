@@ -116,7 +116,7 @@ const url = 'http://openapi.seoul.go.kr:8088/58717a6e5463686f3130306d58694a4f/js
             		// 좌표 변환 결과를 받아서 처리할 콜백함수 입니다.
 					function transCoordCB(result, status, names) {
 
-						console.log(names);
+						//console.log(names)
 					    // 정상적으로 검색이 완료됐으면 
 					    if (status === kakao.maps.services.Status.OK) {
 
@@ -124,7 +124,7 @@ const url = 'http://openapi.seoul.go.kr:8088/58717a6e5463686f3130306d58694a4f/js
 					        var marker = new kakao.maps.Marker({
 					            position: new kakao.maps.LatLng(result[0].y, result[0].x), // 마커를 표시할 위치입니다
 					            map: map, // 마커를 표시할 지도객체입니다
-					            title: names[0] // 여기에 정보 for문 어떻게 세팅함
+					            title: names // 여기에 정보 for문 어떻게 세팅함
 					        })
 					    }
 					}
