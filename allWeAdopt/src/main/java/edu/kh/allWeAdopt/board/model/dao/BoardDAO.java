@@ -21,11 +21,19 @@ public class BoardDAO {
 	private SqlSessionTemplate sqlSession;
 
 	/** DB에 저장된 boardContent 조회 DAO
-	 * @return
+	 * @return dbList
 	 */
 	public List<String> selectDBList() {
-		// TODO Auto-generated method stub
+
 		return sqlSession.selectList("boardMapper.selectDBList");
+	}
+	
+	/** DB에 저장된 FUNDING_CONTENT만 조회하는 DAO
+	 * @return fundingList
+	 */
+	public List<String> selectFundingList() {
+
+		return sqlSession.selectList("noticeMapper.selectFundingList");
 	}
 	
 	// ------------------------- 공지사항 ---------------------------
@@ -177,6 +185,8 @@ public class BoardDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.update("noticeMapper.deleteTemplate", tempNo);
 	}
+
+
 	
 
 	
