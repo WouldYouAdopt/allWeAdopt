@@ -26,6 +26,12 @@
     color: darkgrey;
 }
 
+/* 게시글이 없을 시 */
+.noneText{
+    margin-left: 34%;
+    color: dimgray;
+    font-size: 30px;
+}
 /* 게시글 작성 */
 .addBoard{
     border: 1px solid #FFF;
@@ -67,8 +73,8 @@ a{
 }
 
 .rounded-circle{
-    max-width: 13%;
-    object-fit: contain;
+    height: 40px;
+    width: 40px;
 }
 
 /* 드롭다운 버튼 */
