@@ -46,7 +46,6 @@
 	  }
 
 	  if(document.getElementsByName("animalTypeValue")[0].innerText.trim()=="축종"){
-		console.log("축종실행");
 		document.getElementsByName("animalDetailValue")[0].style.display = "none";	
 	  }
 
