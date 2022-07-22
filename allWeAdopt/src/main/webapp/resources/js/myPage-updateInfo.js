@@ -49,6 +49,7 @@ if(document.getElementById("memberName")!=null){
     }); 
 }
 
+const telMsg = document.getElementById("telMsg");
 
 if(document.getElementById("changeBtn")){
 
@@ -62,7 +63,10 @@ if(document.getElementById("changeBtn")){
         number.value="";
         cMessage.innerText = "5:00";
         number.readOnly = false;
+        memberTel.readOnly = false;
+        confirmBtn.innerText = "인증";
         newTel.innerHTML = "<span>* </span>휴대폰 번호<span>(인증 대기)</span>";
+        telMsg.innerText = "";
 
         Swal.fire({
             title: '휴대폰 번호 입력 후 인증을 완료해주세요.',
@@ -88,7 +92,6 @@ if(document.getElementById("changeBtn")){
 
 // 전화번호 유효성 검사
 const memberTel = document.getElementById("memberTel");
-const telMsg = document.getElementById("telMsg");
 
 if(document.getElementById("memberTel")!=null){
 
@@ -100,6 +103,8 @@ if(document.getElementById("memberTel")!=null){
         checkObj.memberTel = false; 
         checkObj.timer = false;
         number.readOnly = false;
+        memberTel.readOnly = false;
+        confirmBtn.innerText = "인증";
         number.value = "";
         cMessage.innerText = "5:00";
         
@@ -241,7 +246,7 @@ confirmBtn.addEventListener("click", function(){
 
                                         telMsg.classList.add("confirm");
                                         telMsg.classList.remove("error");
-                                        telMsg.innerText = "인증 완료 (하단의 수정버튼을 눌러주셔야 회원정보에 반영됩니다.)";
+                                        telMsg.innerText = "인증 완료(다른 번호로 재입력을 원하시면 변경버튼을 눌러주세요.)";
                                         
                                         Swal.fire({
                                             title: '인증 완료 (하단의 수정버튼을 눌러주셔야 회원정보에 반영됩니다.)',
@@ -256,6 +261,8 @@ confirmBtn.addEventListener("click", function(){
                                         newTel.innerHTML = "<span>* </span>휴대폰 번호<span>(인증 완료)</span>";
    
                                         clearInterval(checkInterval);
+                                        confirmBtn.innerText = "완료";
+                                        memberTel.readOnly = true;
                                         checkObj.number = true; // 유효 O 기록
                                         number.readOnly = true;
 

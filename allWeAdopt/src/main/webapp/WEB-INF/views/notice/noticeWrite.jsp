@@ -136,7 +136,7 @@
                                             <div class="form-check px-0" id="buttonArea">
                                                 <c:forEach var="t" items="${tList}">
                                                     <button class="btn btn-primary button-pink form-check-label p-1 tempBtn" type="button" title='${t.tempEnc}' >${t.tempName}</button>
-                                                    <input type="hidden" class="hiddenContent" value='${t.tempContent}''>
+                                                    <input type="hidden" class="hiddenContent" value='${t.tempContent}'>
                                                 </c:forEach>      
 
                                             </div>

@@ -99,29 +99,29 @@
 								<table class="table">
 									<tbody>
 										<tr>
-											<th colspan="1" class="row-name">펀딩 제목</th>
-											<td colspan="5">${detail.fundingTitle}</td>
+											<th colspan="1" class="row-name col-lg-2">펀딩 제목</th>
+											<td colspan="5" style="text-align:left;">${detail.fundingTitle}</td>
 										
 
 										</tr>
 										<tr>
 											<th >카테고리</th>
-											<td >${detail.fundingCategory}</td>
+											<td style="text-align:left;">${detail.fundingCategory}</td>
 
 											<th  class="row-name">주문번호</th>
-											<td  colspan="3">${detail.paymentNo}</td>
+											<td  colspan="3" style="text-align:left;">${detail.paymentNo}</td>
 										</tr>
 						
 								
 									  <c:forEach var="reward" items="${detail.rewardList}">
 											<tr>	
 												<th>신청 리워드</th>
-												<td>${reward.rewardTitle}</td>
+												<td style="text-align:left;">${reward.rewardTitle}</td>
 												<th>수량</th>
-												<td>${reward.amount}</td>
+												<td style="text-align:left;">${reward.amount}</td>
 												<th>금액</th>
 												
-												<td><fmt:formatNumber value="${reward.fullPrice}" type="number"/> 원</td>
+												<td style="text-align:left;"><fmt:formatNumber value="${reward.fullPrice}" type="number"/> 원</td>
 											</tr>
                                       </c:forEach>
 
@@ -140,22 +140,22 @@
 								<table class="table">
 									<tbody>
 										<tr>
-											<th>결제 일시</th>
-											<td>${detail.payDate}</td>
+											<th class="col-lg-3">결제 일시</th>
+											<td style="text-align:left;">${detail.payDate}</td>
 										</tr>
 										<tr>
 											<th>결제 수단</th>
-											<c:if test="${detail.payMethod == 'point'}"><td>카카오 결제</td></c:if>
-											<c:if test="${detail.payMethod != 'point'}"><td>일반 카드 결제</td></c:if>
+											<c:if test="${detail.payMethod == 'point'}"><td style="text-align:left;">카카오 결제</td></c:if>
+											<c:if test="${detail.payMethod != 'point'}"><td style="text-align:left;">일반 카드 결제</td></c:if>
 											
 										</tr>
 										<tr>
 											<th>총결제 금액</th>
-											<td><fmt:formatNumber value="${detail.fullPrice}" type="number"/></td>
+											<td style="text-align:left;"><fmt:formatNumber value="${detail.fullPrice}" type="number"/></td>
 										</tr>
 										<tr>
 											<th>주문 상태</th>
-											<td>${detail.orderState}</td>
+											<td style="text-align:left;">${detail.orderState}</td>
 										</tr>
 									</tbody>
 								</table>
@@ -201,24 +201,24 @@
 									<tbody>
 										<tr>
 											<th colspan="1">수령인</th>
-											<td colspan="3">${detail.recipient}</td>
+											<td colspan="3" style="text-align:left;">${detail.recipient}</td>
 										</tr>
 										<tr>
 											<th>전화번호-1</th>
-											<td>${detail.orderPhoneMain}</td>
+											<td style="text-align:left;">${detail.orderPhoneMain}</td>
 											<th>전화번호-2</th>
-											<td>${detail.orderPhoneSub}</td>
+											<td style="text-align:left;">${detail.orderPhoneSub}</td>
 											<%-- <td>${detail.orderPhoneMain}</td> --%>
 										</tr>
 										<tr>
 											<th>택배사</th>
-											<td>${detail.parcelCompany}</td>
+											<td style="text-align:left;">${detail.parcelCompany}</td>
 											<th>운송장번호</th>
-											<td>${detail.parcelNo}</td>
+											<td style="text-align:left;">${detail.parcelNo}</td>
 										</tr>
 										<tr>
 											<th colspan="1">주소</th>
-											<td colspan="3">${detail.orderAddress}</td>
+											<td colspan="3" style="text-align:left;">${detail.orderAddress}</td>
 										</tr>
 									</tbody>
 								</table>
