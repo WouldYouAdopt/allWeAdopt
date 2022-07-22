@@ -125,6 +125,7 @@ public class MyFundingController {
 		if(result>0) {
 			ra.addFlashAttribute("message", "등록 성공?");
 			ra.addFlashAttribute("paymentNo",payNo);
+			ra.addFlashAttribute("rewardList",null);
 			return "redirect:../detail/{payNo} ";
 			
 		}else {
