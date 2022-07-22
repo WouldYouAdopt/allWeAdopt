@@ -63,16 +63,19 @@ const url = 'http://openapi.seoul.go.kr:8088/58717a6e5463686f3130306d58694a4f/js
 		            
 		            //console.log(results.length);
 		            
+					// 병원이름
+		            const names = new Array();
+		            
 		            for (var i=0; i<results.length; i++){
 
+						names.push(results[i].BPLCNM);
+					
 		            	// WTM 좌표 
 		                //console.log("X좌표"+results[i].X);
 		                //console.log("Y좌표"+results[i].Y);
 		                //console.log("주소"+results[i].RDNWHLADDR);
 		                //console.log("타이틀"+results[i].BPLCNM);
 		                
-						// 병원이름
-						var t = results[i].BPLCNM;
 
 						
 						// 이좌표가 아니고 변환해야함
@@ -93,20 +96,7 @@ const url = 'http://openapi.seoul.go.kr:8088/58717a6e5463686f3130306d58694a4f/js
             
 
 		                
-						// 좌표 변환 결과를 받아서 처리할 콜백함수 입니다.
-						function transCoordCB(result, status, t) {
 
-						    // 정상적으로 검색이 완료됐으면 
-						    if (status === kakao.maps.services.Status.OK) {
-
-						        // 마커를 변환된 위치에 표시합니다
-						        var marker = new kakao.maps.Marker({
-						            position: new kakao.maps.LatLng(result[0].y, result[0].x), // 마커를 표시할 위치입니다
-						            map: map, // 마커를 표시할 지도객체입니다
-						            title: t // 여기에 정보 for문 어떻게 세팅함
-						        })
-						    }
-						}
 						
             // 마커 생성을 for로 어떻게?? 콜백인데 어떻게 인덱스 쓰면되는거임??
             // 마커에 표시할 인포윈도우를 생성합니다 
@@ -121,6 +111,27 @@ const url = 'http://openapi.seoul.go.kr:8088/58717a6e5463686f3130306d58694a4f/js
 					} // for문끝
 
 	            	
+	            	
+	            	
+            		// 좌표 변환 결과를 받아서 처리할 콜백함수 입니다.
+					function transCoordCB(result, status, names) {
+
+					    // 정상적으로 검색이 완료됐으면 
+					    if (status === kakao.maps.services.Status.OK) {
+
+					        // 마커를 변환된 위치에 표시합니다
+					        var marker = new kakao.maps.Marker({
+					            position: new kakao.maps.LatLng(result[0].y, result[0].x), // 마커를 표시할 위치입니다
+					            map: map, // 마커를 표시할 지도객체입니다
+					            title: names // 여기에 정보 for문 어떻게 세팅함
+					        })
+					    }
+					}
+
+
+
+
+
 
 				});
 

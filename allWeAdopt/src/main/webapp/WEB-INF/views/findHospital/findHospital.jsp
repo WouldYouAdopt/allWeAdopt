@@ -128,7 +128,7 @@
 						</div>
 						
 					</div>
-						<div style="height:200px;">병원 리스트 촤라라라</div>
+						<div style="height:100px;"></div>
 
                         <div id="data"></div>
   

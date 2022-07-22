@@ -25,11 +25,19 @@
                                 <table class="info-table">
                                     <tr>
                                         <th>제품 및 모델명</th>
-                                        <td>리워드1제목,리워드2제목</td>
+                                        <td>
+                                        <c:forEach var="reward" items="${detail.rewardList}">
+                                        ${reward.rewardTitle},                                        
+                                        </c:forEach>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th>제품 옵션 구성</th>
-                                        <td>리워드1내용,리워드2내용</td>
+                                        <td>
+                                        <c:forEach var="reward" items="${detail.rewardList}">
+                                        ${reward.rewardContent},                                        
+                                        </c:forEach>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th>품질 보증 기준</th>
