@@ -164,7 +164,7 @@
 				<c:choose>
 					
 					<c:when test="${rewardList != null}">
-						<c:forEach  var="r" items="${pageScope.rewardList}">
+						<c:forEach  var="r" items="${rewardList}">
               <c:set var="i" value="${i+1}"/>
 							<tr>
 

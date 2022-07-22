@@ -316,7 +316,7 @@
 	<!-- 어떻게 줄일수 있는지 모르겠어... 원하는 값은 일단 나옴 -->
 	<!-- 펀딩 번호로 서포터즈 정보 조회(프로필, 닉네임, 구매총금액, 공개여부) -->
 	<select id="selectFundingPayMember" resultMap="supporters_rm">
-		SELECT PAY_DT AS PAYDATE,MEMBER_NO,
+		SELECT PAY_DT AS PAYDATE,MEMBER_NO,PAYMENT_NO,
 		MEMBER_NM,
 		PROFILE_IMG,
 		CASE
@@ -359,7 +359,7 @@
 		AND
 		ORDER_ST_CD IN (1,2,3,4)
 		)
-		GROUP BY MEMBER_NO,MEMBER_NM, PROFILE_IMG,
+		GROUP BY MEMBER_NO,PAYMENT_NO,MEMBER_NM, PROFILE_IMG,
 		PAY_DT, NAME_OPEN, PRICE_OPEN
 		ORDER BY 1
 	</select>
