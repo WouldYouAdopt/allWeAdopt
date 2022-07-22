@@ -15,9 +15,8 @@
                 </c:if>
                 <li class="nav-item"><a class="nav-link" href="${contextPath}/member/myPage/likeList">관심목록</a></li>
                 <li class="nav-item"><a class="nav-link" href="${contextPath}/member/myPage/boardList">작성글 목록</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">펀딩내역</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">채팅목록</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">문의하기</a></li>
+                <li class="nav-item"><a class="nav-link" href="${contextPath}/funding/my/list">펀딩내역</a></li>
+                <li class="nav-item"><a class="nav-link" href="${contextPath}/member/myPage/ask/list">문의하기</a></li>
                 <li class="nav-item"><a class="nav-link" href="${contextPath}/member/myPage/notice/list">공지사항</a></li>
             </ul>
             <ul class="navbar-nav ms-right mb-2 mb-lg-0 secession-button ">

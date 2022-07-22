@@ -76,11 +76,11 @@
                                         <li><a class="dropdown-item" href="${contextPath}/member/myPage/ask/list">문의하기</a></li>
                                         <li><a class="dropdown-item" href="${contextPath}/member/myPage/notice/list">공지사항</a></li>
                                         <c:if test="${  loginMember.memberType == 'M' }">
-                                            <li><a class="dropdown-item" href="${contextPath}/member/logout">로그아웃1</a></li>
+                                            <li><a class="dropdown-item" href="${contextPath}/member/logout">로그아웃</a></li>
                                         </c:if>
 
                                         <c:if test="${ loginMember.memberType == 'K' }">
-                                            <li><a class="dropdown-item" href="${contextPath}/logout">로그아웃2</a></li>
+                                            <li><a class="dropdown-item" href="${contextPath}/logout">로그아웃</a></li>
                                         </c:if>
 
                                     </ul>
