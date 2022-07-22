@@ -6,9 +6,9 @@ const checkObj = {
     "memberPw"        : false,
     "memberPwConfirm" : false,
     "memberName"  : false,
-    "memberTel"       : false
-    // "number"       : false,
-    // "timer" : false
+    "memberTel"       : false,
+    "number"       : false,
+    "timer" : false
 };
 
 // 이메일 유효성 검사
@@ -296,8 +296,8 @@ function signUpValidate(){
             case "memberPw"       : str="비밀번호 입력란을"; break;    
             case "memberPwConfirm": str="비밀번호 확인 입력란을"; break;
             case "memberName"     : str="닉네임 입력란을"; break;
-            // case "memberTel"      : str="전화번호 입력란을"; break;
-            // case "number"            : str="휴대폰 인증을"; break;
+            case "memberTel"      : str="전화번호 입력란을"; break;
+            case "number"            : str="휴대폰 인증을"; break;
             }
 
             str += " 확인해주세요.";
