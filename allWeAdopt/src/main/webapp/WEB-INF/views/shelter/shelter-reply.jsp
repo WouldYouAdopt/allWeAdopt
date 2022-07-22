@@ -13,7 +13,9 @@
 
                         <%-- 프로필 이미지 --%>
                         <c:if test="${empty loginMember.profileImage }">
-                            <img src="${contextPath}/resources/images/user.png" id="member-profile" style="width : 35px; height : 35px; ">   
+
+                            <img src="${contextPath}/resources/images/user.png" id="member-profile" style="width : 35px; height : 35px; ">	
+
                         </c:if>     
 
                         <c:if test="${!empty loginMember.profileImage && loginMember.memberType == 'K'}">
@@ -70,4 +72,7 @@
 
     </div>
 
+
 </div>
+
+
