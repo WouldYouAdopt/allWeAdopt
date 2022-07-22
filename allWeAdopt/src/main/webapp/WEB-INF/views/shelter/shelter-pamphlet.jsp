@@ -13,7 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>전단지 목록</title>
+        <title>스토리 목록</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="${contextPath}/resources/assets/올위어답터.ico" />
 
@@ -96,8 +96,8 @@
                     <div class="row gx-5 justify-content-center">
                         <div class="col-lg-8 col-xl-6">
                             <div class="text-center">
-                                <h2 class="fw-bolder">전단지</h2>
-                                <p class="lead fw-normal text-muted mb-5">소중한 가족을 찾아주세요</p>
+                                <h2 class="fw-bolder">스토리</h2>
+                                <p class="lead fw-normal text-muted mb-5">헹복한 아이들의 일상을 공유해주세요</p>
                             </div>
                         </div>
                     </div>
