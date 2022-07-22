@@ -166,7 +166,7 @@
 	<!-- 템플릿 조회 -->
 	<select id="selectTemplate" resultMap="template_rm">
 	SELECT * FROM TEMPLATE
-	WHERE TEMP_ST = 'N'
+	WHERE TEMP_ST = 'N' ORDER BY TEMP_NO
 	</select>
 	
 	<!-- 템플릿 삽입 -->

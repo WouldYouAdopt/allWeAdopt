@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"  %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -176,7 +177,7 @@
 										리워드${i+1}
 									</div>
 									<div class="rew-price reward-select">
-										${map.rewardList[i].rewardPrice}<span>원 펀딩</span>
+										<fmt:formatNumber value="${map.rewardList[i].rewardPrice}"/><span>원 펀딩</span>
 									</div>
 									<div class="rew-title">
 										${map.rewardList[i].rewardTitle}
@@ -233,7 +234,7 @@
 										리워드${i+1}
 									</div>
 									<div class="rew-price reward-select">
-										${map.rewardList[i].rewardPrice}<span>원 펀딩</span>
+										<fmt:formatNumber value="${map.rewardList[i].rewardPrice}"/><span>원 펀딩</span>
 									</div>
 									<div class="rew-title">
 										${map.rewardList[i].rewardTitle}
@@ -314,13 +315,13 @@
 							</c:if>
 						</c:forEach>
 
-								<div class="text-center mt-5 fs-5">우리아이 시원하게 여름 쿨매트에 
+								<div class="text-center mt-5 fs-5">${map.funding.fundingTitle} 에 
 									<span id="payPrice">
 										<c:if test="${empty defaultPrice}">
 											0
 										</c:if>
 										<c:if test="${!empty defaultPrice}">
-											${defaultPrice}
+											<fmt:formatNumber value="${defaultPrice}"/>
 										</c:if>
 									</span>원을 펀딩합니다.
 								</div>
@@ -355,6 +356,7 @@
         <script>
         	const rewardSelectBtn = document.getElementsByClassName("rewardSelectBtn"); // 리워드 선택 버튼
         	const payPrice = document.getElementById("payPrice"); // 아래 리워드 더해진 금액
+        	const payPriceNum = Number(payPrice.innerText.replace(',',''));
         	const rewardCount = document.getElementsByClassName("rewardCount");
         	const toModal = document.getElementById("toModal"); // 모달 열리는 버튼
         	var price=null;
@@ -367,24 +369,30 @@
         	</c:forEach>
         	
         	console.log(priceList);
+        	console.log(payPrice.innerText);
+        	console.log(payPriceNum);
+        	
         	
         	// 리워드 선택버튼 반복쓰
         	for(let i=0; i<rewardSelectBtn.length; i++){
         		
         		// 리워드별 가격?
-        		price = ${map.rewardList[0].rewardPrice};
+        		//price = ${map.rewardList[0].rewardPrice};
         		
  
         		// 클릭 했을때
         		rewardSelectBtn[i].addEventListener("click",function(){	
-		        	
+		        	console.log(payPriceNum);
         			if(this.classList.contains("selected")){
 
         				
         				this.classList.remove("selected"); 
         				const beforeCount = this.parentElement.nextElementSibling.nextElementSibling.value;
         				this.parentElement.nextElementSibling.nextElementSibling.value="0";
-        				payPrice.innerText=parseInt(payPrice.innerText)-parseInt(beforeCount)*parseInt(priceList[i]);
+        				payPrice.innerText=(Number(payPrice.innerText.replace(',',''))-parseInt(beforeCount)*parseInt(priceList[i])).toLocaleString();
+        				
+        				
+        				
 						
         				// 버튼 클릭시 바뀐 값에 따라 서브밋(selected해제 할때)
         				if(payPrice.innerText!=0){
@@ -402,7 +410,7 @@
         				
 	        				this.classList.add("selected"); 
 	        				this.parentElement.nextElementSibling.nextElementSibling.value="1";
-	        				payPrice.innerText=parseInt(payPrice.innerText)+parseInt(priceList[i]);
+	        				payPrice.innerText=(Number(payPrice.innerText.replace(',',''))+parseInt(priceList[i])).toLocaleString();
 	        				
 	        				// 버튼 클릭시 바뀐 값에 따라 서브밋(selected 들어갈때)
 	        				if(payPrice.innerText!=0){
@@ -442,7 +450,7 @@
 		        	for(var a=0; a<priceList.length; a++){
 		        		sum +=parseInt(rewardCount[a].value)*parseInt(priceList[a]);
 		        	}
-					payPrice.innerText= sum;
+					payPrice.innerText= sum.toLocaleString();
 					
 					// input value change에 따라 서브밋(selected 들어갈때)
     				if(payPrice.innerText!=0){
@@ -481,7 +489,7 @@
 	        			for(var a=0; a<priceList.length; a++){
 			        		sum +=parseInt(rewardCount[a].value)*parseInt(priceList[a]);
 			        	}
-						payPrice.innerText= sum;
+						payPrice.innerText= sum.toLocaleString();
 	        			
         			}
         			
@@ -506,7 +514,7 @@
 	        			for(var a=0; a<priceList.length; a++){
 			        		sum +=parseInt(rewardCount[a].value)*parseInt(priceList[a]);
 			        	}
-						payPrice.innerText= sum;
+						payPrice.innerText= sum.toLocaleString();
         			}
         			
         			

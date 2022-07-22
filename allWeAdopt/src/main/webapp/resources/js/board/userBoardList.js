@@ -1,7 +1,7 @@
-// 몇 분전, 몇 일전 표시
 (function (){ 
-  const diffTime = document.getElementsByClassName('diffTime');
-
+	const diffTime = document.getElementsByClassName('diffTime');
+	
+  // 몇 분전, 몇 일전 표시
   for (let i = 0; i < diffTime.length; i++) {
       if (diffTime[i].innerText < 60) {
         diffTime[i].innerText = "방금 전";
@@ -22,6 +22,39 @@
         diffTime[i].innerText = Math.round(diffTime[i].innerText) + "년 전";
       }
       }
+
+	  // 검색을 실행했을 경우 검색필터에 값 저장
+	  document.getElementsByName("category")[0].value = document.getElementsByName("categoryValue")[0].innerText.trim();
+
+	  document.getElementsByName("area")[0].value = document.getElementsByName("areaValue")[0].innerText.trim();
+
+	  document.getElementsByName("areaDetail")[0].value = document.getElementsByName("areaDetailValue")[0].innerText.trim();
+	  
+	  document.getElementsByName("animalType")[0].value = document.getElementsByName("animalTypeValue")[0].innerText.trim();
+
+	  document.getElementsByName("animalDetail")[0].value = document.getElementsByName("animalDetailValue")[0].innerText.trim();
+
+	  // 검색 후 검색창이 열려있게 설정
+	  if(displayValue==1){
+		document.getElementById("search-area").style.display = "block"
+		document.getElementById("searchBtn").style.display = "block"
+	  }
+
+	  // 지역선택, 축종 버튼에 값이 없을 시 상세 드롭다운 버튼 숨김
+	  if(document.getElementsByName("areaValue")[0].innerText.trim()=="지역선택"){
+		document.getElementsByName("areaDetailValue")[0].style.display = "none";	
+	  }
+
+	  if(document.getElementsByName("animalTypeValue")[0].innerText.trim()=="축종"){
+		console.log("축종실행");
+		document.getElementsByName("animalDetailValue")[0].style.display = "none";	
+	  }
+
+	  // 축종 값이 있을 시 품종 목록 불러오기
+	  animalDetailAjax(document.getElementsByName("animalType")[0].value);
+
+	  // 지역 값이 있을 시 상세지역 목록 불러오기
+	  areaDetailAjax(document.getElementsByName("area")[0].value);
 })();
 
 // 무한 스크롤
@@ -86,6 +119,15 @@ for (let i = 0; i < selectMenu.length; i++) {
 		document.getElementsByName("area")[0].value = document.getElementsByName("areaValue")[0].innerText.trim();
 
 		document.getElementsByName("animalType")[0].value = document.getElementsByName("animalTypeValue")[0].innerText.trim();
+
+		// 지역선택, 축종 버튼에 값이 있을 시 상세 드롭다운 버튼 생성
+		if(document.getElementsByName("areaValue")[0].innerText.trim()!="지역선택"){
+			document.getElementsByName("areaDetailValue")[0].style.display = "block";	
+		  }
+	
+		  if(document.getElementsByName("animalTypeValue")[0].innerText.trim()!="축종"){
+			document.getElementsByName("animalDetailValue")[0].style.display = "block";	
+		  }
 	})
 };
 
@@ -99,33 +141,7 @@ const ul = document.getElementsByName("areaDetailValue")[0].nextElementSibling;
 			document.getElementsByName("areaDetailValue")[0].innerText = "상세 지역 선택";
 	const area = document.getElementsByName("area")[0].value;
 
-	// 지역 선택에 따른 상세 지역 조회
-	$.ajax({
-		url: "loadAreaList",
-		contentType: "application/json",
-		dataType: "json",
-		type: "GET",
-		data: {
-			"area" : area
-		},
-		success: function(data){
-			while (ul.hasChildNodes()) {
-				ul.removeChild(ul.firstChild);
-			}
-			
-			for(let i in data){
-				const li = document.createElement("li");
-				li.classList.add("dropdown-item","areaDetail");
-				ul.appendChild(li);
-				let text = document.createTextNode(data[i].areaDetail);
-				li.appendChild(text);
-			}
-			
-		},
-		error: function (request, status, error){
-			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-		}
-	});
+	areaDetailAjax(area);
 	
 });
 };
@@ -151,43 +167,7 @@ const ul2 = document.getElementsByName("animalDetailValue")[0].nextElementSiblin
 		document.getElementsByName("animalDetailValue")[0].innerText = "품종";
 		const animalType = document.getElementsByName("animalType")[0].value;
 
-	// 지역 선택에 따른 상세 지역 조회
-	$.ajax({
-		url: "loadAnimalList",
-		contentType: "application/json",
-		dataType: "json",
-		type: "GET",
-		data: {
-			"animalType" : animalType
-		},
-		success: function(data){
-			while (ul2.hasChildNodes()) {
-				ul2.removeChild(ul2.firstChild);
-			}
-			
-			for(let i in data){
-				const li = document.createElement("li");
-				li.classList.add("dropdown-item","animalDetail");
-				ul2.appendChild(li);
-				let text = document.createTextNode(data[i].animalDetail);
-				li.appendChild(text);
-			}
-
-			const animal = document.getElementsByName("animalTypeValue")[0];
-			const animalDt = document.getElementsByName("animalDetailValue")[0];
-
-			if(animal.innerText.trim()=="기타"){
-				animalDt.style.display = 'none';
-				document.getElementsByName("animalDetailValue")[0].innerText='';
-				document.getElementsByName("animalDetail")[0].value = '';
-			 } else{
-				animalDt.style.display = 'block';
-			 }
-		},
-		error: function (request, status, error){
-			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-		}
-	});
+		animalDetailAjax(animalType);
 	
 });
 };
@@ -223,4 +203,74 @@ function searchDisplay() {
     display.style.display = 'none';
     displayBtn.style.display = 'none';
   }
+}
+
+function animalDetailAjax(animalType) {
+	// 축종 선택에 따른 품종 조회
+	$.ajax({
+		url: "loadAnimalList",
+		contentType: "application/json",
+		dataType: "json",
+		type: "GET",
+		data: {
+			"animalType" : animalType
+		},
+		success: function(data){
+			while (ul2.hasChildNodes()) {
+				ul2.removeChild(ul2.firstChild);
+			}
+			
+			for(let i in data){
+				const li = document.createElement("li");
+				li.classList.add("dropdown-item","animalDetail");
+				ul2.appendChild(li);
+				let text = document.createTextNode(data[i].animalDetail);
+				li.appendChild(text);
+			}
+
+			const animal = document.getElementsByName("animalTypeValue")[0];
+			const animalDt = document.getElementsByName("animalDetailValue")[0];
+
+			if((animal.innerText.trim()=="기타")||(animal.innerText.trim()=="축종")){
+				animalDt.style.display = 'none';
+				document.getElementsByName("animalDetailValue")[0].innerText='';
+				document.getElementsByName("animalDetail")[0].value = '';
+			 } else{
+				animalDt.style.display = 'block';
+			 }
+		},
+		error: function (request, status, error){
+			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		}
+	});
+}
+
+function areaDetailAjax(area) {
+	// 지역 선택에 따른 상세 지역 조회
+	$.ajax({
+		url: "loadAreaList",
+		contentType: "application/json",
+		dataType: "json",
+		type: "GET",
+		data: {
+			"area" : area
+		},
+		success: function(data){
+			while (ul.hasChildNodes()) {
+				ul.removeChild(ul.firstChild);
+			}
+			
+			for(let i in data){
+				const li = document.createElement("li");
+				li.classList.add("dropdown-item","areaDetail");
+				ul.appendChild(li);
+				let text = document.createTextNode(data[i].areaDetail);
+				li.appendChild(text);
+			}
+			
+		},
+		error: function (request, status, error){
+			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		}
+	});
 }

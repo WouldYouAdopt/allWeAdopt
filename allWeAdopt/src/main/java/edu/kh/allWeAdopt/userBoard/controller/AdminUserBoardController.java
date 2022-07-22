@@ -61,6 +61,7 @@ public class AdminUserBoardController {
 			
 			Board board = new Board();
 			Member loginMember = (Member)session.getAttribute("loginMember");
+			int displayValue = 0;
 			
 			if(boardPeriod.equals("")) boardPeriod = null;
 			board.setBoardPeriod(boardPeriod);
@@ -93,15 +94,19 @@ public class AdminUserBoardController {
 					&&(board.getArea()==null)&&(board.getAreaDetail()==null)
 					&&(board.getBoardPeriod()==null)&&(board.getBoardPeriod2()==null)
 					&&(board.getCategory()==null)) {
-				list =  service.boardList();				
+				list =  service.boardList();
+				displayValue = 0;
 			}else {
 				list = service.searchList(board);
+				displayValue = 1;
 			}
 			
 			
 			model.addAttribute("areaList",areaList);
 			model.addAttribute("boardList",list);
 			model.addAttribute("adminMember",loginMember);
+			model.addAttribute("searchList",board);
+			model.addAttribute("displayValue",displayValue);
 			
 			return "board/userBoardList";
 		}
@@ -202,7 +207,7 @@ public class AdminUserBoardController {
 		@GetMapping("/detail/2/{boardNo}/boardModify")
 		public String boardModify(@PathVariable("boardNo") int boardNo,
 				@ModelAttribute("loginMember") Member loginMember, Model model) {
-			
+			String message = "게시글을 수정하였습니다";
 			// 지역 리스트 출력
 			List<Area> areaList = service.areaList();
 			model.addAttribute("areaList",areaList);
@@ -211,6 +216,7 @@ public class AdminUserBoardController {
 			Board board = service.boardDetail(boardNo);
 			board.setBoardContent(board.getBoardContent().replaceAll("(\r\n|\r|\n|\n\r)", " "));
 			model.addAttribute("board",board);
+			model.addAttribute("message",message);
 			
 			return "board/userBoardRegist";
 		}
@@ -225,12 +231,11 @@ public class AdminUserBoardController {
 				@ModelAttribute("loginMember") Member loginMember,
 				RedirectAttributes ra, @RequestHeader("referer") String referer) {
 			String profileImage = null;
-			String message = "게시글 수정을 실패하였습니다";
 			String path = referer;
 			int boardNo = 0;
 			board.setMemberNo(loginMember.getMemberNo());
 			boardNo = board.getBoardNo();
-			
+		
 			if(boardPeriod.equals("")&&boardPeriod2.equals("")) {
 				// 현재날짜 값이 비었을 때 설정
 				LocalDate now = LocalDate.now();
@@ -272,11 +277,9 @@ public class AdminUserBoardController {
 				else if(neuterings.equals("미완료")) animal.setNeutering('N');
 				
 				result = service.boardAnimalModify(animal);
-				message = "게시글을 수정하였습니다";
 				path = "/admin/board/detail/2/"+board.getBoardNo();
 			}
 			
-			ra.addFlashAttribute("message",message);
 			return "redirect:" + path;
 		}
 		
