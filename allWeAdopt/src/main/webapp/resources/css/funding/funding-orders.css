@@ -144,11 +144,14 @@
 .parcelNo{
     width:100%;
     border: 1px solid #FB836b;
+    padding: 3px;
+    font-size: 0.8em;
 }
 
 #month{
     width: 27%;
     border:2px solid #FB836b;
+    
     font-weight: bold;
 }
 

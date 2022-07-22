@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 
 <thead>
@@ -38,7 +39,7 @@
         <td>${o.recipient}</td>
         <td>${o.orderState}</td>
         <td>${o.payDate}</td>
-        <td>${o.fullPrice}</td>
+        <td><fmt:formatNumber value="${o.fullPrice}" type="number"/></td>
     </tr>
   </c:forEach>
 </c:if>
