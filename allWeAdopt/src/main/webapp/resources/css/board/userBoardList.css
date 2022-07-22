@@ -6,11 +6,8 @@
 }
 
 .carousel-item > img{
-    /* height: 260px; */
     width: auto;
     margin-bottom: 10px;
-    /* object-fit: contain; */
-    
 }
 
 /* 제목 */
@@ -26,6 +23,12 @@
     color: darkgrey;
 }
 
+/* 게시글이 없을 시 */
+.noneText{
+    margin-left: 34%;
+    color: dimgray;
+    font-size: 30px;
+}
 /* 게시글 작성 */
 .addBoard{
     border: 1px solid #FFF;
@@ -51,6 +54,20 @@
 /* 공통 적용 사항 */
 a{
     text-decoration: none;
+    color: #FFF;
+}
+
+a:hover{
+    /* text-decoration: none;
+    color: #FB836B;
+    background-color: #FFF;
+    transition-duration: 200ms; 다시 재수정*/
+    text-decoration: none;
+    color: #FFF;
+}
+
+p{
+    text-decoration: none;
 }
 
 .row{
@@ -67,8 +84,8 @@ a{
 }
 
 .rounded-circle{
-    max-width: 13%;
-    object-fit: contain;
+    height: 40px;
+    width: 40px;
 }
 
 /* 드롭다운 버튼 */

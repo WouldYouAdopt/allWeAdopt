@@ -36,7 +36,7 @@
 		    		
 		    		<td style="vertical-align:bottom;">${detail.supportersList[i].memberName}님이
 		    		<c:if test="${detail.supportersList[i].priceOpen=='Y'}">
-		    			<fmt:formatNumber value="${detail.supportersList[i].payFullPrice}" pattern="####-####"/>원
+		    			<fmt:formatNumber value="${detail.supportersList[i].payFullPrice}"/>원
 		    		</c:if>
 		    		<c:if test="${detail.supportersList[i].priceOpen=='N'}">
 		    		</c:if>

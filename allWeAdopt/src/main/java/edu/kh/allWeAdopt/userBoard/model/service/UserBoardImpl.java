@@ -117,7 +117,5 @@ public class UserBoardImpl implements UserBoardService {
 		List<Board> list = dao.searchList(board);
 		return list;
 	}
-
-	
 	
 }

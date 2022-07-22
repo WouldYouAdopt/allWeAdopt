@@ -54,14 +54,14 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title mx-auto" id="exampleModalLabel">(로고)사용자 정의 템플릿</h5>
+                        <h5 class="modal-title mx-auto" id="exampleModalLabel" style="padding-left:30px">매크로 생성 <img src="${contextPath}/resources/images/new_4.png"></h5>
                         <button type="button" class="btn-close mx-0" data-bs-dismiss="modal" aria-label="Close" id="closeBtn"></button>
                     </div>
                     <div class="modal-body py-2">
                     
                         <div class="d-flex flex-column align-items-center py-2">
                             <div class="pb-3">
-                                템플릿명 : <input type="text" id="tempName">
+                                매크로명 : <input type="text" id="tempName">
                             </div>
                             <div class="px-auto mb-1">
                                 <textarea id="summernote2" name="boardContent"></textarea> 
@@ -113,7 +113,7 @@
 
                                         <!-- 평소에 안보이다가 설정 클릭하면 보이기 -->
                                         <div class="my-0 mx-2 px-0 d-flex">
-                                            <legend class="btn col-form-label p-1 m-1" style="width:12%; border: 1px solid #ddd;" id="setting" type="button"><i class="fa-solid fa-gear"></i> 템플릿 설정</legend>
+                                            <legend class="btn col-form-label p-1 m-1" style="width:12%; border: 1px solid #ddd;" id="setting" type="button"><i class="fa-solid fa-gear"></i> 매크로 설정</legend>
                                             <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary button-pink form-check-label none p-1 m-1" id="insert" type="button">신규 등록</button>
                                             <button class="btn btn-primary button-pink form-check-label none p-1 m-1" type="button" id="delete">선택 삭제</button>                                             
                                         </div>
@@ -135,7 +135,8 @@
 
                                             <div class="form-check px-0" id="buttonArea">
                                                 <c:forEach var="t" items="${tList}">
-                                                    <button class="btn btn-primary button-pink form-check-label p-1 tempBtn" value="${t.tempContent}" type="button" title='${t.tempEnc}' >${t.tempName}</button>
+                                                    <button class="btn btn-primary button-pink form-check-label p-1 tempBtn" type="button" title='${t.tempEnc}' >${t.tempName}</button>
+                                                    <input type="hidden" class="hiddenContent" value='${t.tempContent}''>
                                                 </c:forEach>      
 
                                             </div>
@@ -206,13 +207,20 @@
                     placeholder: '내용을 입력해주세요.',
                     tabsize: 2,
                     height: 200,
-                    toolbar: [
-                        // ['fontname', ['fontname']],
+                    width:434,
+                    toolbar: [ 
+                        // [groupName, [list of button]]
+                        ['fontname', ['fontname']],
                         ['fontsize', ['fontsize']],
                         ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
                         ['color', ['forecolor','color']],
-                        ['insert',['picture','link']]
+                        ['table', ['table']],
+                        ['para', ['ul', 'ol', 'paragraph']],
+                        ['height', ['height']]
+                        // ['insert',['picture','link']],
+                        // ['view', ['fullscreen', 'help']]
                     ],
+                    disableResizeEditor: true,
                     callbacks:{
                         onImageUpload: function(files, editor) {
                             // 업로드된 이미지를 ajax를 이용하여 서버에 저장
@@ -232,7 +240,7 @@
                     height: 500,
                     toolbar: [
                         // [groupName, [list of button]]
-                        // ['fontname', ['fontname']],
+                        ['fontname', ['fontname']],
                         ['fontsize', ['fontsize']],
                         ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
                         ['color', ['forecolor','color']],

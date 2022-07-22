@@ -436,7 +436,6 @@ if(document.getElementById("inputPw")!=null){
     // 비밀번호 유효성 검사
     const inputPw = document.getElementById("inputPw");
     const newPw = document.getElementById("newPw");
-    const newPwConfirm = document.getElementById("newPwConfirm");
     const pwMsg = document.getElementById("pwMsg");
 
     // 현재비밀번호
@@ -516,6 +515,8 @@ newPw.addEventListener("input", function(){
 });
 
 // 비밀번호 확인 유효성 검사
+
+const newPwConfirm = document.getElementById("newPwConfirm");
 
 // 함수명() : 함수 호출(수행)
 // 함수명   : 함수에 작성된 코드 반환

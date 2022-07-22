@@ -124,7 +124,7 @@
         <script>
             $(document).ready(function() {
                 $('#summernote').summernote({
-                    placeholder: '인적사항, 실종날짜, 실종장소, 잃어버린 동물의 사진을 상세히 적어주세요',
+                    placeholder: '반려동물 이름, 나이, 잃어버린 날짜, 특징, 잃어버린 장소, 반려동물 사진 순으로 작성해주세요',
                     tabsize: 2,
                     height: 350,
                     toolbar: [

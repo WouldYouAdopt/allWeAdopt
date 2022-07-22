@@ -150,7 +150,7 @@ if(document.getElementById("add")!=null){
         if(tempName.value.trim().length == 0 ){
 
             Swal.fire({
-                title: '제목을 입력해주세요!',
+                title: '템플릿 이름을 입력해주세요!',
                 width: 350,
                 padding: '3em',
                 color: 'black',
@@ -199,25 +199,32 @@ if(document.getElementById("add")!=null){
 }
 
 // 작성 중 모달창을 끈 경우 (x버튼 혹은 창 외부 클릭시)
-if(document.getElementById("closeBtn")!=null){
+if(document.getElementById("insert")!=null){
 
-    const closeBtn = document.getElementById("closeBtn");
-    const tempName = document.getElementById("tempName");
-    const tempContent = document.getElementById("summernote2");
-    const exampleModal = document.getElementById("exampleModal");
+    const insertB = document.getElementById("insert");
 
-    // 창 외부 클릭해서 끄는경우는 다시 생각해보기 ㅠㅠ
-    // exampleModal.addEventListener("click", function(){
-    //     tempName.value = "";
-    //     note[0].innerHTML = "<p><br></p>";
-    //     console.log("수행됨");
-    // })
+    insertB.addEventListener("click", function(){
 
-    closeBtn.addEventListener("click", function(){
-        tempName.value = "";
-        note[0].innerHTML = "<p><br></p>";
-        console.log("수행됨");
+        const closeBtn = document.getElementById("closeBtn");
+        const tempName = document.getElementById("tempName");
+        const exampleModal = document.getElementById("exampleModal");
+        const placeholder = document.getElementsByClassName("note-placeholder");
+    
+        if(!exampleModal.classList.contains("show")){
+            tempName.value = "";
+            note[0].innerHTML = "<p><br></p>";
+            placeholder[0].style.display ="block";
+        }
+    
+        closeBtn.addEventListener("click", function(){
+            tempName.value = "";
+            note[0].innerHTML = "<p><br></p>";
+            placeholder[0].style.display ="block";
+        });
+
+
     });
+
 }
 
 
@@ -266,9 +273,9 @@ function selectTemplateList(tList){
     const exampleModal = document.getElementById("exampleModal");
     const body = document.getElementById("body");
     const tempName = document.getElementById("tempName");
-    const tempContent = document.getElementById("summernote2");
 
     let input;
+    let input2;
     let button;
     tListArea.innerHTML ="";
     buttonArea.innerHTML ="";
@@ -290,10 +297,14 @@ function selectTemplateList(tList){
         button.classList.add("btn", "btn-primary", "button-pink", "form-check-label", "p-1",  "m-1", "tempBtn");
         button.setAttribute("type", "button");
         button.setAttribute("title", t.tempEnc);
-        button.value = t.tempContent;
         button.innerText = t.tempName;
 
-        buttonArea.append(button);
+        input2 = document.createElement("input");
+        input2.setAttribute("type", "hidden");
+        input2.classList.add("hiddenContent");
+        input2.value=t.tempContent;
+
+        buttonArea.append(button, input2);
 
     }
 
@@ -309,7 +320,7 @@ function selectTemplateList(tList){
     tempName.value = "";
     note[0].innerHTML = "<p><br></p>";
     const placeholder = document.getElementsByClassName("note-placeholder");
-    placeholder[1].style.display ="";
+    placeholder[0].style.display ="block";
 
     print();
 
@@ -323,6 +334,8 @@ if(document.getElementById("buttonArea")!=null){
 function print(){
 
     const tempBtn = document.getElementsByClassName("tempBtn");
+    const hiddenContent = document.getElementsByClassName("hiddenContent");
+    const summernote = document.getElementById("summernote");
 
     for(let i=0; i<tempBtn.length; i++){
         
@@ -330,14 +343,22 @@ function print(){
 
             const placeholder = document.getElementsByClassName("note-placeholder");
 
-            console.log(tempBtn[i].value);
+            if(note[1].childNodes[0]==null){
+
+                const p = document.createElement("p");
+                
+                note[1].append(p);
+            }
 
             if(note[1].childNodes[0].innerHTML == '<br>'){
                 placeholder[1].style.display ="none";
-                note[1].childNodes[0].innerHTML = tempBtn[i].value;
+                note[1].childNodes[0].innerHTML += hiddenContent[i].value;
+                summernote.value += hiddenContent[i].value;
             }else{
-                note[1].childNodes[0].innerHTML += tempBtn[i].value;
+                note[1].childNodes[0].innerHTML += hiddenContent[i].value;
+                summernote.value += hiddenContent[i].value;
             }
+
 
         });
     }

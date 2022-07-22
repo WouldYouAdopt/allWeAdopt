@@ -163,6 +163,8 @@
                                     ${detail.boardContent}       
                                 </section>
 
+                                
+
 
 
                             </article>
@@ -207,7 +209,7 @@
 
                         <!-- Modal -->
                         <div class="modal fade" id="makePam" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
+                        <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLabel">전단지</h5>
@@ -230,51 +232,77 @@
                                         <%-- <img src="default-pam.png" id="myimage2" alt="" />
                                         <img src="" id="myimage" alt="" /> --%>
                                         
-                                        <img id="myimage" style="width: 100px; height: 100px; display: none;" src="${detail.thumbnail}" alt="The Scream">
-                                        <img id="myimage2" style="width: 20px; height: 20px; display: none;" src="${contextPath}\resources\images\default-pam.png"alt="The Scream">
+                                        <img id="myimage" style="width: 100px; height: 100px; display: none;" src="${detail.thumbnail}" alt="myPet">
+                                        <img id="myimage2" style="width: 20px; height: 20px; display: none;" src="${contextPath}\resources\images\pamphlet.png"alt="The Scream">
 
-                                        <canvas id="myCanvas" width="600" height="800" style="border:1px solid #d3d3d3;">
-                                        </canvas>
-                                        
-                                        <!--The text, which is also draggable.-->
-                                        <%-- <div style="margin-left: 210px; left: -1.00002px; top: -522px;" class='theText' onmousedown='this.style.border = "dashed 2px #FF7F27";'>광고할 내용을 입력하세요(마우스로 위치 조정)</div>
-                                        <div style="left: 0px; top: -319px; margin-left: 80px; font-size: 50px; color:red; font-style: bold;" class='theText' onmousedown='this.style.border = "dashed 2px #FF7F27";'>${detail.memberName}</div> --%>
+                                        <canvas id="myCanvas" width="1000" height="1000" ></canvas>
+
                                     </div>
-
-                                    <!--Button to save the image with the text.-->
-                                    <p>
-                                        <%-- <input type="button"  onclick="saveImageWithText();" id="bt" value="Save the Image" />  --%>
-                                    </p>
                                 </div>
 
 
 
                                 <script>
-                                const memberName = "${detail.memberName}"
-                                // const content = "${detail.boardContent}"
+
+                                
+                                const phone = "${detail.phone}"
+                                // const date = "${detail.createDate}"
+                                const memberEmail = "${detail.memberEmail}"
+
+                                const petName = document.querySelector('.mb-5>p:nth-child(1)').innerText;
+                                const petAge = document.querySelector('.mb-5>p:nth-child(2)').innerText;
+                                const date = document.querySelector('.mb-5>p:nth-child(3)').innerText;
+                                const petChar = document.querySelector('.mb-5>p:nth-child(4)').innerText;
+                                const petPlace = document.querySelector('.mb-5>p:nth-child(5)').innerText;
 
                                 window.onload = function() {
+
                                 var c = document.getElementById("myCanvas");
                                 var ctx = c.getContext("2d");
                                 var img = document.getElementById("myimage");
                                 var img2 = document.getElementById("myimage2");
-                                ctx.drawImage(img2, 0, 0, 600, 800);
-                                ctx.drawImage(img, 10, 130, 250, 300);
-                                ctx.font = "70px Arial";
-                                ctx.fillStyle  = "red";
-                                ctx.fillText(memberName, 95, 505);
+                                ctx.drawImage(img2, 0, 0, 1000, 1000);
+                                ctx.drawImage(img, 25, 160, 380, 400);
 
-
-                                ctx.font = "30px Arial";
+                                ctx.font = "70px Helvetica";
                                 ctx.fillStyle  = "red";
-                                ctx.fillText('잃어버린곳', 270, 160);
+                                ctx.fillText('01012341234', 160, 700);
+
+                                ctx.font = "40px Helvetica";
+                                ctx.fillStyle  = "black";
+                                ctx.fillText(petName, 410, 200);
+
+                                ctx.font = "40px Helvetica";
+                                ctx.fillStyle  = "black";
+                                ctx.fillText(petAge, 410, 260);
+
+                                ctx.font = "40px Helvetica";
+                                ctx.fillStyle  = "black";
+                                ctx.fillText('아이디 : '+ memberEmail, 410, 315);
+
+                                ctx.font = "40px Helvetica";
+                                ctx.fillStyle  = "red";
+                                ctx.fillText(date, 410, 370);
+
+                                ctx.font = "40px Helvetica";
+                                ctx.fillStyle  = "red";
+                                ctx.fillText(petPlace, 410, 430);
+
+                                ctx.font = "30px Helvetica";
+                                ctx.fillStyle  = "black";
+                                ctx.fillText(petChar, 20, 605);
+
                                 }
+
+
                                 </script>
 
 
                             </div>
                             <div class="modal-footer">
-                                <button type="button" onclick="saveImageWithText();" id="bt" value="Save the Image" class="btn btn-primary" style="background-color:#FB836B; border:0;">전단지 저장</button>
+                                <a id = "download" download="image.png">
+                                    <button type="button" onclick="download()" class="btn btn-primary" style="background-color:#FB836B; border:0;">전단지 저장</button>                             
+                                </a>
                             </div>
                             </div>
                         </div>
@@ -292,11 +320,11 @@
         <!-- Core theme JS-->
         <%-- <script src="js/scripts.js"></script> --%>
 
-            <!-- jQuery 추가 -->
+        <!-- jQuery 추가 -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-            <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+        <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
  
 
 
@@ -309,6 +337,8 @@
         // 코드 해석 순서  :   EL == JSTL > HTML > JS
 
         // ** JS 코드에서 EL/JSTL을 작성하게 된다면 반드시 ""를 양쪽에 추가 **
+
+
 
         // 최상위 주소
         const contextPath = "${contextPath}";

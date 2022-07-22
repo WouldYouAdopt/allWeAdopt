@@ -79,6 +79,13 @@
                         <p class="subTitle">추억을 공유하거나 가족을 만드는 공간입니다</p>
                   
                     <!-- 검색 필터 영역 -->
+                        <!-- 검색을 수행했을 시 검색창 유지-->
+                        <c:if test="${displayValue==0}">
+                            <c:set var="displayValues" value="0"/>
+                        </c:if>
+                        <c:if test="${displayValue==1}">
+                            <c:set var="displayValues" value="1"/>
+                        </c:if>
                     <form action="user" method="GET" onsubmit="return search()">
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" style="margin-bottom:10px;" type="button" id="dropdownMenuButton2" onclick="searchDisplay()">
@@ -88,7 +95,12 @@
                             <div class="filter-area">상태 여부
                                 <div class="btn-group dropend">
                                     <button type="button" name="categoryValue" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                      상태여부
+                                      <c:if test="${empty searchList.category}">
+                                        상태여부
+                                      </c:if>
+                                      <c:if test="${!empty searchList.category}">
+                                        ${searchList.category}
+                                      </c:if>
                                     </button>
                                     <ul class="dropdown-menu">
                                         <li class="dropdown-item selectMenu">실종</li>
@@ -102,15 +114,26 @@
                             <hr>
                             <div class="filter-area">공유 기간
                                 <span class="dateFilter">
-                                    <input class="dateValue" name="boardPeriod" type="date"> ~ 
-                                    <input class="dateValue" name="boardPeriod2" type="date">
+                                    <c:if test="${!empty searchList.boardPeriod}">
+                                       <c:set var="periodValue" value="${searchList.boardPeriod}"/> 
+                                    </c:if>
+                                    <c:if test="${!empty searchList.boardPeriod2}">
+                                       <c:set var="periodValue2" value="${searchList.boardPeriod2}"/> 
+                                    </c:if>
+                                    <input class="dateValue" name="boardPeriod" type="date" value="${periodValue}"> ~ 
+                                    <input class="dateValue" name="boardPeriod2" type="date" value="${periodValue2}">
                                 </span>
                             </div>
                             <hr>
                             <div class="filter-area">지역
                                 <div class="btn-group dropend">
                                     <button type="button" name="areaValue" class="btn aa btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                      지역선택
+                                      <c:if test="${empty searchList.area}">
+                                        지역선택
+                                      </c:if>
+                                      <c:if test="${!empty searchList.area}">
+                                        ${searchList.area}
+                                      </c:if>
                                     </button>
                                     <ul class="dropdown-menu">
                                        <c:forEach var="areaList" items="${areaList}">
@@ -119,7 +142,12 @@
                                     </ul>
                                     <input type="hidden" name="area">
                                     <button type="button" name="areaDetailValue" onclick="areaDetailFunc()" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                      <c:if test="${empty searchList.areaDetail}">
                                         상세지역 선택
+                                      </c:if>
+                                      <c:if test="${!empty searchList.areaDetail}">
+                                        ${searchList.areaDetail}
+                                      </c:if>
                                     </button>
                                       <ul class="dropdown-menu">
                                          
@@ -131,7 +159,12 @@
                             <div class="filter-area">종류
                                 <div class="btn-group dropend">
                                     <button type="button" name="animalTypeValue" class="btn aa btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                      축종
+                                      <c:if test="${empty searchList.animalType}">
+                                        축종
+                                      </c:if>
+                                      <c:if test="${!empty searchList.animalType}">
+                                        ${searchList.animalType}
+                                      </c:if>
                                     </button>
                                     <ul class="dropdown-menu">
                                         <li class="dropdown-item selectMenu animalList">개</li>
@@ -140,7 +173,12 @@
                                     </ul>
                                     <input type="hidden" name="animalType">
                                     <button type="button" name="animalDetailValue" onclick="animalDetailFunc()" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                      <c:if test="${empty searchList.animalDetail}">
                                         품종
+                                      </c:if>
+                                      <c:if test="${!empty searchList.animalDetail}">
+                                        ${searchList.animalDetail}
+                                      </c:if>
                                     </button>
                                       <ul class="dropdown-menu">
                                           
@@ -155,9 +193,12 @@
 
                     <!-- 게시글 작성 -->
                     <c:if test="${!empty loginMember && loginMember.memberType!='A'}">
-                        <a href="user/boardRegist"><p class="addBoard">게시글 작성하기</p></a>
+                        <p class="addBoard"><a href="user/boardRegist">게시글 작성하기</a></p>
                     </c:if>
 
+                    <c:if test="${empty boardList}">
+                        <p class="noneText">일치하는 게시글이 없습니다</p>
+                    </c:if>
                     <%-- 게시글 리스트 --%>
                     <c:set var="test" value="0"/>
                     <c:forEach begin="0" end="${fn:length(boardList)}" step="3">
@@ -231,10 +272,13 @@
             <!-- 푸터 -->
             <jsp:include page="/WEB-INF/views/common/footer.jsp" />
         </div>
-       
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+            // 검색 후 검색창이 열려있게 변수 설정
+            const displayValue = ${displayValues};
+        </script>
         <!-- Core theme JS-->
-       <script src="${contextPath}/resources/js/scripts.js"></script>
+        <script src="${contextPath}/resources/js/scripts.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
         <script src="${contextPath}/resources/js/board/userBoardList.js"></script>
     </body>
