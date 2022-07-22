@@ -38,7 +38,16 @@
         <main class="flex-shrink-0">
 
 	        <jsp:include page="/WEB-INF/views/common/header.jsp" />
+			
+			
+				<!-- 로그인 타입에 따라 헤더 변경 -->
+			<c:if test="${loginMember.memberType =='M' || loginMember.memberType == 'K'}">
+				<jsp:include page="/WEB-INF/views/common/mypage-header.jsp" />
+			</c:if>
 
+	
+	
+	        
         
             <section class="py-4">
                 <!-- 상단 메뉴 영역. -->

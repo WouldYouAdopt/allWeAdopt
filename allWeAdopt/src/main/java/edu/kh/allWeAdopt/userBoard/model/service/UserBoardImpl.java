@@ -10,6 +10,7 @@ import edu.kh.allWeAdopt.userBoard.model.dao.UserBoardDAO;
 import edu.kh.allWeAdopt.userBoard.model.vo.Animal;
 import edu.kh.allWeAdopt.userBoard.model.vo.Area;
 import edu.kh.allWeAdopt.userBoard.model.vo.Likes;
+import edu.kh.allWeAdopt.common.Util;
 
 @Service
 public class UserBoardImpl implements UserBoardService {
@@ -19,7 +20,8 @@ public class UserBoardImpl implements UserBoardService {
 	
 	@Override
 	public int userBoardRegist(Board board) {
-		
+		board.setBoardTitle(Util.XSSHandling(board.getBoardTitle()));
+		board.setBoardTitle(Util.newLineHandling(board.getBoardTitle()));
 		int result = dao.userBoardRegist(board);
 		
 		return result;
@@ -84,6 +86,8 @@ public class UserBoardImpl implements UserBoardService {
 	// 게시글 수정
 	@Override
 	public int userBoardModify(Board board) {
+		board.setBoardTitle(Util.XSSHandling(board.getBoardTitle()));
+		board.setBoardTitle(Util.newLineHandling(board.getBoardTitle()));
 		return dao.userBoardModify(board);
 	}
 

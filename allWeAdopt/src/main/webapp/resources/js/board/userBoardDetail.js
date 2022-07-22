@@ -1,5 +1,3 @@
-console.log("js");
-
 function likeFunc(loginMember,boardNo,likeNo) {
     //좋아요 아이콘 클릭 시 DB 등록
 	$.ajax({
