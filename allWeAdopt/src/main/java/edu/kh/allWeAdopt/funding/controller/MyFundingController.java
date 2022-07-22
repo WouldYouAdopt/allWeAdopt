@@ -112,6 +112,7 @@ public class MyFundingController {
 							,@ModelAttribute("rewardList") List<Reward> rewardList
 							,Model model,RedirectAttributes ra
 							,@RequestHeader("referer") String referer 
+							,String[] orderAddress
 							){
 		
 		try {
@@ -119,13 +120,12 @@ public class MyFundingController {
 		}catch(NumberFormatException e) {
 			e.printStackTrace();
 		}
-		
+		orderDetail.setOrderAddress(String.join(",,", orderAddress));
 		int result = service.payProgress(orderDetail,rewardList);
 		
 		if(result>0) {
 			ra.addFlashAttribute("message", "등록 성공?");
-			ra.addFlashAttribute("paymentNo",payNo);
-			ra.addFlashAttribute("rewardList",null);
+			ra.addFlashAttribute("paymentNo",payNo);			
 			return "redirect:../detail/{payNo} ";
 			
 		}else {

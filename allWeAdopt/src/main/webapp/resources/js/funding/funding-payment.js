@@ -71,8 +71,10 @@ function DaumPostcode() {
     }
 
     const addr = prevOrder.orderAddress.split(",,");
-
-    if (addr.length >= 2) {
+    console.log(addr[0]);
+    console.log(addr[1]);
+    console.log(addr[2]);
+    if (addr.length > 1) {
       postCode.value = addr[0];
       address.value = addr[1];
       detailAddress.value = addr[2];
@@ -272,10 +274,23 @@ function kakaoPay() {
 
     $('#pay_method').val(r.pay_method);
     if (r.success) {
-      $('form[name="submitEvent"]').serialize();
-      $('form[name="submitEvent"]').attr('method', 'POST');
-      $('form[name="submitEvent"]').attr('action', 'pay/' + r.merchant_uid);
-      document.getElementById("submitEvent").submit();
+      Swal.fire({
+        title: '결제 완료',
+        text: "결제가 완료되었습니다!.",
+        width: 340,		
+        iconColor: 'rgb(251, 131, 107)',
+        confirmButtonColor: 'rgb(251, 131, 107)',
+        confirmButtonText: '확인',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            $('form[name="submitEvent"]').serialize();
+            $('form[name="submitEvent"]').attr('method', 'POST');
+            $('form[name="submitEvent"]').attr('action', 'pay/' + r.merchant_uid);
+            
+            document.getElementById("submitEvent").submit();
+          }
+         })
+
     } else {
       alert("결제에 실패하였습니다");
     }

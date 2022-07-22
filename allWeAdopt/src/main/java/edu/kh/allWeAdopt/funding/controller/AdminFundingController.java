@@ -47,7 +47,7 @@ import edu.kh.allWeAdopt.member.model.vo.Member;
 
 @Controller
 @RequestMapping("/admin/funding")
-@SessionAttributes({"loginMember"}) 
+@SessionAttributes({"loginMember","rewardList"}) 
 public class AdminFundingController {
 	
 	@Autowired
@@ -105,6 +105,7 @@ public class AdminFundingController {
 	}
 	
 	//펀딩 등록 페이지
+	
 	@GetMapping("/register")
 	public String fundingRegister(@RequestParam(value = "fundingNo", required = false, defaultValue="0")int fundingNo
 								,Model model) {
@@ -119,9 +120,8 @@ public class AdminFundingController {
 			List<Reward> rewardList  = service.selectRewardList(fundingNo);
 			
 			model.addAttribute("detail",detail);
-			model.addAttribute("rewardList",rewardList);
+			model.addAttribute("rList",rewardList);
 		}
-		
 		
 		
 		
