@@ -54,7 +54,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title mx-auto" id="exampleModalLabel">(로고)사용자 정의 템플릿</h5>
+                        <h5 class="modal-title mx-auto" id="exampleModalLabel" style="padding-left:30px">템플릿 생성 <img src="${contextPath}/resources/images/new_4.png"></h5>
                         <button type="button" class="btn-close mx-0" data-bs-dismiss="modal" aria-label="Close" id="closeBtn"></button>
                     </div>
                     <div class="modal-body py-2">
@@ -135,7 +135,8 @@
 
                                             <div class="form-check px-0" id="buttonArea">
                                                 <c:forEach var="t" items="${tList}">
-                                                    <button class="btn btn-primary button-pink form-check-label p-1 tempBtn" value="${t.tempContent}" type="button" title='${t.tempEnc}' >${t.tempName}</button>
+                                                    <button class="btn btn-primary button-pink form-check-label p-1 tempBtn" type="button" title='${t.tempEnc}' >${t.tempName}</button>
+                                                    <input type="hidden" class="hiddenContent" value='${t.tempContent}''>
                                                 </c:forEach>      
 
                                             </div>
@@ -206,13 +207,20 @@
                     placeholder: '내용을 입력해주세요.',
                     tabsize: 2,
                     height: 200,
-                    toolbar: [
+                    width:434,
+                    toolbar: [ 
+                        // [groupName, [list of button]]
                         // ['fontname', ['fontname']],
                         ['fontsize', ['fontsize']],
                         ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
                         ['color', ['forecolor','color']],
-                        ['insert',['picture','link']]
+                        ['table', ['table']],
+                        ['para', ['ul', 'ol', 'paragraph']],
+                        ['height', ['height']]
+                        // ['insert',['picture','link']],
+                        // ['view', ['fullscreen', 'help']]
                     ],
+                    disableResizeEditor: true,
                     callbacks:{
                         onImageUpload: function(files, editor) {
                             // 업로드된 이미지를 ajax를 이용하여 서버에 저장
