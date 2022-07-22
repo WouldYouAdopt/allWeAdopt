@@ -145,7 +145,9 @@
 										</tr>
 										<tr>
 											<th>결제 수단</th>
-											<td>${detail.payMethod}</td>
+											<c:if test="${detail.payMethod == 'point'}"><td>카카오 결제</td></c:if>
+											<c:if test="${detail.payMethod != 'point'}"><td>일반 카드 결제</td></c:if>
+											
 										</tr>
 										<tr>
 											<th>총결제 금액</th>
@@ -198,24 +200,25 @@
 								<table class="table">
 									<tbody>
 										<tr>
-											<th>수령인</th>
-											<td>${detail.recipient}</td>
+											<th colspan="1">수령인</th>
+											<td colspan="3">${detail.recipient}</td>
 										</tr>
 										<tr>
 											<th>전화번호-1</th>
 											<td>${detail.orderPhoneMain}</td>
 											<th>전화번호-2</th>
 											<td>${detail.orderPhoneSub}</td>
+											<%-- <td>${detail.orderPhoneMain}</td> --%>
 										</tr>
 										<tr>
 											<th>택배사</th>
-											<td>${detail.orderPhoneSub}</td>
+											<td>${detail.parcelCompany}</td>
 											<th>운송장번호</th>
-											<td>${detail.orderPhoneSub}</td>
+											<td>${detail.parcelNo}</td>
 										</tr>
 										<tr>
-											<th>주소</th>
-											<td>${detail.orderAddress}</td>
+											<th colspan="1">주소</th>
+											<td colspan="3">${detail.orderAddress}</td>
 										</tr>
 									</tbody>
 								</table>
@@ -253,6 +256,7 @@
 	<script>
 		const paymentNo = '${paymentNo}';
 		const contextPath = '${contextPath}';
+        const orderCode = "${orderCode}";
 	</script>
 
 	<!-- Bootstrap core JS-->

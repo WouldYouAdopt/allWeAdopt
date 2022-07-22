@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import edu.kh.allWeAdopt.board.model.vo.BoardDetail;
+import edu.kh.allWeAdopt.board.model.vo.Template;
 import edu.kh.allWeAdopt.member.model.vo.Member;
 
 public interface BoardService {
@@ -64,6 +65,21 @@ public interface BoardService {
 	 */
 	int insertAskWrite(BoardDetail detail);
 
+	/** 템플릿 조회
+	 * @return tList
+	 */
+	List<Template> selectTemplate();
 
+	/** 템플릿 삽입
+	 * @param template
+	 * @return result
+	 */
+	int insertTemplate(Template template);
+
+	/** 템플릿 삭제
+	 * @param tempNo
+	 * @return result
+	 */
+	int deleteTemplate(String tempNo);
 	
 }

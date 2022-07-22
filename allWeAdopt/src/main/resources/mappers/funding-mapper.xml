@@ -93,8 +93,8 @@
 		<result property="nameAnonymous" column="NAME_OPEN" />
 		<result property="priceAnonymous" column="PRICE_OPEN" />
 		
-		<result property="nameAnonymous" column="PARCEL_COMPANY" /><!-- 택배사. -->
-		<result property="priceAnonymous" column="PARCEL_NO" /><!-- 운송장 번호 -->
+		<result property="parcelCompany" column="PARCEL_COMPANY" /><!-- 택배사. -->
+		<result property="parcelNo" column="PARCEL_NO" /><!-- 운송장 번호 -->
 
 		<collection property="rewardList" column="PAYMENT_NO"
 			javaType="java.util.ArrayList" ofType="reward" select="selectRewards" />
@@ -235,6 +235,9 @@
 		,ORDER_PHONE2
 		,ORDER_ADD
 		,PAYMENT_NO
+		,PARCEL_COMPANY
+		,PARCEL_NO
+		
 		FROM PAYMENT
 		JOIN
 		FUNDING

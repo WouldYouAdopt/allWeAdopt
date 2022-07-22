@@ -25,6 +25,7 @@
 		<typeAlias type="edu.kh.allWeAdopt.board.model.vo.Board" alias="board"/> 
 		<typeAlias type="edu.kh.allWeAdopt.board.model.vo.BoardDetail" alias="detail"/> 
 		<typeAlias type="edu.kh.allWeAdopt.board.model.vo.Reply" alias="reply"/> 
+		<typeAlias type="edu.kh.allWeAdopt.board.model.vo.Template" alias="template"/> 
 		<typeAlias type="edu.kh.allWeAdopt.userBoard.model.vo.Animal" alias="animal"/> 
 		<typeAlias type="edu.kh.allWeAdopt.userBoard.model.vo.Area" alias="area"/> 
 		<typeAlias type="edu.kh.allWeAdopt.member.model.vo.Certification" alias="certification"/> 
@@ -34,6 +35,7 @@
 		<typeAlias type="edu.kh.allWeAdopt.funding.model.vo.Funding" alias="funding"/> 
 		<typeAlias type="edu.kh.allWeAdopt.funding.model.vo.OrderDetail" alias="orderDetail"/> 
 		<typeAlias type="edu.kh.allWeAdopt.funding.model.vo.Reward" alias="reward"/> 
+		<typeAlias type="edu.kh.allWeAdopt.funding.model.vo.Supporters" alias="supporters"/> 
 		<typeAlias type="edu.kh.allWeAdopt.funding.model.vo.Supporters" alias="supporters"/> 
 	
 	

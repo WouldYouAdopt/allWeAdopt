@@ -360,10 +360,10 @@ function process(code) {
     }else{
         $('input[type="checkbox"]:checked').each(function (index) {
            
-                obj += $(this).val();
-                if(index != 0){
-                    obj += ', ';
-                }
+            if(index != 0){
+                obj += ', ';
+            }
+            obj += $(this).val();
         });
     }
         
@@ -396,6 +396,7 @@ function process(code) {
 
                     const th1 = document.createElement("th");
                     const input1 = document.createElement("input");
+
                     if(code==9){
                         input1.classList.add("form-check-input");
                         input1.setAttribute("type","radio");
@@ -533,8 +534,9 @@ async function returnProcess(code){
 /* 즉시 실행 함수로 현재 선택된 페이지에 클래스 부여해주는 이벤트 */
 
 (function(){ 
-    const oc = document.getElementById('orderCode'); 
-    if(oc !=null) {    oc.classList.add("navCoice");}
+        if(orderCode != ''){
+            document.getElementById(orderCode).classList.add("navCoice");
+        }
 } )();
 
 
@@ -616,6 +618,7 @@ function refoudPouprocess(){
 function sendProcessing(){
     let obj = "";
     let bol=false;
+    let msg = '';
     $('input[class="tList"]:checked').each(function (index) {
          const payNo = $(this).val();
 //         const company = $(this).parent().parent().children(6).children(0);
@@ -624,11 +627,17 @@ function sendProcessing(){
          
          
          if (parcelNo == '') {
-            alert("송장번호가 입력되지 않았습니다.");
+            msg="운송장번호가 입력되지 않았습니다.";
             this.parentElement.parentElement.children[7].children[0].focus();
             bol=true;
+        }else{
+            const reg=/^\d{9}$/;
+            if(!reg.test(parcelNo)){
+                msg="운송장 번호는 숫자 [9자리]만.<br>작성 가능합니다.";
+                this.parentElement.parentElement.children[7].children[0].value="";
+                bol=true;
+            }
         }
-
         const jsObj={
             'paymentNo':payNo,
             'parcelCompany':pc,
@@ -642,8 +651,10 @@ function sendProcessing(){
         return false;
     }
     if(bol){
-        alert("송장번호가 입력되지 않았습니다.");
+        alert(msg);
+        return false
     }
+  
     
     $.ajax({
         url: '../sendProcessing',

@@ -24,6 +24,19 @@
 		<result property="boardPeriod" column="BOARD_PERIOD"/>
 	</resultMap>
 	
+	<!-- 템플릿 조회용 resultMap -->
+	<resultMap type="template" id="template_rm">
+		<id property="tempNo" column="TEMP_NO"/>
+		<result property="tempName" column="TEMP_NM"/>
+		<result property="tempContent" column="TEMP_CONTENT"/>
+		<result property="tempState" column="TEMP_ST"/>
+	</resultMap>
+	
+	<!-- 펀딩 내용만 조회 (스케줄러용) -->
+	<select id="selectFundingList" resultType="string">
+	SELECT FUNDING_CONTENT FROM FUNDING
+	</select>
+	
 	<!-- 게시글 수 조회 -->
 	<select id="getListCount" resultType="_int">
 	SELECT COUNT(*) FROM BOARD
@@ -149,6 +162,23 @@
 			NULL, 5, #{memberNo}, NULL,NULL)
 		    
 	</insert>
+	
+	<!-- 템플릿 조회 -->
+	<select id="selectTemplate" resultMap="template_rm">
+	SELECT * FROM TEMPLATE
+	WHERE TEMP_ST = 'N'
+	</select>
+	
+	<!-- 템플릿 삽입 -->
+	<insert id="insertTemplate">
+	INSERT INTO TEMPLATE VALUES(SEQ_TEMP_NO.NEXTVAL, #{tempName}, #{tempContent}, DEFAULT)
+	</insert>
+	
+	<!-- 템플릿 삭제 -->
+	<update id="deleteTemplate">
+	UPDATE TEMPLATE SET TEMP_ST = 'Y'
+	WHERE TEMP_NO IN(${tempNo})
+	</update>
 	
   
 </mapper>

@@ -13,6 +13,7 @@ import edu.kh.allWeAdopt.board.model.dao.BoardDAO;
 import edu.kh.allWeAdopt.board.model.vo.Board;
 import edu.kh.allWeAdopt.board.model.vo.BoardDetail;
 import edu.kh.allWeAdopt.board.model.vo.Pagination;
+import edu.kh.allWeAdopt.board.model.vo.Template;
 import edu.kh.allWeAdopt.member.model.vo.Member;
 import edu.kh.allWeAdopt.common.Util;
 
@@ -29,7 +30,15 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public List<String> selectDBList() {
 		
-		return dao.selectDBList();
+		List<String> dbList = dao.selectDBList();
+		
+		List<String> fundingList = dao.selectFundingList();
+		
+		for(String f : fundingList) {
+			dbList.add(f);
+		}
+		
+		return dbList;
 	}
 	
 	// ------------------------- 공지사항 ---------------------------
@@ -145,8 +154,35 @@ public class BoardServiceImpl implements BoardService{
 		return dao.insertAskWrite(detail);
 	}
 
-	
-	
+	// 템플릿 조회 기능 구현
+	@Override
+	public List<Template> selectTemplate() {
+		
+		List<Template> tList = dao.selectTemplate();
+		
+		for(Template t : tList) {
+			t.setTempEnc(Util.newLineClear(t.getTempContent()));
+			t.setTempEnc(Util.XSSClear(t.getTempEnc()));
+			int end = t.getTempEnc().length()-4;
+			t.setTempEnc(t.getTempEnc().substring(3,end));
+		}
+		
+		return tList;
+	}
+
+	// 템플릿 작성 기능 구현
+	@Override
+	public int insertTemplate(Template template) {
+				
+		return dao.insertTemplate(template);
+	}
+
+	// 템플릿 삭제 기능 구현
+	@Override
+	public int deleteTemplate(String tempNo) {
+		
+		return dao.deleteTemplate(tempNo);
+	}
 	
 	
 	

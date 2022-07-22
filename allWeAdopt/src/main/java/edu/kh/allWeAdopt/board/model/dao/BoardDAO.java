@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import edu.kh.allWeAdopt.board.model.vo.Board;
 import edu.kh.allWeAdopt.board.model.vo.BoardDetail;
 import edu.kh.allWeAdopt.board.model.vo.Pagination;
+import edu.kh.allWeAdopt.board.model.vo.Template;
 import edu.kh.allWeAdopt.member.model.vo.Member;
 
 @Repository
@@ -20,11 +21,19 @@ public class BoardDAO {
 	private SqlSessionTemplate sqlSession;
 
 	/** DB에 저장된 boardContent 조회 DAO
-	 * @return
+	 * @return dbList
 	 */
 	public List<String> selectDBList() {
-		// TODO Auto-generated method stub
+
 		return sqlSession.selectList("boardMapper.selectDBList");
+	}
+	
+	/** DB에 저장된 FUNDING_CONTENT만 조회하는 DAO
+	 * @return fundingList
+	 */
+	public List<String> selectFundingList() {
+
+		return sqlSession.selectList("noticeMapper.selectFundingList");
 	}
 	
 	// ------------------------- 공지사항 ---------------------------
@@ -150,6 +159,34 @@ public class BoardDAO {
 		return sqlSession.selectList("noticeMapper.selectAskList", null, rowBounds);
 		
 	}
+	
+	/** 템플릿 조회 DAO
+	 * @return
+	 */
+	public List<Template> selectTemplate() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("noticeMapper.selectTemplate");
+	}
+
+	/** 템플릿 삽입 DAO
+	 * @param template
+	 * @return result
+	 */
+	public int insertTemplate(Template template) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("noticeMapper.insertTemplate", template);
+	}
+
+	/** 템플릿 삭제 DAO
+	 * @param tempNo
+	 * @return result
+	 */
+	public int deleteTemplate(String tempNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("noticeMapper.deleteTemplate", tempNo);
+	}
+
+
 	
 
 	
