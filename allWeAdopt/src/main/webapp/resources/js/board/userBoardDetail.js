@@ -87,14 +87,6 @@ function shareKakao() {
   }
 
 // 삭제 버튼 클릭 시
-// document.getElementsByClassName('deleteBtn')[0].addEventListener("click", function() {
-//     if (confirm("정말 삭제하시겠습니까??") == true){ 
-//         alert("게시글이 삭제되었습니다");
-//         return true;
-//     }else{
-//         return false;
-//     }
-// });
 function deleteBtn() {
     if (confirm("정말 삭제하시겠습니까??") == true){ 
                 alert("게시글이 삭제되었습니다");
@@ -103,4 +95,3 @@ function deleteBtn() {
                 return false;
             }
 }
-    
