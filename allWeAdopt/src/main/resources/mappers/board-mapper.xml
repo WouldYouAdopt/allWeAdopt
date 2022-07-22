@@ -22,6 +22,7 @@
 		<result property="diff2" column="DIFF2"/>
 		<result property="profileImage" column="PROFILE_IMG"/>
 		<result property="thumbnail" column="THUMBNAIL"/>
+		<result property="memberEmail" column="MEMBER_EMAIL"/>
 	</resultMap>
 	
 	<resultMap type="animal" id="animal_rm">
@@ -80,7 +81,7 @@
 	
 	<!-- 게시글 리스트 출력 -->
 	<select id="boardList" resultMap="board_rm">
-		SELECT BOARD_NO, BOARD_TITLE, MEMBER_NM, TO_CHAR(CREATE_DT,'YYYY-MM-DD') CREATE_DT, 
+		SELECT BOARD_NO, BOARD_TITLE, MEMBER_NM, TO_CHAR(CREATE_DT,'YYYY-MM-DD') CREATE_DT,
 		TO_CHAR(UPDATE_DT,'YYYY-MM-DD') UPDATE_DT, AREA, AREA_DETAIL, ANIMAL_TYPE, ANIMAL_DETAIL, 
 		GENDER, NEUTERING, CATEGORY, (SYSDATE - CREATE_DT)*24*60*60 AS "DIFF", 
        (SYSDATE - UPDATE_DT)*24*60*60 AS "DIFF2",
@@ -100,7 +101,7 @@
 	
 	<!-- 상세 게시글 출력 -->
 	<select id="boardDetail" resultMap="board_rm">
-		SELECT BOARD_NO, BOARD_TITLE, BOARD_CONTENT, MEMBER_NM, TO_CHAR(CREATE_DT,'YYYY-MM-DD') CREATE_DT, 
+		SELECT BOARD_NO, BOARD_TITLE, BOARD_CONTENT, MEMBER_NM, TO_CHAR(CREATE_DT,'YYYY-MM-DD') CREATE_DT,  MEMBER_EMAIL,
 		TO_CHAR(UPDATE_DT,'YYYY-MM-DD') UPDATE_DT, AREA, AREA_DETAIL, PHONE,
 		ANIMAL_TYPE, ANIMAL_DETAIL, GENDER, NEUTERING, CATEGORY, MEMBER_NO,
 		TO_CHAR(BOARD_PERIOD,'YYYY-MM-DD') BOARD_PERIOD, 

@@ -30,7 +30,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent" >
                 <ul class="navbar-nav ms-auto  my-2 mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link" href="${contextPath}/shelter/shelterList">보호소</a></li>
-                    <li class="nav-item"><a class="nav-link" href="${contextPath}/shelter/pamphlet/list">전단지</a></li>
+                    <li class="nav-item"><a class="nav-link" href="${contextPath}/shelter/pamphlet/list">스토리</a></li>
                     <li class="nav-item"><a class="nav-link" href="${contextPath}/board/user">어답터</a></li>
                     <li class="nav-item"><a class="nav-link" href="${contextPath}/funding/detail/${nowFundingNo}?page=1">펀딩</a></li>
                     <li class="nav-item"><a class="nav-link" href="${contextPath}/findHospital">병원찾기</a></li>
