@@ -54,7 +54,7 @@ public class KakaoController {
 			HttpServletRequest request) throws Exception {
 		String reqUrl = 
 				"https://kauth.kakao.com/oauth/authorize"
-				+ "?client_id=9f850843147b9b51e1955e311d9dc9ba"
+				+ "?client_id=0900c4899560687a875be9ab43105e72"
 				+ "&redirect_uri=http://localhost:8081/allWeAdopt/member/kakaoLogin2"
 				+ "&response_type=code";
 		 
@@ -204,7 +204,7 @@ public class KakaoController {
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
             StringBuilder sb = new StringBuilder();
             sb.append("grant_type=authorization_code");
-            sb.append("&client_id=9f850843147b9b51e1955e311d9dc9ba");  //본인이 발급받은 key
+            sb.append("&client_id=0900c4899560687a875be9ab43105e72");  //본인이 발급받은 key
             sb.append("&redirect_uri=http://localhost:8081/allWeAdopt/member/kakaoLogin2"); // 본인이 설정해 놓은 경로
             sb.append("&code=" + authorize_code);
             bw.write(sb.toString());
