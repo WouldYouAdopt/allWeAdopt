@@ -2,6 +2,7 @@ package edu.kh.allWeAdopt.member.model.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Map;
 import edu.kh.allWeAdopt.common.Util;
 
@@ -238,6 +239,23 @@ public class MemberServiceImpl implements MemberService{
 		// value만 덮어씌움
 
 		return dao.changePw(map);
+	}
+
+
+
+
+	// 관리자 계정 등록 설정
+	@Override
+	public int registerAdmin(Member member) {
+		
+		// 임시 비밀번호 : 가입일 연 월 일 (yyMMdd)
+		SimpleDateFormat sdf = new SimpleDateFormat("yyMMdd");
+		String date = sdf.format(new java.util.Date(System.currentTimeMillis()));
+		
+		// 암호화 해서 member에 세팅
+		member.setMemberPw( bcrypt.encode(date));
+
+		return dao.registerAdmin(member);
 	}
 	
 	

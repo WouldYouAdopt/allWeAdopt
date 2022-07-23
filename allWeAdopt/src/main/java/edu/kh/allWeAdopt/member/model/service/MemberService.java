@@ -103,6 +103,15 @@ public interface MemberService {
 
 
 
+
+	/** 관리자 계정 등록 SERVICE
+	 * @param member
+	 * @return result
+	 */
+	public abstract int registerAdmin(Member member);
+
+
+
 	
 	
 	

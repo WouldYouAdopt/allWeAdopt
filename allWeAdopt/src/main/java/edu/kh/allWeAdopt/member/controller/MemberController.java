@@ -367,10 +367,25 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-	@GetMapping("/requestAdmin")
+	@GetMapping("/registerAdmin")
 	public String requestAdmin() {
 		
-		return null;
+		return "member/registerAdmin";
+	}
+	
+	@PostMapping("/registerAdmin")
+	public String requestAdmin(Member member,
+							   RedirectAttributes ra) {
+		
+		int result = service.registerAdmin ( member );
+		
+		if(result>0) {
+			ra.addFlashAttribute("message", "관리자 계정 등록 완료");
+		}else {
+			ra.addFlashAttribute("message", "관리자 계정 등록 실패");
+		}
+		
+		return "redirect:registerAdmin";
 	}
 	
 	

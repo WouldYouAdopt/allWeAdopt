@@ -109,17 +109,26 @@ public class MyPageServiceImpl implements MyPageService{
 	@Override
 	public int secession(Member loginMember) {
 		
-		// 1) DB에서 암호화된 비밀번호를 조회하여 입력 받은 비밀번호와 비교
-		String encPw = dao.selectEncPw( loginMember.getMemberNo() );
 		
-		if( bCrypt.matches( loginMember.getMemberPw(), encPw)) {
+		if( ! loginMember.getMemberType().equals("K")) {
 			
-			// 2) 비밀번호가 일치하면 회원 번호를 이용해서 탈퇴 진행
-			return dao.secession(loginMember.getMemberNo());
+			// 1) DB에서 암호화된 비밀번호를 조회하여 입력 받은 비밀번호와 비교
+			String encPw = dao.selectEncPw( loginMember.getMemberNo() );
+			
+			if( bCrypt.matches( loginMember.getMemberPw(), encPw)) {
+				
+				// 2) 비밀번호가 일치하면 회원 번호를 이용해서 탈퇴 진행
+				return dao.secession(loginMember.getMemberNo());
+			} else {
+				
+				// 3) 비밀번호가 일치하지 않으면 0 반환
+				return 0;
+				 
+			}
+			
 		}
 		
-		// 3) 비밀번호가 일치하지 않으면 0 반환
-		return 0;
+		return 1;
 	}
 
 	

@@ -6,7 +6,6 @@
 	
 		<id property="replyNo" column="REPLY_NO"/>
 		
-		<result property="replyContent" column="REPLY_CONTENT"/>
 		<result property="createDate" column="CREATE_DT"/>
 		<result property="boardNo" column="BOARD_NO"/>
 		<result property="memberNo" column="MEMBER_NO"/>

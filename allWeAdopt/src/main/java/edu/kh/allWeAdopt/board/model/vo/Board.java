@@ -39,7 +39,7 @@ public class Board {
 	private String gender;
 	private String neutering;
 	
-	private int replyCount;
+//	private int replyNo;
 	
 	private int memberType;
 	

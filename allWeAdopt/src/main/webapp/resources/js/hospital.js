@@ -52,7 +52,7 @@ const url = 'http://openapi.seoul.go.kr:8088/58717a6e5463686f3130306d58694a4f/js
 				    // 병원정보 요청받아오기
 		        fetch(url)
 		        .then((res) => res.json())
-				    .then((hospital) =>{
+				.then((hospital) =>{
 				
 		        	//console.log(JSON.stringify(hospital, null , 1));
 					
@@ -66,9 +66,9 @@ const url = 'http://openapi.seoul.go.kr:8088/58717a6e5463686f3130306d58694a4f/js
 					// 병원이름
 		            const names = new Array();
 		            
-		            for (var i=0; i<results.length; i++){
+		            for (let i=0; i<results.length; i++){
 
-						names.push(results[i].BPLCNM);
+						//names.push(results[i].BPLCNM);
 					
 		            	// WTM 좌표 
 		                //console.log("X좌표"+results[i].X);
@@ -101,17 +101,12 @@ const url = 'http://openapi.seoul.go.kr:8088/58717a6e5463686f3130306d58694a4f/js
               //content: positions[i].content // 인포윈도우에 표시할 내용
             //});
 
-		                
-            //infowindow.open(map, marker); 
-            markers.push(marker);
-		                
 
-					} // for문끝
 
-	            	
-	            	
-	            	
-            		// 좌표 변환 결과를 받아서 처리할 콜백함수 입니다.
+
+
+
+					// 좌표 변환 결과를 받아서 처리할 콜백함수 입니다.
 					function transCoordCB(result, status) {
 
 						//console.log(names)
@@ -122,37 +117,121 @@ const url = 'http://openapi.seoul.go.kr:8088/58717a6e5463686f3130306d58694a4f/js
 					        var marker = new kakao.maps.Marker({
 					            position: new kakao.maps.LatLng(result[0].y, result[0].x), // 마커를 표시할 위치입니다
 					            map: map, // 마커를 표시할 지도객체입니다
-					            title: results[0].BPLCNM // 여기에 정보 for문 어떻게 세팅함
+					            title: results[i].BPLCNM // 여기에 정보 for문 어떻게 세팅함
 					        })
 					        
-						    var iwContent = results[0].BPLCNM, // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+					        // results[i].BPLCNM
+					        var iwContent = '<div class="info-title">'+results[i].BPLCNM+'<div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 				    		iwPosition = new kakao.maps.LatLng(result[0].y, result[0].x), //인포윈도우 표시 위치입니다
-				    		iwRemoveable = false; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
+				    		iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
 				    
-				            var infowindow = new kakao.maps.InfoWindow({
-							    map: map, // 인포윈도우가 표시될 지도
+							var infowindow = new kakao.maps.InfoWindow({
+							    //map: map, // 인포윈도우가 표시될 지도
 							    position : iwPosition, 
 							    content : iwContent,
 							    removable : iwRemoveable
 							});
-					        
-					        
-					        
-					        
-					        
+							
+							
+							
+							
+							// ************ 마커에 클릭이벤트를 등록합니다
+							kakao.maps.event.addListener(marker, 'click', function() {
+								
+								// 이전에 클릭한건 꺼지게 ************
+								// 클릭한거말고 다른것들......은 어떻게 선택함
+								
+								if($('.info-title').parent().parent()){
+									$('.info-title').parent().parent().remove();
+								}
+								
+							    // 마커 위에 인포윈도우를 표시합니다
+							    infowindow.open(map, marker);  
+							      
+							      
+								// 클릭해서 보이는 인포윈도우를 클릭하면!
+								document.getElementsByClassName('info-title')[0].addEventListener('click', function() {
+								      // 마커 위에 인포윈도우를 표시합니다
+								      alert("111111");
+								      
+								      
+								      
+								      
+								});
+							      
+							});
+							
+							
+							
+							
+										        
 					    }
+					    
+					    
+					    
+					    
+					    
+					    
+					    
+
+					    
 					}
+					
+					
+					
+					
+					
+							
+
+
+
+							
+					
+					
+					
+					
+					
+					
+					
+		                
+            //infowindow.open(map, marker); 
+            markers.push(marker);
+		                
+
+
+
+					} // for문끝
+
+
+
+
+	        // 강제로 css바꿔주기 // 엘리먼트 선택이 잘 안되네
+			var infoTitle = document.querySelectorAll('.info-title');
+			
+			infoTitle.forEach(function(e) {
+			    e.parentElement.style.top = "82px";
+			});
+	       	
+	       	// 엘리먼트 선택 다시시도... 선택해야 클릭이벤트 주지  
+	            	
+	        for(let q=0; q<infoTitle.length; q++){
+				infoTitle[q].addEventListener("click",function(){
+					alert('뜨냐구');
+					
+				})
+			}   	
+	            	
+            		
 
 
 
 
 
 
-				});
+				}); //then
 
 	        
-	            
-	            
+
 	            
 	            
 	            
@@ -211,7 +290,16 @@ const url = 'http://openapi.seoul.go.kr:8088/58717a6e5463686f3130306d58694a4f/js
 	            
 		});
 	    	
-	    	
+	   
+	   
+	   
+	   
+	   
+
+
+
+
+ 	
 	    	
 	// 아래로 쭉 geolocation 관련 마커
 	} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
@@ -243,8 +331,23 @@ const url = 'http://openapi.seoul.go.kr:8088/58717a6e5463686f3130306d58694a4f/js
 	    });
 	    
 	    // 인포윈도우를 마커위에 표시합니다 
-	    infowindow.open(map, marker);
+	    //infowindow.open(map, marker);
+	    
+
 	    
 	    // 지도 중심좌표를 접속위치로 변경합니다
-	    map.setCenter(locPosition);      
+	    map.setCenter(locPosition);    
+	    
+	    
+	    
+	    
+
+
+
+  
 	}    
+	
+	
+	
+
+	
