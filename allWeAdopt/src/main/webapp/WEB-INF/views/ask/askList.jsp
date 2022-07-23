@@ -83,7 +83,6 @@
             <section class="py-0">
                 <div class="container px-5 my-1">
                     <div class="row gx-5 align-items-start" >
-
                         <c:if test="${empty aList}">
                             <div>문의가 없습니당...! </div>
                         </c:if>
@@ -99,7 +98,7 @@
                                 <th scope="col">문의유형</th>
                                 <th scope="col" class="col-sm-6">제목</th>
                                 <th scope="col" >작성일</th>
-                                <th scope="col" class="col-sm-1 ">처리상태</th>
+                                <th scope="col" class="col-sm-1 " style="text-align:center;">처리상태</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -118,6 +117,7 @@
                                             <th scope="row" class="col-sm-1 text-center" >${a.boardNo}</th>
                                             <td><a href="${url}" class="newa">${a.boardTitle} <div class="new">N</div></a></td>
                                             <td>${a.createDate}</td>
+                                            <td> ${a.replyCount}</td>
                                         </tr>
                                     </c:when>
 
@@ -127,7 +127,12 @@
                                             <td><a href="${url}">${a.category}</a></td>
                                             <td><a href="${url}">${a.boardTitle}</a></td>
                                             <td>${a.createDate}</td>
-                                            <td>답변중</td>
+                                            <c:if test="${a.phone == 0}">
+                                                <td style="color : gray; font-weight: 400; text-align:center;">답변중</td>
+                                            </c:if>
+                                            <c:if test="${a.phone != 0}">
+                                                <td style="color : #fb836b; font-weight: 400; text-align:center;">답변완료</td>
+                                            </c:if>
                                         </tr>
                                     </c:otherwise>
                                 </c:choose>
