@@ -56,7 +56,7 @@
                         <div class="row gx-5 justify-content-center">
                             <div class="col-lg-8 col-xl-6">
 
-                                <form action="${contextPath}/member/registerAdmin" id="signUpForm" method="POST" enctype="multipart/form-data" onsubmit="return signUpValidate()">
+                                <form action="${contextPath}/member/registerAdmin" id="signUpForm" method="POST" onsubmit="return signUpValidate()">
 
                                     <!-- 이메일 주소 -->
                                     <div class="form-floating mb-2 confirm-area">

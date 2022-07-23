@@ -380,7 +380,7 @@ public class MemberController {
 		int result = service.registerAdmin ( member );
 		
 		if(result>0) {
-			ra.addFlashAttribute("message", "관리자 계정 등록 완료\n 아이디: "+member.getMemberEmail()+"\n비밀번호: "+member.getMemberPw());
+			ra.addFlashAttribute("message", "관리자 계정 등록 완료");
 		}else {
 			ra.addFlashAttribute("message", "관리자 계정 등록 실패");
 		}
