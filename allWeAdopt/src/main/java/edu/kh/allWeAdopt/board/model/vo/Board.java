@@ -43,4 +43,6 @@ public class Board {
 	
 	private int memberType;
 	
+	private String memberEmail;
+	
 }

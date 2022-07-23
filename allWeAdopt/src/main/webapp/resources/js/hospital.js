@@ -93,18 +93,16 @@ const url = 'http://openapi.seoul.go.kr:8088/58717a6e5463686f3130306d58694a4f/js
 						    output_coord: kakao.maps.services.Coords.WGS84 // 변환 결과로 받을 좌표계 입니다 
 						});
 		        
-            
-
-		                
-
+			//console.log(result);
 						
             // 마커 생성을 for로 어떻게?? 콜백인데 어떻게 인덱스 쓰면되는거임??
             // 마커에 표시할 인포윈도우를 생성합니다 
             //var infowindow = new kakao.maps.InfoWindow({
               //content: positions[i].content // 인포윈도우에 표시할 내용
             //});
+
 		                
-            
+            //infowindow.open(map, marker); 
             markers.push(marker);
 		                
 
@@ -114,7 +112,7 @@ const url = 'http://openapi.seoul.go.kr:8088/58717a6e5463686f3130306d58694a4f/js
 	            	
 	            	
             		// 좌표 변환 결과를 받아서 처리할 콜백함수 입니다.
-					function transCoordCB(result, status, names) {
+					function transCoordCB(result, status) {
 
 						//console.log(names)
 					    // 정상적으로 검색이 완료됐으면 
@@ -124,8 +122,24 @@ const url = 'http://openapi.seoul.go.kr:8088/58717a6e5463686f3130306d58694a4f/js
 					        var marker = new kakao.maps.Marker({
 					            position: new kakao.maps.LatLng(result[0].y, result[0].x), // 마커를 표시할 위치입니다
 					            map: map, // 마커를 표시할 지도객체입니다
-					            title: names // 여기에 정보 for문 어떻게 세팅함
+					            title: results[0].BPLCNM // 여기에 정보 for문 어떻게 세팅함
 					        })
+					        
+						    var iwContent = results[0].BPLCNM, // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+				    		iwPosition = new kakao.maps.LatLng(result[0].y, result[0].x), //인포윈도우 표시 위치입니다
+				    		iwRemoveable = false; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
+				    
+				            var infowindow = new kakao.maps.InfoWindow({
+							    map: map, // 인포윈도우가 표시될 지도
+							    position : iwPosition, 
+							    content : iwContent,
+							    removable : iwRemoveable
+							});
+					        
+					        
+					        
+					        
+					        
 					    }
 					}
 
@@ -220,7 +234,7 @@ const url = 'http://openapi.seoul.go.kr:8088/58717a6e5463686f3130306d58694a4f/js
 	    }); 
 	    
 	    var iwContent = message, // 인포윈도우에 표시할 내용
-	        iwRemoveable = true;
+	        iwRemoveable = false;
 
 	    // 인포윈도우를 생성합니다
 	    var infowindow = new kakao.maps.InfoWindow({
