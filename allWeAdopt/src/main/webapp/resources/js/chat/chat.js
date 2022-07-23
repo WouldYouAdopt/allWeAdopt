@@ -35,7 +35,6 @@ function selectThisUser(thisUser){
 
                 const targetMember = document.getElementById('targetMember');
                 targetMember.value = JSON.stringify(member);
-                
                 requestChat();
          },
          error: function () {
