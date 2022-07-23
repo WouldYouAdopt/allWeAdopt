@@ -51,6 +51,9 @@ if(document.getElementById("memberName")!=null){
 
 const telMsg = document.getElementById("telMsg");
 
+// 전화번호 변경 버튼을 누른 경우를 체크하는 변수선언
+let changeBtnClick = true;
+
 if(document.getElementById("changeBtn")){
 
     const changeBtn = document.getElementById("changeBtn");
@@ -59,32 +62,55 @@ if(document.getElementById("changeBtn")){
 
     changeBtn.addEventListener("click", function(){
 
-        memberTel.value="";
-        number.value="";
-        cMessage.innerText = "5:00";
-        number.readOnly = false;
-        memberTel.readOnly = false;
-        confirmBtn.innerText = "인증";
-        newTel.innerHTML = "<span>* </span>휴대폰 번호<span>(인증 대기)</span>";
-        telMsg.innerText = "";
+        if(changeBtnClick){
+            memberTel.value="";
+            number.value="";
+            cMessage.innerText = "5:00";
+            number.readOnly = false;
+            memberTel.readOnly = false;
+            confirmBtn.innerText = "인증";
+            newTel.innerHTML = "<span>* </span>휴대폰 번호<span>(인증 대기)</span>";
+            telMsg.innerText = "";
+            changeBtn.innerText = "취소";
 
-        Swal.fire({
-            title: '휴대폰 번호 입력 후 인증을 완료해주세요.',
-            width: 350,
-            padding: '3em',
-            color: 'black',
-            confirmButtonColor: 'rgb(251, 131, 107)',
-            confirmButtonText: '확인'
-            });
+            Swal.fire({
+                title: '휴대폰 번호 입력 후 인증을 완료해주세요.',
+                width: 350,
+                padding: '3em',
+                color: 'black',
+                confirmButtonColor: 'rgb(251, 131, 107)',
+                confirmButtonText: '확인'
+                });
 
-        // 전화번호, 인증번호 입력란 화면에 노출시켜주고
-        telBox.classList.remove("none");
-        numBox.classList.remove("none");
+            // 전화번호, 인증번호 입력란 화면에 노출시켜주고
+            telBox.classList.remove("none");
+            numBox.classList.remove("none");
 
-        // 번호, 문자 유효성검사 여부 false로 변경
-        checkObj.memberTel = false;
-        checkObj.number = false;
-        checkObj.timer = false;
+            // 번호, 문자 유효성검사 여부 false로 변경
+            checkObj.memberTel = false;
+            checkObj.number = false;
+            checkObj.timer = false;
+            
+            changeBtnClick = false;
+
+        }else{
+
+            // 전화번호, 인증번호 입력란 화면에 노출시켜주고
+            telBox.classList.add("none");
+            numBox.classList.add("none");
+
+            changeBtn.innerText = "변경";
+
+            // 번호, 문자 유효성검사 여부 false로 변경
+            checkObj.memberTel = true;
+            checkObj.number = true;
+            checkObj.timer = true;
+
+            changeBtnClick = true;
+
+        }
+
+
     });
 
 }
@@ -135,6 +161,7 @@ if(document.getElementById("memberTel")!=null){
         }
     });
 
+}
 
 // 문자 인증
 const confirmBtn = document.getElementById("confirmBtn");
@@ -430,15 +457,17 @@ function updateInfoValidate(){
 
 }
 
+
 // 2. 비밀번호 변경
 
+// 유효성 검사 여부를 기록할 객체 생성
+const checkObj2 = { 
+    "inputPw"      : false,
+    "newPw"        : false,
+    "newPwConfirm" : false
+};
+
 if(document.getElementById("inputPw")!=null){
-    // 유효성 검사 여부를 기록할 객체 생성
-    const checkObj2 = { 
-        "inputPw"      : false,
-        "newPw"        : false,
-        "newPwConfirm" : false,
-    };
 
     // 비밀번호 유효성 검사
     const inputPw = document.getElementById("inputPw");
@@ -552,38 +581,37 @@ function checkPw(){ // 비밀번호 일치 검사
 // 수정하기 버튼 클릭시 유효성 검사여부 확인
 function updateInfoValidate2(){
 
-        console.log("클릭됨");
+    console.log("클릭됨");
 
-        let str;
+    let str;
 
-        for( let key  in checkObj2 ){ // 객체용 향상된 for문
+    for( let key  in checkObj2 ){ // 객체용 향상된 for문
 
-            // 현재 접근 중인 key의 value가 false인 경우
-            if( !checkObj2[key] ){ 
+        // 현재 접근 중인 key의 value가 false인 경우
+        if( !checkObj2[key] ){ 
 
-                switch(key){
-                case "inputPw":  str="현재 비밀번호 입력란을"; break;
-                case "newPw":       str="새 비밀번호 입력란을"; break;
-                case "newPwConfirm":       str="새 비밀번호 확인 입력란을"; break;
-                }
-
-                str += " 다시 확인해주세요. ";
-
-                Swal.fire({
-                    title: str,
-                    width: 350,
-                    padding: '3em',
-                    color: 'black',
-                    confirmButtonColor: 'rgb(251, 131, 107)',
-                    confirmButtonText: '확인'
-                    });
-
-                document.getElementById(key).focus();
-                return false; // form태그 기본 이벤트 제거
+            switch(key){
+            case "inputPw":  str="현재 비밀번호 입력란을"; break;
+            case "newPw":       str="새 비밀번호 입력란을"; break;
+            case "newPwConfirm":       str="새 비밀번호 확인 입력란을"; break;
             }
+
+            str += " 다시 확인해주세요. ";
+
+            Swal.fire({
+                title: str,
+                width: 350,
+                padding: '3em',
+                color: 'black',
+                confirmButtonColor: 'rgb(251, 131, 107)',
+                confirmButtonText: '확인'
+                });
+
+            document.getElementById(key).focus();
+            return false; // form태그 기본 이벤트 제거
         }
-
-        return true; // form태그 기본 이벤트 수행
-
     }
+
+    return true; // form태그 기본 이벤트 수행
+
 }

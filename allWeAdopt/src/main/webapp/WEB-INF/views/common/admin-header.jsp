@@ -32,6 +32,7 @@
                             <li><a class="dropdown-item" href="${contextPath}/admin/funding/delivery//${nowFundingNo}/1">주문 관리</a></li>
                             <li><a class="dropdown-item" href="${contextPath}/admin/ask/list">문의 관리</a></li>
                             <li><a class="dropdown-item" href="${contextPath}/admin/notice/list">공지 관리</a></li>
+                            <li><a class="dropdown-item" href="${contextPath}/member/myPage/updateAdminPw">비밀번호 변경</a></li>
                             <li><a class="dropdown-item" href="${contextPath}/member/logout">로그아웃</a></li>
                         </ul>
                         

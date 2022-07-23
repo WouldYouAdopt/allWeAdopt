@@ -37,6 +37,10 @@
             .st2{fill:none;stroke:#373737;stroke-width:7.3;stroke-miterlimit:10;}
 
         </style>
+
+        <!-- sweetalert-->
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        
     </head>
     <body class="d-flex flex-column">
         <main class="flex-shrink-0">
@@ -44,9 +48,82 @@
             <!-- 헤더 -->
             <jsp:include page="/WEB-INF/views/common/admin-header.jsp" />
 
+            <!-- About section two-->
             <section class="py-0">
-                <div class="container px-5">
-                    <h1> ALL WE ADOPT for admin 메인입니당.</h1>
+                <div class="container px-2">
+                    <h1 class="mt-4">관리자 페이지 입니다.</h1>
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item active">all we adopt 관리자페이지 입니다.</li>
+                    </ol>
+                    <div class="row">
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card bg-primary text-white mb-4">
+                                <div class="card-body">관리자 계정 등록</div>
+                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <a class="small text-white stretched-link" href="${contextPath}/member/registerAdmin" style="text-decoration: none;">공지사항 상세조회 > </a>
+                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card bg-warning text-white mb-4">
+                                <div class="card-body">새 문의사항 : 0개</div>
+                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <a class="small text-white stretched-link" href="#"  style="text-decoration: none;">문의사항 상세조회 ></a>
+                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card bg-success text-white mb-4">
+                                <div class="card-body">새 회원게시글 : 0개</div>
+                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <a class="small text-white stretched-link" href="#"  style="text-decoration: none;" >회원게시글 상세조회 ></a>
+                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card bg-secondary text-white mb-4">
+                                <div class="card-body">주문관리 목록 : 0개</div>
+                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <a class="small text-white stretched-link" href="#"  style="text-decoration: none;">회원게시글 상세조회 ></a>
+                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <i class="fas fa-chart-area me-1"></i>
+                                    보호소 유기동물 업로드 추이
+                                </div>
+                                <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <i class="fas fa-chart-bar me-1"></i>
+                                    사용자 게시글 업로드 추이 ? 펀딩 주문 수량?
+                                </div>
+                                <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+           
+            
+            <!-- About section three-->
+            <section class="py-3">
+                <div class="container px-4 my-1">
+                    <div class="row gx-5 align-items-center">
+                        
+                    </div>
                 </div>
             </section>
 
@@ -54,9 +131,16 @@
 
         <!-- 푸터 -->
         <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+        <!-- 어드민 -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
 
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <%-- <script src="../startbootstrap-sb-admin-gh-pages/js/scripts.js"></script> --%>
+        <%-- <script src="../startbootstrap-sb-admin-gh-pages/assets/demo/chart-area-demo.js"></script>
+        <script src="../startbootstrap-sb-admin-gh-pages/assets/demo/chart-bar-demo.js"></script> --%>
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+        <%-- <script src="../startbootstrap-sb-admin-gh-pages/js/datatables-simple-demo.js"></script> --%>
         <!-- Core theme JS-->
         <script src="${contextPath}/resources/js/scripts.js"></script>
     </body>
