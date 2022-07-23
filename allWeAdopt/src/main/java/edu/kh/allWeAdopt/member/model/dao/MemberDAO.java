@@ -160,6 +160,18 @@ public class MemberDAO {
 	}
 
 
+
+
+	/** 관리자 계정 등록 DAO
+	 * @param member
+	 * @return
+	 */
+	public int registerAdmin(Member member) {
+		
+		return sqlSession.insert("memberMapper.registerAdmin", member);
+	}
+
+
 	
 	
 	
