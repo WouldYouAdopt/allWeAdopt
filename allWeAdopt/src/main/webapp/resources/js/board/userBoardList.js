@@ -56,6 +56,59 @@
 	  areaDetailAjax(document.getElementsByName("area")[0].value);
 })();
 
+// 초기화 바튼 클릭 시 검색 필터 초기화
+document.getElementById("initialization").addEventListener("click", function () {
+	  document.getElementsByName("category")[0].value = null;
+	  document.getElementsByName("categoryValue")[0].innerText = "상태여부";
+
+	  document.getElementsByName("area")[0].value = null;
+	  document.getElementsByName("areaValue")[0].innerText = "지역선택";
+
+	  document.getElementsByName("areaDetail")[0].value = null;
+	  document.getElementsByName("areaDetailValue")[0].innerText = "상세 지역 선택";
+	  document.getElementsByName("areaDetailValue")[0].style.display = "none";
+	  
+	  document.getElementsByName("animalType")[0].value = null;
+	  document.getElementsByName("animalTypeValue")[0].innerText = "축종";
+
+	  document.getElementsByName("animalDetail")[0].value = null;
+	  document.getElementsByName("animalDetailValue")[0].innerText = "품종";
+	  document.getElementsByName("animalDetailValue")[0].style.display = "none";
+
+	  document.getElementsByName("boardPeriod")[0].value = null;
+	  document.getElementsByName("boardPeriod2")[0].value = null;
+   });
+
+// 게시글 등록 버튼을 클릭했을 때
+const registBtn = document.getElementsByClassName("addBoard")[0];
+const registValue = document.getElementsByName("registValue")[0];
+let message = null;
+registBtn.addEventListener("click", function () {
+	
+	if(registValue.value==1){
+		message = "로그인이 필요한 기능입니다. 로그인 페이지로 이동합니다.";
+	}else if(registValue.value==2){
+		message = "회원만 사용할 수 있는 기능입니다";
+	}else{
+		location.href="user/boardRegist"
+	}
+
+	if(registValue.value!=0){
+		Swal.fire({
+			title: message,
+			width: 600,
+			padding: '3em',
+			color: 'black',
+			confirmButtonColor: 'rgb(251, 131, 107)',
+			confirmButtonText: '확인'
+			}).then((result) => {
+				if (result.isConfirmed && registValue.value==1) {
+					location.href= contextPath+"/member/login";
+				}
+			 });
+	}
+});
+
 // 무한 스크롤
 // 무한 스크롤 설정
 let options = {
@@ -194,13 +247,16 @@ searchBtn.addEventListener("click", function () {
 function searchDisplay() {
   const display = document.getElementById("search-area");
   const displayBtn = document.getElementById("searchBtn");
+  const initialBtn= document.getElementById("initialization");
 
   if((display.style.display=="")||(display.style.display=="none")){
     display.style.display = 'block';
     displayBtn.style.display = 'block';
+	initialBtn.style.display = 'block';
   }else{
     display.style.display = 'none';
     displayBtn.style.display = 'none';
+	initialBtn.style.display = 'none';
   }
 }
 
