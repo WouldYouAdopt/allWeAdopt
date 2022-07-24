@@ -112,13 +112,15 @@
 			    color: #fff;
 			    height: 37px;
 			    line-height: 24px;
-			    border-radius: 4px;
+			    border-radius: 20px;
 			    border: 1px solid #fb836b;
-			    padding: 5px 30px 5px 10px;
+			    padding: 5px 10px 5px 10px;
+			    text-align:center;
 			    
 			    overflow: hidden;
 			    text-overflow: ellipsis;
 			    white-space: nowrap;
+			    cursor:pointer;
 
 			}
 
@@ -137,7 +139,7 @@
 						<p class="lead fw-normal text-muted mb-0">가까운 병원을 확인해보세요</p>
 					</div>
                     
-					<div class="d-flex mx-5 justify-content-center mapCon" >
+					<div class="d-flex justify-content-center mapCon" >
 						
 						<div id="map" style="width:100%;height:500px; "></div>
 						
@@ -149,12 +151,14 @@
 						
 					</div>
 					
-					<div style="height:100px; margin-top:50px; border:1px solid #ff0000;" class="d-flex  mx-5">
+					<div style="height:100px; margin-top:50px; border:1px solid #ff0000;" class="" id="hosList">
 					 병원쓰
 						
 					</div>
+					
 
-                        <div id="data"></div>
+
+                    <div id="data"></div>
   
 				</div>
 				</section>
