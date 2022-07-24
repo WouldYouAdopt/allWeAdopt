@@ -1,6 +1,6 @@
 //채팅 서버 열기
 function popUpOpne(){
-    window.open('', "chattingWindow", "width=800, height=500" );
+    window.open('', "chattingWindow", "width=900, height=500" );
     chatForm.target = "chattingWindow";
     chatForm.submit();
 }

@@ -34,6 +34,8 @@ public class OrderDetail {
 	private String parcelCompany; //택배사
 	private String parcelNo; //운송장 번호
 	
+	private int point;//사용한 포인트
+	
 	//해당 결제 번호로 구매한 리워드 목록
 	private List<Reward> rewardList;
 }

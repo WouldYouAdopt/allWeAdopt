@@ -96,6 +96,7 @@
 		
 		<result property="parcelCompany" column="PARCEL_COMPANY" /><!-- 택배사. -->
 		<result property="parcelNo" column="PARCEL_NO" /><!-- 운송장 번호 -->
+		<result property="point" column="POINT" /><!-- 운송장 번호 -->
 
 		<collection property="rewardList" column="PAYMENT_NO"
 			javaType="java.util.ArrayList" ofType="reward" select="selectRewards" />
@@ -505,7 +506,8 @@
 		DEFAULT,DEFAULT, --택배사/송장번호
 		#{memberNo},--주문고객번호
 		DEFAULT, --결제상태
-		#{fundingNo} --펀딩번호
+		#{fundingNo}, --펀딩번호
+		#{point} --사용한 포인트
 		)
 	</insert>
 
