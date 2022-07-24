@@ -1,4 +1,4 @@
-const url = 'http://openapi.seoul.go.kr:8088/58717a6e5463686f3130306d58694a4f/json/LOCALDATA_020301/1/100/';
+const url = 'http://openapi.seoul.go.kr:8088/58717a6e5463686f3130306d58694a4f/json/LOCALDATA_020301/1/200/';
 
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	    mapOption = { 
@@ -31,7 +31,7 @@ const url = 'http://openapi.seoul.go.kr:8088/58717a6e5463686f3130306d58694a4f/js
 				    //지도에 표시할 원을 생성합니다
 		        var circle = new kakao.maps.Circle({
 		            center : new kakao.maps.LatLng(lat, lon),  // 원의 중심좌표 입니다 (현재 위도경도)
-		            radius: 500, // 미터 단위의 원의 반지름입니다 
+		            radius: 1000, // 미터 단위의 원의 반지름입니다 
 		            strokeWeight: 1, // 선의 두께입니다 
 		            strokeColor: '#75B8FA', // 선의 색깔입니다
 		            strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
@@ -64,7 +64,9 @@ const url = 'http://openapi.seoul.go.kr:8088/58717a6e5463686f3130306d58694a4f/js
 		            //console.log(results.length);
 		            
 					// 병원이름
-		            const names = new Array();
+		           //const names = new Array();
+		            
+		            const info = new Array();
 		            
 		            for (let i=0; i<results.length; i++){
 
@@ -117,47 +119,56 @@ const url = 'http://openapi.seoul.go.kr:8088/58717a6e5463686f3130306d58694a4f/js
 					        var marker = new kakao.maps.Marker({
 					            position: new kakao.maps.LatLng(result[0].y, result[0].x), // 마커를 표시할 위치입니다
 					            map: map, // 마커를 표시할 지도객체입니다
-					            title: results[i].BPLCNM // 여기에 정보 for문 어떻게 세팅함
+					            //title: results[i].BPLCNM // 여기에 정보 for문 어떻게 세팅함
 					        })
 					        
 					        // results[i].BPLCNM
 					        var iwContent = '<div class="info-title">'+results[i].BPLCNM+'<div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 				    		iwPosition = new kakao.maps.LatLng(result[0].y, result[0].x), //인포윈도우 표시 위치입니다
-				    		iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
+				    		iwRemoveable = false; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
 				    
+							
+							
+							// ************ 마커에 클릭이벤트를 등록합니다
+							kakao.maps.event.addListener(marker, 'click', function() {
+							
+							
+//							const info = new Array();
+
+								//if($('.info-title').length>0){
+									//alert('11');
+									//infowindow.close();
+								//}
+								
+				    		// 인포윈도우 생성
 							var infowindow = new kakao.maps.InfoWindow({
 							    //map: map, // 인포윈도우가 표시될 지도
 							    position : iwPosition, 
 							    content : iwContent,
 							    removable : iwRemoveable
 							});
-							
-							
-							
-							
-							// ************ 마커에 클릭이벤트를 등록합니다
-							kakao.maps.event.addListener(marker, 'click', function() {
-								
+							info.push(infowindow);
 								// 이전에 클릭한건 꺼지게 ************
 								// 클릭한거말고 다른것들......은 어떻게 선택함
+								//const infos = new Array();
+								//infos.push(infowindow); // 생성하면 다 넣음
 								
-								if($('.info-title').parent().parent()){
-									$('.info-title').parent().parent().remove();
+								for(let ww in info){
+									info[ww].close();
 								}
-								
+								//infowindow,close();
 							    // 마커 위에 인포윈도우를 표시합니다
 							    infowindow.open(map, marker);  
-							      
+							    
+							    //info.push(infowindow);
 							      
 								// 클릭해서 보이는 인포윈도우를 클릭하면!
-								document.getElementsByClassName('info-title')[0].addEventListener('click', function() {
-								      // 마커 위에 인포윈도우를 표시합니다
-								      alert("111111");
+								//document.getElementsByClassName('info-title')[0].addEventListener('click', function() {
+								    // 마커 위에 인포윈도우를 표시합니다
+								    //alert(results[i].BPLCNM);
+									document.getElementById("hosList").innerHTML=results[i].BPLCNM;
 								      
-								      
-								      
-								      
-								});
+								//});
 							      
 							});
 							
