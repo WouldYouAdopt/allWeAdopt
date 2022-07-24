@@ -66,17 +66,19 @@
 <%-- --------------------------------------------------------------------------------- --%>
 <ul class="nav">
     <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="#">Wordle</a>
+      <a class="nav-link" href="${contextPath}/point/wordle">Wordle</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">roulette</a>
+     <a class="nav-link" href="${contextPath}/point/wordle">Wordle</a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Link</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link disabled">Disabled</a>
-    </li>
+
+    <!-- 로그인한 회원만 조회 가능. -->
+    <c:if test="${ !empty sessionScope.loginMember }">
+        <li class="nav-item">
+        <a class="nav-link" href="${contextPath}/member/myPage/point">내 펀딩 정보</a>
+        </li>
+    </c:if>
+
   </ul>
 
 
@@ -92,7 +94,6 @@
                         </div>
 
                         <div class="row gx-5 justify-content-center">
-                  
                             <div id="wordleWrapper">
                                 <div class="wordleRow">
                                     <div class="inputWordle accurately">a</div>
