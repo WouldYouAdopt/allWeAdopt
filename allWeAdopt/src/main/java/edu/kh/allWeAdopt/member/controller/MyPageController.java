@@ -253,5 +253,14 @@ public class MyPageController {
 		return "redirect:updateAdminPw";
 	}
 	
+	
+	
+	
+	
+	//마이페이지 본인의 포인트 조회 후 페이지 구현
+	@GetMapping("point")
+	public String myPoint() {
+		return "point/myPoint";
+	}
 
 }
