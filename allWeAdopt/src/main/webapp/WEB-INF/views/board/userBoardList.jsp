@@ -31,7 +31,9 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="${contextPath}/resources/css/main-style.css">
         <link rel="stylesheet" href="${contextPath}/resources/css/board/userBoardList.css">
-        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    
+        <!-- sweetalert-->
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </head>
     <body class="d-flex flex-column h-100">
         <main class="flex-shrink-0">
@@ -86,6 +88,7 @@
                         <c:if test="${displayValue==1}">
                             <c:set var="displayValues" value="1"/>
                         </c:if>
+                        
                     <form action="user" method="GET" onsubmit="return search()">
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" style="margin-bottom:10px;" type="button" id="dropdownMenuButton2" onclick="searchDisplay()">
@@ -189,17 +192,30 @@
                         </div>
                     </div>
                     <button class="searchBtn" id="searchBtn">검색하기</button>
+                    <span id="initialization">초기화</span>
                     </form>
 
                     <!-- 게시글 작성 -->
-                    <c:if test="${!empty loginMember && loginMember.memberType!='A'}">
-                        <p class="addBoard"><a href="user/boardRegist">게시글 작성하기</a></p>
-                    </c:if>
+                        <!-- 정상 조건 만족 시 -->
+                        <c:if test="${!empty loginMember && loginMember.memberType!='A'}">
+                            <p class="addBoard">게시글 작성하기</p>
+                            <input type="hidden" name="registValue" value="0">
+                        </c:if>
+                        <!-- 로그인 하지 않았을 때 -->
+                        <c:if test="${empty loginMember}">
+                            <p class="addBoard">게시글 작성하기</p>
+                            <input type="hidden" name="registValue" value="1">
+                        </c:if>
+                        <!-- 관리자 계정으로 로그인 했을 때 -->
+                        <c:if test="${loginMember.memberType=='A'}">
+                            <p class="addBoard">게시글 작성하기</p>
+                            <input type="hidden" name="registValue" value="2">
+                        </c:if>
 
+                    <%-- 게시글 리스트 --%>
                     <c:if test="${empty boardList}">
                         <p class="noneText">일치하는 게시글이 없습니다</p>
                     </c:if>
-                    <%-- 게시글 리스트 --%>
                     <c:set var="test" value="0"/>
                     <c:forEach begin="0" end="${fn:length(boardList)}" step="3">
                         <div class="row gx-5" id="row">
@@ -275,8 +291,10 @@
         <script>
             // 검색 후 검색창이 열려있게 변수 설정
             const displayValue = ${displayValues};
+            const contextPath = "${contextPath}";
         </script>
         <!-- Core theme JS-->
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="${contextPath}/resources/js/scripts.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
