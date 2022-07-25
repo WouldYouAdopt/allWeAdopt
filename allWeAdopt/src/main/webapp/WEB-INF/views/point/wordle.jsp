@@ -30,7 +30,8 @@
         <link href="${contextPath}/resources/css/styles.css" rel="stylesheet" />
 
         <!-- myPage-updateInfo.css-->
-        <link rel="stylesheet" href="${contextPath}/resources/css/point/wordle.css">
+        <link rel="stylesheet" href="${contextPath}/resources/css/point/wordle-style.css">
+        <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.4/dist/web/variable/pretendardvariable.css" />
 
         <!-- sweetalert-->
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -45,6 +46,10 @@
                 border: none;
             }
         </style>
+
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
+ 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
     </head>
     <body class="d-flex flex-column">
@@ -64,69 +69,65 @@
 
 
 <%-- --------------------------------------------------------------------------------- --%>
-<ul class="nav">
-    <li class="nav-item">
-      <a class="nav-link" href="${contextPath}/point/wordle">Wordle</a>
-    </li>
-    <li class="nav-item">
-     <a class="nav-link" href="${contextPath}/point/wordle">Wordle</a>
-    </li>
+                        <ul class="nav">
+                            <li class="nav-item">
+                            <a class="nav-link" href="${contextPath}/point/wordle">Wordle</a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link" href="${contextPath}/point/wordle">Wordle</a>
+                            </li>
 
-    <!-- 로그인한 회원만 조회 가능. -->
-    <c:if test="${ !empty sessionScope.loginMember }">
-        <li class="nav-item">
-        <a class="nav-link" href="${contextPath}/member/myPage/point">내 펀딩 정보</a>
-        </li>
-    </c:if>
+                            <!-- 로그인한 회원만 조회 가능. -->
+                            <c:if test="${ !empty sessionScope.loginMember }">
+                                <li class="nav-item">
+                                <a class="nav-link" href="${contextPath}/member/myPage/point">내 펀딩 정보</a>
+                                </li>
+                            </c:if>
 
-  </ul>
+                        </ul>
 
+                        <h1> Wordle </h1>
 
-                        <div class="text-center mb-5">
-                            <h1 class="fw-bolder">wordle</h1>
-                            <p class="lead fw-normal text-muted mb-0">제시어를 맞쳐보세요!</p>
-                        </div>
-
-                        <div class="row gx-5 justify-content-center" id="wordleHeader">
-                  
-                            <span>단어를 입력해주세요</span>
+                        <div id="game-board">
 
                         </div>
 
-                        <div class="row gx-5 justify-content-center">
-                            <div id="wordleWrapper">
-                                <div class="wordleRow">
-                                    <div class="inputWordle accurately">a</div>
-                                    <div class="inputWordle">p</div>
-                                    <div class="inputWordle">p</div>
-                                    <div class="inputWordle similar">l</div>
-                                    <div class="inputWordle">e</div>
-                                </div>
-                                <div class="wordleRow">
-                                    <div class="inputWordle"></div>
-                                    <div class="inputWordle"></div>
-                                    <div class="inputWordle"></div>
-                                    <div class="inputWordle"></div>
-                                    <div class="inputWordle"></div>
-                                </div>
-                                <div class="wordleRow">
-                                    <div class="inputWordle"></div>
-                                    <div class="inputWordle"></div>
-                                    <div class="inputWordle"></div>
-                                    <div class="inputWordle"></div>
-                                    <div class="inputWordle"></div>
-                                </div>
-                                <div class="wordleRow">
-                                    <div class="inputWordle"></div>
-                                    <div class="inputWordle"></div>
-                                    <div class="inputWordle"></div>
-                                    <div class="inputWordle"></div>
-                                    <div class="inputWordle"></div>
-                                </div>
-
+                        <div id="keyboard-cont">
+                            <div class="first-row">
+                                <button class="keyboard-button">q</button>
+                                <button class="keyboard-button">w</button>
+                                <button class="keyboard-button">e</button>
+                                <button class="keyboard-button">r</button>
+                                <button class="keyboard-button">t</button>
+                                <button class="keyboard-button">y</button>
+                                <button class="keyboard-button">u</button>
+                                <button class="keyboard-button">i</button>
+                                <button class="keyboard-button">o</button>
+                                <button class="keyboard-button">p</button>
                             </div>
-
-                           </div>
+                            <div class="second-row">
+                                <button class="keyboard-button">a</button>
+                                <button class="keyboard-button">s</button>
+                                <button class="keyboard-button">d</button>
+                                <button class="keyboard-button">f</button>
+                                <button class="keyboard-button">g</button>
+                                <button class="keyboard-button">h</button>
+                                <button class="keyboard-button">j</button>
+                                <button class="keyboard-button">k</button>
+                                <button class="keyboard-button">l</button>
+                            </div>
+                            <div class="third-row">
+                                <button class="keyboard-button">Del</button>
+                                <button class="keyboard-button">z</button>
+                                <button class="keyboard-button">x</button>
+                                <button class="keyboard-button">c</button>
+                                <button class="keyboard-button">v</button>
+                                <button class="keyboard-button">b</button>
+                                <button class="keyboard-button">n</button>
+                                <button class="keyboard-button">m</button>
+                                <button class="keyboard-button">Enter</button>
+                            </div>
+                    </div>
 
 <%-- --------------------------------------------------------------------------------- --%>
 
@@ -137,10 +138,25 @@
         <!-- 푸터 -->
         <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
+        <script>
+        
+        const contextPath = "${contextPath}";
+
+        </script>
+
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+        <script src="${contextPath}/resources/js/words.js"></script>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
         <!-- Core theme JS-->
         <script src="${contextPath}/resources/js/scripts.js"></script>
+
+        <!-- Bootstrap core JS-->
+        <script src="${contextPath}/resources/js/wordle.js"></script>
 
     </body>
 </html>
