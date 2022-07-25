@@ -69,6 +69,7 @@ if(document.getElementById("changeBtn")){
             number.readOnly = false;
             memberTel.readOnly = false;
             confirmBtn.innerText = "인증";
+            confirmBtn.disabled = false;
             newTel.innerHTML = "<span>* </span>휴대폰 번호<span>(인증 대기)</span>";
             telMsg.innerText = "";
             changeBtn.innerText = "취소";
@@ -175,6 +176,10 @@ let sec = 59;
 
 confirmBtn.addEventListener("click", function(){
 
+    if(checkInterval!=null){
+        clearInterval(checkInterval);
+    }
+
     number.value="";
     telMsg.innerText = "";
     cMessage.innerText = "";
@@ -269,11 +274,11 @@ confirmBtn.addEventListener("click", function(){
 
                                 if(number.value.trim().length != 0){
 
-                                    if(number.value == randomNumber&&checkObj.timer){
+                                    if((number.value == randomNumber) && checkObj.timer){
 
                                         telMsg.classList.add("confirm");
                                         telMsg.classList.remove("error");
-                                        telMsg.innerText = "인증 완료(다른 번호로 재입력을 원하시면 변경버튼을 눌러주세요.)";
+                                        telMsg.innerText = "인증 완료(다른 번호 입력을 원하시면 취소 후 다시 인증해주세요)";
                                         
                                         Swal.fire({
                                             title: '인증 완료 (하단의 수정버튼을 눌러주셔야 회원정보에 반영됩니다.)',
@@ -289,17 +294,21 @@ confirmBtn.addEventListener("click", function(){
    
                                         clearInterval(checkInterval);
                                         confirmBtn.innerText = "완료";
+                                        confirmBtn.disabled = true;
                                         memberTel.readOnly = true;
                                         checkObj.number = true; // 유효 O 기록
                                         number.readOnly = true;
-
-
-                                    }else if(!checkObj.timer){
+                                    }
+                                    
+                                    if( !checkObj.timer ){
                                         telMsg.innerText = "인증시간 만료";
                                         telMsg.classList.add("error");
                                         telMsg.classList.remove("confirm");
                                         checkObj.number = false; // 유효하지 않은 상태임을 기록
-                                    }else{
+                                    }
+                                    
+                                    if( number.value != randomNumber ){
+                                    
                                         telMsg.innerText = "인증번호 불일치";
                                         telMsg.classList.add("error");
                                         telMsg.classList.remove("confirm");
@@ -307,39 +316,12 @@ confirmBtn.addEventListener("click", function(){
 
                                     }
 
+                                    
+
                                 }
 
-                            })
-
-                        }
-
-                        // 인증 완료 후 번호를 변경하는 경우
-                        if(checkObj.number&&checkObj.timer){
-                            memberTel.addEventListener("click", function(){
-
-                                Swal.fire({
-                                    title: '휴대폰 번호를 수정하시겠습니까?',
-                                    text: "번호 수정시 인증을 다시 진행해주셔야합니다.",
-                                    width: 340,
-                                    icon: 'warning',
-                                    iconColor: 'rgb(251, 131, 107)',
-                                    showCancelButton: true,
-                                    confirmButtonColor: 'rgb(251, 131, 107)',
-                                    cancelButtonColor: '#999',
-                                    confirmButtonText: '확인',
-                                    cancelButtonText: '취소'
-                                    }).then((result) => {
-                                        if (result.isConfirmed) {
-                                            checkObj.number = false;
-                                            number.value = ""
-                                            number.readOnly = false;
-                                            memberTel.focus();
-                                        }else{
-                                           console.log("취소~");
-                                        }
-                                    })
-
                             });
+
                         }
 
                     }, 1000); // 1초 지연 후 수행
