@@ -247,7 +247,7 @@
                           </c:if>
                           
                           
-                          <button class="btn btn-primary" id="writeBtn">Button</button>
+                          <button class="btn btn-primary" id="writeBtn">등록하기</button>
 </form>
 <%-- ---------------------------------------------------------------------------------------------- --%>
 
