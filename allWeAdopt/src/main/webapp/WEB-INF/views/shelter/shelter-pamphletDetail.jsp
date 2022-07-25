@@ -144,11 +144,11 @@
                                     </div>
 
 
-                                    <c:if test="${!empty detail.thumbnail}">
+                                    <%-- <c:if test="${!empty detail.thumbnail}">
                                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                             <button type="button" class="btn btn-outline-secondary btn-sm allButton"  data-bs-toggle="modal" data-bs-target="#makePam">전단지 만들기</button>
                                         </div>
-                                    </c:if>
+                                    </c:if> --%>
 
 
                                     <%-- <a class="badge bg-secondary text-decoration-none link-light" href="#!">${detail.memberEmail}</a> --%>

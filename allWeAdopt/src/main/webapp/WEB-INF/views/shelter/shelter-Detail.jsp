@@ -151,7 +151,7 @@
 
                                 </header>
                                 <!-- 유기동물 사진 -->
-                                <figure class="mb-4"><img class="img-fluid rounded" style="width: 700px;" src="${popfile}" alt="..." /></figure>
+                                <figure class="mb-4"><img class="img-fluid rounded" style="width: 700px; height: 650px;" src="${popfile}" alt="..." /></figure>
                                 <!-- Post content-->
                                 <!-- 나중에 폰트 적용 해보기! -->
                                 <section class="mb-5">
@@ -291,24 +291,20 @@
                                 <div class="modal-body">
                                     <%-- <img src="${detail.thumbnail}" style="width: 450px; height: 400px;"/> --%>
 
-                                    <p>
-                                        <%-- <textarea onkeyup='writeText(this)' id='textArea' 
-                                            placeholder='연락처를 입력해주세요' rows='2' cols='50'>
-                                        </textarea> --%>
-                                    </p>
 
                                     <div>
-                                        <!--The parent container, image and container for text (to place over the image)-->
+
                                         <div class="mainContainer" id='mainContainer'>
 
-                                            <!--The default image. You can select a different image too.-->
-                                            <%-- <img src="default-pam.png" id="myimage2" alt="" />
-                                            <img src="" id="myimage" alt="" /> --%>
-                                            
+
+                                            <%-- 이미지 --%>
                                             <img id="myimage" style="width: 100px; height: 100px; display: none;" src="${popfile}" alt="myPet">
                                             <img id="myimage2" style="width: 20px; height: 20px; display: none;" src="${contextPath}\resources\images\shelter.png"alt="The Scream">
 
                                             <canvas id="myCanvas" width="1000" height="1000" ></canvas>
+
+
+                                            <%-- cors 때문에 이미지 저장이 안됨 -> 크롬 웹스토어에서 cors 설치 활성화 한 뒤 이미지 다운 가능--%>
 
                                         </div>
                                     </div>
@@ -327,6 +323,13 @@
                                     const kindCd = "${kindCd}"
                                     
 
+                                    var c = document.getElementById("myCanvas");
+                                    var ctx = c.getContext("2d");
+                                    var img = document.getElementById("myimage");
+                                    var img2 = document.getElementById("myimage2");
+    
+                                    // img.crossOrigin = "Anonymous";
+                                    // img2.crossOrigin = "Anonymous";
 
 
 
@@ -334,67 +337,60 @@
 
                                     window.onload = function() {
 
-                                    var c = document.getElementById("myCanvas");
-                                    var ctx = c.getContext("2d");
-                                    var img = document.getElementById("myimage");
-                                    var img2 = document.getElementById("myimage2");
+
                                     ctx.drawImage(img2, 0, 0, 1000, 1000);
-                                    ctx.drawImage(img, 20, 20, 600, 550);
+                                    ctx.drawImage(img, 20, 120, 600, 550);
 
 
                                     ctx.font = "25px Helvetica";
                                     ctx.fillStyle  = "black";
-                                    ctx.fillText(careNm, 220, 800);
+                                    ctx.fillText(careNm, 210, 840);
 
                                     ctx.font = "35px Helvetica";
                                     ctx.fillStyle  = "black";
-                                    ctx.fillText(careTel, 545, 800);
+                                    ctx.fillText(careTel, 550, 840);
 
 
                                     ctx.font = "35px bold Helvetica";
                                     ctx.fillStyle  = "black";
-                                    ctx.fillText('발견 장소 : ' + happenPlace, 30, 620);
+                                    ctx.fillText('발견 장소 : ' + happenPlace, 25, 720);
 
 
                                     ctx.font = "40px Helvetica";
                                     ctx.fillStyle  = "black";
-                                    ctx.fillText(age, 650, 130);
+                                    ctx.fillText(age, 650, 230);
 
                                     ctx.font = "40px Helvetica";
                                     ctx.fillStyle  = "black";
-                                    ctx.fillText(sexCd, 650, 180);
+                                    ctx.fillText('성별 : ' + sexCd, 650, 280);
 
                                     ctx.font = "40px Helvetica";
                                     ctx.fillStyle  = "black";
-                                    ctx.fillText(colorCd, 650, 230);
+                                    ctx.fillText(colorCd, 650, 330);
 
                                     ctx.font = "40px Helvetica";
                                     ctx.fillStyle  = "black";
-                                    ctx.fillText(kindCd, 650, 60);
+                                    ctx.fillText(kindCd, 650, 180);
 
                                     }
-
+                                    
+                                    
 
                                     </script>
 
 
                                 </div>
-                                <div class="modal-footer">
-                                    <a id = "download" download="image.png">
-                                        <button type="button" onclick="download()" class="btn btn-primary" style="background-color:#FB836B; border:0;">전단지 저장</button>                             
-                                    </a>
-                                </div>
+                                    <div class="modal-footer">
+                                        <a id = "download" download="image.png">
+                                            <button type="button" onclick="download()" class="btn btn-primary" style="background-color:#FB836B; border:0;">전단지 저장</button>                             
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                                                                                                                                    
                                 </section>
 
-                                <%-- <div class="position-relative">
-                                    <div class="position-absolute top-100 start-100 translate-middle">
-                                        <a href="#" style="display:scroll; position:fixed; left:30px; rigit: 50px; bottom: 10px; title=top"><h3><i class="bi bi-arrow-up-circle bt_top" style="color: #FB836B;"></i></h3></a>
-                                    </div>
-                                </div> --%>
 
                                 <button onclick="topFunction()" id="myBtn" title="Go to top"><h3><i class="bi bi-arrow-up-circle bt_top" style="color: #FB836B;"></i></h3></button>    
                                 
