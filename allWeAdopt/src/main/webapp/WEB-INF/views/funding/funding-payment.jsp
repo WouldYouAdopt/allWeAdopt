@@ -209,7 +209,22 @@
 
 
 
-
+							<div class="pointWrapper">
+								<h4 class="fw-bolder">포인트 사용</h4>
+								<p class="lead fw-small text-muted mb-0 lead">사용하실 포인트를 입력해주세요 </p>
+								
+								<div id="pointArea">
+									<div id="havePointArea">
+										<span>보유</span>
+										<input type="number" value="10000" id="inputPoint" disabled>
+									</div>
+									<div id="usePointArea">
+										<span>사용</span>
+										<input type="number" value="" id="inputPoint">
+									</div>
+								</div>
+								
+							</div>
 							<input type="hidden" name="point" value="0">
 							<!-- 사용 포인트 입력 영역-->
 
