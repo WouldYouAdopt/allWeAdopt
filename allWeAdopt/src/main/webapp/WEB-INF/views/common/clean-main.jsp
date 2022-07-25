@@ -92,7 +92,6 @@
             const contextPath = "${contextPath}";
         </script>
 
-        
 
         <!-- Core theme JS-->
         <script src="${contextPath}/resources/js/scripts.js"></script>

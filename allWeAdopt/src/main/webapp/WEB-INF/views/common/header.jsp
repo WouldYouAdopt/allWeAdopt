@@ -32,6 +32,7 @@
                     <li class="nav-item"><a class="nav-link" href="${contextPath}/shelter/shelterList">보호소</a></li>
                     <li class="nav-item"><a class="nav-link" href="${contextPath}/shelter/pamphlet/list">스토리</a></li>
                     <li class="nav-item"><a class="nav-link" href="${contextPath}/board/user">어답터</a></li>
+                    <li class="nav-item"><a class="nav-link" href="${contextPath}/point/wordle">포인트</a></li>
                     <li class="nav-item"><a class="nav-link" href="${contextPath}/funding/detail/${nowFundingNo}?page=1">펀딩</a></li>
                     <li class="nav-item"><a class="nav-link" href="${contextPath}/findHospital">병원찾기</a></li>
 
@@ -73,6 +74,9 @@
                                         <li><a class="dropdown-item" href="${contextPath}/member/myPage/boardList">작성글 목록</a></li>
                                         <li><a class="dropdown-item" href="${contextPath}/funding/my/list">펀딩 참여 내역</a></li>
                                         <li><a class="dropdown-item" href="javascript:void(0)" onclick="popUpOpne()">채팅 목록</a></li>
+                                        
+                                        <li><a class="dropdown-item" href="${contextPath}/member/myPage/point">나의 포인트</a></li>
+                                        
                                         <li><a class="dropdown-item" href="${contextPath}/member/myPage/ask/list">문의하기</a></li>
                                         <li><a class="dropdown-item" href="${contextPath}/member/myPage/notice/list">공지사항</a></li>
                                         <c:if test="${  loginMember.memberType == 'M' }">

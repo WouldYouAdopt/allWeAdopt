@@ -66,6 +66,7 @@
             .lineBtn-gr{
             	color: #999;
             	border: 1px solid #999;
+            	background:#fff;
             }
             .btn-pk{
                 color: #fff;
@@ -74,8 +75,8 @@
             }
             .selected{
                 color: #fff;
-            	border: 1px solid #fff;
-            	background: #FB836B;
+            	border: 1px solid #2181df;
+            	background: #2181df;
             }
             
             
@@ -84,8 +85,8 @@
             }
             .mapBtn{
             position:absolute;
-            top:0px;
-            right:0px;
+            top:20px;
+            right:25px;
             z-index:3;
             }
             .mapBtn div{
@@ -101,6 +102,28 @@
             #map{
             margin-right:10px;
             }
+            
+            .info-title {
+				position: absolute;
+			    top: -7px;
+			    left: -14px;
+			    width: 170px; 
+			    background: #fb836b;
+			  /*  background: transparent; */
+			    color: #fff;
+			    height: 37px;
+			    line-height: 24px;
+			    border-radius: 20px;
+			    border: 1px solid #fb836b;
+			    padding: 5px 10px 5px 10px;
+			    text-align:center;
+			    
+			    overflow: hidden;
+			    text-overflow: ellipsis;
+			    white-space: nowrap;
+			    cursor:pointer;
+
+			}
 
         </style>
     </head>
@@ -114,23 +137,28 @@
 
 					<div class="text-center py-5">
 						<h1 class="fw-bolder">병원찾기</h1>
-						<p class="lead fw-normal text-muted mb-0">가까운 병원을 확인해보세요</p>
+						<p class="lead fw-normal text-muted mb-0">가까운 병원을 클릭하여 상세 정보를 확인해보세요</p>
 					</div>
                     
-					<div class="d-flex mx-5 justify-content-center mapCon" >
+					<div class="d-flex justify-content-center mapCon" >
 						
-						<div id="map" style="width:82%;height:500px; "></div>
+						<div id="map" style="width:100%;height:500px; "></div>
 						
 						<div class="mapBtn">
 							<div class="mb-2 lineBtn-gr">반경 1km</div>
-							<div class="mb-2 lineBtn-gr selected">반경 2km</div>
+							<div class="mb-2 lineBtn-gr">반경 2km</div>
 							<div class="lineBtn-gr">반경 5km</div>
 						</div>
 						
 					</div>
-						<div style="height:100px;"></div>
+					
+					<div style="min-height:100px; margin-top:50px; margin-bottom:100px;" id="hosList">
+						
+					</div>
+					
 
-                        <div id="data"></div>
+
+                    <div id="data"></div>
   
 				</div>
 				</section>
@@ -154,11 +182,12 @@
 
         <!-- 카카오맵 -->
         <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6f77a10ecba4b0e9035d161f9f7eec76&libraries=services,clusterer,drawing"></script>
+        
+        <!-- 제이쿼리 -->
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
         <script src="${contextPath}/resources/js/hospital.js"></script>
-		<script>
-		
-		//const contextPath = '${contextPath}';
-		</script>
+        <script>const contextPath = '${contextPath}';</script>
+
         
     </body>
     

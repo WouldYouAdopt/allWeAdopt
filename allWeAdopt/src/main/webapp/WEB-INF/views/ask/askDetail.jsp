@@ -99,7 +99,7 @@
             
             <!-- About section two-->
             <section class="py-0 mb-5" >
-                
+                ${rList}
                 <div class="container px-2 my-1">
                     <div class="row gx-5 align-items-center">
                         

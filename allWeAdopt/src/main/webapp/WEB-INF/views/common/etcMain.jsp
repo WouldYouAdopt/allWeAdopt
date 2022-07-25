@@ -413,7 +413,18 @@
                                         
                                         </c:if>
                                         
-                                        <c:if test="${mode==3}">Contact (미정) </c:if>   
+                                        <c:if test="${mode==3}">Contact (미정)                           
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        </c:if>   
                                     </div> 
                                 </div>
                             </div>

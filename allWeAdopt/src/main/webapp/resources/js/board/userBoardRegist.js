@@ -23,12 +23,13 @@ $(document).ready(function() {
 		  ];
 
 	var setting = {
-            height : 300,
+            height : 1200,
             minHeight : null,
             maxHeight : null,
             focus : true,
             lang : 'ko-KR',
             toolbar : toolbar,
+			disableResizeEditor:true,
             //콜백 함수
             callbacks : { 
             	onImageUpload : function(files, editor, welEditable) {
@@ -91,6 +92,11 @@ for (let i = 0; i < selectMenu.length; i++) {
 
 		document.getElementsByName("neuterings")[0].value = document.getElementsByName("neuteringValue")[0].innerText.trim();
 
+		if(document.getElementsByName("category")[0].value=="보호"){
+			document.getElementsByClassName("dateArea")[0].style.display = "block";
+		}else{
+			document.getElementsByClassName("dateArea")[0].style.display = "none";
+		}
 		// 지역선택, 축종 버튼에 값이 있을 시 상세 드롭다운 버튼 생성
 		if(document.getElementsByName("areaValue")[0].innerText.trim()!="지역 선택"){
 			document.getElementsByName("areaDetailValue")[0].style.display = "block";	
@@ -218,7 +224,6 @@ function animalDetailFunc(){
 
 // 유효성 검사
 function regist(){
-
 	const validate = {
 		"categoryVali" : false,
 		"imgBoolVali" : false,
@@ -236,8 +241,7 @@ function regist(){
 	// 카테고리 검사
 	const category = document.getElementsByName("categoryValue")[0];
 	if(category.innerText.trim() == '카테고리를 선택해주세요'){
-		alert("카테고리를 선택해주세요");
-		return false;
+		validate.categoryVali = false;
 	}else{
 		validate.categoryVali = true;
 	}
@@ -245,8 +249,7 @@ function regist(){
 	// img검사
 	const imgBool = !!document.querySelector('.card-block img');
 	if(!imgBool){
-		alert("최소 1장의 이미지를 삽입해야 합니다");
-		return false;
+		validate.imgBoolVali = false;
 	}else{
 		validate.imgBoolVali = true;
 	}
@@ -255,8 +258,7 @@ function regist(){
 	// 게시글 제목 검사
 	const title = document.getElementById("boardTitle");
 	if(title.value.trim()==0){
-		alert("제목을 입력해주세요");
-		return false;
+		validate.titleVali = false;
 	}else{
 		validate.titleVali = true;
 	}
@@ -264,8 +266,7 @@ function regist(){
 	// 게시글 내용 검사
 	const content = document.getElementById("summernote");
 	if(content.value.trim()==0){
-		alert("내용을 입력해주세요");
-		return false;
+		validate.contentVali = false;
 	}else{
 		validate.contentVali = true;
 	}
@@ -273,8 +274,7 @@ function regist(){
 	// 지역 검사
 	const area = document.getElementsByName("areaValue")[0];
 	if(area.innerText.trim()=='지역 선택'){
-		alert("지역을 선택해주세요");
-		return false;
+		validate.areaVali = false;
 	}else{
 		validate.areaVali = true;
 	}
@@ -282,8 +282,7 @@ function regist(){
 	// 상세 지역 검사
 	const areaDetail = document.getElementsByName("areaDetailValue")[0];
 	if(areaDetail.innerText.trim()=='상세 지역 선택'){
-		alert("상세 지역을 선택해주세요");
-		return false;
+		validate.areaDetailVali = false;
 	}else{
 		validate.areaDetailVali = true;
 	}
@@ -291,8 +290,7 @@ function regist(){
 	// 연락처 검사
 	const phone = document.getElementsByName("phone")[0];
 	if(phone.value.trim()==0){
-		alert("연락처를 입력해주세요");
-		return false;
+		validate.phoneVali = false;
 	}else{
 		validate.phoneVali = true;
 	}
@@ -300,8 +298,7 @@ function regist(){
 	// 축종 검사
 	const animal = document.getElementsByName("animalTypeValue")[0];
 	if(animal.innerText.trim()=="축종"){
-	 	alert("축종을 선택해주세요");
-	 	return false;
+		validate.animalVali = false;
 	 }else{
 		validate.animalVali = true;
 	}
@@ -309,8 +306,7 @@ function regist(){
 	 // 품종 검사
 	const animalDt = document.getElementsByName("animalDetailValue")[0];
 	if(animalDt.innerText.trim()=="품종"){
-	 	alert("품종을 선택해주세요");
-	 	return false;
+		validate.animalDetailVali = false;
 	 }else{
 		validate.animalDetailVali = true;
 	}
@@ -318,8 +314,7 @@ function regist(){
 	 // 성별 검사
 	const gender = document.getElementsByName("genderValue")[0];
 	if(gender.innerText.trim()=="수컷 / 암컷"){
-	 	alert("성별을 선택해주세요");
-	 	return false;
+		validate.genderVali = false;
 	 }else{
 		validate.genderVali = true;
 	}
@@ -327,8 +322,7 @@ function regist(){
 	// 중성화 검사
 	const neutering = document.getElementsByName("neuteringValue")[0];
 	if(neutering.innerText.trim()=="완료 / 미완료"){
-	 	alert("중성화 여부를 선택해주세요");
-	 	return false;
+		validate.neuteringVali = false;
 	 }else{
 		validate.neuteringVali = true;
 	}
@@ -338,30 +332,67 @@ function regist(){
 	const period2 = document.getElementsByName("boardPeriod2")[0];
 	
 	if((period.value=='')&&(period2.value=='')){
-		validate.imgBoolVali = true;
+		validate.periodVali = true;
 	}else if((period.value=='')&&(period2.value!='')){
-		alert("나머지 공유 날짜를 선택해주세요");
-		return false;
+		validate.periodVali = false;
 	}else if((period.value!='')&&(period2.value=='')){
-		alert("나머지 공유 날짜를 선택해주세요");
-		return false;
+		validate.periodVali = false;
 	}else if(period.value >= period2.value){
-		alert("지정된 날짜 형식이 올바르지 않습니다");
-		return false;
+		validate.periodVali = false;
 	}
 	else{
-		validate.imgBoolVali = true;
+		validate.periodVali = true;
 	}
 	
 	for(let key in validate){ // 객체용 향상된 for문
-        
+        let str;
         // 현재 접근 중인 key의 value가 true인 경우
-        if(validate[key]){
+        if(!validate[key]){
 
-            alert(message);
+			switch(key){
+				case "categoryVali"    : str="카테고리 선택란을"; break;
+				case "imgBoolVali"       : str="1장 이상의 이미지를 삽입해야 합니다. 이미지를"; break;    
+				case "titleVali"		: str="게시글 제목 입력란"; break;
+				case "contentVali"     : str="게시글 내용 입력란"; break;
+				case "areaVali"      : str="지역 선택란을"; break;
+				case "areaDetailVali"            : str="상세지역 선택란을"; break;
+				case "phoneVali"            : str="휴대폰 입력란을"; break;
+				case "animalVali"            : str="축종 선택란을"; break;
+				case "animalDetailVali"            : str="품종 선택란을"; break;
+				case "neuteringVali"            : str="중성화 선택란을"; break;
+				case "genderVali"            : str="성별 선택란을"; break;
+				case "periodVali"            : 
+				str="공유 기간 선택란의 형식이 맞지 않거나 나머지 선택란이 입력되지 않았습니다. 날짜 선택란을"; break;
+				}
+				
+				str += " 확인해주세요.";
 
-            return true; // form태그 기본 이벤트 제거
+            Swal.fire({
+				title: str,
+				width: 600,
+				padding: '3em',
+				color: 'black',
+				confirmButtonColor: 'rgb(251, 131, 107)',
+				confirmButtonText: '확인'
+				});
+
+				return false;
         }
-    }
-
+	}
+	
 };
+
+// function valiSuccess(conMessage) {
+// 	Swal.fire({
+// 		title: conMessage,
+// 		width: 600,
+// 		padding: '3em',
+// 		color: 'black',
+// 		confirmButtonColor: 'rgb(251, 131, 107)',
+// 		confirmButtonText: '확인'
+// 		}).then((result) => {
+// 			if (result.isConfirmed) {
+// 				return true;
+// 			}
+// 		 });
+// }

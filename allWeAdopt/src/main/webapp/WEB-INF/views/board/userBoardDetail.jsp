@@ -30,6 +30,8 @@
         <link rel="stylesheet" href="${contextPath}/resources/css/board/userBoardDetail.css">
         <link href="${contextPath}/resources/css/shelter/shelter-main.css" rel="stylesheet" />
 
+         <!-- sweetalert-->
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </head>
     <body class="d-flex flex-column">
         <main class="flex-shrink-0">
@@ -112,12 +114,15 @@
                                             </c:if>
                                         </div>
 
-                                        <%-- 전단지 만들기 버튼 --%>
-                                        <c:if test="${board.category != '완료'}">                                        
+
+                                        <%-- 전단지 만들기 버튼 --%>                                
+                                        <c:if test="${board.category eq '목격' || board.category eq '실종'}">
                                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                                 <button type="button" class="btn btn-outline-secondary btn-sm allButton"  data-bs-toggle="modal" data-bs-target="#makePam">전단지 만들기</button>
                                             </div>
-                                        </c:if>                                  
+                                        </c:if>
+
+
                                         
 
                                     </div>
@@ -126,10 +131,13 @@
                                 <!-- Post content-->
                                 <section class="mb-5">
                                     ${board.boardContent}
-
+                                
                                     * 연락처 : ${board.phone} <br><br>
                                     * 지역 : ${board.area} ${board.areaDetail} <br><br>
+
+                                    <c:if test="${board.category eq '보호'}">
                                     * 공유 기간 : ${board.boardPeriod} ~ ${board.boardPeriod2}
+                                    </c:if>
                                 </section>
 
 
@@ -143,12 +151,30 @@
                             </div>
                            
                             <!-- 문의 버튼 -->
-                            <c:if test="${(board.memberNo!=loginMember.memberNo) && !empty loginMember}">
+                            <!-- 정상적으로 조건 만족 시 -->
+                            <c:if test="${(board.memberNo!=loginMember.memberNo) && loginMember.memberType!='A' && !empty loginMember}">
                                 <div class="btn-area">
                                     <button class="btnRegist" onclick="selectThisUser(${board.memberNo})">문의하기</button>
                                 </div>
                             </c:if>
-
+                            <!-- 로그인을 하지 않았을 때 -->
+                            <c:if test="${empty loginMember}">
+                                <div class="btn-area">
+                                    <button class="btnRegist" onclick="inquiryFunc()">문의하기</button>
+                                    <input type="hidden" value="0" name="inquiryValue">
+                                </div>
+                            </c:if>
+                            <!-- 관리자 계정으로 로그인 하였을 때 -->
+                            <c:if test="${loginMember.memberType=='A'}">
+                                <button class="btnRegist" onclick="inquiryFunc()">문의하기</button>
+                                <input type="hidden" value="1" name="inquiryValue">
+                            </c:if>
+                            <!-- 게시글 작성자와 로그인한 회원이 같을 때 -->
+                            <c:if test="${(board.memberNo==loginMember.memberNo) && !empty loginMember}">
+                                <button class="btnRegist" onclick="inquiryFunc()">문의하기</button>
+                                <input type="hidden" value="2" name="inquiryValue">
+                            </c:if>
+               
 
 
                             
@@ -267,6 +293,7 @@
                     </div>
                 </div>
             </section>
+             <input type="hidden" id="loginMember" value="${loginMember.memberNo}">
         </main>
        <!-- 푸터 -->
         <jsp:include page="/WEB-INF/views/common/footer.jsp" />
@@ -277,10 +304,19 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 
         <script>
-        const loginMember = ${loginMember.memberNo};
         const boardNo = ${board.boardNo};
         const contextPath = "${contextPath}";
         const thumbnail = "${board.thumbnail}";
+        if(${!empty message}){
+            Swal.fire({
+				title: ${message},
+				width: 600,
+				padding: '3em',
+				color: 'black',
+				confirmButtonColor: 'rgb(251, 131, 107)',
+				confirmButtonText: '확인'
+				});
+        }
         </script>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></>

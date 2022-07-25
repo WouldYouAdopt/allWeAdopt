@@ -39,7 +39,8 @@
     border-radius: 5px;
     color: #FFF;
     background-color: #FB836B;
-    margin: 5px 0 10px 0;
+    margin: 15px 0 10px 0;
+    cursor: pointer;
 }
 
 /* 카테고리 */
@@ -188,12 +189,30 @@ hr{
     border: 1px solid #FB836B;
     color: #FB836B;
     margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 18px;
     display: none;
 }
 
 .searchBtn:hover{
     color: #FFF;
     background-color: #FB836B;
+    transition-duration: 200ms;
+}
+
+#initialization{
+    width: 58px;
+    color: crimson;
+    border: 1px solid #FB836B;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 10px 0;
+    display: none;
+    cursor: pointer;
+}
+
+#initialization:hover{
+    color: #FFF;
+    border: 1px solid crimson;
+    background-color: crimson;
     transition-duration: 200ms;
 }

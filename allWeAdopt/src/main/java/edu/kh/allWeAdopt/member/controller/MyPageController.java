@@ -224,5 +224,43 @@ public class MyPageController {
 	    }
 	}
 	
+	// 관리자 비밀번호 변경 화면 전환
+	@GetMapping("updateAdminPw")
+	public String updateAdminPw() {
+		
+		return "member/updateAdminPw";
+	}
+	
+	// 관리자 비밀번호 변경 수행
+	@PostMapping("updateAdminPw")
+	public String updateAdminPw( @ModelAttribute("loginMember") Member loginMember,
+								 @RequestParam Map<String, Object> map,
+								 HttpServletRequest req,
+								 RedirectAttributes ra) {
+		
+		// 회원번호 세팅
+		map.put("memberNo", loginMember.getMemberNo());
+		
+		// 로그인 bCrypt 완성되면 테스트해보기 ~
+		int result = service.updatePw( map );
+		
+		if(result>0) {
+			ra.addFlashAttribute("message", "비밀번호 변경 완료!");
+		}else {
+			ra.addFlashAttribute("message", "비밀번호 변경 실패 (비밀번호 불일치)");
+		}
+		
+		return "redirect:updateAdminPw";
+	}
+	
+	
+	
+	
+	
+	//마이페이지 본인의 포인트 조회 후 페이지 구현
+	@GetMapping("point")
+	public String myPoint() {
+		return "point/myPoint";
+	}
 
 }

@@ -163,8 +163,8 @@
                               <tbody class="rewardsRows">
 				<c:choose>
 					
-					<c:when test="${rewardList != null}">
-						<c:forEach  var="r" items="${pagescope.rewardList}">
+					<c:when test="${rList != null}">
+						<c:forEach  var="r" items="${rList}">
               <c:set var="i" value="${i+1}"/>
 							<tr>
 
@@ -181,15 +181,15 @@
 					
 					<c:otherwise>
             <tr>
-              <td>1</td>
+              <td><input type="hidden" value="0">1</td>
               <td><input type="text"></td>
               <td><input type="text"></td>
               <td><input type="number"></td>
               <td><input type="number"></td>
               <td><button type="button" class="rewardsAddBtn" >등록</button></td>
             </tr>
-            <tr>
-              <td>2</td>
+            <tr> 
+              <td><input type="hidden" value="0">2</td>
               <td><input type="text"></td>
               <td><input type="text"></td>
               <td><input type="number"></td>
@@ -247,7 +247,7 @@
                           </c:if>
                           
                           
-                          <button class="btn btn-primary" id="writeBtn">Button</button>
+                          <button class="btn btn-primary" id="writeBtn">등록하기</button>
 </form>
 <%-- ---------------------------------------------------------------------------------------------- --%>
 

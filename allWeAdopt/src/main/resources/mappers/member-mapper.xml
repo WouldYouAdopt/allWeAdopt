@@ -126,6 +126,15 @@
 		MEMBER_PW = #{newPw}
 		WHERE MEMBER_EMAIL = #{inputEmail}
 	</update>
+	
+	
+	<!-- 관리자 계정 등록 -->
+	<insert id="registerAdmin">
+	INSERT INTO MEMBER 
+	VALUES(SEQ_MEMBER_NO.NEXTVAL,#{memberEmail},#{memberPw},#{memberName},#{memberTel},
+		  NULL,NULL,DEFAULT,'A',DEFAULT)
+	</insert>
+	
  
  
  
