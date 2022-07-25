@@ -23,6 +23,7 @@ public class OrderDetail {
 	private String orderPhoneSub; //전화번호2
 	private String orderAddress; //수령인 주소
 	private int paymentNo; //결제 번호f
+	private int deliveryFee; //배송비
 	
 	private String fundingThumbnail; //썸네일 경로 추가함
 	

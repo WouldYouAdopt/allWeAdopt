@@ -216,8 +216,8 @@
 								<div id="pointArea">
 									<div id="havePointArea">
 										<span><i class="fa-solid fa-paw"></i> 보유</span>
-									
-											<input type="number" value="100000" id="havePoint" disabled>
+										
+											<input type="number" value="${loginMember.memberPoint}" id="havePoint" disabled>
 									
 									</div>
 									<div id="usePointArea">

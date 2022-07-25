@@ -146,12 +146,17 @@
 										<tr>
 											<th>결제 수단</th>
 											<c:if test="${detail.payMethod == 'point'}"><td style="text-align:left;">카카오 결제</td></c:if>
-											<c:if test="${detail.payMethod != 'point'}"><td style="text-align:left;">일반 카드 결제</td></c:if>
+											<c:if test="${detail.payMethod == 'card'}"><td style="text-align:left;">일반 카드 결제</td></c:if>
+											<c:if test="${detail.payMethod != 'point'&&detail.payMethod != 'card'}"><td style="text-align:left;">포인트 결제</td></c:if>
 											
 										</tr>
 										<tr>
 											<th>총결제 금액</th>
-											<td style="text-align:left;"><fmt:formatNumber value="${detail.fullPrice}" type="number"/></td>
+											<td style="text-align:left;"><fmt:formatNumber value="${detail.fullPrice+detail.deliveryFee}" type="number"/></td>
+										</tr>
+										<tr>
+											<th>사용 포인트</th>
+											<td style="text-align:left;"><fmt:formatNumber value="${detail.point}" type="number"/></td>
 										</tr>
 										<tr>
 											<th>주문 상태</th>
@@ -217,8 +222,12 @@
 											<td style="text-align:left;">${detail.parcelNo}</td>
 										</tr>
 										<tr>
-											<th colspan="1">주소</th>
+											<th colspan="1" >주소</th>
 											<td colspan="3" style="text-align:left;">${detail.orderAddress}</td>
+										</tr>
+										<tr>
+											<th colspan="1">배송비</th>
+											<td colspan="3">${detail.deliveryFee}</td>
 										</tr>
 									</tbody>
 								</table>
