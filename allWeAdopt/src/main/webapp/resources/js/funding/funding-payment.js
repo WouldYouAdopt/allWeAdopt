@@ -413,3 +413,33 @@ $(".payBtn").click(function(){
  
 });
 
+//---------------------------------------------------
+
+//결제시 포인트 사용 여부
+
+const useAll = document.getElementById("useAll");
+useAll.addEventListener("click",()=>{
+
+  const havePoint = document.getElementById("havePoint").value;
+  const fullPrice = document.getElementById("fullPrice").value;
+
+  if(havePoint == 0){
+    alert("사용 할 수 있는 포인트가 없습니다.");
+    return;
+  }
+
+  if(Number(havePoint)>Number(fullPrice)){
+    console.log(havePoint);
+    console.log(fullPrice);
+    alert("사용 할 수 있는 포인트가 없습니다.");
+    return;
+  }
+  
+  if(havePoint>fullPrice){
+    console.log(havePoint);
+    console.log(fullPrice);
+    alert("사용 할 수 있는 포인트가 없습니다.");
+    return;
+  }
+
+})

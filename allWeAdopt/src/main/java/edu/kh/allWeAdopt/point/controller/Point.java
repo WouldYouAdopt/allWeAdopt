@@ -50,6 +50,14 @@ public class Point {
 		return "point/roulette";
 	}
 	
+	//룰렛 수행후 결과값의 DB에 반영
+	@ResponseBody
+	@GetMapping("/roulette/run")
+	public int rouletteRun() { 
+
+		return 0;
+	}
+	
 	
 
 }

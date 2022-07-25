@@ -108,7 +108,7 @@
 								<hr>
 								<div class="finalPay">
 									<h5 class="fw-bolder">최종 결제 금액</h5>
-									<h5 class="fw-bolder">${fullPrice}원</h5>
+									<h5 class="fw-bolder">${fullPrice+funding.deliveryFee}원</h5>
  
 								</div>
 
@@ -215,12 +215,17 @@
 								
 								<div id="pointArea">
 									<div id="havePointArea">
-										<span>보유</span>
-										<input type="number" value="10000" id="inputPoint" disabled>
+										<span><i class="fa-solid fa-paw"></i> 보유</span>
+									
+											<input type="number" value="110000" id="havePoint" disabled>
+									
 									</div>
 									<div id="usePointArea">
-										<span>사용</span>
-										<input type="number" value="" id="inputPoint">
+										<span><i class="fa-solid fa-paw"></i> 사용</span>
+										
+											<input type="number" value="" id="inputPoint">
+											<button type="button" class="btn" id="useAll">전액 사용</button>
+								
 									</div>
 								</div>
 								
@@ -247,7 +252,6 @@
 										<label	class="btn payBtn" for="Pay"> 
 											<div class="fa-solid fa-credit-card fa-3x fa-fw "></div>
 											<p class="pp">일반 결제</p>
-											<%-- fa-spin 스핀 --%>
 										</label>
 									</span> 
 									
@@ -295,27 +299,15 @@
 						<!-- 회원번호 -->
 						<input type="hidden" id="memberNo" name="memberNo" value="${loginMember.memberNo}">
 						<!-- 모든 리워드가격 -->
-						<input type="hidden" id="fullPrice" name="fullPrice" value="${fullPrice}">
+						<input type="hidden" id="fullPrice" name="fullPrice" value="${fullPrice+funding.deliveryFee}">
 						
 						
 						<!-- 결제방식 -->
 						<input type="hidden" name="payMethod" id="pay_method" value="" >
-						<!-- 결제번호(PK으로 생성) -->
-						<%-- <input type="hidden" name="payNo" id="merchant_uid" type="number" > --%>
+					
 
 						<input type="hidden" name="nameAnonymous" id="nameAnonymous" value="${nameAnonymous}">
 						<input type="hidden" name="priceAnonymous" id="priceAnonymous" value="${priceAnonymous}">
-
-						
-
-
-	<%-- 이름 익명 : ${nameAnonymous}<br> 
-	가격 비공개 : ${priceAnonymous}<br>
- --%>
-
-
-
-
 
 
 
