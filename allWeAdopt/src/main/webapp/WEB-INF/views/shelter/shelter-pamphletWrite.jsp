@@ -74,7 +74,7 @@
 
                           <div class="col-md-5 col-sm-6 mt-3">
                               <label for="exampleFormControlInput3" class="form-label">제목</label>
-                              <input type="text" name="boardTitle" class="form-control" id="exampleFormControlInput3" placeholder="전단지 제목" value="${detail.boardTitle}" >
+                              <input type="text" name="boardTitle" class="form-control" id="exampleFormControlInput3" placeholder="제목을 입력해주세요" value="${detail.boardTitle}" >
                           </div>
 
                           <div class="md-10"></div>
@@ -124,7 +124,7 @@
         <script>
             $(document).ready(function() {
                 $('#summernote').summernote({
-                    placeholder: '반려동물 이름, 나이, 잃어버린 날짜, 특징, 잃어버린 장소, 반려동물 사진 순으로 작성해주세요',
+                    placeholder: '반려동물의 사진과 일상을 공유해주세요',
                     tabsize: 2,
                     height: 350,
                     toolbar: [

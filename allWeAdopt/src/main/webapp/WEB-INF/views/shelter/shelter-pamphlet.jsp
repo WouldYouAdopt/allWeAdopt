@@ -74,19 +74,7 @@
             <!-- nav -->
 
             <!-- Page Content-->
-            <!-- 메인 로고 부분(사진 끝에 흰거 나중에 여쭙기) -->
-            <%-- <section class="py-5">
-                <div class="container px-5">
-                    <div class="card border-0 shadow rounded-3 overflow-hidden">
-                        <div class="card-body p-0">
-                            <div class="row gx-0">
-                                <!-- 분양소 메인 로고 (클릭 시 최상위 주소) -->
-                                <a href="${contextPath}"><div class="col-lg-6 col-xl-7"><div class="bg-featured-blog" style="background-image: url('https://dummyimage.com/700x350/343a40/6c757d')"><img src="${contextPath}/resources/images/adopt-mainLogo.png" alt="main"></div></div></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section> --%>
+
 
             <img src="${contextPath}/resources/images/Pet-Friendly.jpg" class="img-fluid" alt="...">
 
@@ -112,15 +100,15 @@
                                 <div class="card h-100 shadow border-0">
                                   
                                     <c:if test="${!empty pamphlet.thumbnail}">
-                                        <img class="card-img-top" src="${pamphlet.thumbnail}" alt="썸네일" id="thumbnail" />
+                                        <img class="card-img-top" src="${pamphlet.thumbnail}" alt="썸네일" id="thumbnail" style="height: 375px; width: 375px;" />
                                     </c:if>
 
-                                    <c:if test="${empty pamphlet.thumbnail}">
+                                    <%-- <c:if test="${empty pamphlet.thumbnail}">
                                          <img class="card-img-top" src="${contextPath}/resources/images/pamphlet-noImage.jpg" alt="썸네일" id="thumbnail" />
-                                    </c:if>
+                                    </c:if> --%>
 
                                     <div class="card-body p-4"  id="content">
-                                        <span class="badge" style="background-color: #FB836B; font-size: 13px; margin-bottom: 10px; margin-bottom: 10px;" >실종</span>
+                                        <span class="badge" style="background-color: #FB836B; font-size: 13px; margin-bottom: 10px; margin-bottom: 10px;" >New</span>
 
                                         <a class="text-decoration-none link-dark stretched-link" href="../pamphlet/detail/${pamphlet.boardNo}?cp=${pagination.currentPage}"><h5 class="card-title mb-3">${pamphlet.boardTitle}</h5></a>
                                         <%-- <p class="card-text mb-0">${pamphlet.boardContent}</p> --%>
@@ -181,13 +169,13 @@
 
 
 
-                    <c:if test="${!empty loginMember}">                 
-                        <button type="button" class="btn btn-outline-warning" id="allButton" onclick="location.href='../pamphlet/write?mode=insert&cp=${pagination.currentPage}'">글쓰기</button>                  
+                    <c:if test="${!empty loginMember}">       
+                        <button type="button" class="btn btn-outline-warning" id="allButton" onclick="location.href='../pamphlet/write?mode=insert&cp=${pagination.currentPage}'">글쓰기</button>
                     </c:if>
 
-                    <%-- <c:if test="${empty loginMember}">
-                        <button type="button" class="btn btn-outline-warning" id="allButton" name="writeBtn">글쓰기</button>    
-                    </c:if> --%>
+                    <c:if test="${empty loginMember}">
+                        <button type="button" class="btn btn-outline-warning" id="allButton" name="writeBtn" onclick="location.href='../../member/login'" >글쓰기</button>    
+                    </c:if>
 
                     <%-- 페이지네이션 --%>
                     <c:set var="url" value="?cp="/>
