@@ -137,7 +137,7 @@
 
 					<div class="text-center py-5">
 						<h1 class="fw-bolder">병원찾기</h1>
-						<p class="lead fw-normal text-muted mb-0">가까운 병원을 클릭하여 상세 정보를 확인해보세요</p>
+						<p class="lead fw-normal text-muted mb-0">내 근처 가까운 병원을 클릭하여 상세 정보를 확인해보세요</p>
 					</div>
                     
 					<div class="d-flex justify-content-center mapCon" >
