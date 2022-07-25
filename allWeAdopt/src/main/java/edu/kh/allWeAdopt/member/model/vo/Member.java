@@ -21,6 +21,7 @@ public class Member {
 	private String enrollDate;
 	private String memberType;
 	private String secessionFlag;
+	private int memberPoint;
 
 	
 	//채팅 서버 전송을 위한 JSON 형태 객체
