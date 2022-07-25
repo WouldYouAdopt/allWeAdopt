@@ -68,7 +68,8 @@
                                         <c:if test="${(loginMember.memberNo == board.memberNo) || loginMember.memberType == 'A'}">
                                         <div>
                                             <a href="${board.boardNo}/boardModify"><p class="modify">수정</p></a>
-                                            <a href="${board.boardNo}/boardDelete"><p class="delete" onclick="return deleteBtn()">삭제</p></a>
+                                            <a href="#"><p class="delete" onclick="return deleteBtn()">삭제</p></a>
+                                            ${board.boardNo}/boardDelete
                                         </div> 
                                         </c:if>
                                     </div>
@@ -145,9 +146,10 @@
 
                             <!-- 공유 기능 -->
                             <div class="share-area">
-                                <a id="btnTwitter" class="link-icon twitter" href="javascript:shareTwitter();"><img src="${contextPath}\resources\images\icon-twitter.png"></a>
-                                <a id="btnFacebook" class="link-icon facebook" href="javascript:shareFacebook();"><img src="${contextPath}\resources\images\icon-facebook.png"></a>    
-                                <a id="btnKakao" class="link-icon kakao" href="javascript:shareKakao();"><img src="${contextPath}\resources\images\icon-kakao.png"></a>    
+                                <a id="btnTwitter" class="link-icon twitter" href="javascript:shareTwitter2();"><img src="${contextPath}\resources\images\icon-twitter.png"></a>
+                                <a id="btnFacebook" class="link-icon facebook" href="javascript:shareFacebook2();"><img src="${contextPath}\resources\images\icon-facebook.png"></a>    
+                                <a id="btnKakao" class="link-icon kakao" href="javascript:shareKakao2();"><img src="${contextPath}\resources\images\icon-kakao.png"></a>
+                                <input type="hidden" name="boardNo" value="${board.boardNo}">    
                             </div>
                            
                             <!-- 문의 버튼 -->
@@ -304,7 +306,6 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 
         <script>
-        const boardNo = ${board.boardNo};
         const contextPath = "${contextPath}";
         const thumbnail = "${board.thumbnail}";
         if(${!empty message}){
