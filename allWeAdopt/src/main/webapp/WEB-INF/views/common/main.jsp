@@ -73,16 +73,10 @@
 <body class="before-load" >
         <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
-		<br>
-		<h1> 펑! -> main-kepp.jsp에 있음!</h1>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
+        <section style="min-height : 900px;">
+            <%-- <h1> 펑! -> main-kepp.jsp에 있음!</h1> --%>
+        
+        </section>
 		
 
          <!-- 푸터 -->
