@@ -67,10 +67,10 @@
                         </div>
                         <div class="row gx-5 justify-content-center">
                             <div class="col-lg-8 col-xl-6">
-                                <form action="${contextPath}/member/myPage/updateInfo" method="POST" class="form-floating">
+                                <form action="${contextPath}/member/myPage/updateInfo" method="POST" class="form-floating" onsubmit="return updateInfoValidate2()">
 
                                     <div class=" form-floating mb-3 pw-area">
-                                        <input type="password" class="form-control" name="memberPw" id="memberPw" placeholder="비밀번호를 입력하세요." >
+                                        <input type="password" class="form-control" name="memberPw" id="inputPw" placeholder="비밀번호를 입력하세요." >
                                         <label for="memberPw">비밀번호</label>
                                         <div class="spaceArea confirmBtnArea">
                                             <button id="confirmBtn" >확인</button>
@@ -103,7 +103,7 @@
         <!-- Core theme JS-->
         <script src="${contextPath}/resources/js/scripts.js"></script>
 
-        <script src="${contextPath}/resources/js/myPage-updateInfo.js"></script>
+        <script src="${contextPath}/resources/js/myPage-pwConfirm.js"></script>
 
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     </body>

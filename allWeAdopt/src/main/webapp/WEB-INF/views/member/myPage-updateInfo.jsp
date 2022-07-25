@@ -84,6 +84,13 @@
                                     </div>
                                     <div id="nameMsg" class="form-floating validate-area"></div>
 
+                                    <!-- 포인트 잔액 -->
+                                    <div class="form-floating mb-2 confirm-area">
+                                        <input class="form-control" type="text"  value="${loginMember.memberPoint} p" readonly/>
+                                        <label for="memberName"><span> </span>포인트 </label>
+                                    </div>
+                                    <div id="nameMsg" class="form-floating validate-area"></div>
+
                                     <!-- 회원정보에 전화번호가 있는 경우 -->
                                     <c:if test="${!empty loginMember.memberTel}">
 
