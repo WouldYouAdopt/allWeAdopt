@@ -217,20 +217,20 @@
 									<div id="havePointArea">
 										<span><i class="fa-solid fa-paw"></i> 보유</span>
 									
-											<input type="number" value="110000" id="havePoint" disabled>
+											<input type="number" value="100000" id="havePoint" disabled>
 									
 									</div>
 									<div id="usePointArea">
 										<span><i class="fa-solid fa-paw"></i> 사용</span>
 										
-											<input type="number" value="" id="inputPoint">
+											<input type="number" value="0" name="point" id="inputPoint">
 											<button type="button" class="btn" id="useAll">전액 사용</button>
 								
 									</div>
 								</div>
 								
 							</div>
-							<input type="hidden" name="point" value="0">
+							
 							<!-- 사용 포인트 입력 영역-->
 
 							<!-- 결제 정보 입력 영역-->

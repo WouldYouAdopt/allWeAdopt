@@ -353,8 +353,14 @@ function submitValidate() {
 
   let payMethod = $('input[name=pay-Method]:checked').val();
 
-  switch (payMethod) {
+  $('#fullPrice').val($('#fullPrice').val()-$('#inputPoint').val());
 
+  if( $('#fullPrice').val() == 0){
+    alert("결제 완료되었습니다");
+  }
+  
+  return false;
+  switch (payMethod) {
     case 'none': 
         Swal.fire({
           title: '은행사의 문제로 지원되지 않습니다',
@@ -422,6 +428,7 @@ useAll.addEventListener("click",()=>{
 
   const havePoint = document.getElementById("havePoint").value;
   const fullPrice = document.getElementById("fullPrice").value;
+  const inputPoint = document.getElementById("inputPoint");
 
   if(havePoint == 0){
     alert("사용 할 수 있는 포인트가 없습니다.");
@@ -429,17 +436,12 @@ useAll.addEventListener("click",()=>{
   }
 
   if(Number(havePoint)>Number(fullPrice)){
-    console.log(havePoint);
-    console.log(fullPrice);
-    alert("사용 할 수 있는 포인트가 없습니다.");
-    return;
+    inputPoint.value = fullPrice;
+  }else{
+    inputPoint.value = havePoint;
   }
-  
-  if(havePoint>fullPrice){
-    console.log(havePoint);
-    console.log(fullPrice);
-    alert("사용 할 수 있는 포인트가 없습니다.");
-    return;
-  }
+})
 
+$('.agreeWrapper a').click(()=>{
+  alert("솔직히 관심 없잔아요");
 })

@@ -3,9 +3,15 @@
 <mapper namespace="pointMapper">
 
 	<update id="wordleSuccess" >
-	UPDATE MEMBER SET MEMBER
-	POINT = (SELECT POINT FROM MEMBER WHERE MEMBER_NO=#{memberNo})+500
+	UPDATE MEMBER SET 
+	MEMBER_POINT = (SELECT MEMBER_POINT FROM MEMBER WHERE MEMBER_NO=#{memberNo})+500
+	WHERE MEMBER_NO=#{memberNo}
 	</update>
 	
+	<update id="rouletteRun">
+	UPDATE MEMBER SET 
+	MEMBER_POINT = #{total}
+	WHERE MEMBER_NO=#{memberNo}
+	</update>
 
 </mapper>

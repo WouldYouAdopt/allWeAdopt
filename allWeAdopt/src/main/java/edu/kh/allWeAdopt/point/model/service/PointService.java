@@ -8,4 +8,11 @@ public interface PointService {
 	 */
 	int wordleSuccess(int memberNo);
 
+	/**해당 회원의 소지 포인트를 변경
+	 * @param total
+	 * @param memberNo
+	 * @return
+	 */
+	int rouletteRun(int total, int memberNo);
+
 }

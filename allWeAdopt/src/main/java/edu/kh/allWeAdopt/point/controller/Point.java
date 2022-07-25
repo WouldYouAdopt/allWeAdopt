@@ -53,9 +53,8 @@ public class Point {
 	//룰렛 수행후 결과값의 DB에 반영
 	@ResponseBody
 	@GetMapping("/roulette/run")
-	public int rouletteRun() { 
-
-		return 0;
+	public int rouletteRun(int total,@ModelAttribute("loginMember") Member loginMember){
+		return service.rouletteRun(total,loginMember.getMemberNo());
 	}
 	
 	

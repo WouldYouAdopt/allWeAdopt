@@ -1,5 +1,8 @@
 package edu.kh.allWeAdopt.point.model.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +22,18 @@ public class PointServiceImpl implements PointService{
 		return dao.wordleSuccess(memberNo);
 	}
 
+	/**룰렛 후 수행 결과로 변환하는 service 구현
+	 *
+	 */
+	@Override
+	public int rouletteRun(int total, int memberNo) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("total",total);
+		map.put("memberNo", memberNo);
+		return dao.rouletteRun(map);
+	}
+
+	
 	
 	
 }
