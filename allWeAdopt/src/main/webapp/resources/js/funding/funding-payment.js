@@ -319,7 +319,7 @@ function addZero(temp) {
 //onsubmit 함수
 //결제방식 체크된 경우 true false 반환 
 //$('.payment').is(':checked')
-function submitValidate() {
+async function submitValidate() {
 
   //결제정보 테스트
   if (!$('.payment').is(':checked')) {
@@ -353,13 +353,27 @@ function submitValidate() {
 
   let payMethod = $('input[name=pay-Method]:checked').val();
 
-  $('#fullPrice').val($('#fullPrice').val()-$('#inputPoint').val());
+  if( ($('#fullPrice').val()-$('#inputPoint').val()) == 0){
 
-  if( $('#fullPrice').val() == 0){
-    alert("결제 완료되었습니다");
+    Swal.fire({
+      title: '결제 완료',
+      text: "결제가 완료되었습니다!.",
+      width: 340,		
+      iconColor: 'rgb(251, 131, 107)',
+      confirmButtonColor: 'rgb(251, 131, 107)',
+      confirmButtonText: '확인',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          $('#pay_method').val("포인트 사용");
+          $('form[name="submitEvent"]').serialize();
+          $('form[name="submitEvent"]').attr('method', 'POST');
+          $('form[name="submitEvent"]').attr('action', 'pay/' + newUID($('#memberNo').val()));  
+          console.log(document.getElementById("fullPrice").value);
+          document.getElementById("submitEvent").submit();
+        }
+       })
   }
-  
-  return false;
+
   switch (payMethod) {
     case 'none': 
         Swal.fire({
