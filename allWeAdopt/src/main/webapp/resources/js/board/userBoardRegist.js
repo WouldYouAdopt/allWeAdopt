@@ -381,18 +381,3 @@ function regist(){
 	}
 	
 };
-
-// function valiSuccess(conMessage) {
-// 	Swal.fire({
-// 		title: conMessage,
-// 		width: 600,
-// 		padding: '3em',
-// 		color: 'black',
-// 		confirmButtonColor: 'rgb(251, 131, 107)',
-// 		confirmButtonText: '확인'
-// 		}).then((result) => {
-// 			if (result.isConfirmed) {
-// 				return true;
-// 			}
-// 		 });
-// }

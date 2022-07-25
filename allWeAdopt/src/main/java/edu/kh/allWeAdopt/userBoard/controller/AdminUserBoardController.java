@@ -193,6 +193,7 @@ public class AdminUserBoardController {
 		public String boardDelete(@PathVariable("boardNo") int boardNo,
 				RedirectAttributes ra, @RequestHeader("referer") String referer) {
 			String path = null;
+			String message = "게시글이 삭제되었습니다";
 			int result = service.boardDelete(boardNo);
 			
 			if(result>0) {
@@ -200,6 +201,7 @@ public class AdminUserBoardController {
 			} else {
 				path = referer;
 			}
+			ra.addFlashAttribute("message",message);
 			return "redirect:" + path;
 		}
 		

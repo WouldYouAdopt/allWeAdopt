@@ -280,8 +280,8 @@ public class UserBoardController {
 	// 게시글 삭제
 	@GetMapping("/detail/2/{boardNo}/boardDelete")
 	public String boardDelete(@PathVariable("boardNo") int boardNo,
-			@RequestHeader("referer") String referer) {
-
+			@RequestHeader("referer") String referer, RedirectAttributes ra) {
+		String message = "게시글이 삭제되었습니다";
 		String path = null;
 		int result = service.boardDelete(boardNo);
 		
@@ -290,7 +290,7 @@ public class UserBoardController {
 		} else {
 			path = referer;
 		}
-
+		ra.addFlashAttribute("message",message);
 		return "redirect:" + path;
 	}
 	

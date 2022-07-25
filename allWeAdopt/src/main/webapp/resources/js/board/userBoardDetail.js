@@ -46,8 +46,9 @@ likeIcon.addEventListener("click",function() {
 });
 
 // 트위터 공유 기능
-function shareTwitter() {
-    const url = "/localhost:8081/allWeAdopt/board/detail/2/"+boardNo;
+function shareTwitter2() {
+    const boardNo = document.getElementsByName("boardNo")[0];
+    const url = "/localhost:8081/allWeAdopt/board/detail/2/"+boardNo.value;
     var sendText = "allWeAdopt"; // 전달할 텍스트
     var sendUrl = encodeURIComponent(url); // 전달할 URL
     // var sendUrl = "devpad.tistory.com/"; // 전달할 URL
@@ -55,21 +56,18 @@ function shareTwitter() {
 }
 
 //페이스북 공유 기능
-function shareFacebook() {
-    const url = "http://localhost:8081/allWeAdopt/board/detail/2/"+boardNo;
+function shareFacebook2() {
+    const boardNo = document.getElementsByName("boardNo")[0];
+    const url = "http://localhost:8081/allWeAdopt/board/detail/2/"+boardNo.value;
     var sendUrl = encodeURIComponent(url); // 전달할 URL
     window.open("http://www.facebook.com/sharer/sharer.php?href=" + sendUrl);
 }
 
-// function sethref() 
-// {
-//  document.getElementById("shareFB").setAttribute("href","https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(document.URL));
-// }
-
-// window.onload = sethref;
 // 카카오톡 공유 기능
-function shareKakao() {
-    const url = "http://localhost:8081/allWeAdopt/board/detail/2/"+boardNo;
+function shareKakao2() {
+    const boardNo = document.getElementsByName("boardNo")[0];
+    const url = "http://localhost:8081/allWeAdopt/board/detail/2/"+boardNo.value;
+    console.log(url);
 
     // 사용할 앱의 JavaScript 키 설정
     Kakao.init('c2a34c4788a9b6f5a1d552ea9a4f9083');
@@ -92,12 +90,28 @@ function shareKakao() {
 
 // 삭제 버튼 클릭 시
 function deleteBtn() {
-    if (confirm("정말 삭제하시겠습니까??") == true){ 
-                alert("게시글이 삭제되었습니다");
-                return true;
+    const boardNo = document.getElementsByName("boardNo")[0];
+    Swal.fire({
+        title: '게시글을 삭제하시겠습니까?',
+        text: "확인 버튼을 클릭하면 게시글이 삭제됩니다.",
+        width: 340,		
+        icon: 'warning',
+        iconColor: 'rgb(251, 131, 107)',
+        showCancelButton: true,
+        confirmButtonColor: 'rgb(251, 131, 107)',
+        cancelButtonColor: '#999',
+        confirmButtonText: '확인',
+        cancelButtonText: '취소'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // '확인'클릭시 수행될 코드 작성
+                location.href= boardNo.value+"/boardDelete";
             }else{
+                 // '취소'클릭시 수행될 코드 작성
+                // e.preventDefault();
                 return false;
             }
+         })
 }
 
 // 로그인하지 않았을 때 문의하기 버튼 클릭 시
