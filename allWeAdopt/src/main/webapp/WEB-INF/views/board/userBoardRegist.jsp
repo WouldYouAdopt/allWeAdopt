@@ -36,6 +36,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="${contextPath}/resources/css/main-style.css">
     <link rel="stylesheet" href="${contextPath}/resources/css/board/userBoardRegist.css">
+
+    <!-- sweetalert-->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <main>
@@ -144,11 +147,16 @@
                 </div>
                
                 <!-- 연락처 -->
+                <c:if test="${!empty board.phone}">
                 <div class="tel-area">
-                    <span class="select">연락처</span>
-                    <input type="tel" class="tel" name="phone" value="${board.phone}">
+                    <input type="hidden" class="tel" name="phone" value="${board.phone}">
                 </div>
-                <p class="etc">(-을 제외한 전화번호를 입력해주세요)</p>
+                </c:if>
+                <c:if test="${empty board.phone}">
+                <div class="tel-area">
+                    <input type="hidden" class="tel" name="phone" value="${loginMember.memberTel}">
+                </div>
+                </c:if>
 
                 <!-- 종류, 품종 -->
                 <div class="type-area">
@@ -257,9 +265,7 @@
       <!-- 푸터 -->
       <jsp:include page="/WEB-INF/views/common/footer.jsp" />
     </main>
-    <script>
-      const message = "${message}";
-    </script>
+ 
      <!-- Core theme JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="${contextPath}/resources/js/scripts.js"></script>

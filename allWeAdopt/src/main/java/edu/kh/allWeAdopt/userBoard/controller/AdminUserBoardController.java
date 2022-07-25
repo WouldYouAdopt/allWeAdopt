@@ -207,7 +207,7 @@ public class AdminUserBoardController {
 		@GetMapping("/detail/2/{boardNo}/boardModify")
 		public String boardModify(@PathVariable("boardNo") int boardNo,
 				@ModelAttribute("loginMember") Member loginMember, Model model) {
-			String message = "게시글을 수정하였습니다";
+			
 			// 지역 리스트 출력
 			List<Area> areaList = service.areaList();
 			model.addAttribute("areaList",areaList);
@@ -216,7 +216,7 @@ public class AdminUserBoardController {
 			Board board = service.boardDetail(boardNo);
 			board.setBoardContent(board.getBoardContent().replaceAll("(\r\n|\r|\n|\n\r)", " "));
 			model.addAttribute("board",board);
-			model.addAttribute("message",message);
+	
 			
 			return "board/userBoardRegist";
 		}
@@ -232,6 +232,7 @@ public class AdminUserBoardController {
 				RedirectAttributes ra, @RequestHeader("referer") String referer) {
 			String profileImage = null;
 			String path = referer;
+			String message = "게시글이 수정되었습니다";
 			int boardNo = 0;
 			board.setMemberNo(loginMember.getMemberNo());
 			boardNo = board.getBoardNo();
@@ -280,6 +281,7 @@ public class AdminUserBoardController {
 				path = "/admin/board/detail/2/"+board.getBoardNo();
 			}
 			
+			ra.addFlashAttribute("message",message);
 			return "redirect:" + path;
 		}
 		
