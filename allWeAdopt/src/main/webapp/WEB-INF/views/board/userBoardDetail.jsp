@@ -69,7 +69,6 @@
                                         <div>
                                             <a href="${board.boardNo}/boardModify"><p class="modify">수정</p></a>
                                             <a href="#"><p class="delete" onclick="return deleteBtn()">삭제</p></a>
-                                            ${board.boardNo}/boardDelete
                                         </div> 
                                         </c:if>
                                     </div>

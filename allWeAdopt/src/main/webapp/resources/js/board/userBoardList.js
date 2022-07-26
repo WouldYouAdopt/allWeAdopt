@@ -214,7 +214,7 @@ const animalList = document.getElementsByClassName("animalList");
 
 const ul2 = document.getElementsByName("animalDetailValue")[0].nextElementSibling;
 	
-	for (let i = 0; i < areaList.length; i++) {
+	for (let i = 0; i < animalList.length; i++) {
 		animalList[i].addEventListener("click",function () {
 		document.getElementsByName("animalDetailValue")[0].innerText = "품종";
 		const animalType = document.getElementsByName("animalType")[0].value;
