@@ -32,7 +32,9 @@
                     <li class="nav-item"><a class="nav-link" href="${contextPath}/shelter/shelterList">보호소</a></li>
                     <li class="nav-item"><a class="nav-link" href="${contextPath}/shelter/pamphlet/list">스토리</a></li>
                     <li class="nav-item"><a class="nav-link" href="${contextPath}/board/user">어답터</a></li>
-                    <li class="nav-item"><a class="nav-link" href="${contextPath}/point/wordle">포인트</a></li>
+                    <c:if test="${!empty loginMember}">
+                        <li class="nav-item"><a class="nav-link" href="${contextPath}/point/wordle">포인트</a></li>
+                    </c:if>
                     <li class="nav-item"><a class="nav-link" href="${contextPath}/funding/detail/${nowFundingNo}?page=1">펀딩</a></li>
                     <li class="nav-item"><a class="nav-link" href="${contextPath}/findHospital">병원찾기</a></li>
 
