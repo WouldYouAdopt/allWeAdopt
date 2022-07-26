@@ -17,52 +17,52 @@
 
         const data = [
 					{
-            color: '#3f297e',/*남색*/
-            text: '+200'
-          },
-          {
-            color: '#1d61ac',/*파랑 1*/
-            text: '+1000'
-          },
-          {
-            color: '#169ed8', /* 하늘 2*/
-            text: '+2000'
-          },
-          {
-            color: '#209b6c',
-            text: '+3000'
-          },
-          {
-            color: '#60b236',
-            text: '+4000'
-          },
-          {
-            color: '#efe61f',
-            text: '+5000'
-          },
-          {
-            color: '#f7a416',
-            text: '+6000'
-          },
-          {
-            color: '#e6471d',
-            text: '+7000'
-          },
-          {
-            color: '#dc0936',
-            text: '+8000'
-          },
-          {
-            color: '#e5177b',
-            text: '+9000'
-          },
-          {
-            color: '#be107f',
+            color: '#f25c54',/*남색*/
             text: '꽝~!'
           },
           {
-            color: '#881f7e',
+            color: '#f27059',/*파랑 1*/
             text: '+100'
+          },
+          {
+            color: '#f4845f', /* 하늘 2*/
+            text: '꽝~!'
+          },
+          {
+            color: '#f79d65', /*초록*/
+            text: '+100'
+          },
+          {
+            color: '#f7b267',/*연두*/
+            text: '꽝~!'
+          },
+          {
+            color: '#86bbbd',/*노랑*/
+            text: '+300'
+          },
+          {
+            color: '#76949f',/*귤*/
+            text: ''
+          },
+          {
+            color: '#76949f',/*주황>빨강*/
+            text: '꽝~!'
+          },
+          {
+            color: '#76949f',/*빨강*/
+            text: ''
+          },
+          {
+            color: '#6a6b83',
+            text: 'X2 두배!'
+          },
+          {
+            color: '#5f506b',
+            text: '꽝~!'
+          },
+          {
+            color: '#533747',
+            text: '+700'
           }
         ];
 
@@ -118,7 +118,41 @@
 
 
         $btnStart.on("click", function() {
-          rotation();
+			if(memberPoint>0){
+				
+				Swal.fire({
+					title: memberPoint +'point 보유 중',
+					text: "확인 버튼을 클릭하면 100포인트를 사용합니다.",
+					width: 340,		
+				    icon: 'warning',
+					iconColor: 'rgb(251, 131, 107)',
+					showCancelButton: true,
+					confirmButtonColor: 'rgb(251, 131, 107)',
+					cancelButtonColor: '#999',
+					confirmButtonText: '확인',
+					cancelButtonText: '취소'
+					}).then((result) => {
+						if (result.isConfirmed) {
+							 // '확인'클릭시 수행될 코드 작성
+							 rotation();
+						}else{
+				             // '취소'클릭시 수행될 코드 작성
+							e.preventDefault();
+						}
+					 })
+					 
+	          
+				
+			}else{
+				Swal.fire({
+			     title: '포인트가 부족해 참여하실 수 없습니다',
+			     width: 350,
+			     padding: '3em',
+			     color: 'black',
+			     confirmButtonColor: 'rgb(251, 131, 107)',
+			     confirmButtonText: '확인'
+			     });
+			}
         });
 
         function rotation() {
@@ -139,48 +173,54 @@
             	console.log("각도 나머지 값 : "+currentA%360);
             	
                let realval=0;
-				if(15<=currentA%360 && currentA%360<45){
-					realval=100;
+				if(15<=currentA%360 && currentA%360<45){ // 왼쪽부터 반시계방향
+					realval=700;
 				}
 				if(45<=currentA%360 && currentA%360<75){
 					realval=0;
 				}
 				if(75<=currentA%360 && currentA%360<105){
-					realval=9000;
+					realval=2;
 				}
-				if(105<=currentA%360 && currentA%360<135){/*빨강*/
-					realval=8000;
+				if(105<=currentA%360 && currentA%360<135){
+					realval=0;
 				}
 				if(135<=currentA%360 && currentA%360<165){
-					realval=7000;
+					realval=0;
 				}
-				if(165<=currentA%360 && currentA%360<195){
-					realval=6000;
+				if(165<=currentA%360 && currentA%360<195){ // 젤아래임
+					realval=0;
 				}
-				if(195<=currentA%360 && currentA%360<225){/*노랑*/
-					realval=5000;
+				if(195<=currentA%360 && currentA%360<225){
+					realval=300;
 				}
 				if(225<=currentA%360 && currentA%360<255){
-					realval=4000;
+					realval=0;
 				}
 				if(255<=currentA%360 && currentA%360<285){
-					realval=3000;
+					realval=100;
 				}
 				if(285<=currentA%360 && currentA%360<315){
-					realval=2000;
+					realval=0;
 				}
 				if(315<=currentA%360 && currentA%360<345){
-					realval=1000;
+					realval=100;
 				}
 				if(345<=currentA%360 && currentA%360<360 || 0<=currentA%360 && currentA%360<15){/*남색*/
-					realval=200;
+					realval=0; //젤 위임
 				}
 				
 				console.log("당첨 포인트 : "+realval);
 				console.log("보유 포인트 : "+memberPoint);
-
+				let total;				
+				if(realval>1 && realval<10){ // 곱해부러~
+				total = Number(memberPoint)*realval;
+					
+				}else{
+				total = Number(memberPoint)+realval-100;
+					
+				}
 				//let total = '룰렛을 돌린 후 결과 값에 따라 연산된 포인트'
-				let total = Number(memberPoint)+realval;
 				console.log("연산한 포인트 : "+total);
 				
 				
@@ -189,9 +229,19 @@
 				    type: "get",
 				    data:{'total':total},
 				    success: function (result) {
-				     if(result>0){
+				     if(result>=0){
 				        // 정상적으로 포인트 변경
-				        alert("포인트 획득 어쩌고~");
+				        
+				        Swal.fire({
+					     title: total+'point 로 변경되었습니다',
+					     width: 350,
+					     padding: '3em',
+					     color: 'black',
+					     confirmButtonColor: 'rgb(251, 131, 107)',
+					     confirmButtonText: '확인'
+					     });
+				        memberPoint=result;
+				        
 				     }else{
 				        //반환값이 이상할 때
 				     }

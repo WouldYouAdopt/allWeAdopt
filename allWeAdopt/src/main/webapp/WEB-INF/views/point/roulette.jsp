@@ -99,7 +99,7 @@
 				font-weight:bold;
 				background:#fff;
 				border-radius:50px;
-				z-index:9999;
+				z-index:1;
 				cursor:pointer;
 			}
 
@@ -141,10 +141,9 @@
                         
                         
 
-						내 포인트 확인 : ${loginMember.memberPoint}
                         <div class="text-center mb-5">
                             <h1 class="fw-bolder">Roulette</h1>
-                            <p class="lead fw-normal text-muted mb-0">All We Adopt 펀딩에 쓸수있는 포인트를 받아가세요!</p>
+                            <p class="lead fw-normal text-muted mb-0">100포인트로 All We Adopt 펀딩에 사용 가능한 포인트를 뽑아가세요!</p>
                         </div>
 
                         <div class="row gx-5 justify-content-center" id="wordleHeader">
@@ -156,7 +155,7 @@
                         <div class="box-roulette">
 							<div class="markers"></div>
 							<button type="button" id="btn-start">
-								발바닥꾹
+								<span class="fa-solid fa-paw">
 							</button>
 							<div class="roulette" id="roulette"></div>
 						</div>
@@ -182,7 +181,7 @@
         
         
         <script>
-        const memberPoint = "${loginMember.memberPoint}";
+        let memberPoint = "${loginMember.memberPoint}";
         </script>
 
     </body>
