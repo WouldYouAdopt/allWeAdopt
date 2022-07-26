@@ -23,6 +23,7 @@ import edu.kh.allWeAdopt.funding.model.vo.FundingDetail;
 import edu.kh.allWeAdopt.funding.model.vo.OrderDetail;
 import edu.kh.allWeAdopt.funding.model.vo.Reward;
 import edu.kh.allWeAdopt.funding.model.vo.Supporters;
+import edu.kh.allWeAdopt.point.model.dao.PointDAO;
 
 /**
  * @author deadWhale
@@ -34,6 +35,8 @@ public class FundingServiceImpl implements FundingService {
 
 	@Autowired
 	private FundingDAO dao;
+	@Autowired
+	private PointDAO pointDao;
 
 	// 펀딩 상세 조회
 	@Override
@@ -266,6 +269,10 @@ public class FundingServiceImpl implements FundingService {
 			result = dao.insertRewardList(rewardList);
 
 			if (result > 0) {
+				//포인트를 사용 한 경우
+				if(orderDetail.getPoint()>0) {
+					result = pointDao.PointDown(orderDetail.getMemberNo(),orderDetail.getPoint());
+				}
 				paymentNo = orderDetail.getPaymentNo();
 			}
 		}

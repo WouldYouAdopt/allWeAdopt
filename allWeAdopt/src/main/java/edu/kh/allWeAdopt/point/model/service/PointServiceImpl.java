@@ -1,11 +1,13 @@
 package edu.kh.allWeAdopt.point.model.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import edu.kh.allWeAdopt.funding.model.vo.OrderDetail;
 import edu.kh.allWeAdopt.point.model.dao.PointDAO;
 
 @Service
@@ -33,6 +35,22 @@ public class PointServiceImpl implements PointService{
 		return dao.rouletteRun(map);
 	}
 
+	//포인트로 결제한 기능 구현
+	@Override
+	public List<OrderDetail> myPoint(int memberNo) {
+		return dao.myPoint(memberNo);
+	}
+
+	@Override
+	public int selectMyPoint(int memberNo) {
+		return dao.selectMyPoint(memberNo);
+	}
+	
+	
+
+	
+	
+	
 	
 	
 	

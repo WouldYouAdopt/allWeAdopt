@@ -1,6 +1,7 @@
 package edu.kh.allWeAdopt.member.controller;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 
@@ -11,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,8 +26,11 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import edu.kh.allWeAdopt.funding.model.vo.OrderDetail;
 import edu.kh.allWeAdopt.member.model.service.MyPageService;
 import edu.kh.allWeAdopt.member.model.vo.Member;
+import edu.kh.allWeAdopt.point.model.dao.PointDAO;
+import edu.kh.allWeAdopt.point.model.service.PointService;
 
 
 
@@ -37,6 +42,9 @@ import edu.kh.allWeAdopt.member.model.vo.Member;
 @SessionAttributes({"loginMember"})
 public class MyPageController {
 	
+	@Autowired
+	private PointService pointService;
+
 	@Autowired 
 	private MyPageService service; 
 	
@@ -259,7 +267,12 @@ public class MyPageController {
 	
 	//마이페이지 본인의 포인트 조회 후 페이지 구현
 	@GetMapping("point")
-	public String myPoint() {
+	public String myPoint(@ModelAttribute("loginMember") Member loginMember,Model model) {
+		List<OrderDetail> dList = pointService.myPoint(loginMember.getMemberNo());
+		//동기화 할려고 강제로 가져옴
+		int point = pointService.selectMyPoint(loginMember.getMemberNo());
+		loginMember.setMemberPoint(point);
+		model.addAttribute("dList",dList);
 		return "point/myPoint";
 	}
 

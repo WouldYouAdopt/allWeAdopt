@@ -74,16 +74,15 @@
                             <a class="nav-link" href="${contextPath}/point/wordle">Wordle</a>
                             </li>
                             <li class="nav-item">
-                            <a class="nav-link" href="${contextPath}/point/wordle">Wordle</a>
+                            <a class="nav-link" href="${contextPath}/point/roulette">roulette</a>
                             </li>
 
                             <!-- 로그인한 회원만 조회 가능. -->
                             <c:if test="${ !empty sessionScope.loginMember }">
                                 <li class="nav-item">
-                                <a class="nav-link" href="${contextPath}/member/myPage/point">내 펀딩 정보</a>
+                                <a class="nav-link" href="${contextPath}/member/myPage/point">내 포인트 조회</a>
                                 </li>
                             </c:if>
-
                         </ul>
 
                         <h1> Wordle </h1>

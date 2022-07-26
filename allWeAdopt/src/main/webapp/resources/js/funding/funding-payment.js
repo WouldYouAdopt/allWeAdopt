@@ -438,17 +438,18 @@ $(".payBtn").click(function(){
 //결제시 포인트 사용 여부
 
 const useAll = document.getElementById("useAll");
+const havePoint = document.getElementById("havePoint").value;
+const fullPrice = document.getElementById("fullPrice").value;
+const inputPoint = document.getElementById("inputPoint");
+(function(){
+  inputPoint.setAttribute("max",havePoint);
+})();
+
 useAll.addEventListener("click",()=>{
-
-  const havePoint = document.getElementById("havePoint").value;
-  const fullPrice = document.getElementById("fullPrice").value;
-  const inputPoint = document.getElementById("inputPoint");
-
   if(havePoint == 0){
     alert("사용 할 수 있는 포인트가 없습니다.");
     return;
   }
-
   if(Number(havePoint)>Number(fullPrice)){
     inputPoint.value = fullPrice;
   }else{
@@ -456,6 +457,24 @@ useAll.addEventListener("click",()=>{
   }
 })
 
+// 포인트 체인지 이벤트
+inputPoint.addEventListener("change",()=>{
+  if(Number(inputPoint.value)>Number(havePoint)){
+    inputPoint.value=havePoint;
+  }
+});
+
+$('input').keydown(function() {
+  if (event.keyCode === 13) {
+    event.preventDefault();
+  };
+});
+
+
 $('.agreeWrapper a').click(()=>{
   alert("솔직히 관심 없잔아요");
 })
+
+
+
+//---------------------------------------------------
