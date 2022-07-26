@@ -60,12 +60,26 @@ function checkGuess () {
     }
 
     if (guessString.length != 5) {
-        toastr.error("Not enough letters!")
+        Swal.fire({
+            title: '단어를 입력해주세요!!! 🐶',
+            width: 350,
+            padding: '3em',
+            color: 'black',
+            confirmButtonColor: 'rgb(251, 131, 107)',
+            confirmButtonText: '확인'
+            });
         return
     }
 
     if (!WORDS.includes(guessString)) {
-        toastr.error("Word not in list!")
+        Swal.fire({
+            title: '목록에 없는 단어입니다!!! 다른 단어를 입력해주세요 🐶',
+            width: 350,
+            padding: '3em',
+            color: 'black',
+            confirmButtonColor: 'rgb(251, 131, 107)',
+            confirmButtonText: '확인'
+            });
         return
     }
 
@@ -105,7 +119,7 @@ function checkGuess () {
     }
 
     if (guessString === rightGuessString) {
-        // toastr.success("You guessed right! Game over!")
+       
         guessesRemaining = 0;
 
         $.ajax({
