@@ -177,7 +177,8 @@
 								<td><button type="button" class="rewardsAddBtn">등록</button></td>
 							</tr>
 						</c:forEach>
-					</c:when>
+            <c:remove var="rList" scope="session"/>
+					</c:when> 
 					
 					<c:otherwise>
             <tr>
@@ -247,7 +248,7 @@
                           </c:if>
                           
                           
-                          <button class="btn btn-primary" id="writeBtn">Button</button>
+                          <button class="btn btn-primary" id="writeBtn">등록하기</button>
 </form>
 <%-- ---------------------------------------------------------------------------------------------- --%>
 

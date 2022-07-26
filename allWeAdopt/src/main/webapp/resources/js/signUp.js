@@ -331,9 +331,16 @@ let sec = 59;
 
 confirmBtn.addEventListener("click", function(){
 
+    const number = document.getElementById("number");
+
+    if(checkInterval!=null){
+        clearInterval(checkInterval);
+    }
+
     number.readOnly = false;
     number.value="";
     cMessage.innerText = "";
+    checkObj.timer = false;
 
     if(!checkObj.memberTel){
         Swal.fire({
@@ -404,7 +411,6 @@ confirmBtn.addEventListener("click", function(){
 
                         }else{
 
-                            const number = document.getElementById("number");
                             number.addEventListener("input",function(){
 
                                 if(number.value.trim().length == 0){
@@ -418,19 +424,25 @@ confirmBtn.addEventListener("click", function(){
 
                                 if(number.value.trim().length != 0){
 
-                                    if(number.value == randomNumber&&checkObj.timer){
+                                    if((number.value == randomNumber) && checkObj.timer){
+
                                         telMsg.innerText = "휴대폰 인증 완료";
                                         clearInterval(checkInterval);
                                         telMsg.classList.remove("error");
                                         telMsg.classList.add("confirm");
                                         checkObj.number = true; // 유효 O 기록
                                         number.readOnly = true;
-                                    }else if(!checkObj.timer){
+                                    }
+                                    
+                                    if( !checkObj.timer ){
                                         telMsg.innerText = "인증시간 만료";
                                         telMsg.classList.add("error");
                                         telMsg.classList.remove("confirm");
                                         checkObj.number = false; // 유효하지 않은 상태임을 기록
-                                    }else{
+                                    }
+                                    
+                                    if( number.value != randomNumber ){
+                                    
                                         telMsg.innerText = "인증번호 불일치";
                                         telMsg.classList.add("error");
                                         telMsg.classList.remove("confirm");
@@ -440,7 +452,7 @@ confirmBtn.addEventListener("click", function(){
 
                                 }
 
-                            })
+                            });
 
                         }
 

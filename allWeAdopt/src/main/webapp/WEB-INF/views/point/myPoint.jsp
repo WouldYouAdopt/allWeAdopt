@@ -29,24 +29,36 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="${contextPath}/resources/css/styles.css" rel="stylesheet" />
 
-        <!-- myPage-updateInfo.css-->
-        <link rel="stylesheet" href="${contextPath}/resources/css/myPage-updateInfo.css">
-
         <!-- sweetalert-->
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
         <style>
-             .button-pink{
+            .mb-5{
+                margin-top: 20px;
+            }
+            .fa-paw{
+                margin-bottom: 20px;
+            }
+            .pointWrapper{
+                width: 800px;
+                margin: auto;
+            }
+            .table-striped td h3{
+                text-align: center;
+                color: rgb(251, 131, 107);
+            }
+            tr th,td{
+                text-align: center;
+            }
+            tr:nth-child(1){
                 background-color: rgb(251, 131, 107);
-                border: none;
             }
-            .button-pink:hover{
-                background-color: rgb(251, 131, 107);
-                border: none;
+            tr:nth-child(1) th{
+                color: white !important;
             }
-            .row{
-                border:1px solid red;
-            }
+            tr:nth-child(1) th:nth-child(1){width: 20%;}
+            tr:nth-child(1) th:nth-child(2){width: 20%}
+            tr:nth-child(1) th:nth-child(3){width: 20%}
         </style>
 
     </head>
@@ -67,22 +79,56 @@
 
 
 <%-- --------------------------------------------------------------------------------- --%>
+                        <ul class="nav">
+                            <li class="nav-item">
+                            <a class="nav-link" href="${contextPath}/point/wordle">Wordle</a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link" href="${contextPath}/point/roulette">roulette</a>
+                            </li>
+
+                            <!-- 로그인한 회원만 조회 가능. -->
+                            <c:if test="${ !empty sessionScope.loginMember }">
+                                <li class="nav-item">
+                                <a class="nav-link" href="${contextPath}/member/myPage/point">내 포인트 조회</a>
+                                </li>
+                            </c:if>
+                        </ul>
+
                         <div class="text-center mb-5">
                             <h1 class="fw-bolder">내 포인트 확인</h1>
                             <p class="lead fw-normal text-muted mb-0">지금까지 누적된 포인트와 사용 내역을 조회할 수 있습니다..</p>
                         </div>
+                    <div class="pointWrapper">
                         <div class="row gx-5 justify-content-center">
-                  
-                            <h1>내 포인트</h1>
-
+                            <h3><i class="fa-solid fa-paw"></i>포인트 :  ${loginMember.memberPoint}</h3>
                         </div>
 
-                        <div class="row gx-5 justify-content-center">
-                  
-                            <h4>포인트 사용 내역을 보여주는 테이블</h4>
+                    <div class="row gx-5 justify-content-center">
+                        <table class="table table-striped">
+                            <tr>
+                                <th>결제번호</th>
+                                <th>사용한 포인트</th>
+                                <th>사용일</th>
+                            </tr>
+                    
+                            <c:if test="${dList != null}">
+                            <c:forEach  var="d" items="${dList}">
+                                    <tr>
+                                        <td>${d.paymentNo}</td>
+                                        <td>${d.point}</td>
+                                        <td>${d.payDate}</td>
+                                    </tr>
+                            </c:forEach>
+                           </c:if>
+                    
+                            <c:if test="${dList == null}">
+                                <tr><td colspan="3"><h3>사용 내역이 없습니다.</h3></td></tr>
+                            </c:if>
 
-                        </div>
-
+                        </table>
+                    </div>
+                </div><!-- wrapper 끝 -->
 <%-- --------------------------------------------------------------------------------- --%>
 
                     </div>
@@ -97,8 +143,5 @@
         <!-- Core theme JS-->
         <script src="${contextPath}/resources/js/scripts.js"></script>
 
-        <script src="${contextPath}/resources/js/myPage-updateInfo.js"></script>
-
-        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     </body>
 </html>

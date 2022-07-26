@@ -102,13 +102,17 @@
                          
                             <div class="d-flex justify-content-between">
                             	<c:forEach begin="0" end="2" var="i">
-	                            	<c:if test="${map.nextSeason[0]==map.sList[i].fundingSeason}">
+	                            	<c:if test="${map.sList[i].fundingSeason=='2022/09'}">
 	                            		<c:set var="next0" value="${map.sList[i]}"/>                          	
 	                            	</c:if>
-	                            	<c:if test="${map.nextSeason[1]==map.sList[i].fundingSeason}">                             	
-	                            		<c:set var="next1" value="${map.sList[i]}"/>                          	
+	                            	
+	                            	<%-- <c:if test="${map.nextSeason[1]==map.sList[i].fundingSeason}">    --%>                          	
+	                            	<c:if test="${map.sList[i].fundingSeason=='2022/10'}">                             	
+	                            		<c:set var="next1" value="${map.sList[i]}"/>   
 	                            	</c:if> 
-	                            	<c:if test="${map.nextSeason[2]==map.sList[i].fundingSeason}">                             	
+
+	                            	<%-- <c:if test="${map.nextSeason[2]==map.sList[i].fundingSeason}"> --%>                             	
+	                            	<c:if test="${'2022/11'==map.sList[i].fundingSeason}">                             	
 	                            		<c:set var="next2" value="${map.sList[i]}"/>                          	
 	                            	</c:if>                            	
                            		</c:forEach>
@@ -117,9 +121,10 @@
                            			<!-- 예약없을때 -->
                            			<c:if test="${empty next0}">
                            			<div class="fundingInfoS">
-	                            	<a href="${contextPath}/admin/funding/register?fundingSeason=${map.nextSeason[0]}">
+	                            	<%-- <a href="${contextPath}/admin/funding/register?fundingSeason=${map.nextSeason[0]}"> --%>
+	                            	<a href="${contextPath}/admin/funding/register?fundingSeason=2022/09">
 		                            	<div class="fundingImgS">
-		                            		<div class="textS">${map.nextSeason[0]}</div>
+		                            		<div class="textS">2022/09</div>
 		                            	</div>
 	                            		<div class="hover">펀딩 등록</div>
 		                            	<div class="infoS"></div>
@@ -130,9 +135,9 @@
                            			<!-- 예약있을때  -->
                            			<c:if test="${!empty next0}">
 	                            	<div class="fundingInfoS">
-			                            <a href="${contextPath}/admin/funding/register?fundingNo=${next0.fundingNo}&fundingSeason=${map.nextSeason[0]}">
+			                            <a href="${contextPath}/admin/funding/register?fundingNo=${next0.fundingNo}&fundingSeason=2022/09">
 		                            	<div class="fundingImgS" style="background:url('${contextPath}${next0.fundingThumbnail}') 50% 0; background-size:cover;">
-		                            		<div class="textS">${map.nextSeason[0]}</div>
+		                            		<div class="textS">2022/09</div>
 		                            	</div>
 		                            	<div class="hover">펀딩 수정</div>
 		                            	<div class="infoS">[${next0.categoryName}] ${next0.fundingTitle}</div>
@@ -145,9 +150,9 @@
 	                            	<!-- 2달 뒤 펀딩 -->
                            			<c:if test="${empty next1}">
                            			<div class="fundingInfoS">
-	                            	<a href="${contextPath}/admin/funding/register?fundingSeason=${map.nextSeason[1]}">
+	                            	<a href="${contextPath}/admin/funding/register?fundingSeason=2022/10">
 		                            	<div class="fundingImgS">
-		                            		<div class="textS">${map.nextSeason[1]}</div>
+		                            		<div class="textS">2022/10</div>
 		                            	</div>
 		                            	<div class="hover">펀딩 등록</div>
 		                            	<div class="infoS"></div>
@@ -156,12 +161,12 @@
                            			</c:if>
                            			<c:if test="${!empty next1}">
 	                            	<div class="fundingInfoS">
-			                            <a href="${contextPath}/admin/funding/register?fundingNo=${next1.fundingNo}&fundingSeason=${map.nextSeason[1]}">
+			                            <a href="${contextPath}/admin/funding/register?fundingNo=${next1.fundingNo}&fundingSeason=2022/10">
 		                            	<div class="fundingImgS" style="background:url('${contextPath}${next1.fundingThumbnail}') 50% 0; background-size:cover;">
-		                            		<div class="textS">${map.nextSeason[1]}</div>
+		                            		<div class="textS">2022/10</div>
 		                            	</div>
 		                            	<div class="hover">펀딩 수정</div>
-		                            	<div class="infoS">[${next1.categoryName}] ${next0.fundingTitle}</div>
+		                            	<div class="infoS">[${next1.categoryName}] ${next1.fundingTitle}</div>
 		                            	</a>
 	                            	</div>
 	                            	</c:if>
@@ -170,9 +175,10 @@
 	                            	<!-- 3달 뒤 펀딩 -->
                            			<c:if test="${empty next2}">
                            			<div class="fundingInfoS">
-	                            	<a href="${contextPath}/admin/funding/register?fundingSeason=${map.nextSeason[2]}">
+	                            	<a href="${contextPath}/admin/funding/register?fundingSeason=2022/11">
 		                            	<div class="fundingImgS">
-		                            		<div class="textS">${map.nextSeason[2]}</div>
+		                            		<div class="textS">2022/11</div>
+		                            		<%-- <div class="textS">${map.nextSeason[2]}</div> --%>
 		                            	</div>
 		                            	<div class="hover">펀딩 등록</div>
 		                            	<div class="infoS"></div>
@@ -181,9 +187,9 @@
                            			</c:if>
                            			<c:if test="${!empty next2}">
 	                            	<div class="fundingInfoS">
-			                            <a href="${contextPath}/admin/funding/register?fundingNo=${next2.fundingNo}&fundingSeason=${map.nextSeason[2]}">
+			                            <a href="${contextPath}/admin/funding/register?fundingNo=${next2.fundingNo}&fundingSeason=2022/11">
 		                            	<div class="fundingImgS" style="background:url('${contextPath}${next2.fundingThumbnail}') 50% 0; background-size:cover;">
-		                            		<div class="textS">${map.nextSeason[2]}</div>
+		                            		<div class="textS">2022/11</div>
 		                            	</div>
 		                            	<div class="hover">펀딩 수정</div>
 		                            	<div class="infoS">[${next2.categoryName}] ${next2.fundingTitle}</div>

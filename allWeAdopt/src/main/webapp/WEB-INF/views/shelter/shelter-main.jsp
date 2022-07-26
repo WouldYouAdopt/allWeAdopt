@@ -124,7 +124,7 @@
                         </ul>
 
                         <button class="btn btn-secondary dropdown-toggle btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #FB836B; border: 0;">
-                            <strong>품종</strong>
+                            <strong>축종</strong>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                             <li><a class="dropdown-item" href="${upkind}" role="option" aria-selected="true">전체</a></li>
@@ -137,9 +137,9 @@
                     </div>
 
                         <c:forEach var="shelter" items="${list}">
-                        <div class="col-lg-4 mb-5">
+                        <div class="col-lg-4 mb-4">
                             <div class="card h-100 shadow border-0">
-                                <img class="card-img-top" src="${shelter.popfile}" alt="썸네일" id="thumbnail" style="height: 330px;" />
+                                <img class="card-img-top" src="${shelter.popfile}" alt="썸네일" id="thumbnail" style="height: 355px; width: 375px;" />
                                 <div class="card-body p-4">
                                     <span class="badge" style="background-color: #FB836B; font-size: 13px; margin-bottom: 10px; margin-bottom: 10px;" >New</span>
                                     <%-- <h5 ><div class="badge bg-primary bg-gradient rounded-pill mb-2" >New</div></h5> --%>

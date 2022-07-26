@@ -75,8 +75,8 @@
             }
             .selected{
                 color: #fff;
-            	border: 1px solid #fff;
-            	background: #FB836B;
+            	border: 1px solid #2181df;
+            	background: #2181df;
             }
             
             
@@ -109,6 +109,7 @@
 			    left: -14px;
 			    width: 170px; 
 			    background: #fb836b;
+			  /*  background: transparent; */
 			    color: #fff;
 			    height: 37px;
 			    line-height: 24px;
@@ -136,7 +137,7 @@
 
 					<div class="text-center py-5">
 						<h1 class="fw-bolder">병원찾기</h1>
-						<p class="lead fw-normal text-muted mb-0">가까운 병원을 확인해보세요</p>
+						<p class="lead fw-normal text-muted mb-0">내 근처 가까운 병원을 클릭하여 상세 정보를 확인해보세요</p>
 					</div>
                     
 					<div class="d-flex justify-content-center mapCon" >
@@ -145,14 +146,13 @@
 						
 						<div class="mapBtn">
 							<div class="mb-2 lineBtn-gr">반경 1km</div>
-							<div class="mb-2 lineBtn-gr selected">반경 2km</div>
+							<div class="mb-2 lineBtn-gr">반경 2km</div>
 							<div class="lineBtn-gr">반경 5km</div>
 						</div>
 						
 					</div>
 					
-					<div style="height:100px; margin-top:50px; border:1px solid #ff0000;" class="" id="hosList">
-					 병원쓰
+					<div style="min-height:100px; margin-top:50px; margin-bottom:100px;" id="hosList">
 						
 					</div>
 					
@@ -186,7 +186,7 @@
         <!-- 제이쿼리 -->
         <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
         <script src="${contextPath}/resources/js/hospital.js"></script>
-        
+        <script>const contextPath = '${contextPath}';</script>
 
         
     </body>

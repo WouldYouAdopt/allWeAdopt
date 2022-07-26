@@ -319,7 +319,7 @@ function addZero(temp) {
 //onsubmit 함수
 //결제방식 체크된 경우 true false 반환 
 //$('.payment').is(':checked')
-function submitValidate() {
+async function submitValidate() {
 
   //결제정보 테스트
   if (!$('.payment').is(':checked')) {
@@ -353,8 +353,28 @@ function submitValidate() {
 
   let payMethod = $('input[name=pay-Method]:checked').val();
 
-  switch (payMethod) {
+  if( ($('#fullPrice').val()-$('#inputPoint').val()) == 0){
 
+    Swal.fire({
+      title: '결제 완료',
+      text: "결제가 완료되었습니다!.",
+      width: 340,		
+      iconColor: 'rgb(251, 131, 107)',
+      confirmButtonColor: 'rgb(251, 131, 107)',
+      confirmButtonText: '확인',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          $('#pay_method').val("포인트 사용");
+          $('form[name="submitEvent"]').serialize();
+          $('form[name="submitEvent"]').attr('method', 'POST');
+          $('form[name="submitEvent"]').attr('action', 'pay/' + newUID($('#memberNo').val()));  
+          console.log(document.getElementById("fullPrice").value);
+          document.getElementById("submitEvent").submit();
+        }
+       })
+  }
+
+  switch (payMethod) {
     case 'none': 
         Swal.fire({
           title: '은행사의 문제로 지원되지 않습니다',
@@ -413,3 +433,48 @@ $(".payBtn").click(function(){
  
 });
 
+//---------------------------------------------------
+
+//결제시 포인트 사용 여부
+
+const useAll = document.getElementById("useAll");
+const havePoint = document.getElementById("havePoint").value;
+const fullPrice = document.getElementById("fullPrice").value;
+const inputPoint = document.getElementById("inputPoint");
+(function(){
+  inputPoint.setAttribute("max",havePoint);
+})();
+
+useAll.addEventListener("click",()=>{
+  if(havePoint == 0){
+    alert("사용 할 수 있는 포인트가 없습니다.");
+    return;
+  }
+  if(Number(havePoint)>Number(fullPrice)){
+    inputPoint.value = fullPrice;
+  }else{
+    inputPoint.value = havePoint;
+  }
+})
+
+// 포인트 체인지 이벤트
+inputPoint.addEventListener("change",()=>{
+  if(Number(inputPoint.value)>Number(havePoint)){
+    inputPoint.value=havePoint;
+  }
+});
+
+$('input').keydown(function() {
+  if (event.keyCode === 13) {
+    event.preventDefault();
+  };
+});
+
+
+$('.agreeWrapper a').click(()=>{
+  alert("솔직히 관심 없잔아요");
+})
+
+
+
+//---------------------------------------------------

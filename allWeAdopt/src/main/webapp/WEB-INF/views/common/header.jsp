@@ -32,7 +32,9 @@
                     <li class="nav-item"><a class="nav-link" href="${contextPath}/shelter/shelterList">보호소</a></li>
                     <li class="nav-item"><a class="nav-link" href="${contextPath}/shelter/pamphlet/list">스토리</a></li>
                     <li class="nav-item"><a class="nav-link" href="${contextPath}/board/user">어답터</a></li>
-                    <li class="nav-item"><a class="nav-link" href="${contextPath}/point/wordle">포인트</a></li>
+                    <c:if test="${!empty loginMember}">
+                        <li class="nav-item"><a class="nav-link" href="${contextPath}/point/wordle">포인트</a></li>
+                    </c:if>
                     <li class="nav-item"><a class="nav-link" href="${contextPath}/funding/detail/${nowFundingNo}?page=1">펀딩</a></li>
                     <li class="nav-item"><a class="nav-link" href="${contextPath}/findHospital">병원찾기</a></li>
 
@@ -80,7 +82,7 @@
                                         <li><a class="dropdown-item" href="${contextPath}/member/myPage/ask/list">문의하기</a></li>
                                         <li><a class="dropdown-item" href="${contextPath}/member/myPage/notice/list">공지사항</a></li>
                                         <c:if test="${  loginMember.memberType == 'M' }">
-                                            <li><a class="dropdown-item" href="${contextPath}/member/logout">로그아웃</a></li>
+                                            <li><a class="dropdown-item" id="logout">로그아웃</a></li>
                                         </c:if>
 
                                         <c:if test="${ loginMember.memberType == 'K' }">

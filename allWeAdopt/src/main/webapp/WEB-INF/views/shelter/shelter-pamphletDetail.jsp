@@ -126,11 +126,15 @@
                                     <!-- Post title-->
                                     <h1 class="fw-bolder mb-1">${detail.boardTitle}</h1>
                                     <!-- Post meta content-->
-                                    <div class="text-muted fst-italic mb-2">작성일 : ${detail.createDate}</div>
+                                    <div class="text-muted fst-italic mb-2">
+                                        작성일 : ${detail.createDate} /
+                                        <c:if test="${!empty detail.updateDate}">수정일 : ${detail.updateDate}</c:if>
 
-                                    <c:if test="${!empty detail.updateDate}">
+                                    </div>
+
+                                    <%-- <c:if test="${!empty detail.updateDate}">
                                         <div class="text-muted fst-italic mb-2">수정일 : ${detail.updateDate}</div>
-                                    </c:if>
+                                    </c:if> --%>
                                     
                                     <!-- Post categories-->
                                     <%-- <a class="badge bg-secondary text-decoration-none link-light" href="#!">관심 등록</a> --%>
@@ -144,11 +148,11 @@
                                     </div>
 
 
-                                    <c:if test="${!empty detail.thumbnail}">
+                                    <%-- <c:if test="${!empty detail.thumbnail}">
                                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                             <button type="button" class="btn btn-outline-secondary btn-sm allButton"  data-bs-toggle="modal" data-bs-target="#makePam">전단지 만들기</button>
                                         </div>
-                                    </c:if>
+                                    </c:if> --%>
 
 
                                     <%-- <a class="badge bg-secondary text-decoration-none link-light" href="#!">${detail.memberEmail}</a> --%>
