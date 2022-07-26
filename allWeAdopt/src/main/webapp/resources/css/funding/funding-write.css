@@ -213,3 +213,9 @@ h4{
     border-top: 2px solid #FB836b;
     padding-top: 20px;
 }
+
+.btn-secondary{
+    color: gray !important;
+    background-color: white  !important;
+    border: none;
+  }
