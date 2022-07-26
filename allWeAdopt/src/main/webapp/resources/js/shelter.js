@@ -36,8 +36,6 @@
 })();
 
 
-
-
 (function(){
     const deleteBtn = document.getElementById("deleteBtn"); // 존재하지 않으면 null
 
@@ -88,7 +86,7 @@
 // 트위터
 function shareTwitter() {
     var sendText = "allWeAdopt"; // 전달할 텍스트
-    var sendUrl = contextPath + "/shelter/pamphlet/detail/" + boardNo; // 전달할 URL
+    var sendUrl ="http://kh-classa.xyz/allWeAdopt"  + "/shelter/pamphlet/detail/" + boardNo; // 전달할 URL
     window.open("https://twitter.com/intent/tweet?text=" + sendText + "&url=" + sendUrl);
 }
 
@@ -96,7 +94,7 @@ function shareTwitter() {
 // 페이스북
 // 고정 IP라서 지금 오류남
 function shareFacebook() {
-    var sendUrl = contextPath + "/shelter/pamphlet/detail/" + boardNo; // 전달할 URL
+    var sendUrl = "http://kh-classa.xyz/allWeAdopt" + "/shelter/pamphlet/detail/" + boardNo; // 전달할 URL
     window.open("http://www.facebook.com/sharer/sharer.php?u=" + sendUrl);
 }
 
@@ -115,11 +113,11 @@ function shareKakao() {
       content: {
         title: "allWeAdopt", // 보여질 제목
         description: "allWeAdopt입니다", // 보여질 설명
-        imageUrl: contextPath + "/resources/images/intro.png",
+        imageUrl: "http://kh-classa.xyz/allWeAdopt" + "/resources/images/intro.png",
         // "http://localhost:8081/allWeAdopt/shelter/pamphlet/detail/" + boardNo, // 콘텐츠 URL
         link: {
         //    mobileWebUrl: "devpad.tistory.com/",
-           webUrl: "http://localhost:8081/allWeAdopt"
+           webUrl: "http://kh-classa.xyz/allWeAdopt"
         }
       }
     });
@@ -159,27 +157,6 @@ function download(){
   download.setAttribute("href", image);
 
 }
-
-
-
-
-
-
-
-
-        
-
-
-
-
- 
-
-
-
-
-
-
-
 
 
 
