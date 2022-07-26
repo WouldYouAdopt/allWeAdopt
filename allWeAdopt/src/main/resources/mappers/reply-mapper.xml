@@ -7,6 +7,8 @@
 		<id property="replyNo" column="REPLY_NO"/>
 		
 		<result property="createDate" column="CREATE_DT"/>
+		<result property="replyContent" column="REPLY_CONTENT"/>
+		<result property="replySt" column="REPLY_ST"/>
 		<result property="boardNo" column="BOARD_NO"/>
 		<result property="memberNo" column="MEMBER_NO"/>
 		<result property="memberNickname" column="MEMBER_NICK"/>

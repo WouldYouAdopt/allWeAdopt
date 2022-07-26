@@ -147,9 +147,8 @@ public class KakaoController {
         		mem.setMemberName(nickname);
         		mem.setProfileImage(profileImage);
         		
-        		// 카카오 회원넘버 '삽입' 서비스 호출.
+        		// 카카오 회원넘버 '삽입' 서비스 호출. 
         		int result = service.insertNo(mem);
-        		
         		
         		
         		if(result > 0) { //  성공

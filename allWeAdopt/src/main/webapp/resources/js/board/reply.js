@@ -96,23 +96,18 @@ addReply.addEventListener("click", function(){ // 댓글 등록 버튼이 클릭
     // 1) 로그인이 되어있나? -> 전역변수 loginMemberNo 이용
     if(memberType != "A"){ // 로그인 X
         // alert("관리자만 작성할 수 있습니다.");
+
         Swal.fire({
-            text: "관리자만 작성할 수 있습니다.",
-            width: 340,
-            icon: 'warning',
+            title: "관리자만 작성할 수 있습니다.",
+            width: 350,
+            padding: '3em',
+            icon: 'warring',
             iconColor: 'rgb(251, 131, 107)',
-            showCancelButton: true,
+            color: 'black',
             confirmButtonColor: 'rgb(251, 131, 107)',
-            cancelButtonColor: '#999',
-            confirmButtonText: '확인',
-            cancelButtonText: '취소'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    location.href = url;
-                }else{
-                    e.preventDefault();
-                }
-            })
+            confirmButtonText: '확인'
+        });
+
 
         
         return;
@@ -123,22 +118,16 @@ addReply.addEventListener("click", function(){ // 댓글 등록 버튼이 클릭
         // alert("댓글을 작성한 후 버튼을 클릭해주세요.");
 
         Swal.fire({
-            text: "댓글을 작성한 후 버튼을 클릭해주세요.",
-            width: 340,
-            icon: 'warning',
+            title: "댓글을 작성한 후 버튼을 클릭해주세요.",
+            width: 350,
+            padding: '3em',
+            icon: 'warring',
             iconColor: 'rgb(251, 131, 107)',
-            showCancelButton: true,
+            color: 'black',
             confirmButtonColor: 'rgb(251, 131, 107)',
-            cancelButtonColor: '#999',
-            confirmButtonText: '확인',
-            cancelButtonText: '취소'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    location.href = url;
-                }else{
-                    e.preventDefault();
-                }
-            })
+            confirmButtonText: '확인'
+        });
+
 
         replyContent.value = ""; // 띄어쓰기, 개행문자 제거
         replyContent.focus();
@@ -157,24 +146,18 @@ addReply.addEventListener("click", function(){ // 댓글 등록 버튼이 클릭
 
             if(result > 0){ // 등록 성공
                 // alert("댓글이 등록되었습니다.");
-
+                
                 Swal.fire({
-                    text: "댓글이 등록되었습니다.",
-                    width: 340,
+                    title: "댓글이 등록되었습니다.",
+                    width: 350,
+                    padding: '3em',
                     icon: 'success',
                     iconColor: 'rgb(251, 131, 107)',
-                    showCancelButton: true,
+                    color: 'black',
                     confirmButtonColor: 'rgb(251, 131, 107)',
-                    cancelButtonColor: '#999',
-                    confirmButtonText: '확인',
-                    cancelButtonText: '취소'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            location.href = url;
-                        }else{
-                            e.preventDefault();
-                        }
-                    })
+                    confirmButtonText: '확인'
+                });
+        
         
 
                 replyContent.value = ""; // 작성했던 댓글 삭제
@@ -186,22 +169,15 @@ addReply.addEventListener("click", function(){ // 댓글 등록 버튼이 클릭
                 // alert("댓글 등록에 실패했습니다...");
 
                 Swal.fire({
-                    text: "댓글 등록에 실패했습니다...",
-                    width: 340,
-                    icon: 'error',
+                    title: "댓글 등록에 실패했습니다...",
+                    width: 350,
+                    padding: '3em',
+                    icon: 'warring',
                     iconColor: 'rgb(251, 131, 107)',
-                    showCancelButton: true,
+                    color: 'black',
                     confirmButtonColor: 'rgb(251, 131, 107)',
-                    cancelButtonColor: '#999',
-                    confirmButtonText: '확인',
-                    cancelButtonText: '취소'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            location.href = url;
-                        }else{
-                            e.preventDefault();
-                        }
-                    })
+                    confirmButtonText: '확인'
+                });
             }
 
         },
@@ -230,43 +206,29 @@ function deleteReply(replyNo){
                     // alert("삭제되었습니다");
 
                     Swal.fire({
-                        text: "삭제되었습니다",
-                        width: 340,
+                        title: "삭제되었습니다.",
+                        width: 350,
+                        padding: '3em',
                         icon: 'success',
                         iconColor: 'rgb(251, 131, 107)',
-                        showCancelButton: true,
+                        color: 'black',
                         confirmButtonColor: 'rgb(251, 131, 107)',
-                        cancelButtonColor: '#999',
-                        confirmButtonText: '확인',
-                        cancelButtonText: '취소'
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                location.href = url;
-                            }else{
-                                e.preventDefault();
-                            }
-                        })
+                        confirmButtonText: '확인'
+                    });
             
                     selectReplyList(); // 목록을 다시 조회해서 삭제된 글을 제거
                 }else{
                     // alert("삭제 실패");
                     Swal.fire({
-                        text: "삭제 실패",
-                        width: 340,
-                        icon: 'error',
+                        title: "삭제 실패",
+                        width: 350,
+                        padding: '3em',
+                        icon: 'warring',
                         iconColor: 'rgb(251, 131, 107)',
-                        showCancelButton: true,
+                        color: 'black',
                         confirmButtonColor: 'rgb(251, 131, 107)',
-                        cancelButtonColor: '#999',
-                        confirmButtonText: '확인',
-                        cancelButtonText: '취소'
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                location.href = url;
-                            }else{
-                                e.preventDefault();
-                            }
-                        })
+                        confirmButtonText: '확인'
+                    });
             
                 }
             },
@@ -333,7 +295,7 @@ function showUpdateReply(replyNo, btn){
 
     // 5. textarea 요소 생성 + 클래스 추가  +  **내용 추가**
     const textarea = document.createElement("textarea");
-    textarea.classList.add("form-control", "mb-1", );
+    textarea.classList.add("form-control", "mb-1" );
     textarea.style.resize = 'none';
 
     // ******************************************
@@ -390,44 +352,29 @@ function updateReply(replyNo, btn){
                 // alert("댓글이 수정되었습니다.");
 
                 Swal.fire({
-                    text: "댓글이 수정되었습니다.",
-                    width: 340,
+                    title: "수정 되었습니다.",
+                    width: 350,
+                    padding: '3em',
                     icon: 'success',
                     iconColor: 'rgb(251, 131, 107)',
-                    showCancelButton: true,
+                    color: 'black',
                     confirmButtonColor: 'rgb(251, 131, 107)',
-                    cancelButtonColor: '#999',
-                    confirmButtonText: '확인',
-                    cancelButtonText: '취소'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            location.href = url;
-                        }else{
-                            e.preventDefault();
-                        }
-                    })
-        
+                    confirmButtonText: '확인'
+                });
                 selectReplyList();
             }else{
                 // alert("댓글 수정 실패");
 
                 Swal.fire({
-                    text: "댓글 수정 실패",
-                    width: 340,
-                    icon: 'error',
+                    title: "삭제 실패",
+                    width: 350,
+                    padding: '3em',
+                    icon: 'warring',
                     iconColor: 'rgb(251, 131, 107)',
-                    showCancelButton: true,
+                    color: 'black',
                     confirmButtonColor: 'rgb(251, 131, 107)',
-                    cancelButtonColor: '#999',
-                    confirmButtonText: '확인',
-                    cancelButtonText: '취소'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            location.href = url;
-                        }else{
-                            e.preventDefault();
-                        }
-                    })
+                    confirmButtonText: '확인'
+                });
             }
         },
         error : function(req, status, error){

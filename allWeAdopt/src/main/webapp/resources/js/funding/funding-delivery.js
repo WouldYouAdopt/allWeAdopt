@@ -464,7 +464,7 @@ async function returnProcess(code){
         inputAttributes: {
           'aria-label': 'Type your message here'
         }
-      })
+      });
 
       if (text == '') {
         Swal.fire('반품사유를 작성해주세요');
