@@ -58,25 +58,27 @@ likeIcon.addEventListener("click",function() {
 // 트위터 공유 기능
 function shareTwitter2() {
     const boardNo = document.getElementsByName("boardNo")[0];
-    const url = "/localhost:8081/allWeAdopt/board/detail/2/"+boardNo.value;
+    const url = "http://kh-classa.xyz/allWeAdopt/board/detail/2/"+boardNo.value;
     var sendText = "allWeAdopt"; // 전달할 텍스트
-    var sendUrl = encodeURIComponent(url); // 전달할 URL
-    // var sendUrl = "devpad.tistory.com/"; // 전달할 URL
+    var sendUrl = url;
+    // var sendUrl = encodeURIComponent(url); // 전달할 URL
+
     window.open("https://twitter.com/intent/tweet?text=" + sendText + "&url=" + sendUrl);
 }
 
 //페이스북 공유 기능
 function shareFacebook2() {
     const boardNo = document.getElementsByName("boardNo")[0];
-    const url = "http://localhost:8081/allWeAdopt/board/detail/2/"+boardNo.value;
-    var sendUrl = encodeURIComponent(url); // 전달할 URL
+    const url = "http://kh-classa.xyz/allWeAdopt/board/detail/2/"+boardNo.value;
+    var sendUrl = url;
+    // var sendUrl = encodeURIComponent(url); // 전달할 URL
     window.open("http://www.facebook.com/sharer/sharer.php?href=" + sendUrl);
 }
 
 // 카카오톡 공유 기능
 function shareKakao2() {
     const boardNo = document.getElementsByName("boardNo")[0];
-    const url = "http://localhost:8081/allWeAdopt/board/detail/2/"+boardNo.value;
+    const url = "http://kh-classa.xyz/allWeAdopt/board/detail/2/"+boardNo.value;
 
     // 사용할 앱의 JavaScript 키 설정
     Kakao.init('c2a34c4788a9b6f5a1d552ea9a4f9083');
