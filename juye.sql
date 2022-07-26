@@ -12,6 +12,11 @@ SELECT * FROM MEMBER
 WHERE MEMBER_EMAIL = 'kjy_1615@naver.com'
 AND SECESSION_FL = 'N';
 
+-- 회원 데이터 삭제
+DELETE FROM MEMBER
+WHERE MEMBER_EMAIL = 'kjy_1615@naver.com';
+
+
 
 -- 카카오 로그인 시 비밀번호가 null 인가 조회 ANIMAL_DETAIL
 SELECT * FROM MEMBER
@@ -21,7 +26,11 @@ WHERE MEMBER_EMAIL = 'kakao@user.com';
 -- 카카오 로그인 시 처음 로그인한 회원의 정보 삽입TEST
 INSERT INTO MEMBER 
 VALUES(SEQ_MEMBER_NO.NEXTVAL,'kakao3@user.com',NULL,'kakaoname',null,
-		DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT);
+		DEFAULT,DEFAULT,DEFAULT,'K',DEFAULT,DEFAULT);
+
+INSERT INTO MEMBER 
+VALUES(#{memberNo}, #{memberEmail}, NULL, #{memberName}, NULL,
+            DEFAULT,이미지,DEFAULT,'K',DEFAULT)
 
 -- 멤버 타입 변경 
 UPDATE MEMBER SET
