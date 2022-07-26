@@ -51,7 +51,12 @@
                     <div class="row gx-5">
                         <div class="col-lg-3">
                             <div class="d-flex align-items-center mt-lg-5 mb-4">
-                                <img class="img-fluid rounded-circle" src="${contextPath}${board.profileImage}" alt="..." />
+                                <c:if test="${board.memberTypes eq 'K'}">
+                                    <img class="img-fluid rounded-circle" src="${contextPath}/resources/images/user.png" alt="..." /> 
+                                </c:if>
+                                <c:if test="${board.memberTypes ne 'K'}">
+                                    <img class="img-fluid rounded-circle" src="${contextPath}${board.profileImage}" alt="..." /> 
+                                </c:if>  
                                 <div class="ms-3">
                                     <div class="fw-bold">${board.memberName}</div>
                                 </div>
@@ -94,7 +99,7 @@
                                     <div class="tag-area">
                                         <div class="tag">
                                             <a class="badge bg-secondary text-decoration-none link-light animal" href="#!">${board.animalType}</a>
-                                            <c:if test="${!empty board.animalDetail}">
+                                            <c:if test="${!empty board.animalDetail && board.animalDetail!='기타'}">
                                                 <a class="badge bg-secondary text-decoration-none link-light animalDetail" href="#!">${board.animalDetail}</a>
                                             </c:if>
                                             <a class="badge bg-secondary text-decoration-none link-light gender" href="#!">
@@ -116,7 +121,7 @@
 
 
                                         <%-- 전단지 만들기 버튼 --%>                                
-                                        <c:if test="${board.category != '완료'}">
+                                        <c:if test="${board.category ne '완료' && board.category ne '보호'}">
                                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                                 <button type="button" class="btn btn-outline-secondary btn-sm allButton"  data-bs-toggle="modal" data-bs-target="#makePam">전단지 만들기</button>
                                             </div>

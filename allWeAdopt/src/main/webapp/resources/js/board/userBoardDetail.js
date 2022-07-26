@@ -11,12 +11,21 @@ function likeFunc(loginMember,boardNo,likeNo) {
             "likeNo" : likeNo
 		},
 		success: function(result){
+            let message = null;
 			if(result > 0){
                 if(likeNo==0){
-                    alert("관심동물로 등록되었습니다");
+                    message = "관심동물로 등록되었습니다";
                 }else{
-                    alert("관심동물이 해제되었습니다");
+                    message = "관심동물이 해제되었습니다";
                 }
+                Swal.fire({
+                    title: message,
+                    width: 600,
+                    padding: '3em',
+                    color: 'black',
+                    confirmButtonColor: 'rgb(251, 131, 107)',
+                    confirmButtonText: '확인'
+                    });
             }
 		},
 		error: function (request, status, error){
@@ -31,6 +40,7 @@ function likeFunc(loginMember,boardNo,likeNo) {
 const likeIcon = document.getElementById('likeIcon');
 const iconValue = document.getElementsByClassName("iconValue")[0];
 const loginMember = document.getElementById("loginMember").value;
+const boardNo = document.getElementsByName("boardNo")[0];
 
 likeIcon.addEventListener("click",function() {
     const likeNo = document.getElementsByClassName('iconValue')[0].value;
@@ -42,7 +52,7 @@ likeIcon.addEventListener("click",function() {
         iconValue.value = 0;
     };
    
-    likeFunc(loginMember,boardNo,likeNo);
+    likeFunc(loginMember,boardNo.value,likeNo);
 });
 
 // 트위터 공유 기능
@@ -67,7 +77,6 @@ function shareFacebook2() {
 function shareKakao2() {
     const boardNo = document.getElementsByName("boardNo")[0];
     const url = "http://localhost:8081/allWeAdopt/board/detail/2/"+boardNo.value;
-    console.log(url);
 
     // 사용할 앱의 JavaScript 키 설정
     Kakao.init('c2a34c4788a9b6f5a1d552ea9a4f9083');
