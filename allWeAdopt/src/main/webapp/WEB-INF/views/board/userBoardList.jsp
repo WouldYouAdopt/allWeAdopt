@@ -225,7 +225,7 @@
                                         <img class="card-img-top" style="width:376px; height:250px;" src="${boardList.thumbnail}" alt="..." />
                                         <div class="card-body p-4">
                                             <div class="badge bg-primary bg-gradient rounded-pill mb-2 animal">${boardList.animalType}</div>
-                                            <c:if test="${!empty boardList.animalDetail}">
+                                            <c:if test="${!empty boardList.animalDetail && boardList.animalDetail!='기타'}">
                                                 <div class="badge bg-primary bg-gradient rounded-pill mb-2 animal-detail">${boardList.animalDetail}</div>
                                             </c:if>
                                             <div class="badge bg-primary bg-gradient rounded-pill mb-2 gender">

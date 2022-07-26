@@ -50,10 +50,10 @@
 	  }
 
 	  // 축종 값이 있을 시 품종 목록 불러오기
-	  animalDetailAjax(document.getElementsByName("animalType")[0].value);
+	  animalDetailAjax(document.getElementsByName("animalType")[0].value.trim());
 
 	  // 지역 값이 있을 시 상세지역 목록 불러오기
-	  areaDetailAjax(document.getElementsByName("area")[0].value);
+	  areaDetailAjax(document.getElementsByName("area")[0].value.trim());
 })();
 
 // 초기화 바튼 클릭 시 검색 필터 초기화
