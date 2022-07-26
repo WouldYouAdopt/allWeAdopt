@@ -79,7 +79,11 @@
 
 
 <%-- --------------------------------------------------------------------------------- --%>
-                        <ul class="nav">
+
+                        <div class="text-center mb-5">
+                            <h1 class="fw-bolder">내 포인트 확인</h1>
+                            
+                        <ul class=" d-flex justify-content-center mb-2 nav">
                             <li class="nav-item">
                             <a class="nav-link" href="${contextPath}/point/wordle">Wordle</a>
                             </li>
@@ -95,13 +99,11 @@
                             </c:if>
                         </ul>
 
-                        <div class="text-center mb-5">
-                            <h1 class="fw-bolder">내 포인트 확인</h1>
-                            <p class="lead fw-normal text-muted mb-0">지금까지 누적된 포인트와 사용 내역을 조회할 수 있습니다..</p>
                         </div>
                     <div class="pointWrapper">
                         <div class="row gx-5 justify-content-center">
                             <h3><i class="fa-solid fa-paw"></i>포인트 :  ${loginMember.memberPoint}</h3>
+                            <p>지금까지 누적된 포인트와 사용 내역을 조회할 수 있습니다..</p>
                         </div>
 
                     <div class="row gx-5 justify-content-center">

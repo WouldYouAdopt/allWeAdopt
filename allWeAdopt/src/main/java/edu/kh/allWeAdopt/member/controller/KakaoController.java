@@ -118,16 +118,15 @@ public class KakaoController {
         			
 	        	}else {
 	        		
+	        		
+	        		
 	        		kakaoEmailCheck.setProfileImage(profileImage);
 	        		kakaoEmailCheck.setMemberName(nickname);
-	        		
 	        		
 	        		
 	                //회원 정보 JSON 형태로 저장
 	        		kakaoEmailCheck.setMemberJson(new Gson().toJson(kakaoEmailCheck));
 
-	        		
-	        		
 	        		
 	        		// 카카오 로그인 했었던 사람 
 	        		 model.addAttribute("loginMember", kakaoEmailCheck);
@@ -146,23 +145,23 @@ public class KakaoController {
         		mem.setMemberEmail(kakaoEmail);
         		mem.setMemberName(nickname);
         		mem.setProfileImage(profileImage);
+        		mem.setMemberType("K");
+        		mem.setMemberPoint(1000);
         		
-        		// 카카오 회원넘버 '삽입' 서비스 호출.
+        		
+        		
+        		
+        		// 카카오 회원넘버 '삽입' 서비스 호출. 
         		int result = service.insertNo(mem);
-        		
         		
         		
         		if(result > 0) { //  성공
         			
-        			
         			//회원 정보 JSON 형태로 저장
         			mem.setMemberJson(new Gson().toJson(mem));
         			
-        			
-        			
         			model.addAttribute("loginMember", mem);
         			message = "카카오 로그인 성공!!";
-        			
         			
         			
         			return  "redirect:/"; // 메인페이지
