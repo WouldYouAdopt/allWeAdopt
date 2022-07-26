@@ -31,6 +31,7 @@ public class Board {
 	private String answer;
 
 	private String thumbnail;
+	private int replyCount;
 
 	private String area;
 	private String areaDetail;

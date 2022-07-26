@@ -231,6 +231,8 @@
                                     <div class="md-10" style="margin:30px;"></div>
 
                                     <%-- 보호소 지도 첨부 --%>
+
+                                    <i class="bi bi-geo-alt" style="font-size:30px; color:#FB836B;"></i>
                                     <div id="map" style="width:700px;height:400px;"></div>
 
 
@@ -321,6 +323,7 @@
                                     const careTel = "${careTel}"
                                     const colorCd = "${colorCd}"
                                     const kindCd = "${kindCd}"
+                                    const specialMark = "${specialMark}"
                                     
 
                                     var c = document.getElementById("myCanvas");
@@ -331,46 +334,85 @@
                                     // img.crossOrigin = "Anonymous";
                                     // img2.crossOrigin = "Anonymous";
 
-
-
                                     // const date = "${detail.createDate}"
 
                                     window.onload = function() {
 
 
-                                    ctx.drawImage(img2, 0, 0, 1000, 1000);
-                                    ctx.drawImage(img, 20, 120, 600, 550);
+                                        ctx.drawImage(img2, 0, 0, 1000, 1000);
+                                        ctx.drawImage(img, 20, 120, 600, 550);
 
 
-                                    ctx.font = "25px Helvetica";
-                                    ctx.fillStyle  = "black";
-                                    ctx.fillText(careNm, 210, 840);
 
-                                    ctx.font = "35px Helvetica";
-                                    ctx.fillStyle  = "black";
-                                    ctx.fillText(careTel, 550, 840);
+                                        ctx.font = "25px Helvetica";
+                                        ctx.fillStyle  = "black";
+                                        ctx.fillText(careNm, 210, 840);
 
-
-                                    ctx.font = "35px bold Helvetica";
-                                    ctx.fillStyle  = "black";
-                                    ctx.fillText('발견 장소 : ' + happenPlace, 25, 720);
+                                        ctx.font = "35px Helvetica";
+                                        ctx.fillStyle  = "black";
+                                        ctx.fillText(careTel, 560, 840);
 
 
-                                    ctx.font = "40px Helvetica";
-                                    ctx.fillStyle  = "black";
-                                    ctx.fillText(age, 650, 230);
+                                        ctx.font = "40px Helvetica";
+                                        ctx.fillStyle  = "black";
+                                        printAtWordWrap(ctx, '특징 : ' + specialMark, 650, 450, 50, 350);
+                                        // ctx.fillText('특징 : ' + specialMark, 25, 720);
 
-                                    ctx.font = "40px Helvetica";
-                                    ctx.fillStyle  = "black";
-                                    ctx.fillText('성별 : ' + sexCd, 650, 280);
 
-                                    ctx.font = "40px Helvetica";
-                                    ctx.fillStyle  = "black";
-                                    ctx.fillText(colorCd, 650, 330);
 
-                                    ctx.font = "40px Helvetica";
-                                    ctx.fillStyle  = "black";
-                                    ctx.fillText(kindCd, 650, 180);
+                                        ctx.font = "40px Helvetica";
+                                        ctx.fillStyle  = "black";
+                                        ctx.fillText(age, 650, 250);
+
+                                        ctx.font = "40px Helvetica";
+                                        ctx.fillStyle  = "black";
+                                        ctx.fillText('성별 : ' + sexCd, 650, 310);
+
+                                        ctx.font = "40px Helvetica";
+                                        ctx.fillStyle  = "black";
+                                        ctx.fillText(colorCd, 650, 370);
+
+                                        ctx.font = "40px Helvetica";
+                                        ctx.fillStyle  = "black";
+                                        ctx.fillText(kindCd, 650, 180);
+
+
+                                        // 전단지 줄바꿈
+                                        function printAtWordWrap( context , text, x, y, lineHeight, fitWidth){
+
+                                            fitWidth = fitWidth || 0;
+                                            
+                                            if (fitWidth <= 0)
+                                            {
+                                                context.fillText( text, x, y );
+                                                return;
+                                            }
+
+                                            var words = text.split(' ');
+                                            var currentLine = 0;
+                                            var idx = 1;
+                                            
+                                            while (words.length > 0 && idx <= words.length)
+                                            {
+                                                var str = words.slice(0,idx).join(' ');
+                                                var w = context.measureText(str).width;
+                                                if ( w > fitWidth )
+                                                {
+                                                    if (idx==1)
+                                                    {
+                                                        idx=2;
+                                                    }
+                                                    context.fillText( words.slice(0,idx-1).join(' '), x, y + (lineHeight*currentLine) );
+                                                    currentLine++;
+                                                    words = words.splice(idx-1);
+                                                    idx = 1;
+                                                }
+                                                else
+                                                {idx++;}
+                                            }
+                                            if  (idx > 0)
+                                                context.fillText( words.join(' '), x, y + (lineHeight*currentLine) );
+                                        }
 
                                     }
                                     

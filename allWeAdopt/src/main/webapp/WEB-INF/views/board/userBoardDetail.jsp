@@ -116,7 +116,7 @@
 
 
                                         <%-- 전단지 만들기 버튼 --%>                                
-                                        <c:if test="${board.category eq '목격' || board.category eq '실종'}">
+                                        <c:if test="${board.category != '완료'}">
                                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                                 <button type="button" class="btn btn-outline-secondary btn-sm allButton"  data-bs-toggle="modal" data-bs-target="#makePam">전단지 만들기</button>
                                             </div>
@@ -206,6 +206,7 @@
                                                 <img id="myimage" style="width: 100px; height: 100px; display: none;" src="${board.thumbnail}" alt="myPet">
                                                 <img id="myimage2" style="width: 20px; height: 20px; display: none;" src="${contextPath}\resources\images\pamphlet.png" alt="The Scream">
 
+                                                
                                                 <canvas id="myCanvas" width="1000" height="1000" ></canvas>
 
                                             </div>
@@ -230,46 +231,82 @@
 
                                         window.onload = function() {
 
-                                        var c = document.getElementById("myCanvas");
-                                        var ctx = c.getContext("2d");
-                                        var img = document.getElementById("myimage");
-                                        var img2 = document.getElementById("myimage2");
-                                        ctx.drawImage(img2, 0, 0, 1000, 1000);
-                                        ctx.drawImage(img, 25, 160, 380, 400);
+                                            var c = document.getElementById("myCanvas");
+                                            var ctx = c.getContext("2d");
+                                            var img = document.getElementById("myimage");
+                                            var img2 = document.getElementById("myimage2");
+                                            ctx.drawImage(img2, 0, 0, 1000, 1000);
+                                            ctx.drawImage(img, 25, 160, 380, 400);
 
-                                        ctx.font = "70px Helvetica";
-                                        ctx.fillStyle  = "red";
-                                        ctx.fillText(phone, 160, 700);
+                                            ctx.font = "70px Helvetica";
+                                            ctx.fillStyle  = "red";
+                                            ctx.fillText(phone, 160, 700);
 
-                                        ctx.font = "40px Helvetica";
-                                        ctx.fillStyle  = "black";
-                                        ctx.fillText('축종 : ' + animalType, 410, 200);
-
-
-                                        ctx.font = "40px Helvetica";
-                                        ctx.fillStyle  = "black";
-                                        ctx.fillText('품종 : ' + animalDetail, 410, 260);
+                                            ctx.font = "40px Helvetica";
+                                            ctx.fillStyle  = "black";
+                                            ctx.fillText('축종 : ' + animalType, 410, 200);
 
 
-                                        ctx.font = "40px Helvetica";
-                                        ctx.fillStyle  = "black";
-                                        ctx.fillText('성별 : ' + gender, 410, 315);
+                                            ctx.font = "40px Helvetica";
+                                            ctx.fillStyle  = "black";
+                                            ctx.fillText('품종 : ' + animalDetail, 410, 260);
 
-                                        ctx.font = "40px Helvetica";
-                                        ctx.fillStyle  = "black";
-                                        ctx.fillText('아이디 : ' + memberEmail , 410, 370);
 
-                                        ctx.font = "40px Helvetica";
-                                        ctx.fillStyle  = "red";
-                                        ctx.fillText('잃어버린 날짜 : ' + date, 410, 430);
+                                            ctx.font = "40px Helvetica";
+                                            ctx.fillStyle  = "black";
+                                            ctx.fillText('성별 : ' + gender, 410, 315);
 
-                                        ctx.font = "40px Helvetica";
-                                        ctx.fillStyle  = "red";
-                                        ctx.fillText('장소 : ' + petPlace, 410, 480);
+                                            ctx.font = "40px Helvetica";
+                                            ctx.fillStyle  = "black";
+                                            ctx.fillText('아이디 : ' + memberEmail , 410, 370);
 
-                                        // ctx.font = "30px Helvetica";
-                                        // ctx.fillStyle  = "black";
-                                        // ctx.fillText(animalDetail, 20, 605);
+                                            ctx.font = "40px Helvetica";
+                                            ctx.fillStyle  = "red";
+                                            ctx.fillText('잃어버린 날짜 : ' + date, 410, 430);
+
+                                            ctx.font = "40px Helvetica";
+                                            ctx.fillStyle  = "red";
+                                            // ctx.fillText('장소 : ' + petPlace, 410, 480);
+                                            printAtWordWrap(ctx, '장소 : ' + petPlace, 410, 480, 50, 350);
+
+
+
+                                            // 전단지 줄바꿈
+                                            function printAtWordWrap( context , text, x, y, lineHeight, fitWidth){
+
+                                                fitWidth = fitWidth || 0;
+                                                
+                                                if (fitWidth <= 0)
+                                                {
+                                                    context.fillText( text, x, y );
+                                                    return;
+                                                }
+
+                                                var words = text.split(' ');
+                                                var currentLine = 0;
+                                                var idx = 1;
+                                                
+                                                while (words.length > 0 && idx <= words.length)
+                                                {
+                                                    var str = words.slice(0,idx).join(' ');
+                                                    var w = context.measureText(str).width;
+                                                    if ( w > fitWidth )
+                                                    {
+                                                        if (idx==1)
+                                                        {
+                                                            idx=2;
+                                                        }
+                                                        context.fillText( words.slice(0,idx-1).join(' '), x, y + (lineHeight*currentLine) );
+                                                        currentLine++;
+                                                        words = words.splice(idx-1);
+                                                        idx = 1;
+                                                    }
+                                                    else
+                                                    {idx++;}
+                                                }
+                                                if  (idx > 0)
+                                                    context.fillText( words.join(' '), x, y + (lineHeight*currentLine) );
+                                            }
 
                                         }
 
