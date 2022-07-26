@@ -17,6 +17,7 @@ public class Board {
 	private String category;
 	private String boardSt;
 	private String phone;
+	private String memberTypes;
 	private int boardCode;
 	private int memberNo;
 	private String createDate;
@@ -42,7 +43,7 @@ public class Board {
 	
 //	private int replyNo;
 	
-	private int memberType;
+	private String memberType;
 	
 	private String memberEmail;
 	

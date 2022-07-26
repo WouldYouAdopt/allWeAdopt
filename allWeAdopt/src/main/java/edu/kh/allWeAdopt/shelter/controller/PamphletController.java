@@ -83,7 +83,6 @@ public class PamphletController {
 				
 				// 게시글 상세조회 서비스 호출
 				BoardDetail detail = service.pamphletDetail(boardNo);
-				// -> 개행문자가 <br>로 되어있는 상태 -> textarea 출력 예정이기 때문에 \n으로 변경
 				
 //				detail.setBoardContent(Util.newLineClear(detail.getBoardContent()));
 				
@@ -123,10 +122,10 @@ public class PamphletController {
 									
 				if(boardNo>0 && thumbnail != null) {
 					path = "../pamphlet/detail/" + boardNo;
-					message = "전단지 작성 성공";
+					message = "스토리 작성 성공";
 				}else {
 					path = req.getHeader("referer");
-					message = "전단지 작성 실패";
+					message = "스토리 작성 실패";
 				}
 					
 				
@@ -145,10 +144,10 @@ public class PamphletController {
 				String message = null;
 				
 				if(result>0) {
-					message = "게시글 수정 성공 ~.~";
+					message = "스토리 수정 성공 ~.~";
 					path = "../pamphlet/detail/" + detail.getBoardNo() + "?cp=" + cp;
 				}else {
-					message = "게시글 수정 실패...";
+					message = "스토리 수정 실패...";
 					path = req.getHeader("referer");
 				}
 				
@@ -171,7 +170,6 @@ public class PamphletController {
 			
 			if(result>0) {
 				message = "삭제 성공";
-				//path = "../../list/" + boardCode; // 상대경로
 				path = "/shelter/pamphlet/list";
 			}else {
 				message = "삭제 실패";

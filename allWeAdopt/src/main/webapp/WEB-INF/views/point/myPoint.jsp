@@ -114,17 +114,17 @@
                                 <th>사용일</th>
                             </tr>
                     
-                            <c:if test="${dList != null}">
-                            <c:forEach  var="d" items="${dList}">
-                                    <tr>
-                                        <td>${d.paymentNo}</td>
-                                        <td>${d.point}</td>
-                                        <td>${d.payDate}</td>
-                                    </tr>
-                            </c:forEach>
+                            <c:if test="${!empty dList}">
+                                <c:forEach  var="d" items="${dList}">
+                                        <tr>
+                                            <td>${d.paymentNo}</td>
+                                            <td>${d.point}</td>
+                                            <td>${d.payDate}</td>
+                                        </tr>
+                                </c:forEach>
                            </c:if>
                     
-                            <c:if test="${dList == null}">
+                            <c:if test="${empty dList}">
                                 <tr><td colspan="3"><h3>사용 내역이 없습니다.</h3></td></tr>
                             </c:if>
 

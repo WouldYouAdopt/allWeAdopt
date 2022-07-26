@@ -271,6 +271,10 @@ public class AdminUserBoardController {
 			if(result> 0) {
 				animal.setBoardNo(boardNo);
 				
+				if(animal.getAnimalType().equals("기타")) {
+					animal.setAnimalDetail("기타");
+				}
+				
 				// 성별 설정
 				if(genders.equals("수컷")) animal.setGender('M');
 				else if(genders.equals("암컷"))animal.setGender('W');

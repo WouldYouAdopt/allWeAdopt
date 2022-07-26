@@ -26,5 +26,6 @@ public class BoardDetail {
 	private String profileImage;
 	private String boardName;
 	private String thumbnail;
+	private String memberType;
 	
 }

@@ -20,5 +20,8 @@ public class Reply {
 	private String profileImage;
 	private int parentReplyNo;
 	private String replySt;
+	private String memberType;
+	
+	
 
 }

@@ -152,12 +152,12 @@ public class UserBoardController {
 	
 //	사용자 게시판 등록 페이지
 	@GetMapping("/user/boardRegist")
-	public String boardRegist(Model model) {
+	public String boardRegist(Model model, @ModelAttribute("loginMember") Member loginMember) {
 
 		// 지역 리스트 출력
 		List<Area> areaList = service.areaList();
 		model.addAttribute("areaList",areaList);
-
+		model.addAttribute("loginMember",loginMember);
 		return "board/userBoardRegist";
 	}
 	
@@ -244,6 +244,10 @@ public class UserBoardController {
 		
 		if(result> 0) {
 			animal.setBoardNo(boardNo);
+			
+			if(animal.getAnimalType().equals("기타")) {
+				animal.setAnimalDetail("기타");
+			}
 			
 			// 성별 설정
 			if(genders.equals("수컷")) animal.setGender('M');
@@ -362,6 +366,10 @@ public class UserBoardController {
 		
 		if(result> 0) {
 			animal.setBoardNo(boardNo);
+			
+			if(animal.getAnimalType().equals("기타")) {
+				animal.setAnimalDetail("기타");
+			}
 			
 			// 성별 설정
 			if(genders.equals("수컷")) animal.setGender('M');

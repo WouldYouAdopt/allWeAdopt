@@ -151,7 +151,7 @@
 
                                 </header>
                                 <!-- 유기동물 사진 -->
-                                <figure class="mb-4"><img class="img-fluid rounded" style="width: 700px; height: 650px;" src="${popfile}" alt="..." /></figure>
+                                <figure class="mb-4"><img class="img-fluid rounded" style="width: 700px; height: 650px; object-fit:cover;" src="${popfile}" alt="..." /></figure>
                                 <!-- Post content-->
                                 <!-- 나중에 폰트 적용 해보기! -->
                                 <section class="mb-5">

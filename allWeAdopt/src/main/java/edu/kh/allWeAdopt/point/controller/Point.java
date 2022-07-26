@@ -54,7 +54,15 @@ public class Point {
 	@ResponseBody
 	@GetMapping("/roulette/run")
 	public int rouletteRun(int total,@ModelAttribute("loginMember") Member loginMember){
-		return service.rouletteRun(total,loginMember.getMemberNo());
+		loginMember.setMemberPoint(total);
+		int resultNum = service.rouletteRun(total,loginMember.getMemberNo());
+		int result=0;
+		if(resultNum>0) {
+			result=total;
+		}else {
+			result=-1;
+		}
+		return result;
 	}
 	
 	

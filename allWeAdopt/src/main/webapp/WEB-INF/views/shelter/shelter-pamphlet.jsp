@@ -100,7 +100,7 @@
                                 <div class="card h-100 shadow border-0">
                                   
                                     <c:if test="${!empty pamphlet.thumbnail}">
-                                        <img class="card-img-top" src="${pamphlet.thumbnail}" alt="썸네일" id="thumbnail" style="height: 375px; width: 375px;" />
+                                        <img class="card-img-top" src="${pamphlet.thumbnail}" alt="썸네일" id="thumbnail" style="height: 375px; width: 375px; object-fit:cover" />
                                     </c:if>
 
                                     <%-- <c:if test="${empty pamphlet.thumbnail}">
@@ -116,19 +116,20 @@
                                     <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
                                         <div class="d-flex align-items-end justify-content-between">
                                             <div class="d-flex align-items-center">
+                                                <%-- <img src="${pamphlet.profileImage}"> --%>
 
-                                                <%-- 프로필 이미지 --%>
-                                                <c:if test="${empty loginMember.profileImage }">
+                                                <%-- 작성자 이미지 --%>
+                                                <c:if test="${empty pamphlet.profileImage}">
                                                     <img src="${contextPath}/resources/images/user.png" id="member-profile" style="width : 35px; height : 35px; ">	
                                                 </c:if>     
 
-                                                <c:if test="${!empty loginMember.profileImage && loginMember.memberType == 'K'}">
-                                                    <img src="${loginMember.profileImage}" id="member-profile" style="width : 35px; height : 35px; border:0.5px solid #ccc; border-radius:50%;">
+                                                <c:if test="${!empty pamphlet.profileImage && pamphlet.memberType == 'K'}">
+                                                    <img src="${pamphlet.profileImage}" id="member-profile" style="width : 35px; height : 35px; border:0.5px solid #ccc; border-radius:50%;">
                                                 </c:if>
 
                                                 <%-- 사용자 설정 프로필이미지 --%>
-                                                <c:if test="${!empty loginMember.profileImage && loginMember.memberType == 'M'}">
-                                                    <img src="${contextPath}/${loginMember.profileImage}" id="member-profile" style="width : 35px; height : 35px; ">
+                                                <c:if test="${!empty pamphlet.profileImage && pamphlet.memberType == 'M'}">
+                                                    <img src="${contextPath}/${pamphlet.profileImage}" id="member-profile" style="width : 35px; height : 35px; ">
                                                 </c:if>
                                                 <%-- <img class="rounded-circle me-3" src="${pamphlet.profileImage}" alt="..." /> --%>
 
@@ -174,7 +175,7 @@
                     </c:if>
 
                     <c:if test="${empty loginMember}">
-                        <button type="button" class="btn btn-outline-warning" id="allButton" name="writeBtn" onclick="location.href='../../member/login'" >글쓰기</button>    
+                        <button type="button" class="btn btn-outline-warning" id="allButton" onclick="location.href='../../member/login'">글쓰기</button>    
                     </c:if>
 
                     <%-- 페이지네이션 --%>
@@ -229,6 +230,15 @@
         <%-- <script src="js/scripts.js"></script> --%>
 
         <script src="${contextPath}/resources/js/shelter.js"></script>
+
+        <script>
+
+        // 최상위 주소
+        const contextPath = "${contextPath}";
+        
+        // 로그인한 회원 번호
+        const loginMember = "${loginMember}";
+        </script>
 
       
     </body>
