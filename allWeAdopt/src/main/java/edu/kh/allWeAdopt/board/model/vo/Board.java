@@ -42,7 +42,7 @@ public class Board {
 	
 //	private int replyNo;
 	
-	private int memberType;
+	private String memberType;
 	
 	private String memberEmail;
 	

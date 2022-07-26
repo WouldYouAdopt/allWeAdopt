@@ -96,18 +96,18 @@
                         <div class="col-lg-3">
                             <div class="d-flex align-items-center mt-lg-5 mb-4">
 
-                                    <%-- 프로필 이미지 --%>
-                                    <c:if test="${empty loginMember.profileImage }">
-                                            <img src="${contextPath}/resources/images/user.png" id="member-profile" style="width : 35px; height : 35px; ">	
+                                    <%-- 작성자 이미지 --%>
+                                    <c:if test="${empty detail.profileImage}">
+                                        <img src="${contextPath}/resources/images/user.png" id="member-profile" style="width : 35px; height : 35px; ">	
                                     </c:if>     
 
-                                    <c:if test="${!empty loginMember.profileImage && loginMember.memberType == 'K'}">
-                                            <img src="${loginMember.profileImage}" id="member-profile" style="width : 35px; height : 35px; border:0.5px solid #ccc; border-radius:50%;">
+                                    <c:if test="${!empty detail.profileImage && detail.memberType == 'K'}">
+                                        <img src="${detail.profileImage}" id="member-profile" style="width : 35px; height : 35px; border:0.5px solid #ccc; border-radius:50%;">
                                     </c:if>
 
                                     <%-- 사용자 설정 프로필이미지 --%>
-                                    <c:if test="${!empty loginMember.profileImage && loginMember.memberType == 'M'}">
-                                            <img src="${contextPath}/${loginMember.profileImage}" id="member-profile" style="width : 35px; height : 35px; ">
+                                    <c:if test="${!empty detail.profileImage && detail.memberType == 'M'}">
+                                        <img src="${contextPath}/${detail.profileImage}" id="member-profile" style="width : 35px; height : 35px; ">
                                     </c:if>
 
                                 <%-- <img class="img-fluid rounded-circle" src="${detail.profileImage}" alt="..." /> --%>
@@ -166,10 +166,6 @@
                                 <section class="mb-5">
                                     ${detail.boardContent}       
                                 </section>
-
-                                
-
-
 
                             </article>
 
@@ -333,16 +329,6 @@
 
 
     <script>
-        // 댓글 관련 JS 코드에 필요한 값을 전역 변수로 선언
-
-        // jsp 파일 : html, css, js, el, jstl 사용 가능
-        // js  파일 : js
-
-        // 코드 해석 순서  :   EL == JSTL > HTML > JS
-
-        // ** JS 코드에서 EL/JSTL을 작성하게 된다면 반드시 ""를 양쪽에 추가 **
-
-
 
         // 최상위 주소
         const contextPath = "${contextPath}";

@@ -11,21 +11,19 @@
                 <li class='reply-row <c:if test="${reply.parentReplyNo != 0}">child-reply</c:if>'>
                     <p class="reply-writer">
 
-                        <%-- 프로필 이미지 --%>
-                        <c:if test="${empty loginMember.profileImage }">
+                    <%-- 작성자 이미지 --%>
+                    <c:if test="${empty reply.profileImage}">
+                        <img src="${contextPath}/resources/images/user.png" id="member-profile" style="width : 35px; height : 35px; ">	
+                    </c:if>     
 
-                            <img src="${contextPath}/resources/images/user.png" id="member-profile" style="width : 35px; height : 35px; ">	
+                    <c:if test="${!empty reply.profileImage && reply.memberType == 'K'}">
+                        <img src="${reply.profileImage}" id="member-profile" style="width : 35px; height : 35px; border:0.5px solid #ccc; border-radius:50%;">
+                    </c:if>
 
-                        </c:if>     
-
-                        <c:if test="${!empty loginMember.profileImage && loginMember.memberType == 'K'}">
-                            <img src="${loginMember.profileImage}" id="member-profile" style="width : 35px; height : 35px; border:0.5px solid #ccc; border-radius:50%;">
-                        </c:if>
-
-                        <%-- 사용자 설정 프로필이미지 --%>
-                        <c:if test="${!empty loginMember.profileImage && loginMember.memberType == 'M'}">
-                            <img src="${contextPath}/${loginMember.profileImage}" id="member-profile" style="width : 35px; height : 35px; ">
-                        </c:if>
+                    <%-- 사용자 설정 프로필이미지 --%>
+                    <c:if test="${!empty reply.profileImage && reply.memberType == 'M'}">
+                        <img src="${contextPath}/${reply.profileImage}" id="member-profile" style="width : 35px; height : 35px; ">
+                    </c:if>
 
                         <span>${reply.memberName}</span>
                         <span class="reply-date">(${reply.createDate})</span>

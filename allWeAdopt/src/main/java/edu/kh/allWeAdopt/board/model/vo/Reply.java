@@ -19,5 +19,6 @@ public class Reply {
 	private String memberName;
 	private String profileImage;
 	private int parentReplyNo;
+	private String memberType;
 
 }
