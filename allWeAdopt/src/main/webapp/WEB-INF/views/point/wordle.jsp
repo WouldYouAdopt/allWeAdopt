@@ -58,9 +58,6 @@
             <!-- 헤더 -->
             <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
-            <!-- 마이페이지 nav -->
-            <jsp:include page="/WEB-INF/views/common/mypage-header.jsp" />
-
             <!-- Page content-->
             <section class="py-5">
                 <div class="container px-5">
@@ -69,27 +66,10 @@
 
 
 <%-- --------------------------------------------------------------------------------- --%>
+                                                   
+                        <jsp:include page="/WEB-INF/views/common/point-header.jsp" />
                         
-
-                            
                         <h1 style="font-weight: 700;"> Wordle </h1>
-
-
-                            <ul class="d-flex justify-content-center mb-2 nav">
-                                <li class="nav-item">
-                                <a class="nav-link" href="${contextPath}/point/wordle">Wordle</a>
-                                </li>
-                                <li class="nav-item">
-                                <a class="nav-link" href="${contextPath}/point/roulette">roulette</a>
-                                </li>
-
-                                <!-- 로그인한 회원만 조회 가능. -->
-                                <c:if test="${ !empty sessionScope.loginMember }">
-                                    <li class="nav-item">
-                                    <a class="nav-link" href="${contextPath}/member/myPage/point">내 포인트 조회</a>
-                                    </li>
-                                </c:if>
-                            </ul>
 
                         <div id="game-board">
 
