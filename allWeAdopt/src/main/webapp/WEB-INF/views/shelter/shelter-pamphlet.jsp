@@ -143,7 +143,7 @@
                                                 <div class="md-10" style="margin:20px;"></div>
                             
                                                 <button type="button" class="btn btn-primary" style="color: #FB836B; border: 2px solid #FB836B; background-color: white; border-radius:50%;" id="rArea">
-                                                <span class="badge text-bg-secondary" style="color: #FB836B; font-weight: bold;">${pamphlet.replyCount}</span>
+                                                    <span class="badge text-bg-secondary" style="color: #FB836B; font-weight: bold;">${pamphlet.replyCount}</span>
                                                 </button>
 
 

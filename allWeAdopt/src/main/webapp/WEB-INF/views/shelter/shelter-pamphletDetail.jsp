@@ -126,11 +126,15 @@
                                     <!-- Post title-->
                                     <h1 class="fw-bolder mb-1">${detail.boardTitle}</h1>
                                     <!-- Post meta content-->
-                                    <div class="text-muted fst-italic mb-2">작성일 : ${detail.createDate}</div>
+                                    <div class="text-muted fst-italic mb-2">
+                                        작성일 : ${detail.createDate} /
+                                        <c:if test="${!empty detail.updateDate}">수정일 : ${detail.updateDate}</c:if>
 
-                                    <c:if test="${!empty detail.updateDate}">
+                                    </div>
+
+                                    <%-- <c:if test="${!empty detail.updateDate}">
                                         <div class="text-muted fst-italic mb-2">수정일 : ${detail.updateDate}</div>
-                                    </c:if>
+                                    </c:if> --%>
                                     
                                     <!-- Post categories-->
                                     <%-- <a class="badge bg-secondary text-decoration-none link-light" href="#!">관심 등록</a> --%>
