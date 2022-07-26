@@ -2,6 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="pointMapper">
 
+	<resultMap type="orderDetail" id="orderDetail_rm">
+		<id property="paymentNo" column="PAYMENT_NO" />
+		<result property="fundingNo" column="FUNDING_NO" />
+		<result property="payDate" column="PAY_DT" />
+		<result property="fullPrice" column="FULL_PRICE" />
+		<result property="orderState" column="ORDER_ST" />
+		<result property="recipient" column="RECIPIENT" />
+		<result property="memberNo" column="MEMBER_NO" />
+		<result property="point" column="POINT" /><!-- 포인트 번호 -->
+	</resultMap>
+	
 	<update id="wordleSuccess" >
 	UPDATE MEMBER SET 
 	MEMBER_POINT = (SELECT MEMBER_POINT FROM MEMBER WHERE MEMBER_NO=#{memberNo})+500
@@ -13,5 +24,21 @@
 	MEMBER_POINT = #{total}
 	WHERE MEMBER_NO=#{memberNo}
 	</update>
+	
+	<update id="pointDown">
+	UPDATE MEMBER SET 
+	MEMBER_POINT = (SELECT MEMBER_POINT FROM MEMBER WHERE MEMBER_NO=#{memberNo})-#{point}
+	WHERE MEMBER_NO=#{memberNo}
+	</update>
+	
+	<select id="myPoint" resultMap="orderDetail_rm">
+	SELECT PAYMENT_NO,TO_CHAR(PAY_DT,'YYYY/MM/DD HH24:MI')PAY_DT,POINT FROM PAYMENT 
+	WHERE POINT>0
+	AND MEMBER_NO=#{memberNo}
+	</select>
+	
+	<select id="selectMyPoint" resultType="_int">
+	SELECT MEMBER_POINT FROM MEMBER WHERE MEMBER_NO=#{memberNo}
+	</select>
 
 </mapper>
