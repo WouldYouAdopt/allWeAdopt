@@ -1,23 +1,17 @@
 package edu.kh.allWeAdopt.shelter.controller;
 
 
-import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.io.FileUtils;
+import org.apache.commons.codec.binary.Base64;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
@@ -27,22 +21,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.google.gson.JsonObject;
-
-import edu.kh.allWeAdopt.board.model.vo.Board;
-import edu.kh.allWeAdopt.board.model.vo.BoardDetail;
-import edu.kh.allWeAdopt.member.model.vo.Member;
 import edu.kh.allWeAdopt.shelter.model.service.ShelterService;
 import edu.kh.allWeAdopt.shelter.model.vo.Shelter;
 
@@ -63,6 +46,7 @@ public class ShelterController {
 	public String openShelter(Model model, @RequestParam(value="pageNo", required=false, defaultValue = "1") String pageNo,
 								@RequestParam(value="upkind", required=false, defaultValue = "")String upkind, 
 								@RequestParam(value="upr_cd", required=false, defaultValue = "") String upr_cd
+								, HttpServletResponse resp
 								/* @RequestParam(value="org_cd", required=false, defaultValue = " ") String org_cd */) throws Exception {
 		
 	    StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1543061/abandonmentPublicSrvc/abandonmentPublic"); /*URL*/
@@ -112,7 +96,9 @@ public class ShelterController {
 			String colorCd = item.getChildText("colorCd");
 			String age = item.getChildText("age");
 			String weight = item.getChildText("weight");
-			String popfile = item.getChildText("popfile");
+			String popfile =  "data:image/png;base64," + getBase64EncodedImage(item.getChildText("popfile"));
+			
+			
 			String noticeSdt = item.getChildText("noticeSdt");
 			String noticeEdt = item.getChildText("noticeEdt");
 			String processState = item.getChildText("processState");
@@ -165,6 +151,7 @@ public class ShelterController {
 	    model.addAttribute("upr_cd", upr_cd);	    
 //	    model.addAttribute("org_cd", org_cd);	    
 
+//	    resp.setHeader("Access-Control-Allow-Origin", "http://localhost:8081");
 		return "shelter/shelter-main";
 	}
 	
@@ -180,4 +167,10 @@ public class ShelterController {
 	}
 	
 	
+    public static String getBase64EncodedImage(String imageURL) throws IOException {
+        java.net.URL url = new java.net.URL(imageURL);
+        InputStream is = url.openStream();
+        byte[] bytes = org.apache.commons.io.IOUtils.toByteArray(is);
+        return Base64.encodeBase64String(bytes);
+    }
 }

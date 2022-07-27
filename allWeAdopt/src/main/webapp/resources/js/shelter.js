@@ -8,7 +8,7 @@
         goToListBtn.addEventListener("click", function(){
 
 
-            url = contextPath + "/shelter/pamphlet/list?"; 
+          let  url = contextPath + "/shelter/pamphlet/list?"; 
 
 
             // URL 내장 객체 : 주소 관련 정보를 나타내는 객체
@@ -157,6 +157,8 @@ function download(){
   download.setAttribute("href", image);
 
 }
+
+
 
 
 

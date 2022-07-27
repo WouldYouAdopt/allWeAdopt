@@ -13,7 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>스토리 목록</title>
+        <title>ALL WE ADOPT</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="${contextPath}/resources/assets/올위어답터.ico" />
 
@@ -103,9 +103,9 @@
                                         <img class="card-img-top" src="${pamphlet.thumbnail}" alt="썸네일" id="thumbnail" style="height: 375px; width: 375px; object-fit:cover" />
                                     </c:if>
 
-                                    <%-- <c:if test="${empty pamphlet.thumbnail}">
-                                         <img class="card-img-top" src="${contextPath}/resources/images/pamphlet-noImage.jpg" alt="썸네일" id="thumbnail" />
-                                    </c:if> --%>
+                                    <c:if test="${empty pamphlet.thumbnail}">
+                                         <img class="card-img-top" src="${contextPath}/resources/images/pamphlet-noImage.png" alt="썸네일" id="thumbnail" />
+                                    </c:if>
 
                                     <div class="card-body p-4"  id="content">
                                         <span class="badge" style="background-color: #FB836B; font-size: 13px; margin-bottom: 10px; margin-bottom: 10px;" >New</span>

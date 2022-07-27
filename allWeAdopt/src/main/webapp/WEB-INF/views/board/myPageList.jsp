@@ -59,10 +59,19 @@
               <tr>
               <c:forEach var="boardList" items="${map.boardList}">
                 <th scope="row">${boardList.boardNo}</th>
+
+                <c:if test="${boardList.boardCode == '1'}">
+                  <td>
+                      <a class="aa" href="/allWeAdopt/shelter/pamphlet/detail/${boardList.boardNo}">${boardList.boardTitle}</a>
+                  </td>               
+                </c:if>
+
+                <c:if test="${boardList.boardCode == '2'}">
+                  <td>
+                      <a class="aa" href="/allWeAdopt/board/detail/2/${boardList.boardNo}">${boardList.boardTitle}</a>
+                  </td>        
+                </c:if>
                 
-                <td>
-                    <a class="aa" href="/allWeAdopt/board/detail/2/${boardList.boardNo}">${boardList.boardTitle}</a>
-                </td>
                 
                 <c:if test="${!empty boardList.updateDate}">
                 <td>${boardList.updateDate}</td>
