@@ -45,6 +45,7 @@
         <c:set var="boardList" value="${map.boardList}" />
             <%-- 게시글 리스트 --%>
                 <div class="row gx-5" id="row">
+                
                     <c:forEach var="boardList" items="${boardList}">
                         <div class="col-lg-4 mb-5">
                             <div class="card h-100 shadow border-0">
