@@ -183,6 +183,15 @@ public class BoardServiceImpl implements BoardService{
 		
 		return dao.deleteTemplate(tempNo);
 	}
+
+	
+	// 문의글 삭제 기능 구현
+	@Override
+	public int deleteAskBoard(int boardNo) {
+		return dao.deleteAskBoard(boardNo);
+	}
+	
+	
 	
 	
 	
