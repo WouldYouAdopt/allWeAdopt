@@ -42,9 +42,9 @@
             <!-- Header-->
             <header class="py-3">
                 <div class="container px-3">
-                    <div class="col-lg-8 col-xxl-6">
+                    <div class="col-lg-8 col-xxl-12">
                         <div class="text-left mt-5">
-                            <h2 class="fw-bolder mb-3">${detail.boardTitle}</h2>
+                            <h3 class="fw-bolder mb-3">${detail.boardTitle}</h3>
                             <div class="text-muted  mb-2"> 작성일 : ${detail.createDate} <c:if test='${ !empty detail.updateDate }'>| 수정일 : ${detail.updateDate}</c:if></div>                               
                         </div>
                     </div>
