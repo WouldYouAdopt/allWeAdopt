@@ -81,5 +81,11 @@ public interface BoardService {
 	 * @return result
 	 */
 	int deleteTemplate(String tempNo);
+
+	/** 문의글 삭제
+	 * @param boardNo
+	 * @return
+	 */
+	int deleteAskBoard(int boardNo);
 	
 }

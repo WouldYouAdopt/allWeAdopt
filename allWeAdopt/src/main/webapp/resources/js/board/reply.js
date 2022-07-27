@@ -148,15 +148,16 @@ addReply.addEventListener("click", function(){ // 댓글 등록 버튼이 클릭
                 // alert("댓글이 등록되었습니다.");
                 
                 Swal.fire({
+                    // position: 'top-end',
                     title: "댓글이 등록되었습니다.",
-                    width: 350,
-                    padding: '3em',
                     icon: 'success',
-                    iconColor: 'rgb(251, 131, 107)',
-                    color: 'black',
-                    confirmButtonColor: 'rgb(251, 131, 107)',
-                    confirmButtonText: '확인'
-                });
+                    iconColor: 'rgb(251,131,107)',
+                    width: 350,
+                    padding: '1em 0em 3em',
+                    title: '${message}',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
         
         
 
@@ -206,15 +207,16 @@ function deleteReply(replyNo){
                     // alert("삭제되었습니다");
 
                     Swal.fire({
-                        title: "삭제되었습니다.",
-                        width: 350,
-                        padding: '3em',
+                        // position: 'top-end',
+                        title: "댓글 등록에 실패했습니다...",
                         icon: 'success',
-                        iconColor: 'rgb(251, 131, 107)',
-                        color: 'black',
-                        confirmButtonColor: 'rgb(251, 131, 107)',
-                        confirmButtonText: '확인'
-                    });
+                        iconColor: 'rgb(251,131,107)',
+                        width: 350,
+                        padding: '1em 0em 3em',
+                        title: '${message}',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
             
                     selectReplyList(); // 목록을 다시 조회해서 삭제된 글을 제거
                 }else{
@@ -352,15 +354,15 @@ function updateReply(replyNo, btn){
                 // alert("댓글이 수정되었습니다.");
 
                 Swal.fire({
-                    title: "수정 되었습니다.",
-                    width: 350,
-                    padding: '3em',
+                    // position: 'top-end',
                     icon: 'success',
-                    iconColor: 'rgb(251, 131, 107)',
-                    color: 'black',
-                    confirmButtonColor: 'rgb(251, 131, 107)',
-                    confirmButtonText: '확인'
-                });
+                    iconColor: 'rgb(251,131,107)',
+                    width: 350,
+                    padding: '1em 0em 3em',
+                    title: '${message}',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
                 selectReplyList();
             }else{
                 // alert("댓글 수정 실패");

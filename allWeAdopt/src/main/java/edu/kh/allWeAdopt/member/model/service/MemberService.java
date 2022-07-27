@@ -1,6 +1,6 @@
 package edu.kh.allWeAdopt.member.model.service;
 
-import java.io.IOException;
+import java.io.IOException; 
 
 import java.util.Map;
 

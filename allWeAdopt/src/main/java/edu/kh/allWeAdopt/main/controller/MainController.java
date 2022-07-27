@@ -4,13 +4,21 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import edu.kh.allWeAdopt.main.model.service.AdminMainService;
+
 @Controller
 public class MainController {
+	
+	@Autowired
+	private AdminMainService Service;
+	
+	
 	
 	// main으로 이동
 	@RequestMapping("/main")
@@ -34,12 +42,26 @@ public class MainController {
 	}
 	
 	
+	
 	// admin-main으로 이동
 	@RequestMapping("/admin/main")
 	public String adminMainForward() {
 		
+		
+		// 문의글 갯수 조회(오늘 날짜 조회) 
+		// 어답터게시글 갯수 조회(오늘 날짜 조회)
+		// 오늘 펀딩 결제 목록 갯수 조회(오늘 날짜조회)
+		
+		
+		
+		
+		
 		return "common/admin-main";
 	}
+	
+	
+	
+	
 	
 	// intro으로 이동
 	@RequestMapping("/intro")

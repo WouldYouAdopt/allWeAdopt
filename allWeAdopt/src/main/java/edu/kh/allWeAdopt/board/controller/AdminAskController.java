@@ -12,9 +12,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.kh.allWeAdopt.board.model.service.BoardService;
 import edu.kh.allWeAdopt.board.model.service.ReplyService;
@@ -70,6 +72,33 @@ public class AdminAskController {
 		
 		return "ask/askDetail";
 	}
+	
+	
+	// 문의사항 삭제
+	@GetMapping("/delete/{boardNo}")
+	public String deleteBoard( @PathVariable("boardNo") int boardNo,
+			RedirectAttributes ra, @RequestHeader("referer") String referer) {
+		
+		int result = service.deleteAskBoard(boardNo);
+		
+		
+		String path = null;
+		String message = null;
+		
+		if(result > 0) {
+			message = "삭제되었습니다.";
+			path = "../../ask/list/";
+		} else {
+			message = "삭제 실패";
+			path = referer;
+		}
+		
+		ra.addFlashAttribute("message", message);
+		
+		return "redirect:" + path;
+	}
+	
+	
 	
 	
 	

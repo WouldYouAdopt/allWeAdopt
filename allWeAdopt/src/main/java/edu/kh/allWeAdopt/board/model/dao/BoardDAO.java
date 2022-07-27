@@ -186,6 +186,14 @@ public class BoardDAO {
 		return sqlSession.update("noticeMapper.deleteTemplate", tempNo);
 	}
 
+	/** 문의글 삭제 DAO
+	 * @param boardNo
+	 * @return
+	 */
+	public int deleteAskBoard(int boardNo) {
+		return sqlSession.update("noticeMapper.deleteAskBoard", boardNo);
+	}
+
 
 	
 

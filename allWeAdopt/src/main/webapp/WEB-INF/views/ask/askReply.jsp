@@ -86,7 +86,7 @@
                             </div>
                         </div>
                                 <c:if test="${loginMember.memberType =='A' }">
-                                    <button type="submit" class="col-lg-12  btn bg-pink mt-3" style="color : white; height : 50px" >해당 문의글 삭제(관리자)</button> 
+                                    <a id="deleteBtn1" type="submit" class="col-lg-12  btn bg-pink mt-3" style="color : white; height : 50px" >해당 문의글 삭제(관리자)</a> 
                                 </c:if>
                     </div>
                 </div>

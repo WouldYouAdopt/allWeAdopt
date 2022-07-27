@@ -102,6 +102,58 @@ function writeValidate(){
     return true;
 };
 
+// 문의 게시글 작성 유효성검사
+function writeValidate1(){
+
+    const t = document.getElementById("category");
+
+    if(   t.value == "0" ) {
+        Swal.fire({
+            title: '문의사항을 선택해주세요.',
+            width: 350,
+            padding: '3em',
+            color: 'black',
+            confirmButtonColor: 'rgb(251, 131, 107)',
+            confirmButtonText: '확인'
+        });
+        return false;
+    }
+    
+
+    if(boardTitle.value.trim().length == 0 ){
+
+        Swal.fire({
+            title: '제목을 입력해주세요!',
+            width: 350,
+            padding: '3em',
+            color: 'black',
+            confirmButtonColor: 'rgb(251, 131, 107)',
+            confirmButtonText: '확인'
+        });
+
+        boardTitle.value = "";
+        boardTitle.focus();
+        return false;
+    }
+
+    if( note[0].innerHTML.trim() == "<p><br></p>" && (note[0].innerText.trim() == "" || note[0].innerText == "\n" )){
+
+        Swal.fire({
+            title: '내용을 입력해주세요!',
+            width: 350,
+            padding: '3em',
+            color: 'black',
+            confirmButtonColor: 'rgb(251, 131, 107)',
+            confirmButtonText: '확인'
+        });
+        note[0].focus();
+        return false;
+    }
+
+
+    return true;
+};
+
 // 템플릿 설정 버튼 클릭여부 알려주는 변수
 let check = false;
 
@@ -364,3 +416,37 @@ function print(){
     }
 
 }
+
+
+// 문의사항 삭제 즉시 실행 함수
+(function(){
+    const deleteBtn = document.getElementById("deleteBtn1"); // 존재하지 않으면 null
+
+    if(deleteBtn != null){ // 버튼이 화면에 존재할 때
+        deleteBtn.addEventListener("click", function(){
+
+            let url = contextPath + "/admin/ask/delete/"+ boardNo ; // 상대경로 형식으로 작성
+
+            Swal.fire({
+                title: '정말로 삭제 하시겠습니까?',
+                text: "확인 버튼을 클릭하면 게시글이 삭제됩니다.",
+                width: 340,
+                icon: 'warning',
+                iconColor: 'rgb(251, 131, 107)',
+                showCancelButton: true,
+                confirmButtonColor: 'rgb(251, 131, 107)',
+                cancelButtonColor: '#999',
+                confirmButtonText: '확인',
+                cancelButtonText: '취소'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        location.href = url;
+                    }else{
+                        e.preventDefault();
+                    }
+                })
+        });
+    }
+
+})();
+

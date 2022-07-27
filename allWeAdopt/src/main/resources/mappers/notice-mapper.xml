@@ -185,5 +185,13 @@
 	WHERE TEMP_NO IN(${tempNo})
 	</update>
 	
+	<!-- 문의 게시글 삭제 -->
+	<update id="deleteAskBoard">
+	UPDATE BOARD SET
+	BOARD_ST = 'Y'
+	WHERE BOARD_NO = #{boardNo}
+	AND BOARD_CD = 5
+	</update>
+	
   
 </mapper>

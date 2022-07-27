@@ -33,6 +33,8 @@
         <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 
      
+        <!-- sweetalert-->
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
         <style>
             .nav-text-color{
@@ -86,9 +88,9 @@
             <section class="py-0">
                 <div class="container px-3 my-1">
                     <div class="row gx-5 align-items-center">
-                             <form action="${contextPath}/member/myPage/ask/write" method="post" onsubmit="return writeValidate()">
+                             <form action="${contextPath}/member/myPage/ask/write" method="post" onsubmit="return writeValidate1()">
                                     <div class="col-md-5 col-sm-6 ">
-                                        <span class="form-label">문의사항을 </span>
+                                        <span class="form-label">문의사항 : </span>
                                                 <select name="category" id="category" style="color: gray;">
                                                     <option value="0" >선택</option>
                                                     <option value="1" >보호소 문의</option>
@@ -177,9 +179,13 @@
                     }
                 });
             });
-          </script>
+
+          
+        </script>
+
 
           <script src="${contextPath}/resources/js/board/summerNote.js"></script>
+          <script src="${contextPath}/resources/js/board/notice.js"></script>
 
     </body>
 </html>
