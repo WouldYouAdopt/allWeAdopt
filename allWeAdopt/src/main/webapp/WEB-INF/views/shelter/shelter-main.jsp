@@ -89,8 +89,8 @@
             <img src="${contextPath}/resources/images/adopt-mainLogo.png" class="img-fluid" alt="...">
 
             <!-- 분앙소 불러오기 -->
-            <c:set var="upkind" value="?pageNo=&upkind="/>
-            <c:set var="upr_cd" value="?pageNo=&upr_cd="/>
+            <%-- <c:set var="upkind" value=""/>
+            <c:set var="upr_cd" value="?pageNo=&upr_cd="/> --%>
 
 
             <section class="py-5">
@@ -105,31 +105,31 @@
 
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="height: 200px; overflow-x: hidden; overflow-y: scroll;">
                             <li><a class="dropdown-item" href="${upr_cd}" role="option" aria-selected="true">전체</a></li>
-                            <li><a class="dropdown-item" href="${upr_cd}6110000" role="option" aria-selected="true">서울특별시</a></li>
-                            <li><a class="dropdown-item" href="${upr_cd}6260000" role="option" aria-selected="true">부산광역시</a></li>
-                            <li><a class="dropdown-item" href="${upr_cd}6270000" role="option" aria-selected="true">대구광역시</a></li>
-                            <li><a class="dropdown-item" href="${upr_cd}6280000" role="option" aria-selected="true">인천광역시</a></li>
-                            <li><a class="dropdown-item" href="${upr_cd}6290000" role="option" aria-selected="true">광주광역시</a></li>
-                            <li><a class="dropdown-item" href="${upr_cd}5690000" role="option" aria-selected="true">세종특별자치시</a></li>
-                            <li><a class="dropdown-item" href="${upr_cd}6300000" role="option" aria-selected="true">대전광역시</a></li>
-                            <li><a class="dropdown-item" href="${upr_cd}6310000" role="option" aria-selected="true">울산광역시</a></li>
-                            <li><a class="dropdown-item" href="${upr_cd}6410000" role="option" aria-selected="true">경기도</a></li>
-                            <li><a class="dropdown-item" href="${upr_cd}6420000" role="option" aria-selected="true">강원도</a></li>
-                            <li><a class="dropdown-item" href="${upr_cd}6430000" role="option" aria-selected="true">충청북도</a></li>
-                            <li><a class="dropdown-item" href="${upr_cd}6440000" role="option" aria-selected="true">충청남도</a></li>
-                            <li><a class="dropdown-item" href="${upr_cd}6450000" role="option" aria-selected="true">전라북도</a></li>
-                            <li><a class="dropdown-item" href="${upr_cd}6470000" role="option" aria-selected="true">경상북도</a></li>
-                            <li><a class="dropdown-item" href="${upr_cd}6480000" role="option" aria-selected="true">경상남도</a></li>
-                            <li><a class="dropdown-item" href="${upr_cd}6500000" role="option" aria-selected="true">제주특별자치도</a></li>
+                            <li><a class="dropdown-item" href="?upkind=${upkind}&upr_cd=6110000" role="option" aria-selected="true">서울특별시</a></li>
+                            <li><a class="dropdown-item" href="?upkind=${upkind}&upr_cd=6260000" role="option" aria-selected="true">부산광역시</a></li>
+                            <li><a class="dropdown-item" href="?upkind=${upkind}&upr_cd=6270000" role="option" aria-selected="true">대구광역시</a></li>
+                            <li><a class="dropdown-item" href="?upkind=${upkind}&upr_cd=6280000" role="option" aria-selected="true">인천광역시</a></li>
+                            <li><a class="dropdown-item" href="?upkind=${upkind}&upr_cd=6290000" role="option" aria-selected="true">광주광역시</a></li>
+                            <li><a class="dropdown-item" href="?upkind=${upkind}&upr_cd=5690000" role="option" aria-selected="true">세종특별자치시</a></li>
+                            <li><a class="dropdown-item" href="?upkind=${upkind}&upr_cd=6300000" role="option" aria-selected="true">대전광역시</a></li>
+                            <li><a class="dropdown-item" href="?upkind=${upkind}&upr_cd=6310000" role="option" aria-selected="true">울산광역시</a></li>
+                            <li><a class="dropdown-item" href="?upkind=${upkind}&upr_cd=6410000" role="option" aria-selected="true">경기도</a></li>
+                            <li><a class="dropdown-item" href="?upkind=${upkind}&upr_cd=6420000" role="option" aria-selected="true">강원도</a></li>
+                            <li><a class="dropdown-item" href="?upkind=${upkind}&upr_cd=6430000" role="option" aria-selected="true">충청북도</a></li>
+                            <li><a class="dropdown-item" href="?upkind=${upkind}&upr_cd=6440000" role="option" aria-selected="true">충청남도</a></li>
+                            <li><a class="dropdown-item" href="?upkind=${upkind}&upr_cd=6450000" role="option" aria-selected="true">전라북도</a></li>
+                            <li><a class="dropdown-item" href="?upkind=${upkind}&upr_cd=6470000" role="option" aria-selected="true">경상북도</a></li>
+                            <li><a class="dropdown-item" href="?upkind=${upkind}&upr_cd=6480000" role="option" aria-selected="true">경상남도</a></li>
+                            <li><a class="dropdown-item" href="?upkind=${upkind}&upr_cd=6500000" role="option" aria-selected="true">제주특별자치도</a></li>
                         </ul>
 
                         <button class="btn btn-secondary dropdown-toggle btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #FB836B; border: 0;">
                             <strong>축종</strong>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="${upkind}" role="option" aria-selected="true">전체</a></li>
-                            <li><a class="dropdown-item" href="${upkind}417000" role="option" aria-selected="true">개</a></li>
-                            <li><a class="dropdown-item" href="${upkind}422400" role="option" aria-selected="true">고양이</a></li>
+                            <li><a class="dropdown-item" href="?upkind${upkind}&upr_cd=${upr_cd}" role="option" aria-selected="true">전체</a></li>
+                            <li><a class="dropdown-item" href="?upkind=417000&upr_cd=${upr_cd}" role="option" aria-selected="true">개</a></li>
+                            <li><a class="dropdown-item" href="?upkind=422400&upr_cd=${upr_cd}" role="option" aria-selected="true">고양이</a></li>
                         </ul>
 
                         <div class="md-10" style="margin:10px;"></div>
@@ -179,8 +179,8 @@
 
 
                     <%-- 페이지네이션 --%>
-            <%-- <c:choose>
-                <c:when test="${!empty upr_cd}">
+            
+                <%-- <c:when test="${!empty upr_cd}">
                     <c:set var="url" value="?upr_cd=&pageNo="/>
                 </c:when>
 
@@ -190,13 +190,14 @@
 
                 <c:otherwise>
                     <c:set var="url" value="?upr_cd=&upkind=&pageNo="/>
-                </c:otherwise>
-            </c:choose> --%>
+                </c:otherwise> --%>
+        
 
                     
                     <%-- <c:set var="url" value="?upr_cd=&pageNo="/> --%>
                     <%-- <c:set var="upkind" value="&upkind="/> --%>
-                    <%-- <c:set var="url" value="?upr_cd=&upkind=&pageNo="/> --%>
+                    <%-- <c:set var="url" value="&upr_cd=${upr_cd}&upkind=${upkind}"/> --%>
+  
 
 
 
@@ -219,7 +220,9 @@
 
                     <%-- <c:set var="url" value="?pageNo="/> --%>
 
-                    <c:set var="url" value="?pageNo="/>
+                    <c:set var="url" value="?upkind=${upkind}&upr_cd=${upr_cd}&pageNo="/>
+
+
 
                     <nav aria-label="Page navigation example">
                         <ul class="pagination justify-content-center">

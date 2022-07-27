@@ -120,8 +120,8 @@ public class PamphletController {
 				String path = null;
 				String message = null;
 									
-				if(boardNo>0 && thumbnail != null) {
-					path = "../pamphlet/detail/" + boardNo;
+				if(boardNo>0) {
+					path = "detail/" + boardNo;
 					message = "스토리 작성 성공";
 				}else {
 					path = req.getHeader("referer");
