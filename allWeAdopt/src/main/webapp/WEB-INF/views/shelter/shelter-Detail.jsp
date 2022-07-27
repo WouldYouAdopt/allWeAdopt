@@ -300,7 +300,7 @@
 
 
                                             <%-- 이미지 --%>
-                                            <img id="myimage" style="width: 100px; height: 100px; display: none;" src="${popfile}" alt="myPet">
+                                            <img id="myimage" style="width: 100px; height: 100px; display: none;" src="${popfile}" alt="myPet" >
                                             <img id="myimage2" style="width: 20px; height: 20px; display: none;" src="${contextPath}\resources\images\shelter.png"alt="The Scream">
 
                                             <canvas id="myCanvas" width="1000" height="1000" ></canvas>
@@ -336,9 +336,9 @@
 
                                     // const date = "${detail.createDate}"
 
+
                                     window.onload = function() {
-
-
+                                        
                                         ctx.drawImage(img2, 0, 0, 1000, 1000);
                                         ctx.drawImage(img, 20, 120, 600, 550);
 
@@ -355,26 +355,26 @@
 
                                         ctx.font = "40px Helvetica";
                                         ctx.fillStyle  = "black";
-                                        printAtWordWrap(ctx, '특징 : ' + specialMark, 650, 450, 50, 350);
+                                        printAtWordWrap(ctx, '특징 : ' + specialMark, 630, 400, 55, 350);
                                         // ctx.fillText('특징 : ' + specialMark, 25, 720);
 
 
 
                                         ctx.font = "40px Helvetica";
                                         ctx.fillStyle  = "black";
-                                        ctx.fillText(age, 650, 250);
+                                        ctx.fillText(age, 630, 220);
 
                                         ctx.font = "40px Helvetica";
                                         ctx.fillStyle  = "black";
-                                        ctx.fillText('성별 : ' + sexCd, 650, 310);
+                                        ctx.fillText('성별 : ' + sexCd, 630, 280);
 
                                         ctx.font = "40px Helvetica";
                                         ctx.fillStyle  = "black";
-                                        ctx.fillText(colorCd, 650, 370);
+                                        ctx.fillText('색깔 : ' + colorCd, 630, 340);
 
                                         ctx.font = "40px Helvetica";
                                         ctx.fillStyle  = "black";
-                                        ctx.fillText(kindCd, 650, 180);
+                                        ctx.fillText(kindCd, 630, 160);
 
 
                                         // 전단지 줄바꿈

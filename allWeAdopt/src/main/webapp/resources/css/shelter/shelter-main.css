@@ -33,9 +33,7 @@
     font-weight: bold;
     color: white;
     background-color: #FB836B;
-    border: 0;
-
-
+    border: solid #FB836B;
     cursor: pointer;
 }
 

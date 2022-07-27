@@ -23,6 +23,8 @@
     <!-- main css -->
     <link rel="stylesheet" href="${contextPath}/resources/css/main-style.css">
 
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <!-- include libraries(jQuery, bootstrap) -->
     <%-- <script type="text/javascript" src="//code.jquery.com/jquery-3.6.0.min.js"></script> --%>
     <%-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" />        
@@ -66,7 +68,7 @@
            
             <!-- About section two-->
             <section class="py-0">
-              <form action="write" method="POST">
+              <form action="${contextPath}/shelter/pamphlet/write" method="post" onsubmit="return writeValidate()">
                   <div class="container px-3 my-1">
                       <div class="row gx-5 align-items-center">
 
@@ -80,7 +82,7 @@
                           <div class="md-10"></div>
 
                           <div class="mb-3 mt-3">
-                              <label for="exampleFormControlTextarea1" class="form-label">전단지 만들기</label>
+                              <label for="exampleFormControlTextarea1" class="form-label">스토리 만들기</label>
                               <textarea id="summernote" name="boardContent" >${detail.boardContent}</textarea>    
 
 
@@ -155,11 +157,15 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
        
 		    <!-- Core theme JS-->
+        
         <script src="${contextPath}/resources/js/scripts.js"></script>
         
+        <script src="${contextPath}/resources/js/board/summerNote.js"></script>
+
         <script src="${contextPath}/resources/js/shelter.js"></script>
 
-        <script src="${contextPath}/resources/js/board/summerNote.js"></script>
+        <script src="${contextPath}/resources/js/shelterWrite.js"></script>
+
 
     </body>
 </html>

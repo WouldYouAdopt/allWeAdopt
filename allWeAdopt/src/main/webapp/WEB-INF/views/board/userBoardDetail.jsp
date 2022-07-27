@@ -51,7 +51,12 @@
                     <div class="row gx-5">
                         <div class="col-lg-3">
                             <div class="d-flex align-items-center mt-lg-5 mb-4">
-                                <img class="img-fluid rounded-circle" src="${contextPath}${board.profileImage}" alt="..." />
+                                <c:if test="${board.memberTypes eq 'K'}">
+                                    <img class="img-fluid rounded-circle" src="${contextPath}/resources/images/user.png" alt="..." /> 
+                                </c:if>
+                                <c:if test="${board.memberTypes ne 'K'}">
+                                    <img class="img-fluid rounded-circle" src="${contextPath}${board.profileImage}" alt="..." /> 
+                                </c:if>  
                                 <div class="ms-3">
                                     <div class="fw-bold">${board.memberName}</div>
                                 </div>
@@ -94,7 +99,7 @@
                                     <div class="tag-area">
                                         <div class="tag">
                                             <a class="badge bg-secondary text-decoration-none link-light animal" href="#!">${board.animalType}</a>
-                                            <c:if test="${!empty board.animalDetail}">
+                                            <c:if test="${!empty board.animalDetail && board.animalDetail!='기타'}">
                                                 <a class="badge bg-secondary text-decoration-none link-light animalDetail" href="#!">${board.animalDetail}</a>
                                             </c:if>
                                             <a class="badge bg-secondary text-decoration-none link-light gender" href="#!">
@@ -263,12 +268,12 @@
 
                                             ctx.font = "40px Helvetica";
                                             ctx.fillStyle  = "red";
-                                            ctx.fillText('잃어버린 날짜 : ' + date, 410, 430);
+                                            ctx.fillText('날짜 : ' + date, 410, 430);
 
                                             ctx.font = "40px Helvetica";
                                             ctx.fillStyle  = "red";
                                             // ctx.fillText('장소 : ' + petPlace, 410, 480);
-                                            printAtWordWrap(ctx, '장소 : ' + petPlace, 410, 480, 50, 350);
+                                            printAtWordWrap(ctx, '장소 : ' + petPlace, 410, 480, 50, 500);
 
 
 

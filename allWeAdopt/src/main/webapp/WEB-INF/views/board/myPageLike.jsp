@@ -45,13 +45,14 @@
         <c:set var="boardList" value="${map.boardList}" />
             <%-- 게시글 리스트 --%>
                 <div class="row gx-5" id="row">
+                
                     <c:forEach var="boardList" items="${boardList}">
                         <div class="col-lg-4 mb-5">
                             <div class="card h-100 shadow border-0">
-                                <img class="card-img-top" src="${boardList.thumbnail}" alt="..." />
+                                <img class="card-img-top" style="width:376px; height:250px;" src="${boardList.thumbnail}" alt="..." />
                                 <div class="card-body p-4">
                                     <div class="badge bg-primary bg-gradient rounded-pill mb-2 animal">${boardList.animalType}</div>
-                                    <c:if test="${!empty boardList.animalDetail}">
+                                    <c:if test="${!empty boardList.animalDetail && boardList.animalDetail!='기타'}}">
                                         <div class="badge bg-primary bg-gradient rounded-pill mb-2 animal-detail">${boardList.animalDetail}</div>
                                     </c:if>
                                     <div class="badge bg-primary bg-gradient rounded-pill mb-2 gender">
@@ -76,7 +77,12 @@
                                 <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
                                     <div class="d-flex align-items-end justify-content-between">
                                         <div class="d-flex align-items-center">
-                                            <img class="rounded-circle me-3" src="/allWeAdopt${boardList.profileImage}" alt="..." />
+                                            <c:if test="${boardList.memberTypes eq 'K'}">
+                                                        <img class="rounded-circle me-3" src="${contextPath}/resources/images/user.png" alt="..." /> 
+                                            </c:if>
+                                            <c:if test="${boardList.memberTypes ne 'K'}">
+                                                <img class="rounded-circle me-3" src="${contextPath}${boardList.profileImage}" alt="..." /> 
+                                            </c:if>    
                                             <div class="small">
                                                 <div class="fw-bold">${boardList.memberName}</div>
                                                 <div class="text-muted">

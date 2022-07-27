@@ -11,12 +11,21 @@ function likeFunc(loginMember,boardNo,likeNo) {
             "likeNo" : likeNo
 		},
 		success: function(result){
+            let message = null;
 			if(result > 0){
                 if(likeNo==0){
-                    alert("관심동물로 등록되었습니다");
+                    message = "관심동물로 등록되었습니다";
                 }else{
-                    alert("관심동물이 해제되었습니다");
+                    message = "관심동물이 해제되었습니다";
                 }
+                Swal.fire({
+                    title: message,
+                    width: 600,
+                    padding: '3em',
+                    color: 'black',
+                    confirmButtonColor: 'rgb(251, 131, 107)',
+                    confirmButtonText: '확인'
+                    });
             }
 		},
 		error: function (request, status, error){
@@ -31,6 +40,7 @@ function likeFunc(loginMember,boardNo,likeNo) {
 const likeIcon = document.getElementById('likeIcon');
 const iconValue = document.getElementsByClassName("iconValue")[0];
 const loginMember = document.getElementById("loginMember").value;
+const boardNo = document.getElementsByName("boardNo")[0];
 
 likeIcon.addEventListener("click",function() {
     const likeNo = document.getElementsByClassName('iconValue')[0].value;
@@ -42,32 +52,33 @@ likeIcon.addEventListener("click",function() {
         iconValue.value = 0;
     };
    
-    likeFunc(loginMember,boardNo,likeNo);
+    likeFunc(loginMember,boardNo.value,likeNo);
 });
 
 // 트위터 공유 기능
 function shareTwitter2() {
     const boardNo = document.getElementsByName("boardNo")[0];
-    const url = "/localhost:8081/allWeAdopt/board/detail/2/"+boardNo.value;
+    const url = encodeURI("http://kh-classa.xyz/allWeAdopt/board/detail/2/"+boardNo.value);
     var sendText = "allWeAdopt"; // 전달할 텍스트
-    var sendUrl = encodeURIComponent(url); // 전달할 URL
-    // var sendUrl = "devpad.tistory.com/"; // 전달할 URL
+    var sendUrl = url;
+    // var sendUrl = encodeURIComponent(url); // 전달할 URL
+
     window.open("https://twitter.com/intent/tweet?text=" + sendText + "&url=" + sendUrl);
 }
 
 //페이스북 공유 기능
 function shareFacebook2() {
     const boardNo = document.getElementsByName("boardNo")[0];
-    const url = "http://localhost:8081/allWeAdopt/board/detail/2/"+boardNo.value;
-    var sendUrl = encodeURIComponent(url); // 전달할 URL
-    window.open("http://www.facebook.com/sharer/sharer.php?href=" + sendUrl);
+    const url = encodeURI("http://kh-classa.xyz/allWeAdopt/board/detail/2/"+boardNo.value);
+    var sendUrl = url;
+    // var sendUrl = encodeURIComponent(url); // 전달할 URL
+    window.open("http://www.facebook.com/sharer/sharer.php?u=" + sendUrl);
 }
 
 // 카카오톡 공유 기능
 function shareKakao2() {
     const boardNo = document.getElementsByName("boardNo")[0];
-    const url = "http://localhost:8081/allWeAdopt/board/detail/2/"+boardNo.value;
-    console.log(url);
+    const url = "http://kh-classa.xyz/allWeAdopt/board/detail/2/"+boardNo.value;
 
     // 사용할 앱의 JavaScript 키 설정
     Kakao.init('c2a34c4788a9b6f5a1d552ea9a4f9083');

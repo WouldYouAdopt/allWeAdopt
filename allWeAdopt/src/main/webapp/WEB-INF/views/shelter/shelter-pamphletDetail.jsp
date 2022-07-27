@@ -242,7 +242,7 @@
 
 
 
-                                    <script>
+                                    <%-- <script>
 
                                     
                                     const phone = "${detail.phone}"
@@ -295,7 +295,7 @@
                                     }
 
 
-                                    </script>
+                                    </script> --%>
 
 
                                 </div>
@@ -348,6 +348,7 @@
     <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
     <script src="${contextPath}/resources/js/shelterReply.js"></script>
     <script src="${contextPath}/resources/js/shelter.js"></script>
+    <script src="${contextPath}/resources/js/shelterWrite.js"></script>
 
     <%-- 카카오톡 공유하기 --%>
 

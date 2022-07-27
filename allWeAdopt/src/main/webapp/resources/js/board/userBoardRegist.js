@@ -76,10 +76,10 @@ $(document).ready(function() {
 		}
 
 		// 축종 값이 있을 시 품종 목록 불러오기
-		animalDetailAjax(document.getElementsByName("animalType")[0].value);
+		animalDetailAjax(document.getElementsByName("animalType")[0].value.trim());
 
 		// 지역 값이 있을 시 상세지역 목록 불러오기
-		areaDetailAjax(document.getElementsByName("area")[0].value);
+		areaDetailAjax(document.getElementsByName("area")[0].value.trim());
 })();
 
 // 버튼 값 변경

@@ -112,9 +112,6 @@
             <!-- 헤더 -->
             <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
-            <!-- 마이페이지 nav -->
-            <jsp:include page="/WEB-INF/views/common/mypage-header.jsp" />
-
             <!-- Page content-->
             <section class="py-5">
                 <div class="container px-5">
@@ -123,25 +120,10 @@
 
 
 <%-- --------------------------------------------------------------------------------- --%>
-	<ul class="nav">
-	    <li class="nav-item">
-	    <a class="nav-link" href="${contextPath}/point/wordle">Wordle</a>
-	    </li>
-	    <li class="nav-item">
-	    <a class="nav-link" href="${contextPath}/point/roulette">Roulette</a>
-	    </li>
-	
-	    <!-- 로그인한 회원만 조회 가능. -->
-	    <c:if test="${ !empty sessionScope.loginMember }">
-	        <li class="nav-item">
-	        <a class="nav-link" href="${contextPath}/member/myPage/point">내 포인트 조회</a>
-	        </li>
-	    </c:if>
-	</ul>						
                         
-                        
+						<jsp:include page="/WEB-INF/views/common/point-header.jsp" />
 
-                        <div class="text-center mb-5">
+                        <div class="text-center mb-1">
                             <h1 class="fw-bolder">Roulette</h1>
                             <p class="lead fw-normal text-muted mb-0">100포인트로 All We Adopt 펀딩에 사용 가능한 포인트를 뽑아가세요!</p>
                         </div>

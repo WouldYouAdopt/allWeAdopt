@@ -1,6 +1,7 @@
+/* 프로필 이미지 */
 .rounded-circle{
-    max-width: 13%;
-    object-fit: contain;
+    height: 40px;
+    width: 40px;
 }
 
 /* 페이지네이션 설정 */

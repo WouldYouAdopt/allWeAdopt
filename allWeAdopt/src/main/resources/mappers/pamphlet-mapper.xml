@@ -45,7 +45,7 @@
 	<select id="selectPamphletList" resultMap="board_rm">
 		SELECT BOARD_NO, BOARD_TITLE, MEMBER_NM, PROFILE_IMG, BOARD_CONTENT, THUMBNAIL, MEMBER_TYPE,
 				CASE WHEN SYSDATE-CREATE_DT &lt; 1
-					THEN TO_CHAR(CREATE_DT, 'HH:MI')
+					THEN TO_CHAR(CREATE_DT, 'HH24:MI')
 		        	ELSE TO_CHAR(CREATE_DT, 'YYYY"년" MM"월" DD"일" HH24"시" MI"분"') 
 		        END CREATE_DT,
 		        

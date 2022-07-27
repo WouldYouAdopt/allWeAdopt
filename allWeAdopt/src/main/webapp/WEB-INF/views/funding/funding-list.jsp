@@ -92,7 +92,7 @@
 	                                <div class="rate-bar-pink" style="width:calc(100%*0.96);"></div>
 	                                </c:if>
 	                                <c:if test="${map.now.salesRate<100}">
-	                                <div class="rate-bar-pink" style="width:${map.now.salesRate}%;"></div>
+	                                <div class="rate-bar-pink" style="width:calc(${map.now.salesRate}%*0.95);"></div>
 	                                </c:if>
 
 	                            </div>
@@ -172,19 +172,19 @@
     	const pinkWidth = document.getElementsByClassName("rate-bar-pink")[0];
     	const keyFrames = document.createElement("style");
     	
-    	/* keyFrames.innerHTML = `
+    	keyFrames.innerHTML = `
     		@keyframes long1 {
     		   from { 
     		       width: 0;
     		       background-color: rgb(251, 131, 107, 1);
     		   }
     		   to { 
-    		        width: salesRate%;
+    		        width: calc(salesRate%*0.95);
     		        background-color: rgb(251, 131, 107, 0.9);
     		    }
     		}
     		`;
-		pinkWidth.appendChild(keyFrames); */
+		pinkWidth.appendChild(keyFrames);
     	
 		
 		const textBoxleft = document.getElementsByClassName("rate-text-box")[0];
@@ -197,7 +197,7 @@
     		   }
     		   to { 
     			   //left:calc(salesRate%*0.95);
-    			   left: salesRate;
+    			   left: calc(salesRate%*0.95);
     		    }
     		}
     		`;
