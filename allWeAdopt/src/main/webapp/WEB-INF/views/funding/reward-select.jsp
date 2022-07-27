@@ -32,6 +32,9 @@
         <link href="${contextPath}/resources/css/main-style.css" rel="stylesheet" />
         <link href="${contextPath}/resources/css/styles.css" rel="stylesheet" />
         <link href="${contextPath}/resources/css/funding/funding-detail.css" rel="stylesheet" />
+        
+        <!-- sweetalert-->
+		<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
         <style>
         	/* input number에 화살표 없애기 */
@@ -166,7 +169,7 @@
 					<div class="row gx-5">
                     <c:forEach var="i" begin="0" end="${fn:length(map.rewardList)-1}">
                     
-                    <c:if test="${map.rewardList[i].rewardNo==param.selected}">
+                    <c:if test="${map.rewardList[i].rewardNo==param.selected}"> <!-- 이전 페이지에서 값 선택할때 -->
                     
 						<!-- 리워드-->
 						<div class="col-lg-6 col-xl-4 mb-5">
@@ -216,7 +219,7 @@
 									
 									<div class="d-grid"><p class="rewardSelectBtn lineBtn-gr rewardSelectBtn selected">리워드 선택</p></div>
 									
-									<button type="button" class="minus"><i class="fa-solid fa-minus"></i></button><input type="number" min="0" max="${map.rewardList[i].maxRewardNo-map.rewardListCount[i].rewardOrderAmount}" name="${map.rewardList[i].rewardNo}" value="1" style="width:60px;" class="rewardCount" disabled><button type="button" class="plus"><i class="fa-solid fa-plus"></i></button>
+									<button type="button" class="minus"><i class="fa-solid fa-minus"></i></button><input type="number" min="0" max="${map.rewardList[i].maxRewardNo-map.rewardListCount[i].rewardOrderAmount}" name="${map.rewardList[i].rewardNo}" value="1" style="width:60px;" class="rewardCount"><button type="button" class="plus"><i class="fa-solid fa-plus"></i></button>
 									
 								</div>
 							</div>
@@ -334,10 +337,10 @@
 				
 				</div> <!-- container끝 -->
 				<c:if test="${empty defaultPrice}">
-				<button id="toModal" data-bs-toggle="modal" class="selected d-grid col-6 mx-auto my-3 py-2" style="border-radius:4px; font-size:20px;" >결제 페이지로</button>
+				<button id="toModal" data-bs-toggle="modal" class="selected d-grid col-3 mx-auto my-3 py-2" style="border-radius:4px; font-size:20px;" >결제 페이지로</button>
 				</c:if>
 				<c:if test="${!empty defaultPrice}">
-				<button id="toModal" data-bs-target="#exampleModal" data-bs-toggle="modal" class="selected d-grid col-6 mx-auto my-3 py-2" style="border-radius:4px; font-size:20px;" >결제 페이지로</button>
+				<button id="toModal" data-bs-target="#exampleModal" data-bs-toggle="modal" class="selected d-grid col-3 mx-auto my-3 py-2" style="border-radius:4px; font-size:20px;" >결제 페이지로</button>
 				</c:if>
 
             </section>
@@ -554,7 +557,14 @@
 		        if(payCheck1.checked && payCheck2.checked && payCheck3.checked){        	
         			goPayForm.submit();
 		        }else{
-		        	alert("모든 항목을 확인하고 체크해주세요");
+		        	Swal.fire({
+		        	     title: "모든 항목을 체크해주세요",
+		        	     width: 350,
+		        	     padding: '3em',
+		        	     color: 'black',
+		        	     confirmButtonColor: 'rgb(251, 131, 107)',
+		        	     confirmButtonText: '확인'
+		        	     });
 		        }
 	        	
 	        	
