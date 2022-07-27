@@ -121,7 +121,7 @@
 
 
                                         <%-- 전단지 만들기 버튼 --%>                                
-                                        <c:if test="${board.category ne '완료' && board.category ne '보호'}">
+                                        <c:if test="${board.category != '완료'}">
                                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                                 <button type="button" class="btn btn-outline-secondary btn-sm allButton"  data-bs-toggle="modal" data-bs-target="#makePam">전단지 만들기</button>
                                             </div>
@@ -229,7 +229,7 @@
 
                                         // const petName = document.querySelector('.mb-5>p:nth-child(1)').innerText;
                                         const date = "${board.boardPeriod}"
-                                        const petPlace = "${board.area}${board.areaDetail}"
+                                        const petPlace = "${board.area} ${board.areaDetail}"
                                         const animalType = "${board.animalType}"
                                         const gender = "${board.gender}"
                                         const animalDetail = "${board.animalDetail}"
@@ -268,12 +268,12 @@
 
                                             ctx.font = "40px Helvetica";
                                             ctx.fillStyle  = "red";
-                                            ctx.fillText('잃어버린 날짜 : ' + date, 410, 430);
+                                            ctx.fillText('날짜 : ' + date, 410, 430);
 
                                             ctx.font = "40px Helvetica";
                                             ctx.fillStyle  = "red";
                                             // ctx.fillText('장소 : ' + petPlace, 410, 480);
-                                            printAtWordWrap(ctx, '장소 : ' + petPlace, 410, 480, 50, 400);
+                                            printAtWordWrap(ctx, '장소 : ' + petPlace, 410, 480, 50, 500);
 
 
 
