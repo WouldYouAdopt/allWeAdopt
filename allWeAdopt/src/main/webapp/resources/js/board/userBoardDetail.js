@@ -58,7 +58,7 @@ likeIcon.addEventListener("click",function() {
 // 트위터 공유 기능
 function shareTwitter2() {
     const boardNo = document.getElementsByName("boardNo")[0];
-    const url = "http://kh-classa.xyz/allWeAdopt/board/detail/2/"+boardNo.value;
+    const url = encodeURI("http://kh-classa.xyz/allWeAdopt/board/detail/2/"+boardNo.value);
     var sendText = "allWeAdopt"; // 전달할 텍스트
     var sendUrl = url;
     // var sendUrl = encodeURIComponent(url); // 전달할 URL
@@ -69,10 +69,10 @@ function shareTwitter2() {
 //페이스북 공유 기능
 function shareFacebook2() {
     const boardNo = document.getElementsByName("boardNo")[0];
-    const url = "http://kh-classa.xyz/allWeAdopt/board/detail/2/"+boardNo.value;
+    const url = encodeURI("http://kh-classa.xyz/allWeAdopt/board/detail/2/"+boardNo.value);
     var sendUrl = url;
     // var sendUrl = encodeURIComponent(url); // 전달할 URL
-    window.open("http://www.facebook.com/sharer/sharer.php?href=" + sendUrl);
+    window.open("http://www.facebook.com/sharer/sharer.php?u=" + sendUrl);
 }
 
 // 카카오톡 공유 기능
