@@ -293,9 +293,45 @@ INSERT INTO REPLY VALUES(
 SELECT * FROM REPLY;   
 
 
--- 오늘날짜 문의 글 수 조회
+------------------ 관리자 메인페이지 ----------------- 
+
+-- 오늘날짜 '문의 글 수 조회'
 SELECT COUNT(*)
 FROM BOARD
 WHERE BOARD_CD=5
 AND TO_CHAR(CREATE_DT, 'YYYY-MM-DD') = TO_CHAR(SYSDATE,'YYYY-MM-DD');
+
+-- 오늘날자 어답터 게시글 수 
+SELECT COUNT(*)
+FROM BOARD
+WHERE BOARD_CD=2
+AND TO_CHAR(CREATE_DT, 'YYYY-MM-DD') = TO_CHAR(SYSDATE,'YYYY-MM-DD');
+
+-- 오늘날짜 펀딩 결제 건수
+SELECT COUNT(*)
+FROM PAYMENT
+WHERE TO_CHAR(PAY_DT, 'YYYY-MM-DD') = TO_CHAR(SYSDATE,'YYYY-MM-DD');
+
+
+
+-- 월별 '완료' 인 어답터 게시글 수
+SELECT TO_CHAR(CREATE_DT,  'YYYY"년" MM"월"') AS MONTH, COUNT(*)
+FROM BOARD
+WHERE BOARD_CD=2
+AND CATEGORY='완료'
+GROUP BY TO_CHAR(CREATE_DT,  'YYYY"년" MM"월"') ;
+
+-- 월별 펀딩 결제 목록 갯수 조회(오늘 날짜조회)
+SELECT COUNT(*), TO_CHAR(PAY_DT,  'YYYY"년" MM"월"') AS MONTH
+FROM PAYMENT
+GROUP BY  TO_CHAR(PAY_DT,  'YYYY"년" MM"월"');
+
+
+
+
+
+
+
+
+
 

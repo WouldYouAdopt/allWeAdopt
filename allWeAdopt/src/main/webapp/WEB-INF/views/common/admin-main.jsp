@@ -57,37 +57,37 @@
                     </ol>
                     <div class="row">
                         <div class="col-xl-3 col-md-6">
-                            <div class="card bg-primary text-white mb-4">
+                            <div class="card bg-pink text-white mb-4">
                                 <div class="card-body">관리자 계정 등록</div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="${contextPath}/member/registerAdmin" style="text-decoration: none;"> 등록하기 > </a>
+                                    <a class="small text-white stretched-link" href="${contextPath}/member/registerAdmin" style="text-decoration: none;"> 등록하기</a>
                                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xl-3 col-md-6">
                             <div class="card bg-warning text-white mb-4">
-                                <div class="card-body">미답변 문의사항 : 0개</div>
+                                <div class="card-body">오늘의 문의사항 : 0개</div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="#"  style="text-decoration: none;">문의사항 상세조회 ></a>
+                                    <a class="small text-white stretched-link" href="#"  style="text-decoration: none;">문의사항 상세조회</a>
                                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xl-3 col-md-6">
                             <div class="card bg-success text-white mb-4">
-                                <div class="card-body">새 어답터 게시글 : 0개</div>
+                                <div class="card-body">오늘의 어답터 게시글 : 0개</div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="#"  style="text-decoration: none;" >회원게시글 상세조회 ></a>
+                                    <a class="small text-white stretched-link" href="#"  style="text-decoration: none;" >회원게시글 상세조회</a>
                                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xl-3 col-md-6">
                             <div class="card bg-secondary text-white mb-4">
-                                <div class="card-body">오늘 결제내역 : 0개</div>
+                                <div class="card-body">오늘 결제된 내역 : 0개</div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="#"  style="text-decoration: none;">회원게시글 상세조회 ></a>
+                                    <a class="small text-white stretched-link" href="#"  style="text-decoration: none;">회원게시글 상세조회</a>
                                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                 </div>
                             </div>
@@ -98,7 +98,7 @@
                             <div class="card mb-4">
                                 <div class="card-header">
                                     <i class="fas fa-chart-area me-1"></i>
-                                    보호소 유기동물 업로드 추이
+                                    어답터 게시글 추이
                                 </div>
                                 <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
                             </div>
