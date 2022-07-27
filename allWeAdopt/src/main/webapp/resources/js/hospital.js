@@ -150,7 +150,7 @@ const url = 'http://openapi.seoul.go.kr:8088/58717a6e5463686f3130306d58694a4f/js
 				            var imageSize = new kakao.maps.Size(37); 
 				            
 				            // 마커 이미지를 생성합니다    
-				            var imageOption = {offset: new kakao.maps.Point(22, 0)};
+				            var imageOption = {offset: new kakao.maps.Point(22, 50)};
 				            var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize,imageOption); 
 				            
 					        // 마커를 변환된 위치에 표시합니다
