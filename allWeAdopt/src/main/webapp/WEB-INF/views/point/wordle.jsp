@@ -75,7 +75,7 @@
                                                    
                         <jsp:include page="/WEB-INF/views/common/point-header.jsp" />
                         
-                        <h1 style="font-weight: 700;"> Wordle <i class="fa-regular fa-circle-question pinkIcon" id="q"></i></h1>
+                        <h1 style="font-weight: 700;"> Wordle <i class="fa-regular fa-circle-question pinkIcon" id="q" style="cursor: pointer;"></i></h1>
 
                         <div id="game-board">
 
@@ -121,6 +121,7 @@
 <%-- --------------------------------------------------------------------------------- --%>
 
                     </div>
+                </div>
             </section>
         </main>
 

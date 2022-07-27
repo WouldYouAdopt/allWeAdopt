@@ -155,7 +155,7 @@
 
                                     <c:choose>
                                         <c:when test="${i == pagination.currentPage}">
-                                            <li class="page-item current"><a class="page-link nav-text-color">${i}</a></li>
+                                            <li class="page-item current"><a class="page-link nav-text-color pinkIcon">${i}</a></li>
                                         </c:when>
 
                                         <c:otherwise>

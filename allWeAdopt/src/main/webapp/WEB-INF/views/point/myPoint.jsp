@@ -89,33 +89,33 @@
                                 <p>지금까지 누적된 포인트와 사용 내역을 조회할 수 있습니다..</p>
                             </div>
 
-                        <div class="row gx-5 justify-content-center">
-                            <table class="table table-striped">
-                                <tr>
-                                    <th>결제번호</th>
-                                    <th>사용한 포인트</th>
-                                    <th>사용일</th>
-                                </tr>
-                        
-                                <c:if test="${!empty dList}">
-                                    <c:forEach  var="d" items="${dList}">
-                                            <tr>
-                                                <td>${d.paymentNo}</td>
-                                                <td>${d.point}</td>
-                                                <td>${d.payDate}</td>
-                                            </tr>
-                                    </c:forEach>
-                            </c:if>
-                        
-                                <c:if test="${empty dList}">
-                                    <tr><td colspan="3"><h3>사용 내역이 없습니다.</h3></td></tr>
-                                </c:if>
+                            <div class="row gx-5 justify-content-center">
+                                <table class="table table-striped">
+                                    <tr>
+                                        <th>결제번호</th>
+                                        <th>사용한 포인트</th>
+                                        <th>사용일</th>
+                                    </tr>
+                            
+                                    <c:if test="${!empty dList}">
+                                        <c:forEach  var="d" items="${dList}">
+                                                <tr>
+                                                    <td>${d.paymentNo}</td>
+                                                    <td>${d.point}</td>
+                                                    <td>${d.payDate}</td>
+                                                </tr>
+                                        </c:forEach>
+                                    </c:if>
+                            
+                                    <c:if test="${empty dList}">
+                                        <tr><td colspan="3"><h3>사용 내역이 없습니다.</h3></td></tr>
+                                    </c:if>
 
-                            </table>
-                        </div>
-                    </div><!-- wrapper 끝 -->
+                                </table>
+                            </div>
+                        </div><!-- wrapper 끝 -->
 <%-- --------------------------------------------------------------------------------- --%>
-
+                    </div>
                 </div>
             </section>
         </main>
