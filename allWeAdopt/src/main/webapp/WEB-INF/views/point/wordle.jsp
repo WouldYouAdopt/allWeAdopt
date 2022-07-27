@@ -51,6 +51,12 @@
  
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
+        <!-- sweetalert-->
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <!-- 폰트어썸 -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     </head>
     <body class="d-flex flex-column">
         <main class="flex-shrink-0">
@@ -69,7 +75,7 @@
                                                    
                         <jsp:include page="/WEB-INF/views/common/point-header.jsp" />
                         
-                        <h1 style="font-weight: 700;"> Wordle </h1>
+                        <h1 style="font-weight: 700;"> Wordle <i class="fa-regular fa-circle-question pinkIcon" id="q"></i></h1>
 
                         <div id="game-board">
 
@@ -124,8 +130,19 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         
         <script>
-        const contextPath = "${contextPath}";
-   
+            const contextPath = "${contextPath}";
+
+            document.getElementById("q").addEventListener("click", function(){
+
+                Swal.fire({
+                imageUrl: contextPath+'/resources/images/wordleInfo.jpg',
+                imageWidth: '100%',
+                imageHeight: '100%',
+                imageAlt: 'Custom image',
+                confirmButtonColor: 'rgb(251, 131, 107)'
+                })
+
+            })
         </script>
         
 
