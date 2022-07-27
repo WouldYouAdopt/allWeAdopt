@@ -264,7 +264,7 @@ function gameover(){
     }else{
 
         Swal.fire({
-            title: gameScroe+'점... ㅠㅠ 다시 도전해주세요!',
+            title: gameScore+'점... ㅠㅠ 다시 도전해주세요!',
             width: 350,
             padding: '3em',
             color: 'black',
