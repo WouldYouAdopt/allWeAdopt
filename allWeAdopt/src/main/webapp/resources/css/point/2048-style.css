@@ -1,0 +1,66 @@
+td{
+    border: 2px solid #999;
+    border-radius: 9px;
+    text-align: center;
+    vertical-align: center;
+    font-size: 18pt;
+    font-weight: bold;
+    height: 70px;
+    width: 70px;
+    color: #999;
+    background-color: white;
+}
+p{
+    color: white;
+    vertical-align: top;
+}
+
+#title{
+    color: rgb(251, 131, 107);
+    font-size: 48px;
+    padding: 0px;
+    margin: px;
+}
+#titleBar{
+    margin: 10px 70px;
+    height: 70px;
+}
+
+#titlePad{
+    width: 148px;
+    height: 35px;
+    background-color: white;
+    margin: 0 0 10px;
+    border: none;
+}
+
+#scorePad{
+    width: 148px;
+    height: 35px;
+    background-color: white;
+    padding: 0px;
+    margin: 0px;
+    border: none;
+}
+
+#scoreType{
+    font-size: 14pt;
+    margin: 0px;
+    color: rgb(251, 131, 107);
+}
+
+#score{
+    font-size: 28pt;
+    margin: 0px;
+    color: rgb(251, 131, 107);
+}
+
+#board{
+    margin: 0px 70px;
+}
+
+#info{
+    margin: 1px auto;
+    font-size: 10pt;
+    color: #999;
+}

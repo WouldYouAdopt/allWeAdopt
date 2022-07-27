@@ -65,6 +65,12 @@ public class Point {
 		return result;
 	}
 	
+	//2048 페이지로 이동
+	@GetMapping("/game2048")
+	public String game2048() {
+		//필요할경우 여기서 데이터 꺼내감
+		return "point/2048";
+	}	
 	
 
 }
