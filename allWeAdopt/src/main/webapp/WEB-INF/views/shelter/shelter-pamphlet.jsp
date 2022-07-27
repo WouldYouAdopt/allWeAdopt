@@ -133,17 +133,17 @@
                                                 </c:if>
                                                 <%-- <img class="rounded-circle me-3" src="${pamphlet.profileImage}" alt="..." /> --%>
 
-                                                <div class="md-10" style="margin:10px;"></div>
+                                                <div class="md-10" style="margin:20px;"></div>
 
-                                                <div class="small">
+                                                <div class="small" style="width: 180px;">
                                                     <div class="fw-bold">${pamphlet.memberName}</div>
                                                     <div class="fw-bold">${pamphlet.phone}</div>
                                                     <div class="text-muted">${pamphlet.createDate}</div>
                                                 </div>
 
-                                                <div class="md-10" style="margin:20px;"></div>
+                                                <div class="md-10" style="margin:10px;"></div>
                             
-                                                <button type="button" class="btn btn-primary" style="color: #FB836B; border: 2px solid #FB836B; background-color: white; border-radius:50%;" id="rArea">
+                                                <button type="button" class="btn btn-primary" style="color: #FB836B; border: 2px solid #FB836B; background-color: white; border-radius:50%; width:50px; height:50px;" id="rArea">
                                                     <span class="badge text-bg-secondary" style="color: #FB836B; font-weight: bold;">${pamphlet.replyCount}</span>
                                                 </button>
 

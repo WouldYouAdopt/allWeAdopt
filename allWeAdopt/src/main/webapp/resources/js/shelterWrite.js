@@ -54,7 +54,7 @@ function writeValidate(){
     if(boardTitle.value.trim().length == 0 ){
 
         Swal.fire({
-            title: '제목을 입력해주세요!',
+            title: '제목을 입력해주세요!!!!',
             width: 350,
             padding: '3em',
             color: 'black',
@@ -70,7 +70,7 @@ function writeValidate(){
     if(boardContent.value.trim().length == 0 ){
 
         Swal.fire({
-            title: '제목을 입력해주세요!',
+            title: '내용을 입력해주세요!!!!',
             width: 350,
             padding: '3em',
             color: 'black',

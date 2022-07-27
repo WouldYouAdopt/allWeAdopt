@@ -355,26 +355,26 @@
 
                                         ctx.font = "40px Helvetica";
                                         ctx.fillStyle  = "black";
-                                        printAtWordWrap(ctx, '특징 : ' + specialMark, 650, 450, 50, 350);
+                                        printAtWordWrap(ctx, '특징 : ' + specialMark, 630, 400, 55, 350);
                                         // ctx.fillText('특징 : ' + specialMark, 25, 720);
 
 
 
                                         ctx.font = "40px Helvetica";
                                         ctx.fillStyle  = "black";
-                                        ctx.fillText(age, 650, 250);
+                                        ctx.fillText(age, 630, 220);
 
                                         ctx.font = "40px Helvetica";
                                         ctx.fillStyle  = "black";
-                                        ctx.fillText('성별 : ' + sexCd, 630, 310);
+                                        ctx.fillText('성별 : ' + sexCd, 630, 280);
 
                                         ctx.font = "40px Helvetica";
                                         ctx.fillStyle  = "black";
-                                        ctx.fillText(colorCd, 630, 370);
+                                        ctx.fillText('색깔 : ' + colorCd, 630, 340);
 
                                         ctx.font = "40px Helvetica";
                                         ctx.fillStyle  = "black";
-                                        ctx.fillText(kindCd, 630, 180);
+                                        ctx.fillText(kindCd, 630, 160);
 
 
                                         // 전단지 줄바꿈
