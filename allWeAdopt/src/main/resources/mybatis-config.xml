@@ -29,7 +29,7 @@
 		<typeAlias type="edu.kh.allWeAdopt.userBoard.model.vo.Animal" alias="animal"/> 
 		<typeAlias type="edu.kh.allWeAdopt.userBoard.model.vo.Area" alias="area"/> 
 		<typeAlias type="edu.kh.allWeAdopt.member.model.vo.Certification" alias="certification"/> 
-		<typeAlias type="edu.kh.allWeAdopt.main.model.vo.AdminMain" alias="AdminMain"/> 
+		<typeAlias type="edu.kh.allWeAdopt.main.model.vo.AdminMain" alias="adminMain"/> 
 		
 		
 		
@@ -57,6 +57,8 @@
 		 <mapper resource="/mappers/reply-mapper.xml"/>
 
 		 <mapper resource="/mappers/point-mapper.xml"/>
+		 
+		 <mapper resource="/mappers/AdminMain-mapper.xml"/>
 
 	</mappers>
 

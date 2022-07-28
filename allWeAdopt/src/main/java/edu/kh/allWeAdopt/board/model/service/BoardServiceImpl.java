@@ -121,11 +121,6 @@ public class BoardServiceImpl implements BoardService{
 		List<Board> aList = dao.selectAskList(pagination,loginMember);
 		
 		
-		for(Board a : aList) {
-			System.out.println(a.getBoardNo());
-			System.out.println(a.getBoardTitle());
-		}
-		
 		map.put("aList", aList);
 		map.put("pagination", pagination);
 		

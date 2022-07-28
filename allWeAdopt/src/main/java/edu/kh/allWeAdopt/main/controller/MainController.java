@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.kh.allWeAdopt.main.model.service.AdminMainService;
+import edu.kh.allWeAdopt.main.model.vo.AdminMain;
 
 @Controller
 public class MainController {
@@ -53,13 +54,14 @@ public class MainController {
 		// 문의글 갯수 조회(오늘 날짜 조회) 
 		// 어답터게시글 갯수 조회(오늘 날짜 조회)
 		// 오늘 펀딩 결제 목록 갯수 조회(오늘 날짜조회)
+		AdminMain adminMainCount = service.adminMainCount();
+		
 		
 		// 어답터 게시글 추이(리스트)
 		// 펀딩 주문 추이(리스트) 
 		
-		// 맵에 담기
-		Map<String, Object> map = service.selectList();
 		
+		model.addAttribute("adminMainCount",adminMainCount);
 		
 		return "common/admin-main";
 	}

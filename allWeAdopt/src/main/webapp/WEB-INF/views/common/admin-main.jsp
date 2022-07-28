@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 
+
+
+
 <!DOCTYPE html>
 <html>
 
@@ -67,27 +70,27 @@
                         </div>
                         <div class="col-xl-3 col-md-6">
                             <div class="card bg-warning text-white mb-4">
-                                <div class="card-body">오늘의 문의사항 : 0개</div>
+                                <div class="card-body">오늘의 문의사항 : ${adminMainCount.askCount}개</div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="#"  style="text-decoration: none;">문의사항 상세조회</a>
+                                    <a class="small text-white stretched-link" href="${contextPath}/admin/ask/list"  style="text-decoration: none;">문의사항 상세조회</a>
                                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xl-3 col-md-6">
                             <div class="card bg-success text-white mb-4">
-                                <div class="card-body">오늘의 어답터 게시글 : 0개</div>
+                                <div class="card-body">오늘의 어답터 게시글 : ${adminMainCount.adopterCount}개</div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="#"  style="text-decoration: none;" >회원게시글 상세조회</a>
+                                    <a class="small text-white stretched-link" href="${contextPath}/admin/board/user"  style="text-decoration: none;" >회원게시글 상세조회</a>
                                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xl-3 col-md-6">
                             <div class="card bg-secondary text-white mb-4">
-                                <div class="card-body">오늘 결제된 내역 : 0개</div>
+                                <div class="card-body">오늘 결제된 내역 : ${adminMainCount.fundingCount}개</div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="#"  style="text-decoration: none;">회원게시글 상세조회</a>
+                                    <a class="small text-white stretched-link" href="${contextPath}/admin/funding/delivery/4/1"  style="text-decoration: none;">주문내역 상세조회</a>
                                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                 </div>
                             </div>
