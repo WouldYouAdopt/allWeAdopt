@@ -69,6 +69,7 @@ function coloring(cell){
         case 2:
             cell.style.color="#684A23";
             cell.style.background="#FBEDDC";
+
             break;
         case 4:
             cell.style.color="#684A23";
@@ -250,9 +251,9 @@ function checkGameOver(){
 
 // 게임오버 처리
 function gameover(){
-    if(score>30){
 
-        console.log(score);
+    if(score>3000){
+
         $.ajax({
             url: contextPath+"/point/game2048/success",
             data : {
@@ -262,34 +263,7 @@ function gameover(){
             success: function (result) {
              if(result>0){
 
-                console.log(score);
-                console.log(result);
-
-                if(result!=2){
-
-                    Swal.fire({
-                        title: '랭킹 1위 달성!🐱',
-                        text: '1000p 적립 완료! 축하드립니다 ~',
-                        width: 340,		
-                        icon: 'warning',
-                        iconColor: 'rgb(251, 131, 107)',
-                        showCancelButton: false,
-                        confirmButtonColor: 'rgb(251, 131, 107)',
-                        cancelButtonColor: '#999',
-                        confirmButtonText: '확인',
-                        cancelButtonText: '취소'
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                document.getElementById("score2").innerText=score;
-                                init();
-                            }else{
-                                 // '취소'클릭시 수행될 코드 작성
-                                e.preventDefault();
-                            }
-                         })
-
-
-                }else{
+                if(result==1){
 
                     Swal.fire({
                         title: score+'점🐶',
@@ -304,22 +278,42 @@ function gameover(){
                         cancelButtonText: '취소'
                         }).then((result) => {
                             if (result.isConfirmed) {
-                                init();
+                                //init();
+                                location.href=contextPath+"/point/game2048";
                             }else{
                                  // '취소'클릭시 수행될 코드 작성
-                                e.preventDefault();
+                                
                             }
                          })
 
+                }else{
+
+                    document.getElementById("score2").innerText=score;
+
+                    Swal.fire({
+                        title: '랭킹 1위 달성!🐱',
+                        text: '1000p 적립 완료! 축하드립니다 ~',
+                        width: 340,		
+                        icon: 'warning',
+                        iconColor: 'rgb(251, 131, 107)',
+                        showCancelButton: false,
+                        confirmButtonColor: 'rgb(251, 131, 107)',
+                        cancelButtonColor: '#999',
+                        confirmButtonText: '확인',
+                        cancelButtonText: '취소'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                location.href=contextPath+"/point/game2048";
+                                
+                            }else{
+                                 // '취소'클릭시 수행될 코드 작성
+                                
+                            }
+                         })
+
+
                 }
-                // Swal.fire({
-                //     title: '500p 적립 완료 🐶',
-                //     width: 350,
-                //     padding: '3em',
-                //     color: 'black',
-                //     confirmButtonColor: 'rgb(251, 131, 107)',
-                //     confirmButtonText: '확인'
-                //     });
+
                
              }else{
                 //반환값이 이상할 때
@@ -346,10 +340,11 @@ function gameover(){
                 cancelButtonText: '취소'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        init();
+                        location.href=contextPath+"/point/game2048";
+                        
                     }else{
                          // '취소'클릭시 수행될 코드 작성
-                        e.preventDefault();
+                        
                     }
                  })
 

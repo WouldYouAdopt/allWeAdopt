@@ -8,6 +8,7 @@
 		<result property="boardTitle" column="BOARD_TITLE"/>
 		<result property="createDate" column="CREATE_DT"/>
 		<result property="boardSt" column="BOARD_ST"/>
+		<result property="boardPeriod" column="BOARD_PERIOD"/>
 	</resultMap>
 	
 	<!-- 게시글 상세조회용 resultMap -->   
