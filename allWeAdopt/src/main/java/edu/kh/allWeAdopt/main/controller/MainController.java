@@ -1,5 +1,7 @@
 package edu.kh.allWeAdopt.main.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,7 +18,7 @@ import edu.kh.allWeAdopt.main.model.service.AdminMainService;
 public class MainController {
 	
 	@Autowired
-	private AdminMainService Service;
+	private AdminMainService service;
 	
 	
 	
@@ -45,7 +47,7 @@ public class MainController {
 	
 	// admin-main으로 이동
 	@RequestMapping("/admin/main")
-	public String adminMainForward() {
+	public String adminMainForward(Model model) {
 		
 		
 		// 문의글 갯수 조회(오늘 날짜 조회) 
@@ -53,11 +55,10 @@ public class MainController {
 		// 오늘 펀딩 결제 목록 갯수 조회(오늘 날짜조회)
 		
 		// 어답터 게시글 추이(리스트)
-		
 		// 펀딩 주문 추이(리스트) 
 		
 		// 맵에 담기
-		
+		Map<String, Object> map = service.selectList();
 		
 		
 		return "common/admin-main";

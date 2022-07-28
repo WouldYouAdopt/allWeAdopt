@@ -312,6 +312,22 @@ SELECT COUNT(*)
 FROM PAYMENT
 WHERE TO_CHAR(PAY_DT, 'YYYY-MM-DD') = TO_CHAR(SYSDATE,'YYYY-MM-DD');
 
+-- 오늘날짜 '문의 글 수 조회' / 오늘날자 어답터 게시글 수 / 오늘날짜 펀딩 결제 건수
+SELECT (SELECT COUNT(*)
+      FROM BOARD
+      WHERE BOARD_CD=5
+      AND TO_CHAR(CREATE_DT, 'YYYY-MM-DD') = TO_CHAR(SYSDATE,'YYYY-MM-DD')) AS askCount,
+      (SELECT COUNT(*)
+      FROM BOARD
+      WHERE BOARD_CD=2
+      AND TO_CHAR(CREATE_DT, 'YYYY-MM-DD') = TO_CHAR(SYSDATE,'YYYY-MM-DD')) AS adopterCount,
+      (SELECT COUNT(*)
+      FROM PAYMENT
+      WHERE TO_CHAR(PAY_DT, 'YYYY-MM-DD') = TO_CHAR(SYSDATE,'YYYY-MM-DD')) AS fundingCount
+FROM DUAL;
+
+
+
 
 
 -- 월별 '완료' 인 어답터 게시글 수
