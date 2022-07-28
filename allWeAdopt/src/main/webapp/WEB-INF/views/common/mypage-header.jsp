@@ -4,9 +4,9 @@
 <header>
 
     <!-- Navigation mypage-->
-     <nav class="navbar navbar-expand-lg navbar-dark bg-pink " >
+     <nav class="bg-pink navbar navbar-expand-lg navbar-dark" >
         <div class="container px-2">
-            <ul class="navbar-nav ms-left mb-2 mb-lg-0">
+            <ul class="navbar-nav ms-left mb-2 mb-lg-0 bgPink">
                 <c:if test="${loginMember.memberType == 'M'}">
                     <li class="nav-item" ><a class="nav-link" href="${contextPath}/member/myPage/pwConfirm">회원 정보 수정</a></li>
                 </c:if>
