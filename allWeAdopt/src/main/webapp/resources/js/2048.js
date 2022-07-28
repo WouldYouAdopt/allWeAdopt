@@ -251,7 +251,7 @@ function checkGameOver(){
 // 게임오버 처리
 function gameover(){
 
-    if(score>30){
+    if(score>3000){
 
         $.ajax({
             url: contextPath+"/point/game2048/success",
