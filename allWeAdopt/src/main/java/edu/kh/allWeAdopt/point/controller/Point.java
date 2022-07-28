@@ -39,14 +39,14 @@ public class Point {
 	public int wordleSuccess(@ModelAttribute("loginMember") Member loginMember) {
 		int memberNo=loginMember.getMemberNo();
 		int result=service.wordleSuccess(memberNo);
+		loginMember.setMemberPoint(service.selectMyPoint(loginMember.getMemberNo()));
 		return result;
 	}
 	
 	
 	//룰렛 페이지로 이동
 	@GetMapping("/roulette")
-	public String roulette() { 
-		//필요할 경우 여기서 꺼내감
+	public String roulette(){ 
 		return "point/roulette";
 	}
 	
