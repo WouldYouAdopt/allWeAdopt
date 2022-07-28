@@ -4,9 +4,26 @@ var board = Array(Array(0,0,0,0),Array(0,0,0,0),Array(0,0,0,0),Array(0,0,0,0));
 var tableID = Array(Array("00","01","02","03"),Array("10","11","12","13"),Array("20","21","22","23"),Array("30","31","32","33"));
 var score;
 
+jQuery(document).keydown(function(e){
+    if(e.target.nodeName != "INPUT" && e.target.nodeName != "TEXTAREA"){
+        if(e.keyCode === 37 || e.keyCode === 38 || e.keyCode === 39 || e.keyCode === 40){
+
+            $('#element').on('scroll touchmove mousewheel', function(event) {
+                event.preventDefault();
+                event.stopPropagation();
+                return false;
+              });
+
+            return false;
+        }
+    }
+});
+
+
 // 키보드 입력 처리
 document.onkeydown = keyDownEventHandler;
 function keyDownEventHandler(e){
+
     switch(e.keyCode){
         case 38: moveDir(0); break; //up
         case 40: moveDir(1); break; //down
@@ -233,7 +250,7 @@ function checkGameOver(){
 
 // 게임오버 처리
 function gameover(){
-    if(score>300){
+    if(score>3000){
 
         console.log(score);
         $.ajax({
