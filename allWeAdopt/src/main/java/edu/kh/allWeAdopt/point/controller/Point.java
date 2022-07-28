@@ -92,9 +92,8 @@ public class Point {
 		r.setScore(score);
 		int result=service.game2048Success(r);
 		
-		if(result==1) {
-			result = r.getScore();
-		}
+		System.out.println("객체에 있는 score"+r.getScore());
+		System.out.println("result="+result);
 		
 		return result;
 	}

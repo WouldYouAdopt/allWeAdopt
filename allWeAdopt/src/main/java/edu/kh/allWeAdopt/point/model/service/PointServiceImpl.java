@@ -61,13 +61,13 @@ public class PointServiceImpl implements PointService{
 			result = dao.updateHighScore(r);
 			if(result>0) {
 				result = dao.game2048Success(r.getMemberNo());
+				result = r.getScore();
+			}else {
+				result = 0;
 			}
 		}else {
 			// 최고점수 아니면 500p포인트만 주기 (result = 2)
 			result = dao.wordleSuccess(r.getMemberNo());
-			if(result>0) {
-				result = 2;
-			}
 		}
 		
 		return result;
