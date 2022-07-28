@@ -154,7 +154,6 @@ addReply.addEventListener("click", function(){ // 댓글 등록 버튼이 클릭
                     iconColor: 'rgb(251,131,107)',
                     width: 350,
                     padding: '1em 0em 3em',
-                    title: '${message}',
                     showConfirmButton: false,
                     timer: 1500
                 })
@@ -213,7 +212,6 @@ function deleteReply(replyNo){
                         iconColor: 'rgb(251,131,107)',
                         width: 350,
                         padding: '1em 0em 3em',
-                        title: '${message}',
                         showConfirmButton: false,
                         timer: 1500
                     })
@@ -359,7 +357,6 @@ function updateReply(replyNo, btn){
                     iconColor: 'rgb(251,131,107)',
                     width: 350,
                     padding: '1em 0em 3em',
-                    title: '${message}',
                     showConfirmButton: false,
                     timer: 1500
                 })

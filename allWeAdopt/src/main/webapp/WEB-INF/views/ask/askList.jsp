@@ -38,7 +38,7 @@
         <link rel="stylesheet" href="${contextPath}/resources/css/main-style.css">
 
         <style>
-        .new{
+        /* .new{
             background-color: rgb(251, 131, 107);
             color : white;
             font-size : 8px;
@@ -47,12 +47,20 @@
             padding : 0px 3px;
             margin: auto 4px;
             text-align : center;
+        } */
+
+        .new{
+            margin : 0px 4px;
+            width : 0.8em;
         }
 
         .newa{
             display: flex;
         }
         </style>
+
+        <!-- sweetalert-->
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         
     </head>
     <body class="d-flex flex-column">
@@ -112,12 +120,20 @@
 
 
                                  <c:choose>
+
                                     <c:when test="${ a.boardPeriod == today }"> 
                                         <tr>
                                             <th scope="row" class="col-sm-1 text-center" >${a.boardNo}</th>
-                                            <td><a href="${url}" class="newa">${n.boardTitle}<img class="new my-auto" src="${contextPath}/resources/images/new_1.png"></a></td>
+                                            <td><a href="${url}">${a.category}</a></td>
+                                            <td><a href="${url}" class="newa">${a.boardTitle}<img class="new my-auto" src="${contextPath}/resources/images/new_1.png"></a></td>
                                             <td>${a.createDate}</td>
-                                            <td> ${a.replyCount}</td>
+                                          
+                                            <c:if test="${a.phone == 0}">
+                                                <td style="color : gray; font-weight: 400; text-align:center;">답변중</td>
+                                            </c:if>
+                                            <c:if test="${a.phone != 0}">
+                                                <td style="color : #fb836b; font-weight: 400; text-align:center;">답변완료</td>
+                                            </c:if>
                                         </tr>
 
                                     </c:when>
@@ -127,7 +143,7 @@
                                             <th scope="row" class="col-sm-1 text-center" >${a.boardNo}</th>
                                             <td><a href="${url}">${a.category}</a></td>
                                             <td><a href="${url}">${a.boardTitle}</a></td>
-                                            <td>${a.createDate}</td>
+                                            <td>${a.boardPeriod}</td>
                                             <c:if test="${a.phone == 0}">
                                                 <td style="color : gray; font-weight: 400; text-align:center;">답변중</td>
                                             </c:if>
