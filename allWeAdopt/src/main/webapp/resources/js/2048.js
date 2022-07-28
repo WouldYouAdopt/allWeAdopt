@@ -233,17 +233,16 @@ function checkGameOver(){
 
 // 게임오버 처리
 function gameover(){
-    if(score>3000){
+    if(score>300){
 
-        let gameScore = score;
-
+        console.log(score);
         $.ajax({
             url: contextPath+"/point/wordle/success",
             type: "get",
             success: function (result) {
              if(result>0){
                 Swal.fire({
-                    title: gameScore + '점 득점으로 500p 적립 완료 🐶',
+                    title: '500p 적립 완료 🐶',
                     width: 350,
                     padding: '3em',
                     color: 'black',
@@ -264,7 +263,7 @@ function gameover(){
     }else{
 
         Swal.fire({
-            title: gameScore+'점... ㅠㅠ 다시 도전해주세요!',
+            title: score+'점... ㅠㅠ 다시 도전해주세요!',
             width: 350,
             padding: '3em',
             color: 'black',
