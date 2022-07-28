@@ -69,6 +69,7 @@ function coloring(cell){
         case 2:
             cell.style.color="#684A23";
             cell.style.background="#FBEDDC";
+
             break;
         case 4:
             cell.style.color="#684A23";
@@ -277,7 +278,8 @@ function gameover(){
                         cancelButtonText: '취소'
                         }).then((result) => {
                             if (result.isConfirmed) {
-                                init();
+                                //init();
+                                location.href=contextPath+"/point/game2048";
                             }else{
                                  // '취소'클릭시 수행될 코드 작성
                                 
@@ -301,7 +303,7 @@ function gameover(){
                         cancelButtonText: '취소'
                         }).then((result) => {
                             if (result.isConfirmed) {
-                                init();
+                                location.href=contextPath+"/point/game2048";
                                 
                             }else{
                                  // '취소'클릭시 수행될 코드 작성
@@ -338,7 +340,7 @@ function gameover(){
                 cancelButtonText: '취소'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        init();
+                        location.href=contextPath+"/point/game2048";
                         
                     }else{
                          // '취소'클릭시 수행될 코드 작성
