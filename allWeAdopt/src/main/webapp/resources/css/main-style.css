@@ -20,7 +20,7 @@
 
 /* 마이페이지 nav 탈퇴하기 버튼 */
 .secession-button{
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.85);
     border-radius: 5px;
 }
 
@@ -31,8 +31,13 @@
 
 /* 부트스트랩 opacity 설정 덮어쓰기 */
 .bg-pink {
-    —bs-bg-opacity: 1;
+    --bs-bg-opacity: 1;
+    color: rgba(255,255,255,0.85) !important;
     background-color: rgb(251, 131, 107);
+}
+
+.bgPink{
+    color: rgba(255,255,255,0.85) !important;
 }
 
 /*버튼 핑크색으로 ~ */
