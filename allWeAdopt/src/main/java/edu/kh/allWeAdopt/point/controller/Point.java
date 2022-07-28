@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import edu.kh.allWeAdopt.member.model.service.MemberServiceImpl;
 import edu.kh.allWeAdopt.member.model.vo.Member;
+import edu.kh.allWeAdopt.point.model.dao.PointDAO;
 import edu.kh.allWeAdopt.point.model.service.PointService;
+import edu.kh.allWeAdopt.point.vo.Rank;
 
 @Controller
 @RequestMapping("/point")
@@ -24,6 +26,9 @@ public class Point {
 	
 	@Autowired 
 	private PointService service;
+	
+	@Autowired
+	private PointDAO dao;
 	
 	
 	//워들 페이지로 이동
@@ -67,10 +72,32 @@ public class Point {
 	
 	//2048 페이지로 이동
 	@GetMapping("/game2048")
-	public String game2048() {
+	public String game2048(Model model) {
 		//필요할경우 여기서 데이터 꺼내감
+		int highScore = dao.selectHighScore();
+		
+		model.addAttribute("highScore", highScore);
+		
 		return "point/2048";
 	}	
+	
+	//2048 포인트를 추가해주는 AJAX + 랭크에 데이터 삽입
+	@ResponseBody
+	@GetMapping("/game2048/success")
+	public int game2048Success(@ModelAttribute("loginMember") Member loginMember,
+							   int score) {
+	
+		Rank r = new Rank();
+		r.setMemberNo(loginMember.getMemberNo());
+		r.setScore(score);
+		int result=service.game2048Success(r);
+		
+		if(result==1) {
+			result = r.getScore();
+		}
+		
+		return result;
+	}
 	
 
 }
