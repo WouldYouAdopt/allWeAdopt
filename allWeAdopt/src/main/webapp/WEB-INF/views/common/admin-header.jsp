@@ -20,13 +20,13 @@
                     <li class="nav-item"><a class="nav-link" href="${contextPath}/admin/notice/list">공지 관리</a></li>
                                  
                     <!-- 로그인 했을 때 -->
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown" style="position:initial">
 
                         <a class="nav-link dropdown-toggle py-1" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="${contextPath}/resources/images/흑백로고.png" id="member-profile" style="width : 35px; height : 35px;">	
                         </a>
 
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio" style="right: 11%; height: 240px;">
                             <li><a class="dropdown-item" href="${contextPath}/admin/board/user">게시판 관리</a></li>
                             <li><a class="dropdown-item" href="${contextPath}/admin/funding/management">펀딩 관리</a></li>
                             <li><a class="dropdown-item" href="${contextPath}/admin/funding/delivery//${nowFundingNo}/1">주문 관리</a></li>

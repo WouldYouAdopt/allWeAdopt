@@ -1,6 +1,7 @@
-package edu.kh.allWeAdopt.main.model.VO;
+package edu.kh.allWeAdopt.main.model.vo;
 
 import lombok.Getter;
+
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;

@@ -115,10 +115,11 @@
                                     <c:when test="${ a.boardPeriod == today }"> 
                                         <tr>
                                             <th scope="row" class="col-sm-1 text-center" >${a.boardNo}</th>
-                                            <td><a href="${url}" class="newa">${a.boardTitle} <div class="new">N</div></a></td>
+                                            <td><a href="${url}" class="newa">${n.boardTitle}<img class="new my-auto" src="${contextPath}/resources/images/new_1.png"></a></td>
                                             <td>${a.createDate}</td>
                                             <td> ${a.replyCount}</td>
                                         </tr>
+
                                     </c:when>
 
                                     <c:otherwise>
