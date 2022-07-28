@@ -54,14 +54,14 @@ public class MainController {
 		// 문의글 갯수 조회(오늘 날짜 조회) 
 		// 어답터게시글 갯수 조회(오늘 날짜 조회)
 		// 오늘 펀딩 결제 목록 갯수 조회(오늘 날짜조회)
-		AdminMain adminMainCount = service.adminMainCount();
-		
-		
 		// 어답터 게시글 추이(리스트)
 		// 펀딩 주문 추이(리스트) 
+		AdminMain result = service.adminMainCount();
 		
 		
-		model.addAttribute("adminMainCount",adminMainCount);
+		
+		
+		model.addAttribute("result",result);
 		
 		return "common/admin-main";
 	}

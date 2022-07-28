@@ -1,5 +1,7 @@
 package edu.kh.allWeAdopt.main.model.vo;
 
+import java.util.List;
+
 import lombok.Getter;
 
 import lombok.NoArgsConstructor;
@@ -18,11 +20,9 @@ public class AdminMain {
 	
 	private int fundingCount;
 	
+	private List<Anal> adopterGraph;
 	
-	private int Shelter;
-	
-	private int fundingOrder;
-	
+	private List<Anal> fundingGraph;
 	
 
 }

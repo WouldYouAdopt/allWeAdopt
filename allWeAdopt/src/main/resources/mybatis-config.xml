@@ -30,6 +30,7 @@
 		<typeAlias type="edu.kh.allWeAdopt.userBoard.model.vo.Area" alias="area"/> 
 		<typeAlias type="edu.kh.allWeAdopt.member.model.vo.Certification" alias="certification"/> 
 		<typeAlias type="edu.kh.allWeAdopt.main.model.vo.AdminMain" alias="adminMain"/> 
+		<typeAlias type="edu.kh.allWeAdopt.main.model.vo.Anal" alias="anal"/> 
 		
 		
 		

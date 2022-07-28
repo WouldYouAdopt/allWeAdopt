@@ -26,7 +26,13 @@ public class AdminMainServiceImpl implements AdminMainService{
 	
 	@Override
 	public AdminMain adminMainCount() {
-		return  dao.adminMainCount();
+		
+		AdminMain result = dao.adminMainCount();
+		
+		result.setAdopterGraph(dao.adopter());
+		result.setFundingGraph(dao.finding());
+		
+		return result;
 	}
 	
 	
