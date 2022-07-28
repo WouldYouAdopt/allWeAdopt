@@ -40,5 +40,22 @@
 	<select id="selectMyPoint" resultType="_int">
 	SELECT MEMBER_POINT FROM MEMBER WHERE MEMBER_NO=#{memberNo}
 	</select>
+	
+	<select id="selectHighScore" resultType="_int">
+	SELECT MAX(SCORE) FROM RANK
+	</select>
+	
+	<update id="updateHighScore">
+	UPDATE RANK SET 
+	MEMBER_NO=#{memberNo},
+	SCORE = #{score}
+	WHERE RANK_NO = 1
+	</update>
+	
+	<update id="game2048Success" >
+	UPDATE MEMBER SET 
+	MEMBER_POINT = (SELECT MEMBER_POINT FROM MEMBER WHERE MEMBER_NO=#{memberNo})+1000
+	WHERE MEMBER_NO=#{memberNo}
+	</update>
 
 </mapper>

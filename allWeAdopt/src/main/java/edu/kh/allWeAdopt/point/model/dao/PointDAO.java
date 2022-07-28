@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import edu.kh.allWeAdopt.funding.model.vo.OrderDetail;
+import edu.kh.allWeAdopt.point.vo.Rank;
 
 @Repository
 public class PointDAO {
@@ -50,6 +51,23 @@ public class PointDAO {
 
 	public int selectMyPoint(int memberNo) {		
 		return sqlSession.selectOne("pointMapper.selectMyPoint",memberNo);
+	}
+
+	// 최고점수 조회
+	public int selectHighScore() {
+		
+		return sqlSession.selectOne("pointMapper.selectHighScore");
+	}
+
+	// 최고점수 업데이트
+	public int updateHighScore(Rank r) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("pointMapper.updateHighScore", r);
+	}
+
+	public int game2048Success(int memberNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("pointMapper.game2048Success",memberNo);
 	}
 
 	

@@ -80,9 +80,13 @@
 
                                 <table id="titleBar" border=0>
                                     <tr>
-                                        <%-- <td id="titlePad">
+<!--                                         <td id="titlePad">
                                             <p id="title">2048</p>
-                                        </td> --%>
+                                        </td> -->
+                                        <td id="highScorePad">
+                                            <p id="scoreType2">최고점수</p>
+                                            <p id="score2">${highScore}</p>
+                                        </td>
                                         <td id="scorePad">
                                             <p id="scoreType">Score</p>
                                             <p id="score"></p>

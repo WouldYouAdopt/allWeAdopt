@@ -3,6 +3,7 @@ package edu.kh.allWeAdopt.point.model.service;
 import java.util.List;
 
 import edu.kh.allWeAdopt.funding.model.vo.OrderDetail;
+import edu.kh.allWeAdopt.point.vo.Rank;
 
 public interface PointService {
 
@@ -30,5 +31,12 @@ public interface PointService {
 	 * @return
 	 */
 	int selectMyPoint(int memberNo);
+
+	/** 2048 성공시 500p부여 + 랭킹 업데이트
+	 * @param memberNo
+	 * @param score
+	 * @return result
+	 */
+	int game2048Success(Rank r);
 
 }
