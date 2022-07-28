@@ -147,26 +147,11 @@
                 </div>
                
                 <!-- 연락처 -->
-                <c:if test="${loginMember.memberType eq 'K'}">
-                  <div class="tel-area">
-                    연락처 <input type="tel" class="tel" name="phone" value="${board.phone}">
-                  </div>
-                  <p class="etc">'-'을 제외한 연락처 번호를 입력해주세요</p>
-                </c:if>
-                <c:if test="${loginMember.memberType ne 'K'}">
-                  <c:if test="${!empty board.phone}">
-                    <div class="tel-area">
-                        <input type="hidden" class="tel" name="phone" value="${board.phone}">
-                    </div>
-                  </c:if>
-                  <c:if test="${empty board.phone}">
-                    <div class="tel-area">
-                        <input type="hidden" class="tel" name="phone" value="${loginMember.memberTel}">
-                    </div>
-                  </c:if>
-                </c:if>
+                <div class="tel-area">
+                  연락처 <input type="tel" class="tel" name="phone" value="${board.phone}">
+                </div>
+                <p class="etc">'-'을 제외한 연락처 번호를 입력해주세요</p>
                 
-
                 <!-- 종류, 품종 -->
                 <div class="type-area">
                     <span class="select">품종</span>
