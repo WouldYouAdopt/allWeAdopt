@@ -39,4 +39,9 @@ public interface PointService {
 	 */
 	int game2048Success(Rank r);
 
+	/** 최고점수 회원 닉네임, 최고점수 조회
+	 * @return r
+	 */
+	Rank selectRank();
+
 }

@@ -13,6 +13,13 @@
 		<result property="point" column="POINT" /><!-- 포인트 번호 -->
 	</resultMap>
 	
+	<resultMap type="rank" id="rank_rm">
+		<id property="rankNo" column="RANK_NO" />
+		<result property="memberNo" column="MEMBER_NO" />
+		<result property="score" column="SCORE" />
+		<result property="memberName" column="MEMBER_NM" />
+	</resultMap>
+	
 	<update id="wordleSuccess" >
 	UPDATE MEMBER SET 
 	MEMBER_POINT = (SELECT MEMBER_POINT FROM MEMBER WHERE MEMBER_NO=#{memberNo})+500
@@ -57,5 +64,10 @@
 	MEMBER_POINT = (SELECT MEMBER_POINT FROM MEMBER WHERE MEMBER_NO=#{memberNo})+1000
 	WHERE MEMBER_NO=#{memberNo}
 	</update>
+	
+	<select id="selectRank" resultMap="rank_rm">
+	SELECT RANK_NO, MEMBER_NO, SCORE, MEMBER_NM FROM RANK
+	JOIN MEMBER USING(MEMBER_NO)
+	</select>
 
 </mapper>
