@@ -220,10 +220,7 @@
 
                                         
                                         const phone = "${board.phone}"
-                                        // const date = "${detail.createDate}"
                                         const memberEmail = "${board.memberEmail}"
-
-                                        // const petName = document.querySelector('.mb-5>p:nth-child(1)').innerText;
                                         const date = "${board.boardPeriod}"
                                         const petPlace = "${board.area} ${board.areaDetail}"
                                         const animalType = "${board.animalType}"
@@ -263,18 +260,13 @@
                                             ctx.fillText('아이디 : ' + memberEmail , 410, 370);
 
 
-                                            if(date != null){
-
-                                                ctx.font = "40px Helvetica";
-                                                ctx.fillStyle  = "red";
-                                                ctx.fillText('날짜 : ' + date, 410, 430);
-
-                                            }
+                                            ctx.font = "40px Helvetica";
+                                            ctx.fillStyle  = "red";
+                                            ctx.fillText('날짜 : ' + date, 410, 430);
 
 
                                             ctx.font = "40px Helvetica";
                                             ctx.fillStyle  = "red";
-                                            // ctx.fillText('장소 : ' + petPlace, 410, 480);
                                             printAtWordWrap(ctx, '장소 : ' + petPlace, 410, 480, 50, 500);
 
 

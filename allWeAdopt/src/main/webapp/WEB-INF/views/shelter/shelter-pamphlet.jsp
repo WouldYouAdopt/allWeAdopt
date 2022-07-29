@@ -156,15 +156,6 @@
                         </c:forEach>
                     </div>
 
-                    
-                    <%-- goTotop  --%>
-                    <%-- <div class="position-relative">
-                        <div class="position-absolute top-100 start-100 translate-middle">
-                            <a href="#" id="toTop" style="display:scroll; position:fixed; left:30px; rigit: 50px; bottom: 10px; title=top"><h3><i class="bi bi-arrow-up-circle bt_top" style="color: #FB836B;"></i></h3></a>
-                        </div>
-                    </div> --%>
-
-                    <%-- <a id="toTop" href="#">TOP</a> --%>
 
                     <button onclick="topFunction()" id="myBtn" title="Go to top"><h3><i class="bi bi-arrow-up-circle bt_top" style="color: #FB836B;"></i></h3></button>
 

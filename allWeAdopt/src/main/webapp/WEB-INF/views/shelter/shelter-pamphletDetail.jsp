@@ -74,18 +74,6 @@
             <jsp:include page="/WEB-INF/views/common/header.jsp" />
             <!-- Navigation-->
 
-            <%-- <section class="py-5">
-                <div class="container px-5">
-                    <div class="card border-0 shadow rounded-3 overflow-hidden">
-                        <div class="card-body p-0">
-                            <div class="row gx-0">
-                                <!-- 분양소 메인 로고 (클릭 시 최상위 주소) -->
-                                <a href="${contextPath}"><div class="col-lg-6 col-xl-7"><div class="bg-featured-blog" style="background-image: url('https://dummyimage.com/700x350/343a40/6c757d')"><img src="${contextPath}/resources/images/adopt-mainLogo.png" alt="main"></div></div></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section> --%>
 
             <img src="${contextPath}/resources/images/Pet-Friendly.jpg" class="img-fluid" alt="...">
 
@@ -110,7 +98,6 @@
                                         <img src="${contextPath}/${detail.profileImage}" id="member-profile" style="width : 35px; height : 35px; ">
                                     </c:if>
 
-                                <%-- <img class="img-fluid rounded-circle" src="${detail.profileImage}" alt="..." /> --%>
 
                                 <div class="ms-3">
                                     <div class="fw-bold">${detail.memberName}</div>
@@ -132,12 +119,6 @@
 
                                     </div>
 
-                                    <%-- <c:if test="${!empty detail.updateDate}">
-                                        <div class="text-muted fst-italic mb-2">수정일 : ${detail.updateDate}</div>
-                                    </c:if> --%>
-                                    
-                                    <!-- Post categories-->
-                                    <%-- <a class="badge bg-secondary text-decoration-none link-light" href="#!">관심 등록</a> --%>
 
                                     <div class="md-10" style="margin:10px;"></div>
 
@@ -147,18 +128,8 @@
                                         <a id="btnKakao" class="link-icon kakao" href="javascript:shareKakao();"><img src="${contextPath}\resources\images\icon-kakao.png"></a>    
                                     </div>
 
-
-                                    <%-- <c:if test="${!empty detail.thumbnail}">
-                                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                            <button type="button" class="btn btn-outline-secondary btn-sm allButton"  data-bs-toggle="modal" data-bs-target="#makePam">전단지 만들기</button>
-                                        </div>
-                                    </c:if> --%>
-
-
-                                    <%-- <a class="badge bg-secondary text-decoration-none link-light" href="#!">${detail.memberEmail}</a> --%>
                                 </header>
-                                <!-- Preview image figure-->
-                                <%-- <figure class="mb-4"><img class="img-fluid rounded" src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="..." /></figure> --%>
+
 
                                 <div class="md-10" style="margin:10px;"></div>
 
@@ -180,8 +151,7 @@
                             <div class="board-btn-area">
 
                                 <c:if test="${loginMember.memberNo == detail.memberNo}">
-                                                                            <!-- detail?type=1&cp=3&no=100 -->
-                                                                            <!-- detail?no=1522&type=2 -->
+
                                     <%-- cp가 없을 경우에 대한 처리 --%>
                                     <c:if test="${empty param.cp}">
                                         <!-- 파라미터에 cp가 없을 경우 1 -->
@@ -198,113 +168,7 @@
                                     <button id="deleteBtn" class="btn btn-outline-success allButton">삭제</button>
                                 </c:if>
 
-                                <!-- onclick="history.back();"  뒤로가기 
-                                    history.go(숫자) : 양수(앞으로가기), 음수(뒤로가기)
-                                -->
                                 <button id="goToListBtn" class="btn btn-outline-success allButton">목록으로</button>
-                            </div>
-                        </div>
-
-
-
-                        <!-- Modal -->
-                        <div class="modal fade" id="makePam" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">전단지</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <%-- <img src="${detail.thumbnail}" style="width: 450px; height: 400px;"/> --%>
-
-                                    <p>
-                                        <%-- <textarea onkeyup='writeText(this)' id='textArea' 
-                                            placeholder='연락처를 입력해주세요' rows='2' cols='50'>
-                                        </textarea> --%>
-                                    </p>
-
-                                    <div>
-                                        <!--The parent container, image and container for text (to place over the image)-->
-                                        <div class="mainContainer" id='mainContainer'>
-
-                                            <!--The default image. You can select a different image too.-->
-                                            <%-- <img src="default-pam.png" id="myimage2" alt="" />
-                                            <img src="" id="myimage" alt="" /> --%>
-                                            
-                                            <img id="myimage" style="width: 100px; height: 100px; display: none;" src="${detail.thumbnail}" alt="myPet">
-                                            <img id="myimage2" style="width: 20px; height: 20px; display: none;" src="${contextPath}\resources\images\pamphlet.png"alt="The Scream">
-
-                                            <canvas id="myCanvas" width="1000" height="1000" ></canvas>
-
-                                        </div>
-                                    </div>
-
-
-
-                                    <%-- <script>
-
-                                    
-                                    const phone = "${detail.phone}"
-                                    // const date = "${detail.createDate}"
-                                    const memberEmail = "${detail.memberEmail}"
-
-                                    const petName = document.querySelector('.mb-5>p:nth-child(1)').innerText;
-                                    const petAge = document.querySelector('.mb-5>p:nth-child(2)').innerText;
-                                    const date = document.querySelector('.mb-5>p:nth-child(3)').innerText;
-                                    const petChar = document.querySelector('.mb-5>p:nth-child(4)').innerText;
-                                    const petPlace = document.querySelector('.mb-5>p:nth-child(5)').innerText;
-
-                                    window.onload = function() {
-
-                                    var c = document.getElementById("myCanvas");
-                                    var ctx = c.getContext("2d");
-                                    var img = document.getElementById("myimage");
-                                    var img2 = document.getElementById("myimage2");
-                                    ctx.drawImage(img2, 0, 0, 1000, 1000);
-                                    ctx.drawImage(img, 25, 160, 380, 400);
-
-                                    ctx.font = "70px Helvetica";
-                                    ctx.fillStyle  = "red";
-                                    ctx.fillText('01012341234', 160, 700);
-
-                                    ctx.font = "40px Helvetica";
-                                    ctx.fillStyle  = "black";
-                                    ctx.fillText(petName, 410, 200);
-
-                                    ctx.font = "40px Helvetica";
-                                    ctx.fillStyle  = "black";
-                                    ctx.fillText(petAge, 410, 260);
-
-                                    ctx.font = "40px Helvetica";
-                                    ctx.fillStyle  = "black";
-                                    ctx.fillText('아이디 : '+ memberEmail, 410, 315);
-
-                                    ctx.font = "40px Helvetica";
-                                    ctx.fillStyle  = "red";
-                                    ctx.fillText(date, 410, 370);
-
-                                    ctx.font = "40px Helvetica";
-                                    ctx.fillStyle  = "red";
-                                    ctx.fillText(petPlace, 410, 430);
-
-                                    ctx.font = "30px Helvetica";
-                                    ctx.fillStyle  = "black";
-                                    ctx.fillText(petChar, 20, 605);
-
-                                    }
-
-
-                                    </script> --%>
-
-
-                                </div>
-                                <div class="modal-footer">
-                                    <a id = "download" download="image.png">
-                                        <button type="button" onclick="download()" class="btn btn-primary" style="background-color:#FB836B; border:0;">전단지 저장</button>                             
-                                    </a>
-                                </div>
-                                </div>
                             </div>
                         </div>
 
