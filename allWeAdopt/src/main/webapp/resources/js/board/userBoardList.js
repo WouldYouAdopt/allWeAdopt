@@ -36,8 +36,9 @@
 
 	  // 검색 후 검색창이 열려있게 설정
 	  if(displayValue==1){
-		document.getElementById("search-area").style.display = "block"
-		document.getElementById("searchBtn").style.display = "block"
+		document.getElementById("search-area").style.display = "block";
+		document.getElementById("searchBtn").style.display = "block";
+		document.getElementById("initialization").style.display = "block";
 	  }
 
 	  // 지역선택, 축종 버튼에 값이 없을 시 상세 드롭다운 버튼 숨김
