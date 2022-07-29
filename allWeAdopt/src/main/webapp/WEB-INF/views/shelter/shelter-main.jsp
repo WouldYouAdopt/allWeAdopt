@@ -72,25 +72,10 @@
 
             <!-- nav -->
 
-            <!-- Page Content-->
-            <%-- <section class="py-5">
-                <div class="container px-5">
-                    <div class="card border-0 shadow rounded-3 overflow-hidden">
-                        <div class="card-body p-0">
-                            <div class="row gx-0">
-                                <!-- 분양소 메인 로고 (클릭 시 최상위 주소) -->
-                                <a href="${contextPath}"><div class="col-lg-6 col-xl-7"><div class="bg-featured-blog" style="background-image: url('https://dummyimage.com/700x350/343a40/6c757d')"><img src="${contextPath}/resources/images/adopt-mainLogo.png" alt="main"></div></div></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section> --%>
 
-            <img src="${contextPath}/resources/images/adopt-mainLogo.png" class="img-fluid" alt="shelter-main">
 
-            <!-- 분앙소 불러오기 -->
-            <%-- <c:set var="upkind" value=""/>
-            <c:set var="upr_cd" value="?pageNo=&upr_cd="/> --%>
+            <img src="${contextPath}/resources/images/adopt-mainLogo.png" class="img-fluid" alt="shelter-main" styles="width: 100%;">
+
 
 
             <section class="py-5">
@@ -153,7 +138,6 @@
                                 <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
                                     <div class="d-flex align-items-end justify-content-between">
                                         <div class="d-flex align-items-center">
-                                            <%-- <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d" alt="..." /> --%>
                                             <img src="${contextPath}/resources/images/user.png" id="member-profile" style="width : 35px; height : 35px; ">	
                                             <div class="md-10" style="margin:5px;"></div>
                                             <div class="small">
@@ -168,57 +152,10 @@
                         </c:forEach>
                     </div>    
 
-                    <%-- <div class="position-relative" position="sticky">
-                        <div class="position-absolute top-100 start-100 translate-middle">
-                            <a href="#" style="display:scroll; position:fixed; left:30px; rigit: 50px; bottom: 10px; title=top"><h3><i class="bi bi-arrow-up-circle bt_top" style="color: #FB836B;"></i></h3></a>
-                        </div>
-                    </div>               --%>
+
 
                     <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="bi bi-arrow-up-circle bt_top" style="color: #FB836B;"></i></button>       
 
-
-
-                    <%-- 페이지네이션 --%>
-            
-                <%-- <c:when test="${!empty upr_cd}">
-                    <c:set var="url" value="?upr_cd=&pageNo="/>
-                </c:when>
-
-                <c:when test='${!empty upkind}'>
-                    <c:set var="url" value="?upkind=&pageNo="/>
-                </c:when>
-
-                <c:otherwise>
-                    <c:set var="url" value="?upr_cd=&upkind=&pageNo="/>
-                </c:otherwise> --%>
-        
-
-                    
-                    <%-- <c:set var="url" value="?upr_cd=&pageNo="/> --%>
-                    <%-- <c:set var="upkind" value="&upkind="/> --%>
-                    <%-- <c:set var="url" value="&upr_cd=${upr_cd}&upkind=${upkind}"/> --%>
-  
-
-
-
-
-                    <%-- <c:choose>
-                    
-                        <c:when test="${empty upr_cd}">
-                            <c:set var="url" value="?upkind=&pageNo="/>
-                        </c:when>
-
-                        <c:when test="${empty upkind}">
-                            <c:set var="url" value="?upr_cd=&pageNo="/>
-                        </c:when>
-
-                        <c:when test="${empty upr_cd} && ${empty upkind}">
-                            <c:set var="url" value="?pageNo="/>
-                        </c:when>
-                    
-                    </c:choose> --%>
-
-                    <%-- <c:set var="url" value="?pageNo="/> --%>
 
                     <c:set var="url" value="?upkind=${upkind}&upr_cd=${upr_cd}&pageNo="/>
 

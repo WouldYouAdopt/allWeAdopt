@@ -50,8 +50,10 @@
         <p style="color: darkgrey; margin-bottom: 70px;">관심동물로 등록한 게시글 목록을 조회합니다</p>
         <c:set var="boardList" value="${map.boardList}" />
             <%-- 게시글 리스트 --%>
-                <div class="row gx-5" id="row">
-                
+                <div class="row gx-5 add" id="row">
+                <c:if test="${empty boardList}">
+                    <p class="noneList">등록하신 관심동물 목록이 없습니다</p>
+                </c:if>
                     <c:forEach var="boardList" items="${boardList}">
                         <div class="col-lg-4 mb-5">
                             <div class="card h-100 shadow border-0">
@@ -130,7 +132,10 @@
             </div>
           </c:if>
           </div>
-          <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+
+          
+        <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+          
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
      <script src="${contextPath}/resources/js/board/myPageLike.js"></script>

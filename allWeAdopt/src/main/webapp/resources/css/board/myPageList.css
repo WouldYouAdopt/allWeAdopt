@@ -38,3 +38,18 @@ a{
     text-decoration: none;
     color: #333;
 }
+
+/*footer 영역*/
+main{
+    width: 100%;
+    height: 100%;
+}
+
+.wrapper{
+    height: auto;
+    min-height: 100%;
+}
+#footerArea{
+    position : relative;
+    transform : translateY(-100%);
+}

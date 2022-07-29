@@ -280,9 +280,8 @@ public class MemberController {
 	
 				// 메일에 출력할 텍스트
 				StringBuffer sb = new StringBuffer(); // 가변성 문자열 저장 객체
-				sb.append("<h3>All We Adopt</h3>\n");
-				//sb.append("<img src='https://cdn.wikifarmer.com/wp-content/uploads/2022/02/%ED%94%8C%EB%9F%BC%EB%B0%94%EA%B3%A0.jpg'>");
-				sb.append("<h3>인증 번호 : <span style='color:red'>"+ cNumber +"</span></h3>\n");
+				sb.append("<img referrerpolicy=\"no-referrer\" src='https://postfiles.pstatic.net/MjAyMjA3MjlfNzAg/MDAxNjU5MDczOTE4MjY3.QD95sxiFtzYyozQ1HUAvuymx0TI9G-1Bms48XXCaDIcg.XttTAqI9QR9hT-YimkMEdoELwIv_4OlDGFkfTWZdBpQg.PNG.kjy_1615/logo.png?type=w966'>");
+				sb.append("      <h3>인증 번호 : <span style='color:black'>"+ cNumber +"</span></h3>\n");
 	
 	
 	

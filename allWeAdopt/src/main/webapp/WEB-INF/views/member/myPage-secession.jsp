@@ -152,7 +152,7 @@
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 
-         <%-- <script src="${contextPath}/resources/js/myPage-Scession.js"></script> --%>
+         <script src="${contextPath}/resources/js/myPage-Scession.js"></script>
 
 
     </body>

@@ -227,7 +227,7 @@
 										</tr>
 										<tr>
 											<th colspan="1">배송비</th>
-											<td colspan="3">${detail.deliveryFee}</td>
+											<td colspan="3" style="text-align:left;">${detail.deliveryFee}</td>
 										</tr>
 									</tbody>
 								</table>
