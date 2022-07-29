@@ -103,30 +103,30 @@
 		      
 		      	<div class="d-flex py-3">
 			      	<div class="px-3">
-			      		<input type="checkbox" class="payCheck form-check-input">
+			      		<input type="checkbox" class="payCheck form-check-input" id="check1">
 			      	</div>
 			      	<div class="px-2 modalcon">
-			        	<p>펀딩이 끝나기 전까지 언제든 결제를 취소할 수 있어요.</p>
+			        	<label for="check1"><p>펀딩이 끝나기 전까지 언제든 결제를 취소할 수 있어요.</p></label>
 			        	<p>펀딩이 끝나고 바로 리워드가 제작되어 다음 날 부터 순차 발송이 시작되기 때문에, 펀딩이 끝나면 결제를 취소 할 수 없습니다.</p>
 			        </div>
 		      	</div>
 		      	
 		      	<div class="d-flex py-3">
 			      	<div class="px-3">
-		        		<input type="checkbox" class="payCheck form-check-input">
+		        		<input type="checkbox" class="payCheck form-check-input" id="check2">
 		        	</div>
 			      	<div class="px-2 modalcon">
-		        		<p>리워드에 문제가 있거나 배공일을 지키지 않으면 펀딩금을 돌려받을 수 있어요.</p>
+		        		<label for="check2"><p>리워드에 문제가 있거나 배공일을 지키지 않으면 펀딩금을 돌려받을 수 있어요.</p></label>
 		        		<p>펀딩금 반환 정책 확인</p>
 			        </div>
 		      	</div>
 		        
 		      	<div class="d-flex py-3">
 			      	<div class="px-3">
-		        		<input type="checkbox" class="payCheck form-check-input">
+		        		<input type="checkbox" class="payCheck form-check-input" id="check3">
 		        	</div>
 			      	<div class="px-2 modalcon">
-		        		<p>단순 변심에 의한 펀딩금 반환은 신청할 수 없어요.</p>
+		        		<label for="check3"><p>단순 변심에 의한 펀딩금 반환은 신청할 수 없어요.</p></label>
 		        		<p>펀딩은 일반 쇼핑과 달리 리워드를 만드는 메이커에서 투자하고, 투자의 보상으로 제품이나 서비스를 받는 구조이기 때문에 전자상거래법상 통신판매에 해당하지 않아요. 그래서 단순 변심을 이유로 한 펀딩금 반환을 신청할 수 없습니다.</p>
 			        </div>
 		      	</div>
@@ -372,7 +372,7 @@
         	</c:forEach>
         	
         	console.log(priceList);
-        	console.log(payPrice.innerText);
+        	console.log("최종결제 이너텍스트"+payPrice.innerText);
         	console.log(payPriceNum);
         	
         	
@@ -392,8 +392,14 @@
         				this.classList.remove("selected"); 
         				const beforeCount = this.parentElement.nextElementSibling.nextElementSibling.value;
         				this.parentElement.nextElementSibling.nextElementSibling.value="0";
-        				payPrice.innerText=(Number(payPrice.innerText.replace(',',''))-parseInt(beforeCount)*parseInt(priceList[i])).toLocaleString();
-        				
+        				payPrice.innerText=(Number(payPrice.innerText.replaceAll(',',''))-parseInt(beforeCount)*parseInt(priceList[i])).toLocaleString();
+        				console.log(parseInt(beforeCount));
+        				console.log(parseInt(priceList[i]));
+        				console.log("곱한값"+parseInt(beforeCount)*parseInt(priceList[i]));
+        				console.log("뺄값"+payPrice.innerText);
+        				console.log("뺄값"+payPrice.innerText.replaceAll(',',''));
+        				console.log("뺄값"+Number(payPrice.innerText.replaceAll(',','')));
+        				console.log("뺀값"+(Number(payPrice.innerText.replaceAll(',',''))-Number(beforeCount)*Number(priceList[i])).toLocaleString());
         				
         				
 						
@@ -413,7 +419,7 @@
         				
 	        				this.classList.add("selected"); 
 	        				this.parentElement.nextElementSibling.nextElementSibling.value="1";
-	        				payPrice.innerText=(Number(payPrice.innerText.replace(',',''))+parseInt(priceList[i])).toLocaleString();
+	        				payPrice.innerText=(Number(payPrice.innerText.replaceAll(',',''))+parseInt(priceList[i])).toLocaleString();
 	        				
 	        				// 버튼 클릭시 바뀐 값에 따라 서브밋(selected 들어갈때)
 	        				if(payPrice.innerText!=0){
