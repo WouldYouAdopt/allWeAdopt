@@ -89,11 +89,11 @@ for (let i = 0; i < selectMenu.length; i++) {
 	selectMenu[i].addEventListener("click",function () {
 		selectMenu[i].parentElement.previousElementSibling.innerText = selectMenu[i].innerText;
 
-		document.getElementsByName("category")[0].value = document.getElementsByName("categoryValue")[0].innerText;
+		document.getElementsByName("category")[0].value = document.getElementsByName("categoryValue")[0].innerText.trim();
 
-		document.getElementsByName("area")[0].value = document.getElementsByName("areaValue")[0].innerText;
+		document.getElementsByName("area")[0].value = document.getElementsByName("areaValue")[0].innerText.trim();
 
-		document.getElementsByName("animalType")[0].value = document.getElementsByName("animalTypeValue")[0].innerText;
+		document.getElementsByName("animalType")[0].value = document.getElementsByName("animalTypeValue")[0].innerText.trim();
 
 		document.getElementsByName("genders")[0].value = document.getElementsByName("genderValue")[0].innerText.trim();
 
