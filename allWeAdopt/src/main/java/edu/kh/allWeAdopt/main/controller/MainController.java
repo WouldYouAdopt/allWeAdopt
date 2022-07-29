@@ -1,5 +1,6 @@
 package edu.kh.allWeAdopt.main.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.Cookie;
@@ -11,9 +12,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
+
+import edu.kh.allWeAdopt.board.model.vo.Reply;
 import edu.kh.allWeAdopt.main.model.service.AdminMainService;
 import edu.kh.allWeAdopt.main.model.vo.AdminMain;
+import edu.kh.allWeAdopt.main.model.vo.Anal;
 
 @Controller
 public class MainController {
@@ -60,10 +66,32 @@ public class MainController {
 		
 		
 		
-		
 		model.addAttribute("result",result);
 		
 		return "common/admin-main";
+	}
+	
+	
+	// adopter 그래프
+	@ResponseBody
+	@RequestMapping("/admin/mainAdopter")
+	public String analGraph(Model model) {
+		
+		List<Anal> cList = service.adopterGraph();
+		 
+		return new Gson().toJson(cList);
+		
+	}
+	
+	// funding 그래프
+	@ResponseBody
+	@RequestMapping("/admin/mainFunding")
+	public String analGraph2(Model model) {
+		
+		List<Anal> cList = service.fundingGraph();
+		
+		return new Gson().toJson(cList);
+		
 	}
 	
 	

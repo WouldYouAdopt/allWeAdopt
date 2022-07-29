@@ -3,47 +3,13 @@ Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSyste
 Chart.defaults.global.defaultFontColor = '#292b2c';
 
 
-// --------------- 정석 ---------------------------------------------------------------------
-const cArr = [];
-const mArr = [];
-
-(function adopter(){
-
-  $.ajax({
-    url : contextPath + "/admin/mainAdopter",
-    type : "GET",
-    dataType : "JSON",
-    success : function(cList){
-        // cArr[num] = c.count;
-        console.log(cList[0]);
-        console.log(cList[0].count);
-        
-        // 카운트for문 
-        for(let i = 0; i < 12; i++){
-          if(i == 6){
-            cArr[i] = cList[0].count;
-            mArr[i] = cList[0].month;
-          } else if(i==7){
-            cArr[i] = cList[1].count;
-            mArr[i] = cList[1].month;
-            
-          } else {
-            cArr[i] = 0;
-            mArr[i] = 0;
-            
-          }
-      }
-
-    
-      console.log(cArr[0]);
-
 
 // Area Chart Example
-var ctx = document.getElementById("myAreaChart");
-var myLineChart = new Chart(ctx, {
+var ctx1 = document.getElementById("myAreaChart1");
+var myLineChart1 = new Chart(ctx1, {
   type: 'line',
   data: {
-    labels: mArr,
+    labels: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
     datasets: [{
       label: "Sessions",
       lineTension: 0.3,
@@ -56,7 +22,7 @@ var myLineChart = new Chart(ctx, {
       pointHoverBackgroundColor: "rgba(251,131,107,1)",
       pointHitRadius: 50,
       pointBorderWidth: 2,
-      data: cArr
+      data: [1,3,5,4,3,4,6,6,8,9,8,10],
     }],
   },
   options: {
@@ -89,12 +55,4 @@ var myLineChart = new Chart(ctx, {
   }
 });
 
-    },
-    error : function(){
-      console.log("어답터 그래프 에러 발생");
-    }
-
-  });
-
-}) ();
   
