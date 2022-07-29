@@ -77,11 +77,22 @@
                                     </div>
                                     <div id="emailMsg" class="form-floating validate-area"></div>
 
+									 <!-- 이름 -->
+                                   	<c:if test="${loginMember.memberType=='M'}">
+	                                   	<div class="form-floating mb-2 confirm-area">
+	                                        <input class="form-control" name="memberName" id="memberName" type="text"  value="${loginMember.memberName}" />
+	                                        <label for="memberName"><span>* </span>이름 </label>
+	                                    </div>
+                                    </c:if>
+                                   	<c:if test="${loginMember.memberType=='K'}">
+	                                   	<div class="form-floating mb-2 confirm-area">
+	                                        <input class="form-control" name="memberName" id="memberName" type="text"  value="${loginMember.memberName}" readOnly/>
+	                                        <label for="memberName"><span>* </span>이름 </label>
+	                                    </div>
+                                   	</c:if>
+                                    	
                                     <!-- 이름 -->
-                                    <div class="form-floating mb-2 confirm-area">
-                                        <input class="form-control" name="memberName" id="memberName" type="text"  value="${loginMember.memberName}" />
-                                        <label for="memberName"><span>* </span>이름 </label>
-                                    </div>
+
                                     <div id="nameMsg" class="form-floating validate-area"></div>
 
                                     <!-- 포인트 잔액 -->
