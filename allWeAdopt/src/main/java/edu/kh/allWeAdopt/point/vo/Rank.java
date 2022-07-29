@@ -13,5 +13,6 @@ public class Rank {
 	private int rankNo;
 	private int memberNo;
 	private int score;
+	private String memberName;
 
 }

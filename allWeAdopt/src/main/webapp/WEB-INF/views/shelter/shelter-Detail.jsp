@@ -95,28 +95,16 @@
             <jsp:include page="/WEB-INF/views/common/header.jsp" />
             <!-- Navigation-->
 
-            <!-- Page Content-->
-            <%-- <section class="py-5">
-                <div class="container px-5">
-                    <div class="card border-0 shadow rounded-3 overflow-hidden">
-                        <div class="card-body p-0">
-                            <div class="row gx-0">
-                                <!-- 분양소 메인 로고 (클릭 시 최상위 주소) -->
-                                <a href="#"><div class="col-lg-6 col-xl-7"><div class="bg-featured-blog" style="background-image: url('https://dummyimage.com/700x350/343a40/6c757d')"><img src="${contextPath}/resources/images/adopt-mainLogo.png" alt="main"></div></div></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section> --%>
 
-            <img src="${contextPath}/resources/images/adopt-mainLogo.png" class="img-fluid" alt="...">
+
+            <img src="${contextPath}/resources/images/adopt-mainLogo.png" class="img-fluid" alt="shelter-logo" styles="width: 100%;">
 
             <section class="py-5">
                 <div class="container px-5 my-5">
                     <div class="row gx-5">
                         <div class="col-lg-3">
                             <div class="d-flex align-items-center mt-lg-5 mb-4">
-                                <%-- <img class="img-fluid rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /> --%>
+
                                 <img src="${contextPath}/resources/images/user.png" id="member-profile" style="width : 35px; height : 35px; ">	
                                 <div class="ms-3">
                                     <div class="fw-bold">${careNm}</div>
@@ -133,9 +121,7 @@
                                     <h1 class="fw-bolder mb-1">${careNm}</h1>
                                     <!-- Post meta content-->
                                     <div class="text-muted fst-italic mb-2">공고 시작일: ${noticeSdt} | 공고 종료일: ${noticeEdt}</div>
-                                    <%-- <div class="text-muted fst-italic mb-2">공고 종료일: ${noticeEdt}</div> --%>
-                                    <!-- Post categories-->
-                                    <%-- <a class="badge bg-secondary text-decoration-none link-light" href="#!">관심동물</a> --%>
+
 
                                     <div class="md-10" style="margin:10px;"></div>
 
@@ -153,17 +139,9 @@
                                 <!-- 유기동물 사진 -->
                                 <figure class="mb-4"><img class="img-fluid rounded" style="width: 700px; height: 650px; object-fit:cover;" src="${popfile}" alt="..." /></figure>
                                 <!-- Post content-->
-                                <!-- 나중에 폰트 적용 해보기! -->
+
                                 <section class="mb-5">
-                                    <%-- <ul class="list-group list-group-flush">
-                                        <li class="fs-5 mb-4 list-group-item" style="list-style-type:none">성별 : ${sexCd}</li>
-                                        <li class="fs-5 mb-4 list-group-item" style="list-style-type:none">색깔 : ${colorCd}</li>
-                                        <li class="fs-5 mb-4 list-group-item" style="list-style-type:none">나이 : ${age}</li>
-                                        <li class="fs-5 mb-4 list-group-item" style="list-style-type:none">무게 : ${weight}</li>
-                                        <li class="fs-5 mb-4 list-group-item" style="list-style-type:none">상태 : ${processState}</li>
-                                        <li class="fs-5 mb-4 list-group-item" style="list-style-type:none">특징 : ${specialMark}</li>
-                                        <li class="fs-5 mb-4 list-group-item" style="list-style-type:none">보호소 주소 : ${careAddr}</li>                                   
-                                    </ul> --%>
+
 
                                     <ol class="list-group list-group-numbered" style="width: 700px;">
                                         <li class="list-group-item d-flex justify-content-between align-items-start">
@@ -301,12 +279,10 @@
 
                                             <%-- 이미지 --%>
                                             <img id="myimage" style="width: 100px; height: 100px; display: none;" src="${popfile}" alt="myPet" >
-                                            <img id="myimage2" style="width: 20px; height: 20px; display: none;" src="${contextPath}\resources\images\shelter.png"alt="The Scream">
+                                            <img id="myimage2" style="width: 20px; height: 20px; display: none;" src="${contextPath}\resources\images\shelter.png"alt="backgroundImage">
 
                                             <canvas id="myCanvas" width="1000" height="1000" ></canvas>
 
-
-                                            <%-- cors 때문에 이미지 저장이 안됨 -> 크롬 웹스토어에서 cors 설치 활성화 한 뒤 이미지 다운 가능--%>
 
                                         </div>
                                     </div>
@@ -331,10 +307,6 @@
                                     var img = document.getElementById("myimage");
                                     var img2 = document.getElementById("myimage2");
     
-                                    // img.crossOrigin = "Anonymous";
-                                    // img2.crossOrigin = "Anonymous";
-
-                                    // const date = "${detail.createDate}"
 
 
                                     window.onload = function() {
@@ -356,7 +328,6 @@
                                         ctx.font = "40px Helvetica";
                                         ctx.fillStyle  = "black";
                                         printAtWordWrap(ctx, '특징 : ' + specialMark, 630, 400, 55, 350);
-                                        // ctx.fillText('특징 : ' + specialMark, 25, 720);
 
 
 
@@ -463,14 +434,6 @@
 
 
     <script>
-        // 댓글 관련 JS 코드에 필요한 값을 전역 변수로 선언
-
-        // jsp 파일 : html, css, js, el, jstl 사용 가능
-        // js  파일 : js
-
-        // 코드 해석 순서  :   EL == JSTL > HTML > JS
-
-        // ** JS 코드에서 EL/JSTL을 작성하게 된다면 반드시 ""를 양쪽에 추가 **
 
         // 최상위 주소
         const contextPath = "${contextPath}";
@@ -478,10 +441,7 @@
         // 게시글 번호
         const boardNo = "${desertionNo}"; // "500"
 
-        // 로그인한 회원 번호
-        // const loginMemberNo = "${loginMember.memberNo}";
-        // -> 로그인 O  : "10";
-        // -> 로그인 X  : "";  (빈문자열)
+
 
     </script>
 

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -140,7 +141,7 @@
                                     * 연락처 : ${board.phone} <br><br>
                                     * 지역 : ${board.area} ${board.areaDetail} <br><br>
 
-                                    <c:if test="${board.category eq '보호'}">
+                                    <c:if test="${fn:trim(board.category) eq '보호'}">
                                     * 공유 기간 : ${board.boardPeriod} ~ ${board.boardPeriod2}
                                     </c:if>
                                 </section>
@@ -193,28 +194,14 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <%-- <img src="${detail.thumbnail}" style="width: 450px; height: 400px;"/> --%>
-
-                                        <p>
-                                            <%-- <textarea onkeyup='writeText(this)' id='textArea' 
-                                                placeholder='연락처를 입력해주세요' rows='2' cols='50'>
-                                            </textarea> --%>
-                                        </p>
 
                                         <div>
-                                            <!--The parent container, image and container for text (to place over the image)-->
                                             <div class="mainContainer" id='mainContainer'>
-
-                                                <!--The default image. You can select a different image too.-->
-                                                <%-- <img src="default-pam.png" id="myimage2" alt="" />
-                                                <img src="" id="myimage" alt="" /> --%>
                                                 
-                                                <img id="myimage" style="width: 100px; height: 100px; display: none;" src="${board.thumbnail}" alt="myPet">
-                                                <img id="myimage2" style="width: 20px; height: 20px; display: none;" src="${contextPath}\resources\images\pamphlet.png" alt="The Scream">
-
+                                                <img id="myimage" style="display: none;" src="${board.thumbnail}" alt="myPet">
+                                                <img id="myimage2" style="display: none;" src="${contextPath}\resources\images\pamphlet.png" alt="backgroundImage">
                                                 
                                                 <canvas id="myCanvas" width="1000" height="1000" ></canvas>
-
                                             </div>
                                         </div>
 
@@ -224,10 +211,7 @@
 
                                         
                                         const phone = "${board.phone}"
-                                        // const date = "${detail.createDate}"
                                         const memberEmail = "${board.memberEmail}"
-
-                                        // const petName = document.querySelector('.mb-5>p:nth-child(1)').innerText;
                                         const date = "${board.boardPeriod}"
                                         const petPlace = "${board.area} ${board.areaDetail}"
                                         const animalType = "${board.animalType}"
@@ -266,13 +250,14 @@
                                             ctx.fillStyle  = "black";
                                             ctx.fillText('아이디 : ' + memberEmail , 410, 370);
 
+
                                             ctx.font = "40px Helvetica";
                                             ctx.fillStyle  = "red";
                                             ctx.fillText('날짜 : ' + date, 410, 430);
 
+
                                             ctx.font = "40px Helvetica";
                                             ctx.fillStyle  = "red";
-                                            // ctx.fillText('장소 : ' + petPlace, 410, 480);
                                             printAtWordWrap(ctx, '장소 : ' + petPlace, 410, 480, 50, 500);
 
 

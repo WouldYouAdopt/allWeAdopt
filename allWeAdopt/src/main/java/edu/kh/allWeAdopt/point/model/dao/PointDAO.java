@@ -69,6 +69,12 @@ public class PointDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.update("pointMapper.game2048Success",memberNo);
 	}
+	
+	// 최고점수 조회
+	public Rank selectRank() {
+		
+		return sqlSession.selectOne("pointMapper.selectRank");
+	}
 
 	
 }

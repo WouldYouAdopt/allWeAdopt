@@ -1,5 +1,10 @@
 console.log(memberPoint);
 
+
+// 
+
+
+
 var board = Array(Array(0,0,0,0),Array(0,0,0,0),Array(0,0,0,0),Array(0,0,0,0));
 var tableID = Array(Array("00","01","02","03"),Array("10","11","12","13"),Array("20","21","22","23"),Array("30","31","32","33"));
 var score;
@@ -352,3 +357,34 @@ function gameover(){
     // alert("[Game Over]\nMax: "+getMaxNum()+"\nScore : "+score);
     // init();
 }
+
+const memberName = document.getElementById("scoreType2");
+const memberScore = document.getElementById("score2");
+
+function selectRank(){ // 최고점수 조회 함수
+    // ajax코드
+    $.ajax({
+        url : contextPath+"/point/game2048/selectRank",
+        dataType : "json",
+        success : function( r ){
+
+            memberName.innerHTML = "<span class='crown'>👑</span> "+r.memberName+" <span class='crown'>👑</span>"
+            memberScore.innerText = r.score;
+
+        },
+        error : function(){
+            console.log("에러 발생");
+        }
+    });
+
+}
+
+
+// 즉시 실행 함수(속도 빠름, 변수명 중복 문제 해결)
+(function(){
+    selectRank();
+
+    //window.setInterval(함수, 딜레이(ms))
+    window.setInterval(selectRank, 5000); // 5초
+ 
+})();

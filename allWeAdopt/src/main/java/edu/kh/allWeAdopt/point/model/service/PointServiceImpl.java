@@ -72,6 +72,13 @@ public class PointServiceImpl implements PointService{
 		
 		return result;
 	}
+
+	// 랭킹1위 닉네임, 점수 불러오기
+	@Override
+	public Rank selectRank() {
+		
+		return dao.selectRank();
+	}
 	
 	
 

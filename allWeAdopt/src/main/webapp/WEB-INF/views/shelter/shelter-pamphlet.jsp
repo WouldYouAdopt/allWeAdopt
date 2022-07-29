@@ -68,15 +68,13 @@
             <!-- header -->
             <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
-            <%-- 검색을 진행한 경우 key, query를 쿼리스트링 형태로 저장한 변수 생성 --%>
-
 
             <!-- nav -->
 
             <!-- Page Content-->
 
 
-            <img src="${contextPath}/resources/images/Pet-Friendly.jpg" class="img-fluid" alt="...">
+            <img src="${contextPath}/resources/images/Pet-Friendly.jpg" class="img-fluid" alt="pamphlet-logo" styles="width: 100%;">
 
 
             <section class="py-5">
@@ -100,7 +98,7 @@
                                 <div class="card h-100 shadow border-0">
                                   
                                     <c:if test="${!empty pamphlet.thumbnail}">
-                                        <img class="card-img-top" src="${pamphlet.thumbnail}" alt="썸네일" id="thumbnail" style="height: 375px; width: 375px; object-fit:cover" />
+                                        <img class="card-img-top" src="${pamphlet.thumbnail}" alt="썸네일" id="thumbnail" style="height: 375px; width: 100%; object-fit:cover" />
                                     </c:if>
 
                                     <c:if test="${empty pamphlet.thumbnail}">
@@ -156,15 +154,6 @@
                         </c:forEach>
                     </div>
 
-                    
-                    <%-- goTotop  --%>
-                    <%-- <div class="position-relative">
-                        <div class="position-absolute top-100 start-100 translate-middle">
-                            <a href="#" id="toTop" style="display:scroll; position:fixed; left:30px; rigit: 50px; bottom: 10px; title=top"><h3><i class="bi bi-arrow-up-circle bt_top" style="color: #FB836B;"></i></h3></a>
-                        </div>
-                    </div> --%>
-
-                    <%-- <a id="toTop" href="#">TOP</a> --%>
 
                     <button onclick="topFunction()" id="myBtn" title="Go to top"><h3><i class="bi bi-arrow-up-circle bt_top" style="color: #FB836B;"></i></h3></button>
 

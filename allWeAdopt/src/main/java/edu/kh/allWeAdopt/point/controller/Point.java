@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.google.gson.Gson;
+
 import edu.kh.allWeAdopt.member.model.service.MemberServiceImpl;
 import edu.kh.allWeAdopt.member.model.vo.Member;
 import edu.kh.allWeAdopt.point.model.dao.PointDAO;
@@ -22,7 +24,7 @@ import edu.kh.allWeAdopt.point.vo.Rank;
 @SessionAttributes({"loginMember"})
 public class Point {
 	
-	private Logger logger = LoggerFactory.getLogger(MemberServiceImpl.class);
+	private Logger logger = LoggerFactory.getLogger(Point.class);
 	
 	@Autowired 
 	private PointService service;
@@ -73,10 +75,10 @@ public class Point {
 	//2048 페이지로 이동
 	@GetMapping("/game2048")
 	public String game2048(Model model) {
-		//필요할경우 여기서 데이터 꺼내감
-		int highScore = dao.selectHighScore();
+
+		Rank r = service.selectRank();
 		
-		model.addAttribute("highScore", highScore);
+		model.addAttribute("r", r);
 		
 		return "point/2048";
 	}	
@@ -92,10 +94,15 @@ public class Point {
 		r.setScore(score);
 		int result=service.game2048Success(r);
 		
-		System.out.println("객체에 있는 score"+r.getScore());
-		System.out.println("result="+result);
-		
 		return result;
+	}
+	
+	// 실시간으로 최고점수 불러오기...
+	@ResponseBody
+	@GetMapping("/game2048/selectRank")
+	public String game2048SelectScore() {
+		
+		return new Gson().toJson(service.selectRank());
 	}
 	
 
