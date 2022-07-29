@@ -147,7 +147,7 @@
 						<div class="mapBtn">
 							<div class="mb-2 lineBtn-gr">반경 1km</div>
 							<div class="mb-2 lineBtn-gr">반경 2km</div>
-							<div class="lineBtn-gr">반경 5km</div>
+							<div class="lineBtn-gr">반경 3km</div>
 						</div>
 						
 					</div>
@@ -185,8 +185,8 @@
         
         <!-- 제이쿼리 -->
         <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-        <script src="${contextPath}/resources/js/hospital.js"></script>
         <script>const contextPath = '${contextPath}';</script>
+        <script src="${contextPath}/resources/js/hospital2.js"></script>
 
         
     </body>
