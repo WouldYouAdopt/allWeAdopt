@@ -169,7 +169,7 @@
 								<c:choose>
 									
 									<c:when test='${detail.orderState=="결제 완료"}'>
-										<button type="button" class="btn btn-secondary" id="cancelPayment">결제 취소</button>
+										<button type="button" class="btn btn-secondary" id="cancelPayment" disabled>결제 취소</button>
 									</c:when>
 									
 									

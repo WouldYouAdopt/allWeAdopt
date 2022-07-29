@@ -308,7 +308,7 @@ function selectReturnState() {
             const div = document.createElement("div");
             div.classList.add("summernoteArea");
 
-            const ta = document.createElement("textarea");
+            const ta = document.createElement("div");
             ta.readOnly="true";
             ta.setAttribute("id", "returnReason");
             ta.innerHTML=result;
