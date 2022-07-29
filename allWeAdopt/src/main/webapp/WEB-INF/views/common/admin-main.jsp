@@ -51,10 +51,11 @@
             <!-- 헤더 -->
             <jsp:include page="/WEB-INF/views/common/admin-header.jsp" />
 
+            <div></div>
             <!-- About section two-->
             <section class="py-0">
                 <div class="container px-2">
-                    <h1 class="mt-4">관리자 페이지 입니다.</h1>
+                    <h1 class="mt-4">관리자 페이지</h1>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item active">all we adopt 관리자페이지 입니다.</li>
                     </ol>
@@ -72,7 +73,7 @@
                             <div class="card bg-warning text-white mb-4">
                                 <div class="card-body">오늘의 문의사항 : ${result.askCount}개</div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="${contextPath}/admin/ask/list"  style="text-decoration: none;">문의사항 상세조회</a>
+                                    <a class="small text-white stretched-link" href="${contextPath}/admin/ask/list"  style="text-decoration: none;">문의사항 목록조회</a>
                                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                 </div>
                             </div>
@@ -81,7 +82,7 @@
                             <div class="card bg-success text-white mb-4">
                                 <div class="card-body">입양된 반려동물 추이 : ${result.adopterCount}개</div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="${contextPath}/admin/board/user"  style="text-decoration: none;" >회원게시글 상세조회</a>
+                                    <a class="small text-white stretched-link" href="${contextPath}/admin/board/user"  style="text-decoration: none;" >회원게시글 목록조회</a>
                                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                 </div>
                             </div>
@@ -90,14 +91,34 @@
                             <div class="card bg-secondary text-white mb-4">
                                 <div class="card-body">오늘 결제된 내역 : ${result.fundingCount}개</div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="${contextPath}/admin/funding/delivery/4/1"  style="text-decoration: none;">주문내역 상세조회</a>
+                                    <a class="small text-white stretched-link" href="${contextPath}/admin/funding/delivery/4/1"  style="text-decoration: none;">주문내역 목록조회</a>
                                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    ${result.adopterGraph}
-                    ${result.fundingGraph}
+
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <i class="fas fa-chart-area me-1"></i>
+                                    어답터 게시글 추이(예시)
+                                </div>
+                                <div class="card-body"><canvas id="myAreaChart1" width="100%" height="40"></canvas></div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <i class="fas fa-chart-bar me-1"></i>
+                                    펀딩 주문 추이(예시)
+                                </div>
+                                <div class="card-body"><canvas id="myBarChart1" width="100%" height="40"></canvas></div>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <div class="row">
                         <div class="col-xl-6">
                             <div class="card mb-4">
@@ -118,6 +139,7 @@
                             </div>
                         </div>
                     </div>
+                   
                 </div>
 
             </section>
@@ -136,6 +158,15 @@
 
         <!-- 푸터 -->
         <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+
+          
+        <script>
+            const contextPath = "${contextPath}";
+        </script>
+
+        <%-- jquery --%>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  
         <!-- 어드민 -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
 
@@ -146,10 +177,14 @@
 
         <script src="${contextPath}/resources/js/admin-main/chart-area-demo.js"></script>
         <script src="${contextPath}/resources/js/admin-main/chart-bar-demo.js"></script>
+        <script src="${contextPath}/resources/js/admin-main/chart-area-demo1.js"></script>
+        <script src="${contextPath}/resources/js/admin-main/chart-bar-demo1.js"></script>
         <script src="${contextPath}/resources/js/admin-main/datatables-simple-demo.js"></script>
 
         <!-- Core theme JS-->
         <script src="${contextPath}/resources/js/scripts.js"></script>
-    </body>
+
+      
+          </body>
     
 </html>

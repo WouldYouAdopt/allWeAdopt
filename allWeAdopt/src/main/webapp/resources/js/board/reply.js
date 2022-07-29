@@ -207,7 +207,7 @@ function deleteReply(replyNo){
 
                     Swal.fire({
                         // position: 'top-end',
-                        title: "댓글 등록에 실패했습니다...",
+                        title: "댓글 삭제!",
                         icon: 'success',
                         iconColor: 'rgb(251,131,107)',
                         width: 350,

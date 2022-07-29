@@ -48,7 +48,7 @@ public class AdminMainDAO {
 	/** 월별 펀딩 결제 목록 갯수 조회(오늘 날짜조회)
 	 * @return
 	 */
-	public List<Anal> finding() {
+	public List<Anal> funding() {
 		return sqlSession.selectList("adminMapper.fundingGraph");
 	}
 
