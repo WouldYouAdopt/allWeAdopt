@@ -86,7 +86,7 @@
                 </div>
             </section> --%>
 
-            <img src="${contextPath}/resources/images/adopt-mainLogo.png" class="img-fluid" alt="...">
+            <img src="${contextPath}/resources/images/adopt-mainLogo.png" class="img-fluid" alt="shelter-main">
 
             <!-- 분앙소 불러오기 -->
             <%-- <c:set var="upkind" value=""/>
@@ -127,7 +127,7 @@
                             <strong>축종</strong>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="?upkind${upkind}&upr_cd=${upr_cd}" role="option" aria-selected="true">전체</a></li>
+                            <li><a class="dropdown-item" href="?upkind=&upr_cd=${upr_cd}" role="option" aria-selected="true">전체</a></li>
                             <li><a class="dropdown-item" href="?upkind=417000&upr_cd=${upr_cd}" role="option" aria-selected="true">개</a></li>
                             <li><a class="dropdown-item" href="?upkind=422400&upr_cd=${upr_cd}" role="option" aria-selected="true">고양이</a></li>
                         </ul>
@@ -139,7 +139,7 @@
                         <c:forEach var="shelter" items="${list}">
                         <div class="col-lg-4 mb-4">
                             <div class="card h-100 shadow border-0">
-                                <img class="card-img-top" src="${shelter.popfile}" alt="썸네일" id="thumbnail" style="height: 355px; width: 375px;" />
+                                <img class="card-img-top" src="${shelter.popfile}" alt="썸네일" id="thumbnail" style="height: 355px;width: 100%; object-fit: cover;" />
                                 <div class="card-body p-4">
                                     <span class="badge" style="background-color: #FB836B; font-size: 13px; margin-bottom: 10px; margin-bottom: 10px;" >New</span>
                                     <%-- <h5 ><div class="badge bg-primary bg-gradient rounded-pill mb-2" >New</div></h5> --%>
