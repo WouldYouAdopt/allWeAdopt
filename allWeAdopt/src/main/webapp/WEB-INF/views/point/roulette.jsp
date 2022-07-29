@@ -63,7 +63,7 @@
 				border-left-color:transparent;
 				border-right-color:transparent;
 				border-bottom-color:transparent;
-				z-index:9999;
+				z-index:3;
 			}
 			.box-roulette .roulette{ /* 룰렛 돌아가는 부분 */
 				position:relative;
