@@ -328,8 +328,6 @@ FROM DUAL;
 
 
 
-
-
 -- 월별 '완료' 인 어답터 게시글 수
 SELECT TO_CHAR(CREATE_DT,  'YYYY"년" MM"월"') AS MONTH, COUNT(*) AS COUNT
 FROM BOARD
