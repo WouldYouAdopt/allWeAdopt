@@ -52,6 +52,14 @@
     margin-right: 5px;
 }
 
+/* 게시글 이미지 */
+.card-img-top{
+    height: 250px;
+    width: 100%;
+    object-fit: cover;
+    max-width: 376px;
+}
+
 /* 공통 적용 사항 */
 a{
     text-decoration: none;
