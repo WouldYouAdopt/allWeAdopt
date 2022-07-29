@@ -84,8 +84,8 @@
                                             <p id="title">2048</p>
                                         </td> -->
                                         <td id="highScorePad">
-                                            <p id="scoreType2">최고점수</p>
-                                            <p id="score2">${highScore}</p>
+                                            <p id="scoreType2"><span class="crown">👑</span> ${r.memberName} <span class="crown">👑</span></p>
+                                            <p id="score2">${r.score}</p>
                                         </td>
                                         <td id="scorePad">
                                             <p id="scoreType">Score</p>
