@@ -36,6 +36,8 @@
 })();
 
 
+
+
 (function(){
     const deleteBtn = document.getElementById("deleteBtn"); // 존재하지 않으면 null
 
@@ -48,8 +50,8 @@
             let url = contextPath + "/shelter/pamphlet/delete/" + boardNo;
 
             Swal.fire({
-                title: '전단지를 삭제 하시겠습니까?',
-                text: "확인 버튼을 클릭하면 전단지가 삭제됩니다.",
+                title: '스토리를 삭제 하시겠습니까?',
+                text: "확인 버튼을 클릭하면 스토리가 삭제됩니다.",
                 width: 340,		
                 icon: 'warning',
                 iconColor: 'rgb(251, 131, 107)',
@@ -67,14 +69,6 @@
                         e.preventDefault();
                     }
                  })
-
-
-            // if( confirm("정말로 삭제 하시겠습니까?") ){
-            //     location.href = url; // get방식으로 url에 요청
-
-                
-
-            // }
 
         });
     }
@@ -151,8 +145,6 @@ if(mybutton != null){
 function download(){
   var download = document.getElementById("download");
   var image = document.getElementById("myCanvas").toDataURL("image/png").replace("image/png", "image/octet-stream");
-
-
 
   download.setAttribute("href", image);
 

@@ -301,7 +301,7 @@
 
                                             <%-- 이미지 --%>
                                             <img id="myimage" style="width: 100px; height: 100px; display: none;" src="${popfile}" alt="myPet" >
-                                            <img id="myimage2" style="width: 20px; height: 20px; display: none;" src="${contextPath}\resources\images\shelter.png"alt="The Scream">
+                                            <img id="myimage2" style="width: 20px; height: 20px; display: none;" src="${contextPath}\resources\images\shelter.png"alt="backgroundImage">
 
                                             <canvas id="myCanvas" width="1000" height="1000" ></canvas>
 

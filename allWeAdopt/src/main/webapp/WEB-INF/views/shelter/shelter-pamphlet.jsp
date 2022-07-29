@@ -100,7 +100,7 @@
                                 <div class="card h-100 shadow border-0">
                                   
                                     <c:if test="${!empty pamphlet.thumbnail}">
-                                        <img class="card-img-top" src="${pamphlet.thumbnail}" alt="썸네일" id="thumbnail" style="height: 375px; width: 375px; object-fit:cover" />
+                                        <img class="card-img-top" src="${pamphlet.thumbnail}" alt="썸네일" id="thumbnail" style="height: 375px; width: 100%; object-fit:cover" />
                                     </c:if>
 
                                     <c:if test="${empty pamphlet.thumbnail}">
