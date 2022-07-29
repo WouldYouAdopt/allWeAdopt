@@ -10,6 +10,12 @@
 		<result property="Shelter" column="Shelter"/>
 		<result property="fundingOrder" column="fundingOrder"/>
 	</resultMap>
+	
+  <!-- 그래프 -->   
+	<resultMap type="anal" id="anal_rm">
+		<id property="month" column="MONTH"/>
+		<result property="count" column="COUNT"/>
+	</resultMap>
   
   <!-- 오늘날짜 '문의 글 수 조회' / 오늘날자 어답터 게시글 수 / 오늘날짜 펀딩 결제 건수-->
 	<select id="adminMainCount" resultMap="Admin_rm">
@@ -27,7 +33,21 @@
 		FROM DUAL
 	</select>
   
-  
+  	<!-- 월별 '완료' 인 어답터 게시글 수 -->
+  	<select id="adopterGraph" resultMap="anal_rm">
+  		SELECT TO_CHAR(CREATE_DT,  'YYYY"년" MM"월"') AS MONTH, COUNT(*) AS COUNT
+		FROM BOARD
+		WHERE BOARD_CD=2
+		AND CATEGORY='완료'
+		GROUP BY TO_CHAR(CREATE_DT,  'YYYY"년" MM"월"')
+  	</select>
+  	
+  	<!-- 월별 펀딩 결제 목록 갯수 조회(오늘 날짜조회) -->
+  	<select id="fundingGraph" resultMap="anal_rm">
+  		SELECT COUNT(*) AS COUNT, TO_CHAR(PAY_DT,  'YYYY"년" MM"월"') AS MONTH
+		FROM PAYMENT
+		GROUP BY  TO_CHAR(PAY_DT,  'YYYY"년" MM"월"')
+  	</select>
   
   
 </mapper>
