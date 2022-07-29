@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -140,7 +141,7 @@
                                     * 연락처 : ${board.phone} <br><br>
                                     * 지역 : ${board.area} ${board.areaDetail} <br><br>
 
-                                    <c:if test="${board.category eq '보호'}">
+                                    <c:if test="${fn:trim(board.category) eq '보호'}">
                                     * 공유 기간 : ${board.boardPeriod} ~ ${board.boardPeriod2}
                                     </c:if>
                                 </section>

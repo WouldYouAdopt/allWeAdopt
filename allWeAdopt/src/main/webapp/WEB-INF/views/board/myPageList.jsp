@@ -44,7 +44,7 @@
          <!-- 마이페이지 nav -->
         <jsp:include page="/WEB-INF/views/common/mypage-header.jsp" />
 
-        <div class="container">
+        <div class="container wrapper">
         <h3 style="font-weight: bolder; margin-top: 70px;">작성글 목록</h3>
         <p style="color: darkgrey; margin-bottom: 70px;">지금까지 작성한 글 목록을 조회합니다</p>
         <table class="table table-hover">
@@ -110,7 +110,9 @@
             </div>
           </c:if>
           </div>
-          <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+          <div id="footerArea">
+            <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+          </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
