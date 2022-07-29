@@ -202,15 +202,11 @@
                                         </p>
 
                                         <div>
-                                            <!--The parent container, image and container for text (to place over the image)-->
-                                            <div class="mainContainer" id='mainContainer'>
 
-                                                <!--The default image. You can select a different image too.-->
-                                                <%-- <img src="default-pam.png" id="myimage2" alt="" />
-                                                <img src="" id="myimage" alt="" /> --%>
+                                            <div class="mainContainer" id='mainContainer'>
                                                 
-                                                <img id="myimage" style="width: 100px; height: 100px; display: none;" src="${board.thumbnail}" alt="myPet">
-                                                <img id="myimage2" style="width: 20px; height: 20px; display: none;" src="${contextPath}\resources\images\pamphlet.png" alt="The Scream">
+                                                <img id="myimage" style="display: none;" src="${board.thumbnail}" alt="myPet">
+                                                <img id="myimage2" style="display: none;" src="${contextPath}\resources\images\pamphlet.png" alt="backgroundImage">
 
                                                 
                                                 <canvas id="myCanvas" width="1000" height="1000" ></canvas>
@@ -266,9 +262,15 @@
                                             ctx.fillStyle  = "black";
                                             ctx.fillText('아이디 : ' + memberEmail , 410, 370);
 
-                                            ctx.font = "40px Helvetica";
-                                            ctx.fillStyle  = "red";
-                                            ctx.fillText('날짜 : ' + date, 410, 430);
+
+                                            if(date != null){
+
+                                                ctx.font = "40px Helvetica";
+                                                ctx.fillStyle  = "red";
+                                                ctx.fillText('날짜 : ' + date, 410, 430);
+
+                                            }
+
 
                                             ctx.font = "40px Helvetica";
                                             ctx.fillStyle  = "red";
