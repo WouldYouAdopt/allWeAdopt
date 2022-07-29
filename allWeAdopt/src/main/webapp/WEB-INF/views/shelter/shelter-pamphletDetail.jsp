@@ -75,7 +75,7 @@
             <!-- Navigation-->
 
 
-            <img src="${contextPath}/resources/images/Pet-Friendly.jpg" class="img-fluid" alt="...">
+            <img src="${contextPath}/resources/images/Pet-Friendly.jpg" class="img-fluid" alt="shelter-pamphlet" styles="width: 100%;">
 
 
             <section class="py-5">

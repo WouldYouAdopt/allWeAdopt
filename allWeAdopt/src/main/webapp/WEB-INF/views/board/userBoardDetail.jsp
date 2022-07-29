@@ -193,24 +193,14 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <%-- <img src="${detail.thumbnail}" style="width: 450px; height: 400px;"/> --%>
-
-                                        <p>
-                                            <%-- <textarea onkeyup='writeText(this)' id='textArea' 
-                                                placeholder='연락처를 입력해주세요' rows='2' cols='50'>
-                                            </textarea> --%>
-                                        </p>
 
                                         <div>
-
                                             <div class="mainContainer" id='mainContainer'>
                                                 
                                                 <img id="myimage" style="display: none;" src="${board.thumbnail}" alt="myPet">
                                                 <img id="myimage2" style="display: none;" src="${contextPath}\resources\images\pamphlet.png" alt="backgroundImage">
-
                                                 
                                                 <canvas id="myCanvas" width="1000" height="1000" ></canvas>
-
                                             </div>
                                         </div>
 
