@@ -264,7 +264,7 @@
                             <c:forEach var="boardList" items="${boardList}" begin="${test}" end="${test+2}">
                                 <div class="col-lg-4 mb-5">
                                     <div class="card h-100 shadow border-0">
-                                        <img class="card-img-top" style="width:376px; height:250px;" src="${boardList.thumbnail}" alt="..." />
+                                        <img class="card-img-top" src="${boardList.thumbnail}" alt="..." />
                                         <div class="card-body p-4">
                                             <div class="badge bg-primary bg-gradient rounded-pill mb-2 animal">${boardList.animalType}</div>
                                             <c:if test="${!empty boardList.animalDetail && boardList.animalDetail!='기타'}">

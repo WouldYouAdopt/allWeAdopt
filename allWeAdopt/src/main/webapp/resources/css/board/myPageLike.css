@@ -62,3 +62,11 @@ a{
     color: dimgray;
     margin-bottom: 50%;
 }
+
+/* 게시글 이미지 */
+.card-img-top{
+    height: 250px;
+    width: 100%;
+    max-width: 376px;
+    object-fit: cover;
+}
