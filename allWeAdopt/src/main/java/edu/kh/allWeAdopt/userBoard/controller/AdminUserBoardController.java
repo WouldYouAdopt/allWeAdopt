@@ -233,13 +233,14 @@ public class AdminUserBoardController {
 				@ModelAttribute("loginMember") Member loginMember,
 				RedirectAttributes ra, @RequestHeader("referer") String referer) {
 			String profileImage = null;
+			String category = board.getCategory();
 			String path = referer;
 			String message = "게시글이 수정되었습니다";
 			int boardNo = 0;
 			board.setMemberNo(loginMember.getMemberNo());
 			boardNo = board.getBoardNo();
 		
-			if(boardPeriod.equals("")&&boardPeriod2.equals("")) {
+			if(boardPeriod.equals("")&&boardPeriod2.equals("")&&category.trim().equals("보호")) {
 				// 현재날짜 값이 비었을 때 설정
 				LocalDate now = LocalDate.now();
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -253,6 +254,9 @@ public class AdminUserBoardController {
 			    cal.add(Calendar.DATE, +7);
 				boardPeriod2 = df.format(cal.getTime());
 				board.setBoardPeriod2(boardPeriod2);
+			}else if(!category.trim().equals("보호")) {
+				board.setBoardPeriod(null);
+				board.setBoardPeriod2(null);
 			}
 			
 			// 썸네일 설정

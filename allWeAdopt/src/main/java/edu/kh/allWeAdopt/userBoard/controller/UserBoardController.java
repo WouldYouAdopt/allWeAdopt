@@ -209,7 +209,7 @@ public class UserBoardController {
 		String category = board.getCategory();
 		board.setMemberNo(loginMember.getMemberNo());
 		
-		if(boardPeriod.equals("")&&boardPeriod2.equals("")&&category.equals("보호")) {
+		if(boardPeriod.equals("")&&boardPeriod2.equals("")&&category.trim().equals("보호")) {
 			// 현재날짜 값이 비었을 때 설정
 			LocalDate now = LocalDate.now();
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -223,7 +223,7 @@ public class UserBoardController {
 		    cal.add(Calendar.DATE, +7);
 			boardPeriod2 = df.format(cal.getTime());
 			board.setBoardPeriod2(boardPeriod2);
-		}else if(!category.equals("보호")) {
+		}else if(!category.trim().equals("보호")) {
 			board.setBoardPeriod(null);
 			board.setBoardPeriod2(null);
 		}
@@ -332,7 +332,7 @@ public class UserBoardController {
 		board.setMemberNo(loginMember.getMemberNo());
 		boardNo = board.getBoardNo();
 		
-		if(boardPeriod.equals("")&&boardPeriod2.equals("")&&category.equals("보호")) {
+		if(boardPeriod.equals("")&&boardPeriod2.equals("")&&category.trim().equals("보호")) {
 			// 현재날짜 값이 비었을 때 설정
 			LocalDate now = LocalDate.now();
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -346,7 +346,7 @@ public class UserBoardController {
 		    cal.add(Calendar.DATE, +7);
 			boardPeriod2 = df.format(cal.getTime());
 			board.setBoardPeriod2(boardPeriod2);
-		}else if(!category.equals("보호")) {
+		}else if(!category.trim().equals("보호")) {
 			board.setBoardPeriod(null);
 			board.setBoardPeriod2(null);
 		}
