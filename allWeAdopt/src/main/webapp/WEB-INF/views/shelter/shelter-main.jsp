@@ -72,25 +72,10 @@
 
             <!-- nav -->
 
-            <!-- Page Content-->
-            <%-- <section class="py-5">
-                <div class="container px-5">
-                    <div class="card border-0 shadow rounded-3 overflow-hidden">
-                        <div class="card-body p-0">
-                            <div class="row gx-0">
-                                <!-- 분양소 메인 로고 (클릭 시 최상위 주소) -->
-                                <a href="${contextPath}"><div class="col-lg-6 col-xl-7"><div class="bg-featured-blog" style="background-image: url('https://dummyimage.com/700x350/343a40/6c757d')"><img src="${contextPath}/resources/images/adopt-mainLogo.png" alt="main"></div></div></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section> --%>
 
-            <img src="${contextPath}/resources/images/adopt-mainLogo.png" class="img-fluid" alt="shelter-main">
 
-            <!-- 분앙소 불러오기 -->
-            <%-- <c:set var="upkind" value=""/>
-            <c:set var="upr_cd" value="?pageNo=&upr_cd="/> --%>
+            <img src="${contextPath}/resources/images/adopt-mainLogo.png" class="img-fluid" alt="shelter-main" styles="width: 100%;">
+
 
 
             <section class="py-5">

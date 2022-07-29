@@ -97,7 +97,7 @@
 
 
 
-            <img src="${contextPath}/resources/images/adopt-mainLogo.png" class="img-fluid" alt="...">
+            <img src="${contextPath}/resources/images/adopt-mainLogo.png" class="img-fluid" alt="shelter-logo" styles="width: 100%;">
 
             <section class="py-5">
                 <div class="container px-5 my-5">

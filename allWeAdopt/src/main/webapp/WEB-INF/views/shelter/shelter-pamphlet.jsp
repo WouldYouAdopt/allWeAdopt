@@ -68,15 +68,13 @@
             <!-- header -->
             <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
-            <%-- 검색을 진행한 경우 key, query를 쿼리스트링 형태로 저장한 변수 생성 --%>
-
 
             <!-- nav -->
 
             <!-- Page Content-->
 
 
-            <img src="${contextPath}/resources/images/Pet-Friendly.jpg" class="img-fluid" alt="...">
+            <img src="${contextPath}/resources/images/Pet-Friendly.jpg" class="img-fluid" alt="pamphlet-logo" styles="width: 100%;">
 
 
             <section class="py-5">
