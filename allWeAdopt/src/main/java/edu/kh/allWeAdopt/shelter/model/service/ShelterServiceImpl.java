@@ -59,10 +59,7 @@ public class ShelterServiceImpl implements ShelterService {
 
 	// 전단지 작성
 	@Override
-	public int insertPamphlet(BoardDetail detail) {
-		
-		// 1) XSS 방지 처리 + 개행문자 처리
-		
+	public int insertPamphlet(BoardDetail detail) {		
 		return dao.insertPamphlet(detail);
 	}
 
@@ -79,15 +76,6 @@ public class ShelterServiceImpl implements ShelterService {
 	public int deleteBoard(int boardNo) {
 		return dao.deletePamphlet(boardNo);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	

@@ -10,17 +10,11 @@
 
           let  url = contextPath + "/shelter/pamphlet/list?"; 
 
-
-            // URL 내장 객체 : 주소 관련 정보를 나타내는 객체
-            // location.href : 현재 페이지 주소 + 쿼리스트링
-            // URL.searchParams : 쿼리 스트링만 별도 객체로 반환
-
-            // http://localhost:8080/community/board/detail?no=249&cp=6&type=1&key=c&query=9
             const params = new URL(location.href).searchParams;
            
             let cp;
 
-            if(params.get("cp") != null){ // 쿼리스트링에 cp가 있을 경우
+            if(params.get("cp") != null){ 
                 cp =  "cp=" + params.get("cp");     
             }else{
                 cp = "cp=1";
@@ -80,7 +74,7 @@
 // 트위터
 function shareTwitter() {
     var sendText = "allWeAdopt"; // 전달할 텍스트
-    var sendUrl ="http://kh-classa.xyz/allWeAdopt"  + "/shelter/pamphlet/detail/" + boardNo; // 전달할 URL
+    var sendUrl ="http://kh-classa.xyz/allWeAdopt/shelter/shelterDetail/" + boardNo; // 전달할 URL
     window.open("https://twitter.com/intent/tweet?text=" + sendText + "&url=" + sendUrl);
 }
 
@@ -88,7 +82,7 @@ function shareTwitter() {
 // 페이스북
 // 고정 IP라서 지금 오류남
 function shareFacebook() {
-    var sendUrl = "http://kh-classa.xyz/allWeAdopt" + "/shelter/pamphlet/detail/" + boardNo; // 전달할 URL
+    var sendUrl = "http://kh-classa.xyz/allWeAdopt/shelter/shelterDetail/" + boardNo; // 전달할 URL
     window.open("http://www.facebook.com/sharer/sharer.php?u=" + sendUrl);
 }
 
@@ -107,11 +101,11 @@ function shareKakao() {
       content: {
         title: "allWeAdopt", // 보여질 제목
         description: "allWeAdopt입니다", // 보여질 설명
-        imageUrl: "http://kh-classa.xyz/allWeAdopt" + "/resources/images/intro.png",
+        imageUrl: "http://kh-classa.xyz/allWeAdopt/resources/images/intro.png",
         // "http://localhost:8081/allWeAdopt/shelter/pamphlet/detail/" + boardNo, // 콘텐츠 URL
         link: {
-        //    mobileWebUrl: "devpad.tistory.com/",
-           webUrl: "http://kh-classa.xyz/allWeAdopt"
+           mobileWebUrl: "http://kh-classa.xyz/allWeAdopt/shelter/shelterDetail/" + boardNo,
+           webUrl: "http://kh-classa.xyz/allWeAdopt/shelter/shelterDetail/" + boardNo
         }
       }
     });

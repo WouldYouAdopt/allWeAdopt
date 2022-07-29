@@ -153,7 +153,6 @@
                                 <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
                                     <div class="d-flex align-items-end justify-content-between">
                                         <div class="d-flex align-items-center">
-                                            <%-- <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d" alt="..." /> --%>
                                             <img src="${contextPath}/resources/images/user.png" id="member-profile" style="width : 35px; height : 35px; ">	
                                             <div class="md-10" style="margin:5px;"></div>
                                             <div class="small">
@@ -168,57 +167,10 @@
                         </c:forEach>
                     </div>    
 
-                    <%-- <div class="position-relative" position="sticky">
-                        <div class="position-absolute top-100 start-100 translate-middle">
-                            <a href="#" style="display:scroll; position:fixed; left:30px; rigit: 50px; bottom: 10px; title=top"><h3><i class="bi bi-arrow-up-circle bt_top" style="color: #FB836B;"></i></h3></a>
-                        </div>
-                    </div>               --%>
+
 
                     <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="bi bi-arrow-up-circle bt_top" style="color: #FB836B;"></i></button>       
 
-
-
-                    <%-- 페이지네이션 --%>
-            
-                <%-- <c:when test="${!empty upr_cd}">
-                    <c:set var="url" value="?upr_cd=&pageNo="/>
-                </c:when>
-
-                <c:when test='${!empty upkind}'>
-                    <c:set var="url" value="?upkind=&pageNo="/>
-                </c:when>
-
-                <c:otherwise>
-                    <c:set var="url" value="?upr_cd=&upkind=&pageNo="/>
-                </c:otherwise> --%>
-        
-
-                    
-                    <%-- <c:set var="url" value="?upr_cd=&pageNo="/> --%>
-                    <%-- <c:set var="upkind" value="&upkind="/> --%>
-                    <%-- <c:set var="url" value="&upr_cd=${upr_cd}&upkind=${upkind}"/> --%>
-  
-
-
-
-
-                    <%-- <c:choose>
-                    
-                        <c:when test="${empty upr_cd}">
-                            <c:set var="url" value="?upkind=&pageNo="/>
-                        </c:when>
-
-                        <c:when test="${empty upkind}">
-                            <c:set var="url" value="?upr_cd=&pageNo="/>
-                        </c:when>
-
-                        <c:when test="${empty upr_cd} && ${empty upkind}">
-                            <c:set var="url" value="?pageNo="/>
-                        </c:when>
-                    
-                    </c:choose> --%>
-
-                    <%-- <c:set var="url" value="?pageNo="/> --%>
 
                     <c:set var="url" value="?upkind=${upkind}&upr_cd=${upr_cd}&pageNo="/>
 

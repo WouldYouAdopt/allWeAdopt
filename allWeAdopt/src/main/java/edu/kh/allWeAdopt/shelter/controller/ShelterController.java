@@ -34,9 +34,6 @@ import edu.kh.allWeAdopt.shelter.model.vo.Shelter;
 @SessionAttributes({"list"})
 public class ShelterController {
 	
-	@Autowired
-	private ShelterService service;
-	
 	private Logger logger = LoggerFactory.getLogger(ShelterController.class);
 
 	
