@@ -133,7 +133,7 @@
 	<insert id="registerAdmin">
 	INSERT INTO MEMBER 
 	VALUES(SEQ_MEMBER_NO.NEXTVAL,#{memberEmail},#{memberPw},#{memberName},#{memberTel},
-		  NULL,NULL,DEFAULT,'A',DEFAULT)
+		  NULL,NULL,DEFAULT,'A',DEFAULT, 0)
 	</insert>
 	
  
