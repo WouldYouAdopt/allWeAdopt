@@ -2,9 +2,7 @@ const NUMBER_OF_GUESSES = 6;
 let guessesRemaining = NUMBER_OF_GUESSES;
 let currentGuess = [];
 let nextLetter = 0;
-let rightGuessString = WORDS[Math.floor(Math.random() * WORDS.length)]
-
-console.log(rightGuessString)
+let rightGuessString = WORDS[Math.floor(Math.random() * WORDS.length)];
 
 function initBoard() {
     let board = document.getElementById("game-board");
@@ -153,8 +151,29 @@ function checkGuess () {
         nextLetter = 0;
 
         if (guessesRemaining === 0) {
-            toastr.error("You've run out of guesses! Game over!")
-            toastr.info(`The right word was: "${rightGuessString}"`)
+
+            Swal.fire({
+                title: '실패! ㅠㅠ',
+                text: '정답은 ['+rightGuessString+']였습니다 ~',
+                width: 340,		
+                icon: 'warning',
+                iconColor: 'rgb(251, 131, 107)',
+                showCancelButton: false,
+                confirmButtonColor: 'rgb(251, 131, 107)',
+                cancelButtonColor: '#999',
+                confirmButtonText: '재도전',
+                cancelButtonText: '취소'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        location.href=contextPath+"/point/wordle";
+                        
+                    }else{
+                         // '취소'클릭시 수행될 코드 작성
+                        
+                    }
+                 })
+            // toastr.error("You've run out of guesses! Game over!")
+            // toastr.info(`The right word was: "${rightGuessString}"`)
         }
     }
 }
