@@ -39,6 +39,11 @@
          <%-- <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"async defer></script> --%>
          <script src="https://www.google.com/recaptcha/api.js"></script>
 
+           <!-- sweetalert-->
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <script src="${contextPath}/resources/js/myPage-Session.js"></script>
+
         <script>
         $(function() {
         $('#add_member_form').submit(function(e) {
@@ -65,10 +70,30 @@
                                 captcha = 0;
                                 break;
                             case 1:
-                                alert("자동 가입 방지 봇을 확인 한뒤 진행 해 주세요.");
+                                // alert("자동 가입 방지 봇을 확인 한뒤 진행 해 주세요.");
+                                    Swal.fire({
+                                        title: "자동 가입 방지 봇을 확인 한뒤 진행 해 주세요.",
+                                        width: 350,
+                                        padding: '3em',
+                                        icon: 'warring',
+                                        iconColor: 'rgb(251, 131, 107)',
+                                        color: 'black',
+                                        confirmButtonColor: 'rgb(251, 131, 107)',
+                                        confirmButtonText: '확인'
+                                    });
                                 return false;
                             default:
-                                alert("자동 가입 방지 봇을 실행 하던 중 오류가 발생 했습니다. [Error bot Code : " + Number(data) + "]");
+                                // alert("자동 가입 방지 봇을 실행 하던 중 오류가 발생 했습니다. [Error bot Code : " + Number(data) + "]");
+                                Swal.fire({
+                                    title: "자동 가입 방지 봇을 실행 하던 중 오류가 발생 했습니다. [Error bot Code : " + Number(data) + "]",
+                                    width: 350,
+                                    padding: '3em',
+                                    icon: 'warring',
+                                    iconColor: 'rgb(251, 131, 107)',
+                                    color: 'black',
+                                    confirmButtonColor: 'rgb(251, 131, 107)',
+                                    confirmButtonText: '확인'
+                                });
                                 break;
                         }
                     }
@@ -146,13 +171,9 @@
         <!-- Core theme JS-->
         <script src="${contextPath}/resources/js/scripts.js"></script>
 
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <!-- * *                               SB Forms JS                               * *-->
-        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 
-         <script src="${contextPath}/resources/js/myPage-Scession.js"></script>
+
+
 
 
     </body>
