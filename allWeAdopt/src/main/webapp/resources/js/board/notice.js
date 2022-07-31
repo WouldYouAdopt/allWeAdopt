@@ -407,8 +407,8 @@ function print(){
                 note[1].childNodes[0].innerHTML += hiddenContent[i].value;
                 summernote.value += hiddenContent[i].value;
             }else{
-                note[1].childNodes[0].innerHTML += hiddenContent[i].value;
                 summernote.value += hiddenContent[i].value;
+                note[1].lastElementChild.innerHTML += hiddenContent[i].value;
             }
 
 
