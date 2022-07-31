@@ -2,7 +2,6 @@ package edu.kh.allWeAdopt.funding.controller;
 
 import java.text.DecimalFormat;
 import java.util.Calendar;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,14 +11,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.kh.allWeAdopt.funding.model.service.FundingService;
 import edu.kh.allWeAdopt.funding.model.vo.Funding;
 import edu.kh.allWeAdopt.funding.model.vo.FundingDetail;
-import edu.kh.allWeAdopt.funding.model.vo.Reward;
 
 @Controller
 @RequestMapping("/funding")
+@SessionAttributes({"loginMember"})
 public class FundingController {
 	
 	@Autowired
@@ -76,7 +77,15 @@ public class FundingController {
 	@GetMapping("/reward/{fundingNo}")
 	public String rewardSelect(@PathVariable("fundingNo") int fundingNo
 								,Model model
-								,@RequestParam(value="selected", required=false) String selected) {
+								,@RequestParam(value="selected", required=false) String selected
+								,RedirectAttributes ra) {
+		
+		if(model.getAttribute("loginMember")==null){
+			ra.addFlashAttribute("message","로그인 후 이용가능합니다");			
+			return "redirect: ../../member/login";
+		}else {
+			
+		
 		
 		// 리워드정보 + 리워드 결제정보 조회
 		Map<String, Object> map = service.selectReward(fundingNo);
@@ -111,8 +120,10 @@ public class FundingController {
 		model.addAttribute("map",map);
 
 		return "funding/reward-select";
+		
 	}
 
+	}
 
 	
 }
