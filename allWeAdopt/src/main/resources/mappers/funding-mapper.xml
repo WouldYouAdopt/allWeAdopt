@@ -43,6 +43,7 @@
 		<id property="memberNo" column="MEMBER_NO" />
 		<result property="memberName" column="MEMBER_NM" />
 		<result property="profileImage" column="PROFILE_IMG" />
+		<result property="memberType" column="MEMBER_TYPE" />
 		<result property="payDate" column="PAY_DT" />
 		<result property="payDate2" column="PAYDATE" />
 		<result property="timeForSting" column="TIMEFOR_STRING" />
@@ -323,6 +324,7 @@
 		SELECT PAY_DT AS PAYDATE,MEMBER_NO,PAYMENT_NO,
 		MEMBER_NM,
 		PROFILE_IMG,
+		MEMBER_TYPE,
 		CASE
 		WHEN TRUNC((SYSDATE-PAY_DT)*24*60*60)&lt;60 THEN '방금 전'
 		WHEN TRUNC((SYSDATE-PAY_DT)*24*60)&lt;60 THEN
@@ -349,6 +351,7 @@
 		,PAY_DT
 		,MEMBER_NM
 		,PROFILE_IMG
+		,MEMBER_TYPE
 		,REWARD_PRICE*AMOUNT REWARD_ORDER_PRICE
 		,PRICE_OPEN
 		,NAME_OPEN
@@ -363,7 +366,7 @@
 		AND
 		ORDER_ST_CD IN (1,2,3,4)
 		)
-		GROUP BY MEMBER_NO,PAYMENT_NO,MEMBER_NM, PROFILE_IMG,
+		GROUP BY MEMBER_NO,PAYMENT_NO,MEMBER_NM, PROFILE_IMG,MEMBER_TYPE,
 		PAY_DT, NAME_OPEN, PRICE_OPEN
 		ORDER BY 1
 	</select>

@@ -22,15 +22,22 @@
 	    <table class="supporter-table">
 	    	<c:forEach var="i" begin="0" end="${fn:length(detail.supportersList)}">
 	    	
-	    	
+	    		<!-- 펀딩 이름 공개 -->
 	    		<c:if test="${detail.supportersList[i].nameOpen=='Y'}">
 		    		<tr>
 		    		<th rowspan="2" style="vertical-align:center;">
+		    		<!-- 프로필 이미지가 비었을때 -->
 		    		<c:if test="${empty detail.supportersList[i].profileImage}">
 		    			<img class="rounded-circle" src="${contextPath}/resources/images/funding_sample/profile-sample.png">
 		    		</c:if>
+		    		<!-- 프로필 이미지가 있을때 -->
 		    		<c:if test="${!empty detail.supportersList[i].profileImage}">
+		    			<c:if test="${detail.supportersList[i].memberType=='M'}">
 		    			<img class="rounded-circle" src="${contextPath}${detail.supportersList[i].profileImage}">
+		    			</c:if>
+		    			<c:if test="${detail.supportersList[i].memberType=='K'}">
+		    			<img class="rounded-circle" src="${detail.supportersList[i].profileImage}">
+		    			</c:if>
 		    		</c:if>
 		    		</th>
 		    		
@@ -44,6 +51,7 @@
 		    		<tr class="end-oneSupporter" style="vertical-align:top;"><td>${detail.supportersList[i].payDate}</td></tr>
 	    		</c:if>
 	    		
+	    		<!-- 펀딩 이름 미공개 -->
 	    		<c:if test="${detail.supportersList[i].nameOpen=='N'}">
 		    		<tr>
 		    		<th rowspan="2" style="vertical-align:center;"><img class="rounded-circle" src="${contextPath}/resources/images/funding_sample/profile-sample.png"></th>

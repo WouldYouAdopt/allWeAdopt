@@ -228,7 +228,7 @@
                 
                 <div style="position:relative;">
 					<a href="#">
-					<i class="bi bi-arrow-up-circle bt_top" style="color: #FB836B; font-size: 50px; color: #FB836B; position: absolute; right: 0; bottom:0; padding:10px;"></i>
+					<i class="bi bi-arrow-up-circle bt_top" style="color: #FB836B; font-size: 40px; color: #FB836B; position: absolute; right: 10px; bottom:-30px; padding:10px;"></i>
 					</a>
                 </div>
             </section>
@@ -365,7 +365,7 @@
            		
 	            document.addEventListener('scroll', function() {
 	            	
-	    		    if(window.scrollY > 1630){
+	    		    if(window.scrollY > 1800){
 	    		    	fixBox.classList.add('visable');
 	    		    }else{
 	    		    	fixBox.classList.remove('visable');
