@@ -157,7 +157,12 @@
                             <c:if test="${detail.fundingState=='Y'}">
                             <div class="align-items-center mb-4" >
                                 <button class="fundingBtn" onclick="window.location.href='${contextPath}/funding/reward/${detail.fundingNo}'">펀딩하기</button>
+                                <c:if test="${empty loginMember}">
+                                <button class="qnaBtn" onclick="window.location.href='${contextPath}/member/login'">문의</button>
+                                </c:if>
+                                <c:if test="${!empty loginMember}">
                                 <button class="qnaBtn" onclick="window.location.href='${contextPath}/member/myPage/ask/list'">문의</button>
+                                </c:if>
                             </div>
                             </c:if>
 
@@ -203,8 +208,9 @@
                                         <span class="order-count">총 ${detail.rewardListCount[i].rewardOrderAmount}개 펀딩 완료</span>
                                     </div>
                            			</c:if>
-
+                           			
                                     <div class="rewardOver"><div class="vertical-center">이 리워드 펀딩하기</div></div>
+
 
                                 </div>
                                 
