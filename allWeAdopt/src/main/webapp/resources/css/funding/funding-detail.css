@@ -510,6 +510,8 @@
             }
             .supporter-table img{
             	width:70px;
+            	height:70px;
+            	object-fit: cover;
             }
             .end-oneSupporter{
             	border-bottom:1px solid #ccc;
