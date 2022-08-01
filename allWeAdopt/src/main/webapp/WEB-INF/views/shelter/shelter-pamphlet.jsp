@@ -102,7 +102,7 @@
                                     </c:if>
 
                                     <c:if test="${empty pamphlet.thumbnail}">
-                                         <img class="card-img-top" src="${contextPath}/resources/images/pamphlet-noImage.png" alt="썸네일" id="thumbnail" />
+                                         <img class="card-img-top" src="${contextPath}/resources/images/pamphlet-noImage.png " style="height: 375px; width: 100%; object-fit:cover" alt="썸네일" id="thumbnail" />
                                     </c:if>
 
                                     <div class="card-body p-4"  id="content">
@@ -141,8 +141,8 @@
 
                                                 <div class="md-10" style="margin:10px;"></div>
                             
-                                                <button type="button" class="btn btn-primary" style="color: #FB836B; border: 2px solid #FB836B; background-color: white; border-radius:50%; width:50px; height:50px;" id="rArea">
-                                                    <span class="badge text-bg-secondary" style="color: #FB836B; font-weight: bold;">${pamphlet.replyCount}</span>
+                                                <button type="button" class="btn btn-primary " style="color: #FB836B; border: 2px solid #FB836B; background-color: white; border-radius:50%; width:50px; height:50px;" id="rArea">
+                                                    <span class="badge text-bg-secondary " style="color: #FB836B; font-weight: bold;">${pamphlet.replyCount}</span>
                                                 </button>
 
 

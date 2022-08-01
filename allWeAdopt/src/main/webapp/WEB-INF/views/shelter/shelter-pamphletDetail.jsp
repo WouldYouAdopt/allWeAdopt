@@ -122,11 +122,11 @@
 
                                     <div class="md-10" style="margin:10px;"></div>
 
-                                    <div>                                
+                                    <%-- <div>                                
                                         <a id="btnTwitter" class="link-icon twitter" href="javascript:shareTwitter();"><img src="${contextPath}\resources\images\icon-twitter.png"></a>
                                         <a id="btnFacebook" class="link-icon facebook" href="javascript:shareFacebook();"><img src="${contextPath}\resources\images\icon-facebook.png"></a>    
                                         <a id="btnKakao" class="link-icon kakao" href="javascript:shareKakao();"><img src="${contextPath}\resources\images\icon-kakao.png"></a>    
-                                    </div>
+                                    </div> --%>
 
                                 </header>
 
