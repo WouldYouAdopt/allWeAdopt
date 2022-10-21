@@ -1,46 +1,21 @@
 package edu.kh.allWeAdopt.funding.controller;
 
-import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.json.Json;
-import javax.json.JsonArray;
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.logging.log4j.Logger;
-import org.json.simple.JSONArray;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.context.request.RequestAttributes;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
-
-import edu.kh.allWeAdopt.common.Util;
 import edu.kh.allWeAdopt.funding.model.service.FundingService;
 import edu.kh.allWeAdopt.funding.model.vo.Funding;
 import edu.kh.allWeAdopt.funding.model.vo.FundingDetail;
 import edu.kh.allWeAdopt.funding.model.vo.OrderDetail;
 import edu.kh.allWeAdopt.funding.model.vo.Reward;
-import edu.kh.allWeAdopt.member.model.vo.Member;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 
 
@@ -90,7 +65,7 @@ public class AdminFundingController {
         cal.add(Calendar.MONTH, 1); 
         String date3 = sdf.format(cal.getTime());
         
-        String nextSeason[] = new String[3];
+        String[] nextSeason = new String[3];
         // season형식 맞추기 2022/08
         nextSeason[0] = date1.substring(0, 4) +"/"+ date1.substring(4, 6);
         nextSeason[1] = date2.substring(0, 4) +"/"+ date2.substring(4, 6);
@@ -141,7 +116,7 @@ public class AdminFundingController {
 		
 		
 			String json = insertRewardList;
-			String arr[] = json.split("-");
+			String[] arr = json.split("-");
 			Gson gson = new Gson();
 			List<Reward> rewardList = new ArrayList<Reward>();
 			
@@ -268,7 +243,7 @@ public class AdminFundingController {
 	public String sendProcessing(String insertJSON,@RequestParam Map<String,Object> map){
 		
 		String json = insertJSON;
-		String arr[] = json.split("-");
+		String[] arr = json.split("-");
 		Gson gson = new Gson();
 		List<OrderDetail> sendList = new ArrayList<OrderDetail>(); 
 		for(String temp : arr) {

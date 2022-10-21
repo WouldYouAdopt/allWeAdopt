@@ -1,16 +1,14 @@
 package edu.kh.allWeAdopt.main.model.dao;
 
-import java.util.List;
-
+import edu.kh.allWeAdopt.main.model.vo.AdminMain;
+import edu.kh.allWeAdopt.main.model.vo.Anal;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import edu.kh.allWeAdopt.main.model.vo.AdminMain;
-import edu.kh.allWeAdopt.main.model.vo.Anal;
-import edu.kh.allWeAdopt.member.model.dao.MemberDAO;
+import java.util.List;
 
 @Repository
 public class AdminMainDAO {
@@ -18,7 +16,7 @@ public class AdminMainDAO {
 	@Autowired  
 	private SqlSessionTemplate sqlSession;
 	
-	private Logger logger = LoggerFactory.getLogger(AdminMainDAO.class);
+	private final Logger logger = LoggerFactory.getLogger(AdminMainDAO.class);
 
 	
 	

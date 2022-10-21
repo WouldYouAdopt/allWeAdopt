@@ -1,11 +1,8 @@
 package edu.kh.allWeAdopt.member.model.service;
 
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Map;
 import edu.kh.allWeAdopt.common.Util;
-
+import edu.kh.allWeAdopt.member.model.dao.MemberDAO;
+import edu.kh.allWeAdopt.member.model.vo.Member;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +10,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import edu.kh.allWeAdopt.member.model.dao.MemberDAO;
-import edu.kh.allWeAdopt.member.model.vo.Member;
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Map;
 
 @Service
 public class MemberServiceImpl implements MemberService{
@@ -26,7 +25,7 @@ public class MemberServiceImpl implements MemberService{
 	private BCryptPasswordEncoder bcrypt;
 	
 
-	private Logger logger = LoggerFactory.getLogger(MemberServiceImpl.class);
+	private final Logger logger = LoggerFactory.getLogger(MemberServiceImpl.class);
 	
 	
 	
@@ -113,7 +112,7 @@ public class MemberServiceImpl implements MemberService{
 		
 		map.put("member", member);
 		
-		System.out.println((Member)map.get("member"));
+		System.out.println(map.get("member"));
 		
 			
 		String rename = null;

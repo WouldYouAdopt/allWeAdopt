@@ -39,4 +39,4 @@ function writeValidate(){
     }
 
     return true;
-};
+}

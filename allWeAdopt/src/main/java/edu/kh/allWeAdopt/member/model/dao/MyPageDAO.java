@@ -1,14 +1,13 @@
 package edu.kh.allWeAdopt.member.model.dao;
 
-import java.util.Map;
-
+import edu.kh.allWeAdopt.member.model.vo.Member;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import edu.kh.allWeAdopt.member.model.vo.Member;
+import java.util.Map;
 
 @Repository
 public class MyPageDAO {
@@ -16,7 +15,7 @@ public class MyPageDAO {
 	@Autowired  
 	private SqlSessionTemplate sqlSession;
 	
-	private Logger logger = LoggerFactory.getLogger(MemberDAO.class);
+	private final Logger logger = LoggerFactory.getLogger(MemberDAO.class);
 
 	/** 내정보 수정 전 - 비밀번호 확인 DAO
 	 * @param loginMember

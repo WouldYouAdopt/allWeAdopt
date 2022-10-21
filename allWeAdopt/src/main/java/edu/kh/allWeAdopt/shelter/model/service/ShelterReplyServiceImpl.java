@@ -1,13 +1,12 @@
 package edu.kh.allWeAdopt.shelter.model.service;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import edu.kh.allWeAdopt.board.model.vo.Reply;
 import edu.kh.allWeAdopt.common.Util;
 import edu.kh.allWeAdopt.shelter.model.dao.ShelterReplyDAO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ShelterReplyServiceImpl implements ShelterReplyService {

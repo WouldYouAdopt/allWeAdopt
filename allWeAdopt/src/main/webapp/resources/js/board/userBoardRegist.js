@@ -113,7 +113,7 @@ for (let i = 0; i < selectMenu.length; i++) {
 		document.getElementsByName("animalDetailValue")[0].style.display = "block";	
 		}
 	})
-};
+}
 
 // 지역이 바뀔 때마다 상세 지역 값 초기화
 const areaList = document.getElementsByClassName("areaList");
@@ -129,7 +129,7 @@ const ul = document.getElementsByName("areaDetailValue")[0].nextElementSibling;
 	areaDetailAjax(area);
 	
 });
-};
+}
 
 // 상세 지역 값 적용
 function areaDetailFunc(){
@@ -140,7 +140,7 @@ function areaDetailFunc(){
 			document.getElementsByName("areaDetail")[0].value = document.getElementsByName("areaDetailValue")[0].innerText;
 		});
 	}
-};
+}
 
 // 축종이 바뀔 때마다 품종 값 초기화
 const animalList = document.getElementsByClassName("animalList");
@@ -156,7 +156,7 @@ const ul2 = document.getElementsByName("animalDetailValue")[0].nextElementSiblin
 	animalDetailAjax(animalType);
 	
 });
-};
+}
 
 // 품종 값 적용
 function animalDetailFunc(){
@@ -167,7 +167,7 @@ function animalDetailFunc(){
 			document.getElementsByName("animalDetail")[0].value = document.getElementsByName("animalDetailValue")[0].innerText;
 		});
 	}
-};
+}
 
 // 유효성 검사
 function regist(){
@@ -327,7 +327,7 @@ function regist(){
         }
 	}
 	
-};
+}
 
 function animalDetailAjax(animalType) {
 	// 축종 선택에 따른 품종 조회

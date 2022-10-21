@@ -1,36 +1,24 @@
 package edu.kh.allWeAdopt.member.controller;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.Map;
-
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import edu.kh.allWeAdopt.funding.model.vo.OrderDetail;
+import edu.kh.allWeAdopt.member.model.service.MyPageService;
+import edu.kh.allWeAdopt.member.model.vo.Member;
+import edu.kh.allWeAdopt.point.model.service.PointService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import edu.kh.allWeAdopt.funding.model.vo.OrderDetail;
-import edu.kh.allWeAdopt.member.model.service.MyPageService;
-import edu.kh.allWeAdopt.member.model.vo.Member;
-import edu.kh.allWeAdopt.point.model.dao.PointDAO;
-import edu.kh.allWeAdopt.point.model.service.PointService;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 
 
@@ -48,7 +36,7 @@ public class MyPageController {
 	@Autowired 
 	private MyPageService service; 
 	
-	private Logger logger = LoggerFactory.getLogger(MemberController.class);
+	private final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
 	// 내정보 수정 전 - 비밀번호 확인 페이지
 	@GetMapping("/pwConfirm")
@@ -99,14 +87,14 @@ public class MyPageController {
 		map.put("memberNo", loginMember.getMemberNo());
 		
 		System.out.println( "기존 전화번호 : "+loginMember.getMemberTel());		
-		System.out.println("map" +(String)map.get("memberTel"));		
+		System.out.println("map" + map.get("memberTel"));
 		
 		if(newTel!=null) {
 			map.put("memberTel", newTel);
 		}
 		
 		System.out.println("새 전번"+ newTel);
-		System.out.println("map" +(String)map.get("memberTel"));		
+		System.out.println("map" + map.get("memberTel"));
 
 		
 		// mode1 : 나의 정보 수정

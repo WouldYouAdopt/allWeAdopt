@@ -1,11 +1,9 @@
 package edu.kh.allWeAdopt.main.model.service;
 
-import java.util.List;
-import java.util.Map;
-
-import edu.kh.allWeAdopt.board.model.vo.Reply;
 import edu.kh.allWeAdopt.main.model.vo.AdminMain;
 import edu.kh.allWeAdopt.main.model.vo.Anal;
+
+import java.util.List;
 
 public interface AdminMainService {
 

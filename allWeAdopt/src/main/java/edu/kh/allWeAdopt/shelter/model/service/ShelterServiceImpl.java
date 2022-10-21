@@ -1,19 +1,18 @@
 package edu.kh.allWeAdopt.shelter.model.service;
 
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import edu.kh.allWeAdopt.board.model.vo.Board;
+import edu.kh.allWeAdopt.board.model.vo.BoardDetail;
+import edu.kh.allWeAdopt.board.model.vo.Pagination;
+import edu.kh.allWeAdopt.shelter.model.dao.ShelterDAO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import edu.kh.allWeAdopt.board.model.vo.Board;
-import edu.kh.allWeAdopt.board.model.vo.BoardDetail;
-import edu.kh.allWeAdopt.board.model.vo.Pagination;
-import edu.kh.allWeAdopt.shelter.model.dao.ShelterDAO;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 @Service
@@ -23,7 +22,7 @@ public class ShelterServiceImpl implements ShelterService {
 	private ShelterDAO dao;
 	
 	
-	private Logger logger = LoggerFactory.getLogger(ShelterServiceImpl.class);
+	private final Logger logger = LoggerFactory.getLogger(ShelterServiceImpl.class);
 
 	// 전단지 목록 조회
 	@Override

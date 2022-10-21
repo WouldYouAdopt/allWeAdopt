@@ -1,7 +1,7 @@
 package edu.kh.allWeAdopt.board.controller;
 
-import java.util.Map;
-
+import edu.kh.allWeAdopt.board.model.service.BoardService;
+import edu.kh.allWeAdopt.board.model.vo.BoardDetail;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import edu.kh.allWeAdopt.board.model.service.BoardService;
-
-import edu.kh.allWeAdopt.board.model.vo.BoardDetail;
+import java.util.Map;
 
 @Controller
 @RequestMapping("member/myPage/notice")
@@ -23,7 +21,7 @@ public class MyNoticeController {
 	@Autowired
 	private BoardService service;
 	
-	private Logger logger = LoggerFactory.getLogger(AdminNoticeController.class);
+	private final Logger logger = LoggerFactory.getLogger(AdminNoticeController.class);
 
 	// 관리자 - 공지사항 리스트 조회화면
 	@GetMapping("/list")

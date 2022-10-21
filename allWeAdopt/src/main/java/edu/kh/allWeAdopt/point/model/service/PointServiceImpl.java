@@ -1,16 +1,14 @@
 package edu.kh.allWeAdopt.point.model.service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import edu.kh.allWeAdopt.funding.model.vo.OrderDetail;
+import edu.kh.allWeAdopt.point.model.dao.PointDAO;
+import edu.kh.allWeAdopt.point.vo.Rank;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import edu.kh.allWeAdopt.funding.model.vo.OrderDetail;
-import edu.kh.allWeAdopt.point.controller.Point;
-import edu.kh.allWeAdopt.point.model.dao.PointDAO;
-import edu.kh.allWeAdopt.point.vo.Rank;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class PointServiceImpl implements PointService{

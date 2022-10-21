@@ -1,17 +1,15 @@
 package edu.kh.allWeAdopt.board.controller;
 
-import java.util.List;
-
+import com.google.gson.Gson;
+import edu.kh.allWeAdopt.board.model.service.ReplyService;
+import edu.kh.allWeAdopt.board.model.vo.Reply;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.google.gson.Gson;
-
-import edu.kh.allWeAdopt.board.model.service.ReplyService;
-import edu.kh.allWeAdopt.board.model.vo.Reply;
+import java.util.List;
 
 @RestController
 @RequestMapping("/reply")

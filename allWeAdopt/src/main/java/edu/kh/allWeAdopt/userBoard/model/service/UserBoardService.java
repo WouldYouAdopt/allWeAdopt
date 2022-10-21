@@ -1,11 +1,10 @@
 package edu.kh.allWeAdopt.userBoard.model.service;
 
-import java.util.List;
-
 import edu.kh.allWeAdopt.board.model.vo.Board;
 import edu.kh.allWeAdopt.userBoard.model.vo.Animal;
 import edu.kh.allWeAdopt.userBoard.model.vo.Area;
-import edu.kh.allWeAdopt.userBoard.model.vo.Likes;
+
+import java.util.List;
 
 public interface UserBoardService {
 

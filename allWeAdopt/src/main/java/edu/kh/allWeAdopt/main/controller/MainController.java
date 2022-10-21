@@ -1,12 +1,9 @@
 package edu.kh.allWeAdopt.main.controller;
 
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.google.gson.Gson;
+import edu.kh.allWeAdopt.main.model.service.AdminMainService;
+import edu.kh.allWeAdopt.main.model.vo.AdminMain;
+import edu.kh.allWeAdopt.main.model.vo.Anal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,12 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.google.gson.Gson;
-
-import edu.kh.allWeAdopt.board.model.vo.Reply;
-import edu.kh.allWeAdopt.main.model.service.AdminMainService;
-import edu.kh.allWeAdopt.main.model.vo.AdminMain;
-import edu.kh.allWeAdopt.main.model.vo.Anal;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @Controller
 public class MainController {

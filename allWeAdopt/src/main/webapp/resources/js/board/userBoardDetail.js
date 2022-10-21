@@ -50,7 +50,7 @@ likeIcon.addEventListener("click",function() {
     }else{
         likeIcon.innerHTML='&#x2661;';
         iconValue.value = 0;
-    };
+    }
    
     likeFunc(loginMember,boardNo.value,likeNo);
 });

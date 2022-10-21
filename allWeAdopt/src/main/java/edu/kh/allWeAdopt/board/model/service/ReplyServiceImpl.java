@@ -1,13 +1,12 @@
 package edu.kh.allWeAdopt.board.model.service;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import edu.kh.allWeAdopt.board.model.dao.ReplyDAO;
 import edu.kh.allWeAdopt.board.model.vo.Reply;
 import edu.kh.allWeAdopt.common.Util;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ReplyServiceImpl implements ReplyService{
