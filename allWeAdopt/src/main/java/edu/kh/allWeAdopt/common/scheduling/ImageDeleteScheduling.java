@@ -1,5 +1,13 @@
 package edu.kh.allWeAdopt.common.scheduling;
 
+import edu.kh.allWeAdopt.board.model.service.BoardService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
+
+import javax.servlet.ServletContext;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,20 +15,10 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.servlet.ServletContext;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
-
-import edu.kh.allWeAdopt.board.model.service.BoardService;
-
 @Component
 public class ImageDeleteScheduling {
 
-	private Logger logger = LoggerFactory.getLogger(ImageDeleteScheduling.class);
+	private final Logger logger = LoggerFactory.getLogger(ImageDeleteScheduling.class);
 
 	// SUMMERNOTE 사용시 이미지 업로드 후 글작성을 취소하여
 	// BAORD_CONTENT에는 없지만, 서버 /resources/images/summernote 폴더에는 존재하는
@@ -96,7 +94,7 @@ public class ImageDeleteScheduling {
 				String name = "/resources/images/summernote/" + serverImage.getName(); // sample.jpg
 
 				// List.indexOf(value) : List에 value와 같은 값이 있으면 인덱스 반환 없으면 -1반환 (imgList에는 없고, serverList에만 있는 경우)
-				if(imgList.indexOf(name)==-1) {
+				if(!imgList.contains(name)) {
 					
 					logger.info(serverImage.getName() + " 삭제");
 					logger.info("----이미지 삭제 완료----");

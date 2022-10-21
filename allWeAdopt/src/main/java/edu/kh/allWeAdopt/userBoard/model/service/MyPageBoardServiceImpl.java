@@ -1,15 +1,14 @@
 package edu.kh.allWeAdopt.userBoard.model.service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import edu.kh.allWeAdopt.board.model.vo.Board;
 import edu.kh.allWeAdopt.board.model.vo.Pagination;
 import edu.kh.allWeAdopt.userBoard.model.dao.MyPageBoardDAO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class MyPageBoardServiceImpl implements MyPageBoardService {

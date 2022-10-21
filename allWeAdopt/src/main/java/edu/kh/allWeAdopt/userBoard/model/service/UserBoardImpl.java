@@ -1,16 +1,14 @@
 package edu.kh.allWeAdopt.userBoard.model.service;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import edu.kh.allWeAdopt.board.model.vo.Board;
+import edu.kh.allWeAdopt.common.Util;
 import edu.kh.allWeAdopt.userBoard.model.dao.UserBoardDAO;
 import edu.kh.allWeAdopt.userBoard.model.vo.Animal;
 import edu.kh.allWeAdopt.userBoard.model.vo.Area;
-import edu.kh.allWeAdopt.userBoard.model.vo.Likes;
-import edu.kh.allWeAdopt.common.Util;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserBoardImpl implements UserBoardService {

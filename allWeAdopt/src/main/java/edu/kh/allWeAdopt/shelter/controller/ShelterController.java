@@ -1,40 +1,33 @@
 package edu.kh.allWeAdopt.shelter.controller;
 
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.servlet.http.HttpServletResponse;
-
+import edu.kh.allWeAdopt.shelter.model.vo.Shelter;
 import org.apache.commons.codec.binary.Base64;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 
-import edu.kh.allWeAdopt.shelter.model.service.ShelterService;
-import edu.kh.allWeAdopt.shelter.model.vo.Shelter;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/shelter")
 @SessionAttributes({"list"})
 public class ShelterController {
 	
-	private Logger logger = LoggerFactory.getLogger(ShelterController.class);
+	private final Logger logger = LoggerFactory.getLogger(ShelterController.class);
 
 	
 	
@@ -45,20 +38,20 @@ public class ShelterController {
 								@RequestParam(value="upr_cd", required=false, defaultValue = "") String upr_cd
 								, HttpServletResponse resp
 								/* @RequestParam(value="org_cd", required=false, defaultValue = " ") String org_cd */) throws Exception {
-		
-	    StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1543061/abandonmentPublicSrvc/abandonmentPublic"); /*URL*/
-	    urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=ORROf4zK3CwwkwCJ%2Fdt4FRDISXLZQ5w7%2B13CMxRIzMqZz504Vtr86DcBmJqTMgWJgCVfGnafTLBY6kHXgi9CIw%3D%3D"); /*Service Key*/
-	    urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode(pageNo, "UTF-8")); /*페이지 번호*/
-	    urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("9", "UTF-8")); /*한 페이지 결과 수(1,000 이하)*/
-	    urlBuilder.append("&" + URLEncoder.encode("upkind","UTF-8") + "=" + URLEncoder.encode(upkind, "UTF-8")); /*축종코드*/
-	    urlBuilder.append("&" + URLEncoder.encode("upr_cd","UTF-8") + "=" + URLEncoder.encode(upr_cd, "UTF-8")); /*시도코드*/
+
+		/*URL*/
+		String urlBuilder = "http://apis.data.go.kr/1543061/abandonmentPublicSrvc/abandonmentPublic" + "?" + URLEncoder.encode("serviceKey", StandardCharsets.UTF_8) + "=ORROf4zK3CwwkwCJ%2Fdt4FRDISXLZQ5w7%2B13CMxRIzMqZz504Vtr86DcBmJqTMgWJgCVfGnafTLBY6kHXgi9CIw%3D%3D" + /*Service Key*/
+				"&" + URLEncoder.encode("pageNo", StandardCharsets.UTF_8) + "=" + URLEncoder.encode(pageNo, StandardCharsets.UTF_8) + /*페이지 번호*/
+				"&" + URLEncoder.encode("numOfRows", StandardCharsets.UTF_8) + "=" + URLEncoder.encode("9", StandardCharsets.UTF_8) + /*한 페이지 결과 수(1,000 이하)*/
+				"&" + URLEncoder.encode("upkind", StandardCharsets.UTF_8) + "=" + URLEncoder.encode(upkind, StandardCharsets.UTF_8) + /*축종코드*/
+				"&" + URLEncoder.encode("upr_cd", StandardCharsets.UTF_8) + "=" + URLEncoder.encode(upr_cd, StandardCharsets.UTF_8); /*시도코드*/
 //	    urlBuilder.append("&" + URLEncoder.encode("org_cd","UTF-8") + "=" + URLEncoder.encode(org_cd, "UTF-8")); /*시군구코드*/
 	    
 //	    urlBuilder.append("&" + URLEncoder.encode("_type","UTF-8") + "=" + URLEncoder.encode(" ", "UTF-8")); /*xml(기본값) 또는 json*/
 	       
 		logger.info("유기견 목록 조회 수행");
 	    
-	    URL url = new URL(urlBuilder.toString());
+	    URL url = new URL(urlBuilder);
 	       
 	    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 	

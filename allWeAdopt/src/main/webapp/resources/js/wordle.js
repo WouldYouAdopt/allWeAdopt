@@ -144,7 +144,7 @@ function checkGuess () {
             }
         });
 
-        return;
+
     } else {
         guessesRemaining -= 1;
         currentGuess = [];
@@ -232,7 +232,7 @@ document.addEventListener("keyup", (e) => {
 
     let found = pressedKey.match(/[a-z]/gi)
     if (!found || found.length > 1) {
-        return
+
     } else {
         insertLetter(pressedKey)
     }

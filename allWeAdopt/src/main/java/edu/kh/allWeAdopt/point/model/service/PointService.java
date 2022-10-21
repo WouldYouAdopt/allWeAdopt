@@ -1,9 +1,9 @@
 package edu.kh.allWeAdopt.point.model.service;
 
-import java.util.List;
-
 import edu.kh.allWeAdopt.funding.model.vo.OrderDetail;
 import edu.kh.allWeAdopt.point.vo.Rank;
+
+import java.util.List;
 
 public interface PointService {
 

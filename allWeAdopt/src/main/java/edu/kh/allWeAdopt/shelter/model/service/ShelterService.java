@@ -1,9 +1,8 @@
 package edu.kh.allWeAdopt.shelter.model.service;
 
-import java.util.List;
-import java.util.Map;
-
 import edu.kh.allWeAdopt.board.model.vo.BoardDetail;
+
+import java.util.Map;
 
 public interface ShelterService {
 	

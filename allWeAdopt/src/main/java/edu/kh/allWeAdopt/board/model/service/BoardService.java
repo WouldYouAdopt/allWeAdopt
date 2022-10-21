@@ -1,11 +1,11 @@
 package edu.kh.allWeAdopt.board.model.service;
 
-import java.util.List;
-import java.util.Map;
-
 import edu.kh.allWeAdopt.board.model.vo.BoardDetail;
 import edu.kh.allWeAdopt.board.model.vo.Template;
 import edu.kh.allWeAdopt.member.model.vo.Member;
+
+import java.util.List;
+import java.util.Map;
 
 public interface BoardService {
 

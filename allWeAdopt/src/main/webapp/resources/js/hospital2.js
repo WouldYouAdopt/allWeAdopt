@@ -116,7 +116,7 @@ const url = 'http://openapi.seoul.go.kr:8088/58717a6e5463686f3130306d58694a4f/js
 					const imageSrc = contextPath+"/resources/images/marker_icon.png"; 
 					
 					// 생성된 infowindow 넣을 배열
-		            const info = new Array();
+		            const info = [];
 		            
 		            for (let i=0; i<results.length; i++){
 

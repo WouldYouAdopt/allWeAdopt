@@ -1,12 +1,10 @@
 package edu.kh.allWeAdopt.member.model.service;
 
-import java.io.IOException; 
-
-import java.util.Map;
-
+import edu.kh.allWeAdopt.member.model.vo.Member;
 import org.springframework.web.multipart.MultipartFile;
 
-import edu.kh.allWeAdopt.member.model.vo.Member;
+import java.io.IOException;
+import java.util.Map;
 
 public interface MemberService {
 
@@ -16,7 +14,7 @@ public interface MemberService {
 	 * @param inputMember
 	 * @return loginMember
 	 */
-	public abstract Member login(Member inputMember);
+    Member login(Member inputMember);
 
 	
 
@@ -34,7 +32,7 @@ public interface MemberService {
 	 * @return result
 	 * @throws IOException
 	 */
-	public int signUp(Map<String, Object> map, MultipartFile uploadImage) throws IOException;
+    int signUp(Map<String, Object> map, MultipartFile uploadImage) throws IOException;
 
 
 
@@ -43,7 +41,7 @@ public interface MemberService {
 	 * @param kakaoEmail
 	 * @return
 	 */
-	public abstract Member kakaoEmailCheck(String kakaoEmail);
+    Member kakaoEmailCheck(String kakaoEmail);
 
 
 
@@ -53,7 +51,7 @@ public interface MemberService {
 	 * @param nickname
 	 * @return result
 	 */
-	public abstract int insertNo(Member mem);
+    int insertNo(Member mem);
 
 
 
@@ -62,7 +60,7 @@ public interface MemberService {
 	 * @param mem
 	 * @return
 	 */
-	public abstract Member kakaoEmailLogin(Member mem);
+    Member kakaoEmailLogin(Member mem);
 
 
 
@@ -71,7 +69,7 @@ public interface MemberService {
 	 * @param memberNo
 	 * @return
 	 */
-	public abstract Member selectThisMember(int memberNo);
+    Member selectThisMember(int memberNo);
 
 
 
@@ -99,7 +97,7 @@ public interface MemberService {
 	 * @param map
 	 * @return
 	 */
-	public abstract int changePw(Map<String, Object> map);
+    int changePw(Map<String, Object> map);
 
 
 
@@ -108,7 +106,7 @@ public interface MemberService {
 	 * @param member
 	 * @return result
 	 */
-	public abstract int registerAdmin(Member member);
+    int registerAdmin(Member member);
 
 
 

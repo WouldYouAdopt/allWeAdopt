@@ -1,52 +1,37 @@
 package edu.kh.allWeAdopt.member.controller;
 
-import java.io.IOException; 
-import java.util.Map;
-import java.util.Properties;
-
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Multipart;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
-import javax.mail.internet.MimeMessage.RecipientType;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
+import com.google.gson.Gson;
+import edu.kh.allWeAdopt.member.model.service.MemberService;
+import edu.kh.allWeAdopt.member.model.vo.Member;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.google.gson.Gson;
-
-import edu.kh.allWeAdopt.member.model.service.MemberService;
-import edu.kh.allWeAdopt.member.model.vo.Member;
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMessage.RecipientType;
+import javax.mail.internet.MimeMultipart;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.util.Map;
+import java.util.Properties;
 
 @SessionAttributes({"loginMember"})
 @Controller
 @RequestMapping("/member")
 public class MemberController {
 	
-	private Logger logger = LoggerFactory.getLogger(MemberController.class);
+	private final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
 	@Autowired
 	private MemberService service;
@@ -279,13 +264,11 @@ public class MemberController {
 			
 	
 				// 메일에 출력할 텍스트
-				StringBuffer sb = new StringBuffer(); // 가변성 문자열 저장 객체
-				sb.append("<img referrerpolicy=\"no-referrer\" src='https://postfiles.pstatic.net/MjAyMjA3MjlfNzAg/MDAxNjU5MDczOTE4MjY3.QD95sxiFtzYyozQ1HUAvuymx0TI9G-1Bms48XXCaDIcg.XttTAqI9QR9hT-YimkMEdoELwIv_4OlDGFkfTWZdBpQg.PNG.kjy_1615/logo.png?type=w966'>");
-				sb.append("      <h3>인증 번호 : <span style='color:black'>"+ cNumber +"</span></h3>\n");
-	
-	
-	
-				String mailContent = sb.toString(); // 문자열로 반환
+
+
+		String mailContent = // 가변성 문자열 저장 객체
+				"<img referrerpolicy=\"no-referrer\" src='https://postfiles.pstatic.net/MjAyMjA3MjlfNzAg/MDAxNjU5MDczOTE4MjY3.QD95sxiFtzYyozQ1HUAvuymx0TI9G-1Bms48XXCaDIcg.XttTAqI9QR9hT-YimkMEdoELwIv_4OlDGFkfTWZdBpQg.PNG.kjy_1615/logo.png?type=w966'>" +
+						"      <h3>인증 번호 : <span style='color:black'>" + cNumber + "</span></h3>\n"; // 문자열로 반환
 	
 				// 메일 콘텐츠 - 내용 , 메일인코딩, "html" 추가 시 HTML 태그가 해석됨
 				mTextPart.setText(mailContent, "UTF-8", "html");

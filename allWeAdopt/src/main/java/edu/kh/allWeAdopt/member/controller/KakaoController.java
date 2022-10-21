@@ -1,21 +1,12 @@
 package edu.kh.allWeAdopt.member.controller;
 
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.HashMap;
-
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import org.json.simple.JSONObject;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import edu.kh.allWeAdopt.member.model.service.MemberService;
+import edu.kh.allWeAdopt.member.model.vo.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -24,23 +15,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-
-import edu.kh.allWeAdopt.member.model.service.MemberService;
-import edu.kh.allWeAdopt.member.model.vo.Member;
-
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.client.RestTemplate;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.HashMap;
 
 
 
@@ -209,12 +194,11 @@ public class KakaoController {
 
             //	POST 요청에 필요로 요구하는 파라미터 스트림을 통해 전송
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
-            StringBuilder sb = new StringBuilder();
-            sb.append("grant_type=authorization_code");
-            sb.append("&client_id=0900c4899560687a875be9ab43105e72");  //본인이 발급받은 key
-            sb.append("&redirect_uri=http://localhost:8081/allWeAdopt/member/kakaoLogin2"); // 본인이 설정해 놓은 경로
-            sb.append("&code=" + authorize_code);
-            bw.write(sb.toString());
+			String sb = "grant_type=authorization_code" +
+					"&client_id=0900c4899560687a875be9ab43105e72" +  //본인이 발급받은 key
+					"&redirect_uri=http://localhost:8081/allWeAdopt/member/kakaoLogin2" + // 본인이 설정해 놓은 경로
+					"&code=" + authorize_code;
+            bw.write(sb);
             bw.flush();
 
             //    결과 코드가 200이라면 성공

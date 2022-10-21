@@ -1,8 +1,8 @@
 package edu.kh.allWeAdopt.board.model.service;
 
-import java.util.List;
-
 import edu.kh.allWeAdopt.board.model.vo.Reply;
+
+import java.util.List;
 
 
 public interface ReplyService {

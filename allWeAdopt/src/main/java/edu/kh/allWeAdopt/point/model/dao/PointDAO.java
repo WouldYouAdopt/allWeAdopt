@@ -1,15 +1,14 @@
 package edu.kh.allWeAdopt.point.model.dao;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import edu.kh.allWeAdopt.funding.model.vo.OrderDetail;
+import edu.kh.allWeAdopt.point.vo.Rank;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import edu.kh.allWeAdopt.funding.model.vo.OrderDetail;
-import edu.kh.allWeAdopt.point.vo.Rank;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Repository
 public class PointDAO {

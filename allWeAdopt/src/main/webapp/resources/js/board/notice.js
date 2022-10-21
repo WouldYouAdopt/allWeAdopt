@@ -100,7 +100,7 @@ function writeValidate(){
     }
 
     return true;
-};
+}
 
 // 문의 게시글 작성 유효성검사
 function writeValidate1(){
@@ -152,7 +152,7 @@ function writeValidate1(){
 
 
     return true;
-};
+}
 
 // 템플릿 설정 버튼 클릭여부 알려주는 변수
 let check = false;

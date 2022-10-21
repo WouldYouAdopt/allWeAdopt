@@ -1,14 +1,13 @@
 package edu.kh.allWeAdopt.userBoard.model.dao;
 
-import java.util.List;
-
+import edu.kh.allWeAdopt.board.model.vo.Board;
+import edu.kh.allWeAdopt.board.model.vo.Pagination;
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import edu.kh.allWeAdopt.board.model.vo.Board;
-import edu.kh.allWeAdopt.board.model.vo.Pagination;
+import java.util.List;
 
 @Repository
 public class MyPageBoardDAO {

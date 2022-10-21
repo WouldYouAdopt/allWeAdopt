@@ -349,7 +349,7 @@
 		                		     });
 							}else{
 			                	this.parentElement.nextElementSibling.submit();
-			                	return;
+
 							}
 		                })
 		                

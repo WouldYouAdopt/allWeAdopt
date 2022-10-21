@@ -226,7 +226,7 @@ function summer() {
             ['view', ['codeview', 'fullscreen']]
         ]
     });
-};
+}
 
 //반품사유 작성
 function sendReturn() {

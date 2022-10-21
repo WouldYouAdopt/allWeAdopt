@@ -1,20 +1,18 @@
 package edu.kh.allWeAdopt.common.interceptor;
 
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import edu.kh.allWeAdopt.funding.model.service.FundingService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.servlet.ModelAndView;
 
-import edu.kh.allWeAdopt.funding.model.service.FundingService;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class NowFundingNoInterceptor implements HandlerInterceptor {
 
-	private Logger logger = LoggerFactory.getLogger(HandlerInterceptor.class); 
+	private final Logger logger = LoggerFactory.getLogger(HandlerInterceptor.class);
 	
 	@Autowired
 	private FundingService service;

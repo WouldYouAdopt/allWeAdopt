@@ -1,5 +1,22 @@
 package edu.kh.allWeAdopt.userBoard.controller;
 
+import com.google.gson.JsonObject;
+import edu.kh.allWeAdopt.board.model.vo.Board;
+import edu.kh.allWeAdopt.common.Util;
+import edu.kh.allWeAdopt.member.model.vo.Member;
+import edu.kh.allWeAdopt.userBoard.model.service.UserBoardService;
+import edu.kh.allWeAdopt.userBoard.model.vo.Animal;
+import edu.kh.allWeAdopt.userBoard.model.vo.Area;
+import org.apache.commons.io.FileUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,52 +25,9 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.UUID;
-
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import org.apache.commons.io.FileUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletWebRequest;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import com.google.gson.JsonObject;
-
-import edu.kh.allWeAdopt.board.model.vo.Board;
-import edu.kh.allWeAdopt.common.Util;
-import edu.kh.allWeAdopt.member.model.vo.Member;
-import edu.kh.allWeAdopt.userBoard.model.service.UserBoardService;
-import edu.kh.allWeAdopt.userBoard.model.vo.Animal;
-import edu.kh.allWeAdopt.userBoard.model.vo.Area;
-import edu.kh.allWeAdopt.userBoard.model.vo.Likes;
 
 @Controller
 @RequestMapping("/board")

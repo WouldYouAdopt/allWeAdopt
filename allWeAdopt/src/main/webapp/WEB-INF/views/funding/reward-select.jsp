@@ -366,7 +366,7 @@
         	var selectValidate=true;
         	
         	// 리워드별 가격
-        	var priceList = new Array();
+        	var priceList = [];
         	<c:forEach items="${map.rewardList}" var="reward">
         		priceList.push("${reward.rewardPrice}");
         	</c:forEach>

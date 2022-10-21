@@ -360,7 +360,7 @@ function showUpdateReply(replyNo, btn){
                 }else{
                      // '취소'클릭시 수행될 코드 작성
                     e.preventDefault();
-                    return;
+
                 }
              })
 
@@ -543,7 +543,7 @@ function showInsertReply(parentReplyNo, btn){
                 }else{
                      // '취소'클릭시 수행될 코드 작성
                     e.preventDefault();
-                    return;
+
                 }
              })
 

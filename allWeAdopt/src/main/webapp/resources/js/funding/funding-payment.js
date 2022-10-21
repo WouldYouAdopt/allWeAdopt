@@ -467,7 +467,7 @@ inputPoint.addEventListener("change",()=>{
 $('input').keydown(function() {
   if (event.keyCode === 13) {
     event.preventDefault();
-  };
+  }
 });
 
 

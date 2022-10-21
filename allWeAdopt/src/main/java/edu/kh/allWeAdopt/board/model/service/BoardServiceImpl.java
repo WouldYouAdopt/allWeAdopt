@@ -1,21 +1,20 @@
 package edu.kh.allWeAdopt.board.model.service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import edu.kh.allWeAdopt.board.model.dao.BoardDAO;
 import edu.kh.allWeAdopt.board.model.vo.Board;
 import edu.kh.allWeAdopt.board.model.vo.BoardDetail;
 import edu.kh.allWeAdopt.board.model.vo.Pagination;
 import edu.kh.allWeAdopt.board.model.vo.Template;
-import edu.kh.allWeAdopt.member.model.vo.Member;
 import edu.kh.allWeAdopt.common.Util;
+import edu.kh.allWeAdopt.member.model.vo.Member;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 @Service
@@ -24,7 +23,7 @@ public class BoardServiceImpl implements BoardService{
 	@Autowired
 	private BoardDAO dao;
 	
-	private Logger logger = LoggerFactory.getLogger(BoardServiceImpl.class);
+	private final Logger logger = LoggerFactory.getLogger(BoardServiceImpl.class);
 
 	// DB에 저장된 boardContent 조회
 	@Override

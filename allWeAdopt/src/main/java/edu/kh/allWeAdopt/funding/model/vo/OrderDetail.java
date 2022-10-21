@@ -1,10 +1,10 @@
 package edu.kh.allWeAdopt.funding.model.vo;
 
-import java.util.List;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @Getter
 @Setter
